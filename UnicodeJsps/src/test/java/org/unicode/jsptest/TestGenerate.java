@@ -7,7 +7,6 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
@@ -76,7 +75,7 @@ public class TestGenerate extends TestFmwk {
         // hex_results.putAll(new UnicodeSet("[:cn:]"), "disallowed");
         // hex_results.putAll(new UnicodeSet("[:noncharactercodepoint:]"), "disallowed");
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            String s = UTF16.valueOf(cp);
+            String s = Character.toString(cp);
             String nfc = toNfc(s);
             String nfkc = Normalizer.normalize(s, Normalizer.NFKC);
             String uts46 = Uts46.SINGLETON.transform(s);

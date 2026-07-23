@@ -17,7 +17,6 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -654,7 +653,7 @@ public class IdnaLabelTester2 {
                 // System.out.println("debug?");
                 // }
 
-                String s = UTF16.valueOf(cp);
+                String s = Character.toString(cp);
 
                 IdnaStatus idna2008 = IdnaStatus.valueOf(parts[1]);
                 // String rule2008 = parts[2];
@@ -912,14 +911,15 @@ public class IdnaLabelTester2 {
             String myName = getName(it.codepoint);
             String myGc = getGc(it.codepoint);
             String myScript = UScript.getShortName(UScript.getScript(it.codepoint));
-            String charsHex = TransliteratorUtilities.toHTML.transform(UTF16.valueOf(it.codepoint));
+            String charsHex =
+                    TransliteratorUtilities.toHTML.transform(Character.toString(it.codepoint));
             if (it.codepoint != it.codepointEnd) {
                 codepointsHex += "\u200B.." + Utility.hex(it.codepointEnd, 4);
                 myName += "\u200B.." + getName(it.codepointEnd);
                 charsHex +=
                         "\u200B.."
                                 + TransliteratorUtilities.toHTML.transform(
-                                        UTF16.valueOf(it.codepointEnd));
+                                        Character.toString(it.codepointEnd));
                 gcs.clear();
                 scripts.clear();
                 for (int cp = it.codepoint; cp < it.codepointEnd; ++cp) {
@@ -1247,14 +1247,18 @@ public class IdnaLabelTester2 {
                 result.append(" + ");
             }
             result.append(
-                    Utility.hex(cp) + " (" + UTF16.valueOf(cp) + ") " + UCharacter.getName(cp));
+                    Utility.hex(cp)
+                            + " ("
+                            + Character.toString(cp)
+                            + ") "
+                            + UCharacter.getName(cp));
             if (cp > 0xFFFF) ++i;
         }
         return result.toString();
     }
 
     private static void addMapping(Map<String, UnicodeSet> mapping, int i, String mapped) {
-        String s = UTF16.valueOf(i);
+        String s = Character.toString(i);
         if (!s.equals(mapped)) {
             UnicodeSet x = mapping.get(mapped);
             if (x == null) mapping.put(mapped, x = new UnicodeSet());

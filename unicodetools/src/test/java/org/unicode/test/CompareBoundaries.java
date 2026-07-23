@@ -4,7 +4,6 @@
 package org.unicode.test;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -228,7 +227,7 @@ public class CompareBoundaries {
 
                 // Sequence of UTF-16 code units
                 for (int i = 0; i < 2; ++i) {
-                    chrseq.append(UTF16.valueOf(intseq[i]));
+                    chrseq.append(Character.toString(intseq[i]));
                 }
 
                 // Determine WB and SB boundaries
@@ -293,7 +292,7 @@ public class CompareBoundaries {
 
                     // Sequence of UTF-16 code units
                     for (int i = 0; i < 3; ++i) {
-                        chrseq.append(UTF16.valueOf(intseq[i]));
+                        chrseq.append(Character.toString(intseq[i]));
                     }
 
                     // Determine WB and SB boundaries
@@ -375,7 +374,7 @@ public class CompareBoundaries {
 
                         // Sequence of UTF-16 code units
                         for (int i = 0; i < 4; ++i) {
-                            chrseq.append(UTF16.valueOf(intseq[i]));
+                            chrseq.append(Character.toString(intseq[i]));
                         }
 
                         // Determine WB and SB boundaries

@@ -3,7 +3,6 @@ package org.unicode.idna;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -60,11 +59,11 @@ public class StringPrepData {
         mappings.putAll(IdnaTypes.OTHER_DOT_SET, ".");
         // special old exceptions
 
-        mappings.put(0x2F868, UTF16.valueOf(0x2136A));
-        mappings.put(0x2F874, UTF16.valueOf(0x5F33));
-        mappings.put(0x2F91F, UTF16.valueOf(0x43AB));
-        mappings.put(0x2F95F, UTF16.valueOf(0x7AAE));
-        mappings.put(0x2F9BF, UTF16.valueOf(0x4D57));
+        mappings.put(0x2F868, Character.toString(0x2136A));
+        mappings.put(0x2F874, Character.toString(0x5F33));
+        mappings.put(0x2F91F, Character.toString(0x43AB));
+        mappings.put(0x2F95F, Character.toString(0x7AAE));
+        mappings.put(0x2F9BF, Character.toString(0x4D57));
 
         types.putAll(IdnaTypes.OTHER_DOT_SET, IdnaType.mapped);
         types.put('.', IdnaType.valid);
@@ -273,7 +272,7 @@ public class StringPrepData {
             }
 
             for (int i = 'A'; i <= 'Z'; ++i) {
-                mappings.put(i, UTF16.valueOf(i - 'A' + 'a'));
+                mappings.put(i, Character.toString(i - 'A' + 'a'));
             }
             // fix up mappings
 

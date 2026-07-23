@@ -52,26 +52,14 @@ import org.unicode.text.UCA.RadicalStroke;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public class GenerateUnihanCollators {
     private static final boolean DEBUG = false;
 
-    private static String version = CldrUtility.getProperty("UVERSION");
-
-    static {
-        System.out.println(
-                "To make files for a different version of unicode, use -DUVERSION=x.y.z");
-        if (version == null) {
-            version = Settings.latestVersion;
-        } else {
-            System.out.println("Resetting default version to: " + version);
-            Default.setUCD(version);
-        }
-    }
-
-    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(version);
-    private static final RadicalStroke radicalStroke = new RadicalStroke(version);
+    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(); // latest
+    private static final RadicalStroke radicalStroke = new RadicalStroke(Settings.latestVersion);
     private static final char INDEX_ITEM_BASE = '\u2800';
 
     private enum FileType {
@@ -107,21 +95,21 @@ public class GenerateUnihanCollators {
     private static final UnicodeSet PINYIN_LETTERS =
             new UnicodeSet("['a-uw-zàáèéìíòóùúüāēěīōūǎǐǒǔǖǘǚǜ]").freeze();
 
-    // these should be ok, eve if we are not on an old version
+    // TODO: unicodetools/issues/1336 should not use ICU Unicode properties
 
     private static final UnicodeSet NOT_NFC = new UnicodeSet("[:nfc_qc=no:]").freeze();
     private static final UnicodeSet NOT_NFD = new UnicodeSet("[:nfd_qc=no:]").freeze();
     private static final UnicodeSet NOT_NFKD = new UnicodeSet("[:nfkd_qc=no:]").freeze();
 
-    // specifically restrict this to the set version. Theoretically there could be some variance in
-    // ideographic, but it isn't worth worrying about
-
+    // TODO: Why Ideographic? That includes Tangut etc.
     private static final UnicodeSet UNIHAN_LATEST =
             new UnicodeSet("[[:ideographic:][:script=han:]]").removeAll(NOT_NFC).freeze();
-    private static final UnicodeSet UNIHAN =
-            version == null
-                    ? UNIHAN_LATEST
-                    : new UnicodeSet("[:age=" + version + ":]").retainAll(UNIHAN_LATEST).freeze();
+    private static final UnicodeSet UNIHAN = UNIHAN_LATEST;
+
+    // UNIHAN was restricted to a requested version, but
+    // ignored possible changes in the ideographic property.
+    // The version is now hardcoded to the latest one.
+    // new UnicodeSet("[:age=" + version + ":]").retainAll(UNIHAN_LATEST).freeze();
 
     static {
         if (!UNIHAN.contains(0x2B820)) {
@@ -1146,7 +1134,7 @@ public class GenerateUnihanCollators {
         for (final String s : unicodeMap) {
             //            S newValue = unicodeMap.get(s);
             //            if (newValue == null) continue;
-            if (UTF16.countCodePoint(s) != 1) {
+            if (!UTF16Plus.isSingleCodePoint(s)) {
                 throw new IllegalArgumentException("Wrong length!!");
             }
             rsSorted.add(s);
@@ -1249,7 +1237,7 @@ public class GenerateUnihanCollators {
                                         + hexConstant(s)
                                         + "\", "
                                         + "// "
-                                        + UTF16.valueOf(alpha)
+                                        + Character.toString(alpha)
                                         + " : "
                                         + s
                                         + " ["
@@ -1531,7 +1519,7 @@ public class GenerateUnihanCollators {
             if (countHasPinyin != s.size() && hasPinyin != null) {
                 for (final Integer cp : s) {
                     if (!bestPinyin.containsKey(cp)) {
-                        addPinyin(title, UTF16.valueOf(cp), hasPinyin, OverrideItems.keepOld);
+                        addPinyin(title, Character.toString(cp), hasPinyin, OverrideItems.keepOld);
                         count++;
                     }
                 }
@@ -1726,7 +1714,7 @@ public class GenerateUnihanCollators {
                 throw new RuntimeException(hex);
             } else {
                 final int hexValue = Integer.parseInt(hex.substring(2), 16);
-                if (!character.equals(UTF16.valueOf(hexValue))) {
+                if (!character.equals(Character.toString(hexValue))) {
                     throw new RuntimeException(hex + "!=" + character);
                 }
             }
@@ -1809,7 +1797,7 @@ public class GenerateUnihanCollators {
             }
             String codepoint = items[0];
             if (codepoint.startsWith("U+")) {
-                codepoint = UTF16.valueOf(Integer.parseInt(codepoint.substring(2), 16));
+                codepoint = Character.toString(Integer.parseInt(codepoint.substring(2), 16));
             }
             if (!UNIHAN.contains(codepoint)) {
                 throw new IllegalArgumentException(

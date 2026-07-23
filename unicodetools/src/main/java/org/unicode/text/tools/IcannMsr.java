@@ -4,7 +4,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
@@ -299,8 +298,8 @@ public class IcannMsr {
                         + "\t # "
                         + (_type == null ? "" : "according to MSR 5 ")
                         + "( "
-                        + UTF16.valueOf(cpStart)
-                        + (cpStart == cpEnd ? "" : ".." + UTF16.valueOf(cpEnd))
+                        + Character.toString(cpStart)
+                        + (cpStart == cpEnd ? "" : ".." + Character.toString(cpEnd))
                         + " ) ["
                         + getGc(cpStart)
                         + (cpStart == cpEnd ? "" : "..")

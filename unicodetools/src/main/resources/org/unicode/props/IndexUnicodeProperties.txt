@@ -68,6 +68,7 @@ FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
 
 FileType ; NamesList ; NamesList
+FileType ; fr/*/NamesList ; NamesList
 
 # =======================================
 # FILES FOR PROPERTIES
@@ -145,6 +146,11 @@ EquivalentUnifiedIdeograph ; Equivalent_Unified_Ideograph
 
 #
 NameAliases ; Name_Alias
+NameAliases ; Name_Alias_Correction
+NameAliases ; Name_Alias_Control
+NameAliases ; Name_Alias_Alternate
+NameAliases ; Name_Alias_Figment
+NameAliases ; Name_Alias_Abbreviation
 #NormalizationCorrections ; used in Decomposition Mappings
 Scripts ; Script
 CaseFolding ; Simple_Case_Folding ; 2 ; Skip1FT
@@ -510,9 +516,22 @@ NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
 emoji-variation-sequences ; emoji-variation-sequence
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
-DoNotEmit ; Do_Not_Emit_Dispreferred ; 1 ↦ 0
-DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; 1 ↦ 2
+DoNotEmit ; Do_Not_Emit_Dispreferred ; "1" ↦ 0
+DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; "1" ↦ 2
 DoNotEmit ; Do_Not_Emit_Type ; 2
+
+# USourceData.txt fields other than 2, keyed on field 2.
+# Field 2 is multivalued (although this is not documented).
+USourceData ; cjkUSource_Identifier          ; {2} ↦ 0
+USourceData ; cjkUSource_Status              ; {2} ↦ 1
+
+USourceData ; cjkUSource_RSUnicode           ; {2} ↦ 3
+USourceData ; cjkUSource_KangXi              ; {2} ↦ 4
+USourceData ; cjkUSource_IDS                 ; {2} ↦ 5
+USourceData ; cjkUSource_Source              ; {2} ↦ 6
+USourceData ; cjkUSource_Comments            ; {2} ↦ 7
+USourceData ; cjkUSource_TotalStrokes        ; {2} ↦ 8
+USourceData ; cjkUSource_FirstResidualStroke ; {2} ↦ 9
 
 idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2
@@ -602,8 +621,22 @@ Unikemet ; kEH_NoRotate
 Unikemet ; kEH_UniK
 Unikemet ; kEH_AltSeq
 
+NamesList ; Names_List_Block_Header
+NamesList ; Names_List_Block_Header_Notice
 NamesList ; Names_List_Alias
 NamesList ; Names_List_Cross_Ref
 NamesList ; Names_List_Comment
 NamesList ; Names_List_Subheader
 NamesList ; Names_List_Subheader_Notice
+NamesList ; Names_List_Name
+NamesList ; Names_List_Formal_Alias
+
+fr/*/NamesList ; Names_List_Block_Header_fr
+fr/*/NamesList ; Names_List_Block_Header_Notice_fr
+fr/*/NamesList ; Names_List_Alias_fr
+fr/*/NamesList ; Names_List_Cross_Ref_fr
+fr/*/NamesList ; Names_List_Comment_fr
+fr/*/NamesList ; Names_List_Subheader_fr
+fr/*/NamesList ; Names_List_Subheader_Notice_fr
+fr/*/NamesList ; Names_List_Name_fr
+fr/*/NamesList ; Names_List_Formal_Alias_fr

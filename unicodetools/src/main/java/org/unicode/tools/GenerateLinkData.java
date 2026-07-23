@@ -28,11 +28,13 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.utilities.LinkUtilities;
 import org.unicode.utilities.LinkUtilities.LinkTermination;
 import org.unicode.utilities.LinkUtilities.Part;
 import org.unicode.utilities.LinkUtilities.UrlInternals;
+import org.unicode.utilities.LinkUtilities.UrlInternals.EndStatus;
 
 /**
  * Generate UTS #58 property and test files
@@ -48,11 +50,15 @@ import org.unicode.utilities.LinkUtilities.UrlInternals;
  */
 public class GenerateLinkData {
 
-    private static final Transliterator FIX_ODD =
-            Transliterator.createFromRules(
-                    "any-html",
-                    ":: [[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ",
-                    Transliterator.FORWARD);
+    private static final Transliterator FIX_ODD = getFixOdd();
+
+    private static final Transliterator getFixOdd() {
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.forDevelopment());
+        return Transliterator.createFromRules(
+                "any-html",
+                ":: [[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ",
+                Transliterator.FORWARD);
+    }
 
     private static final boolean ADDTEST = false; // set to true to generate LinkDetectionTestSource
 
@@ -200,8 +206,12 @@ public class GenerateLinkData {
                                     "",
                                     "Comments are lines that begin with a #.",
                                     "",
-                                    "The fully-escaped field percent-escapes all literal syntax characters and all characters above ASCII.",
+                                    "The fully-escaped field percent-escapes all code points based on https://url.spec.whatwg.org/#percent-encoded-bytes.",
+                                    "This means all literal syntax characters in each Part and all code points above ASCII.",
+                                    "It also percent-escapes the last character, if it is Link_Term=Soft.",
+                                    "",
                                     "The minimally-escaped field is the more readable format described in UTS #58.",
+                                    "",
                                     "Each pair also has a comment line for the internal structure of the URL.",
                                     "𝑺 = the schema",
                                     "𝑯 = the host (typically just a domain name) the internal structure is not broken down.",
@@ -444,8 +454,9 @@ public class GenerateLinkData {
                                 String fullSourcePath = oldValue.toString();
 
                                 UrlInternals internals = UrlInternals.from(fullSourcePath);
+                                // String maximal = internals.maximalEscape(EndStatus.FINAL, null);
 
-                                String actual = internals.minimalEscape(false, null);
+                                String actual = internals.minimalEscape(EndStatus.FINAL, null);
 
                                 String expected = parts.size() < 6 ? null : parts.get(5);
                                 if (expected != null && !actual.equals(expected)) {
@@ -460,14 +471,13 @@ public class GenerateLinkData {
                                                             title,
                                                             line,
                                                             internals,
-                                                            fullSourcePath,
+                                                            internals.fullEscape(),
                                                             "expected:\t" + expected,
                                                             "actual:  \t" + actual));
                                     ++errorCount.value;
-                                    // for debugging
-                                    UrlInternals.from(fullSourcePath);
-                                    internals.minimalEscape(false, null);
+                                    ensureRoundTrip(internals, fullSourcePath);
                                     comments.clear();
+
                                     return;
                                 }
                                 outputTestCase(out.tempPrintWriter, comments, internals, actual);
@@ -509,15 +519,26 @@ public class GenerateLinkData {
                                 // Divide into parts
                                 UrlInternals internals = UrlInternals.from(line);
 
-                                String actual = internals.minimalEscape(true, null);
+                                String minimallyEscaped =
+                                        internals.minimalEscape(EndStatus.FINAL, null);
 
-                                outputTestCase(out.tempPrintWriter, comments, internals, actual);
+                                ensureRoundTrip(internals, minimallyEscaped);
+
+                                outputTestCase(
+                                        out.tempPrintWriter, comments, internals, minimallyEscaped);
                             });
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
         if (errorCount.value != 0) {
             throw new IllegalArgumentException("Failures in writing test file: " + errorCount);
+        }
+    }
+
+    private static void ensureRoundTrip(UrlInternals sourceInternals, String resultingPath) {
+        UrlInternals targetInternals = UrlInternals.from(resultingPath);
+        if (!targetInternals.equals(sourceInternals)) {
+            throw new IllegalArgumentException("Fails roundtrip");
         }
     }
 
@@ -590,7 +611,7 @@ public class GenerateLinkData {
                                 UrlInternals parts = UrlInternals.from(item);
                                 String host = parts.get(Part.HOST).get(0).get(0);
                                 hostCounter.add(host, 1);
-                                url = parts.minimalEscape(true, escaped);
+                                url = parts.minimalEscape(EndStatus.FINAL, escaped);
                                 break;
                         }
                     }

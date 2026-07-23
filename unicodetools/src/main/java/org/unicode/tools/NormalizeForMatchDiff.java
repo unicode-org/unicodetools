@@ -11,15 +11,20 @@ public class NormalizeForMatchDiff {
         NormalizeForMatch production =
                 NormalizeForMatch.load(
                         "/Users/markdavis/Google Drive/workspace/Generated/n4m-old/",
-                        "xnfkccf_curated.txt");
-        NormalizeForMatch sourceDirectory = NormalizeForMatch.load(null, "XNFKCCF-Curated.txt");
+                        "xnfkccf_curated.txt",
+                        /* acceptRawChars= */ true);
+        NormalizeForMatch sourceDirectory =
+                NormalizeForMatch.load(null, "XNFKCCF-Curated.txt", /* acceptRawChars= */ true);
         NormalizeForMatch dir90 =
                 NormalizeForMatch.load(
-                        Settings.UnicodeTools.DATA_DIR + "n4m/9.0.0/", "XNFKCCF-Curated.txt");
+                        Settings.UnicodeTools.DATA_DIR + "n4m/9.0.0/",
+                        "XNFKCCF-Curated.txt",
+                        /* acceptRawChars= */ true);
         NormalizeForMatch gen =
                 NormalizeForMatch.load(
                         "/Users/markdavis/Google Drive/workspace/Generated/n4m/",
-                        "XNFKCCF-Curated.txt");
+                        "XNFKCCF-Curated.txt",
+                        /* acceptRawChars= */ true);
 
         UnicodeSet keys =
                 new UnicodeSet()

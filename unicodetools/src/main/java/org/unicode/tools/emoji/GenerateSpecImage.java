@@ -1,7 +1,6 @@
 package org.unicode.tools.emoji;
 
 import com.google.common.collect.ImmutableList;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import com.ibm.icu.text.UnicodeSetSpanner;
@@ -156,7 +155,7 @@ public class GenerateSpecImage {
                 if (!modString.isEmpty()) {
                     modString += ", ";
                 }
-                switch (UTF16.valueOf(mod)) {
+                switch (Character.toString(mod)) {
                     case "🏻":
                         modString += "light skin tone";
                         break;
@@ -185,7 +184,7 @@ public class GenerateSpecImage {
             if (!emojiSet.contains(cp)) {
                 continue;
             }
-            String cell = GenerateEmoji.getBestImage(UTF16.valueOf(cp), false, null);
+            String cell = GenerateEmoji.getBestImage(Character.toString(cp), false, null);
             System.out.println(cell);
         }
     }

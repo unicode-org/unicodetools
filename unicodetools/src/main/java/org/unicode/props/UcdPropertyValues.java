@@ -207,6 +207,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bassa_Vah"),
         Batak("Batak"),
         Bengali("Bengali"),
+        Bengali_Supplement("Bengali_Sup"),
         Beria_Erfe("Beria_Erfe"),
         Bhaiksuki("Bhaiksuki"),
         Block_Elements("Block_Elements"),
@@ -225,7 +226,6 @@ public class UcdPropertyValues {
         Cherokee("Cherokee"),
         Cherokee_Supplement("Cherokee_Sup"),
         Chess_Symbols("Chess_Symbols"),
-        Chisoi("Chisoi"),
         Chorasmian("Chorasmian"),
         CJK_Unified_Ideographs("CJK"),
         CJK_Compatibility("CJK_Compat"),
@@ -746,6 +746,15 @@ public class UcdPropertyValues {
 
     // Case_Folding
     // CJK_Radical
+    // cjkUSource_Comments
+    // cjkUSource_FirstResidualStroke
+    // cjkUSource_Identifier
+    // cjkUSource_IDS
+    // cjkUSource_KangXi
+    // cjkUSource_RSUnicode
+    // cjkUSource_Source
+    // cjkUSource_Status
+    // cjkUSource_TotalStrokes
     // Confusable_MA
     // Confusable_ML
     // Confusable_SA
@@ -1742,6 +1751,8 @@ public class UcdPropertyValues {
     // kJa
     // kJapanese
     // kJapaneseKun
+    // kJapaneseNewVariant
+    // kJapaneseOldVariant
     // kJapaneseOn
     // kJHJ
     // kJinmeiyoKanji
@@ -2017,13 +2028,31 @@ public class UcdPropertyValues {
     // Math_Entity_Set
     // Name
     // Name_Alias
+    // Name_Alias_Abbreviation
+    // Name_Alias_Alternate
+    // Name_Alias_Control
+    // Name_Alias_Correction
+    // Name_Alias_Figment
     // Named_Sequences
     // Named_Sequences_Prov
     // Names_List_Alias
+    // Names_List_Alias_fr
+    // Names_List_Block_Header
+    // Names_List_Block_Header_fr
+    // Names_List_Block_Header_Notice
+    // Names_List_Block_Header_Notice_fr
     // Names_List_Comment
+    // Names_List_Comment_fr
     // Names_List_Cross_Ref
+    // Names_List_Cross_Ref_fr
+    // Names_List_Formal_Alias
+    // Names_List_Formal_Alias_fr
+    // Names_List_Name
+    // Names_List_Name_fr
     // Names_List_Subheader
+    // Names_List_Subheader_fr
     // Names_List_Subheader_Notice
+    // Names_List_Subheader_Notice_fr
     public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
@@ -2273,7 +2302,6 @@ public class UcdPropertyValues {
         Carian("Cari"),
         Cham("Cham"),
         Cherokee("Cher"),
-        Chisoi("Chis"),
         Chorasmian("Chrs"),
         Coptic("Copt", "Qaac"),
         Cypro_Minoan("Cpmn"),

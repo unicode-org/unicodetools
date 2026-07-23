@@ -3,7 +3,6 @@ package org.unicode.propstest;
 import com.google.common.base.Objects;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -156,7 +155,7 @@ public class ListPropsNfcDiff {
         Normalizer nfc = Default.nfc();
         Normalizer nfkc = Default.nfkc();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            String s = UTF16.valueOf(cp);
+            String s = Character.toString(cp);
             String nfcValue = nfc.transform(s);
             int singleCodePoint = UnicodeSet.getSingleCodePoint(nfcValue);
             if (singleCodePoint != Integer.MAX_VALUE && singleCodePoint != cp) {

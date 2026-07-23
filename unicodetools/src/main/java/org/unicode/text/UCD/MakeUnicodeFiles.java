@@ -42,6 +42,8 @@ import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.idna.GenerateIdna;
+import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
@@ -77,10 +79,7 @@ public class MakeUnicodeFiles {
 
         int files = Arrays.asList(args).indexOf("--generate");
         if (files >= 0) {
-            Format.theFormat.filesToDo =
-                    Arrays.asList(args)
-                            .subList(files + 1, args.length)
-                            .toArray(new String[args.length - (files + 1)]);
+            Format.theFormat.filesToDo = Arrays.copyOfRange(args, files + 1, args.length);
         }
 
         if (cleanAndCopy) {
@@ -94,11 +93,13 @@ public class MakeUnicodeFiles {
             binFile.delete();
 
             // Remove the old files in the output directory
-
-            Files.walk(Path.of(Settings.Output.GEN_UCD_DIR))
-                    .sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
+            var genUcdPath = Path.of(Settings.Output.GEN_UCD_DIR);
+            if (Files.isDirectory(genUcdPath)) {
+                Files.walk(genUcdPath)
+                        .sorted(Comparator.reverseOrder())
+                        .map(Path::toFile)
+                        .forEach(File::delete);
+            }
         }
 
         generateFile();
@@ -654,6 +655,12 @@ public class MakeUnicodeFiles {
                 case "LinkFormattingTest":
                     GenerateLinkData.generateFormattingTestData(Default.getYear());
                     break;
+                case "IdnaMappingTable":
+                    GenerateIdna.main(new String[0]);
+                    break;
+                case "IdnaTestV2":
+                    GenerateIdnaTest.main(new String[0]);
+                    break;
                 default:
                     generatePropertyFile(filename);
                     break;
@@ -1152,7 +1159,11 @@ public class MakeUnicodeFiles {
                                             UcdPropertyValues.Script_Values.forName(
                                                             script.getValue(
                                                                     dispreferred.codePointAt(0)))
-                                                    == Script_Values.Khmer))
+                                                    == Script_Values.Khmer),
+                            new DoNotEmitSubsection(
+                                    "Precomposed form of mathematical symbols negated with a vertical bar",
+                                    "[:Do_Not_Emit_Type=Precomposed_Form:]",
+                                    dispreferred -> dispreferred.contains("\u20D2")))
                 };
         for (final var section : sections) {
             pw.println();
@@ -2671,8 +2682,8 @@ public class MakeUnicodeFiles {
      if (DEBUG) System.out.println("\tGetID <" + text.substring(start,limit) + ">");
      int cp = 0;
      int i;
-     for (i = start; i < limit; i += UTF16.getCharCount(cp)) {
-     cp = UTF16.charAt(text, i);
+     for (i = start; i < limit; i += Character.charCount(cp)) {
+     cp = text.codePointAt(i);
      if (!com.ibm.icu.lang.UCharacter.isUnicodeIdentifierPart(cp)) {
      break;
      }

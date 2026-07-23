@@ -8,11 +8,11 @@
     <title>Unicode Character Database in XML</title>
 
     <articleinfo>
-        <unicode:tr number='42' class='uax' version='17.0.0'
-                    stage='approved'
-                    schema='rnc' prevrev='36'/>
+        <unicode:tr number='42' class='uax' version='18.0.0 beta'
+                    stage='proposed-update'
+                    schema='rnc' prevrev='38'/>
         <copyright>
-            <year>2025</year>
+            <year>2026</year>
         </copyright>
         <authors>
             <author>
@@ -21,6 +21,37 @@
             </author>
         </authors>
         <revhistory>
+            <revision revnumber="39" date="2026-05-15" edit="changed">
+                <changes>
+                    <change>New value for the <attr>age</attr> attribute: <val>18.0</val>.
+                    </change>
+                    <change>New values for the <attr>blk</attr> attribute: <val>Archaic_Cuneiform_Numerals</val>,
+                        <val>Bengali_Sup</val>, <val>Chisoi</val>, <val>Jurchen</val>, <val>Jurchen_Radicals</val>,
+                        <val>Misc_Arrows_Ext</val>, <val>Music_Sup</val>, <val>Seal</val>.
+                    </change>
+                    <change>New values for the <attr>jg</attr> attribute: <val>Crown_Ain</val>, <val>Crown_Beh</val>,
+                        <val>Crown_Feh</val>, <val>Crown_Hah</val>, <val>Crown_Heh</val>, <val>Crown_Kaf</val>,
+                        <val>Crown_Meem</val>, <val>Crown_Sad</val>, <val>Crown_Seen</val>, <val>Crown_Tah</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Chis</val>, <val>Jurc</val>,
+                        <val>Pcun</val>, <val>Seal</val>.
+                    </change>
+                    <change>New code point attributes for Jurchen: <val>kJURC_NCReading</val>, <val>kJURC_Numeric</val>,
+                        <val>kJURC_RSUnicode</val>, <val>kJURC_Src</val>.
+                    </change>
+                    <change>New code point attributes for Seal: <val>kSEAL_CCZSrc</val>, <val>kSEAL_DYCSrc</val>,
+                        <val>kSEAL_MCJK</val>, <val>kSEAL_QJZSrc</val>, <val>kSEAL_Rad</val>, <val>kSEAL_THXSrc</val>.
+                    </change>
+                    <change>New code point attribute for Tangut: <val>kTGT_Numeric</val>.
+                    </change>
+                    <change>New code point attributes for Unihan: <attr>kJapaneseNewVariant</attr>,
+                        <attr>kJapaneseOldVariant</attr>.
+                    </change>
+                    <change>Removed code point attributes for Unihan: <attr>kIRGDaeJaweon</attr>,
+                        <attr>kIRGKangXi</attr>.
+                    </change>
+                </changes>
+            </revision>
             <revision revnumber="38" date="2025-08-13">
                 <changes>
                     <change><reissued>Reissued</reissued> for Unicode 17.0.0.
@@ -53,6 +84,12 @@
                         <attr>kEH_NoRotate</attr>, <attr>kEH_UniK</attr>.
                     </change>
                     <change>New attribute for the <attr>kTayNumeric</attr> property.
+                    </change>
+                    <change><edit flag='changed'>Renamed the <attr>kRSTUnicode</attr> property to <attr>kTGT_RSUnicode</attr>.</edit>
+                    </change>
+                    <change><edit flag='changed'>Renamed the <attr>kSrc_NushuDuben</attr> property to <attr>kNSHU_DubenSrc</attr>.</edit>
+                    </change>
+                    <change><edit flag='changed'>Renamed the <attr>kReading</attr> property to <attr>kNSHU_Reading</attr>.</edit>
                     </change>
                     <change>Removed attributes for deprecated properties: <attr>Gr_Link</attr>, <attr>Hyphen</attr>,
                         <attr>isc</attr>, <attr>kGB7</attr>, <attr>kJa</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>,
@@ -1201,20 +1238,14 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title>Unihan properties</title>
-                <para>The Unihan properties (from the Unihan database) are represented as attributes.
-                </para>
-                <xi:include href="./fragments/Unihan.xml"/>
-            </section>
-
-            <!--____________________________________________________________________-->
-            <section>
-                <title>Tangut data</title>
-                <para>The Tangut data are represented as attributes. The attribute <attr>kTGT_RSUnicode</attr>
-                    represents the radical stroke index. The attribute <attr>kTGT_MergedSrc</attr> indicates the
-                    source reference for the character.
-                </para>
-                <xi:include href="./fragments/Tangut.xml"/>
+                <title><edit flag="changed">Jurchen data</edit></title>
+                <para><edit flag="changed">The Jurchen data are represented as attributes. The attribute <attr>kJURC_NCReading</attr>
+                    indicates a reading given in Nǚzhēnwén Cídiǎn (Jīn). The attribute <attr>kJURC_Numeric</attr>
+                    provides the numeric value of the Jurchen character. For the attribute <attr>kJURC_RSUnicode</attr>,
+                    the first number is the radical number, and the second number is the total stroke count of the
+                    Jurchen character. The attribute <attr>kJURC_Src</attr> refers to ideograph collections which
+                    identify encoded characters.</edit></para>
+                <xi:include href="./fragments/Jurchen.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1228,11 +1259,33 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title>Emoji properties</title>
-                <para>The properties <prop>Emoji</prop>, <prop>EPres</prop>, <prop>EMod</prop>, <prop>EBase</prop>,
-                    <prop>EComp</prop>, and <prop>ExtPict</prop> have corresponding attributes:
+                <title><edit flag="changed">Seal data</edit></title>
+                <para><edit flag="changed">The Seal data are represented as attributes. The attributes <attr>kSEAL_CCZSrc</attr>,
+                    <attr>kSEAL_DYCSrc</attr>, <attr>kSEAL_QJZSrc</attr>, and <attr>kSEALTHXSrc</attr> refer to
+                    ideograph collections which identify encoded characters. The attribute <attr>kSEAL_MCJK</attr>
+                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal character.
+                    The attribute <attr>kSEAL_Rad</attr> provide the radical number associated with each Seal character
+                    (1 to 540) along with the radical code point expressed in hexadecimal notation.</edit></para>
+                <xi:include href="./fragments/Seal.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Tangut data</title>
+                <para>The Tangut data are represented as attributes. The attribute <attr>kTGT_MergedSrc</attr>
+                    indicates the source reference for the character. <edit flag="changed">The attribute <attr>kTGT_Numeric</attr>
+                    provides the numeric value of the Tangut character.</edit> The attribute <attr>kTGT_RSUnicode</attr>
+                    represents the radical stroke index.
                 </para>
-                <xi:include href="./fragments/Emoji.xml"/>
+                <xi:include href="./fragments/Tangut.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Unihan properties</title>
+                <para>The Unihan properties (from the Unihan database) are represented as attributes.
+                </para>
+                <xi:include href="./fragments/Unihan.xml"/>
             </section>
 
             <!--____________________________________________________________________-->
@@ -1255,6 +1308,15 @@
                     index used by the Egyptian Hieroglyph block.
                 </para>
                 <xi:include href="./fragments/Unikemet.xml"/>
+            </section>
+
+            <!--____________________________________________________________________-->
+            <section>
+                <title>Emoji properties</title>
+                <para>The properties <prop>Emoji</prop>, <prop>EPres</prop>, <prop>EMod</prop>, <prop>EBase</prop>,
+                    <prop>EComp</prop>, and <prop>ExtPict</prop> have corresponding attributes:
+                </para>
+                <xi:include href="./fragments/Emoji.xml"/>
             </section>
         </section>
     </section>
@@ -1324,8 +1386,10 @@
       <ucdxml:include linkend='schema.description'/>
       <ucdxml:include linkend='schema.repertoire' title='repertoire'/>
       <ucdxml:include linkend='schema.properties' title='attributes'/>
-      <ucdxml:include linkend='schema.tangut'/>
+      <ucdxml:include linkend='schema.jurchen'/>
       <ucdxml:include linkend='schema.nushu'/>
+      <ucdxml:include linkend='schema.seal'/>
+      <ucdxml:include linkend='schema.tangut'/>
       <ucdxml:include linkend='schema.unikemet'/>
       <ucdxml:include linkend='schema.block'/>
       <ucdxml:include linkend='schema.named-sequences'/>

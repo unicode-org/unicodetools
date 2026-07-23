@@ -132,19 +132,19 @@ class GeneratePickerData {
     public static final Comparator<String> CODE_POINT_ORDER =
             new UTF16.StringComparator(true, false, 0);
 
-    static Comparator<String> UCA = new MultilevelComparator(UCA_BASE, CODE_POINT_ORDER);
+    static Comparator<String> UCA =
+            ((Comparator<String>) (Comparator) UCA_BASE).thenComparing(CODE_POINT_ORDER);
 
     static Comparator<String> buttonComparator =
-            new MultilevelComparator(
-                    // new
-                    // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:Block=ASCII:]")),
-                    // new
-                    // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[[:Letter:]&[:^NFKC_QuickCheck=N:]]")),
-                    new UnicodeSetInclusionFirst(
-                            ScriptCategories2.parseUnicodeSet("[[:Letter:]-[:Lm:]]")),
-                    new UnicodeSetInclusionFirst(ScriptCategories2.parseUnicodeSet("[:Lm:]")),
-                    UCA_BASE,
-                    CODE_POINT_ORDER);
+            // new UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[:Block=ASCII:]")),
+            // new
+            // UnicodeSetInclusionFirst(ScriptCategories.parseUnicodeSet("[[:Letter:]&[:^NFKC_QuickCheck=N:]]")),
+            new UnicodeSetInclusionFirst(ScriptCategories2.parseUnicodeSet("[[:Letter:]-[:Lm:]]"))
+                    .thenComparing(
+                            new UnicodeSetInclusionFirst(
+                                            ScriptCategories2.parseUnicodeSet("[:Lm:]"))
+                                    .thenComparing(UCA_BASE))
+                    .thenComparing(CODE_POINT_ORDER);
 
     static Comparator<String> LinkedHashSetComparator =
             new Comparator<String>() {
@@ -408,7 +408,7 @@ class GeneratePickerData {
                                             ? "11..17"
                                             : String.valueOf(radicalStrokes))
                                     + "-Stroke Radicals";
-                    String subCat = UTF16.valueOf(radicalChar);
+                    String subCat = Character.toString(radicalChar);
                     // if (DEBUG) System.out.println(radical + " => " + radicalToChar.get(radical));
                     // String radChar = getRadicalName(radicalToChar, radical);
                     // String subCat = radChar + " Han";
@@ -584,7 +584,7 @@ class GeneratePickerData {
     private static UnicodeSet closeOver(UnicodeSet closed) {
         for (int i = 0; i < 0x10FFFF; ++i) {
             if (closed.contains(i)) continue;
-            final String str = UTF16.valueOf(i);
+            final String str = Character.toString(i);
             String s = UCharacter.foldCase(str, true);
             if (s.equals(str)) continue;
             if (closed.contains(s)) {
@@ -878,7 +878,7 @@ class GeneratePickerData {
             CATEGORYTABLE.add(
                     "Hangul",
                     true,
-                    UTF16.valueOf(decompCodePoint1)
+                    Character.toString(decompCodePoint1)
                             + " "
                             + UCharacter.getExtendedName(decompCodePoint1),
                     buttonComparator,
@@ -1017,7 +1017,7 @@ class GeneratePickerData {
                 Separation separateOld,
                 String values) {
             int cp;
-            for (int i = 0; i < values.length(); i += UTF16.getCharCount(cp)) {
+            for (int i = 0; i < values.length(); i += Character.charCount(cp)) {
                 add(
                         category,
                         sortSubcategory,
@@ -1100,7 +1100,7 @@ class GeneratePickerData {
             GeneratePickerData.USet oldValue =
                     getValues(category, sortSubcategory, subcategory, sortValues);
             if (!SKIP.contains(codePoint)) {
-                oldValue.strings.add(UTF16.valueOf(codePoint));
+                oldValue.strings.add(Character.toString(codePoint));
             }
         }
 
@@ -1597,24 +1597,6 @@ class GeneratePickerData {
             return UCA;
         }
         return sort;
-    }
-
-    static class MultilevelComparator<T> implements Comparator<T> {
-        private Comparator<T>[] comparators;
-
-        public MultilevelComparator(Comparator<T>... comparators) {
-            this.comparators = comparators;
-        }
-
-        public int compare(T arg0, T arg1) {
-            for (int i = 0; i < comparators.length; ++i) {
-                int result = comparators[i].compare(arg0, arg1);
-                if (result != 0) {
-                    return result;
-                }
-            }
-            return 0;
-        }
     }
 
     static class UnicodeSetInclusionFirst<T extends Comparable<T>> implements Comparator<T> {
@@ -2703,8 +2685,8 @@ class GeneratePickerData {
     public static int utf8Length(String x) {
         int cp;
         int len = 0;
-        for (int i = 0; i < x.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(x, i);
+        for (int i = 0; i < x.length(); i += Character.charCount(cp)) {
+            cp = x.codePointAt(i);
             len += cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
         }
         return len;

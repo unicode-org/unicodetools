@@ -53,8 +53,10 @@ public class GeneratePropertyValues {
         // Manual
         REPERTOIRE("repertoire"),
         PROPERTIES("properties"),
-        TANGUT("tangut"),
+        JURCHEN("jurchen"),
         NUSHU("nushu"),
+        SEAL("seal"),
+        TANGUT("tangut"),
         EMOJI_DATA("emoji-data"),
         UNIKEMET("unikemet"),
         // Manual
@@ -111,7 +113,7 @@ public class GeneratePropertyValues {
     private static HashMap<String, TRDetails> syntaxTR57;
     private static final String NAMESPACE = "http://unicode.org/ns/2001/ucdxml";
     private static final String TR38URL = "https://www.unicode.org/reports/tr38/proposed.html";
-    private static final String TR57URL = "https://www.unicode.org/reports/tr57/tr57-5d1.html";
+    private static final String TR57URL = "https://www.unicode.org/reports/tr57/proposed.html";
     private static final UOption[] options = {
         UOption.HELP_H(),
         UOption.create("ucdversion", 'v', UOption.OPTIONAL_ARG),
@@ -367,9 +369,12 @@ public class GeneratePropertyValues {
                 SCHEMA.PROPERTIES,
                 getFormattedUnihanProperties());
         createPropertyFragment(
-                "Tangut.xml", "Tangut data", SCHEMA.TANGUT, getFormattedTangutProperties());
+                "Jurchen.xml", "Jurchen data", SCHEMA.JURCHEN, getFormattedJurchenProperties());
         createPropertyFragment(
                 "Nushu.xml", "Nushu data", SCHEMA.NUSHU, getFormattedNushuProperties());
+        createPropertyFragment("Seal.xml", "Seal data", SCHEMA.SEAL, getFormattedSealProperties());
+        createPropertyFragment(
+                "Tangut.xml", "Tangut data", SCHEMA.TANGUT, getFormattedTangutProperties());
         createPropertyFragment(
                 "Emoji.xml", "Emoji properties", SCHEMA.EMOJI_DATA, getFormattedEmojiProperties());
         createPropertyFragment(
@@ -552,22 +557,22 @@ public class GeneratePropertyValues {
                         : "    attribute " + ucdProperty.getShortName() + " ";
         String formattedAttributeString;
         switch (ucdProperty) {
-                // { text }
+            // { text }
             case ISO_Comment:
                 formattedAttributeString = attributeString + "{ text }?";
                 break;
 
-                // { single-code-point }
+            // { single-code-point }
             case Equivalent_Unified_Ideograph:
                 formattedAttributeString = attributeString + "{ single-code-point }?";
                 break;
 
-                // { "" | single-code-point }
+            // { "" | single-code-point }
             case Bidi_Mirroring_Glyph:
                 formattedAttributeString = attributeString + "{ \"\" | single-code-point }?";
                 break;
 
-                // { "#" | single-code-point }
+            // { "#" | single-code-point }
             case Bidi_Paired_Bracket:
             case Simple_Uppercase_Mapping:
             case Simple_Lowercase_Mapping:
@@ -576,7 +581,7 @@ public class GeneratePropertyValues {
                 formattedAttributeString = attributeString + "{ \"#\" | single-code-point }?";
                 break;
 
-                // { "#" | zero-or-more-code-points }
+            // { "#" | zero-or-more-code-points }
             case Decomposition_Mapping:
             case NFKC_Casefold:
             case NFKC_Simple_Casefold:
@@ -584,7 +589,7 @@ public class GeneratePropertyValues {
                         attributeString + "{ \"#\" | zero-or-more-code-points }?";
                 break;
 
-                // { "#" | one-or-more-code-points }
+            // { "#" | one-or-more-code-points }
             case Uppercase_Mapping:
             case Lowercase_Mapping:
             case Titlecase_Mapping:
@@ -592,7 +597,7 @@ public class GeneratePropertyValues {
                 formattedAttributeString = attributeString + "{ \"#\" | one-or-more-code-points }?";
                 break;
 
-                // { "NaN" | RegEx }
+            // { "NaN" | RegEx }
             case Numeric_Value:
                 formattedAttributeString =
                         attributeString
@@ -601,7 +606,7 @@ public class GeneratePropertyValues {
                                 + "\" } }?";
                 break;
 
-                // Special cases
+            // Special cases
             case Name:
                 formattedAttributeString =
                         attributeString
@@ -637,34 +642,6 @@ public class GeneratePropertyValues {
                 break;
             case Script_Extensions:
                 formattedAttributeString = attributeString + "{ list { script + } }?";
-                break;
-            case kTGT_MergedSrc:
-                // Ideally, should be obtained from a TR.
-                String kTGT_MergedSrc =
-                        NEWLINE
-                                + "     { xsd:string {pattern=\"H2004-[AB]-\\d{4}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"H2021-\\d{6}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"L(19(86|97)|20(06|12))-\\d{4}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"L2008-\\d{4}([AB]|-\\d{4})?\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"N1966-\\d{3}-\\d{2}[0-9A-Z]{1,2}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"N5217-\\d{2}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"S1968-\\d{4}\"}"
-                                + NEWLINE
-                                + "     | xsd:string {pattern=\"UTN42-\\d{3}\"}"
-                                + NEWLINE
-                                + "     }?";
-                formattedAttributeString = attributeString + kTGT_MergedSrc;
-                break;
-            case kNSHU_Reading:
-                // Ideally, should be obtained from a TR.
-                String kReading = "{ xsd:string }?";
-                formattedAttributeString = attributeString + kReading;
                 break;
             default:
                 if (propInfo.getMultivalued() == ValueCardinality.Unordered
@@ -1293,15 +1270,15 @@ public class GeneratePropertyValues {
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kIRG_VSource)
                 + DOUBLELINE
-                + getFormattedTR38Syntax(UcdProperty.kIRGDaeJaweon)
-                + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kIRGHanyuDaZidian)
-                + DOUBLELINE
-                + getFormattedTR38Syntax(UcdProperty.kIRGKangXi)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kJapanese)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kJapaneseKun)
+                + DOUBLELINE
+                + getFormattedTR38Syntax(UcdProperty.kJapaneseNewVariant)
+                + DOUBLELINE
+                + getFormattedTR38Syntax(UcdProperty.kJapaneseOldVariant)
                 + DOUBLELINE
                 + getFormattedTR38Syntax(UcdProperty.kJapaneseOn)
                 + DOUBLELINE
@@ -1400,16 +1377,42 @@ public class GeneratePropertyValues {
                 + getFormattedTR38Syntax(UcdProperty.kZVariant);
     }
 
-    private static String getFormattedTangutProperties() {
-        return getFormattedSyntax(UcdProperty.kTGT_RSUnicode)
+    private static String getFormattedJurchenProperties() {
+        return getFormattedSyntax(UcdProperty.kJURC_NCReading)
                 + DOUBLELINE
-                + getFormattedSyntax(UcdProperty.kTGT_MergedSrc);
+                + getFormattedSyntax(UcdProperty.kJURC_Numeric)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kJURC_RSUnicode)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kJURC_Src);
     }
 
     private static String getFormattedNushuProperties() {
         return getFormattedSyntax(UcdProperty.kNSHU_DubenSrc)
                 + DOUBLELINE
                 + getFormattedSyntax(UcdProperty.kNSHU_Reading);
+    }
+
+    private static String getFormattedSealProperties() {
+        return getFormattedSyntax(UcdProperty.kSEAL_CCZSrc)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kSEAL_DYCSrc)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kSEAL_MCJK)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kSEAL_QJZSrc)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kSEAL_Rad)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kSEAL_THXSrc);
+    }
+
+    private static String getFormattedTangutProperties() {
+        return getFormattedSyntax(UcdProperty.kTGT_MergedSrc)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kTGT_Numeric)
+                + DOUBLELINE
+                + getFormattedSyntax(UcdProperty.kTGT_RSUnicode);
     }
 
     private static String getFormattedEmojiProperties() {
@@ -1813,9 +1816,9 @@ public class GeneratePropertyValues {
             switch (delimiter) {
                 case "N/A":
                     break;
-                    // The next two are to support two Provisional attributes in Unikemet. We'll
-                    // process these as
-                    // exceptions for now
+                // The next two are to support two Provisional attributes in Unikemet. We'll
+                // process these as
+                // exceptions for now
                 case "/ (see description)": // kEH_Func
                 case "/ or | (see description)": // kEH_FVal
                     break;

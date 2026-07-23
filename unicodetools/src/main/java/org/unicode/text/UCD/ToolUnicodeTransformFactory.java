@@ -9,13 +9,17 @@ public class ToolUnicodeTransformFactory implements UnicodeTransform.Factory {
     public UnicodeTransform getInstance(Type type) {
         switch (type) {
             case NFC:
-                return new ToolUnicodeNormalizer(UCD_Types.NFC);
+                return new ToolUnicodeNormalizer(
+                        Normalizer.getOrMakeNfcInstance(Default.ucdVersion()));
             case NFKC:
-                return new ToolUnicodeNormalizer(UCD_Types.NFKC);
+                return new ToolUnicodeNormalizer(
+                        Normalizer.getOrMakeNfkcInstance(Default.ucdVersion()));
             case NFD:
-                return new ToolUnicodeNormalizer(UCD_Types.NFD);
+                return new ToolUnicodeNormalizer(
+                        Normalizer.getOrMakeNfdInstance(Default.ucdVersion()));
             case NFKD:
-                return new ToolUnicodeNormalizer(UCD_Types.NFKD);
+                return new ToolUnicodeNormalizer(
+                        Normalizer.getOrMakeNfkdInstance(Default.ucdVersion()));
             case CASEFOLD:
                 return new CaseFolder();
             default:
@@ -26,8 +30,8 @@ public class ToolUnicodeTransformFactory implements UnicodeTransform.Factory {
     private static class ToolUnicodeNormalizer extends UnicodeTransform {
         org.unicode.text.UCD.Normalizer normalizer;
 
-        public ToolUnicodeNormalizer(byte type) {
-            normalizer = new Normalizer(type, Default.ucdVersion());
+        public ToolUnicodeNormalizer(Normalizer norm) {
+            normalizer = norm;
         }
 
         @Override

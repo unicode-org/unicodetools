@@ -77,6 +77,9 @@ cjkSimplifiedVariant ; kSimplifiedVariant ; Provisional
 cjkTraditionalVariant ; kTraditionalVariant ; Provisional
 # 13.0
 cjkSpoofingVariant       ; kSpoofingVariant ; Provisional
+# 18.0
+cjkJapaneseNewVariant    ; kJapaneseNewVariant ; Provisional
+cjkJapaneseOldVariant    ; kJapaneseOldVariant ; Provisional
 
 Do_Not_Emit_Preferred ; Do_Not_Emit_Preferred ; UCDNonProperty
 Do_Not_Emit_Dispreferred ; Do_Not_Emit_Dispreferred ; UCDNonProperty
@@ -89,6 +92,7 @@ kEH_AltSeq               ; kEH_AltSeq ; Provisional
 kSEAL_MCJK ; kSEAL_MCJK ; Provisional
 
 Names_List_Cross_Ref ; Names_List_Cross_Ref ; UCDNonProperty
+Names_List_Cross_Ref_fr ; Names_List_Cross_Ref_fr ; NonUCDNonProperty
 
 Link_Bracket ; Link_Bracket ; NonUCDProperty
 
@@ -219,6 +223,18 @@ cjkSMSZD2003Readings     ; kSMSZD2003Readings ; Provisional
 cjkFanqie                ; kFanqie ; Provisional
 cjkZhuang                ; kZhuang ; Provisional
 
+# USourceData.txt fields other than 2, keyed on field 2.
+cjkUSource_Identifier          ; cjkUSource_Identifier          ; UCDNonProperty
+cjkUSource_Status              ; cjkUSource_Status              ; UCDNonProperty
+
+cjkUSource_RSUnicode           ; cjkUSource_RSUnicode           ; UCDNonProperty
+cjkUSource_KangXi              ; cjkUSource_KangXi              ; UCDNonProperty
+cjkUSource_IDS                 ; cjkUSource_IDS                 ; UCDNonProperty
+cjkUSource_Source              ; cjkUSource_Source              ; UCDNonProperty
+cjkUSource_Comments            ; cjkUSource_Comments            ; UCDNonProperty
+cjkUSource_TotalStrokes        ; cjkUSource_TotalStrokes        ; UCDNonProperty
+cjkUSource_FirstResidualStroke ; cjkUSource_FirstResidualStroke ; UCDNonProperty
+
 # [183-C29] Consensus: In TangutSources.txt,
 # change the tag kRSTUnicode to kTGT_RSUnicode.
 # For Unicode Version 17.0. See L2/25-087 item 1.9.
@@ -242,10 +258,29 @@ kEH_Func                 ; kEH_Func ; Provisional
 kEH_FVal                 ; kEH_FVal ; Provisional
 kEH_UniK                 ; kEH_UniK ; Provisional
 
-Names_List_Subheader        ; Names_List_Subheader ; subhead ; UCDNonProperty
-Names_List_Subheader_Notice ; Names_List_Subheader_Notice    ; UCDNonProperty
-Names_List_Alias            ; Names_List_Alias               ; UCDNonProperty
-Names_List_Comment          ; Names_List_Comment             ; UCDNonProperty
+Name_Alias_Correction   ; Name_Alias_Correction   ; UCDNonProperty
+Name_Alias_Control      ; Name_Alias_Control      ; UCDNonProperty
+Name_Alias_Alternate    ; Name_Alias_Alternate    ; UCDNonProperty
+Name_Alias_Figment      ; Name_Alias_Figment      ; UCDNonProperty
+Name_Alias_Abbreviation ; Name_Alias_Abbreviation ; UCDNonProperty
+
+Names_List_Block_Header        ; Names_List_Block_Header        ; UCDNonProperty
+Names_List_Block_Header_Notice ; Names_List_Block_Header_Notice ; UCDNonProperty
+Names_List_Subheader           ; Names_List_Subheader ; subhead ; UCDNonProperty
+Names_List_Subheader_Notice    ; Names_List_Subheader_Notice    ; UCDNonProperty
+Names_List_Alias               ; Names_List_Alias               ; UCDNonProperty
+Names_List_Comment             ; Names_List_Comment             ; UCDNonProperty
+Names_List_Name                ; Names_List_Name                ; UCDNonProperty
+Names_List_Formal_Alias        ; Names_List_Formal_Alias        ; UCDNonProperty
+
+Names_List_Block_Header_fr        ; Names_List_Block_Header_fr        ; NonUCDNonProperty
+Names_List_Block_Header_Notice_fr ; Names_List_Block_Header_Notice_fr ; NonUCDNonProperty
+Names_List_Subheader_fr           ; Names_List_Subheader_fr           ; NonUCDNonProperty
+Names_List_Subheader_Notice_fr    ; Names_List_Subheader_Notice_fr    ; NonUCDNonProperty
+Names_List_Alias_fr               ; Names_List_Alias_fr               ; NonUCDNonProperty
+Names_List_Comment_fr             ; Names_List_Comment_fr             ; NonUCDNonProperty
+Names_List_Name_fr                ; Names_List_Name_fr                ; NonUCDNonProperty
+Names_List_Formal_Alias_fr        ; Names_List_Formal_Alias_fr        ; NonUCDNonProperty
 
 Math_Entity_Name          ; Math_Entity_Name          ; NonUCDNonProperty
 Math_Entity_Set           ; Math_Entity_Set           ; NonUCDNonProperty

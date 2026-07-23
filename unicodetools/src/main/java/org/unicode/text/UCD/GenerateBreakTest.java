@@ -11,7 +11,6 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,6 +31,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 import org.unicode.text.utility.UtilityBase;
@@ -84,8 +84,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     GenerateBreakTest(UCD ucd, Segmenter seg) {
         this.ucd = ucd;
-        nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, ucd.getVersion());
+        nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
+        nfkd = Normalizer.getOrMakeNfkdInstance(ucd.getVersion());
         this.seg = seg;
     }
 
@@ -94,32 +94,20 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     Set<String> labels = new HashSet<String>();
 
-    public static boolean onCodepointBoundary(String s, int offset) {
-        if (offset < 0 || offset > s.length()) {
-            return false;
-        }
-        if (offset == 0 || offset == s.length()) {
-            return true;
-        }
-        if (UTF16.isLeadSurrogate(s.charAt(offset - 1))
-                && UTF16.isTrailSurrogate(s.charAt(offset))) {
-            return false;
-        }
-        return true;
-    }
-
     // finds the first base character, or the first character if there is no base
     public int findFirstBase(String source, int start, int limit) {
+        UTF16Plus.checkCodePointBoundary(source, start);
+        UTF16Plus.checkCodePointBoundary(source, limit);
         int cp;
-        for (int i = start; i < limit; i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
+        for (int i = start; i < limit; i += Character.charCount(cp)) {
+            cp = source.codePointAt(i);
             final byte cat = ucd.getCategory(cp);
             if (((1 << cat) & MARK_MASK) != 0) {
                 continue;
             }
             return cp;
         }
-        return UTF16.charAt(source, start);
+        return source.codePointAt(start);
     }
 
     // quick & dirty routine
@@ -144,7 +132,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             new GenerateLineBreakTest(ucd, Segmenter.Target.FOR_UCD),
         };
         tests[0].isBreak("\u0300\u0903", 1);
-        final Normalizer nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
+        final Normalizer nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
 
         System.out.println("Check Decomps");
 
@@ -165,7 +153,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                 for (int j = 1; j < test.length(); ++j) {
                     if (test2.isBreak(test, j)) {
                         if (!shown) {
-                            System.out.println(showData(ucd, UTF16.valueOf(i), INFOPROPS, "\n\t"));
+                            System.out.println(
+                                    showData(ucd, Character.toString(i), INFOPROPS, "\n\t"));
                             System.out.println(" => " + showData(ucd, decomp, INFOPROPS, "\n\t"));
                             shown = true;
                         }
@@ -179,8 +168,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
     static String showData(UCD ucd, String source, UCDProperty[] props, String separator) {
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+            cp = source.codePointAt(i);
             if (i != 0) {
                 result.append(separator);
             }
@@ -204,8 +193,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
     boolean isBaseNSMStar(String source) {
         int cp;
         int status = 0;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(source, i);
+        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+            cp = source.codePointAt(i);
             final byte cat = ucd.getCategory(cp);
             final int catMask = 1 << cat;
             switch (status) {
@@ -388,6 +377,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             if (variable.equals("sot")
                     || variable.equals("eot")
                     || variable.equals("Any")
+                    || variable.equals("ALL")
                     || mainProperty
                             .getSet(variable)
                             .equals(
@@ -635,11 +625,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
     private Set<Double> getMissing(String fileName, Map<Double, String> rulesFound) {
         Set<Double> numbers = getRuleNumbers();
         numbers.removeAll(rulesFound.keySet());
-        if (fileName.equals("Grapheme")) {
-            numbers.remove(9.2d); // Prepend is optional, and by default empty
-        } else if (fileName.equals("Line")) {
-            numbers.remove(0.2d); // sot is an artifact
-        }
         return numbers;
     }
 
@@ -666,7 +651,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(" ");
             }
@@ -731,7 +716,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
         final StringBuffer result = new StringBuffer();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -824,7 +809,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             out.println("<p><b>Suppressed:</b> ");
             for (final int skippedSample : skippedSamples) {
                 if (skippedSample > 0) {
-                    final String tmp = UTF16.valueOf(skippedSample);
+                    final String tmp = Character.toString(skippedSample);
                     out.println("<span title='" + getInfo(tmp) + "'>" + getTypeID(tmp) + "</span>");
                 }
             }
@@ -845,9 +830,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         + "In particular:</p>"
                         + "<ol>"
                         + "<li>The rules are cast into a form that is more like regular expressions.</li>"
-                        + "<li>The rules “sot "
-                        + (fileName.equals("Line") ? "×" : "÷")
-                        + "”, “÷ eot”, and “÷ Any” are added mechanically, and have artificial numbers.</li>"
                         + "<li>The rules are given decimal numbers using tenths, and are written without prefix. For example, ");
         switch (fileName) {
             case "Line":
@@ -863,9 +845,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                 out.print("rule SB8a is given the number 8.1");
                 break;
         }
-        out.print(
-                ".</li>"
-                        + "<li>Final rules like “Any ÷ Any” may be recast as the equivalent expression “÷ Any”.</li><li>");
+        out.print(".</li><li>");
         if (fileName.equals("Line")) {
             out.print(
                     "Where a rule has multiple parts (lines), each one is numbered using hundredths, "
@@ -884,9 +864,6 @@ public abstract class GenerateBreakTest implements UCD_Types {
         out.println("<table>");
         for (int ii = 0; ii < ruleListCount; ++ii) {
             String cleanRule = ruleList[ii].replaceAll("[$]", "");
-            if (!isBreak("a", 0)) {
-                cleanRule = cleanRule.replace("sot ÷", "sot ×");
-            }
             final int parenPos = cleanRule.indexOf(')');
             final String ruleNumber = cleanRule.substring(0, parenPos);
             final String ruleBody = cleanRule.substring(parenPos + 1).trim();
@@ -988,10 +965,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
         }
         comment.append(' ').append(status).append(" [").append(getRule()).append(']');
 
-        for (int offset = 0; offset < source.length(); offset += UTF16.getCharCount(cp)) {
+        for (int offset = 0; offset < source.length(); offset += Character.charCount(cp)) {
 
-            cp = UTF16.charAt(source, offset);
-            hasBreak = isBreak(source, offset + UTF16.getCharCount(cp));
+            cp = source.codePointAt(offset);
+            hasBreak = isBreak(source, offset + Character.charCount(cp));
             addToRules(rulesFound, source, hasBreak);
 
             if (html) {
@@ -1295,7 +1272,34 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             // Khmer Examples with subscript independent vowel signs from
                             // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
                             "ផ្ឯម",
-                            "ហ្ឫទ័យ"));
+                            "ហ្ឫទ័យ",
+                            // Balinese example: AKARA with subjoined HA (and SURANG), from Figure 3
+                            // of L2/05-008.
+                            // See also the mention in L2/24-058R, p. 6.
+                            // AKARA cannot be subjoined: it is not InSC=Consonant.
+                            // In Unicode Version 17.0, this was thus segmented as two extended
+                            // grapheme clusters, ᬅ᭄ and ᬳᬃ.  In Unicode Version 18.0, with 187-C47,
+                            // it is a single extended grapheme cluster.
+                            "ᬅ᭄ᬳᬃ",
+                            // Kannada examples from
+                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G695652.
+                            "ೱಕ",
+                            "ೲಫ",
+                            "ೱಕಿ",
+                            // Bengali examples from
+                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G723286.
+                            "ᳵক",
+                            "ᳶপ",
+                            "ᳵ\u200Cক",
+                            "ᳶ\u200Cপ",
+                            // Zanabazar square example from L2/14-024, p. 15.
+                            // The cluster-initial RA 𑨺 was InSC=Consonant_Prefixed in 10.0..16.0,
+                            // and thus gcb=Prepend.  It was made InSC=Consonant_With_Stacker and
+                            // thus gcb=Other in 17.0 by 183-C15, breaking this grapheme cluster.
+                            // The proposal L2/25-119 did not address grapheme cluster breaking.
+                            // In 18.0 it becomes InCB=Linker by 187-C48, putting that extended
+                            // grapheme cluster together again.
+                            "𑨺𑨋"));
         }
     }
 
@@ -1645,7 +1649,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // There are mathematical spaces with lb=BA either side of this ≔, so that
                         // the Unicode 16.0 LB21a prevents a break before ≔, but Unicode 17.0 allows
                         // it as these spaces are not hyphens (lb=HH).
-                        "Let ש ≔ |𝑆|"
+                        "Let ש ≔ |𝑆|",
+                        // An *incise* set off by either em or en dashes, with no-break spaces
+                        // inside.
+                        "Une nuit, —\u00A0c’est toujours la nuit dans le tombeau,\u00A0— Il s’éveilla.",
+                        "Une nuit, –\u00A0c’est toujours la nuit dans le tombeau,\u00A0– Il s’éveilla.",
+                        // Regional indicator pairs with ZWJs inside the first pair and joining the
+                        // first pair to the second.  This was incorrectly segmented by ICU for many
+                        // years.
+                        "🇿\u200D🇿\u200D🇿🇿",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
@@ -1654,7 +1666,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
             UnicodeSet extPict = propSource.getSet("ExtPict=yes");
             // [\p{Extended_Pictographic}&\p{Cn}]
             UnicodeSet extPictUnassigned = extPict.cloneAsThawed().retainAll(unassigned);
-            String firstExtPictUnassigned = UTF16.valueOf(extPictUnassigned.charAt(0));
+            String firstExtPictUnassigned = Character.toString(extPictUnassigned.charAt(0));
             // [\p{Extended_Pictographic}&\p{Cn}] × EM
             extraSingleSamples.add(firstExtPictUnassigned + sampleEMod);
 
@@ -1662,14 +1674,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             // [\p{Extended_Pictographic}-\p{Cn}-\p{lb=EB}]
             UnicodeSet extPictAssigned =
                     extPict.cloneAsThawed().removeAll(unassigned).removeAll(lb_EBase);
-            String firstExtPictAssigned = UTF16.valueOf(extPictAssigned.charAt(0));
+            String firstExtPictAssigned = Character.toString(extPictAssigned.charAt(0));
             // [\p{Extended_Pictographic}-\p{Cn}-\p{lb=EB}] ÷ EM
             extraSingleSamples.add(firstExtPictAssigned + sampleEMod);
-        }
-
-        @Override
-        public boolean isBreak(String source, int offset) {
-            return offset == 0 ? false : super.isBreak(source, offset);
         }
 
         @Override
@@ -1889,6 +1896,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
         public MyBreakIterator set(String source, int offset) {
             // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(string) + "; " + offset);
+            UTF16Plus.checkCodePointBoundary(source, offset);
             string = source;
             this.offset = offset;
             return this;
@@ -1898,12 +1906,13 @@ public abstract class GenerateBreakTest implements UCD_Types {
             if (offset >= string.length()) {
                 return -1;
             }
-            final int result = UTF16.charAt(string, offset);
+            final int result = string.codePointAt(offset);
             for (++offset; offset < string.length(); ++offset) {
                 if (breaker.isBreak(string, offset)) {
                     break;
                 }
             }
+            UTF16Plus.checkCodePointBoundary(string, offset);
             // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(result));
             return result;
         }
@@ -1917,7 +1926,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                     break;
                 }
             }
-            final int result = UTF16.charAt(string, offset);
+            UTF16Plus.checkCodePointBoundary(string, offset);
+            final int result = string.codePointAt(offset);
             // if (DEBUG_GRAPHEMES) System.out.println(Utility.hex(result));
             return result;
         }

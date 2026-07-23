@@ -2,7 +2,6 @@ package org.unicode.propstest;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.EntryRange;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -65,8 +64,8 @@ public class CheckNames {
             if (name.string != null) {
                 add2(name.string, value);
             } else {
-                add2(UTF16.valueOf(name.codepoint), value);
-                add2(UTF16.valueOf(name.codepointEnd), value);
+                add2(Character.toString(name.codepoint), value);
+                add2(Character.toString(name.codepointEnd), value);
                 // we don't care about intervening; all CJK...
             }
         }

@@ -3239,7 +3239,7 @@
 42F0	jú
 42F1	lái
 42F2	chě
-42F3	běi
+42F3	bèi
 42F4	niù
 42F5	yì
 42F6	xǔ
@@ -3414,7 +3414,7 @@
 43AF	hàn
 43B0	zuó
 43B1	bà
-43B2	zhé
+43B2	yì
 43B3	wà
 43B4	gēng
 43B5	bì
@@ -4062,6 +4062,7 @@
 467D	xié
 467E	shī
 467F	wèi
+4680	chēn
 4682	hè
 4683	yóu
 4684	lù
@@ -4526,7 +4527,7 @@
 4873	sī
 4874	chōng
 4875	suì
-4876	bèi
+4876	pì
 4877	kài
 4879	zhì
 487A	wèi
@@ -4874,7 +4875,7 @@
 4A02	qiū
 4A04	yàn
 4A05	liáo
-4A06	bí
+4A06	bì
 4A08	bīn
 4A0A	yuān
 4A0B	nüè
@@ -5637,7 +5638,7 @@
 4D41	qiàng
 4D42	zhí
 4D43	kuàng
-4D44	bí
+4D44	fēng
 4D45	áo
 4D46	méng
 4D47	xiàn
@@ -5815,7 +5816,7 @@
 4E44	wǔ
 4E45..4E46	jiǔ
 4E47	tuō
-4E48	me
+4E48	me yāo
 4E49	yì
 4E4A	yī
 4E4B	zhī
@@ -5833,7 +5834,7 @@
 4E57..4E58	chéng
 4E59	yǐ
 4E5A	yǐn
-4E5B	ya
+4E5B	yǐ
 4E5C	miē
 4E5D	jiǔ
 4E5E	qǐ
@@ -5866,7 +5867,7 @@
 4E79	gān
 4E7A	suǒ
 4E7B	yú
-4E7C	cui
+4E7C	zhù
 4E7D	zhě
 4E7E	qián gān
 4E7F	zhì
@@ -5877,7 +5878,7 @@
 4E84	yì
 4E85	jué
 4E86	le
-4E87	ma
+4E87	gè
 4E88	yǔ
 4E89	zhēng
 4E8A..4E8B	shì
@@ -6037,7 +6038,7 @@
 4F29	xìn
 4F2A	wěi
 4F2B	zhù
-4F2C	ze
+4F2C	chǐ
 4F2D	xián
 4F2E	nǔ
 4F2F	bó
@@ -6095,7 +6096,7 @@
 4F63	yōng
 4F64	wǎ
 4F65	qiān
-4F66	shi
+4F66	yòu
 4F67	kǎ
 4F68	bāo
 4F69	pèi
@@ -6265,7 +6266,7 @@
 500D	bèi
 500E	tiǎn
 500F..5010	shū
-5011	men
+5011	mén
 5012	dào
 5013	tán
 5014	jué
@@ -7025,7 +7026,7 @@
 5316	huà
 5317	běi
 5318	nǎo
-5319	shi
+5319	chí
 531A	fāng
 531B	jiù
 531C	yí
@@ -7338,7 +7339,7 @@
 5457	bei
 5458	yuán
 5459	guō
-545A	wen
+545A	qì
 545B	qiāng
 545C	wū
 545D	è
@@ -7404,7 +7405,7 @@
 5499	lóng
 549A	dōng
 549B	níng
-549C	ta
+549C	tuō
 549D	sī
 549E	xiàn
 549F	huò
@@ -7447,7 +7448,7 @@
 54C4	hōng
 54C5	xiōng
 54C6	duō
-54C7	wa
+54C7	wā
 54C8	hā
 54C9	zāi
 54CA	yòu
@@ -7464,7 +7465,7 @@
 54D5	huì
 54D6	nián
 54D7	huā
-54D8	xing
+54D8	xíng
 54D9	kuài
 54DA	duǒ
 54DB	fēn
@@ -7541,7 +7542,7 @@
 5522	suǒ
 5523	zào
 5524	huàn
-5525	lang
+5525	léng
 5526	shā
 5527	jī
 5528	zǔ
@@ -7577,7 +7578,7 @@
 5547	dì
 5548	hēng
 5549	lín
-554A	a
+554A	ā
 554B	cǎi
 554C	xiāng
 554D	tūn
@@ -7603,7 +7604,7 @@
 5563	xián
 5564	pí
 5565	shá
-5566	la
+5566	lā
 5567	zé
 5568	yīng
 5569	guà
@@ -7781,7 +7782,7 @@
 5618	xū
 5619	pó
 561A	dē
-561B	ma
+561B	ma má
 561C	mà
 561D	hú
 561E	lei
@@ -7873,7 +7874,7 @@
 5674	pēn
 5675	dào
 5676	gá
-5677	hm
+5677	xīn
 5678	dūn
 5679	dāng
 567A	xīn
@@ -7910,12 +7911,12 @@
 5699	niè
 569A	yín
 569B	hù
-569C	me
+569C	me mò
 569D	hōng
 569E	zhé
 569F	lí
 56A0	liú
-56A1	hai
+56A1	hái
 56A2	náng
 56A3	xiāo
 56A4	mó
@@ -7960,7 +7961,7 @@
 56CB	zá
 56CC	sū
 56CD	xǐ
-56CE	zen
+56CE	zèng
 56CF	jiān
 56D0	zá
 56D1	zhǔ
@@ -7968,7 +7969,7 @@
 56D3	niè
 56D4	nāng
 56D5	lǎn
-56D6	lo
+56D6	luō
 56D7	wéi
 56D8	huí
 56D9	yīn
@@ -8140,7 +8141,7 @@
 5787	ào
 5788	dài
 5789	páo
-578A	min
+578A	mín
 578B	xíng
 578C	dòng
 578D	jì
@@ -8176,7 +8177,7 @@
 57AC	hóng
 57AD	yā
 57AE	kuǎ
-57AF	da
+57AF	dá
 57B0	kǎ
 57B1	dàng
 57B2	kǎi
@@ -8271,7 +8272,7 @@
 580C	gù
 580D	tù
 580E	lèng
-580F	fang
+580F	fáng
 5810	yá
 5811	qiàn
 5812	kūn
@@ -8433,7 +8434,7 @@
 58B3	fén
 58B4	huáng
 58B5	tán
-58B6	da
+58B6	dā
 58B7	yè
 58B8	zhù
 58B9	jiàn
@@ -8992,7 +8993,7 @@
 5AEF	ào
 5AF0	nèn
 5AF1	qiáng
-5AF2	ma
+5AF2	mā
 5AF3	piè
 5AF4	gū
 5AF5	wǔ
@@ -9286,7 +9287,7 @@
 5C1D	cháng
 5C1E	liào
 5C1F..5C20	xiǎn
-5C21	kun
+5C21	kūn
 5C22..5C23	wāng
 5C24	yóu
 5C25..5C26	liào
@@ -9680,7 +9681,7 @@
 5DBC	yǔ
 5DBD	yuè
 5DBE	yǐn
-5DBF	ru
+5DBF	rū
 5DC0	jié
 5DC1	lì
 5DC2	guī
@@ -9721,7 +9722,7 @@
 5DE9	gǒng
 5DEA	jù
 5DEB	wū
-5DEC..5DED	pu
+5DEC..5DED	gū
 5DEE	chà chā
 5DEF..5DF0	qiú
 5DF1	jǐ
@@ -10127,8 +10128,7 @@
 5F90	xú
 5F91	jìng
 5F92	tú
-5F93	cóng
-5F94	zhi
+5F93..5F94	cóng
 5F95	lái
 5F96	cóng
 5F97	dé
@@ -10175,8 +10175,7 @@
 5FC0	xiāng
 5FC1	bào
 5FC2	qú
-5FC3	xīn
-5FC4	xin
+5FC3..5FC4	xīn
 5FC5	bì
 5FC6	yì
 5FC7	lè
@@ -10295,7 +10294,7 @@
 603A	yǒng
 603B	zǒng
 603C	duì
-603D	mo
+603D	mì
 603E	zhǐ
 603F	yì
 6040	shì
@@ -10353,7 +10352,7 @@
 6074	dé
 6075	huì
 6076	è
-6077	xiao
+6077	qīu
 6078	tòng
 6079	yān
 607A	kǎi
@@ -10564,7 +10563,7 @@
 614D	yùn
 614E	shèn
 614F	mǐng
-6150	gong
+6150	gōng
 6151	shè
 6152	cóng
 6153	piāo
@@ -10719,7 +10718,7 @@
 61F0	liú
 61F1	miè
 61F2	chéng
-61F3	hui
+61F3	huì
 61F4	chàn
 61F5	měng
 61F6	lǎn
@@ -10803,8 +10802,7 @@
 6248	hù
 6249	fēi
 624A	yǎn
-624B	shǒu
-624C	shou
+624B..624C	shǒu
 624D	cái
 624E	zhā
 624F	qiú
@@ -10891,7 +10889,7 @@
 62A0	kōu
 62A1	lūn
 62A2	qiǎng
-62A3	yun
+62A3	yún
 62A4	hù
 62A5	bào
 62A6	bǐng
@@ -11160,11 +11158,11 @@
 63B2	jiē
 63B3	lǔ
 63B4	guāi
-63B5	ming
+63B5	mìng
 63B6	jié
 63B7	zhì
 63B8	dǎn
-63B9	meng
+63B9	mēng
 63BA	chān
 63BB	sāo
 63BC	guàn
@@ -11230,7 +11228,7 @@
 63F9	bēi
 63FA	yáo
 63FB	wēi
-63FC	beng
+63FC	bèng
 63FD	lǎn
 63FE	wèn
 63FF	qìn
@@ -12343,7 +12341,7 @@
 686F	tīng
 6870	kuò
 6871	jìng
-6872	po
+6872	bó
 6873	bèn
 6874	fú
 6875	ruí
@@ -12519,7 +12517,7 @@
 6923	diǎn
 6924	luó
 6925	zhī
-6926	quan
+6926	quān
 6927	mìng
 6928	fǔ
 6929	gēng
@@ -12619,7 +12617,7 @@
 6988	lǘ
 6989	jǔ
 698A	shén
-698B	chu
+698B	chū
 698C	bī
 698D	xiè
 698E	jiǎ
@@ -12849,13 +12847,13 @@
 6A72	xǐ
 6A73	shèng
 6A74	zǐ
-6A75	san
+6A75	zān
 6A76	jí
 6A77	dōu
 6A78	jīng
 6A79	lǔ
-6A7A	jian
-6A7B	chu
+6A7A	xiàn
+6A7B	cū
 6A7C	yuán
 6A7D	tà
 6A7E	shū
@@ -12977,7 +12975,7 @@
 6AF2	yù
 6AF3	lóng
 6AF4	lài
-6AF5	jiao
+6AF5	qiáo
 6AF6	xiǎn
 6AF7	guī
 6AF8	jǔ
@@ -13019,7 +13017,7 @@
 6B1C	náng
 6B1D	yù
 6B1E	líng
-6B1F	guang
+6B1F	guàn
 6B20	qiàn
 6B21	cì
 6B22	huān
@@ -13240,7 +13238,7 @@
 6C04	rǒng
 6C05	chǎng
 6C06	pǔ
-6C07	lu
+6C07	lǔ
 6C08	zhān
 6C09	sào
 6C0A	zhān
@@ -13262,8 +13260,7 @@
 6C1A	chuān
 6C1B	fēn
 6C1C	yáng
-6C1D	nèi
-6C1E	bin
+6C1D..6C1E	nèi
 6C1F	fú
 6C20	shēn
 6C21	dōng
@@ -13284,8 +13281,7 @@
 6C30	qíng
 6C31	yǎng
 6C32..6C33	yūn
-6C34	shuǐ
-6C35	shui
+6C34..6C35	shuǐ
 6C36	zhěng
 6C37	bīng
 6C38	yǒng
@@ -14064,7 +14060,7 @@
 6F45	guàn
 6F46	yíng
 6F47	xiāo
-6F48	zong
+6F48	zōng
 6F49	kūn
 6F4A	xù
 6F4B	liàn
@@ -14143,7 +14139,7 @@
 6F97	jiàn
 6F98	shān
 6F99	xì
-6F9A	yu
+6F9A	ào
 6F9B	lǔ
 6F9C	lán
 6F9D	nìng
@@ -14236,7 +14232,7 @@
 6FF6	kuò
 6FF7	fèi
 6FF8	cāng
-6FF9	me
+6FF9	mè
 6FFA	jiàn
 6FFB	wěi
 6FFC	luò
@@ -14289,7 +14285,7 @@
 702B	hú
 702C	lài
 702D	shū
-702E	ling
+702E	lián
 702F	yíng
 7030	mí
 7031	jì
@@ -14398,7 +14394,7 @@
 709A..709B	guāng
 709C	wěi
 709D	qiàng
-709E	bian
+709E	biān
 709F	dá
 70A0	xiá
 70A1	zhēng
@@ -14555,7 +14551,7 @@
 713D	xiǒng
 713E	niǎn
 713F	gēng
-7140	wei
+7140	qū
 7141	chén
 7142	hè
 7143	kuǐ
@@ -14608,7 +14604,7 @@
 7174	yūn
 7175	nǎn
 7176	shì
-7177	liang
+7177	huǒ
 7178	biān
 7179	gòu
 717A	tuì
@@ -14708,7 +14704,7 @@
 71DA	yì
 71DB	jiǒng
 71DC	mèn
-71DD	jing
+71DD	zhǔ
 71DE	jiǎo
 71DF	yíng
 71E0	yù
@@ -14775,7 +14771,7 @@
 721D	jué
 721E	chóng
 721F	guàn
-7220	ju
+7220	qú
 7221	chè
 7222	mí
 7223	tǎng
@@ -15483,7 +15479,7 @@
 74ED	dǎn
 74EE	wèng
 74EF	ōu
-74F2	wa
+74F2	túnwǎ
 74F3	hú
 74F4	líng
 74F5	yí
@@ -15843,7 +15839,7 @@
 7663	xuǎn
 7664	jiē
 7665	zhēng
-7666	me
+7666	mèng
 7667	lì
 7668	huò
 7669	lài
@@ -16333,7 +16329,7 @@
 7855	shuò
 7856	xiá
 7857	qiāo
-7858	qing
+7858	huí
 7859	wèi
 785A	qiáo
 785B	yì
@@ -16816,7 +16812,7 @@
 7A40	gǔ
 7A41	róng
 7A42	suì
-7A43	rong
+7A43	ròng
 7A44	jì
 7A45	kāng
 7A46	mù
@@ -16842,7 +16838,7 @@
 7A5A	jiāo
 7A5B	zhuō
 7A5C	tóng
-7A5D	zui
+7A5D	zuō
 7A5E	lǚ
 7A5F	suì
 7A60	nóng
@@ -16916,7 +16912,7 @@
 7AA4	guān
 7AA5	kuī
 7AA6	dòu
-7AA7	zhuo
+7AA7	zhuō
 7AA8	yìn
 7AA9	wō
 7AAA	wā
@@ -17058,7 +17054,7 @@
 7B36	shǐ
 7B37	mǎo
 7B38	pǒ
-7B39	tì
+7B39	shì
 7B3A	jiān
 7B3B	qióng
 7B3C	lóng
@@ -17210,7 +17206,7 @@
 7BCF	qiàn
 7BD0	gū
 7BD1	kuì
-7BD2	shi
+7BD2	yì
 7BD3	lǒu
 7BD4	yún
 7BD5	hé
@@ -17279,7 +17275,7 @@
 7C14	suō
 7C15	lè
 7C16	duàn
-7C17	zhù
+7C17	zhù zhú
 7C18	xiāo
 7C19	bó
 7C1A	mì
@@ -17303,7 +17299,7 @@
 7C2C	lù
 7C2D	shì
 7C2E	zān
-7C2F	qi
+7C2F	qí
 7C30	pái
 7C31	qí
 7C32	pái
@@ -17321,7 +17317,7 @@
 7C3F	bù
 7C40	zhòu
 7C41	lài
-7C42	shi
+7C42	shì
 7C43	lán
 7C44	kuì
 7C45	yú
@@ -17341,7 +17337,7 @@
 7C53	fān
 7C54	sǒu
 7C55	zhòu
-7C56	qian
+7C56	qiān
 7C57	zhuó
 7C58	téng
 7C59	lù
@@ -17395,10 +17391,10 @@
 7C89	fěn
 7C8A	bì
 7C8B	cuì
-7C8C	yin
+7C8C	yǐn
 7C8D	zhé
 7C8E	mǐ
-7C8F	tai
+7C8F	tà
 7C90	hù
 7C91	bā
 7C92	lì
@@ -17547,7 +17543,7 @@
 7D23	cuì
 7D24	jiǔ
 7D25	zā
-7D26	ba
+7D26	hā
 7D27	jǐn
 7D28	fū
 7D29	zhì
@@ -17721,7 +17717,7 @@
 7DD2	xù
 7DD3	yīng
 7DD4	shàng
-7DD5	qi
+7DD5	zī
 7DD6	xù
 7DD7	xiāng
 7DD8	jiān
@@ -17840,7 +17836,7 @@
 7E49	hún
 7E4A	xiān
 7E4B	jì
-7E4C	sha
+7E4C	zōng
 7E4D	xiù
 7E4E	rán
 7E4F	xuàn
@@ -17867,7 +17863,7 @@
 7E64	zuǎn
 7E65	xī
 7E66	qiǎng
-7E67	yun
+7E67	wén
 7E68	da
 7E69	shéng
 7E6A	huì
@@ -18080,11 +18076,11 @@
 7F39	fǒu
 7F3A	quē
 7F3B	fǒu
-7F3C	qi
+7F3C	quē
 7F3D	bō
 7F3E	píng
 7F3F	xiàng
-7F40	zhao
+7F40	zhào
 7F41	gāng
 7F42..7F43	yīng
 7F44	qìng
@@ -18184,7 +18180,7 @@
 7FA7	suō
 7FA8	xiàn
 7FA9	yì
-7FAA	yang
+7FAA	yǎng
 7FAB	qiāng
 7FAC	qián
 7FAD	yú
@@ -18315,7 +18311,7 @@
 8031	mò
 8032	huái
 8033	ěr
-8034	yì
+8034	yì zhé
 8035	dīng
 8036	yé
 8037	dā
@@ -18523,7 +18519,7 @@
 8108..8109	mài
 810A	jǐ
 810B	xié
-810C	nin
+810C	nín
 810D	kuài
 810E	sà
 810F	zàng
@@ -18549,7 +18545,7 @@
 8123	chún
 8124	shèn
 8125	qiǎn
-8126	de
+8126	te tè
 8127	juān
 8128	cù
 8129	xiū
@@ -18881,8 +18877,7 @@
 8274	fú
 8275	pīng
 8276..8277	yàn
-8278	cǎo
-8279	cao
+8278..8279	cǎo
 827A	yì
 827B	lè
 827C	tīng
@@ -19299,7 +19294,7 @@
 841E	bì
 841F	yì
 8420	pān
-8421	bo
+8421	bó
 8422	pāo
 8423	dìng
 8424..8426	yíng
@@ -19403,7 +19398,7 @@
 848C	lóu
 848D	wěi
 848E	pài
-848F	you
+848F	yòng
 8490	sōu
 8491	yīn
 8492	shī
@@ -19514,7 +19509,7 @@
 84FC	liǎo
 84FD	bì
 84FE	lǔ
-84FF	xu
+84FF	xu sù
 8500	bù
 8501	zhāng
 8502	léi
@@ -20143,7 +20138,7 @@
 877E	róng
 877F	yíng
 8780	jiāng
-8781	ban
+8781	tuì
 8782	láng
 8783	páng
 8784	sī
@@ -20182,7 +20177,7 @@
 87A6	sāo
 87A7	qí
 87A8	mǎn
-87A9	tiao
+87A9	dāo
 87AA	shāng
 87AB	shì
 87AC	cáo
@@ -20220,7 +20215,7 @@
 87CD	lí
 87CE	mǎn
 87CF	xiāo
-87D0	chang
+87D0	cháng
 87D1	zhāng
 87D2	mǎng
 87D3	xiàng
@@ -20459,7 +20454,7 @@
 88C1	cái
 88C2	liè
 88C3	kǎ
-88C4	xing
+88C4	háng
 88C5	zhuāng
 88C6	dāng
 88C7	xū
@@ -22260,7 +22255,7 @@
 8FEF	táo
 8FF0	shù
 8FF1	tuó
-8FF2	qu
+8FF2	qù
 8FF3	jìng
 8FF4	huí
 8FF5	dòng
@@ -22619,7 +22614,7 @@
 9159	zhēn
 915A	fēn
 915B	yuán
-915C	fu
+915C	fū
 915D	yùn
 915E	tài
 915F	tiān
@@ -22847,7 +22842,7 @@
 9241	zhēn
 9242	shǐ
 9243	shì
-9244	zhí
+9244	tiě
 9245	jù
 9246	chān
 9247..9248	shī
@@ -23092,7 +23087,7 @@
 9338	lái
 9339	kěn
 933A	fāng
-933B	wu
+933B	bū
 933C	nài
 933D	wàn
 933E	zàn
@@ -23166,7 +23161,7 @@
 9383	pài
 9384	āi
 9385	jiè
-9386	qian
+9386	jiǎn
 9387	méi
 9388	suǒ
 9389	dá
@@ -23272,8 +23267,8 @@
 93EE	kāng
 93EF	shuǎng
 93F0	bèng
-93F1	zhang
-93F2	qian
+93F1	jǐn
+93F2	qiān
 93F3	chēng
 93F4	lù
 93F5	huá
@@ -23388,7 +23383,7 @@
 9463	biāo
 9464	bào
 9465	lǔ
-9466	xian
+9466	xián
 9467	kuān
 9468	lóng
 9469	è
@@ -23691,7 +23686,7 @@
 9593	jiān
 9594	mǐn
 9595	xiā
-9596	shui
+9596	shuǐ
 9597	dòu
 9598	zhá
 9599	nào
@@ -24547,7 +24542,7 @@
 990B	juàn
 990C	ěr
 990D	yàn
-990E	le
+990E	gē
 990F	xī
 9910	cān
 9911	bō
@@ -24654,7 +24649,7 @@
 9976	ráo
 9977	xiǎng
 9978	hé
-9979	le
+9979	gē
 997A	jiǎo
 997B	xī
 997C	bǐng
@@ -24738,7 +24733,7 @@
 99CA	pǒ
 99CB	zhāo
 99CC	yuān
-99CD	péi
+99CD	pēng
 99CE	zhòu
 99CF	jù
 99D0	zhù
@@ -25185,7 +25180,7 @@
 9B95	gū
 9B96	shí
 9B97	dōng
-9B98	dai
+9B98	dài
 9B99	tà
 9B9A	jié
 9B9B	shū
@@ -25636,7 +25631,7 @@
 9D61	wǔ
 9D62	shēn
 9D63	lài
-9D64	jiao
+9D64	zān
 9D65	pàn
 9D66	lù
 9D67	pí
@@ -25966,7 +25961,7 @@
 9EB3	lái
 9EB4	qū
 9EB5	miàn
-9EB6	chi
+9EB6	chī
 9EB7	fēng
 9EB8	fū
 9EB9	qū
@@ -25975,7 +25970,7 @@
 9EBC	me
 9EBD	mó
 9EBE	huī
-9EBF	mo
+9EBF	mǒ
 9EC0	zōu
 9EC1	nún
 9EC2	fén
@@ -27117,7 +27112,7 @@ FA18	lǐ
 20C8B	zuǐ
 20C8C	shù
 20C8D	diū
-20C8E	fa
+20C8E	fèi
 20C8F	rěn
 20C91	bāng
 20C92	hán
@@ -28533,7 +28528,7 @@ FA18	lǐ
 21FE5	yù
 21FE7	zāi
 21FE8	quǎn
-21FE9	liè
+21FE9..21FEA	liè
 21FEF	yù
 21FF0	huāng
 21FFA	nǎo
@@ -29302,6 +29297,7 @@ FA18	lǐ
 228DE	bó
 228E0	liù
 228F3	ruì
+228F5	chú
 228FB	lǘ
 228FC	chá
 228FF	chù
@@ -30017,7 +30013,7 @@ FA18	lǐ
 23327	cè
 23328	xún
 2332C	jǔ
-2332D	hui
+2332D	huì
 2333E	tōng
 23346	níng
 23347	jù
@@ -30072,7 +30068,7 @@ FA18	lǐ
 23411	cí
 23413	yí
 23415	jìng
-23424	jiu
+23424	jiù
 2342B	yāng
 2342C	lí
 2342E	dāi
@@ -30673,7 +30669,8 @@ FA18	lǐ
 23B2E	pī
 23B34	dì
 23B35	máo
-23B36..23B37	ba
+23B36	bā
+23B37	ba
 23B38	tiáo
 23B39	líng
 23B3A	shēng
@@ -32902,6 +32899,7 @@ FA18	lǐ
 25742	huò
 25744	wàn
 2574A..2574B	fèi
+2574C	jī
 2574D	yù
 25751	zhī
 25752	guà
@@ -33210,7 +33208,7 @@ FA18	lǐ
 25AF8	shuǐ
 25AF9	chén
 25AFC	huàng
-25AFD	shi
+25AFD	shi chí
 25B00	yún
 25B06	lóng
 25B08	mǎn
@@ -34332,6 +34330,7 @@ FA18	lǐ
 2675D	huàn
 2675E	tíng
 2675F	chán
+26760	luó
 26762	kuí
 26763	qià
 26764	bàn
@@ -35650,7 +35649,7 @@ FA18	lǐ
 275BF	xiàng
 275C1	jīn
 275C6	zhēng
-275C8	n
+275C8	nú
 275CB	sàn
 275CC	hù
 275CE	zú
@@ -39932,7 +39931,7 @@ FA18	lǐ
 29F84	xùn
 29F85	tù
 29F86	ní
-29F87	hu
+29F87	hǔ
 29F88	shū
 29F8A	xū
 29F8B	zhòng
@@ -42250,6 +42249,7 @@ FA18	lǐ
 2DED4	lái
 2E024	láo
 2E032	gèng
+2E146	bǐ
 2E18F	lán
 2E1E4	líng
 2E260	qiú
@@ -43760,7 +43760,8 @@ FA18	lǐ
 3234F	xiǎn
 32350	mǐ
 32357	huàn
-3236D	zhūn
+3235B	tún
+3236D	tún
 3236E	fāng
 3236F	jiān
 32370	mí

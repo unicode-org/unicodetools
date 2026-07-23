@@ -89,9 +89,13 @@
 # @missing: 0000..10FFFF; kEH_NoMirror  ;  No
 # @missing: 0000..10FFFF; kEH_NoRotate  ;  No
 
+# @missing: 0000..10FFFF; Link_Bracket; <none>
 # @missing: 0000..10FFFF; Link_Email ; No
 
 # End of binary properties.
+
+# Common, until decision 106-C17 made it Unknown (Zzzz).
+# @missing: 0000..10FFFF; Script; Zyyy; v4.1.0
 
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
 # Fixed position classes no longer in use; see
@@ -229,6 +233,8 @@ jg; ALEF_MAQSURAH ; ALEF_MAQSURAH
 # @missing: 0000..10FFFF; kSimplifiedVariant ; <none>
 # @missing: 0000..10FFFF; kTraditionalVariant ; <none>
 # @missing: 0000..10FFFF; kSpoofingVariant ; <none>
+# @missing: 0000..10FFFF; kJapaneseOldVariant ; <none>
+# @missing: 0000..10FFFF; kJapaneseNewVariant ; <none>
 
 # @missing: 0000..10FFFF; Joining_Group ; No_Joining_Group
 
@@ -390,6 +396,7 @@ kEH_Core ; N ; None
 # @missing: 0000..10FFFF; kEH_AltSeq ; <none>
 
 # @missing: 0000..10FFFF; Names_List_Cross_Ref ; <none>
+# @missing: 0000..10FFFF; Names_List_Cross_Ref_fr ; <none>
 
 # @missing: 0000..10FFFF; RGI_Emoji_Qualification ; None
 RGI_Emoji_Qualification ; None                ; None

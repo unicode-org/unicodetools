@@ -145,9 +145,13 @@ public class AttributeResolver {
         switch (prop.getType()) {
             case Numeric:
                 switch (prop) {
+                    case kAccountingNumeric:
                     case kOtherNumeric:
                     case kPrimaryNumeric:
-                    case kAccountingNumeric:
+                    case kTGT_Numeric:
+                    case kTayNumeric:
+                    case kVietnameseNumeric:
+                    case kZhuangNumeric:
                         if (resolvedValue != null) {
                             resolvedValue = resolvedValue.replaceAll("\\" + SET_SEPARATOR, " ");
                         }
@@ -159,13 +163,17 @@ public class AttributeResolver {
                 switch (prop) {
                     case Equivalent_Unified_Ideograph:
                     case kEH_AltSeq:
+                    case kSEAL_MCJK:
                         String ignoreHash = getMappingValue(codepoint, resolvedValue, false, "");
                         return (ignoreHash.equals("#")) ? null : ignoreHash;
                     case kCompatibilityVariant:
                         String kCompatibilityVariant =
                                 getMappingValue(codepoint, resolvedValue, false, "U+");
                         return (kCompatibilityVariant.equals("#")) ? "" : kCompatibilityVariant;
+                    case kJapaneseNewVariant:
+                    case kJapaneseOldVariant:
                     case kSimplifiedVariant:
+                    case kSpoofingVariant:
                     case kTraditionalVariant:
                         String kVariant =
                                 getMappingValue(
@@ -211,8 +219,9 @@ public class AttributeResolver {
                                 && resolvedValue.startsWith("EGYPTIAN HIEROGLYPH-")) {
                             return "EGYPTIAN HIEROGLYPH-#";
                         }
-                        if (resolvedValue != null && resolvedValue.startsWith("SEAL CHARACTER-")) {
-                            return "SEAL CHARACTER-#";
+                        if (resolvedValue != null
+                                && resolvedValue.startsWith("SMALL SEAL CHARACTER-")) {
+                            return "SMALL SEAL CHARACTER-#";
                         }
                         if (resolvedValue != null
                                 && resolvedValue.startsWith("JURCHEN CHARACTER-")) {
@@ -276,7 +285,7 @@ public class AttributeResolver {
             case Binary:
                 {
                     switch (resolvedValue) {
-                            // Seems overkill to get this from UcdPropertyValues.Binary
+                        // Seems overkill to get this from UcdPropertyValues.Binary
                         case "No":
                             return "N";
                         case "Yes":

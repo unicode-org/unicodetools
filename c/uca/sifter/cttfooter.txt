@@ -48,7 +48,7 @@
 
 %   WEIGHT_BASE = 0xFB00
 %      cp >= 0x17000 && cp <= 0x187FF % Tangut
-%      cp >= 0x18D00 && cp <= 0x18D1E % Tangut Supplement
+%      cp >= 0x18D00 && cp <= 0x18D20 % Tangut Supplement
 %   For a given Tangut character at code point cp:
 %   base1 = WEIGHT_BASE
 %   base2 = ( cp - 0x17000 ) | 0x8000
@@ -76,11 +76,29 @@
 % Khitan Small Script ideographic characters are weighted implicitly as defined here.
 
 %   WEIGHT_BASE = 0xFB03
-%      cp >= 0x18B00 && cp <= 0x18CD5 % Khitan Small Script
+%      cp >= 0x18B00 && cp <= 0x18CDA % Khitan Small Script
 %      cp == 0x18CFF                  % Khitan Small Script
 %   For a given Khitan Small Script character at code point cp:
 %   base1 = WEIGHT_BASE
 %   base2 = ( cp - 0x18B00 ) | 0x8000
+%   Then weight the character as: <U{cp}> "<R{base1}><T{base2}>";<BASE>;<MIN>;<SFFFF>
+
+% Jurchen ideographic characters are weighted implicitly as defined here.
+
+%   WEIGHT_BASE = 0xFB04
+%      cp >= 0x18E00 && cp <= 0x191DF % Jurchen and Jurchen radicals
+%   For a given Jurchen character at code point cp:
+%   base1 = WEIGHT_BASE
+%   base2 = ( cp - 0x18E00 ) | 0x8000
+%   Then weight the character as: <U{cp}> "<R{base1}><T{base2}>";<BASE>;<MIN>;<SFFFF>
+
+% Seal ideographic characters are weighted implicitly as defined here.
+
+%   WEIGHT_BASE = 0xFB05
+%      cp >= 0x3D000 && cp <= 0x3FC3F % Seal
+%   For a given Seal character at code point cp:
+%   base1 = WEIGHT_BASE
+%   base2 = ( cp - 0x3D000 ) | 0x8000
 %   Then weight the character as: <U{cp}> "<R{base1}><T{base2}>";<BASE>;<MIN>;<SFFFF>
 
 % Any other code points not explicitly mentioned in the table are weighted implicitly

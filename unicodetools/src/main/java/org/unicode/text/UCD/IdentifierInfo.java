@@ -6,7 +6,6 @@ import com.google.common.collect.Multimap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.locale.XCldrStub.ImmutableSet;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ICUException;
@@ -40,6 +39,7 @@ import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.Factory;
 import org.unicode.text.UCD.GenerateConfusables.FakeBreak;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -139,13 +139,14 @@ public class IdentifierInfo {
     }
 
     private static final class ModifiedNFKC {
-        private static Normalizer INSTANCE;
+        private static final Normalizer INSTANCE;
+
+        static {
+            INSTANCE = new Normalizer(NormalizationForm.NFKC, Default.ucdVersion());
+            INSTANCE.setSpacingSubstitute();
+        }
 
         static String normalize(String cf) {
-            if (INSTANCE == null) {
-                INSTANCE = new Normalizer(UCD_Types.NFKC, Default.ucdVersion());
-                INSTANCE.setSpacingSubstitute();
-            }
             return ModifiedNFKC.INSTANCE.normalize(cf);
         }
     }
@@ -158,7 +159,7 @@ public class IdentifierInfo {
             if (cat == UCD_Types.Cn || cat == UCD_Types.Co || cat == UCD_Types.Cs) {
                 continue;
             }
-            final String source = UTF16.valueOf(cp);
+            final String source = Character.toString(cp);
             final String cf = DEFAULT_UCD.getCase(source, UCD_Types.FULL, UCD_Types.FOLD);
             if (cf.equals(source)) {
                 isCaseFolded.add(cp);
@@ -536,9 +537,9 @@ public class IdentifierInfo {
             final IdUsage idUsage = getScriptUsage(script);
             IdentifierInfo.Identifier_Type status;
             switch (idUsage) {
-                    //            case ASPIRATIONAL:
-                    //                status = Identifier_Type.aspirational;
-                    //                break;
+                //            case ASPIRATIONAL:
+                //                status = Identifier_Type.aspirational;
+                //                break;
                 case LIMITED_USE:
                     status = Identifier_Type.limited_use;
                     break;
@@ -655,7 +656,7 @@ public class IdentifierInfo {
         //          String[] pieces = Utility.split(line, ';');
         //          int code = Integer.parseInt(pieces[0].trim(), 16);
         //          if (pieces[1].trim().equals("remap-to")) {
-        //            remap.put(code, UTF16.valueOf(Integer.parseInt(
+        //            remap.put(code, Character.toString(Integer.parseInt(
         //                    pieces[2].trim(), 16)));
         //          } else {
         //            if (XIDContinueSet.contains(code)) {
@@ -691,18 +692,6 @@ public class IdentifierInfo {
         // We temporarily override ID Usage values here.
         // See https://github.com/unicode-org/unicodetools/pull/1185 for an example.
         switch (longScriptName) {
-            case "Gunjala_Gondi":
-                // [184-C33] Consensus: Change the Identifier_Type values for
-                //     Gunjala Gondi characters (sc=Gong) from Limited_Use to Excluded,
-                //     to match the UAX31 classification of the script.
-                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
-                // [184-A76] Action Item for Josh Hadley, PAG:
-                //     Derive the Identifier_Type values for Gunjala Gondi characters from
-                //     the UAX31 classification of the script as specified.
-                //     For Unicode Version 17.0. See L2/25-183 item 6.4.
-                System.out.println(
-                        "TODO: Replace Gunjala_Gondi=Excluded override with CLDR update");
-                return IdUsage.EXCLUSION;
             default:
                 return idUsage;
         }
@@ -976,7 +965,7 @@ public class IdentifierInfo {
                         if (GenerateConfusables.GC_LOWERCASE.contains(codePoint)) {
                             final String upper =
                                     DEFAULT_UCD.getCase(codePoint, UCD_Types.FULL, UCD_Types.UPPER);
-                            if (upper.equals(UTF16.valueOf(codePoint))
+                            if (upper.equals(Character.toString(codePoint))
                                     && x.equals("technical symbol (phonetic)")) {
                                 x = "technical symbol (phonetic with no uppercase)";
                             }

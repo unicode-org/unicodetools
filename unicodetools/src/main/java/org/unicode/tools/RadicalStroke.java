@@ -126,14 +126,16 @@ public class RadicalStroke {
             // temp.add(it.codepoint);
             // if (temp.size() >= 800) {
             // int code = temp.charAt(0);
-            // CATEGORYTABLE.add("Han (CJK)", false, UTF16.valueOf(code) + " Han " + toHex(code,
+            // CATEGORYTABLE.add("Han (CJK)", false, Character.toString(code) + " Han " +
+            // toHex(code,
             // false), false, temp);
             // temp.clear();
             // }
             // }
             // if (temp.size() > 0) {
             // int code = temp.charAt(0);
-            // CATEGORYTABLE.add("Han (CJK)", false, UTF16.valueOf(code) + " Han " + toHex(code,
+            // CATEGORYTABLE.add("Han (CJK)", false, Character.toString(code) + " Han " +
+            // toHex(code,
             // false), false, temp);
             // }
         } catch (IOException e) {

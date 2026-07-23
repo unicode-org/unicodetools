@@ -332,6 +332,10 @@ In \P{U-1:gc=Cn}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
 In \p{dt=canonical}, (delete-adjacent-duplicates) * bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+# We care about initial bc=NSM though, so check consistency of the first character of the
+# decomposition without filtering.  See 93-C25 and
+# https://github.com/unicode-org/properties/issues/574.
+In \p{dt=canonical}, bc * (take 1) * dm  = bc
 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
@@ -394,7 +398,7 @@ Let $BN_Exceptions := [\u001C-\u001F\u17B4\u17B5]
 ]
 
 # Nonspacing and enclosing combining marks are bc=NSM, with a few exceptions (all of which are nonspacing)
-Let $gcMn_bcL := [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
+Let $gcMn_bcL := [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F\u1B42\u1B3C\u1B3A]
 \p{bc=NSM} = [\p{gc=Mn} \p{gc=Me} - $gcMn_bcL]
 
 ##########################
@@ -843,6 +847,7 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
     - \p{LB=GL} - \p{LB=AL} - \p{LB=ZWJ}
     - \p{LB=VI} - \p{LB=VF}
     - \p{LB=NU}  # 176-A81 changed [[:PCM:]-\u070F] from lb=AL to lb=NU
+    - \p{LB=HH}  # 187-C45 changed U+00AD SOFT HYPHEN from lb=BA to lb=HH.
 ]
 
 #  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
@@ -1396,11 +1401,7 @@ $unihanScope = [
     \P{kIRG_VSource=@none@}
 ]
 
-# TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
-# See https://www.unicode.org/review/pri483/feedback.html#ID20240118004124.
-# Change to \P{kHanyuPinyin=@none@} ⊆ \P{kMandarin=@none@} once this gets fixed.
-Let $ideographsMissingkMandarin := [\x{228F5}\x{2574C}]
-[\P{kHanyuPinyin=@none@} - \P{kMandarin=@none@}] = $ideographsMissingkMandarin
+\P{kHanyuPinyin=@none@} ⊆ \P{kMandarin=@none@}
 
 Let $cjkStrokes := \p{Name=/^CJK STROKE /}
 Let $kangxiRadicals := \p{Name=/^KANGXI RADICAL /}
@@ -1547,6 +1548,46 @@ In \P{U6.0:Math_Class_Ex=None}, U6.0:Math_Class = U6.0:Math_Class_Ex
 # Pretty_Block is just Block, but prettier.
 
 OnPairsOf $code_points, EqualityOf Block ⇔ EqualityOf Pretty_Block
+
+# Names_List_Block_Header is different:
+# - for blocks without a names list, the block header gives the assigned range,
+#   not the range of the block;
+# - for planes 15 and 16, the block header with the block name only covers the
+#   last eight columns of the plane, for the chart that shows the noncharacters;
+# - for planes 1–14, there is a block header Unassigned covering the last eight
+#   columns of the plane, again for the noncharacters.
+Let $uncharted_block_ends := [
+    [
+        \p{Block=Hangul Syllables}
+        \p{Block=Tangut Supplement}
+        \p{Block=Jurchen}
+        \p{Block=/^CJK.Unified.Ideographs/}
+    ] & \p{gc=Cn}
+]
+Let $noncharacter_charts := [
+    \x{1FF80}-\x{1FFFF}
+    \x{2FF80}-\x{2FFFF}
+    \x{3FF80}-\x{3FFFF}
+    \x{4FF80}-\x{4FFFF}
+    \x{5FF80}-\x{5FFFF}
+    \x{6FF80}-\x{6FFFF}
+    \x{7FF80}-\x{7FFFF}
+    \x{8FF80}-\x{8FFFF}
+    \x{9FF80}-\x{9FFFF}
+    \x{AFF80}-\x{AFFFF}
+    \x{BFF80}-\x{BFFFF}
+    \x{CFF80}-\x{CFFFF}
+    \x{DFF80}-\x{DFFFF}
+    \x{EFF80}-\x{EFFFF}
+]
+Let $uncharted_pua_planes := [
+    \x{F0000}-\x{FFF7F}
+    \x{100000}-\x{10FF7F}
+]
+OnPairsOf [$code_points - $noncharacter_charts - $uncharted_block_ends - $uncharted_pua_planes],
+    EqualityOf Block ⇔ EqualityOf Names_List_Block_Header
+[$uncharted_block_ends $uncharted_pua_planes] ⊂ \p{Names_List_Block_Header=@none@}
+[$noncharacter_charts] = \p{Names_List_Block_Header=Unassigned}
 
 # Basic Propertywise tests.
 Ignoring Name:

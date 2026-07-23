@@ -164,13 +164,24 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Names_List_Cross_Ref,
                         UcdProperty.Names_List_Comment,
                         UcdProperty.Names_List_Subheader,
-                        UcdProperty.Names_List_Subheader_Notice));
+                        UcdProperty.Names_List_Subheader_Notice,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
         exceptions.putAll(
                 General_Category_Values.Private_Use,
-                Arrays.asList(UcdProperty.Age, UcdProperty.Block, UcdProperty.Pretty_Block));
+                Arrays.asList(
+                        UcdProperty.Age,
+                        UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
         exceptions.putAll(
                 General_Category_Values.Surrogate,
-                Arrays.asList(UcdProperty.Block, UcdProperty.Pretty_Block));
+                Arrays.asList(
+                        UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
 
         List<UcdProperty> ordered = new ArrayList<>();
         // ordered.add(UcdProperty.Bidi_Class);
@@ -440,6 +451,32 @@ public class TestInvariants extends TestFmwkMinusMinus {
                                 "\u0253\u0254\u0256\u0257\u025B\u0263\u0268\u0269\u0272\u0289\u0292\u0DA6")) {
                     // [183-A72] Change Identifier_Type of 392 characters
                     // [183-A75] Change Identifier_Type of 753 characters
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Uncommon_Use")
+                        && Settings.latestVersion.equals("18.0.0")
+                        && missing.size() == 101
+                        && missing.containsAll(
+                                new UnicodeSet(
+                                        "[\\u0591-\\u05A1\\u05A3-\\u05AF\\u05BF\\u05C4\\u0615-\\u061A\\u065C\\u06D6-\\u06DC\\u06DF-\\u06E4\\u06E7\\u06E8\\u06EA-\\u06ED\\u0898-\\u089F\\u08CA-\\u08E1\\u08F0-\\u08F3\\u08F8\\u08FB\\U00010EFA\\U00010EFC-\\U00010EFF]"))) {
+                    // PAG issue 555: Cleanup Identifier_Type of Arabic and Hebrew combining marks
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Uncommon_Use|Technical")
+                        && Settings.latestVersion.equals("18.0.0")
+                        && missing.size() == 2
+                        && missing.containsAll("\u05C7\uFB1E")) {
+                    // PAG issue 555: Cleanup Identifier_Type of Arabic and Hebrew combining marks
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Uncommon_Use|Obsolete")
+                        && Settings.latestVersion.equals("18.0.0")
+                        && missing.size() == 2
+                        && missing.containsAll("\u05A2\u05C5")) {
+                    // PAG issue 555: Cleanup Identifier_Type of Arabic and Hebrew combining marks
                     level = LOG;
                 }
                 if (ucdProperty == UcdProperty.Idn_Status

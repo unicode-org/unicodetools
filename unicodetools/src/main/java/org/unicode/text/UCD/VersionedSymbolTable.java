@@ -219,7 +219,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                             "No character name nor name alias matches " + propertyValue);
                 }
                 return result;
-            } else if (queriedProperty.getName().equals("Name_Alias")) {
+            } else if (queriedProperty.getName().startsWith("Name_Alias")) {
                 var result = queriedProperty.getSet(propertyValue);
                 if (result.isEmpty()) {
                     throw new IllegalArgumentException("No name alias matches " + propertyValue);
@@ -282,10 +282,10 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         } else {
             switch (versionQualifier.charAt(0)) {
                 case 'R':
-                    // Extension: we allow a version-qualifier starting with R for retroactive
-                    // properties, that is, property derivations applied before the property
-                    // existed.
-                    // TODO(egg): Actually support that.
+                // Extension: we allow a version-qualifier starting with R for retroactive
+                // properties, that is, property derivations applied before the property
+                // existed.
+                // TODO(egg): Actually support that.
                 case 'U':
                     break;
                 default:

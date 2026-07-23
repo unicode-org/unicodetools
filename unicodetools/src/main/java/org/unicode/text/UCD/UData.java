@@ -10,11 +10,9 @@
  */
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.UTF16;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 class UData implements UCD_Types {
@@ -186,7 +184,7 @@ class UData implements UCD_Types {
     }
 
     public void fleshOut() {
-        final String codeValue = codePoint >= 0 ? UTF16.valueOf(codePoint) : "\uFFFD";
+        final String codeValue = codePoint >= 0 ? Character.toString(codePoint) : "\uFFFD";
         if (codePoint == 0x13A0) {
             int debug = 0;
         }
@@ -239,12 +237,12 @@ class UData implements UCD_Types {
                 continue;
             }
             int c2 = GenerateCaseFolding.simpleAdditions[i + 1];
-            String s2 = UTF16.valueOf(c2);
+            String s2 = Character.toString(c2);
             if (simpleCaseFolding != null) {
                 if (simpleCaseFolding.equals(s2)) {
                     break;
                 }
-                String s1 = UTF16.valueOf(c1);
+                String s1 = Character.toString(c1);
                 throw new IllegalArgumentException(
                         String.format(
                                 "UData: Trying to add scf(U+%04X)→U+%04X (%s→%s) "
@@ -274,7 +272,7 @@ class UData implements UCD_Types {
 
     public void compact() {
         fleshOut();
-        final String codeValue = UTF32.valueOf32(codePoint);
+        final String codeValue = Character.toString(codePoint);
 
         // first case folding
 
@@ -368,7 +366,7 @@ class UData implements UCD_Types {
     public String toString(UCD ucd, byte style) {
         final boolean full = style == FULL;
         final StringBuffer result = new StringBuffer();
-        final String s = UTF32.valueOf32(codePoint);
+        final String s = Character.toString(codePoint);
 
         result.append("<e cp='").append(Utility.quoteXML(codePoint)).append('\'');
         result.append(" hx='").append(Utility.hex(codePoint)).append('\'');

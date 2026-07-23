@@ -42,6 +42,7 @@ end Ignoring;
 # the obscure ⅁, ⅋, or ♯ which is relatively obscure in mathematical usage)
 # rather than Yes (like the very common ∃ or ∂).
 
+Ignoring Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
 Propertywise [
     \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
     \x{1DB0B}  \N{TWO-LINE LESS-THAN}
@@ -56,8 +57,9 @@ Propertywise [
     \x{2141} ⅁ \N{TURNED SANS-SERIF CAPITAL G}
     \x{214B} ⅋ \N{TURNED AMPERSAND}
 ] AreAlike
+end Ignoring;
 
-Ignoring Line_Break East_Asian_Width Vertical_Orientation Pattern_Syntax:
+Ignoring Line_Break East_Asian_Width Vertical_Orientation Pattern_Syntax Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
 Propertywise [
     \x{1DB0A}  \N{TWO-LINE GREATER-THAN}
     \x{1DB0B}  \N{TWO-LINE LESS-THAN}
@@ -92,7 +94,7 @@ Propertywise [
 end Ignoring;
 
 # Symbols incorporating a lazy S.
-Ignoring Pattern_Syntax:
+Ignoring Pattern_Syntax Do_Not_Emit_Dispreferred Do_Not_Emit_Dispreferred_Type:
 Propertywise [
     \x{223E} ∾ \N{INVERTED LAZY S}
     \x{1DB17}  \N{LEIBNIZIAN COINCIDENCE}

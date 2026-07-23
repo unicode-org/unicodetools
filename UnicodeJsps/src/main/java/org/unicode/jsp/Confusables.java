@@ -4,7 +4,6 @@ import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.Normalizer.Mode;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -75,7 +74,7 @@ public class Confusables implements Iterable<String> {
             if (!type.equals("MA")) return true;
             String result = Utility.fromHex(items[1], 4, " ");
             for (int i = start; i <= end; ++i) {
-                equivalents.add(UTF16.valueOf(i), result);
+                equivalents.add(Character.toString(i), result);
             }
             return true;
         }
@@ -112,7 +111,7 @@ public class Confusables implements Iterable<String> {
         int cp;
         for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
             cp = source.codePointAt(i);
-            String cps = UTF16.valueOf(cp);
+            String cps = Character.toString(cp);
             Set<String> confusables = equivalents.getEquivalences(cps);
             Set<String> items = new HashSet<String>();
             for (String confusable : confusables) {

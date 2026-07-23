@@ -8,7 +8,6 @@ package org.unicode.idna;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UTF16;
 
 /**
  * Ported code from ICU punycode.c
@@ -158,11 +157,11 @@ public final class Punycode {
                 ++destLength;
             } else {
                 n = ((caseFlags != null && caseFlags[j]) ? 1 : 0) << 31L;
-                if (!UTF16.isSurrogate(c)) {
+                if (!Character.isSurrogate(c)) {
                     n |= c;
-                } else if (UTF16.isLeadSurrogate(c)
+                } else if (Character.isHighSurrogate(c)
                         && (j + 1) < srcLength
-                        && UTF16.isTrailSurrogate(c2 = src.charAt(j + 1))) {
+                        && Character.isLowSurrogate(c2 = src.charAt(j + 1))) {
                     ++j;
 
                     n |= UCharacter.getCodePoint(c, c2);
@@ -430,7 +429,7 @@ public final class Punycode {
             }
 
             /* Insert n at position i of the output: */
-            cpLength = UTF16.getCharCount(n);
+            cpLength = Character.charCount(n);
             if ((destLength + cpLength) < destCapacity) {
                 int codeUnitIndex;
 
@@ -454,7 +453,7 @@ public final class Punycode {
                 } else {
                     codeUnitIndex = firstSupplementaryIndex;
                     codeUnitIndex =
-                            UTF16.moveCodePointOffset(
+                            Character.offsetByCodePoints(
                                     dest, 0, destLength, codeUnitIndex, i - codeUnitIndex);
                 }
 
@@ -480,8 +479,8 @@ public final class Punycode {
                     dest[codeUnitIndex] = (char) n;
                 } else {
                     /* supplementary character, insert two code units */
-                    dest[codeUnitIndex] = UTF16.getLeadSurrogate(n);
-                    dest[codeUnitIndex + 1] = UTF16.getTrailSurrogate(n);
+                    dest[codeUnitIndex] = Character.highSurrogate(n);
+                    dest[codeUnitIndex + 1] = Character.lowSurrogate(n);
                 }
                 if (caseFlags != null) {
                     /* Case of last character determines uppercase flag: */

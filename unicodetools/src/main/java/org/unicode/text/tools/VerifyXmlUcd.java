@@ -1,7 +1,6 @@
 package org.unicode.text.tools;
 
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.io.IOException;
@@ -358,7 +357,7 @@ public class VerifyXmlUcd {
             // if (type == UnicodeProperty.STRING) {
             // UCD marks no change with "". I reflect the full value, Eric doesn't.
             // however, this is tricky, so I'm still playing with it to get them to match up.
-            // if (UTF16.valueOf(cp).equals(toolValue)) {
+            // if (Character.toString(cp).equals(toolValue)) {
             // toolValue = "#";
             //        } else if (property.equals("lc") || property.equals("uc") ||
             // property.equals("tc")) {
@@ -399,7 +398,7 @@ public class VerifyXmlUcd {
 
             if (type == UnicodeProperty.STRING) {
                 // Eric is using hex strings, no disagreement
-                final String cpString = UTF16.valueOf(cp);
+                final String cpString = Character.toString(cp);
                 if (cpString.equals(toolValue) && property.equals("bmg")) {
                     toolValue = "";
                 } else {

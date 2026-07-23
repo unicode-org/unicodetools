@@ -10,7 +10,6 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import java.io.IOException;
@@ -241,7 +240,7 @@ public class TestProperties extends TestFmwk2 {
                 Builder.with(new TreeSet<String>(col)).addAll(availableNames).remove("Name").get();
 
         int cp = 'a';
-        logln("Properties for " + UTF16.valueOf(cp));
+        logln("Properties for " + Character.toString(cp));
 
         for (String propName : sortedProps) {
             UnicodeProperty prop;

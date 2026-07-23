@@ -1,7 +1,6 @@
 package org.unicode.tools.emoji;
 
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.List;
 
@@ -243,7 +242,7 @@ public class EmojiMatcher {
         StringBuilder nonEmojiBuffer = new StringBuilder();
         for (int cp : CharSequences.codePoints(str)) {
             if (nopres.contains(cp) && cp >= 0x7F) { // hack to exclude keycap bases
-                noPres2.add(UTF16.valueOf(cp));
+                noPres2.add(Character.toString(cp));
             } else {
                 nonEmojiBuffer.appendCodePoint(cp);
             }

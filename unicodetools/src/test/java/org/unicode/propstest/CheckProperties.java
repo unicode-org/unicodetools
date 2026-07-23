@@ -6,7 +6,6 @@ import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.io.DataOutput;
@@ -746,7 +745,7 @@ public class CheckProperties {
             } else {
                 result.append(" ");
             }
-            final String string = UTF16.valueOf(cp);
+            final String string = Character.toString(cp);
             String name = latest.getResolvedValue(UcdProperty.Name, string);
             if (name == null) {
                 name = latest.getResolvedValue(UcdProperty.Name_Alias, string);

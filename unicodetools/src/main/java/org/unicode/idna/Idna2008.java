@@ -1,7 +1,6 @@
 package org.unicode.idna;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class Idna2008 extends Idna {
@@ -26,7 +25,7 @@ public class Idna2008 extends Idna {
         // B: toNFKC(toCaseFold(toNFKC(cp))) != cp
         final UnicodeSet Unstable = new UnicodeSet();
         for (int i = 0; i <= 0x10FFFF; ++i) {
-            final String s = UTF16.valueOf(i);
+            final String s = Character.toString(i);
             final String nfkc = NFKC.transform(s);
             final String cased = CASEFOLD.transform(nfkc);
             final String full = NFKC.transform(cased);

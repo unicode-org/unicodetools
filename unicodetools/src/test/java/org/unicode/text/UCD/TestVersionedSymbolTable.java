@@ -184,6 +184,8 @@ public class TestVersionedSymbolTable {
         assertThatUnicodeSet("\\p{Name      =CUNEIFORM SIGN A}").consistsOf("𒀀");
         assertThatUnicodeSet("\\p{Name_Alias=CUNEIFORM SIGN A}")
                 .isIllFormed("No name alias matches");
+        assertThatUnicodeSet("\\p{Name_Alias_Figment=New Line}")
+                .isIllFormed("No name alias matches");
         assertThatUnicodeSet("\\p{Line_Break=Meow}").isIllFormed("The value 'Meow' is illegal.");
         assertThatUnicodeSet("\\p{kDefinition=meow}").isEmpty();
         assertThatUnicodeSet("\\p{Uppercase_Mapping=meow}").isEmpty();
@@ -214,6 +216,9 @@ public class TestVersionedSymbolTable {
                 .doesNotContain("½")
                 .doesNotContain("X");
         assertThatUnicodeSet("\\p{Name_Alias=New Line}")
+                .isEqualToUnicodeSet("\\p{Name=New Line}")
+                .consistsOf("\n");
+        assertThatUnicodeSet("\\p{Name_Alias_Control=New Line}")
                 .isEqualToUnicodeSet("\\p{Name=New Line}")
                 .consistsOf("\n");
     }

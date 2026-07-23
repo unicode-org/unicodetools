@@ -27,7 +27,10 @@ public class Settings {
     public enum ReleasePhase {
         DEV("dev"), // Before α.
         ALPHA("α"), // α review.
-        BETA("β"); // β review.
+        BETA("β"), // β review.
+        // Produce release-final artefacts with no β markings (most relevant for the JSPs and
+        // charindex).
+        GAMMA("");
 
         private final String toString;
 
@@ -41,7 +44,7 @@ public class Settings {
         }
     };
 
-    public static final ReleasePhase latestVersionPhase = ReleasePhase.ALPHA;
+    public static final ReleasePhase latestVersionPhase = ReleasePhase.BETA;
 
     public static final String lastVersion = "17.0.0"; // last released version
 

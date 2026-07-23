@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.UnicodeDataFile.FileInfix;
 import org.unicode.text.utility.Utility;
@@ -101,10 +102,10 @@ public class GenerateCaseFolding implements UCD_Types {
                     continue;
                 }
 
-                final String rFull = fullData.get(UTF16.valueOf(ch));
-                final String rSimple = simpleData.get(UTF16.valueOf(ch));
-                final String rFullTurkish = fullDataTurkish.get(UTF16.valueOf(ch));
-                final String rSimpleTurkish = simpleDataTurkish.get(UTF16.valueOf(ch));
+                final String rFull = fullData.get(Character.toString(ch));
+                final String rSimple = simpleData.get(Character.toString(ch));
+                final String rFullTurkish = fullDataTurkish.get(Character.toString(ch));
+                final String rSimpleTurkish = simpleDataTurkish.get(Character.toString(ch));
                 if (rFull == null
                         && rSimple == null
                         && rFullTurkish == null
@@ -123,7 +124,7 @@ public class GenerateCaseFolding implements UCD_Types {
                     // do nothing
                     // drawLine(out, ch, "I", "i");
                 } else if (rFull != null && rFull.equals(rSimple)
-                        || (PICK_SHORT && UTF16.countCodePoint(rFull) == 1)) {
+                        || (PICK_SHORT && UTF16Plus.isSingleCodePoint(rFull))) {
                     drawLine(out, ch, "C", rFull, normativeSCF, normativeCF);
                 } else {
                     if (rFull != null) {
@@ -144,10 +145,10 @@ public class GenerateCaseFolding implements UCD_Types {
                 // Check that they are consistent. Eventually we should get rid of one of them, see
                 // https://github.com/unicode-org/unicodetools/issues/426.
                 if (normativeSCF.length() == 0) {
-                    normativeSCF.append(UTF16.valueOf(ch));
+                    normativeSCF.append(Character.toString(ch));
                 }
                 if (normativeCF.length() == 0) {
-                    normativeCF.append(UTF16.valueOf(ch));
+                    normativeCF.append(Character.toString(ch));
                 }
                 final String ucdSCF = Default.ucd().getCase(ch, UCD.SIMPLE, UCD.FOLD);
                 final String ucdCF = Default.ucd().getCase(ch, UCD.FULL, UCD.FOLD);
@@ -189,9 +190,9 @@ public class GenerateCaseFolding implements UCD_Types {
             StringBuilder normativeCF) {
         String comment = "";
         if (COMMENT_DIFFS) {
-            final String lower = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);
+            final String lower = Default.ucd().getCase(Character.toString(ch), FULL, LOWER);
             if (!lower.equals(result)) {
-                final String lower2 = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);
+                final String lower2 = Default.ucd().getCase(Character.toString(ch), FULL, LOWER);
                 if (lower.equals(lower2)) {
                     comment = "[Diff " + Utility.hex(lower, " ") + "] ";
                 } else {
@@ -234,7 +235,7 @@ public class GenerateCaseFolding implements UCD_Types {
     }
 
     static int probeCh = 0x01f0;
-    static String shower = UTF16.valueOf(probeCh);
+    static String shower = Character.toString(probeCh);
     // Public only for unicode.text.UCD.UData.
     // We have two independent definitions of the case foldings.
     // Eventually we should get rid of one of them, see
@@ -330,7 +331,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
                 log.println(s2 + "\t#" + Default.ucd().getName(s2));
 
-                if (UTF16.countCodePoint(s2) == 1) {
+                if (UTF16Plus.isSingleCodePoint(s2)) {
                     repChar.put(s2, rep);
                     charsUsed.set(s2.codePointAt(0));
                 }
@@ -342,8 +343,8 @@ public class GenerateCaseFolding implements UCD_Types {
             for (int i = 0; i < simpleAdditions.length; i += 2) {
                 int c1 = simpleAdditions[i];
                 int c2 = simpleAdditions[i + 1];
-                String s1 = UTF16.valueOf(c1);
-                String s2 = UTF16.valueOf(c2);
+                String s1 = Character.toString(c1);
+                String s2 = Character.toString(c2);
                 String t = repChar.get(s1);
                 if (t != null) {
                     throw new IllegalArgumentException(
@@ -460,7 +461,7 @@ public class GenerateCaseFolding implements UCD_Types {
         if (ch == '\u023F') {
             System.out.println("???");
         }
-        final String charStr = UTF16.valueOf(ch);
+        final String charStr = Character.toString(ch);
         final String lowerStr = lower(charStr, full, condition);
         final String titleStr = title(charStr, full, condition);
         final String upperStr = upper(charStr, full, condition);
@@ -646,6 +647,21 @@ public class GenerateCaseFolding implements UCD_Types {
         return false;
     }
 
+    private static final String SHARP_S_COMMENTS =
+            """
+            # The German sharp s (ß, also called es-zed) is special:
+            # The customary uppercase mapping is to SS,
+            # rather than to the newer U+1E9E capital sharp s.
+            #
+            # Note: The Case Pair Stability policy forbids
+            # changing the default Unicode uppercasing of U+00DF to U+1E9E.
+            #
+            # For details see The Unicode Standard, section 5.18.2, under “German sharp s”.
+            #
+            # Note: The titlecase should never occur in practice. \
+            It is equal to titlecase(uppercase('ß')).
+            """;
+
     static void generateSpecialCasing(boolean normalize) throws IOException {
         final Map<Integer, String> sorted = new TreeMap<Integer, String>();
 
@@ -676,7 +692,7 @@ public class GenerateCaseFolding implements UCD_Types {
             final String upper = Default.nfc().normalize(Default.ucd().getCase(ch, SIMPLE, UPPER));
             final String title = Default.nfc().normalize(Default.ucd().getCase(ch, SIMPLE, TITLE));
 
-            final String chstr = UTF16.valueOf(ch);
+            final String chstr = Character.toString(ch);
 
             final String decomp = specialNormalization(chstr);
             String flower = Default.nfc().normalize(Default.ucd().getCase(decomp, SIMPLE, LOWER));
@@ -716,9 +732,9 @@ public class GenerateCaseFolding implements UCD_Types {
             // presumably if there is a single code point, it would already be in the simple
             // mappings
 
-            if (UTF16.countCodePoint(flower) == 1
-                    && UTF16.countCodePoint(fupper) == 1
-                    && UTF16.countCodePoint(title) == 1) {
+            if (UTF16Plus.isSingleCodePoint(flower)
+                    && UTF16Plus.isSingleCodePoint(fupper)
+                    && UTF16Plus.isSingleCodePoint(title)) {
                 if (ch == CHECK_CHAR) {
                     System.out.println(
                             "Skipping single code point: " + Default.ucd().getCodeAndName(ch));
@@ -770,7 +786,7 @@ public class GenerateCaseFolding implements UCD_Types {
                                                     ? 3
                                                     : name.indexOf("GEGRAMMENI") < 0
                                                             ? 5
-                                                            : UTF16.countCodePoint(ftitle) == 1
+                                                            : UTF16Plus.isSingleCodePoint(ftitle)
                                                                     ? 6
                                                                     : UTF16.countCodePoint(fupper)
                                                                                     == 2
@@ -855,9 +871,7 @@ public class GenerateCaseFolding implements UCD_Types {
                 boolean skipLine = false;
                 switch (order) {
                     case 1:
-                        out.println("# The German es-zed is special--the normal mapping is to SS.");
-                        out.println(
-                                "# Note: the titlecase should never occur in practice. It is equal to titlecase(uppercase(<es-zed>))");
+                        out.print(SHARP_S_COMMENTS);
                         break;
                     case 2:
                         out.println(

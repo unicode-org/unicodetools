@@ -16,7 +16,7 @@ public interface NormalizationData {
 
     public abstract boolean normalizationDiffers(int cp, boolean composition, boolean compat);
 
-    public abstract void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat);
+    public abstract void getRecursiveDecomposition(int cp, StringBuilder buffer, boolean compat);
 
     public abstract int getPairwiseComposition(int starterCh, int ch);
 

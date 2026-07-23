@@ -13,7 +13,6 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.Freezable;
@@ -775,10 +774,10 @@ public class CldrUtility {
                 // Lx [Tx - Ty])         (if Lx == Ly)
                 // Lx [Tx - DFFF] | Ly [DC00-Ty]        (if Lx == Ly - 1)
                 // Lx [Tx - DFFF] | [Lx+1 - Ly-1][DC00-DFFF] | Ly [DC00-Ty] (otherwise)
-                final int leadX = UTF16.getLeadSurrogate(it.codepoint);
-                final int trailX = UTF16.getTrailSurrogate(it.codepoint);
-                final int leadY = UTF16.getLeadSurrogate(it.codepointEnd);
-                final int trailY = UTF16.getTrailSurrogate(it.codepointEnd);
+                final int leadX = Character.highSurrogate(it.codepoint);
+                final int trailX = Character.lowSurrogate(it.codepoint);
+                final int leadY = Character.highSurrogate(it.codepointEnd);
+                final int trailY = Character.lowSurrogate(it.codepointEnd);
                 if (leadX == leadY) {
                     addSupplementalRange(leadX, leadX, trailX, trailY, escaper, lastToFirst);
                 } else {
@@ -836,9 +835,9 @@ public class CldrUtility {
 
     private static void addBmpRange(
             int start, int limit, Transliterator escaper, StringBuilder base) {
-        base.append(escaper.transliterate(UTF16.valueOf(start)));
+        base.append(escaper.transliterate(Character.toString(start)));
         if (start != limit) {
-            base.append("-").append(escaper.transliterate(UTF16.valueOf(limit)));
+            base.append("-").append(escaper.transliterate(Character.toString(limit)));
         }
     }
 
