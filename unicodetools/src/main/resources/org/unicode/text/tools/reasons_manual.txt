@@ -1,3 +1,10 @@
+# [87-M20] Motion: Update the East Asian data files changing the list in L2/01-189, 00AE to 273D to A, and all Jamo to W, post, and include in Unicode 3.1.1.
+# L2/01-189 Updates to EastAsianWidth.
+# First group (to ea=A).  U+00AF not changed.
+East_Asian_Width ; 3.1.1 ; [\u00AE\u014B\u02C4\u02DF\u2022\u2024\u203E\u2116\u2153\u215C\u215D\u21B8\u21B9\u21E7\u273D] ; L2/01-189, 87-M20
+# Second group (to ea=W).  U+00AF, U+FF78 not changed.
+East_Asian_Width ; 3.1.1 ; [[\u2024\u2022\u203E\u02C4\u273D\u02DF\u2116\u21E7\u21B8\u21B9][\u2116][\u2116\u2116][\u014B\u2153\u215C\u215D\u2116\u00AE]] ; L2/01-189, 87-M20
+
 # [106-C17] Consensus: Give unassigned codepoints the script property value "Zzzz". [L2/05-376]
 Script ; 5.0 ; \p{U5.0:Zzzz} ; L2/05-376, 106-C17
 # See discussion in L2/25-183, Section 2.1.
