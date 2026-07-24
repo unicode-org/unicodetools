@@ -4,6 +4,8 @@ import com.ibm.icu.impl.RBBIDataWrapper;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,16 +22,22 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.Settings;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 import org.unicode.tools.Segmenter.Builder.NamedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
-        Generate("Line", "uline", Map.of(100, "Mandatory"));
-        Generate("GraphemeCluster", "char", Map.of());
-        Generate("Word", "word", Map.of(100, "Number", 200, "Letter", 400, "Letter"));
-        Generate("Sentence", "sent", Map.of(100, "Nonterminated"));
+        for (final var version : new VersionInfo[] {
+            VersionInfo.UNICODE_17_0,
+            VersionInfo.UNICODE_18_0
+        }) {
+        Generate("Line", "uline", version, Map.of(100, "Mandatory"));
+        Generate("GraphemeCluster", "char", version, Map.of());
+        Generate("Word", "word", version, Map.of(100, "Number", 200, "Letter", 400, "Letter"));
+        Generate("Sentence", "sent", version, Map.of(100, "Nonterminated"));
+        }
     }
 
     private static final Map<Integer, String> LINE_TAILORING_HOOKS =
@@ -52,23 +60,24 @@ public class GenerateBreakStateTables {
                     Map.entry(0x10000F, "EAST_ASIAN_ID_AL")*/);
 
     private static void Generate(
-            final String name, final String icuName, final Map<Integer, String> tagNames)
+            final String name, final String icuName, final VersionInfo version, final Map<Integer, String> tagNames)
             throws IOException {
         RuleBasedBreakIterator rbbi;
         try (var f =
                 new FileInputStream(
-                        new File(
-                                "..\\icu\\icu4c\\source\\data\\out\\build\\icudt79l\\brkitr\\"
-                                        + icuName
-                                        + ".brk"))) {
-            rbbi = RuleBasedBreakIterator.getInstanceFromCompiledRules(f);
+                        new File( icuName
+                                        + ".txt"))) {
+                                            new FileInputStream(
+                        new File( icuName
+                                        + ".txt")).read
+            rbbi = new RuleBasedBreakIterator();
         }
-        final var iup = IndexUnicodeProperties.make(UCharacter.getUnicodeVersion());
+        final var iup = IndexUnicodeProperties.make(version);
         final var unassigned = iup.getProperty("gc").getSet("Unassigned");
         final var pua = iup.getProperty("gc").getSet("Private Use");
         var segmenter =
                 Segmenter.make(
-                                VersionedSymbolTable.frozenAt(UCharacter.getUnicodeVersion()),
+                                version,
                                 name + "Break")
                         .make();
         List<NamedRefinedSet> namedPartition = segmenter.getPartitionDefinition();
