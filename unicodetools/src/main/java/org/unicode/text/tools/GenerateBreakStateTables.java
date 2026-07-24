@@ -48,7 +48,8 @@ public class GenerateBreakStateTables {
                     Map.entry(0x100005, "EAST_ASIAN_POX"),
                     Map.entry(0x100006, "NON_EAST_ASIAN_PRX"),
                     Map.entry(0x100007, "EAST_ASIAN_PRX"),
-                    Map.entry(0x100008, "LOOSE_DASH") /*,
+                    Map.entry(0x100008, "LOOSE_HYPHEN"),
+                    Map.entry(0x100010, "LOOSE_DASH") /*,
                     Map.entry(0x100009, "EAST_ASIAN_PHRASE_ID"),
                     Map.entry(0x10000A, "EAST_ASIAN_PHRASE_AL"),
                     Map.entry(0x10000B, "EAST_ASIAN_PHRASE_CM"),
@@ -63,6 +64,9 @@ public class GenerateBreakStateTables {
             final VersionInfo version,
             final Map<Integer, String> tagNames)
             throws IOException {
+        final String outDir = Settings.UnicodeTools.DATA_DIR + "pri555/" + (version == Settings.LATEST_VERSION_INFO
+                                                                ? "dev"
+                                                                : version.getVersionString(3, 3)) + "/";
         RuleBasedBreakIterator rbbi;
         final var rules =
                 StreamSupport.stream(
@@ -374,7 +378,7 @@ public class GenerateBreakStateTables {
             }
             nameToLookahead.put(entry.getValue(), entry.getKey());
         }
-        try (var file = new PrintStream(new File(name + "BreakSymbols.txt"))) {
+        try (var file = new PrintStream(new File(outDir + name + "BreakSymbols.txt"))) {
             file.println(
                     "# Symbol name ; Symbol definition in UnicodeSet notation ; Optional non-dictionary equivalent symbol");
             for (final var entry : rbbiNames.entrySet()) {
@@ -426,7 +430,7 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File(name + "BreakStates.txt"))) {
+        try (var file = new PrintStream(new File(outDir + name + "BreakStates.txt"))) {
             file.println(
                     "# State name ; Accepting (Yes, No, or lookahead name); lookahead name or empty; Break type.");
             for (int state = 1; state < table.fNumStates; ++state) {
@@ -455,7 +459,7 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File(name + "BreakTransitions.txt"))) {
+        try (var file = new PrintStream(new File(outDir + name + "BreakTransitions.txt"))) {
             file.println("# From state ; symbol ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
