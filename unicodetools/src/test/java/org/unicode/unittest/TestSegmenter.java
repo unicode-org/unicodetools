@@ -3,6 +3,7 @@ package org.unicode.unittest;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.util.VersionInfo;
 import java.io.File;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -12,14 +13,15 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 
 public class TestSegmenter extends TestFmwkMinusMinus {
 
     Segmenter gcb =
-            Segmenter.make(VersionedSymbolTable.forDevelopment(), "GraphemeClusterBreak").make();
+            Segmenter.make(VersionInfo.getInstance(Default.ucdVersion()), "GraphemeClusterBreak")
+                    .make();
 
     @Test
     public void Test11() {

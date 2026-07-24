@@ -12,6 +12,7 @@ package org.unicode.text.UCD;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParsePosition;
@@ -76,10 +77,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
         System.out.println(
                 "Remember to add length marks (half & full) and other punctuation for sentence, with FF61");
         UCD ucd = Default.ucd();
-        new GenerateGraphemeBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
-        new GenerateWordBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
-        new GenerateLineBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
-        new GenerateSentenceBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
+        new GenerateGraphemeBreakTest(ucd).run();
+        new GenerateWordBreakTest(ucd).run();
+        new GenerateLineBreakTest(ucd).run();
+        new GenerateSentenceBreakTest(ucd).run();
     }
 
     GenerateBreakTest(UCD ucd, Segmenter seg) {
@@ -127,9 +128,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             UnifiedProperty.make(CATEGORY), UnifiedProperty.make(LINE_BREAK)
         };
         final GenerateBreakTest[] tests = {
-            new GenerateGraphemeBreakTest(ucd, Segmenter.Target.FOR_UCD),
-            new GenerateWordBreakTest(ucd, Segmenter.Target.FOR_UCD),
-            new GenerateLineBreakTest(ucd, Segmenter.Target.FOR_UCD),
+            new GenerateGraphemeBreakTest(ucd),
+            new GenerateWordBreakTest(ucd),
+            new GenerateLineBreakTest(ucd),
         };
         tests[0].isBreak("\u0300\u0903", 1);
         final Normalizer nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
@@ -310,13 +311,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         // printLine(out, samples[LB_ZW], "", samples[LB_CL]);
         // printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-        boolean forCLDR = seg.target == Segmenter.Target.FOR_CLDR;
-        String path = "UCD/" + ucd.getVersion() + '/' + (forCLDR ? "cldr/" : "auxiliary/");
+        String path = "UCD/" + ucd.getVersion() + "/auxiliary/";
         String extraPath = "UCD/" + ucd.getVersion() + "/extra/";
         String outFilename = fileName + "BreakTest";
-        if (forCLDR) {
-            outFilename = outFilename + "-cldr";
-        }
         final UnicodeDataFile fc =
                 UnicodeDataFile.openHTMLAndWriteHeader(path, outFilename)
                         .setSkipCopyright(Settings.SKIP_COPYRIGHT);
@@ -1188,19 +1185,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
 
-        public GenerateGraphemeBreakTest(UCD ucd, Segmenter.Target target) {
+        public GenerateGraphemeBreakTest(UCD ucd) {
             super(
                     ucd,
                     Segmenter.make(
-                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
-                            "GraphemeClusterBreak",
-                            target),
+                            VersionInfo.getInstance(ucd.getVersion()), "GraphemeClusterBreak"),
                     "aa",
                     "Grapheme",
                     new String[] {unicodePropertySource.getSet("GC=Cn").iterator().next()},
                     new String[] {});
-
-            System.out.println("Target: " + seg.target);
 
             Sampler GCB = new Sampler("GCB");
             this.extraSingleSamples.addAll(
@@ -1304,13 +1297,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     static class GenerateLineBreakTest extends XGenerateBreakTest {
-        public GenerateLineBreakTest(UCD ucd, Segmenter.Target target) {
+        public GenerateLineBreakTest(UCD ucd) {
             super(
                     ucd,
-                    Segmenter.make(
-                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
-                            "LineBreak",
-                            target),
+                    Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "LineBreak"),
                     "aa",
                     "Line",
                     // extraSamples
@@ -1688,22 +1678,13 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     static class GenerateSentenceBreakTest extends XGenerateBreakTest {
-        public GenerateSentenceBreakTest(UCD ucd, Segmenter.Target target) {
-            super(
-                    ucd,
-                    makeSegmenter(ucd, target),
-                    "aa",
-                    "Sentence",
-                    new String[] {},
-                    getExtraSamples(ucd, target));
+        public GenerateSentenceBreakTest(UCD ucd) {
+            super(ucd, makeSegmenter(ucd), "aa", "Sentence", new String[] {}, getExtraSamples(ucd));
         }
 
-        private static Builder makeSegmenter(UCD ucd, Segmenter.Target target) {
+        private static Builder makeSegmenter(UCD ucd) {
             final Builder result =
-                    Segmenter.make(
-                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
-                            "SentenceBreak",
-                            target);
+                    Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "SentenceBreak");
             final Segmenter segmenter = result.make();
             final boolean failure = segmenter.breaksAt("etc.)\u2019 \u2018(the", 7);
             if (failure) {
@@ -1712,8 +1693,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
             return result;
         }
 
-        static String[] getExtraSamples(UCD ucd, Segmenter.Target target) {
-            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd, target);
+        static String[] getExtraSamples(UCD ucd) {
+            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd);
             String[] extraSingleSamples =
                     new String[] {
                         "(\"Go.\") (He did.)",
@@ -1759,13 +1740,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     static class GenerateWordBreakTest extends XGenerateBreakTest {
-        public GenerateWordBreakTest(UCD ucd, Segmenter.Target target) {
+        public GenerateWordBreakTest(UCD ucd) {
             super(
                     ucd,
-                    Segmenter.make(
-                            VersionedSymbolTable.frozenAt(ucd.getVersionInfo()),
-                            "WordBreak",
-                            target),
+                    Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "WordBreak"),
                     "aa",
                     "Word",
                     new String[] {
@@ -1856,8 +1834,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
             }
         }
 
-        static String[] getExtraSamples(UCD ucd, Segmenter.Target target) {
-            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd, target);
+        static String[] getExtraSamples(UCD ucd) {
+            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd);
             final String[] temp = {
                 "can't",
                 "can\u2019t",
