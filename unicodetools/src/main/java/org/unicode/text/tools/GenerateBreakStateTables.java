@@ -64,9 +64,7 @@ public class GenerateBreakStateTables {
             final VersionInfo version,
             final Map<Integer, String> tagNames)
             throws IOException {
-        final String outDir = Settings.UnicodeTools.DATA_DIR + "pri555/" + (version == Settings.LATEST_VERSION_INFO
-                                                                ? "dev"
-                                                                : version.getVersionString(3, 3)) + "/";
+        final String outDir = Settings.UnicodeTools.DATA_DIR + "pri555/" + version.getVersionString(3, 3) + "/";
         RuleBasedBreakIterator rbbi;
         final var rules =
                 StreamSupport.stream(
