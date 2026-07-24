@@ -100,20 +100,20 @@ public class TestTestUnicodeInvariants {
                         .size());
         ParseException thrown =
                 assertThrows(
-                        ParseException.class,
+                        BackwardParseException.class,
                         () ->
                                 TestUnicodeInvariants.parseUnicodeSet(
                                         "TEST [\\N{MEOW}]", new ParsePosition(5)));
         assertEquals("No character name nor name alias matches MEOW", thrown.getMessage());
-        assertEquals("TEST [".length(), thrown.getErrorOffset());
+        assertEquals("TEST [\\N{MEOW}".length(), thrown.getErrorOffset());
         thrown =
                 assertThrows(
-                        BackwardParseException.class,
+                        ParseException.class,
                         () ->
                                 TestUnicodeInvariants.parseUnicodeSet(
                                         "TEST [[a-z]-\\N{LATIN SMALL LETTER Z}]",
                                         new ParsePosition(5)));
-        assertEquals("Error: Set expected after operator", thrown.getMessage());
-        assertEquals("TEST [[a-z]-.N{LATIN SMALL LETTER Z}".length(), thrown.getErrorOffset());
+        assertEquals("Expected property-query | [, got named-element '\\N{LATIN SMALL LETTER Z}' ", thrown.getMessage());
+        assertEquals("TEST [[a-z]-".length(), thrown.getErrorOffset());
     }
 }

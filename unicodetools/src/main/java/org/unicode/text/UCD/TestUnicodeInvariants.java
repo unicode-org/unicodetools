@@ -345,9 +345,9 @@ public class TestUnicodeInvariants {
                         // Try parsing the next line, but since that may be the rest of what we
                         // failed to parse,
                         // do not report errors until we successfully parse *something*.
-                        final int nextLine = source.indexOf("\n", pp.getIndex());
+                        final int nextLine = source.indexOf("\n", pp.getIndex() + 1);
                         if (nextLine >= 0) {
-                            pp.setIndex(source.indexOf("\n", pp.getIndex()));
+                            pp.setIndex(nextLine);
                             followingParseError = true;
                             continue;
                         } else {
@@ -1998,63 +1998,37 @@ public class TestUnicodeInvariants {
         }
     }
 
-    private static Pattern nameEscape = Pattern.compile("\\\\N\\{[^}]*\\}");
-
     public static UnicodeSet parseUnicodeSet(String source, ParsePosition pp)
             throws ParseException {
-        final int initialPosition = pp.getIndex();
-        UnicodeSet icuSet;
         try {
-            // Let ICU figure out where the UnicodeSet expression ends.
-            icuSet = new UnicodeSet(source, pp, symbolTable);
+            return new UnicodeSet(source, pp, symbolTable);
         } catch (IllegalArgumentException e) {
             // ICU produces unhelpful messages when parsing UnicodeSet deep into
             // a large string in a string that contains line terminators, as the
-            // whole string is escaped and printed.
-            final String message = e.getMessage().split(" at \"", 2)[0];
-            throw new BackwardParseException(message, pp.getIndex());
-        }
-        String unicodeSetExpression = source.substring(initialPosition, pp.getIndex());
-        // ICU incorrectly treats \N{X} as a synonym for \p{Name=X}, returning a
-        // set rather than a character, so that it can be empty, and so that
-        // \N{X}-\N{Y} is a set difference (equal to \N{X}) rather than the range \N{X}-\N{Y}.
-        // This should likely be fixed in ICU, but in the meantime we need to work around it in
-        // the invariant before someone gets hurt.
-        var matcher = nameEscape.matcher(unicodeSetExpression);
-        if (!matcher.find()) {
-            return icuSet;
-        }
-        // Simplest way for the lambda function to report errors.
-        // It cannot throw a ParseException, and it cannot modify local variables.
-        // It _can_ modify what this local variable points to.
-        // Below, we will throw a ParseException for the first bad position.
-        final List<Integer> badEscapePositions = new ArrayList<>();
-        unicodeSetExpression =
-                matcher.replaceAll(
-                        (MatchResult match) -> {
-                            UnicodeSet character =
-                                    new UnicodeSet(
-                                            match.group(), new ParsePosition(0), symbolTable);
-                            if (character.isEmpty()) {
-                                badEscapePositions.add(match.start());
-                                return "";
-                            }
-                            return Strings.padStart(
-                                    "\\\\x{" + Integer.toHexString(character.charAt(0)) + "}",
-                                    match.group().length() + 1,
-                                    ' ');
-                        });
-        for (int p : badEscapePositions) {
-            // Simplest way to throw an exception for only the first list element.
-            throw new ParseException("No character matching \\N escape", initialPosition + p);
-        }
-        var patchedParsePosition = new ParsePosition(0);
-        try {
-            return new UnicodeSet(unicodeSetExpression, patchedParsePosition, symbolTable);
-        } catch (IllegalArgumentException e) {
-            final String message = e.getMessage().split(" at \"", 2)[0];
-            throw new BackwardParseException(
-                    message, patchedParsePosition.getIndex() + initialPosition);
+            // whole string is printed (here `source` is the entire invariant
+            // test source file, with comments stripped).
+            // When ICU gives us context, figure out if the error is meant to be
+            // before or after the parse position, choose the exception type
+            // accordingly, and drop the ICU-provided context; the handler above
+            // will produce a more useful snippet (including pointing indices
+            // based on the type).
+            String message = e.getMessage();
+            ParseException thrown;
+            final int rightPointingIndexIndex = message.indexOf( '☞');
+            final int leftPointingIndexIndex = message.indexOf( '☜');
+            if (rightPointingIndexIndex >= 0) {
+                thrown = new ParseException(message.substring(0, rightPointingIndexIndex - pp.getIndex()), pp.getIndex());
+            } else if (leftPointingIndexIndex >= 0) {
+                thrown = new BackwardParseException(message.substring(0, leftPointingIndexIndex - pp.getIndex()), pp.getIndex());
+            } else {
+                thrown = new BackwardParseException(message, pp.getIndex());
+            }
+            // While we clean up the message which contains the entire source file (and do
+            // not set the cause so that the original message does not show up), we preserve
+            // the stack trace from ICU, as with the recursive descent parser it can provide
+            // some insight into the error.
+            thrown.setStackTrace(e.getStackTrace());
+            throw thrown;
         }
     }
 }
