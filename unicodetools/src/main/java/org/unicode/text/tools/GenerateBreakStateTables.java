@@ -42,14 +42,14 @@ public class GenerateBreakStateTables {
                     Map.entry(0x100005, "EAST_ASIAN_POX"),
                     Map.entry(0x100006, "NON_EAST_ASIAN_PRX"),
                     Map.entry(0x100007, "EAST_ASIAN_PRX"),
-                    Map.entry(0x100008, "LOOSE_DASH"),
+                    Map.entry(0x100008, "LOOSE_DASH")/*,
                     Map.entry(0x100009, "EAST_ASIAN_PHRASE_ID"),
                     Map.entry(0x10000A, "EAST_ASIAN_PHRASE_AL"),
                     Map.entry(0x10000B, "EAST_ASIAN_PHRASE_CM"),
                     Map.entry(0x10000C, "EAST_ASIAN_PHRASE_NS"),
                     Map.entry(0x10000D, "EAST_ASIAN_PHRASE_H2"),
                     Map.entry(0x10000E, "EAST_ASIAN_PHRASE_H3"),
-                    Map.entry(0x10000F, "EAST_ASIAN_ID_AL"));
+                    Map.entry(0x10000F, "EAST_ASIAN_ID_AL")*/);
 
     private static void Generate(
             final String name, final String icuName, final Map<Integer, String> tagNames)
