@@ -1,13 +1,11 @@
 package org.unicode.text.tools;
 
 import com.ibm.icu.impl.RBBIDataWrapper;
-import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.segmenter.Segment;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -20,6 +18,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
@@ -29,14 +29,12 @@ import org.unicode.tools.Segmenter.Builder.NamedSet;
 
 public class GenerateBreakStateTables {
     public static void main(String[] args) throws IOException {
-        for (final var version : new VersionInfo[] {
-            VersionInfo.UNICODE_17_0,
-            VersionInfo.UNICODE_18_0
-        }) {
-        Generate("Line", "uline", version, Map.of(100, "Mandatory"));
-        Generate("GraphemeCluster", "char", version, Map.of());
-        Generate("Word", "word", version, Map.of(100, "Number", 200, "Letter", 400, "Letter"));
-        Generate("Sentence", "sent", version, Map.of(100, "Nonterminated"));
+        for (final var version :
+                new VersionInfo[] {VersionInfo.UNICODE_18_0, VersionInfo.UNICODE_17_0}) {
+            Generate("Line", "uline", version, Map.of(100, "Mandatory"));
+            Generate("GraphemeCluster", "char", version, Map.of());
+            Generate("Word", "word", version, Map.of(100, "Number", 200, "Letter", 400, "Letter"));
+            Generate("Sentence", "sent", version, Map.of(100, "Nonterminated"));
         }
     }
 
@@ -50,7 +48,7 @@ public class GenerateBreakStateTables {
                     Map.entry(0x100005, "EAST_ASIAN_POX"),
                     Map.entry(0x100006, "NON_EAST_ASIAN_PRX"),
                     Map.entry(0x100007, "EAST_ASIAN_PRX"),
-                    Map.entry(0x100008, "LOOSE_DASH")/*,
+                    Map.entry(0x100008, "LOOSE_DASH") /*,
                     Map.entry(0x100009, "EAST_ASIAN_PHRASE_ID"),
                     Map.entry(0x10000A, "EAST_ASIAN_PHRASE_AL"),
                     Map.entry(0x10000B, "EAST_ASIAN_PHRASE_CM"),
@@ -60,26 +58,29 @@ public class GenerateBreakStateTables {
                     Map.entry(0x10000F, "EAST_ASIAN_ID_AL")*/);
 
     private static void Generate(
-            final String name, final String icuName, final VersionInfo version, final Map<Integer, String> tagNames)
+            final String name,
+            final String icuName,
+            final VersionInfo version,
+            final Map<Integer, String> tagNames)
             throws IOException {
         RuleBasedBreakIterator rbbi;
-        try (var f =
-                new FileInputStream(
-                        new File( icuName
-                                        + ".txt"))) {
-                                            new FileInputStream(
-                        new File( icuName
-                                        + ".txt")).read
-            rbbi = new RuleBasedBreakIterator();
-        }
+        final var rules =
+                StreamSupport.stream(
+                                FileUtilities.in(
+                                                Segmenter.class,
+                                                icuName + "-"
+                                                        + (version == Settings.LATEST_VERSION_INFO
+                                                                ? "dev"
+                                                                : version.getVersionString(3, 3))
+                                                        + ".txt")
+                                        .spliterator(),
+                                false)
+                        .collect(Collectors.joining("\n"));
+        rbbi = new RuleBasedBreakIterator(rules, VersionedSymbolTable.frozenAt(version));
         final var iup = IndexUnicodeProperties.make(version);
         final var unassigned = iup.getProperty("gc").getSet("Unassigned");
         final var pua = iup.getProperty("gc").getSet("Private Use");
-        var segmenter =
-                Segmenter.make(
-                                version,
-                                name + "Break")
-                        .make();
+        var segmenter = Segmenter.make(version, name + "Break").make();
         List<NamedRefinedSet> namedPartition = segmenter.getPartitionDefinition();
         Map<Integer, UnicodeSet> rbbiPartition = new HashMap<>();
         Map<Integer, List<NamedRefinedSet>> rbbiNames = new HashMap<>();
@@ -374,18 +375,18 @@ public class GenerateBreakStateTables {
             nameToLookahead.put(entry.getValue(), entry.getKey());
         }
         try (var file = new PrintStream(new File(name + "BreakSymbols.txt"))) {
-            file.println("# Symbol name ; Symbol definition in UnicodeSet notation ; Optional non-dictionary equivalent symbol");
+            file.println(
+                    "# Symbol name ; Symbol definition in UnicodeSet notation ; Optional non-dictionary equivalent symbol");
             for (final var entry : rbbiNames.entrySet()) {
                 final int i = entry.getKey();
                 final boolean isDictionarySymbol = i >= table.fDictCategoriesStart;
                 final var symbol = entry.getValue();
-                final String symbolName = 
+                final String symbolName =
                         symbol.stream()
-                                        .map(NamedRefinedSet::getName)
-                                        .map(s -> s.replace("orig", ""))
-                                        .collect(Collectors.joining("|"));
-                file.print(symbolName
-                                + " ; ");
+                                .map(NamedRefinedSet::getName)
+                                .map(s -> s.replace("orig", ""))
+                                .collect(Collectors.joining("|"));
+                file.print(symbolName + " ; ");
                 if (symbol.size() > 1) {
                     file.print("[");
                 }
@@ -414,10 +415,11 @@ public class GenerateBreakStateTables {
                                 continue findNonDictionaryEquivalent;
                             }
                         }
-                        nonDictionaryEquivalentSymbol = other.getValue().stream()
-                                            .map(NamedRefinedSet::getName)
-                                            .map(s -> s.replace("orig", ""))
-                                            .collect(Collectors.joining("|"));
+                        nonDictionaryEquivalentSymbol =
+                                other.getValue().stream()
+                                        .map(NamedRefinedSet::getName)
+                                        .map(s -> s.replace("orig", ""))
+                                        .collect(Collectors.joining("|"));
                     }
                     file.print(nonDictionaryEquivalentSymbol);
                 }

@@ -390,6 +390,11 @@ $XX=\p{Word_Break=Other}
 $Any=.
 $sot=^
 $eot=(?!.)
+## Sets unused in the rules, used to name dictionary symbols in the state machine.
+$HangulSyllable=[\uac00-\ud7a3]
+$Hiragana=[:Hiragana:]
+$Han=[:Han:]
+$ComplexContext = [:LineBreak = Complex_Context:]
 
 # MACROS
 
