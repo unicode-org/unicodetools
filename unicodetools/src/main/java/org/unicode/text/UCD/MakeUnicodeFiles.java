@@ -63,7 +63,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.GenerateLinkData;
-import org.unicode.tools.Segmenter;
 
 public class MakeUnicodeFiles {
     static boolean DEBUG = false;
@@ -608,24 +607,16 @@ public class MakeUnicodeFiles {
                     GenerateStandardizedVariants.generate();
                     break;
                 case "GraphemeBreakTest":
-                    new GenerateBreakTest.GenerateGraphemeBreakTest(
-                                    Default.ucd(), Segmenter.Target.FOR_UCD)
-                            .run();
+                    new GenerateBreakTest.GenerateGraphemeBreakTest(Default.ucd()).run();
                     break;
                 case "WordBreakTest":
-                    new GenerateBreakTest.GenerateWordBreakTest(
-                                    Default.ucd(), Segmenter.Target.FOR_UCD)
-                            .run();
+                    new GenerateBreakTest.GenerateWordBreakTest(Default.ucd()).run();
                     break;
                 case "LineBreakTest":
-                    new GenerateBreakTest.GenerateLineBreakTest(
-                                    Default.ucd(), Segmenter.Target.FOR_UCD)
-                            .run();
+                    new GenerateBreakTest.GenerateLineBreakTest(Default.ucd()).run();
                     break;
                 case "SentenceBreakTest":
-                    new GenerateBreakTest.GenerateSentenceBreakTest(
-                                    Default.ucd(), Segmenter.Target.FOR_UCD)
-                            .run();
+                    new GenerateBreakTest.GenerateSentenceBreakTest(Default.ucd()).run();
                     break;
                 case "DerivedName":
                 case "DerivedLabel":

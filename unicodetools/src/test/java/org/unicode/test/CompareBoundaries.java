@@ -4,6 +4,7 @@
 package org.unicode.test;
 
 import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.util.VersionInfo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,7 +15,6 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
 import org.unicode.props.UcdPropertyValues.Word_Break_Values;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -39,10 +39,10 @@ public class CompareBoundaries {
     static final int PROPSB = 'S';
     static int probcount = 0;
     static final Builder wbb =
-            Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()), "WordBreak");
+            Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "WordBreak");
     static final Segmenter wbseg = wbb.make();
     static final Builder sbb =
-            Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()), "SentenceBreak");
+            Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "SentenceBreak");
     static final Segmenter sbseg = sbb.make();
     static Set<ArrayList<Integer>> problems = new HashSet<>();
 
