@@ -113,7 +113,9 @@ public class TestTestUnicodeInvariants {
                                 TestUnicodeInvariants.parseUnicodeSet(
                                         "TEST [[a-z]-\\N{LATIN SMALL LETTER Z}]",
                                         new ParsePosition(5)));
-        assertEquals("Expected property-query | [, got named-element '\\N{LATIN SMALL LETTER Z}' ", thrown.getMessage());
+        assertEquals(
+                "Expected property-query | [, got named-element '\\N{LATIN SMALL LETTER Z}' ",
+                thrown.getMessage());
         assertEquals("TEST [[a-z]-".length(), thrown.getErrorOffset());
     }
 }

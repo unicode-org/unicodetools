@@ -1,6 +1,5 @@
 package org.unicode.text.UCD;
 
-import com.google.common.base.Strings;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.NumberFormat;
@@ -23,7 +22,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.Stack;
 import java.util.function.Function;
-import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
@@ -2012,14 +2010,20 @@ public class TestUnicodeInvariants {
             // accordingly, and drop the ICU-provided context; the handler above
             // will produce a more useful snippet (including pointing indices
             // based on the type).
-            String message = e.getMessage();
+            final String message = e.getMessage();
             ParseException thrown;
-            final int rightPointingIndexIndex = message.indexOf( '☞');
-            final int leftPointingIndexIndex = message.indexOf( '☜');
+            final int rightPointingIndexIndex = message.indexOf('☞');
+            final int leftPointingIndexIndex = message.indexOf('☜');
             if (rightPointingIndexIndex >= 0) {
-                thrown = new ParseException(message.substring(0, rightPointingIndexIndex - pp.getIndex()), pp.getIndex());
+                thrown =
+                        new ParseException(
+                                message.substring(0, rightPointingIndexIndex - pp.getIndex()),
+                                pp.getIndex());
             } else if (leftPointingIndexIndex >= 0) {
-                thrown = new BackwardParseException(message.substring(0, leftPointingIndexIndex - pp.getIndex()), pp.getIndex());
+                thrown =
+                        new BackwardParseException(
+                                message.substring(0, leftPointingIndexIndex - pp.getIndex()),
+                                pp.getIndex());
             } else {
                 thrown = new BackwardParseException(message, pp.getIndex());
             }
