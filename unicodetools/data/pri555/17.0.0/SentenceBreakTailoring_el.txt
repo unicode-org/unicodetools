@@ -1,0 +1,3 @@
+# Treat the greek question mark (in both its canonically equivalent forms) like
+# QUESTION MARK.
+[\N{SEMICOLON} \N{GREEK QUESTION MARK}] ; [?]
