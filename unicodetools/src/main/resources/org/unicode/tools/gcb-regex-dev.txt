@@ -2,14 +2,15 @@ crlf            := CR LF | CR | LF
 legacy-core     := hangul-syllable
                  | RI-Sequence
                  | xpicto-sequence
-                 | [^Control CR LF]
+                 | [^Control CR LF Extend ZWJ]
+                 | legacy-postcore
 legacy-postcore := [Extend ZWJ]
 core            := hangul-syllable
                  | RI-Sequence
                  | xpicto-sequence
                  | core-linker-conjunct
-                 | conjunct-extension
-                 | [^Control CR LF]
+                 | [^Control CR LF Extend ZWJ SpacingMark]
+                 | postcore
 postcore        := [Extend ZWJ SpacingMark]
                  | conjunct-extension
 precore         := Prepend
