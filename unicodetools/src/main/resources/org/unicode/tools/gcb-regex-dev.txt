@@ -1,0 +1,26 @@
+crlf            := CR LF | CR | LF
+legacy-core     := hangul-syllable
+                 | RI-Sequence
+                 | xpicto-sequence
+                 | [^Control CR LF]
+legacy-postcore := [Extend ZWJ]
+core            := hangul-syllable
+                 | RI-Sequence
+                 | xpicto-sequence
+                 | core-linker-conjunct
+                 | conjunct-extension
+                 | [^Control CR LF]
+postcore        := [Extend ZWJ SpacingMark]
+                 | conjunct-extension
+precore         := Prepend
+RI-Sequence     := RI RI
+hangul-syllable := L* (V+ | LV V* | LVT) T*
+                 | L+
+                 | T+
+xpicto-sequence := \p{Extended_Pictographic} (Extend* ZWJ \p{Extended_Pictographic})*
+core-linker-conjunct := [\p{InCB=Linker} - Extend] \p{InCB=Extend}* \p{InCB=Consonant}
+conjunct-extension   := [\p{InCB=Linker} & Extend] \p{InCB=Extend}* \p{InCB=Consonant}
+
+extended-grapheme-cluster := crlf
+                           | Control
+                           | precore* core postcore*
