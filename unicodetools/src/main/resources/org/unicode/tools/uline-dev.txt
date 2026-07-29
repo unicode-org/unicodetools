@@ -96,7 +96,7 @@ $XX = [[:LineBreak =  Unknown:]-[ $UNCLASSIFIED $LOOSE_IN $POX $PRX $LOOSE_HYPHE
 $ZW = [:LineBreak =  ZWSpace:];
 $ZWJ = [:LineBreak = ZWJ:];
 
-$EastAsian = [ [\p{ea=F}\p{ea=W}\p{ea=H}] $EAST_ASIAN_UNCLASSIFIED $EAST_ASIAN_LOOSE_IN $EAST_ASIAN_POX ];# $EAST_ASIAN_PRX $EAST_ASIAN_PHRASE $EAST_ASIAN_ID_AL
+$EastAsian = [ [\p{ea=F}\p{ea=W}\p{ea=H}] $EAST_ASIAN_UNCLASSIFIED $EAST_ASIAN_LOOSE_IN $EAST_ASIAN_POX $EAST_ASIAN_PRX ];# $EAST_ASIAN_PHRASE $EAST_ASIAN_ID_AL
 
 $ExtPictUnassigned = [\p{Extended_Pictographic} & \p{Cn}];
 
