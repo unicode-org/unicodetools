@@ -1,7 +1,6 @@
 package org.unicode.text.tools;
 
 import com.ibm.icu.impl.RBBIDataWrapper;
-import com.ibm.icu.segmenter.Segment;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
@@ -17,12 +16,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder.NamedRefinedSet;
 import org.unicode.tools.Segmenter.Builder.NamedSet;
@@ -33,6 +35,13 @@ public class GenerateBreakStateTables {
                 new VersionInfo[] {VersionInfo.UNICODE_18_0, VersionInfo.UNICODE_17_0}) {
             Generate("Line", "uline", version, Map.of(100, "Mandatory"));
             Generate("GraphemeCluster", "char", version, Map.of());
+            GenerateFromRules(
+                    "GraphemeCluster",
+                    ExpandGCBGrammar(version),
+                    "GCB regex",
+                    version,
+                    Map.of(),
+                    /* checkNoOp= */ true);
             Generate("Word", "word", version, Map.of(100, "Number", 200, "Letter", 400, "Letter"));
             Generate("Sentence", "sent", version, Map.of(100, "Nonterminated"));
         }
@@ -58,19 +67,88 @@ public class GenerateBreakStateTables {
                     Map.entry(0x10000E, "EAST_ASIAN_PHRASE_H3"),
                     Map.entry(0x10000F, "EAST_ASIAN_ID_AL")*/);
 
+    private static String ExpandGCBGrammar(final VersionInfo version) throws IOException {
+        Set<String> aliases = new HashSet<>();
+        Map<String, String> nonterminals = new HashMap<>();
+        for (final var value : Grapheme_Cluster_Break_Values.values()) {
+            for (final var alias : value.getNames().getAllNames()) {
+                nonterminals.put(alias, "[:gcb=" + alias + ":]");
+                aliases.add(alias);
+            }
+        }
+        String currentNonterminal = null;
+        StringBuilder currentRule = null;
+        final var queryOrIdentifier = Pattern.compile("\\[:[^:]+:\\]|([A-Za-z][A-Za-z0-9_-]*)");
+        for (String line :
+                FileUtilities.in(
+                        Segmenter.class,
+                        "gcb-regex-"
+                                + (version == Settings.LATEST_VERSION_INFO
+                                        ? "dev"
+                                        : version.getVersionString(3, 3))
+                                + ".txt")) {
+            line = line.strip();
+            if (line.contains(":=")) {
+                if (currentRule != null) {
+                    nonterminals.put(currentNonterminal, "(" + currentRule.toString() + ")");
+                }
+                final String[] parts = line.split(":=");
+                if (parts.length != 2) {
+                    throw new IllegalArgumentException(line);
+                }
+                currentNonterminal = parts[0].strip();
+                currentRule = new StringBuilder();
+                line = parts[1].strip();
+            }
+            line = line.replace("\\p{", "[:");
+            line = line.replace("}", ":]");
+            currentRule.append(
+                    queryOrIdentifier
+                            .matcher(line)
+                            .replaceAll(
+                                    id ->
+                                            nonterminals.containsKey(id.group(1))
+                                                    ? (nonterminals.get(id.group(1)))
+                                                    : id.group()));
+        }
+        if (currentRule != null) {
+            nonterminals.put(currentNonterminal, "(" + currentRule.toString() + ")");
+        }
+        boolean expanded;
+        do {
+            expanded = false;
+            for (final var entry : nonterminals.entrySet()) {
+                final var name = entry.getKey();
+                final var definition = entry.getValue();
+                final var expandedDefinition =
+                        queryOrIdentifier
+                                .matcher(definition)
+                                .replaceAll(
+                                        id ->
+                                                nonterminals.containsKey(id.group(1))
+                                                        ? nonterminals.get(id.group(1))
+                                                        : id.group());
+                if (!definition.equals(expandedDefinition)) {
+                    expanded = true;
+                    nonterminals.put(name, expandedDefinition);
+                }
+            }
+        } while (expanded);
+        return "!!quoted_literals_only;\n" + nonterminals.get("extended-grapheme-cluster") + ";\n";
+    }
+
     private static void Generate(
             final String name,
             final String icuName,
             final VersionInfo version,
             final Map<Integer, String> tagNames)
             throws IOException {
-        final String outDir = Settings.UnicodeTools.DATA_DIR + "pri555/" + version.getVersionString(3, 3) + "/";
-        RuleBasedBreakIterator rbbi;
         final var rules =
                 StreamSupport.stream(
                                 FileUtilities.in(
                                                 Segmenter.class,
-                                                icuName + "-"
+                                                icuName
+                                                        + "-"
                                                         + (version == Settings.LATEST_VERSION_INFO
                                                                 ? "dev"
                                                                 : version.getVersionString(3, 3))
@@ -78,6 +156,20 @@ public class GenerateBreakStateTables {
                                         .spliterator(),
                                 false)
                         .collect(Collectors.joining("\n"));
+        GenerateFromRules(name, rules, icuName, version, tagNames, /* checkNoOp= */ false);
+    }
+
+    private static void GenerateFromRules(
+            final String name,
+            final String rules,
+            final String source,
+            final VersionInfo version,
+            final Map<Integer, String> tagNames,
+            final boolean checkNoOp)
+            throws IOException {
+        final String outDir =
+                Settings.UnicodeTools.DATA_DIR + "pri555/" + version.getVersionString(3, 3) + "/";
+        RuleBasedBreakIterator rbbi;
         rbbi = new RuleBasedBreakIterator(rules, VersionedSymbolTable.frozenAt(version));
         final var iup = IndexUnicodeProperties.make(version);
         final var unassigned = iup.getProperty("gc").getSet("Unassigned");
@@ -376,7 +468,14 @@ public class GenerateBreakStateTables {
             }
             nameToLookahead.put(entry.getValue(), entry.getKey());
         }
-        try (var file = new PrintStream(new File(outDir + name + "BreakSymbols.txt"))) {
+        try (var file =
+                new PrintStream(
+                        new File(
+                                outDir
+                                        + name
+                                        + "BreakSymbols"
+                                        + (checkNoOp ? "-new" : "")
+                                        + ".txt"))) {
             file.println(
                     "# Symbol name ; Symbol definition in UnicodeSet notation ; Optional non-dictionary equivalent symbol");
             for (final var entry : rbbiNames.entrySet()) {
@@ -428,7 +527,14 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File(outDir + name + "BreakStates.txt"))) {
+        try (var file =
+                new PrintStream(
+                        new File(
+                                outDir
+                                        + name
+                                        + "BreakStates"
+                                        + (checkNoOp ? "-new" : "")
+                                        + ".txt"))) {
             file.println(
                     "# State name ; Accepting (Yes, No, or lookahead name); lookahead name or empty; Break type.");
             for (int state = 1; state < table.fNumStates; ++state) {
@@ -457,7 +563,14 @@ public class GenerateBreakStateTables {
                 file.println();
             }
         }
-        try (var file = new PrintStream(new File(outDir + name + "BreakTransitions.txt"))) {
+        try (var file =
+                new PrintStream(
+                        new File(
+                                outDir
+                                        + name
+                                        + "BreakTransitions"
+                                        + (checkNoOp ? "-new" : "")
+                                        + ".txt"))) {
             file.println("# From state ; symbol ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
@@ -477,6 +590,35 @@ public class GenerateBreakStateTables {
                         file.println(ahead + " ; " + stateNames.get(next));
                     }
                 }
+            }
+        }
+        if (checkNoOp) {
+            boolean anyChange = false;
+            for (final var f : new String[] {"Symbols", "States", "Transitions"}) {
+                final var lines = new String[2];
+                if (!Utility.filesAreIdentical(
+                        outDir + name + "Break" + f + ".txt",
+                        outDir + name + "Break" + f + "-new.txt",
+                        /* skipCopyright= */ false,
+                        lines)) {
+                    anyChange = true;
+                    System.err.println(
+                            name
+                                    + "Break"
+                                    + f
+                                    + " version "
+                                    + version
+                                    + " changed based on "
+                                    + source);
+                    System.err.println("- " + lines[0]);
+                    System.err.println("+ " + lines[1]);
+                }
+            }
+            if (anyChange) {
+                System.exit(1);
+            }
+            for (final var f : new String[] {"Symbols", "States", "Transitions"}) {
+                new File(outDir + name + "Break" + f + "-new.txt").delete();
             }
         }
     }
