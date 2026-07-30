@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-07-30, 14:16:16 GMT
+@+	Generation Date: 2026-07-30, 15:14:35 GMT
 	Unicode 18.0.0 names list.
 	Adjusted for repertoire changes post UTC188.
 	Repertoire synched with UnicodeData-18.0.0d10.txt.
@@ -57797,7 +57797,6 @@ FFFF	<not a character>
 1D4CC	MATHEMATICAL SCRIPT SMALL W
 	# <font> 0077 latin small letter w
 1D4CD	MATHEMATICAL SCRIPT SMALL X
-	~ 1D4CD FE02 kurrent style
 	# <font> 0078 latin small letter x
 1D4CE	MATHEMATICAL SCRIPT SMALL Y
 	# <font> 0079 latin small letter y
