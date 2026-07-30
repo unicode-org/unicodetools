@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-06-29, 15:25:08 GMT
+# Date: 2026-07-30, 15:20:22 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2862,6 +2862,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 11071..11072   ; AK # Lo     [2] BRAHMI LETTER OLD TAMIL SHORT E..BRAHMI LETTER OLD TAMIL SHORT O
 11073..11074   ; CM # Mn     [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
 11075          ; AK # Lo         BRAHMI LETTER OLD TAMIL LLA
+1107E          ; VF # Mn         BRAHMI MINIMIZING VIRAMA
 1107F          ; GL # Mn         BRAHMI NUMBER JOINER
 11080..11081   ; CM # Mn     [2] KAITHI SIGN CANDRABINDU..KAITHI SIGN ANUSVARA
 11082          ; CM # Mc         KAITHI SIGN VISARGA
