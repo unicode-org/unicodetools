@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-07-30, 15:35:04 GMT 
+# Date: 2026-07-30, 16:03:39 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1563,7 +1563,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 11000..11046  ; Include # 6.0  [71] (𑀀..𑁆)  BRAHMI SIGN CANDRABINDU..BRAHMI VIRAMA
 11052..1106F  ; Include # 6.0  [30] (𑁒..𑁯)  BRAHMI NUMBER ONE..BRAHMI DIGIT NINE
 11070..11075  ; Include # 14.0  [6] (𑁰..𑁵)  BRAHMI SIGN OLD TAMIL VIRAMA..BRAHMI LETTER OLD TAMIL LLA
-1107E         ; Include # NA        (𑁾)  BRAHMI MINIMIZING VIRAMA
+1107E         ; Include # 18.0      (𑁾)  BRAHMI MINIMIZING VIRAMA
 1107F         ; Include # 7.0       (𑁿)  BRAHMI NUMBER JOINER
 11080..110BC  ; Include # 5.2  [61] (𑂀..𑂼)  KAITHI SIGN CANDRABINDU..KAITHI ENUMERATION SIGN
 110BD         ; Include # 5.2       (U+110BD)  KAITHI NUMBER SIGN
