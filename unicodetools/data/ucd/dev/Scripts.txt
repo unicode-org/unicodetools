@@ -1,6 +1,5 @@
-1107E          ; Brahmi
 # Scripts-18.0.0.txt
-# Date: 2026-06-29, 15:25:26 GMT
+# Date: 2026-07-30, 15:35:22 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2315,9 +2314,9 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 11071..11072  ; Brahmi # Lo   [2] BRAHMI LETTER OLD TAMIL SHORT E..BRAHMI LETTER OLD TAMIL SHORT O
 11073..11074  ; Brahmi # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
 11075         ; Brahmi # Lo       BRAHMI LETTER OLD TAMIL LLA
-1107F         ; Brahmi # Mn       BRAHMI NUMBER JOINER
+1107E..1107F  ; Brahmi # Mn   [2] BRAHMI MINIMIZING VIRAMA..BRAHMI NUMBER JOINER
 
-# Total code points: 115
+# Total code points: 116
 
 # ================================================
 

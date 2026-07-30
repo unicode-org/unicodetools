@@ -1,5 +1,5 @@
 # DerivedJoiningType-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-30, 15:34:51 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -452,7 +452,7 @@ FFF9..FFFB    ; T # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATI
 11038..11046  ; T # Mn  [15] BRAHMI VOWEL SIGN AA..BRAHMI VIRAMA
 11070         ; T # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
 11073..11074  ; T # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
-1107F..11081  ; T # Mn   [3] BRAHMI NUMBER JOINER..KAITHI SIGN ANUSVARA
+1107E..11081  ; T # Mn   [4] BRAHMI MINIMIZING VIRAMA..KAITHI SIGN ANUSVARA
 110B3..110B6  ; T # Mn   [4] KAITHI VOWEL SIGN U..KAITHI VOWEL SIGN AI
 110B9..110BA  ; T # Mn   [2] KAITHI SIGN VIRAMA..KAITHI SIGN NUKTA
 110C2         ; T # Mn       KAITHI VOWEL SIGN VOCALIC R
@@ -595,6 +595,6 @@ E0001         ; T # Cf       LANGUAGE TAG
 E0020..E007F  ; T # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; T # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2255
+# Total code points: 2256
 
 # EOF

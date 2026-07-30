@@ -1,6 +1,5 @@
-1107E ; Pure_Killer
 # IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-07-02, 18:58:37 GMT
+# Date: 2026-07-30, 15:34:58 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -329,6 +328,7 @@ A82C          ; Pure_Killer # Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
 A953          ; Pure_Killer # Mc       REJANG VIRAMA
 ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 11070         ; Pure_Killer # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
+1107E         ; Pure_Killer # Mn       BRAHMI MINIMIZING VIRAMA
 11134         ; Pure_Killer # Mn       CHAKMA MAAYYAA
 112EA         ; Pure_Killer # Mn       KHUDAWADI SIGN VIRAMA
 113CE         ; Pure_Killer # Mn       TULU-TIGALARI SIGN VIRAMA

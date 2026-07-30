@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-30, 15:34:56 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6345,7 +6345,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 11052..11065  ; valid      ;      ; NV8    # 6.0  BRAHMI NUMBER ONE..BRAHMI NUMBER ONE THOUSAND
 11066..1106F  ; valid                      # 6.0  BRAHMI DIGIT ZERO..BRAHMI DIGIT NINE
 11070..11075  ; valid                      # 14.0 BRAHMI SIGN OLD TAMIL VIRAMA..BRAHMI LETTER OLD TAMIL LLA
-11076..1107E  ; disallowed                 # NA   <reserved-11076>..<reserved-1107E>
+11076..1107D  ; disallowed                 # NA   <reserved-11076>..<reserved-1107D>
+1107E         ; valid                      # 18.0 BRAHMI MINIMIZING VIRAMA
 1107F         ; valid                      # 7.0  BRAHMI NUMBER JOINER
 11080..110BA  ; valid                      # 5.2  KAITHI SIGN CANDRABINDU..KAITHI SIGN NUKTA
 110BB..110BC  ; valid      ;      ; NV8    # 5.2  KAITHI ABBREVIATION SIGN..KAITHI ENUMERATION SIGN
