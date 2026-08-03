@@ -2,15 +2,15 @@ from collections import defaultdict
 from typing import Callable
 
 symbols : list[str] = []
-with open("LineBreakSymbols.txt") as f:
+with open("unicodetools/data/pri555/18.0.0/LineBreakSymbols.txt") as f:
   for line in f.readlines():
     line = line.split("#")[0].strip()
     if not line:
       continue
-    id, definition = (field.strip() for field in line.split(";"))
+    id, definition, non_dictionary_equivalent = (field.strip() for field in line.split(";"))
     symbols.append(id)
 transitions : dict[str, dict[str, str]] = defaultdict(dict)
-with open("LineBreakTransitions.txt") as f:
+with open("unicodetools/data/pri555/18.0.0/LineBreakTransitions.txt") as f:
   for line in f.readlines():
     line = line.split("#")[0].strip()
     if not line:
@@ -22,7 +22,7 @@ if set(ahead for t in transitions.values() for ahead in t) != set(symbols):
                    set(symbols) - set(ahead for t in transitions.values() for ahead in t))
 accepting : dict[str, str] = {}
 lookahead : dict[str, str] = {}
-with open("LineBreakStates.txt") as f:
+with open("unicodetools/data/pri555/18.0.0/LineBreakStates.txt") as f:
   for line in f.readlines():
     line = line.split("#")[0].strip()
     if not line:
