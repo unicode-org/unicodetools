@@ -636,7 +636,7 @@
 571E	U+571D<kXHC1983
 5722	U+753A<kMeyerWempe
 5723	U+8056<kMatthews,kMeyerWempe
-5729	U+589F<kPhonetic
+5729	U+589F<kPhonetic:F
 572C	U+6747<kMatthews,kMeyerWempe
 572D	U+73EA<kMatthews
 5746	U+58B3<kLau
@@ -690,7 +690,7 @@
 5888	U+78E1<kLau,kMatthews
 5896	U+5854<kFenn
 589D	U+78FD<kMatthews
-589F	U+5729<kPhonetic
+589F	U+5729<kPhonetic:J
 58A4	U+96A4<kMatthews,kMeyerWempe
 58AB	U+6A3D<kMatthews U+7F47<kMatthews
 58B0	U+7F48<kFenn U+58DC<kMatthews
@@ -1312,6 +1312,7 @@
 67DA	U+6AFE<kMatthews
 67DC	U+6AC3<kHKGlyph
 67E5	U+67FB<kMatthews
+67EC	U+2B823<kPhonetic:J
 67F0	U+5948<kLau,kMatthews,kMeyerWempe
 67F3	U+6801 U+6A89<kMatthews
 67F9	U+67BE<kMatthews
@@ -2163,6 +2164,7 @@
 7FB9	U+7FAE<kMatthews,kMeyerWempe
 7FC4	U+7FC5<kMatthews,kMeyerWempe
 7FC5	U+7FC4<kMatthews,kMeyerWempe
+7FD4	U+8A73 U+2B167
 7FE5	U+4B21<kMatthews,kMeyerWempe
 7FE6	U+526A<kLau,kMatthews,kMeyerWempe
 7FF1	U+7FFA<kHKGlyph
@@ -2589,6 +2591,7 @@
 8A67	U+5BDF<kMatthews,kMeyerWempe
 8A6C	U+8A3D<kMatthews
 8A71	U+46E1<kMatthews
+8A73	U+7FD4 U+2B167<kPhonetic
 8A75	U+4F81<kMeyerWempe U+99EA<kMeyerWempe
 8A7E	U+8A29<kMatthews
 8A87	U+5938<kMeyerWempe
@@ -3503,8 +3506,10 @@ FA18	U+793C<kMatthews U+79AE<kMatthews
 2A599	U+9F41<kFenn
 2A8F7	U+2EC25
 2AA9D	U+9095<kMatthews U+96CD<kMatthews U+96DD<kMatthews
+2B167	U+7FD4 U+8A73<kPhonetic
 2B26C	U+7372
 2B500	U+2EE00
+2B823	U+67EC<kPhonetic:F
 2B88A	U+9322<kCowles
 2BAF2	U+2BB1B<kCowles
 2BB1B	U+2BAF2<kCowles
