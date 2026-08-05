@@ -12,6 +12,11 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
 CorrespondTo [\N{10A3F:KHAROSHTHI VIRAMA}]
+    UpTo: Block                (Brahmi vs Kharoshthi),
+          Script               (Brahmi vs Kharoshthi),
+          Script_Extensions    (Brahmi vs Kharoshthi),
+          Indic_Conjunct_Break (Extend vs Linker),
+          Line_Break           (Virama_Final vs Combining_Mark)
 
 end Ignoring;
 
