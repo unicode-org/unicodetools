@@ -147,61 +147,158 @@ for g in Π:
     minimizer[s] = sorted_group[0]
   print(sorted_group)
 
-minimized_states = set(minimizer.values())
-minimized_transitions : dict[str, dict[str, str]] = defaultdict(dict)
-for state, t in transitions.items():
-  for ahead, end in t.items():
-    if ahead in minimized_transitions[minimizer[state]]:
-      if minimized_transitions[minimizer[state]][ahead] != minimizer[end]:
-        raise ValueError(minimizer[state], ahead,
-                         (minimized_transitions[minimizer[state]][ahead],
-                          minimizer[end]))
-    else:
-      minimized_transitions[minimizer[state]][ahead] = minimizer[end]
+possible_lookaheads : dict[str, set[str]] = defaultdict(set)
 
-zwj_only = set(minimized_states)
-boundary : list[tuple[str, list[str]]] = [("START", [])]
-visited : set[str] = set()
-while boundary:
-  s, path = boundary.pop()
-  if s in zwj_only:
-    zwj_only.remove(s)
-  visited.add(s)
-  for symbol, t in minimized_transitions[s].items():
-    if t not in visited and symbol != "ZWJ":
-      boundary.append((t, path + [symbol]))
-
-print(len(zwj_only), "ZWJ only:", zwj_only)
-zwj_named = set(state for state in minimized_states if "ZWJ" in state.split())
-if zwj_only == zwj_named:
-  print("Equals set of states with ZWJ in name")
-
-zwjables = set(state for state in minimized_states if not any(
-    symbol in ("BK", "CR", "LF", "NL", "SP", "ZW")
-    for t in minimized_transitions.values() for symbol, to in t.items()
-    if to == state))
-
-if all(s in zwjables for s in zwj_only):
-  print("All ZWJ only are ZWJable")
-print(len(zwjables - zwj_only), "non-ZWJ-only ZWJables", zwjables - zwj_only)
-print(len(minimized_states - zwjables), "non-ZWJables", minimized_states - zwjables)
-
-if False:
-  zwjables : list[str] = []
-
-  for state in minimized_states:
-    if "ZWJ" not in minimized_transitions[state]:
+for l in lookaheads:
+  for source in states:
+    if lookahead.get(source) != l:
       continue
-    for symbol in symbols:
-      through_zwj = minimized_transitions[minimized_transitions[state]["ZWJ"]].get(symbol)
-      direct = (minimized_transitions[state].get(symbol) or
-                (minimized_transitions["START"][symbol] if accepting[state] else "WTF"))
-      if through_zwj != direct:
-        print(state, "is not ZWJable:")
-        print("- ZWJ", symbol, "->", through_zwj)
-        print("-", symbol, "->", direct)
-        break
-    else:
-      zwjables.append(state)
+    boundary = [(state, [source, symbol])
+                for symbol, state
+                in transitions[source].items()
+                if accepting[state] != l]
+    visited : set[str] = set()
+    while boundary:
+      s, path = boundary.pop()
+      possible_lookaheads[s].add(l)
+      visited.add(s)
+      for symbol, t in transitions[s].items():
+        if t not in visited and accepting[state] != l:
+          boundary.append((t, path + [symbol]))
 
-  print(len(zwjables), "ZWJable states:", zwjables)
+def old_unsafety_reason(c1 : str, c2 : str):
+  expected_s1 = None
+  expected = None
+  result = set()
+  for s1 in states:
+    s2 = transitions[s1].get(c1)
+    if not s2:
+      end = None
+    else:
+      end = transitions[s2].get(c2)
+    if not expected:
+      expected = end
+      expected_s1 = s1
+    if end != expected:
+      result.add(f"{c1}, {c2}: {s1} -> {end}; {expected_s1} -> {expected}")
+  return result
+
+def step_twice(l : str|None, s1 : str, c1 : str, c2 : str):
+  last_break = -1
+  injection = True
+  while True:
+    lookahead_positions : dict[str, int] = {}
+    if injection:
+      injection = False
+      s = s1
+      last_accepting_position = -1
+      i = 0
+      if l:
+        lookahead_positions[l] = -1
+
+      if accepting[s] == "Yes":
+        last_accepting_position = i
+      elif accepting[s] in lookahead_positions:
+        # If l was set earlier and s accepts it, we break before position 0, and
+        # we will come back to (c1, c2) in a different configuration.
+        return None
+      if s in lookahead:
+        # If this lookahead at position 0 is accepted, we will go back through
+        # (c1, c2) in the start state.
+        lookahead_positions[lookahead[s]] = i
+    elif last_break == -1:
+      # With lookahead l set earlier, on state s, (c1, c2) finds a break
+      # before position 0, so we will get back to (c1, c2) in a different
+      # configuration.
+      return None
+    elif last_break == 0:
+      # Optimization, probably pointless:
+      # This will be covered by l=None, s1="START".
+      return None
+    else:
+      s = "START"
+      i = last_break
+    text = (c1, c2)
+    while True:
+      if i == 2:
+        return s
+      ahead = text[i]
+      i += 1
+      if ahead in transitions[s]:
+        s = transitions[s][ahead]
+      else:
+        last_break = last_accepting_position
+        break
+
+      if accepting[s] == "Yes":
+        last_accepting_position = i
+      elif accepting[s] in lookahead_positions:
+        last_break = lookahead_positions[accepting[s]]
+        break
+      if s in lookahead:
+        lookahead_positions[lookahead[s]] = i
+
+def unsafety_reason(c1 : str, c2 : str):
+  expected_s1 = None
+  expected_l = None
+  expected = None
+  result = set()
+  for s1 in states:
+    for l in [None] + lookaheads:
+      end = step_twice(l, s1, c1, c2)
+      if not end:
+        continue
+      if not expected:
+        expected_s1 = s1
+        expected_l = l
+        expected = end
+      if end != expected:
+        result.add(f"{c1}, {c2}: [{l}] {s1} -> {end}; "
+                   f"[{expected_l}] {expected_s1} -> {expected}")
+  return result
+
+def mid_unsafety_reason(c1 : str, c2 : str):
+  expected = step_twice(None, "START", "BK|NL|eot", c2)
+  result = set()
+  for s1 in states:
+    for l in [None] + lookaheads:
+      end = step_twice(l, s1, c1, c2)
+      if not end:
+        continue
+      if end != expected:
+        result.add(f"{c1}, {c2}: [{l}] {s1} -> {end}; "
+                   f"START, {c2} -> {expected}")
+  return result
+
+old_safe_pairs = set()
+safe_pairs = set()
+mid_safe_pairs = set()
+
+for c1 in symbols:
+  for c2 in symbols:
+    if not old_unsafety_reason(c1, c2):
+      old_safe_pairs.add((c1, c2))
+    if not unsafety_reason(c1, c2):
+      safe_pairs.add((c1, c2))
+    if not mid_unsafety_reason(c1, c2):
+      mid_safe_pairs.add((c1, c2))
+
+print("OLD:")
+print(old_unsafety_reason("AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned", "SP"))
+print(old_unsafety_reason("SP", "AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned"))
+print(old_unsafety_reason("AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned", "AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned"))
+print("NEW:")
+print(unsafety_reason("AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned", "SP"))
+print(unsafety_reason("SP", "AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned"))
+print(unsafety_reason("AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned", "AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned"))
+print("MID:")
+print(mid_unsafety_reason("AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned", "SP"))
+print(mid_unsafety_reason("SP", "AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned"))
+print(mid_unsafety_reason("AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned", "AImEastAsian|ALmEastAsianmDottedCircle|SG|XXmExtPictUnassigned"))
+print("Newly unsafe:", len(old_safe_pairs-safe_pairs))
+print("Previously safe:", len(old_safe_pairs))
+print("Newly safe:", len(safe_pairs-old_safe_pairs))
+print("Total safe:", len(safe_pairs))
+print("All pairs:", len(symbols) ** 2)
+print("Mid safe:", len(mid_safe_pairs))
+print("Safe but not mid safe:", len(safe_pairs - mid_safe_pairs), safe_pairs - mid_safe_pairs)
