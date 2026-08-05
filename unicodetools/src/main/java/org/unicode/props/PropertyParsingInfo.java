@@ -1798,11 +1798,11 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                 && parts[1].equals("UK-2015")) {
                             keyField = "";
                         }
-                        // U+2793 is ➓.  Surely that is nonsense.
+                        // U+2793D is 𧤽, similar to UTC-02139 ⿰角間 (now encoded at 𰴦).
                         if (indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_12_1)
                                         <= 0
                                 && keyField.equals("U+2793DUTC-02138")) {
-                            keyField = "";
+                            keyField = "U+2793D";
                         }
                         // U+4C74 is 䱴, which seems reasonably close to UK-02696 ⿰鱼恒 (now encoded at
                         // 𱈈).
