@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-02, 22:10:11 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6511,7 +6511,21 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 11747..117FF  ; disallowed                 # NA   <reserved-11747>..<reserved-117FF>
 11800..1183A  ; valid                      # 11.0 DOGRA LETTER A..DOGRA SIGN NUKTA
 1183B         ; valid      ;      ; NV8    # 11.0 DOGRA ABBREVIATION SIGN
-1183C..1189F  ; disallowed                 # NA   <reserved-1183C>..<reserved-1189F>
+1183C..1184F  ; disallowed                 # NA   <reserved-1183C>..<reserved-1184F>
+11850..11857  ; valid                      # 18.0 SIRMAURI LETTER A..SIRMAURI LETTER GHA
+11858         ; disallowed                 # NA   <reserved-11858>
+11859..1185C  ; valid                      # 18.0 SIRMAURI LETTER CA..SIRMAURI LETTER JHA
+1185D         ; disallowed                 # NA   <reserved-1185D>
+1185E..1186F  ; valid                      # 18.0 SIRMAURI LETTER TTA..SIRMAURI LETTER LA
+11870..11872  ; disallowed                 # NA   <reserved-11870>..<reserved-11872>
+11873..11875  ; valid                      # 18.0 SIRMAURI LETTER SA..SIRMAURI VOWEL SIGN AA
+11876         ; disallowed                 # NA   <reserved-11876>
+11877..11878  ; valid                      # 18.0 SIRMAURI VOWEL SIGN II..SIRMAURI VOWEL SIGN U
+11879         ; disallowed                 # NA   <reserved-11879>
+1187A..11883  ; valid                      # 18.0 SIRMAURI VOWEL SIGN E..SIRMAURI EKAM
+11884..11885  ; disallowed                 # NA   <reserved-11884>..<reserved-11885>
+11886..1188F  ; valid                      # 18.0 SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
+11890..1189F  ; disallowed                 # NA   <reserved-11890>..<reserved-1189F>
 118A0         ; mapped     ; 118C0         # 7.0  WARANG CITI CAPITAL LETTER NGAA
 118A1         ; mapped     ; 118C1         # 7.0  WARANG CITI CAPITAL LETTER A
 118A2         ; mapped     ; 118C2         # 7.0  WARANG CITI CAPITAL LETTER WI

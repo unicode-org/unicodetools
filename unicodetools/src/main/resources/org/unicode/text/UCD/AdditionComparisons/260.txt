@@ -1,0 +1,125 @@
+# Sirmauri (11850..1188F)
+# https://github.com/unicode-org/utc-release-management/issues/260
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\N{SIRMAURI VOWEL SIGN O}]
+           : [\N{SIRMAURI VOWEL SIGN E}]
+           : [\N{SIRMAURI VOWEL SIGN AA}]
+           ⧴ [{\N{SIRMAURI VOWEL SIGN E}\N{SIRMAURI VOWEL SIGN AA}}]
+CorrespondTo [\N{KANNADA VOWEL SIGN O}]
+           : [\N{KANNADA VOWEL SIGN E}]
+           : [\N{KANNADA VOWEL SIGN UU}]
+           ⧴ [{\N{KANNADA VOWEL SIGN E}\N{KANNADA VOWEL SIGN UU}}]
+    UpTo: Block             (Sirmauri vs Kannada),
+          Script            (Sirmauri vs Kannada),
+          Script_Extensions (Sirmauri vs Kannada)
+
+Propertywise [\N{SIRMAURI VOWEL SIGN AU}]
+           : [\N{SIRMAURI VOWEL SIGN AI}]
+           : [\N{SIRMAURI VOWEL SIGN AA}]
+           ⧴ [{\N{SIRMAURI VOWEL SIGN AI}\N{SIRMAURI VOWEL SIGN AA}}]
+CorrespondTo [\N{KANNADA VOWEL SIGN O}]
+           : [\N{KANNADA VOWEL SIGN E}]
+           : [\N{KANNADA VOWEL SIGN UU}]
+           ⧴ [{\N{KANNADA VOWEL SIGN E}\N{KANNADA VOWEL SIGN UU}}]
+    UpTo: Block             (Sirmauri vs Kannada),
+          Script            (Sirmauri vs Kannada),
+          Script_Extensions (Sirmauri vs Kannada)
+
+Propertywise [\N{SIRMAURI VOWEL SIGN II}]
+CorrespondTo [\N{DOGRA VOWEL SIGN II}]
+    UpTo: Block             (Sirmauri vs Dogra),
+          Script            (Sirmauri vs Dogra),
+          Script_Extensions (Sirmauri vs Dogra)
+
+Propertywise [\N{SIRMAURI VOWEL SIGN U}]
+CorrespondTo [\N{DOGRA VOWEL SIGN U}]
+    UpTo: Block             (Sirmauri vs Dogra),
+          Script            (Sirmauri vs Dogra),
+          Script_Extensions (Sirmauri vs Dogra)
+
+Propertywise [\x{11850}-\x{11853} \N{SIRMAURI LETTER A}-\N{SIRMAURI LETTER E}]
+CorrespondTo [\N{KHUDAWADI LETTER A}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{11854}-\x{11857} \N{SIRMAURI LETTER KA}-\N{SIRMAURI LETTER GHA}
+              \x{11859}-\x{1185C} \N{SIRMAURI LETTER CA}-\N{SIRMAURI LETTER JHA}
+              \x{1185E}-\x{1186F} \N{SIRMAURI LETTER TTA}-\N{SIRMAURI LETTER LA}
+              \x{11873}-\x{11874} \N{SIRMAURI LETTER SA}-\N{SIRMAURI LETTER HA}]
+CorrespondTo [\N{KHUDAWADI LETTER KA}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{1187E}\N{SIRMAURI SIGN ANUSVARA}]
+CorrespondTo [\N{KHUDAWADI SIGN ANUSVARA}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{1187F}\N{SIRMAURI SIGN VISARGA}]
+CorrespondTo [\N{DEVANAGARI SIGN VISARGA}]
+    UpTo: Block             (Sirmauri vs Devanagari),
+          Script            (Sirmauri vs Devanagari),
+          Script_Extensions (Sirmauri vs Devanagari)
+
+Propertywise [\x{11880}\N{SIRMAURI SIGN HALANTA}]
+CorrespondTo [\N{KHUDAWADI SIGN VIRAMA}]
+    UpTo: Block             (Sirmauri vs Khudawadi),
+          Script            (Sirmauri vs Khudawadi),
+          Script_Extensions (Sirmauri vs Khudawadi)
+
+Propertywise [\x{11881}\N{SIRMAURI SIGN NUKTA}]
+CorrespondTo [\N{KAWI SIGN NUKTA}]
+    UpTo: Block                     (Sirmauri vs Kawi),
+          Script                    (Sirmauri vs Kawi),
+          Script_Extensions         (Sirmauri vs Kawi),
+          Indic_Positional_Category (Bottom vs Top)
+
+Propertywise [\x{11881}\N{SIRMAURI SIGN NUKTA}]
+CorrespondTo [\N{KHUDAWADI SIGN NUKTA}]
+    UpTo: Block                     (Sirmauri vs Khudawadi),
+          Script                    (Sirmauri vs Khudawadi),
+          Script_Extensions         (Sirmauri vs Khudawadi),
+          Canonical_Combining_Class (Not_Reordered vs Nukta)
+
+Propertywise [\x{11882}\N{SIRMAURI CONSONANT SIGN MEDIAL RA}]
+CorrespondTo [\N{GURUNG KHEMA CONSONANT SIGN MEDIAL RA}]
+    UpTo: Block             (Sirmauri vs Gurung_Khema),
+          Script            (Sirmauri vs Gurung_Khema),
+          Script_Extensions (Sirmauri vs Gurung_Khema)
+
+# Not like the Bengali one, which can take a candrabindu and is thus
+# Consonant_Placeholder, see L2/12-121.
+Propertywise [\x{11883}\N{SIRMAURI EKAM}]
+CorrespondTo [\x{11480} 𑒀 \N{TIRHUTA ANJI}]
+    UpTo: Block             (Sirmauri vs Tirhuta),
+          Script            (Sirmauri vs Tirhuta),
+          Script_Extensions (Sirmauri vs Tirhuta)
+Propertywise [\x{11883}\N{SIRMAURI EKAM}]
+CorrespondTo [\x{111DA} 𑇚 \N{SHARADA EKAM}]
+    UpTo: Block             (Sirmauri vs Sharada),
+          Script            (Sirmauri vs Sharada),
+          Script_Extensions (Sirmauri vs Sharada)
+
+Propertywise [\x{11886}-\x{1188F} \N{SIRMAURI DIGIT ZERO}-\N{SIRMAURI DIGIT NINE}]
+           ⧴ [0-9]
+CorrespondTo [\x{116C0} \N{TAKRI DIGIT ZERO}]
+           ⧴ [0]
+    UpTo: Block             (Sirmauri vs Takri),
+          Script            (Sirmauri vs Takri),
+          Script_Extensions (Sirmauri vs Takri)
+
+end Ignoring;
+
+end Ignoring;
