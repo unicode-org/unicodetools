@@ -12,11 +12,36 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
 CorrespondTo [\N{10A3F:KHAROSHTHI VIRAMA}]
-    UpTo: Block                (Brahmi vs Kharoshthi),
-          Script               (Brahmi vs Kharoshthi),
-          Script_Extensions    (Brahmi vs Kharoshthi),
-          Indic_Conjunct_Break (Extend vs Linker),
-          Line_Break           (Virama_Final vs Combining_Mark)
+    UpTo: Block                   (Brahmi vs Kharoshthi),
+          Script                  (Brahmi vs Kharoshthi),
+          Script_Extensions       (Brahmi vs Kharoshthi),
+          Indic_Syllabic_Category (Pure_Killer      vs Invisible_Stacker),
+          Line_Break              (Virama_Final     vs Combining_Mark),
+          Indic_Conjunct_Break    (Extend           vs Linker)
+
+Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
+CorrespondTo [\N{11070:BRAHMI SIGN OLD TAMIL VIRAMA}]
+    UpTo: Indic_Positional_Category (Not_Applicable vs Top),
+          Line_Break                (Virama_Final   vs Combining_Mark)
+
+Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
+CorrespondTo [\N{11046:BRAHMI VIRAMA}]
+    UpTo: Indic_Positional_Category (Not_Applicable vs Top),
+          Indic_Syllabic_Category   (Pure_Killer    vs Virama),
+          Line_Break                (Virama_Final   vs Virama)
+
+Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
+CorrespondTo [\N{1BF2:BATAK PANGOLAT}]
+    UpTo: Block                   (Brahmi vs Batak),
+          Script                  (Brahmi vs Batak),
+          Script_Extensions       (Brahmi vs Batak),
+          Indic_Syllabic_Category   (Pure_Killer     vs Reordering_Killer),
+          Indic_Positional_Category (Not_Applicable  vs Right),
+          General_Category          (Nonspacing_Mark vs Spacing_Mark),
+          Bidi_Class                (Nonspacing_Mark vs Left_To_Right),
+          Joining_Type              (Transparent     vs Non_Joining),
+          Case_Ignorable            (Yes             vs No),
+          Other_Grapheme_Extend     (No              vs Yes)
 
 end Ignoring;
 
