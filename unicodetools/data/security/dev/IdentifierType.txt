@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2026-06-29, 15:12:01 GMT
+# Date: 2026-08-06, 01:05:35 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -5208,7 +5208,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 30000..3134A  ; Uncommon_Use                   # 13.0 [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..323AF  ; Uncommon_Use                   # 15.0 [4192] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-323AF
 323B0..33479  ; Uncommon_Use                   # 17.0 [4298] CJK UNIFIED IDEOGRAPH-323B0..CJK UNIFIED IDEOGRAPH-33479
-3D000..3FC3F  ; Exclusion                      # 18.0 [11328] SEAL CHARACTER-3D000..SEAL CHARACTER-3FC3F
+3D000..3FC3F  ; Exclusion                      # 18.0 [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0001         ; Deprecated                     # 3.1        LANGUAGE TAG
 E0020..E007F  ; Default_Ignorable              # 3.1   [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Default_Ignorable              # 4.0  [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
