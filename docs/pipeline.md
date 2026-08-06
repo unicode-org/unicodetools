@@ -83,7 +83,7 @@ PR preparation:
 - [ ] Working group — Mention:
   - Proposals from SAH — Link SAH issue
   - Proposals from ESC or CJK — Mention ESC or CJK in the PR description
-- [ ] RMG issue — Link
+- [ ] RMG issue, if any — Link
 - [ ] data-for-new — Set label
 - [ ] pipeline-* — Set label:
   - **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline,
@@ -115,6 +115,8 @@ PR preparation:
   - For proposals from CJK, file a PAG issue of type `Document`, citing the proposal.
     Put the review in the `Background information / discussion` section, and link the pull request
     in the `Internal` section. See, _e.g._, https://github.com/unicode-org/properties/issues/366.
+  - When a single SAH issue results in multiple PRs (e.g., because of separate UTC approvals), file
+    PAG issues for each subsequent PR, and link the PAG issue from the PR description.
 - [ ] PAG dashboard status of SAH or PAG issue — Set to `Review`
 - [ ] Pipeline dashboard PAG status of RMG issue — Set to `data review`
 ## Scripts
