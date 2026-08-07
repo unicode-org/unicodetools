@@ -1662,6 +1662,18 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // Both canonically equivalent ways of writing the άνω τελεία.
                         "τὸν δ' ἠμείβετ' ἔπειτα θεὰ γλαυκῶπις Ἀθήνη\u00B7 «ὦ πάτερ ἡμέτερε Κρονίδη",
                         "τὸν δ' ἠμείβετ' ἔπειτα θεὰ γλαυκῶπις Ἀθήνη\u0387 «ὦ πάτερ ἡμέτερε Κρονίδη",
+                        // Not so minimal tests for the Brahmi minimizing virama and the other two
+                        // Brahmi viramas.
+                        // From L2/22-219, Figures 1, 2, 3: siddham written with a minimized MA
+                        // instead of an anusvara.  There is an ordinary virama in D+DHA, so the
+                        // whole DDHAM is glued together in line breaking.
+                        "𑀲𑀺𑀤𑁆𑀥𑀫"+Character.toString(0x1107E),
+                        // From L2/22-219, Figures 1, 2, 3: sidam written with a minimized MA,
+                        // followed by a PA. The MA does not stick to the PA.
+                        "𑀲𑀺𑀤𑀫"+Character.toString(0x1107E)+"𑀧",
+                        // From L2/12-226, first figure on p. 2, vāciṭṭi. The ṭ uses the Brahmi Old
+                        // Tamil virama, so it does not stick to anything before or after.
+                        "𑀯𑀸𑀘𑀺𑀝𑁰𑀝𑀺",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
