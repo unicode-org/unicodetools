@@ -1,0 +1,28 @@
+# Latin: WAVY Y (1DF89)
+# https://github.com/unicode-org/utc-release-management/issues/228
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [
+  \x{1DF89}     \N{LATIN SMALL LETTER WAVY Y}
+  \x{1DF00} 𝼀 \N{LATIN SMALL LETTER FENG DIGRAPH WITH TRILL}
+] AreAlike
+
+Ignoring Block:
+Propertywise [
+  \x{1DF89}  \N{LATIN SMALL LETTER WAVY Y}
+  \x{02AF} ʯ \N{LATIN SMALL LETTER TURNED H WITH FISHHOOK AND TAIL}
+  \x{0285} ʅ \N{LATIN SMALL LETTER SQUAT REVERSED ESH}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
