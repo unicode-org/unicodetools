@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-08, 15:10:18 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -254,7 +254,7 @@
 2065          ; Cn #       <reserved-2065>
 2072..2073    ; Cn #   [2] <reserved-2072>..<reserved-2073>
 20C5..20CF    ; Cn #  [11] <reserved-20C5>..<reserved-20CF>
-20F1..20FF    ; Cn #  [15] <reserved-20F1>..<reserved-20FF>
+20F3..20FF    ; Cn #  [13] <reserved-20F3>..<reserved-20FF>
 218C..218F    ; Cn #   [4] <reserved-218C>..<reserved-218F>
 242A..243F    ; Cn #  [22] <reserved-242A>..<reserved-243F>
 244B..245F    ; Cn #  [21] <reserved-244B>..<reserved-245F>
@@ -751,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801721
 
 # ================================================
 
@@ -2948,7 +2948,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1DC0..1DFF    ; Mn #  [64] COMBINING DOTTED GRAVE ACCENT..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
 20D0..20DC    ; Mn #  [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20E1          ; Mn #       COMBINING LEFT RIGHT ARROW ABOVE
-20E5..20F0    ; Mn #  [12] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING ASTERISK ABOVE
+20E5..20F2    ; Mn #  [14] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2CEF..2CF1    ; Mn #   [3] COPTIC COMBINING NI ABOVE..COPTIC COMBINING SPIRITUS LENIS
 2D7F          ; Mn #       TIFINAGH CONSONANT JOINER
 2DE0..2DFF    ; Mn #  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
@@ -3149,7 +3149,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2090
+# Total code points: 2092
 
 # ================================================
 

@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-08, 15:10:20 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7605,6 +7605,8 @@
 20EE          ; COMBINING LEFT ARROW BELOW
 20EF          ; COMBINING RIGHT ARROW BELOW
 20F0          ; COMBINING ASTERISK ABOVE
+20F1          ; COMBINING LONG TRIPLE SOLIDUS OVERLAY
+20F2          ; COMBINING SALTIRE OVERLAY
 2100          ; ACCOUNT OF
 2101          ; ADDRESSED TO THE SUBJECT
 2102          ; DOUBLE-STRUCK CAPITAL C
@@ -46582,6 +46584,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172808
+# Total code points: 172810
 
 # EOF

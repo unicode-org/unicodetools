@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-06-29, 15:42:39 GMT 
+# Date: 2026-07-08, 15:11:09 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -648,6 +648,7 @@
 20EB           # 4.1       (⃫)  COMBINING LONG DOUBLE SOLIDUS OVERLAY
 20EC..20EF     # 5.0   [4] (⃬..⃯)  COMBINING RIGHTWARDS HARPOON WITH BARB DOWNWARDS..COMBINING RIGHT ARROW BELOW
 20F0           # 5.1       (⃰)  COMBINING ASTERISK ABOVE
+20F1..20F2     # 18.0  [2] (⃱..⃲)  COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2102           # 1.1       (ℂ)  DOUBLE-STRUCK CAPITAL C
 2107           # 1.1       (ℇ)  EULER CONSTANT
 210A..2113     # 1.1  [10] (ℊ..ℓ)  SCRIPT SMALL G..SCRIPT SMALL L
@@ -1331,4 +1332,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (𽀀..𿰿)  SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162100
+# Total code points: 162102
