@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-14, 13:13:39 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -634,7 +634,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DAA0         ; Cn #       <reserved-1DAA0>
 1DAB0..1DAFF  ; Cn #  [80] <reserved-1DAB0>..<reserved-1DAFF>
 1DB1D..1DEFF  ; Cn # [995] <reserved-1DB1D>..<reserved-1DEFF>
-1DF82..1DF8F  ; Cn #  [14] <reserved-1DF82>..<reserved-1DF8F>
+1DF82..1DF89  ; Cn #   [8] <reserved-1DF82>..<reserved-1DF89>
+1DF8B..1DF8F  ; Cn #   [5] <reserved-1DF8B>..<reserved-1DF8F>
 1DF97..1DFCC  ; Cn #  [54] <reserved-1DF97>..<reserved-1DFCC>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
@@ -751,7 +752,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801722
 
 # ================================================
 
@@ -2115,10 +2116,11 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF7B         ; Ll #       LATIN SMALL LETTER U WITH HOOK TAIL
 1DF7D         ; Ll #       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7F         ; Ll #       LATIN SMALL LETTER REVERSED U
+1DF8A         ; Ll #       LATIN SMALL LETTER SCHWA WITH RIGHT HOOK
 1DF90..1DF96  ; Ll #   [7] LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2366
+# Total code points: 2367
 
 # ================================================
 
