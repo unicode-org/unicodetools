@@ -360,6 +360,7 @@ public class UcdPropertyValues {
         Latin_Extended_E("Latin_Ext_E"),
         Latin_Extended_F("Latin_Ext_F"),
         Latin_Extended_G("Latin_Ext_G"),
+        Leibnizian_Ambiguous_Signs("Leibnizian_Ambiguous_Signs"),
         Lepcha("Lepcha"),
         Letterlike_Symbols("Letterlike_Symbols"),
         Limbu("Limbu"),
