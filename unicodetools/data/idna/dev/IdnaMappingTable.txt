@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-14, 15:58:09 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4376,7 +4376,8 @@ AB69          ; mapped     ; 028D          # 13.0 MODIFIER LETTER SMALL TURNED W
 AB6A..AB6B    ; valid      ;      ; NV8    # 13.0 MODIFIER LETTER LEFT TACK..MODIFIER LETTER RIGHT TACK
 AB6C          ; mapped     ; AB4B          # 18.0 LATIN CAPITAL LETTER SCRIPT R
 AB6D          ; mapped     ; AB4C          # 18.0 LATIN CAPITAL LETTER SCRIPT R WITH RING
-AB6E..AB6F    ; disallowed                 # NA   <reserved-AB6E>..<reserved-AB6F>
+AB6E          ; mapped     ; AB52          # 18.0 LATIN CAPITAL LETTER U WITH LEFT HOOK
+AB6F          ; disallowed                 # NA   <reserved-AB6F>
 AB70          ; mapped     ; 13A0          # 8.0  CHEROKEE SMALL LETTER A
 AB71          ; mapped     ; 13A1          # 8.0  CHEROKEE SMALL LETTER E
 AB72          ; mapped     ; 13A2          # 8.0  CHEROKEE SMALL LETTER I
