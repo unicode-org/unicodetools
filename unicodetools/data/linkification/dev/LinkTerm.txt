@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-29, 15:25:13 GMT 
+# Date: 2026-07-14, 16:48:05 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1622,6 +1622,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 113C7..113CA  ; Include # 16.0  [4] (𑏇..𑏊)  TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
 113CC..113D3  ; Include # 16.0  [8] (𑏌..𑏓)  TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN PLUTA
 113D7..113D8  ; Include # 16.0  [2] (𑏗..𑏘)  TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113D9..113DA  ; Include # 18.0  [2] (𑏙..𑏚)  TULU-TIGALARI SIGN OM PUSHPIKA WITH TAIL..TULU-TIGALARI SIGN SHRII PUSHPIKA WITH TAIL
 113E1..113E2  ; Include # 16.0  [2] (𑏡..𑏢)  TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11400..1144A  ; Include # 9.0  [75] (𑐀..𑑊)  NEWA LETTER A..NEWA SIDDHI
 1144E..11459  ; Include # 9.0  [12] (𑑎..𑑙)  NEWA GAP FILLER..NEWA DIGIT NINE
@@ -2205,5 +2206,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172312
+# Total code points: 172314
 

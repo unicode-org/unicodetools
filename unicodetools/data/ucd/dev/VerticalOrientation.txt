@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-06-29, 15:25:28 GMT
+# Date: 2026-07-14, 16:47:42 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1940,7 +1940,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 113D2          ; R  # Mn         TULU-TIGALARI GEMINATION MARK
 113D3          ; R  # Lo         TULU-TIGALARI SIGN PLUTA
 113D4..113D5   ; R  # Po     [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
-113D7..113D8   ; R  # Po     [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113D7..113DA   ; R  # Po     [4] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA WITH TAIL
 113E1..113E2   ; R  # Mn     [2] TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11400..11434   ; R  # Lo    [53] NEWA LETTER A..NEWA LETTER HA
 11435..11437   ; R  # Mc     [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
