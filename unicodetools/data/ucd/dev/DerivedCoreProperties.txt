@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-06-29, 15:25:01 GMT
+# Date: 2026-07-07, 23:40:28 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -13028,8 +13028,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 1CCF0..1CCF9  ; Grapheme_Base # Nd  [10] OUTLINED DIGIT ZERO..OUTLINED DIGIT NINE
 1CCFA..1CCFC  ; Grapheme_Base # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; Grapheme_Base # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
-1CEBA..1CED0  ; Grapheme_Base # So  [23] FRAGILE SYMBOL..LEUKOTHEA
-1CED2..1CED4  ; Grapheme_Base # So   [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
+1CEBA..1CED4  ; Grapheme_Base # So  [27] FRAGILE SYMBOL..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 1CEDD..1CEDF  ; Grapheme_Base # Sm   [3] SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEEF  ; Grapheme_Base # So  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CEF0..1CEFD  ; Grapheme_Base # Sm  [14] MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR..HYPERBOLA
@@ -13229,7 +13228,7 @@ FFFC..FFFD    ; Grapheme_Base # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEME
 31350..33479  ; Grapheme_Base # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Grapheme_Base # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 170464
+# Total code points: 170465
 
 # ================================================
 

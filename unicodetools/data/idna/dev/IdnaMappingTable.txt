@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-07, 23:40:34 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6907,8 +6907,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 1CD00..1CEB3  ; valid      ;      ; NV8    # 16.0 BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
 1CEB4..1CEB9  ; disallowed                 # NA   <reserved-1CEB4>..<reserved-1CEB9>
 1CEBA..1CED0  ; valid      ;      ; NV8    # 17.0 FRAGILE SYMBOL..LEUKOTHEA
-1CED1         ; disallowed                 # NA   <reserved-1CED1>
-1CED2..1CED4  ; valid      ;      ; NV8    # 18.0 ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
+1CED1..1CED4  ; valid      ;      ; NV8    # 18.0 ALCHEMICAL SYMBOL FOR CALX-2..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
 1CED5..1CEDC  ; disallowed                 # NA   <reserved-1CED5>..<reserved-1CEDC>
 1CEDD..1CEDF  ; valid      ;      ; NV8    # 18.0 SQUARE ROOT OF SQUARE ROOT..SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT
 1CEE0..1CEF0  ; valid      ;      ; NV8    # 17.0 GEOMANTIC FIGURE POPULUS..MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
