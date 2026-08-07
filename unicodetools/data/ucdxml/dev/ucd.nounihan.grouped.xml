@@ -424,7 +424,7 @@
          <char cp="00B4" na="ACUTE ACCENT" gc="Sk" dt="com" dm="0020 0301" bc="ON" ea="A" lb="BB" sc="Zyyy" scx="Zyyy" Alpha="N" Dia="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" NFD_QC="Y" NFKC_QC="N" CI="Y" Cased="N" CWCM="N" CWKCF="Y" NFKC_CF="0020 0301" na1="SPACING ACUTE" NFKC_SCF="0020 0301"/>
          <char cp="00B5" na="MICRO SIGN" dt="com" dm="03BC" suc="039C" stc="039C" uc="039C" tc="039C" scf="03BC" cf="03BC" sc="Zyyy" scx="Zyyy" Lower="Y" NFD_QC="Y" NFKC_QC="N" CWCF="Y" CWKCF="Y" CWT="Y" CWU="Y" NFKC_CF="03BC" NFKC_SCF="03BC"/>
          <char cp="00B6" na="PILCROW SIGN" gc="Po" dt="none" bc="ON" ea="A" lb="AI" sc="Zyyy" scx="Zyyy" Alpha="N" IDS="N" XIDS="N" IDC="N" XIDC="N" Pat_Syn="Y" WB="XX" SB="XX" NFD_QC="Y" NFKD_QC="Y" Cased="N" CWCM="N" na1="PARAGRAPH SIGN"/>
-         <char cp="00B7" na="MIDDLE DOT" gc="Po" dt="none" bc="ON" ea="A" lb="AI" sc="Zyyy" scx="Avst Cari Copt Dupl Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw" Alpha="N" Ext="Y" Dia="Y" IDS="N" XIDS="N" OIDC="Y" WB="ML" SB="XX" NFD_QC="Y" NFKD_QC="Y" CI="Y" Cased="N" CWCM="N"/>
+         <char cp="00B7" na="MIDDLE DOT" gc="Po" dt="none" bc="ON" ea="A" lb="IS" sc="Zyyy" scx="Avst Cari Copt Dupl Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw" Alpha="N" Ext="Y" Dia="Y" IDS="N" XIDS="N" OIDC="Y" WB="ML" SB="XX" NFD_QC="Y" NFKD_QC="Y" CI="Y" Cased="N" CWCM="N"/>
          <char cp="00B8" na="CEDILLA" gc="Sk" dt="com" dm="0020 0327" bc="ON" ea="A" lb="AI" sc="Zyyy" scx="Zyyy" Alpha="N" Dia="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" SB="XX" NFD_QC="Y" NFKC_QC="N" CI="Y" Cased="N" CWCM="N" CWKCF="Y" NFKC_CF="0020 0327" na1="SPACING CEDILLA" NFKC_SCF="0020 0327"/>
          <char cp="00B9" na="SUPERSCRIPT ONE" gc="No" dt="sup" dm="0031" nt="Di" nv="1" bc="EN" ea="A" lb="AI" sc="Zyyy" scx="Zyyy" Alpha="N" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" NFD_QC="Y" NFKC_QC="N" Cased="N" CWCM="N" CWKCF="Y" NFKC_CF="0031" na1="SUPERSCRIPT DIGIT ONE" NFKC_SCF="0031" ID_Compat_Math_Continue="Y"/>
          <char cp="00BA" na="MASCULINE ORDINAL INDICATOR" gc="Lo" dt="sup" dm="006F" ea="A" lb="AI" Lower="Y" OLower="Y" NFD_QC="Y" NFKC_QC="N" CWCM="N" CWKCF="Y" NFKC_CF="006F" NFKC_SCF="006F"/>
@@ -1158,7 +1158,7 @@
          <char cp="0384" na="GREEK TONOS" gc="Sk" dt="com" dm="0020 0301" bc="ON" Alpha="N" Lower="N" Dia="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" NFKC_QC="N" NFKD_QC="N" CI="Y" Cased="N" CWCM="N" NFKC_CF="0020 0301" na1="GREEK SPACING TONOS" NFKC_SCF="0020 0301"/>
          <char cp="0385" na="GREEK DIALYTIKA TONOS" gc="Sk" dt="can" dm="00A8 0301" bc="ON" sc="Zyyy" scx="Zyyy" Alpha="N" Lower="N" Dia="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" NFD_QC="N" NFKC_QC="N" NFKD_QC="N" CI="Y" Cased="N" CWCM="N" NFKC_CF="0020 0308 0301" na1="GREEK SPACING DIAERESIS TONOS" NFKC_SCF="0020 0308 0301"/>
          <char cp="0386" na="GREEK CAPITAL LETTER ALPHA WITH TONOS" gc="Lu" dt="can" dm="0391 0301" slc="03AC" lc="03AC" scf="03AC" cf="03AC" Upper="Y" Lower="N" SB="UP" NFD_QC="N" NFKD_QC="N" CWCF="Y" CWL="Y" NFKC_CF="03AC" na1="GREEK CAPITAL LETTER ALPHA TONOS" NFKC_SCF="03AC"/>
-         <char cp="0387" na="GREEK ANO TELEIA" gc="Po" dt="can" dm="00B7" bc="ON" sc="Zyyy" scx="Zyyy" Alpha="N" Lower="N" Term="Y" IDS="N" XIDS="N" OIDC="Y" WB="ML" SB="XX" Comp_Ex="Y" NFC_QC="N" NFD_QC="N" NFKC_QC="N" NFKD_QC="N" CI="Y" Cased="N" CWCM="N" NFKC_CF="00B7" NFKC_SCF="00B7"/>
+         <char cp="0387" na="GREEK ANO TELEIA" gc="Po" dt="can" dm="00B7" bc="ON" lb="IS" sc="Zyyy" scx="Zyyy" Alpha="N" Lower="N" Term="Y" IDS="N" XIDS="N" OIDC="Y" WB="ML" SB="XX" Comp_Ex="Y" NFC_QC="N" NFD_QC="N" NFKC_QC="N" NFKD_QC="N" CI="Y" Cased="N" CWCM="N" NFKC_CF="00B7" NFKC_SCF="00B7"/>
          <char cp="0388" na="GREEK CAPITAL LETTER EPSILON WITH TONOS" gc="Lu" dt="can" dm="0395 0301" slc="03AD" lc="03AD" scf="03AD" cf="03AD" Upper="Y" Lower="N" SB="UP" NFD_QC="N" NFKD_QC="N" CWCF="Y" CWL="Y" NFKC_CF="03AD" na1="GREEK CAPITAL LETTER EPSILON TONOS" NFKC_SCF="03AD"/>
          <char cp="0389" na="GREEK CAPITAL LETTER ETA WITH TONOS" gc="Lu" dt="can" dm="0397 0301" slc="03AE" lc="03AE" scf="03AE" cf="03AE" Upper="Y" Lower="N" SB="UP" NFD_QC="N" NFKD_QC="N" CWCF="Y" CWL="Y" NFKC_CF="03AE" na1="GREEK CAPITAL LETTER ETA TONOS" NFKC_SCF="03AE"/>
          <char cp="038A" na="GREEK CAPITAL LETTER IOTA WITH TONOS" gc="Lu" dt="can" dm="0399 0301" slc="03AF" lc="03AF" scf="03AF" cf="03AF" Upper="Y" Lower="N" SB="UP" NFD_QC="N" NFKD_QC="N" CWCF="Y" CWL="Y" NFKC_CF="03AF" na1="GREEK CAPITAL LETTER IOTA TONOS" NFKC_SCF="03AF"/>
@@ -2652,8 +2652,8 @@
          <char cp="0961" na="DEVANAGARI LETTER VOCALIC LL" InSC="Vowel_Independent" InCB="None"/>
          <char cp="0962" na="DEVANAGARI VOWEL SIGN VOCALIC L" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" IDS="N" XIDS="N" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Bottom" InCB="Extend"/>
          <char cp="0963" na="DEVANAGARI VOWEL SIGN VOCALIC LL" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" IDS="N" XIDS="N" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Bottom" InCB="Extend"/>
-         <char cp="0964" na="DEVANAGARI DANDA" gc="Po" lb="BA" sc="Zyyy" scx="Beng Chis Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh" Alpha="N" STerm="Y" Term="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="ST" InSC="Other" InCB="None"/>
-         <char cp="0965" na="DEVANAGARI DOUBLE DANDA" gc="Po" lb="BA" sc="Zyyy" scx="Beng Chis Deva Dogr Gong Gonm Gran Gujr Gukh Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh" Alpha="N" STerm="Y" Term="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="ST" InSC="Other" InCB="None"/>
+         <char cp="0964" na="DEVANAGARI DANDA" gc="Po" lb="BA" sc="Zyyy" scx="Beng Deva Dogr Gong Gonm Gran Gujr Guru Knda Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh" Alpha="N" STerm="Y" Term="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="ST" InSC="Other" InCB="None"/>
+         <char cp="0965" na="DEVANAGARI DOUBLE DANDA" gc="Po" lb="BA" sc="Zyyy" scx="Beng Deva Dogr Gong Gonm Gran Gujr Gukh Guru Knda Limb Mahj Mlym Nand Onao Orya Sind Sinh Sylo Takr Taml Telu Tirh" Alpha="N" STerm="Y" Term="Y" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="ST" InSC="Other" InCB="None"/>
          <char cp="0966" na="DEVANAGARI DIGIT ZERO" gc="Nd" nt="De" nv="0" lb="NU" scx="Deva Dogr Kthi Mahj" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number" InCB="None"/>
          <char cp="0967" na="DEVANAGARI DIGIT ONE" gc="Nd" nt="De" nv="1" lb="NU" scx="Deva Dogr Kthi Mahj" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number" InCB="None"/>
          <char cp="0968" na="DEVANAGARI DIGIT TWO" gc="Nd" nt="De" nv="2" lb="NU" scx="Deva Dogr Kthi Mahj" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number" InCB="None"/>
@@ -3112,7 +3112,7 @@
       <group age="1.1" JSN="" gc="Lo" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="AL" sc="Taml" scx="Taml" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="Y" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="Y" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="Y" OIDS="N" XIDS="Y" IDC="Y" OIDC="N" XIDC="Y" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="LE" SB="LE" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Consonant" InPC="NA" PCM="N" vo="R" RI="N" blk="Tamil" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N">
          <reserved first-cp="0B80" last-cp="0B81" age="unassigned" na="" gc="Cn" lb="XX" sc="Zzzz" scx="Zzzz" Alpha="N" Gr_Base="N" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" InSC="Other"/>
          <char cp="0B82" na="TAMIL SIGN ANUSVARA" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" IDS="N" XIDS="N" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Bindu" InPC="Top" InCB="Extend"/>
-         <char cp="0B83" na="TAMIL SIGN VISARGA" InSC="Modifying_Letter"/>
+         <char cp="0B83" na="TAMIL SIGN VISARGA" scx="Knda Mlym Taml Telu" InSC="Modifying_Letter"/>
          <reserved cp="0B84" age="unassigned" na="" gc="Cn" lb="XX" sc="Zzzz" scx="Zzzz" Alpha="N" Gr_Base="N" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" InSC="Other"/>
          <char cp="0B85" na="TAMIL LETTER A" InSC="Vowel_Independent"/>
          <char cp="0B86" na="TAMIL LETTER AA" InSC="Vowel_Independent"/>
@@ -6859,15 +6859,15 @@
          <char cp="1B37" na="BALINESE VOWEL SIGN ULU SARI" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Top" InCB="Extend"/>
          <char cp="1B38" na="BALINESE VOWEL SIGN SUKU" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Bottom" InCB="Extend"/>
          <char cp="1B39" na="BALINESE VOWEL SIGN SUKU ILUT" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Bottom" InCB="Extend"/>
-         <char cp="1B3A" na="BALINESE VOWEL SIGN RA REPA" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Bottom" InCB="Extend"/>
+         <char cp="1B3A" na="BALINESE VOWEL SIGN RA REPA" gc="Mn" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Bottom" InCB="Extend"/>
          <char cp="1B3B" na="BALINESE VOWEL SIGN RA REPA TEDUNG" gc="Mc" dt="can" dm="1B3A 1B35" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" OGr_Ext="Y" GCB="EX" WB="Extend" SB="EX" NFD_QC="N" NFKD_QC="N" InSC="Vowel_Dependent" InPC="Bottom_And_Right" InCB="Extend"/>
-         <char cp="1B3C" na="BALINESE VOWEL SIGN LA LENGA" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Top_And_Bottom" InCB="Extend"/>
+         <char cp="1B3C" na="BALINESE VOWEL SIGN LA LENGA" gc="Mn" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Top_And_Bottom" InCB="Extend"/>
          <char cp="1B3D" na="BALINESE VOWEL SIGN LA LENGA TEDUNG" gc="Mc" dt="can" dm="1B3C 1B35" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" OGr_Ext="Y" GCB="EX" WB="Extend" SB="EX" NFD_QC="N" NFKD_QC="N" InSC="Vowel_Dependent" InPC="Top_And_Bottom_And_Right" InCB="Extend"/>
          <char cp="1B3E" na="BALINESE VOWEL SIGN TALING" gc="Mc" lb="CM" OAlpha="Y" GCB="SM" WB="Extend" SB="EX" InSC="Vowel_Dependent" InPC="Left"/>
          <char cp="1B3F" na="BALINESE VOWEL SIGN TALING REPA" gc="Mc" lb="CM" OAlpha="Y" GCB="SM" WB="Extend" SB="EX" InSC="Vowel_Dependent" InPC="Left"/>
          <char cp="1B40" na="BALINESE VOWEL SIGN TALING TEDUNG" gc="Mc" dt="can" dm="1B3E 1B35" lb="CM" OAlpha="Y" GCB="SM" WB="Extend" SB="EX" NFD_QC="N" NFKD_QC="N" InSC="Vowel_Dependent" InPC="Left_And_Right"/>
          <char cp="1B41" na="BALINESE VOWEL SIGN TALING REPA TEDUNG" gc="Mc" dt="can" dm="1B3F 1B35" lb="CM" OAlpha="Y" GCB="SM" WB="Extend" SB="EX" NFD_QC="N" NFKD_QC="N" InSC="Vowel_Dependent" InPC="Left_And_Right"/>
-         <char cp="1B42" na="BALINESE VOWEL SIGN PEPET" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Top" InCB="Extend"/>
+         <char cp="1B42" na="BALINESE VOWEL SIGN PEPET" gc="Mn" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Vowel_Dependent" InPC="Top" InCB="Extend"/>
          <char cp="1B43" na="BALINESE VOWEL SIGN PEPET TEDUNG" gc="Mc" dt="can" dm="1B42 1B35" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" OGr_Ext="Y" GCB="EX" WB="Extend" SB="EX" NFD_QC="N" NFKD_QC="N" InSC="Vowel_Dependent" InPC="Top_And_Right" InCB="Extend"/>
          <char cp="1B44" na="BALINESE ADEG ADEG" gc="Mc" ccc="9" lb="VI" Alpha="N" Gr_Base="N" Gr_Ext="Y" OGr_Ext="Y" Dia="Y" GCB="EX" WB="Extend" SB="EX" InSC="Virama" InPC="Right" InCB="Linker"/>
          <char cp="1B45" na="BALINESE LETTER KAF SASAK" IDS="Y" XIDS="Y" InCB="Consonant"/>
@@ -42435,7 +42435,7 @@
          <reserved first-cp="14680" last-cp="160FF" age="unassigned" na="" JSN="" gc="Cn" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="XX" sc="Zzzz" scx="Zzzz" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="N" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="XX" SB="XX" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="R" RI="N" blk="NB" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N"/>
       </group>
       <group age="16.0" JSN="" gc="Lo" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="AS" sc="Gukh" scx="Gukh" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="Y" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="Y" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="Y" OIDS="N" XIDS="Y" IDC="Y" OIDC="N" XIDC="Y" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="LE" SB="LE" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Consonant" InPC="NA" PCM="N" vo="R" RI="N" blk="Gurung_Khema" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N">
-         <char cp="16100" na="GURUNG KHEMA LETTER A" InSC="Vowel_Independent"/>
+         <char cp="16100" na="GURUNG KHEMA LETTER A"/>
          <char cp="16101" na="GURUNG KHEMA LETTER KA"/>
          <char cp="16102" na="GURUNG KHEMA LETTER KHA"/>
          <char cp="16103" na="GURUNG KHEMA LETTER GA"/>
@@ -43457,52 +43457,8 @@
          <char cp="16D79" na="KIRAT RAI DIGIT NINE" gc="Nd" nt="De" nv="9" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
          <reserved first-cp="16D7A" last-cp="16D7F" age="unassigned" na="" gc="Cn" lb="XX" sc="Zzzz" scx="Zzzz" Alpha="N" Gr_Base="N" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" InSC="Other"/>
       </group>
-      <group age="18.0" JSN="" gc="Lo" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="AL" sc="Chis" scx="Chis" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="Y" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="Y" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="Y" OIDS="N" XIDS="Y" IDC="Y" OIDC="N" XIDC="Y" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="LE" SB="LE" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Consonant" InPC="NA" PCM="N" vo="R" RI="N" blk="Chisoi" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N">
-         <char cp="16D80" na="CHISOI LETTER A" InSC="Vowel"/>
-         <char cp="16D81" na="CHISOI LETTER BA"/>
-         <char cp="16D82" na="CHISOI LETTER AAI" InSC="Vowel"/>
-         <char cp="16D83" na="CHISOI LETTER AA" InSC="Vowel"/>
-         <char cp="16D84" na="CHISOI LETTER GA"/>
-         <char cp="16D85" na="CHISOI LETTER TA"/>
-         <char cp="16D86" na="CHISOI LETTER E" InSC="Vowel"/>
-         <char cp="16D87" na="CHISOI LETTER SA"/>
-         <char cp="16D88" na="CHISOI LETTER NA"/>
-         <char cp="16D89" na="CHISOI LETTER I" InSC="Vowel"/>
-         <char cp="16D8A" na="CHISOI LETTER KA"/>
-         <char cp="16D8B" na="CHISOI LETTER RA"/>
-         <char cp="16D8C" na="CHISOI LETTER MA"/>
-         <char cp="16D8D" na="CHISOI LETTER HA"/>
-         <char cp="16D8E" na="CHISOI LETTER RRA"/>
-         <char cp="16D8F" na="CHISOI LETTER U" InSC="Vowel"/>
-         <char cp="16D90" na="CHISOI LETTER DA"/>
-         <char cp="16D91" na="CHISOI LETTER LA"/>
-         <char cp="16D92" na="CHISOI LETTER O" InSC="Vowel"/>
-         <char cp="16D93" na="CHISOI LETTER NYA"/>
-         <char cp="16D94" na="CHISOI LETTER NGA"/>
-         <char cp="16D95" na="CHISOI LETTER CA"/>
-         <char cp="16D96" na="CHISOI LETTER JA"/>
-         <char cp="16D97" na="CHISOI LETTER PA"/>
-         <char cp="16D98" na="CHISOI SIGN ANUSVARA" gc="Mn" bc="NSM" jt="T" lb="CM" OAlpha="Y" Gr_Base="N" Gr_Ext="Y" IDS="N" XIDS="N" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Bindu" InPC="Top" InCB="Extend"/>
-         <char cp="16D99" na="CHISOI LETTER YA"/>
-         <char cp="16D9A" na="CHISOI LETTER DDA"/>
-         <char cp="16D9B" na="CHISOI LETTER TTA"/>
-         <char cp="16D9C" na="CHISOI LETTER JARAHA"/>
-         <char cp="16D9D" na="CHISOI SIGN SISO" gc="Mn" ccc="9" bc="NSM" jt="T" lb="CM" Alpha="N" Gr_Base="N" Gr_Ext="Y" Dia="Y" IDS="N" XIDS="N" GCB="EX" WB="Extend" SB="EX" CI="Y" InSC="Pure_Killer" InPC="Bottom" InCB="Extend"/>
-         <reserved first-cp="16D9E" last-cp="16D9F" age="unassigned" na="" gc="Cn" lb="XX" sc="Zzzz" scx="Zzzz" Alpha="N" Gr_Base="N" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" InSC="Other"/>
-         <char cp="16DA0" na="CHISOI DIGIT ZERO" gc="Nd" nt="De" nv="0" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA1" na="CHISOI DIGIT ONE" gc="Nd" nt="De" nv="1" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA2" na="CHISOI DIGIT TWO" gc="Nd" nt="De" nv="2" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA3" na="CHISOI DIGIT THREE" gc="Nd" nt="De" nv="3" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA4" na="CHISOI DIGIT FOUR" gc="Nd" nt="De" nv="4" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA5" na="CHISOI DIGIT FIVE" gc="Nd" nt="De" nv="5" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA6" na="CHISOI DIGIT SIX" gc="Nd" nt="De" nv="6" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA7" na="CHISOI DIGIT SEVEN" gc="Nd" nt="De" nv="7" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA8" na="CHISOI DIGIT EIGHT" gc="Nd" nt="De" nv="8" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <char cp="16DA9" na="CHISOI DIGIT NINE" gc="Nd" nt="De" nv="9" lb="NU" Alpha="N" IDS="N" XIDS="N" WB="NU" SB="NU" InSC="Number"/>
-         <reserved first-cp="16DAA" last-cp="16DAF" age="unassigned" na="" gc="Cn" lb="XX" sc="Zzzz" scx="Zzzz" Alpha="N" Gr_Base="N" IDS="N" XIDS="N" IDC="N" XIDC="N" WB="XX" SB="XX" InSC="Other"/>
-      </group>
       <group>
-         <reserved first-cp="16DB0" last-cp="16E3F" age="unassigned" na="" JSN="" gc="Cn" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="XX" sc="Zzzz" scx="Zzzz" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="N" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="XX" SB="XX" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="R" RI="N" blk="NB" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N"/>
+         <reserved first-cp="16D80" last-cp="16E3F" age="unassigned" na="" JSN="" gc="Cn" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="XX" sc="Zzzz" scx="Zzzz" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="N" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="XX" SB="XX" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="R" RI="N" blk="NB" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N"/>
       </group>
       <group age="11.0" JSN="" gc="Lu" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="AL" sc="Medf" scx="Medf" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="Y" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="Y" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="Y" OIDS="N" XIDS="Y" IDC="Y" OIDC="N" XIDC="Y" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="LE" SB="UP" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="Y" CWCF="N" CWCM="Y" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="R" RI="N" blk="Medefaidrin" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N">
          <char cp="16E40" na="MEDEFAIDRIN CAPITAL LETTER M" slc="16E60" lc="16E60" scf="16E60" cf="16E60" Upper="Y" CWCF="Y" CWKCF="Y" CWL="Y" NFKC_CF="16E60" NFKC_SCF="16E60"/>
@@ -59832,7 +59788,7 @@
          <char cp="1F7D8" age="11.0" na="NEGATIVE CIRCLED SQUARE" lb="ID"/>
          <char cp="1F7D9" age="15.0" na="NINE POINTED WHITE STAR" lb="ID"/>
          <char cp="1F7DA" age="18.0" na="BLACK CIRCLE WITH WHITE VERTICAL BAR" bc="L" ea="W" lb="ID"/>
-         <char cp="1F7DB" age="18.0" na="BULLET IN DOUBLE CIRCLE" lb="ID"/>
+         <char cp="1F7DB" age="18.0" na="BULLET IN DOUBLE CIRCLE" Math="Y" OMath="Y"/>
          <reserved first-cp="1F7DC" last-cp="1F7DF" age="unassigned" na="" gc="Cn" bc="L" lb="ID" sc="Zzzz" scx="Zzzz" Gr_Base="N" ExtPict="Y"/>
          <char cp="1F7E0" age="12.0" na="LARGE ORANGE CIRCLE" ea="W" lb="ID" Emoji="Y" EPres="Y" ExtPict="Y"/>
          <char cp="1F7E1" age="12.0" na="LARGE YELLOW CIRCLE" ea="W" lb="ID" Emoji="Y" EPres="Y" ExtPict="Y"/>
@@ -59848,21 +59804,21 @@
          <char cp="1F7EB" age="12.0" na="LARGE BROWN SQUARE" ea="W" lb="ID" Emoji="Y" EPres="Y" ExtPict="Y"/>
          <reserved first-cp="1F7EC" last-cp="1F7EF" age="unassigned" na="" gc="Cn" bc="L" lb="ID" sc="Zzzz" scx="Zzzz" Gr_Base="N" ExtPict="Y"/>
          <char cp="1F7F0" age="14.0" na="HEAVY EQUALS SIGN" ea="W" lb="ID" Emoji="Y" EPres="Y" ExtPict="Y"/>
-         <char cp="1F7F1" age="18.0" na="CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE" lb="ID"/>
-         <char cp="1F7F2" age="18.0" na="DOUBLE CIRCLE WITH DOUBLE HORIZONTAL LINE" lb="ID"/>
-         <char cp="1F7F3" age="18.0" na="CIRCLED BOTTOM RIGHT OBLIQUE HALF BLACK CIRCLE" lb="ID"/>
-         <char cp="1F7F4" age="18.0" na="LEFT HALF WHITE CIRCLE" lb="ID"/>
-         <char cp="1F7F5" age="18.0" na="RIGHT HALF WHITE CIRCLE" lb="ID"/>
-         <char cp="1F7F6" age="18.0" na="TRANSPARENT CUBE" lb="ID"/>
-         <char cp="1F7F7" age="18.0" na="WHITE CUBE" lb="ID"/>
-         <char cp="1F7F8" age="18.0" na="HORIZONTAL DOUBLE WHITE SMALL SQUARE" lb="ID"/>
-         <char cp="1F7F9" age="18.0" na="VERTICAL DOUBLE WHITE SMALL SQUARE" lb="ID"/>
-         <char cp="1F7FA" age="18.0" na="WHITE SQUARE WITH BOTTOM HALF BISECTED" lb="ID"/>
-         <char cp="1F7FB" age="18.0" na="WHITE SQUARE WITH TOP HALF BISECTED" lb="ID"/>
-         <char cp="1F7FC" age="18.0" na="WHITE SQUARE WITH HORIZONTAL AND VERTICAL BISECTING LINES" lb="ID"/>
-         <char cp="1F7FD" age="18.0" na="LOWER LEFT FLATTENED RIGHT TRIANGLE" lb="ID"/>
-         <char cp="1F7FE" age="18.0" na="LOWER RIGHT FLATTENED RIGHT TRIANGLE" lb="ID"/>
-         <char cp="1F7FF" age="18.0" na="RHOMBUS" lb="ID"/>
+         <char cp="1F7F1" age="18.0" na="CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE" Math="Y" OMath="Y"/>
+         <char cp="1F7F2" age="18.0" na="DOUBLE CIRCLE WITH DOUBLE HORIZONTAL LINE" Math="Y" OMath="Y"/>
+         <char cp="1F7F3" age="18.0" na="CIRCLED BOTTOM RIGHT OBLIQUE HALF BLACK CIRCLE" Math="Y" OMath="Y"/>
+         <char cp="1F7F4" age="18.0" na="LEFT HALF WHITE CIRCLE" Math="Y" OMath="Y"/>
+         <char cp="1F7F5" age="18.0" na="RIGHT HALF WHITE CIRCLE" Math="Y" OMath="Y"/>
+         <char cp="1F7F6" age="18.0" na="TRANSPARENT CUBE" Math="Y" OMath="Y"/>
+         <char cp="1F7F7" age="18.0" na="WHITE CUBE" Math="Y" OMath="Y"/>
+         <char cp="1F7F8" age="18.0" na="HORIZONTAL DOUBLE WHITE SMALL SQUARE" Math="Y" OMath="Y"/>
+         <char cp="1F7F9" age="18.0" na="VERTICAL DOUBLE WHITE SMALL SQUARE" Math="Y" OMath="Y"/>
+         <char cp="1F7FA" age="18.0" na="WHITE SQUARE WITH BOTTOM HALF BISECTED" Math="Y" OMath="Y"/>
+         <char cp="1F7FB" age="18.0" na="WHITE SQUARE WITH TOP HALF BISECTED" Math="Y" OMath="Y"/>
+         <char cp="1F7FC" age="18.0" na="WHITE SQUARE WITH HORIZONTAL AND VERTICAL BISECTING LINES" Math="Y" OMath="Y"/>
+         <char cp="1F7FD" age="18.0" na="LOWER LEFT FLATTENED RIGHT TRIANGLE" Math="Y" OMath="Y"/>
+         <char cp="1F7FE" age="18.0" na="LOWER RIGHT FLATTENED RIGHT TRIANGLE" Math="Y" OMath="Y"/>
+         <char cp="1F7FF" age="18.0" na="RHOMBUS" Math="Y" OMath="Y"/>
       </group>
       <group age="7.0" JSN="" gc="So" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="ON" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="AL" sc="Zyyy" scx="Zyyy" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="Y" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="XX" SB="XX" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="R" RI="N" blk="Sup_Arrows_C" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N">
          <char cp="1F800" na="LEFTWARDS ARROW WITH SMALL TRIANGLE ARROWHEAD"/>
@@ -61435,7 +61391,7 @@
       <group>
          <reserved first-cp="33480" last-cp="3CFFF" age="unassigned" na="" JSN="" gc="Cn" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="W" lb="ID" sc="Zzzz" scx="Zzzz" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="N" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="XX" SB="XX" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="U" RI="N" blk="NB" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N"/>
       </group>
-      <group age="18.0" na="SEAL CHARACTER-#" JSN="" gc="Lo" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="W" lb="ID" sc="Seal" scx="Seal" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="Y" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="Y" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="Y" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="Y" OIDS="N" XIDS="Y" IDC="Y" OIDC="N" XIDC="Y" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="XX" SB="LE" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="U" RI="N" blk="Seal" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N">
+      <group age="18.0" na="SMALL SEAL CHARACTER-#" JSN="" gc="Lo" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="L" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="W" lb="ID" sc="Seal" scx="Seal" Dash="N" WSpace="N" QMark="N" Radical="N" Ideo="Y" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="N" ODI="N" Alpha="Y" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="Y" Gr_Ext="N" OGr_Ext="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="Y" OIDS="N" XIDS="Y" IDC="Y" OIDC="N" XIDC="Y" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="XX" WB="XX" SB="LE" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="N" CWL="N" CWT="N" CWU="N" NFKC_CF="#" InSC="Other" InPC="NA" PCM="N" vo="U" RI="N" blk="Seal" na1="" Emoji="N" EPres="N" EMod="N" EBase="N" EComp="N" ExtPict="N" NFKC_SCF="#" ID_Compat_Math_Start="N" ID_Compat_Math_Continue="N" IDSU="N" InCB="None" MCM="N">
          <char cp="3D000" kSEAL_MCJK="4E00" kSEAL_CCZSrc="C-00001" kSEAL_DYCSrc="D-00001" kSEAL_QJZSrc="K-00001" kSEAL_Rad="1.3D000" kSEAL_THXSrc="TH-00001"/>
          <char cp="3D001" kSEAL_MCJK="5F0C" kSEAL_CCZSrc="C-00002" kSEAL_DYCSrc="D-00002" kSEAL_QJZSrc="K-00002" kSEAL_Rad="1.3D000" kSEAL_THXSrc="TH-00002"/>
          <char cp="3D002" kSEAL_MCJK="5143" kSEAL_CCZSrc="C-00003" kSEAL_DYCSrc="D-00003" kSEAL_QJZSrc="K-00003" kSEAL_Rad="1.3D000" kSEAL_THXSrc="TH-00003"/>
@@ -73905,7 +73861,6 @@
       <block first-cp="16AD0" last-cp="16AFF" name="Bassa Vah"/>
       <block first-cp="16B00" last-cp="16B8F" name="Pahawh Hmong"/>
       <block first-cp="16D40" last-cp="16D7F" name="Kirat Rai"/>
-      <block first-cp="16D80" last-cp="16DAF" name="Chisoi"/>
       <block first-cp="16E40" last-cp="16E9F" name="Medefaidrin"/>
       <block first-cp="16EA0" last-cp="16EDF" name="Beria Erfe"/>
       <block first-cp="16F00" last-cp="16F9F" name="Miao"/>
@@ -74621,66 +74576,123 @@
       <standardized-variant cps="10AD6 FE00" desc="alternate form" when="isolate final"/>
       <standardized-variant cps="10AD7 FE00" desc="alternate form" when="isolate"/>
       <standardized-variant cps="10AE1 FE00" desc="alternate form" when="isolate"/>
-      <standardized-variant cps="1820 180B" desc="second form" when="isolate medial final"/>
-      <standardized-variant cps="1820 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="1821 180B" desc="second form" when="initial final"/>
-      <standardized-variant cps="1822 180B" desc="second form" when="medial"/>
+      <standardized-variant cps="1820 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="1820 180C" desc="third form" when="isolate initial final"/>
+      <standardized-variant cps="1820 180D" desc="fourth form" when="isolate"/>
+      <standardized-variant cps="1821 180B" desc="second form" when="isolate initial final"/>
+      <standardized-variant cps="1821 180C" desc="third form" when="isolate final"/>
+      <standardized-variant cps="1822 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1822 180C" desc="third form" when="isolate initial medial"/>
+      <standardized-variant cps="1822 180D" desc="fourth form" when="isolate medial"/>
       <standardized-variant cps="1823 180B" desc="second form" when="medial final"/>
-      <standardized-variant cps="1824 180B" desc="second form" when="medial"/>
-      <standardized-variant cps="1825 180B" desc="second form" when="medial final"/>
-      <standardized-variant cps="1825 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="1826 180B" desc="second form" when="isolate medial final"/>
-      <standardized-variant cps="1826 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="1828 180B" desc="second form" when="initial medial"/>
-      <standardized-variant cps="1828 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="1828 180D" desc="fourth form" when="medial"/>
+      <standardized-variant cps="1823 180C" desc="third form" when="final"/>
+      <standardized-variant cps="1824 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="1824 180C" desc="third form" when="isolate initial final"/>
+      <standardized-variant cps="1824 180D" desc="fourth form" when="isolate"/>
+      <standardized-variant cps="1825 180B" desc="second form" when="isolate medial final"/>
+      <standardized-variant cps="1825 180C" desc="third form" when="medial final"/>
+      <standardized-variant cps="1825 180D" desc="fourth form" when="medial final"/>
+      <standardized-variant cps="1826 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="1826 180C" desc="third form" when="isolate initial medial final"/>
+      <standardized-variant cps="1826 180D" desc="fourth form" when="isolate medial final"/>
+      <standardized-variant cps="1828 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="1828 180C" desc="third form" when="isolate initial medial final"/>
+      <standardized-variant cps="1828 180D" desc="fourth form" when="medial final"/>
       <standardized-variant cps="182A 180B" desc="second form" when="final"/>
-      <standardized-variant cps="182C 180B" desc="second form" when="isolate initial medial"/>
-      <standardized-variant cps="182C 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="182C 180D" desc="fourth form" when="medial"/>
-      <standardized-variant cps="182D 180B" desc="second form" when="initial medial final"/>
-      <standardized-variant cps="182D 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="182D 180D" desc="fourth form" when="medial"/>
+      <standardized-variant cps="182C 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="182C 180C" desc="third form" when="isolate initial medial"/>
+      <standardized-variant cps="182C 180D" desc="fourth form" when="initial medial"/>
+      <standardized-variant cps="182C 180F" desc="fifth form" when="isolate initial medial"/>
+      <standardized-variant cps="182D 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="182D 180C" desc="third form" when="isolate initial medial final"/>
+      <standardized-variant cps="182D 180D" desc="fourth form" when="initial medial final"/>
+      <standardized-variant cps="182D 180F" desc="fifth form" when="isolate initial medial"/>
+      <standardized-variant cps="182F 180B" desc="second form" when="isolate initial"/>
       <standardized-variant cps="1830 180B" desc="second form" when="final"/>
       <standardized-variant cps="1830 180C" desc="third form" when="final"/>
+      <standardized-variant cps="1831 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1831 180C" desc="third form" when="initial medial"/>
       <standardized-variant cps="1832 180B" desc="second form" when="medial"/>
-      <standardized-variant cps="1833 180B" desc="second form" when="initial medial final"/>
-      <standardized-variant cps="1835 180B" desc="second form" when="medial"/>
-      <standardized-variant cps="1836 180B" desc="second form" when="initial medial"/>
-      <standardized-variant cps="1836 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="1838 180B" desc="second form" when="final"/>
+      <standardized-variant cps="1832 180C" desc="third form" when="medial"/>
+      <standardized-variant cps="1833 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="1833 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="1835 180B" desc="second form" when="isolate final"/>
+      <standardized-variant cps="1836 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1836 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="1836 180D" desc="fourth form" when="medial"/>
+      <standardized-variant cps="1838 180B" desc="second form" when="medial final"/>
       <standardized-variant cps="1844 180B" desc="second form" when="medial"/>
-      <standardized-variant cps="1845 180B" desc="second form" when="medial"/>
+      <standardized-variant cps="1845 180B" desc="second form" when="initial medial"/>
+      <standardized-variant cps="1845 180C" desc="third form" when="medial"/>
+      <standardized-variant cps="1845 180D" desc="fourth form" when="medial"/>
       <standardized-variant cps="1846 180B" desc="second form" when="medial"/>
       <standardized-variant cps="1847 180B" desc="second form" when="isolate medial final"/>
-      <standardized-variant cps="1847 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="1848 180B" desc="second form" when="medial"/>
-      <standardized-variant cps="1849 180B" desc="second form" when="isolate medial"/>
-      <standardized-variant cps="184D 180B" desc="second form" when="initial medial"/>
-      <standardized-variant cps="184E 180B" desc="second form" when="medial"/>
+      <standardized-variant cps="1847 180C" desc="third form" when="medial final"/>
+      <standardized-variant cps="1847 180D" desc="fourth form" when="medial final"/>
+      <standardized-variant cps="1848 180B" desc="not in use" when=""/>
+      <standardized-variant cps="1848 180C" desc="third form" when="medial"/>
+      <standardized-variant cps="1849 180B" desc="second form" when="isolate medial final"/>
+      <standardized-variant cps="1849 180C" desc="third form" when="final"/>
+      <standardized-variant cps="184C 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="184D 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="184D 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="184E 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="184E 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="184E 180D" desc="fourth form" when="medial"/>
+      <standardized-variant cps="185C 180B" desc="second form" when="isolate initial medial final"/>
       <standardized-variant cps="185D 180B" desc="second form" when="medial final"/>
-      <standardized-variant cps="185E 180B" desc="second form" when="medial final"/>
-      <standardized-variant cps="185E 180C" desc="third form" when="medial final"/>
+      <standardized-variant cps="185D 180C" desc="third form" when="medial final"/>
+      <standardized-variant cps="185D 180D" desc="fourth form" when="final"/>
+      <standardized-variant cps="185D 180F" desc="fifth form" when="final"/>
+      <standardized-variant cps="185E 180B" desc="second form" when="isolate medial"/>
+      <standardized-variant cps="185E 180C" desc="third form" when="isolate medial"/>
       <standardized-variant cps="1860 180B" desc="second form" when="medial final"/>
-      <standardized-variant cps="1863 180B" desc="second form" when="medial"/>
-      <standardized-variant cps="1868 180B" desc="second form" when="initial medial"/>
-      <standardized-variant cps="1868 180C" desc="third form" when="medial"/>
-      <standardized-variant cps="1869 180B" desc="second form" when="initial medial"/>
+      <standardized-variant cps="1860 180C" desc="third form" when="medial final"/>
+      <standardized-variant cps="1860 180D" desc="fourth form" when="final"/>
+      <standardized-variant cps="1860 180F" desc="fifth form" when="final"/>
+      <standardized-variant cps="1863 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1863 180C" desc="third form" when="medial"/>
+      <standardized-variant cps="1863 180D" desc="fourth form" when="initial medial"/>
+      <standardized-variant cps="1864 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1864 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="1865 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1865 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="1868 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1868 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="1868 180D" desc="fourth form" when="medial"/>
+      <standardized-variant cps="1869 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1869 180C" desc="third form" when="isolate initial medial"/>
+      <standardized-variant cps="1869 180D" desc="fourth form" when="initial"/>
       <standardized-variant cps="186F 180B" desc="second form" when="initial medial"/>
-      <standardized-variant cps="1873 180B" desc="second form" when="medial final"/>
-      <standardized-variant cps="1873 180C" desc="third form" when="medial final"/>
+      <standardized-variant cps="186F 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="1873 180B" desc="second form" when="isolate medial final"/>
+      <standardized-variant cps="1873 180C" desc="third form" when="isolate medial final"/>
       <standardized-variant cps="1873 180D" desc="fourth form" when="medial"/>
-      <standardized-variant cps="1874 180B" desc="second form" when="medial final"/>
-      <standardized-variant cps="1874 180C" desc="third form" when="medial final"/>
-      <standardized-variant cps="1874 180D" desc="fourth form" when="medial"/>
-      <standardized-variant cps="1876 180B" desc="second form" when="initial medial"/>
+      <standardized-variant cps="1874 180B" desc="second form" when="isolate initial medial final"/>
+      <standardized-variant cps="1874 180C" desc="third form" when="isolate initial medial final"/>
+      <standardized-variant cps="1874 180D" desc="fourth form" when="initial medial final"/>
+      <standardized-variant cps="1874 180F" desc="fifth form" when="medial"/>
+      <standardized-variant cps="1875 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1876 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="1876 180C" desc="third form" when="initial medial"/>
       <standardized-variant cps="1880 180B" desc="second form" when=""/>
       <standardized-variant cps="1881 180B" desc="second form" when=""/>
-      <standardized-variant cps="1887 180B" desc="second form" when="isolate final"/>
-      <standardized-variant cps="1887 180C" desc="third form" when="final"/>
-      <standardized-variant cps="1887 180D" desc="fourth form" when="final"/>
-      <standardized-variant cps="1888 180B" desc="second form" when="final"/>
-      <standardized-variant cps="188A 180B" desc="second form" when="initial medial"/>
+      <standardized-variant cps="1887 180B" desc="not in use" when=""/>
+      <standardized-variant cps="1887 180C" desc="not in use" when=""/>
+      <standardized-variant cps="1887 180D" desc="not in use" when=""/>
+      <standardized-variant cps="1888 180B" desc="not in use" when=""/>
+      <standardized-variant cps="188A 180B" desc="not in use" when=""/>
+      <standardized-variant cps="1892 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="189A 180B" desc="second form" when="medial"/>
+      <standardized-variant cps="189A 180C" desc="third form" when="medial"/>
+      <standardized-variant cps="18A0 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="18A0 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="18A1 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="18A1 180C" desc="third form" when="initial medial"/>
+      <standardized-variant cps="18A4 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="18A7 180B" desc="second form" when="final"/>
+      <standardized-variant cps="18A8 180B" desc="second form" when="isolate initial medial"/>
+      <standardized-variant cps="18A8 180C" desc="third form" when="isolate initial medial"/>
       <standardized-variant cps="13012 FE03" desc="rotated approximately 30 degrees" when=""/>
       <standardized-variant cps="13091 FE00" desc="rotated 90 degrees" when=""/>
       <standardized-variant cps="13093 FE01" desc="rotated 180 degrees" when=""/>
