@@ -11,7 +11,6 @@ Prerequisites: proposal posted to L2, SAH agreed to recommend for provisional as
 - [ ] Commit
 - [ ] UTC decision — Check counts, code points, names, properties
 - [ ] SAH report — Check counts, code points, names, properties
-- [ ] Ken’s UnicodeData draft — [Check consistent](#ken-unicodedata)
 
 ---
 If the proposal supplies LineBreak.txt:
@@ -19,7 +18,7 @@ If the proposal supplies LineBreak.txt:
 - [ ] Commit
 
 If the proposal does not supply LineBreak.txt:
-- [ ] LineBreak.txt — [Regenerate](#regenerate-linebreak) [TODO(markus): This should become « invoke Ken’s tool »]
+- [ ] LineBreak.txt — [Regenerate](#regenerate-linebreak)
 - [ ] Update modified lines
 - [ ] Commit
 
@@ -63,7 +62,7 @@ reserved:
 
 ---
 - [ ] In unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons,
-      copy template.txt to [RMG issue number].txt.
+      copy template.txt to [RMG issue number].txt, or sew-[SEW issue number].txt, whichever one is in the pipeline dashboard.
 - [ ] Comparison tests — Write
   - Examples:
     - [straightforward characters](https://github.com/unicode-org/unicodetools/blob/08748760e371d9dbdc6a0fc883c68dff944648e2/unicodetools/src/main/resources/org/unicode/text/UCD/AdditionComparisons/182.txt#L11-L18),
@@ -84,7 +83,7 @@ PR preparation:
 - [ ] Working group — Mention:
   - Proposals from SAH — Link SAH issue
   - Proposals from ESC or CJK — Mention ESC or CJK in the PR description
-- [ ] RMG issue — Link
+- [ ] RMG issue, if any — Link
 - [ ] data-for-new — Set label
 - [ ] pipeline-* — Set label:
   - **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline,
@@ -116,34 +115,14 @@ PR preparation:
   - For proposals from CJK, file a PAG issue of type `Document`, citing the proposal.
     Put the review in the `Background information / discussion` section, and link the pull request
     in the `Internal` section. See, _e.g._, https://github.com/unicode-org/properties/issues/366.
+  - When a single SAH issue results in multiple PRs (e.g., because of separate UTC approvals), file
+    PAG issues for each subsequent PR, and link the PAG issue from the PR description.
 - [ ] PAG dashboard status of SAH or PAG issue — Set to `Review`
 - [ ] Pipeline dashboard PAG status of RMG issue — Set to `data review`
 ## Scripts
 
 There are a variety of setups for unicodetools, depending on OS, in-source vs. out-of-source, git practices, etc.
 If you take part in UCD development, feel free to add your own.
-
-### Ken UnicodeData
-
-Ken's files come from [here](https://corp.unicode.org/~book/incoming/kenfiles/) (select appropriate ucd version e.g. `ucd160` for Unicode 16.0). NOTE: this check is probably not applicable for `pipeline-provisionally-assigned` data where Ken does not yet have a draft.
-
-eggrobin (Windows, in-source; the remote corresponding to unicode-org is called la-vache, Ken’s files are downloaded next to the unicodetools repository).
-
-```powershell
-$latestKenFile = (ls ..\UnicodeData-*.txt | sort LastWriteTime)[-1]
-$kenUnicodeData = (Get-Content $latestKenFile)
-git diff la-vache/main */UnicodeData.txt |
-sls ^\+[0-9A-F]                          |
-% {
-  $headLine = $_.line.Substring(1)
-  if (-not $kenUnicodeData.Contains($headLine)) {
-    $codepoint = $headLine.Split(";")[0];
-    echo "Mismatch for U+$codepoint";
-    echo "HEAD : $headLine";
-    echo "Ken  : $($kenUnicodeData.Where({$_.Split(";")[0] -eq $codepoint}))";
-  }
-}
-```
 
 ### Merge
 
@@ -233,8 +212,8 @@ git commit -m GenerateEnums
 
 
 ### Run comparison tests
-eggrobin (Windows, in-source; replace $RMG_ISSUE by the RMG issue number, or define it as that number).
+eggrobin (Windows, in-source; replace $RMG_ISSUE by the RMG issue number or sew-[SEW issue number], or define it as that).
 ```powershell
-mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" -Dsurefire.failIfNoSpecifiedTests=false -DtrimStackTrace=false "-DRMG_ISSUE=$RMG_ISSUE"
+mvn test -am -pl unicodetools "-DCLDR_DIR=$(gl|split-path -parent)\cldr\"  "-DUNICODETOOLS_GEN_DIR=$(gl|split-path -parent)\unicodetools\Generated\"  "-DUNICODETOOLS_REPO_DIR=$(gl|split-path -parent)\unicodetools\" "-Dtest=TestTestUnicodeInvariants#testAdditionComparisons" "-Dsurefire.failIfNoSpecifiedTests=false" -DtrimStackTrace=false "-DRMG_ISSUE=$RMG_ISSUE"
 ```
-Results are in Generated\UnicodeTestResults-addition-comparisons-[RMG issue number].html.
+Results are in Generated\UnicodeTestResults-addition-comparisons-$RMG_ISSUE.html.
