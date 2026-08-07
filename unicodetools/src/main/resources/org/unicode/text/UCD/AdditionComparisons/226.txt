@@ -1,0 +1,31 @@
+# Latin open q and x with stroke (1DF86..1DF88)
+# https://github.com/unicode-org/utc-release-management/issues/226
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [
+  \x{1DF86}   \N{LATIN SMALL LETTER OPEN Q}
+  \x{1DF03} 𝼃 \N{LATIN SMALL LETTER REVERSED K}
+] AreAlike
+
+Propertywise [\x{1DF87} \N{LATIN CAPITAL LETTER X WITH STROKE}]
+           : [\x{1DF88} \N{LATIN SMALL LETTER X WITH STROKE}]
+CorrespondTo [\x{1DF48} \N{LATIN CAPITAL LETTER BARRED K}]
+           : [\x{1DF49} \N{LATIN SMALL LETTER BARRED K}]
+
+Propertywise [\x{1DF87} \N{LATIN CAPITAL LETTER X WITH STROKE}]
+           : [\x{1DF88} \N{LATIN SMALL LETTER X WITH STROKE}]
+CorrespondTo [ \x{A740} Ꝁ \N{LATIN CAPITAL LETTER K WITH STROKE}]
+           : [ \x{A741} ꝁ \N{LATIN SMALL LETTER K WITH STROKE}]
+UpTo: Block (Latin_Extended_G vs Latin_Extended_D)
+
+end Ignoring;
+
+end Ignoring;
