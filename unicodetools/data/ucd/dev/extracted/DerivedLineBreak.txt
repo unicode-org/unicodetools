@@ -1,5 +1,5 @@
 # DerivedLineBreak-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-08-07, 14:42:32 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -412,13 +412,15 @@ FF1F          ; EX # Po       FULLWIDTH QUESTION MARK
 002C          ; IS # Po       COMMA
 002E          ; IS # Po       FULL STOP
 003A..003B    ; IS # Po   [2] COLON..SEMICOLON
+00B7          ; IS # Po       MIDDLE DOT
 037E          ; IS # Po       GREEK QUESTION MARK
+0387          ; IS # Po       GREEK ANO TELEIA
 0589          ; IS # Po       ARMENIAN FULL STOP
 060C..060D    ; IS # Po   [2] ARABIC COMMA..ARABIC DATE SEPARATOR
 07F8          ; IS # Po       NKO COMMA
 2044          ; IS # Sm       FRACTION SLASH
 
-# Total code points: 10
+# Total code points: 12
 
 # ================================================
 
@@ -618,7 +620,6 @@ ABF0..ABF9    ; NU # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
 037F          ; AL # L&       GREEK CAPITAL LETTER YOT
 0384..0385    ; AL # Sk   [2] GREEK TONOS..GREEK DIALYTIKA TONOS
 0386          ; AL # L&       GREEK CAPITAL LETTER ALPHA WITH TONOS
-0387          ; AL # Po       GREEK ANO TELEIA
 0388..038A    ; AL # L&   [3] GREEK CAPITAL LETTER EPSILON WITH TONOS..GREEK CAPITAL LETTER IOTA WITH TONOS
 038C          ; AL # L&       GREEK CAPITAL LETTER OMICRON WITH TONOS
 038E..03A1    ; AL # L&  [20] GREEK CAPITAL LETTER UPSILON WITH TONOS..GREEK CAPITAL LETTER RHO
@@ -1657,7 +1658,7 @@ FFED..FFEE    ; AL # So   [2] HALFWIDTH BLACK SQUARE..HALFWIDTH WHITE CIRCLE
 1FB94..1FBEF  ; AL # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; AL # So       ALARM BELL SYMBOL
 
-# Total code points: 27586
+# Total code points: 27585
 
 # ================================================
 
@@ -2779,7 +2780,7 @@ AADE..AADF    ; SA # Po   [2] TAI VIET SYMBOL HO HOI..TAI VIET SYMBOL KOI KOI
 00A8          ; AI # Sk       DIAERESIS
 00AA          ; AI # Lo       FEMININE ORDINAL INDICATOR
 00B2..00B3    ; AI # No   [2] SUPERSCRIPT TWO..SUPERSCRIPT THREE
-00B6..00B7    ; AI # Po   [2] PILCROW SIGN..MIDDLE DOT
+00B6          ; AI # Po       PILCROW SIGN
 00B8          ; AI # Sk       CEDILLA
 00B9          ; AI # No       SUPERSCRIPT ONE
 00BA          ; AI # Lo       MASCULINE ORDINAL INDICATOR
@@ -2893,7 +2894,7 @@ FFFD          ; AI # So       REPLACEMENT CHARACTER
 1F130..1F169  ; AI # So  [58] SQUARED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F1AC  ; AI # So  [61] NEGATIVE SQUARED LATIN CAPITAL LETTER A..SQUARED VOD
 
-# Total code points: 718
+# Total code points: 717
 
 # ================================================
 

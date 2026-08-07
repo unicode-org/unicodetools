@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-06-29, 15:25:08 GMT
+# Date: 2026-08-07, 14:42:46 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -113,7 +113,8 @@
 00B2..00B3     ; AI # No     [2] SUPERSCRIPT TWO..SUPERSCRIPT THREE
 00B4           ; BB # Sk         ACUTE ACCENT
 00B5           ; AL # Ll         MICRO SIGN
-00B6..00B7     ; AI # Po     [2] PILCROW SIGN..MIDDLE DOT
+00B6           ; AI # Po         PILCROW SIGN
+00B7           ; IS # Po         MIDDLE DOT
 00B8           ; AI # Sk         CEDILLA
 00B9           ; AI # No         SUPERSCRIPT ONE
 00BA           ; AI # Lo         MASCULINE ORDINAL INDICATOR
@@ -170,7 +171,7 @@
 037F           ; AL # Lu         GREEK CAPITAL LETTER YOT
 0384..0385     ; AL # Sk     [2] GREEK TONOS..GREEK DIALYTIKA TONOS
 0386           ; AL # Lu         GREEK CAPITAL LETTER ALPHA WITH TONOS
-0387           ; AL # Po         GREEK ANO TELEIA
+0387           ; IS # Po         GREEK ANO TELEIA
 0388..038A     ; AL # Lu     [3] GREEK CAPITAL LETTER EPSILON WITH TONOS..GREEK CAPITAL LETTER IOTA WITH TONOS
 038C           ; AL # Lu         GREEK CAPITAL LETTER OMICRON WITH TONOS
 038E..03A1     ; AL # L&    [20] GREEK CAPITAL LETTER UPSILON WITH TONOS..GREEK CAPITAL LETTER RHO
