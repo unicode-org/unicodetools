@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-13, 13:35:52 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -30325,6 +30325,8 @@ FFFD          ; REPLACEMENT CHARACTER
 10EAD         ; YEZIDI HYPHENATION MARK
 10EB0         ; YEZIDI LETTER LAM WITH DOT ABOVE
 10EB1         ; YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
+10EC0         ; ARABIC LETTER DOTLESS HALF YEH
+10EC1         ; ARABIC LETTER HALF YEH
 10EC2         ; ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW
 10EC3         ; ARABIC LETTER TAH WITH TWO DOTS VERTICALLY BELOW
 10EC4         ; ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
@@ -46582,6 +46584,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172808
+# Total code points: 172810
 
 # EOF

@@ -1,5 +1,5 @@
 # DerivedCombiningClass-18.0.0.txt
-# Date: 2026-06-29, 15:25:00 GMT
+# Date: 2026-07-13, 13:35:49 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1479,7 +1479,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 10E80..10EA9  ; 0 # Lo  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EAD         ; 0 # Pd       YEZIDI HYPHENATION MARK
 10EB0..10EB1  ; 0 # Lo   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
-10EC2..10EC4  ; 0 # Lo   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EC0..10EC4  ; 0 # Lo   [5] ARABIC LETTER DOTLESS HALF YEH..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10EC5         ; 0 # Lm       ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW
 10EC6..10EC7  ; 0 # Lo   [2] ARABIC LETTER THIN NOON..ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10EC9..10ECA  ; 0 # Sk   [2] ARABIC SMALL BASELINE FATHA..ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH
@@ -2110,7 +2110,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 803771 code points not listed here.
+# The above property value applies to 803769 code points not listed here.
 # Total code points: 1113110
 
 # ================================================

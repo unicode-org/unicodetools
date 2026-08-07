@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-29, 15:25:13 GMT 
+# Date: 2026-07-13, 13:36:40 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1546,6 +1546,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 10E80..10EA9  ; Include # 13.0 [42] (𐺀..𐺩)  YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EAB..10EAD  ; Include # 13.0  [3] (𐺫..𐺭)  YEZIDI COMBINING HAMZA MARK..YEZIDI HYPHENATION MARK
 10EB0..10EB1  ; Include # 13.0  [2] (𐺰..𐺱)  YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
+10EC0..10EC1  ; Include # 18.0  [2] (𐻀..𐻁)  ARABIC LETTER DOTLESS HALF YEH..ARABIC LETTER HALF YEH
 10EC2..10EC4  ; Include # 16.0  [3] (𐻂..𐻄)  ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10EC5..10EC7  ; Include # 17.0  [3] (𐻅..𐻇)  ARABIC SMALL YEH BARREE WITH TWO DOTS BELOW..ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10EC9..10ECF  ; Include # 18.0  [7] (𐻉..𐻏)  ARABIC SMALL BASELINE FATHA..ARABIC LARGE CIRCLE ABOVE
@@ -2205,5 +2206,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172312
+# Total code points: 172314
 
