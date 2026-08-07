@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-14, 14:16:26 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2011,6 +2011,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 1DF0B..1DF7F  ; N # L& [117] LATIN SMALL LETTER ESH WITH DOUBLE BAR..LATIN SMALL LETTER REVERSED U
 1DF80..1DF81  ; N # Lo   [2] LATIN CAPITAL LETTER A WITH TOPBAR..LATIN CAPITAL LETTER E WITH BENT TOPBAR
 1DF90..1DF96  ; N # L&   [7] LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
+1DFC5..1DFC8  ; N # Sk   [4] DOUBLE GRAVE ACCENT..MODIFIER LETTER LOW NORTH EAST ARROW
 1DFCD..1DFFF  ; N # Lm  [51] MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
 1E000..1E006  ; N # Mn   [7] COMBINING GLAGOLITIC LETTER AZU..COMBINING GLAGOLITIC LETTER ZHIVETE
 1E008..1E018  ; N # Mn  [17] COMBINING GLAGOLITIC LETTER ZEMLJA..COMBINING GLAGOLITIC LETTER HERU
@@ -2163,7 +2164,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 758934 code points not listed here.
+# The above property value applies to 758930 code points not listed here.
 # Total code points: 791273
 
 # ================================================

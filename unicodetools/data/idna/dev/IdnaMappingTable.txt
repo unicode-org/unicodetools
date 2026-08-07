@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-14, 14:17:11 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -8032,7 +8032,10 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 1DF90..1DF94  ; valid                      # 18.0 LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER R ROTUNDA WITH LOOP
 1DF95         ; mapped     ; 0073 0073     # 18.0 LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1DF96         ; valid                      # 18.0 LATIN SMALL LETTER LONG S WITH TOP LOOP
-1DF97..1DFCC  ; disallowed                 # NA   <reserved-1DF97>..<reserved-1DFCC>
+1DF97..1DFC4  ; disallowed                 # NA   <reserved-1DF97>..<reserved-1DFC4>
+1DFC5         ; mapped     ; 0020 030F     # 18.0 DOUBLE GRAVE ACCENT
+1DFC6..1DFC8  ; valid      ;      ; NV8    # 18.0 MODIFIER LETTER MIDDLE ACUTE ACCENT..MODIFIER LETTER LOW NORTH EAST ARROW
+1DFC9..1DFCC  ; disallowed                 # NA   <reserved-1DFC9>..<reserved-1DFCC>
 1DFCD         ; mapped     ; 1DF57         # 18.0 MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK
 1DFCE         ; mapped     ; 1DF58         # 18.0 MODIFIER LETTER SMALL SPLIT O
 1DFCF         ; mapped     ; 1DF59         # 18.0 MODIFIER LETTER SMALL SPLIT U

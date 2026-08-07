@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2026-06-29, 15:25:16 GMT
+# Date: 2026-07-14, 15:20:48 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1173,6 +1173,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1D1AA..1D1AD  ; Diacritic # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 1D250..1D252  ; Diacritic # Mc   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 1D25B..1D25C  ; Diacritic # Mn   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
+1DFC5..1DFC8  ; Diacritic # Sk   [4] DOUBLE GRAVE ACCENT..MODIFIER LETTER LOW NORTH EAST ARROW
 1DFCD..1DFCF  ; Diacritic # Lm   [3] MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK..MODIFIER LETTER SMALL SPLIT U
 1DFD1..1DFFF  ; Diacritic # Lm  [47] MODIFIER LETTER SMALL CAPITAL P..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
 1E030..1E06D  ; Diacritic # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
@@ -1184,7 +1185,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1334
+# Total code points: 1338
 
 # ================================================
 
