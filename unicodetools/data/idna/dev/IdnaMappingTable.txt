@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-08, 15:33:42 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2479,8 +2479,8 @@
 20BF          ; valid      ;      ; NV8    # 10.0 BITCOIN SIGN
 20C0          ; valid      ;      ; NV8    # 14.0 SOM SIGN
 20C1          ; valid      ;      ; NV8    # 17.0 SAUDI RIYAL SIGN
-20C2..20C4    ; valid      ;      ; NV8    # 18.0 RUFIYAA SIGN..OMANI RIAL SIGN
-20C5..20CF    ; disallowed                 # NA   <reserved-20C5>..<reserved-20CF>
+20C2..20C5    ; valid      ;      ; NV8    # 18.0 RUFIYAA SIGN..BELARUSIAN RUBLE SIGN
+20C6..20CF    ; disallowed                 # NA   <reserved-20C6>..<reserved-20CF>
 20D0..20E1    ; valid      ;      ; NV8    # 1.1  COMBINING LEFT HARPOON ABOVE..COMBINING LEFT RIGHT ARROW ABOVE
 20E2..20E3    ; valid      ;      ; NV8    # 3.0  COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING KEYCAP
 20E4..20EA    ; valid      ;      ; NV8    # 3.2  COMBINING ENCLOSING UPWARD POINTING TRIANGLE..COMBINING LEFTWARDS ARROW OVERLAY

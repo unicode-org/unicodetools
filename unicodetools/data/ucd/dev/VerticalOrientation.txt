@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-06-29, 15:25:28 GMT
+# Date: 2026-07-08, 15:34:02 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -904,7 +904,7 @@
 208D           ; R  # Ps         SUBSCRIPT LEFT PARENTHESIS
 208E           ; R  # Pe         SUBSCRIPT RIGHT PARENTHESIS
 208F..209F     ; R  # Lm    [17] MODIFIER LETTER HIGH AND LOW VERTICAL LINE..LATIN SUBSCRIPT SMALL LETTER Z
-20A0..20C4     ; R  # Sc    [37] EURO-CURRENCY SIGN..OMANI RIAL SIGN
+20A0..20C5     ; R  # Sc    [38] EURO-CURRENCY SIGN..BELARUSIAN RUBLE SIGN
 20D0..20DC     ; R  # Mn    [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0     ; U  # Me     [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1           ; R  # Mn         COMBINING LEFT RIGHT ARROW ABOVE
