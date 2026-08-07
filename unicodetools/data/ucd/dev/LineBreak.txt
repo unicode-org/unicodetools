@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-06-29, 15:25:08 GMT
+# Date: 2026-07-14, 17:14:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -480,6 +480,7 @@
 0CE6..0CEF     ; NU # Nd    [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF2     ; AL # Lo     [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0CF3           ; CM # Mc         KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
+0CF4           ; CM # Mn         KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01     ; CM # Mn     [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D02..0D03     ; CM # Mc     [2] MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D04..0D0C     ; AL # Lo     [9] MALAYALAM LETTER VEDIC ANUSVARA..MALAYALAM LETTER VOCALIC L

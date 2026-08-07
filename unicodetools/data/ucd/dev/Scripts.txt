@@ -1,5 +1,5 @@
 # Scripts-18.0.0.txt
-# Date: 2026-06-29, 15:25:26 GMT
+# Date: 2026-07-14, 17:15:11 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1224,8 +1224,9 @@ A8FF          ; Devanagari # Mn       DEVANAGARI VOWEL SIGN AY
 0CE6..0CEF    ; Kannada # Nd  [10] KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF2    ; Kannada # Lo   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0CF3          ; Kannada # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
+0CF4          ; Kannada # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 
-# Total code points: 92
+# Total code points: 93
 
 # ================================================
 

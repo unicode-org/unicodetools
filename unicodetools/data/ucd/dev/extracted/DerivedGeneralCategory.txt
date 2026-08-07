@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-14, 17:14:47 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -134,7 +134,7 @@
 0CDF          ; Cn #       <reserved-0CDF>
 0CE4..0CE5    ; Cn #   [2] <reserved-0CE4>..<reserved-0CE5>
 0CF0          ; Cn #       <reserved-0CF0>
-0CF4..0CFF    ; Cn #  [12] <reserved-0CF4>..<reserved-0CFF>
+0CF5..0CFF    ; Cn #  [11] <reserved-0CF5>..<reserved-0CFF>
 0D0D          ; Cn #       <reserved-0D0D>
 0D11          ; Cn #       <reserved-0D11>
 0D45          ; Cn #       <reserved-0D45>
@@ -751,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801722
 
 # ================================================
 
@@ -2858,6 +2858,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 0CC6          ; Mn #       KANNADA VOWEL SIGN E
 0CCC..0CCD    ; Mn #   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
 0CE2..0CE3    ; Mn #   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
+0CF4          ; Mn #       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01    ; Mn #   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D3B..0D3C    ; Mn #   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
 0D41..0D44    ; Mn #   [4] MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN VOCALIC RR
@@ -3149,7 +3150,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2090
+# Total code points: 2091
 
 # ================================================
 

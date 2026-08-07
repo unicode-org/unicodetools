@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-06-29, 15:42:39 GMT 
+# Date: 2026-07-14, 17:15:41 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -361,6 +361,7 @@
 0CE6..0CEF     # 1.1  [10] (೦..೯)  KANNADA DIGIT ZERO..KANNADA DIGIT NINE
 0CF1..0CF2     # 5.0   [2] (ೱ..ೲ)  KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
 0CF3           # 15.0      (ೳ)  KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
+0CF4           # 18.0      (೴)  KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00           # 10.0      (ഀ)  MALAYALAM SIGN COMBINING ANUSVARA ABOVE
 0D01           # 7.0       (ഁ)  MALAYALAM SIGN CANDRABINDU
 0D02..0D03     # 1.1   [2] (ം..ഃ)  MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
@@ -1331,4 +1332,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (𽀀..𿰿)  SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162100
+# Total code points: 162101

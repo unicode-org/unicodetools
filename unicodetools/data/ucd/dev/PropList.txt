@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2026-06-29, 15:25:16 GMT
+# Date: 2026-07-14, 17:20:00 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -539,6 +539,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 0CD5..0CD6    ; Other_Alphabetic # Mc   [2] KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
 0CE2..0CE3    ; Other_Alphabetic # Mn   [2] KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
 0CF3          ; Other_Alphabetic # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
+0CF4          ; Other_Alphabetic # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01    ; Other_Alphabetic # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D02..0D03    ; Other_Alphabetic # Mc   [2] MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
 0D3E..0D40    ; Other_Alphabetic # Mc   [3] MALAYALAM VOWEL SIGN AA..MALAYALAM VOWEL SIGN II
@@ -874,7 +875,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1520
+# Total code points: 1521
 
 # ================================================
 
