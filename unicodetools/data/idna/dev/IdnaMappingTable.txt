@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-06-29, 15:25:07 GMT
+# Date: 2026-07-06, 19:38:50 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -7990,8 +7990,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 1DAA0         ; disallowed                 # NA   <reserved-1DAA0>
 1DAA1..1DAAF  ; valid                      # 8.0  SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
 1DAB0..1DAFF  ; disallowed                 # NA   <reserved-1DAB0>..<reserved-1DAFF>
-1DB00..1DB1C  ; valid      ;      ; NV8    # 18.0 LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
-1DB1D..1DEFF  ; disallowed                 # NA   <reserved-1DB1D>..<reserved-1DEFF>
+1DB00..1DB21  ; valid      ;      ; NV8    # 18.0 LEIBNIZIAN EQUALS SIGN..OMICRON UPSILON SYMBOL
+1DB22..1DEFF  ; disallowed                 # NA   <reserved-1DB22>..<reserved-1DEFF>
 1DF00..1DF1E  ; valid                      # 14.0 LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
 1DF1F..1DF24  ; valid                      # 18.0 LATIN SMALL LETTER D-ETH DIGRAPH..LATIN SMALL LETTER T-THETA DIGRAPH
 1DF25..1DF2A  ; valid                      # 15.0 LATIN SMALL LETTER D WITH MID-HEIGHT LEFT HOOK..LATIN SMALL LETTER T WITH MID-HEIGHT LEFT HOOK
