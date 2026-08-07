@@ -1667,10 +1667,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // From L2/22-219, Figures 1, 2, 3: siddham written with a minimized MA
                         // instead of an anusvara.  There is an ordinary virama in D+DHA, so the
                         // whole DDHAM is glued together in line breaking.
-                        "𑀲𑀺𑀤𑁆𑀥𑀫"+Character.toString(0x1107E),
+                        "𑀲𑀺𑀤𑁆𑀥𑀫" + Character.toString(0x1107E),
                         // From L2/22-219, Figures 1, 2, 3: sidam written with a minimized MA,
                         // followed by a PA. The MA does not stick to the PA.
-                        "𑀲𑀺𑀤𑀫"+Character.toString(0x1107E)+"𑀧",
+                        "𑀲𑀺𑀤𑀫" + Character.toString(0x1107E) + "𑀧",
                         // From L2/12-226, first figure on p. 2, vāciṭṭi. The ṭ uses the Brahmi Old
                         // Tamil virama, so it does not stick to anything before or after.
                         "𑀯𑀸𑀘𑀺𑀝𑁰𑀝𑀺",
