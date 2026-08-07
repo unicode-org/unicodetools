@@ -1,5 +1,5 @@
 # LineBreak-18.0.0.txt
-# Date: 2026-06-29, 15:25:08 GMT
+# Date: 2026-07-07, 16:25:50 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3128,7 +3128,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 11AB0..11ABF   ; AL # Lo    [16] CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11AC0..11AF8   ; AL # Lo    [57] PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09   ; BB # Po    [10] DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
-11B0A          ; AL # Lo         DEVANAGARI LETTER ALTERNATE DDDA
+11B0A..11B0C   ; AL # Lo     [3] DEVANAGARI LETTER ALTERNATE DDDA..DEVANAGARI SIGN UPADHMANIYA
 11B60          ; CM # Mn         SHARADA VOWEL SIGN OE
 11B61          ; CM # Mc         SHARADA VOWEL SIGN OOE
 11B62..11B64   ; CM # Mn     [3] SHARADA VOWEL SIGN UE..SHARADA VOWEL SIGN SHORT E

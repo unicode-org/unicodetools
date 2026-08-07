@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-06-29, 15:25:13 GMT 
+# Date: 2026-07-07, 16:26:40 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1675,7 +1675,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 11AB0..11ABF  ; Include # 14.0 [16] (𑪰..𑪿)  CANADIAN SYLLABICS NATTILIK HI..CANADIAN SYLLABICS SPA
 11AC0..11AF8  ; Include # 7.0  [57] (𑫀..𑫸)  PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
 11B00..11B09  ; Include # 15.0 [10] (𑬀..𑬉)  DEVANAGARI HEAD MARK..DEVANAGARI SIGN MINDU
-11B0A         ; Include # 18.0      (𑬊)  DEVANAGARI LETTER ALTERNATE DDDA
+11B0A..11B0C  ; Include # 18.0  [3] (𑬊..𑬌)  DEVANAGARI LETTER ALTERNATE DDDA..DEVANAGARI SIGN UPADHMANIYA
 11B60..11B67  ; Include # 17.0  [8] (𑭠..𑭧)  SHARADA VOWEL SIGN OE..SHARADA VOWEL SIGN CANDRA O
 11BC0..11BE1  ; Include # 16.0 [34] (𑯀..𑯡)  SUNUWAR LETTER DEVI..SUNUWAR SIGN PVO
 11BF0..11BF9  ; Include # 16.0 [10] (𑯰..𑯹)  SUNUWAR DIGIT ZERO..SUNUWAR DIGIT NINE
@@ -2205,5 +2205,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172312
+# Total code points: 172314
 
