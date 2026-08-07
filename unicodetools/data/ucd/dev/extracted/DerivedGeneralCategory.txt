@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-13, 16:40:38 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -635,7 +635,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DAB0..1DAFF  ; Cn #  [80] <reserved-1DAB0>..<reserved-1DAFF>
 1DB1D..1DEFF  ; Cn # [995] <reserved-1DB1D>..<reserved-1DEFF>
 1DF82..1DF8F  ; Cn #  [14] <reserved-1DF82>..<reserved-1DF8F>
-1DF97..1DFCC  ; Cn #  [54] <reserved-1DF97>..<reserved-1DFCC>
+1DF97..1DFC8  ; Cn #  [50] <reserved-1DF97>..<reserved-1DFC8>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -751,7 +751,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801719
 
 # ================================================
 
@@ -4183,9 +4183,10 @@ FF3E          ; Sk #       FULLWIDTH CIRCUMFLEX ACCENT
 FF40          ; Sk #       FULLWIDTH GRAVE ACCENT
 FFE3          ; Sk #       FULLWIDTH MACRON
 10EC9..10ECA  ; Sk #   [2] ARABIC SMALL BASELINE FATHA..ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH
+1DFC9..1DFCC  ; Sk #   [4] MODIFIER LETTER LEFT ARROWHEAD OVER UP ARROWHEAD..MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD
 1F3FB..1F3FF  ; Sk #   [5] EMOJI MODIFIER FITZPATRICK TYPE-1-2..EMOJI MODIFIER FITZPATRICK TYPE-6
 
-# Total code points: 127
+# Total code points: 131
 
 # ================================================
 

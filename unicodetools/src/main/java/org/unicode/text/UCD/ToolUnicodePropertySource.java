@@ -1336,7 +1336,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             // 175-C24.
                             .add(0x070F)
                             // https://github.com/unicode-org/properties/issues/400.
-                            .add(0x00B8),
+                            .add(0x00B8)
+                            .add(new UnicodeSet("[\\x{1DFC9}-\\x{1DFCC}]")),
                     "ALetter");
             unicodeMap.putAll(
                     new UnicodeSet("[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),
