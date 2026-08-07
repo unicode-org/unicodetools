@@ -1,5 +1,5 @@
 # ScriptExtensions-18.0.0.txt
-# Date: 2026-06-24, 13:39:38 GMT
+# Date: 2026-08-06, 18:14:47 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -86,6 +86,7 @@
 09E6..09EF    ; Beng Cakm Sylo                 # Nd [10] BENGALI DIGIT ZERO..BENGALI DIGIT NINE
 0A66..0A6F    ; Guru Mult                      # Nd [10] GURMUKHI DIGIT ZERO..GURMUKHI DIGIT NINE
 0AE6..0AEF    ; Gujr Khoj                      # Nd [10] GUJARATI DIGIT ZERO..GUJARATI DIGIT NINE
+0B83          ; Knda Mlym Taml Telu            # Lo      TAMIL SIGN VISARGA
 0BE6..0BEF    ; Gran Taml                      # Nd [10] TAMIL DIGIT ZERO..TAMIL DIGIT NINE
 0BF0..0BF2    ; Gran Taml                      # No  [3] TAMIL NUMBER TEN..TAMIL NUMBER ONE THOUSAND
 0BF3          ; Gran Taml                      # So      TAMIL DAY SIGN
