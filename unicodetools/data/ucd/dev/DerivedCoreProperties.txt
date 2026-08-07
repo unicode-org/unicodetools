@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-06-29, 15:25:01 GMT
+# Date: 2026-07-08, 00:21:30 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1156,6 +1156,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 113C2         ; Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; Alphabetic # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; Alphabetic # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; Alphabetic # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; Alphabetic # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113D1         ; Alphabetic # Lo       TULU-TIGALARI REPHA
 113D3         ; Alphabetic # Lo       TULU-TIGALARI SIGN PLUTA
@@ -1486,7 +1487,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 31350..33479  ; Alphabetic # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Alphabetic # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 160254
+# Total code points: 160255
 
 # ================================================
 
@@ -3480,6 +3481,7 @@ FFF9..FFFB    ; Case_Ignorable # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLI
 11366..1136C  ; Case_Ignorable # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Case_Ignorable # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
 113BB..113C0  ; Case_Ignorable # Mn   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
+113CB         ; Case_Ignorable # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CE         ; Case_Ignorable # Mn       TULU-TIGALARI SIGN VIRAMA
 113D0         ; Case_Ignorable # Mn       TULU-TIGALARI CONJOINER
 113D2         ; Case_Ignorable # Mn       TULU-TIGALARI GEMINATION MARK
@@ -3615,7 +3617,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2890
+# Total code points: 2891
 
 # ================================================
 
@@ -8249,6 +8251,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 113C2         ; ID_Continue # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; ID_Continue # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; ID_Continue # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; ID_Continue # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; ID_Continue # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113CE         ; ID_Continue # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; ID_Continue # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
@@ -8657,7 +8660,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F  ; ID_Continue # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF  ; ID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162100
+# Total code points: 162101
 
 # ================================================
 
@@ -10506,6 +10509,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 113C2         ; XID_Continue # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; XID_Continue # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA  ; XID_Continue # Mc   [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; XID_Continue # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD  ; XID_Continue # Mc   [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113CE         ; XID_Continue # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; XID_Continue # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
@@ -10914,7 +10918,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 3D000..3FC3F  ; XID_Continue # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162081
+# Total code points: 162082
 
 # ================================================
 
@@ -11273,6 +11277,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 113C2         ; Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; Grapheme_Extend # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113C9  ; Grapheme_Extend # Mc   [3] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI AU LENGTH MARK
+113CB         ; Grapheme_Extend # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CE         ; Grapheme_Extend # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Grapheme_Extend # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 113D0         ; Grapheme_Extend # Mn       TULU-TIGALARI CONJOINER
@@ -11400,7 +11405,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2269
+# Total code points: 2270
 
 # ================================================
 
@@ -13726,6 +13731,7 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 113C2         ; InCB; Extend # Mc       TULU-TIGALARI VOWEL SIGN EE
 113C5         ; InCB; Extend # Mc       TULU-TIGALARI VOWEL SIGN AI
 113C7..113C9  ; InCB; Extend # Mc   [3] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI AU LENGTH MARK
+113CB         ; InCB; Extend # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CE         ; InCB; Extend # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; InCB; Extend # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 113D2         ; InCB; Extend # Mn       TULU-TIGALARI GEMINATION MARK
@@ -13850,6 +13856,6 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 E0020..E007F  ; InCB; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; InCB; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2254
+# Total code points: 2255
 
 # EOF

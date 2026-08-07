@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-06-29, 15:42:39 GMT 
+# Date: 2026-07-08, 00:10:55 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1029,6 +1029,7 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 113C2          # 16.0      (𑏂)  TULU-TIGALARI VOWEL SIGN EE
 113C5          # 16.0      (𑏅)  TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA   # 16.0  [4] (𑏇..𑏊)  TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB          # 18.0      (𑏋)  TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113D3   # 16.0  [8] (𑏌..𑏓)  TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN PLUTA
 113E1..113E2   # 16.0  [2] (𑏡..𑏢)  TULU-TIGALARI VEDIC TONE SVARITA..TULU-TIGALARI VEDIC TONE ANUDATTA
 11400..1144A   # 9.0  [75] (𑐀..𑑊)  NEWA LETTER A..NEWA SIDDHI
@@ -1331,4 +1332,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (𽀀..𿰿)  SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162100
+# Total code points: 162101

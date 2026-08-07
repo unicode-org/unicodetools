@@ -1,0 +1,21 @@
+# Tulu-Tigalari: Combining Anusvara Above (113CB)
+# https://github.com/unicode-org/utc-release-management/issues/257
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\x{113CB} \N{TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE}]
+CorrespondTo [\x{11300} \N{GRANTHA SIGN COMBINING ANUSVARA ABOVE}]
+UpTo: Block             (Tulu_Tigalari vs Grantha),
+      Script            (Tulu_Tigalari vs Grantha),
+      Script_Extensions (Tulu_Tigalari vs Grantha)
+
+end Ignoring;
+
+end Ignoring;

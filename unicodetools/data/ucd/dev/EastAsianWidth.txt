@@ -1,5 +1,5 @@
 # EastAsianWidth-18.0.0.txt
-# Date: 2026-06-29, 15:25:05 GMT
+# Date: 2026-07-08, 00:08:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2103,6 +2103,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 113C2          ; N  # Mc         TULU-TIGALARI VOWEL SIGN EE
 113C5          ; N  # Mc         TULU-TIGALARI VOWEL SIGN AI
 113C7..113CA   ; N  # Mc     [4] TULU-TIGALARI VOWEL SIGN OO..TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB          ; N  # Mn         TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC..113CD   ; N  # Mc     [2] TULU-TIGALARI SIGN ANUSVARA..TULU-TIGALARI SIGN VISARGA
 113CE          ; N  # Mn         TULU-TIGALARI SIGN VIRAMA
 113CF          ; N  # Mc         TULU-TIGALARI SIGN LOOPED VIRAMA

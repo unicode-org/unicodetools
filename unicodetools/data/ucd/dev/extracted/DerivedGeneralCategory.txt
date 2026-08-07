@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-07-08, 00:08:51 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -479,7 +479,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 113C1         ; Cn #       <reserved-113C1>
 113C3..113C4  ; Cn #   [2] <reserved-113C3>..<reserved-113C4>
 113C6         ; Cn #       <reserved-113C6>
-113CB         ; Cn #       <reserved-113CB>
 113D6         ; Cn #       <reserved-113D6>
 113D9..113E0  ; Cn #   [8] <reserved-113D9>..<reserved-113E0>
 113E3..113FF  ; Cn #  [29] <reserved-113E3>..<reserved-113FF>
@@ -751,7 +750,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801722
 
 # ================================================
 
@@ -3037,6 +3036,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 11366..1136C  ; Mn #   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Mn #   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
 113BB..113C0  ; Mn #   [6] TULU-TIGALARI VOWEL SIGN U..TULU-TIGALARI VOWEL SIGN VOCALIC LL
+113CB         ; Mn #       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CE         ; Mn #       TULU-TIGALARI SIGN VIRAMA
 113D0         ; Mn #       TULU-TIGALARI CONJOINER
 113D2         ; Mn #       TULU-TIGALARI GEMINATION MARK
@@ -3149,7 +3149,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2090
+# Total code points: 2091
 
 # ================================================
 
