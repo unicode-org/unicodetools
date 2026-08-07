@@ -1375,7 +1375,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .add(0xFF1B)
                             .remove(0x002E)
                             .remove(0x003A)
-                            .remove(0xFE13),
+                            .remove(0xFE13)
+                            .remove(0x00B7)
+                            .remove(0x0387),
                     "MidNum");
             /*
              * 066C ( ٬ ) ARABIC THOUSANDS SEPARATOR
