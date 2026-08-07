@@ -10,6 +10,8 @@ Ignoring Name Age:
 # normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
+Ignoring Block Pattern_Syntax Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
+
 Propertywise [\N{25B1:▱:WHITE PARALLELOGRAM}
               \N{1F7DB:BULLET IN DOUBLE CIRCLE}
               \N{1F7F1:CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE}
@@ -27,6 +29,8 @@ Propertywise [\N{25B1:▱:WHITE PARALLELOGRAM}
               \N{1F7FD:LOWER LEFT FLATTENED RIGHT TRIANGLE}
               \N{1F7FE:LOWER RIGHT FLATTENED RIGHT TRIANGLE}
               \N{1F7FF:RHOMBUS}] AreAlike
+
+end Ignoring;
 
 end Ignoring;
 
