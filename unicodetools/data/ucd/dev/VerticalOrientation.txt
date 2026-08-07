@@ -1,5 +1,5 @@
 # VerticalOrientation-18.0.0.txt
-# Date: 2026-06-29, 15:25:28 GMT
+# Date: 2026-07-07, 23:01:12 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2023,6 +2023,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 11838          ; R  # Mc         DOGRA SIGN VISARGA
 11839..1183A   ; R  # Mn     [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 1183B          ; R  # Po         DOGRA ABBREVIATION SIGN
+1183C          ; R  # Mn         DOGRA SIGN CANDRABINDU
+1183D          ; R  # Lo         DOGRA SIGN AVAGRAHA
 118A0..118DF   ; R  # L&    [64] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 118E0..118E9   ; R  # Nd    [10] WARANG CITI DIGIT ZERO..WARANG CITI DIGIT NINE
 118EA..118F2   ; R  # No     [9] WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY

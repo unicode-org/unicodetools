@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:27 GMT
+# Date: 2026-07-07, 23:01:10 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -484,6 +484,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 1182F..11837  ; Extend # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11838         ; Extend # Mc       DOGRA SIGN VISARGA
 11839..1183A  ; Extend # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+1183C         ; Extend # Mn       DOGRA SIGN CANDRABINDU
 11930..11935  ; Extend # Mc   [6] DIVES AKURU VOWEL SIGN AA..DIVES AKURU VOWEL SIGN E
 11937..11938  ; Extend # Mc   [2] DIVES AKURU VOWEL SIGN AI..DIVES AKURU VOWEL SIGN O
 1193B..1193C  ; Extend # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
@@ -603,7 +604,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2680
+# Total code points: 2681
 
 # ================================================
 
@@ -2514,6 +2515,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 11700..1171A  ; OLetter # Lo  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
 11740..11746  ; OLetter # Lo   [7] AHOM LETTER CA..AHOM LETTER LLA
 11800..1182B  ; OLetter # Lo  [44] DOGRA LETTER A..DOGRA LETTER RRA
+1183D         ; OLetter # Lo       DOGRA SIGN AVAGRAHA
 118FF..11906  ; OLetter # Lo   [8] WARANG CITI OM..DIVES AKURU LETTER E
 11909         ; OLetter # Lo       DIVES AKURU LETTER O
 1190C..11913  ; OLetter # Lo   [8] DIVES AKURU LETTER KA..DIVES AKURU LETTER JA
@@ -2669,7 +2671,7 @@ FFDA..FFDC    ; OLetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 31350..33479  ; OLetter # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; OLetter # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 154159
+# Total code points: 154160
 
 # ================================================
 

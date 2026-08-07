@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-07-02, 18:58:37 GMT
+# Date: 2026-07-07, 23:00:52 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -129,6 +129,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 1163D         ; Bindu # Mn       MODI SIGN ANUSVARA
 116AB         ; Bindu # Mn       TAKRI SIGN ANUSVARA
 11837         ; Bindu # Mn       DOGRA SIGN ANUSVARA
+1183C         ; Bindu # Mn       DOGRA SIGN CANDRABINDU
 1193B..1193C  ; Bindu # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 119DE         ; Bindu # Mc       NANDINAGARI SIGN ANUSVARA
 11A35..11A38  ; Bindu # Mn   [4] ZANABAZAR SQUARE SIGN CANDRABINDU..ZANABAZAR SQUARE SIGN ANUSVARA
@@ -214,6 +215,7 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 113B7         ; Avagraha # Lo       TULU-TIGALARI SIGN AVAGRAHA
 11447         ; Avagraha # Lo       NEWA SIGN AVAGRAHA
 114C4         ; Avagraha # Lo       TIRHUTA SIGN AVAGRAHA
+1183D         ; Avagraha # Lo       DOGRA SIGN AVAGRAHA
 119E1         ; Avagraha # Lo       NANDINAGARI SIGN AVAGRAHA
 11A9D         ; Avagraha # Lo       SOYOMBO MARK PLUTA
 11C40         ; Avagraha # Lo       BHAIKSUKI SIGN AVAGRAHA
