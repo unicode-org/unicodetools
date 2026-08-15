@@ -21,6 +21,19 @@
             </author>
         </authors>
         <revhistory>
+            <revision revnumber="39 d2" date="2026-08-15" edit="changed">
+                <changes>
+                    <change>Removed value for the <attr>blk</attr> attribute previously added in Revision 39:
+                        <val>Chisoi</val>.
+                    </change>
+                    <change>Removed value for the <attr>script</attr> attribute previously added in Revision 39:
+                        <val>Chis</val>.
+                    </change>
+                    <change>Added patterns for the <attr>na</attr> attribute: <val>SMALL SEAL CHARACTER-#</val>
+                        <val>JURCHEN CHARACTER-#</val>.
+                    </change>
+                </changes>
+            </revision>
             <revision revnumber="39" date="2026-05-15" edit="changed">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>18.0</val>.
@@ -1259,13 +1272,14 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title><edit flag="changed">Seal data</edit></title>
-                <para><edit flag="changed">The Seal data are represented as attributes. The attributes <attr>kSEAL_CCZSrc</attr>,
+                <title><edit flag="changed">Small Seal data</edit></title>
+                <para><edit flag="changed">The Small Seal data are represented as attributes. The attributes <attr>kSEAL_CCZSrc</attr>,
                     <attr>kSEAL_DYCSrc</attr>, <attr>kSEAL_QJZSrc</attr>, and <attr>kSEALTHXSrc</attr> refer to
                     ideograph collections which identify encoded characters. The attribute <attr>kSEAL_MCJK</attr>
-                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal character.
-                    The attribute <attr>kSEAL_Rad</attr> provide the radical number associated with each Seal character
-                    (1 to 540) along with the radical code point expressed in hexadecimal notation.</edit></para>
+                    corresponds to a single CJK Unified ideograph which may be used to refer to the Small Seal
+                    character. The attribute <attr>kSEAL_Rad</attr> provide the radical number associated with each
+                    Small Seal character (1 to 540) along with the radical code point expressed in hexadecimal
+                    notation.</edit></para>
                 <xi:include href="./fragments/Seal.xml"/>
             </section>
 

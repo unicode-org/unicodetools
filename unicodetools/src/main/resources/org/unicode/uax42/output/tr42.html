@@ -49,12 +49,12 @@
                </tr>
                <tr>
                   <td valign="top">Date</td>
-                  <td valign="top" class="changed">2026-05-15</td>
+                  <td valign="top" class="changed">2026-08-15</td>
                </tr>
                <tr>
                   <td valign="top">This Version</td>
                   <td valign="top" class="changed">
-                     <a href="https://www.unicode.org/reports/tr42/tr42-39.html">https://www.unicode.org/reports/tr42/tr42-39.html</a>
+                     <a href="https://www.unicode.org/reports/tr42/tr42-39 d2.html">https://www.unicode.org/reports/tr42/tr42-39 d2.html</a>
                   </td>
                </tr>
                <tr>
@@ -78,13 +78,13 @@
                <tr>
                   <td valign="top">Schema</td>
                   <td valign="top" class="changed">
-                     <a href="https://www.unicode.org/reports/tr42/tr42-39.rnc">https://www.unicode.org/reports/tr42/tr42-39.rnc</a>
+                     <a href="https://www.unicode.org/reports/tr42/tr42-39 d2.rnc">https://www.unicode.org/reports/tr42/tr42-39 d2.rnc</a>
                   </td>
                </tr>
                <tr>
                   <td valign="top">Revision</td>
                   <td valign="top" class="changed">
-                     <a href="#Modifications">39</a>
+                     <a href="#Modifications">39 d2</a>
                   </td>
                </tr>
             </tbody>
@@ -202,8 +202,8 @@
                         </li>
                         <li>4.4.23    <a href="#nushu_data_0">Nushu data</a>
                         </li>
-                        <li>4.4.24    <a href="#seal_data_0">
-                              <span class="changed">Seal data</span>
+                        <li>4.4.24    <a href="#small_seal_data_0">
+                              <span class="changed">Small Seal data</span>
                            </a>
                         </li>
                         <li>4.4.25    <a href="#tangut_data_0">Tangut data</a>
@@ -669,8 +669,8 @@
                    "TANGUT IDEOGRAPH-#" |
                    "KHITAN SMALL SCRIPT CHARACTER-#" |
                    "NUSHU CHARACTER-#" |
-                   "SEAL CHARACTER-#" |
-                   "JURCHEN CHARACTER-#" |
+                   <span class="changed">"SMALL SEAL CHARACTER-#" |
+                   "JURCHEN CHARACTER-#" |</span>
                    xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
                  }?
 </tt>
@@ -793,7 +793,6 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
-                  <span class="changed">| "Chisoi"</span>
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -1634,8 +1633,8 @@
            | "Avst"
            | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
            | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
-           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | <span class="changed">"Chis"</span>
-           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
+           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
            | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
            | "Egyp" | "Elba" | "Elym" | "Ethi"
            | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
@@ -2138,16 +2137,17 @@
 </tt>
          </p>
          <h4>
-            <a name="seal_data_0">4.4.24 <span class="changed">Seal data</span>
+            <a name="small_seal_data_0">4.4.24 <span class="changed">Small Seal data</span>
             </a>
          </h4>
          <p>
-            <span class="changed">The Seal data are represented as attributes. The attributes <tt>kSEAL_CCZSrc</tt>,
+            <span class="changed">The Small Seal data are represented as attributes. The attributes <tt>kSEAL_CCZSrc</tt>,
                     <tt>kSEAL_DYCSrc</tt>, <tt>kSEAL_QJZSrc</tt>, and <tt>kSEALTHXSrc</tt> refer to
                     ideograph collections which identify encoded characters. The attribute <tt>kSEAL_MCJK</tt>
-                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal character.
-                    The attribute <tt>kSEAL_Rad</tt> provide the radical number associated with each Seal character
-                    (1 to 540) along with the radical code point expressed in hexadecimal notation.</span>
+                    corresponds to a single CJK Unified ideograph which may be used to refer to the Small Seal
+                    character. The attribute <tt>kSEAL_Rad</tt> provide the radical number associated with each
+                    Small Seal character (1 to 540) along with the radical code point expressed in hexadecimal
+                    notation.</span>
          </p>
          <p>
             <i>
@@ -2912,6 +2912,22 @@
             <a name="Modifications">Modifications</a>
          </h2>
          <p>This section indicates the changes introduced by each revision.</p>
+         <div class="changed">
+            <p>
+               <b>Revision 39 d2</b>
+            </p>
+            <ul>
+               <li>Removed value for the <tt>blk</tt> attribute previously added in Revision 39:
+                        <tt>Chisoi</tt>.
+                    </li>
+               <li>Removed value for the <tt>script</tt> attribute previously added in Revision 39:
+                        <tt>Chis</tt>.
+                    </li>
+               <li>Added patterns for the <tt>na</tt> attribute: <tt>SMALL SEAL CHARACTER-#</tt>
+                  <tt>JURCHEN CHARACTER-#</tt>.
+                    </li>
+            </ul>
+         </div>
          <div class="changed">
             <p>
                <b>Revision 39</b>
