@@ -1,0 +1,48 @@
+# Brahmi: MINIMIZING Virama in Brahmi
+# https://github.com/unicode-org/sew/issues/192
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
+CorrespondTo [\N{10A3F:KHAROSHTHI VIRAMA}]
+    UpTo: Block                   (Brahmi vs Kharoshthi),
+          Script                  (Brahmi vs Kharoshthi),
+          Script_Extensions       (Brahmi vs Kharoshthi),
+          Indic_Syllabic_Category (Pure_Killer      vs Invisible_Stacker),
+          Line_Break              (Virama_Final     vs Combining_Mark),
+          Indic_Conjunct_Break    (Extend           vs Linker)
+
+Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
+CorrespondTo [\N{11070:BRAHMI SIGN OLD TAMIL VIRAMA}]
+    UpTo: Indic_Positional_Category (Not_Applicable vs Top),
+          Line_Break                (Virama_Final   vs Combining_Mark)
+
+Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
+CorrespondTo [\N{11046:BRAHMI VIRAMA}]
+    UpTo: Indic_Positional_Category (Not_Applicable vs Top),
+          Indic_Syllabic_Category   (Pure_Killer    vs Virama),
+          Line_Break                (Virama_Final   vs Virama)
+
+Propertywise [\N{1107E:BRAHMI MINIMIZING VIRAMA}]
+CorrespondTo [\N{1BF2:BATAK PANGOLAT}]
+    UpTo: Block                   (Brahmi vs Batak),
+          Script                  (Brahmi vs Batak),
+          Script_Extensions       (Brahmi vs Batak),
+          Indic_Syllabic_Category   (Pure_Killer     vs Reordering_Killer),
+          Indic_Positional_Category (Not_Applicable  vs Right),
+          General_Category          (Nonspacing_Mark vs Spacing_Mark),
+          Bidi_Class                (Nonspacing_Mark vs Left_To_Right),
+          Joining_Type              (Transparent     vs Non_Joining),
+          Case_Ignorable            (Yes             vs No),
+          Other_Grapheme_Extend     (No              vs Yes)
+
+end Ignoring;
+
+end Ignoring;

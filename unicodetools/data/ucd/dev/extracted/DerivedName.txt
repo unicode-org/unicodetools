@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-07-30, 15:34:51 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -30658,6 +30658,7 @@ FFFD          ; REPLACEMENT CHARACTER
 11073         ; BRAHMI VOWEL SIGN OLD TAMIL SHORT E
 11074         ; BRAHMI VOWEL SIGN OLD TAMIL SHORT O
 11075         ; BRAHMI LETTER OLD TAMIL LLA
+1107E         ; BRAHMI MINIMIZING VIRAMA
 1107F         ; BRAHMI NUMBER JOINER
 11080         ; KAITHI SIGN CANDRABINDU
 11081         ; KAITHI SIGN ANUSVARA
@@ -46582,6 +46583,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172808
+# Total code points: 172809
 
 # EOF
