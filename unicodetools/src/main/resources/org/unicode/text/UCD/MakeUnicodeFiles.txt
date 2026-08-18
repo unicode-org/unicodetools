@@ -1318,16 +1318,24 @@ File:	ArabicShaping
 # This file is a normative contributory data file in the
 # Unicode Character Database.
 #
-# This file defines the Joining_Type and Joining_Group property
+# This file lists the Joining_Type and Joining_Group property
 # values for Arabic, Syriac, N'Ko, Mandaic, and Manichaean positional
 # shaping, repeating in machine readable form the information
 # exemplified in various tables of The Unicode Standard core specification.
 #
-# This file also defines Joining_Type values for Mongolian, Phags-pa,
+# This file also lists Joining_Type values for Mongolian, Phags-pa,
 # Psalter Pahlavi, Sogdian, Old Uyghur, Chorasmian, and Adlam positional
 # shaping, and Joining_Type and Joining_Group values for Hanifi Rohingya
 # positional shaping, which are not listed in tables in the core
 # specification.
+#
+# The full definition of these properties are found in the derived property
+# files DerivedJoiningType.txt and DerivedJoiningGroup.txt.
+#
+# Implementers are strongly encouraged to use the derived property files
+# DerivedJoiningType.txt and DerivedJoiningGroup.txt instead of the current
+# file, to avoid the complication of having to calculate the Joining_Type=T
+# values based on General_Category.
 #
 # Script          Section  Table(s)
 #
@@ -1417,13 +1425,6 @@ File:	ArabicShaping
 # - Those that are not explicitly listed and that are of General_Category Mn, Me, or Cf
 #   are Joining_Type=T.
 # - All others not explicitly listed are Joining_Type=U.
-#
-# For an explicit listing of all characters of Joining_Type=T, see
-# the derived property file DerivedJoiningType.txt.
-# For an implementation that needs to parse for the values of
-# Joining_Type, it is recommended to use DerivedJoiningType.txt
-# instead of ArabicShaping.txt, to avoid the separate required step of
-# calculating the set for Joining_Type=T based on General_Category values.
 #
 # #############################################################
 Property: SPECIAL
