@@ -980,7 +980,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Bengali),
                             new DoNotEmitSubsection(
-                                    "Gurmukhi, from Table 12-16",
+                                    "Gurmukhi, from Table 12-17",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -988,7 +988,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Gurmukhi),
                             new DoNotEmitSubsection(
-                                    "Gujarati, from Table 12-20",
+                                    "Gujarati, from Table 12-21",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -996,7 +996,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Gujarati),
                             new DoNotEmitSubsection(
-                                    "Oriya (Odia), from Table 12-22",
+                                    "Oriya (Odia), from Table 12-23",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1004,7 +1004,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Oriya),
                             new DoNotEmitSubsection(
-                                    "Tamil, from Table 12-27",
+                                    "Tamil, from Table 12-28",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1012,7 +1012,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Tamil),
                             new DoNotEmitSubsection(
-                                    "Telugu, from Table 12-31",
+                                    "Telugu, from Table 12-32",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1020,7 +1020,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Telugu),
                             new DoNotEmitSubsection(
-                                    "Kannada, from Table 12-32",
+                                    "Kannada, from Table 12-33",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1028,7 +1028,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Kannada),
                             new DoNotEmitSubsection(
-                                    "Malayalam, from Table 12-34",
+                                    "Malayalam, from Table 12-35",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
