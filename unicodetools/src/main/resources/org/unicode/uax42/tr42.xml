@@ -21,20 +21,23 @@
             </author>
         </authors>
         <revhistory>
-            <revision revnumber="39" date="2026-05-15" edit="changed">
+            <revision revnumber="39" date="2026-08-20" edit="changed">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>18.0</val>.
                     </change>
                     <change>New values for the <attr>blk</attr> attribute: <val>Archaic_Cuneiform_Numerals</val>,
-                        <val>Bengali_Sup</val>, <val>Chisoi</val>, <val>Jurchen</val>, <val>Jurchen_Radicals</val>,
+                        <val>Bengali_Sup</val>, <val>Jurchen</val>, <val>Jurchen_Radicals</val>,
                         <val>Misc_Arrows_Ext</val>, <val>Music_Sup</val>, <val>Seal</val>.
                     </change>
                     <change>New values for the <attr>jg</attr> attribute: <val>Crown_Ain</val>, <val>Crown_Beh</val>,
                         <val>Crown_Feh</val>, <val>Crown_Hah</val>, <val>Crown_Heh</val>, <val>Crown_Kaf</val>,
                         <val>Crown_Meem</val>, <val>Crown_Sad</val>, <val>Crown_Seen</val>, <val>Crown_Tah</val>.
                     </change>
-                    <change>New values for the <attr>script</attr> attribute: <val>Chis</val>, <val>Jurc</val>,
-                        <val>Pcun</val>, <val>Seal</val>.
+                    <change>Added patterns for the <attr>na</attr> attribute: <val>SMALL SEAL CHARACTER-#</val>
+                        <val>JURCHEN CHARACTER-#</val>.
+                    </change>
+                    <change>New values for the <attr>script</attr> attribute: <val>Jurc</val>, <val>Pcun</val>,
+                        <val>Seal</val>.
                     </change>
                     <change>New code point attributes for Jurchen: <val>kJURC_NCReading</val>, <val>kJURC_Numeric</val>,
                         <val>kJURC_RSUnicode</val>, <val>kJURC_Src</val>.
@@ -1263,9 +1266,10 @@
                 <para><edit flag="changed">The Seal data are represented as attributes. The attributes <attr>kSEAL_CCZSrc</attr>,
                     <attr>kSEAL_DYCSrc</attr>, <attr>kSEAL_QJZSrc</attr>, and <attr>kSEALTHXSrc</attr> refer to
                     ideograph collections which identify encoded characters. The attribute <attr>kSEAL_MCJK</attr>
-                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal character.
-                    The attribute <attr>kSEAL_Rad</attr> provide the radical number associated with each Seal character
-                    (1 to 540) along with the radical code point expressed in hexadecimal notation.</edit></para>
+                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal
+                    character. The attribute <attr>kSEAL_Rad</attr> provides the radical number associated with each
+                    Seal character (1 to 540) along with the radical code point expressed in hexadecimal
+                    notation.</edit></para>
                 <xi:include href="./fragments/Seal.xml"/>
             </section>
 

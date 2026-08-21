@@ -49,7 +49,7 @@
                </tr>
                <tr>
                   <td valign="top">Date</td>
-                  <td valign="top" class="changed">2026-05-15</td>
+                  <td valign="top" class="changed">2026-08-20</td>
                </tr>
                <tr>
                   <td valign="top">This Version</td>
@@ -669,8 +669,8 @@
                    "TANGUT IDEOGRAPH-#" |
                    "KHITAN SMALL SCRIPT CHARACTER-#" |
                    "NUSHU CHARACTER-#" |
-                   "SEAL CHARACTER-#" |
-                   "JURCHEN CHARACTER-#" |
+                   <span class="changed">"SMALL SEAL CHARACTER-#" |
+                   "JURCHEN CHARACTER-#" |</span>
                    xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
                  }?
 </tt>
@@ -793,7 +793,6 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
-                  <span class="changed">| "Chisoi"</span>
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -1634,8 +1633,8 @@
            | "Avst"
            | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
            | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
-           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | <span class="changed">"Chis"</span>
-           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
+           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
            | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
            | "Egyp" | "Elba" | "Elym" | "Ethi"
            | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
@@ -2145,9 +2144,10 @@
             <span class="changed">The Seal data are represented as attributes. The attributes <tt>kSEAL_CCZSrc</tt>,
                     <tt>kSEAL_DYCSrc</tt>, <tt>kSEAL_QJZSrc</tt>, and <tt>kSEALTHXSrc</tt> refer to
                     ideograph collections which identify encoded characters. The attribute <tt>kSEAL_MCJK</tt>
-                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal character.
-                    The attribute <tt>kSEAL_Rad</tt> provide the radical number associated with each Seal character
-                    (1 to 540) along with the radical code point expressed in hexadecimal notation.</span>
+                    corresponds to a single CJK Unified ideograph which may be used to refer to the Seal
+                    character. The attribute <tt>kSEAL_Rad</tt> provides the radical number associated with each
+                    Seal character (1 to 540) along with the radical code point expressed in hexadecimal
+                    notation.</span>
          </p>
          <p>
             <i>
@@ -2920,15 +2920,18 @@
                <li>New value for the <tt>age</tt> attribute: <tt>18.0</tt>.
                     </li>
                <li>New values for the <tt>blk</tt> attribute: <tt>Archaic_Cuneiform_Numerals</tt>,
-                        <tt>Bengali_Sup</tt>, <tt>Chisoi</tt>, <tt>Jurchen</tt>, <tt>Jurchen_Radicals</tt>,
+                        <tt>Bengali_Sup</tt>, <tt>Jurchen</tt>, <tt>Jurchen_Radicals</tt>,
                         <tt>Misc_Arrows_Ext</tt>, <tt>Music_Sup</tt>, <tt>Seal</tt>.
                     </li>
                <li>New values for the <tt>jg</tt> attribute: <tt>Crown_Ain</tt>, <tt>Crown_Beh</tt>,
                         <tt>Crown_Feh</tt>, <tt>Crown_Hah</tt>, <tt>Crown_Heh</tt>, <tt>Crown_Kaf</tt>,
                         <tt>Crown_Meem</tt>, <tt>Crown_Sad</tt>, <tt>Crown_Seen</tt>, <tt>Crown_Tah</tt>.
                     </li>
-               <li>New values for the <tt>script</tt> attribute: <tt>Chis</tt>, <tt>Jurc</tt>,
-                        <tt>Pcun</tt>, <tt>Seal</tt>.
+               <li>Added patterns for the <tt>na</tt> attribute: <tt>SMALL SEAL CHARACTER-#</tt>
+                  <tt>JURCHEN CHARACTER-#</tt>.
+                    </li>
+               <li>New values for the <tt>script</tt> attribute: <tt>Jurc</tt>, <tt>Pcun</tt>,
+                        <tt>Seal</tt>.
                     </li>
                <li>New code point attributes for Jurchen: <tt>kJURC_NCReading</tt>, <tt>kJURC_Numeric</tt>,
                         <tt>kJURC_RSUnicode</tt>, <tt>kJURC_Src</tt>.
