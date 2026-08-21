@@ -44,7 +44,7 @@ public class Settings {
         }
     };
 
-    public static final ReleasePhase latestVersionPhase = ReleasePhase.BETA;
+    public static final ReleasePhase latestVersionPhase = ReleasePhase.GAMMA;
 
     public static final String lastVersion = "17.0.0"; // last released version
 
