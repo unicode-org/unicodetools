@@ -1,5 +1,5 @@
 # File: MathClassEx.txt
-# Revision: 16.0
+# Revision: 16
 # Date: 2026-08-25
 #
 # © 2026 Unicode®, Inc.
