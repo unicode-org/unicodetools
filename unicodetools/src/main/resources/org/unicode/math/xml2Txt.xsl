@@ -43,7 +43,7 @@
     <xsl:param name="unicode"/>
     <xsl:param name="tr25"/>
     <xsl:text># File: MathClass.txt
-# Revision: </xsl:text><xsl:value-of select="$unicode"/><xsl:text>
+# Revision: </xsl:text><xsl:value-of select="$tr25"/><xsl:text>
 # Date: </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/><xsl:text>
 #
 # © </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]')"/><xsl:text> Unicode®, Inc.

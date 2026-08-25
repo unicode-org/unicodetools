@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mathchars SYSTEM "MathClassEx.dtd">
-<mathchars unicode="17.0" tr25="16">
+<mathchars unicode="17.0" tr25="16.0">
    <char cp="0020" mathclass="S"/>
    <char cp="0021" mathclass="C" note="Factorial spacing"/>
    <char cp="0023" mathclass="N"/>
@@ -899,7 +899,6 @@
    <char cp="2606" mathclass="B" note="star, open"/>
    <char cp="2609" mathclass="N"/>
    <char cp="260C" mathclass="N"/>
-   <char cp="2612" mathclass="N"/>
    <char cp="263D" mathclass="N"/>
    <char cp="263E" mathclass="N"/>
    <char cp="263F" mathclass="N"/>

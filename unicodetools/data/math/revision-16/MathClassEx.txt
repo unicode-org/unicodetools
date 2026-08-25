@@ -1,8 +1,8 @@
 # File: MathClassEx.txt
 # Revision: 16.0
-# Date: 2025-07-01
+# Date: 2026-08-25
 #
-# © 2025 Unicode®, Inc.
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr25/
@@ -979,7 +979,6 @@
 2606;B;star;HTML-MathML;star, open # So (☆) WHITE STAR
 2609;N;;; # So (☉) SUN
 260C;N;;; # So (☌) CONJUNCTION
-2612;N;;; # So (☒) BALLOT BOX WITH X
 263D;N;;; # So (☽) FIRST QUARTER MOON
 263E;N;;; # So (☾) LAST QUARTER MOON
 263F;N;;; # So (☿) MERCURY
