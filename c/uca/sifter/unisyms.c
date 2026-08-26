@@ -47,6 +47,8 @@
  *   2026-Feb-18 Update CTT table ID for 18.0.
  *               Add implicit weights for Jurchen and Seal.
  *   2026-Mar-16 Adjustments for weighting of FFFE and FFFF.
+ *   2026-Aug-25 Add Jurchen and Small Seal to unisift_PrintSymWtTree.
+ *               Extend symbol range for CJK on Plane 3.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -2638,7 +2640,7 @@ void unisift_PrintSymWtTree ( FILE *fd )
     fputs ( "<RFB02> % Symbol for first element of computed weights for Nushu ideographs\n", fd );
     fputs ( "<RFB03> % Symbol for first element of computed weights for Khitan Small Script\n", fd );
     fputs ( "<RFB04> % Symbol for first element of computed weights for Jurchen ideographs\n", fd );
-    fputs ( "<RFB05> % Symbol for first element of computed weights for Seal ideographs\n", fd );
+    fputs ( "<RFB05> % Symbol for first element of computed weights for Small Seal ideographs\n", fd );
     fputs ( "<RFB40>..<RFB41> % Symbols for first element of computed weights for core Han unified ideographs\n", fd );
     fputs ( "<RFB80> % Symbol for first element of computed weights for Han unified ideographs Ext-A\n", fd );
     fputs ( "<RFB84>..<RFB86> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );
