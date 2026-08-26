@@ -1320,7 +1320,7 @@
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
 
   code-point-attributes &= attribute kUnihanCore2020
-    { xsd:string { pattern="[GHJKMPT]{1,7}" } }?
+    {  "" | xsd:string { pattern="[GHJKMPT]{1,7}" } }?
 
   code-point-attributes &= attribute kVietnamese
     { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
@@ -1403,7 +1403,7 @@
     { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &= attribute kEH_Func
-    { list { ("/" | xsd:string { pattern='[^\t]+' } )+} }?
+    { "" | list { ( "/" | xsd:string { pattern='[^\t]+' } )+} }?
 
   code-point-attributes &= attribute kEH_FVal
     { list { ("|" | xsd:string { pattern="[BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?>&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+" } )+} }?
