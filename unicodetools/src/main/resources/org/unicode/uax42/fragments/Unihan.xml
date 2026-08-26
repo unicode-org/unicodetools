@@ -324,7 +324,7 @@
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
 
   code-point-attributes &amp;= attribute kUnihanCore2020
-    {  "" | xsd:string { pattern="[GHJKMPT]{1,7}" } }?
+    {  <edit flag='changed'>"" | </edit>xsd:string { pattern="[GHJKMPT]{1,7}" } }?
 
   code-point-attributes &amp;= attribute kVietnamese
     { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
