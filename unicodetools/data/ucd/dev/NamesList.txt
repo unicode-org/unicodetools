@@ -2,19 +2,7 @@
 @@@	The Unicode Standard 18.0.0
 @@@+	NamesList-18.0.0.txt
 @+	Generation Date: 2026-08-10, 15:32:05 GMT
-	Unicode 18.0.0 names list.
-	Adjusted for repertoire changes post UTC188.
-	Repertoire synched with UnicodeData-18.0.0d10.txt.
-	Beta review fixes.
-	Remove Jain from annotations for 11300 and 11302. (AI 188-A66)
-	Remove Chisoi from repertoire.
-	Added annotation to 05C8.
-	Updated citations for several ISO standards.
-	Add a number of new xrefs for math symbols.
-	Add notice and adjust one annotation for Cossic symbols.
-	Updates to xrefs for CJK strokes.
-	Add notice pointing to Appendix F for CJK stroke examples.
-	Add annotations and xrefs for 1D1D2. (AI 188-A65)
+	Unicode 18.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
