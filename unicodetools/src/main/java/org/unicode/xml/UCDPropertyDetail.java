@@ -2578,7 +2578,7 @@ public class UCDPropertyDetail {
                     VersionInfo.getInstance(18, 0, 0),
                     254,
                     false,
-                    false,
+                    true,
                     false,
                     false,
                     false);
