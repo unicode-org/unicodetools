@@ -8,8 +8,8 @@
     <title>Unicode Character Database in XML</title>
 
     <articleinfo>
-        <unicode:tr number='42' class='uax' version='18.0.0 beta'
-                    stage='proposed-update'
+        <unicode:tr number='42' class='uax' version='18.0.0'
+                    stage='approved'
                     schema='rnc' prevrev='38'/>
         <copyright>
             <year>2026</year>
@@ -21,7 +21,7 @@
             </author>
         </authors>
         <revhistory>
-            <revision revnumber="39" date="2026-08-26" edit="changed">
+            <revision revnumber="40" date="2026-08-27">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>18.0</val>.
                     </change>
@@ -55,6 +55,9 @@
                     </change>
                 </changes>
             </revision>
+            <proposed_update>Revision 39 being a proposed update, only changes between revisions 38 and 40 are
+                noted here.
+            </proposed_update>
             <revision revnumber="38" date="2025-08-13">
                 <changes>
                     <change><reissued>Reissued</reissued> for Unicode 17.0.0.
@@ -88,11 +91,11 @@
                     </change>
                     <change>New attribute for the <attr>kTayNumeric</attr> property.
                     </change>
-                    <change><edit flag='changed'>Renamed the <attr>kRSTUnicode</attr> property to <attr>kTGT_RSUnicode</attr>.</edit>
+                    <change>Renamed the <attr>kRSTUnicode</attr> property to <attr>kTGT_RSUnicode</attr>.
                     </change>
-                    <change><edit flag='changed'>Renamed the <attr>kSrc_NushuDuben</attr> property to <attr>kNSHU_DubenSrc</attr>.</edit>
+                    <change>Renamed the <attr>kSrc_NushuDuben</attr> property to <attr>kNSHU_DubenSrc</attr>.
                     </change>
-                    <change><edit flag='changed'>Renamed the <attr>kReading</attr> property to <attr>kNSHU_Reading</attr>.</edit>
+                    <change>Renamed the <attr>kReading</attr> property to <attr>kNSHU_Reading</attr>.
                     </change>
                     <change>Removed attributes for deprecated properties: <attr>Gr_Link</attr>, <attr>Hyphen</attr>,
                         <attr>isc</attr>, <attr>kGB7</attr>, <attr>kJa</attr>, <attr>XO_NFC</attr>, <attr>XO_NFD</attr>,
@@ -685,7 +688,7 @@
             some of the data is needed.
         </para>
         <para>This annex presents only the XML representation format of the UCD. The data itself is part of the <ulink
-                url='https://www.unicode.org/reports/tr41/tr41-36.html#UCD'>Unicode Character Database</ulink>.
+                url='https://www.unicode.org/reports/tr41/tr41-38.html#UCD'>Unicode Character Database</ulink>.
         </para>
     </section>
 
@@ -708,7 +711,7 @@
             </para>
             <para>Our schema is defined using English. However, a useful subset of the validity constraints can be
                 captured using a schema language, thereby simplifying the task of validating documents. We have chosen
-                Relax NG [<ulink url='https://www.unicode.org/reports/tr41/tr41-36.html#ISO19757'>ISO 19757</ulink>],
+                Relax NG [<ulink url='https://www.unicode.org/reports/tr41/tr41-38.html#ISO19757'>ISO 19757</ulink>],
                 in the compact syntax , as the schema language. It is important to stress that the schema which is
                 defined in English imposes more constraints on the documents than can be validated with the Relax NG
                 schema.
@@ -797,7 +800,7 @@
         </para>
         <para>It is recommended that if the document purports to represent the UCD of some Unicode version, the
             <elem>description</elem> be selected in accord with the rules listed in <ulink
-                    url='https://www.unicode.org/reports/tr41/tr41-36.html#Versions'>[Versions]</ulink>; and
+                    url='https://www.unicode.org/reports/tr41/tr41-38.html#Versions'>[Versions]</ulink>; and
             conversely, that documents which do not purport to represent the UCD be described as such.
         </para>
         <!--Manual--><xi:include href="./fragments/description.xml"/>
@@ -1241,13 +1244,13 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title><edit flag="changed">Jurchen data</edit></title>
-                <para><edit flag="changed">The Jurchen data are represented as attributes. The attribute <attr>kJURC_NCReading</attr>
+                <title>Jurchen data</title>
+                <para>The Jurchen data are represented as attributes. The attribute <attr>kJURC_NCReading</attr>
                     indicates a reading given in Nǚzhēnwén Cídiǎn (Jīn). The attribute <attr>kJURC_Numeric</attr>
                     provides the numeric value of the Jurchen character. For the attribute <attr>kJURC_RSUnicode</attr>,
                     the first number is the radical number, and the second number is the total stroke count of the
                     Jurchen character. The attribute <attr>kJURC_Src</attr> refers to ideograph collections which
-                    identify encoded characters.</edit></para>
+                    identify encoded characters.</para>
                 <xi:include href="./fragments/Jurchen.xml"/>
             </section>
 
@@ -1262,14 +1265,14 @@
 
             <!--____________________________________________________________________-->
             <section>
-                <title><edit flag="changed">Seal data</edit></title>
-                <para><edit flag="changed">The Seal data are represented as attributes. The attributes <attr>kSEAL_CCZSrc</attr>,
+                <title>Seal data</title>
+                <para>The Seal data are represented as attributes. The attributes <attr>kSEAL_CCZSrc</attr>,
                     <attr>kSEAL_DYCSrc</attr>, <attr>kSEAL_QJZSrc</attr>, and <attr>kSEALTHXSrc</attr> refer to
                     ideograph collections which identify encoded characters. The attribute <attr>kSEAL_MCJK</attr>
                     corresponds to a single CJK Unified ideograph which may be used to refer to the Seal
                     character. The attribute <attr>kSEAL_Rad</attr> provides the radical number associated with each
                     Seal character (1 to 540) along with the radical code point expressed in hexadecimal
-                    notation.</edit></para>
+                    notation.</para>
                 <xi:include href="./fragments/Seal.xml"/>
             </section>
 
@@ -1277,8 +1280,8 @@
             <section>
                 <title>Tangut data</title>
                 <para>The Tangut data are represented as attributes. The attribute <attr>kTGT_MergedSrc</attr>
-                    indicates the source reference for the character. <edit flag="changed">The attribute <attr>kTGT_Numeric</attr>
-                    provides the numeric value of the Tangut character.</edit> The attribute <attr>kTGT_RSUnicode</attr>
+                    indicates the source reference for the character. The attribute <attr>kTGT_Numeric</attr>
+                    provides the numeric value of the Tangut character. The attribute <attr>kTGT_RSUnicode</attr>
                     represents the radical stroke index.
                 </para>
                 <xi:include href="./fragments/Tangut.xml"/>

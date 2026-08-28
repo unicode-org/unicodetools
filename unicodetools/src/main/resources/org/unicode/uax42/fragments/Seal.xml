@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Seal data" id='schema.seal'><edit flag='changed'>
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Seal data" id='schema.seal'>
   code-point-attributes &amp;=
     attribute kSEAL_CCZSrc { xsd:string { pattern="C-\d{5}" } }?
 
@@ -17,4 +17,4 @@
 
   code-point-attributes &amp;=
     attribute kSEAL_THXSrc { xsd:string { pattern="TH-(\d{5}|X\d{3}|Y\d{3})" } }?
-</edit></ucdxml:block>
+</ucdxml:block>

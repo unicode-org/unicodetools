@@ -30,14 +30,13 @@
          </tbody>
       </table>
       <div class="body">
-         <h2 style="text-align:center">
-            <span class="changed">Proposed Update </span>Unicode® Standard Annex #42</h2>
+         <h2 style="text-align:center">Unicode® Standard Annex #42</h2>
          <h1 style="text-align:center">Unicode Character Database in XML</h1>
          <table class="simple" width="90%">
             <tbody>
                <tr>
                   <td valign="top" width="20%">Version</td>
-                  <td valign="top" class="changed">Unicode 18.0.0 beta</td>
+                  <td valign="top">Unicode 18.0.0</td>
                </tr>
                <tr>
                   <td valign="top">
@@ -49,17 +48,17 @@
                </tr>
                <tr>
                   <td valign="top">Date</td>
-                  <td valign="top" class="changed">2026-08-26</td>
+                  <td valign="top">2026-08-27</td>
                </tr>
                <tr>
                   <td valign="top">This Version</td>
-                  <td valign="top" class="changed">
-                     <a href="https://www.unicode.org/reports/tr42/tr42-39.html">https://www.unicode.org/reports/tr42/tr42-39.html</a>
+                  <td valign="top">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-40.html">https://www.unicode.org/reports/tr42/tr42-40.html</a>
                   </td>
                </tr>
                <tr>
                   <td valign="top">Previous Version</td>
-                  <td valign="top" class="changed">
+                  <td valign="top">
                      <a href="https://www.unicode.org/reports/tr42/tr42-38.html">https://www.unicode.org/reports/tr42/tr42-38.html</a>
                   </td>
                </tr>
@@ -77,14 +76,14 @@
                </tr>
                <tr>
                   <td valign="top">Schema</td>
-                  <td valign="top" class="changed">
-                     <a href="https://www.unicode.org/reports/tr42/tr42-39.rnc">https://www.unicode.org/reports/tr42/tr42-39.rnc</a>
+                  <td valign="top">
+                     <a href="https://www.unicode.org/reports/tr42/tr42-40.rnc">https://www.unicode.org/reports/tr42/tr42-40.rnc</a>
                   </td>
                </tr>
                <tr>
                   <td valign="top">Revision</td>
-                  <td valign="top" class="changed">
-                     <a href="#Modifications">39</a>
+                  <td valign="top">
+                     <a href="#Modifications">40</a>
                   </td>
                </tr>
             </tbody>
@@ -96,13 +95,10 @@
          <h4>
             <i>Status</i>
          </h4>
-         <p class="changed">
-            <i>This is a <b>
-                  <span style="color:#ff0000">draft</span>
-               </b> document which may be updated, replaced, or
-            superseded by other documents at any time. Publication does not imply endorsement by the Unicode
-            Consortium.  This is not a stable document; it is inappropriate to cite this document as other than a
-            work in progress.</i>
+         <p>
+            <i>This document has been reviewed by Unicode members and other interested parties, and has been
+          approved for publication by the Unicode Consortium. This is a stable document and may be used as reference
+          material or cited as a normative reference by other specifications.</i>
          </p>
          <blockquote>
             <p>
@@ -196,15 +192,11 @@
                         </li>
                         <li>4.4.21    <a href="#miscellaneous_properties_0">Miscellaneous properties</a>
                         </li>
-                        <li>4.4.22    <a href="#jurchen_data_0">
-                              <span class="changed">Jurchen data</span>
-                           </a>
+                        <li>4.4.22    <a href="#jurchen_data_0">Jurchen data</a>
                         </li>
                         <li>4.4.23    <a href="#nushu_data_0">Nushu data</a>
                         </li>
-                        <li>4.4.24    <a href="#seal_data_0">
-                              <span class="changed">Seal data</span>
-                           </a>
+                        <li>4.4.24    <a href="#seal_data_0">Seal data</a>
                         </li>
                         <li>4.4.25    <a href="#tangut_data_0">Tangut data</a>
                         </li>
@@ -276,7 +268,7 @@
             representing all the characters, or by not representing all the properties. This can be useful when only
             some of the data is needed.
         </p>
-         <p>This annex presents only the XML representation format of the UCD. The data itself is part of the <a href="https://www.unicode.org/reports/tr41/tr41-36.html#UCD">Unicode Character Database</a>.
+         <p>This annex presents only the XML representation format of the UCD. The data itself is part of the <a href="https://www.unicode.org/reports/tr41/tr41-38.html#UCD">Unicode Character Database</a>.
         </p>
          <h2>
             <a name="overall_schema_0">2 Overall schema</a>
@@ -296,7 +288,7 @@
             </p>
          <p>Our schema is defined using English. However, a useful subset of the validity constraints can be
                 captured using a schema language, thereby simplifying the task of validating documents. We have chosen
-                Relax NG [<a href="https://www.unicode.org/reports/tr41/tr41-36.html#ISO19757">ISO 19757</a>],
+                Relax NG [<a href="https://www.unicode.org/reports/tr41/tr41-38.html#ISO19757">ISO 19757</a>],
                 in the compact syntax , as the schema language. It is important to stress that the schema which is
                 defined in English imposes more constraints on the documents than can be validated with the Relax NG
                 schema.
@@ -421,7 +413,7 @@
             which is meant to describe what the XML document purports to describe.
         </p>
          <p>It is recommended that if the document purports to represent the UCD of some Unicode version, the
-            <tt>description</tt> be selected in accord with the rules listed in <a href="https://www.unicode.org/reports/tr41/tr41-36.html#Versions">[Versions]</a>; and
+            <tt>description</tt> be selected in accord with the rules listed in <a href="https://www.unicode.org/reports/tr41/tr41-38.html#Versions">[Versions]</a>; and
             conversely, that documents which do not purport to represent the UCD be described as such.
         </p>
          <p>
@@ -642,7 +634,7 @@
                   | "15.0" | "15.1"
                   | "16.0"
                   | "17.0"
-                  <span class="changed">| "18.0"</span>
+                  | "18.0"
                   | "unassigned"
                   }?
 </tt>
@@ -669,8 +661,8 @@
                    "TANGUT IDEOGRAPH-#" |
                    "KHITAN SMALL SCRIPT CHARACTER-#" |
                    "NUSHU CHARACTER-#" |
-                   <span class="changed">"SMALL SEAL CHARACTER-#" |
-                   "JURCHEN CHARACTER-#" |</span>
+                   "SMALL SEAL CHARACTER-#" |
+                   "JURCHEN CHARACTER-#" |
                    xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
                  }?
 </tt>
@@ -763,7 +755,7 @@
                   | "Arabic_PF_A"
                   | "Arabic_PF_B"
                   | "Arabic_Sup"
-                  <span class="changed">| "Archaic_Cuneiform_Numerals"</span>
+                  | "Archaic_Cuneiform_Numerals"
                   | "Armenian"
                   | "Arrows"
                   | "ASCII"
@@ -774,7 +766,7 @@
                   | "Bassa_Vah"
                   | "Batak"
                   | "Bengali"
-                  <span class="changed">| "Bengali_Sup"</span>
+                  | "Bengali_Sup"
                   | "Beria_Erfe"
                   | "Bhaiksuki"
                   | "Block_Elements"
@@ -895,8 +887,8 @@
                   | "Jamo_Ext_A"
                   | "Jamo_Ext_B"
                   | "Javanese"
-                  <span class="changed">| "Jurchen"
-                  | "Jurchen_Radicals"</span>
+                  | "Jurchen"
+                  | "Jurchen_Radicals"
                   | "Kaithi"
                   | "Kaktovik_Numerals"
                   | "Kana_Ext_A"
@@ -956,7 +948,7 @@
                   | "Meroitic_Hieroglyphs"
                   | "Miao"
                   | "Misc_Arrows"
-                  <span class="changed">| "Misc_Arrows_Ext"</span>
+                  | "Misc_Arrows_Ext"
                   | "Misc_Math_Symbols_A"
                   | "Misc_Math_Symbols_B"
                   | "Misc_Pictographs"
@@ -971,7 +963,7 @@
                   | "Mro"
                   | "Multani"
                   | "Music"
-                  <span class="changed">| "Music_Sup"</span>
+                  | "Music_Sup"
                   | "Myanmar"
                   | "Myanmar_Ext_A"
                   | "Myanmar_Ext_B"
@@ -1021,7 +1013,7 @@
                   | "Runic"
                   | "Samaritan"
                   | "Saurashtra"
-                  <span class="changed">| "Seal"</span>
+                  | "Seal"
                   | "Sharada"
                   | "Sharada_Sup"
                   | "Shavian"
@@ -1356,10 +1348,10 @@
     attribute jg { "African_Feh" | "African_Noon" | "African_Qaf"
                  | "Ain" | "Alaph" | "Alef"
                  | "Beh" | "Beth" | "Burushaski_Yeh_Barree"
-                 <span class="changed">| "Crown_Ain" | "Crown_Beh" | "Crown_Feh"
+                 | "Crown_Ain" | "Crown_Beh" | "Crown_Feh"
                  | "Crown_Hah" | "Crown_Heh" | "Crown_Kaf"
                  | "Crown_Meem" | "Crown_Sad" | "Crown_Seen"
-                 | "Crown_Tah"</span>
+                 | "Crown_Tah"
                  | "Dal" | "Dalath_Rish"
                  | "E"
                  | "Farsi_Yeh" | "Fe" | "Feh" | "Final_Semkath"
@@ -1642,7 +1634,7 @@
            | "Hang" | "Hani" | "Hano" | "Hatr" | "Hebr" | "Hira"
            | "Hluw" | "Hmng" | "Hmnp" | "Hrkt" | "Hung"
            | "Ital"
-           | "Java" | <span class="changed">"Jurc"</span>
+           | "Java" | "Jurc"
            | "Kali" | "Kana" | "Kawi" | "Khar" | "Khmr" | "Khoj"
            | "Kits" | "Knda" | "Krai" | "Kthi"
            | "Lana" | "Laoo" | "Latn" | "Lepc" | "Limb" | "Lina"
@@ -1654,10 +1646,10 @@
            | "Nshu"
            | "Ogam" | "Olck" | "Onao" | "Orkh" | "Orya" | "Osge"
            | "Osma" | "Ougr"
-           | "Palm" | "Pauc" | <span class="changed">"Pcun"</span> | "Perm" | "Phag" | "Phli"
+           | "Palm" | "Pauc" | "Pcun" | "Perm" | "Phag" | "Phli"
            | "Phlp" | "Phnx" | "Plrd" | "Prti"
            | "Rjng" | "Rohg" | "Runr"
-           | "Samr" | "Sarb" | "Saur" | <span class="changed">"Seal"</span> | "Sgnw" | "Shaw"
+           | "Samr" | "Sarb" | "Saur" | "Seal" | "Sgnw" | "Shaw"
            | "Shrd" | "Sidd" | "Sidt" | "Sind" | "Sinh" | "Sogd"
            | "Sogo" | "Sora" | "Soyo" | "Sund" | "Sunu" | "Sylo"
            | "Syrc"
@@ -2083,17 +2075,14 @@
 </tt>
          </p>
          <h4>
-            <a name="jurchen_data_0">4.4.22 <span class="changed">Jurchen data</span>
-            </a>
+            <a name="jurchen_data_0">4.4.22 Jurchen data</a>
          </h4>
-         <p>
-            <span class="changed">The Jurchen data are represented as attributes. The attribute <tt>kJURC_NCReading</tt>
+         <p>The Jurchen data are represented as attributes. The attribute <tt>kJURC_NCReading</tt>
                     indicates a reading given in Nǚzhēnwén Cídiǎn (Jīn). The attribute <tt>kJURC_Numeric</tt>
                     provides the numeric value of the Jurchen character. For the attribute <tt>kJURC_RSUnicode</tt>,
                     the first number is the radical number, and the second number is the total stroke count of the
                     Jurchen character. The attribute <tt>kJURC_Src</tt> refers to ideograph collections which
-                    identify encoded characters.</span>
-         </p>
+                    identify encoded characters.</p>
          <p>
             <i>
                <a name="ucdxml:jurchen_data_49">[Jurchen data,
@@ -2101,7 +2090,6 @@
       </a>
         =</i>
             <tt style="white-space: pre;">
-               <span class="changed">
   code-point-attributes &amp;=
     attribute kJURC_NCReading { xsd:string { pattern='[^\t"]+' } }?
 
@@ -2113,8 +2101,7 @@
 
   code-point-attributes &amp;=
     attribute kJURC_Src { xsd:string { pattern="NC:\d{3}\.\d{2}(,\d{3}\.\d{2})?|SJ-B:\d{3}[A-Z]\.\d|JJ:\d{3}|N5131:X-\d{4}" } }?
-</span>
-            </tt>
+</tt>
          </p>
          <h4>
             <a name="nushu_data_0">4.4.23 Nushu data</a>
@@ -2137,18 +2124,15 @@
 </tt>
          </p>
          <h4>
-            <a name="seal_data_0">4.4.24 <span class="changed">Seal data</span>
-            </a>
+            <a name="seal_data_0">4.4.24 Seal data</a>
          </h4>
-         <p>
-            <span class="changed">The Seal data are represented as attributes. The attributes <tt>kSEAL_CCZSrc</tt>,
+         <p>The Seal data are represented as attributes. The attributes <tt>kSEAL_CCZSrc</tt>,
                     <tt>kSEAL_DYCSrc</tt>, <tt>kSEAL_QJZSrc</tt>, and <tt>kSEALTHXSrc</tt> refer to
                     ideograph collections which identify encoded characters. The attribute <tt>kSEAL_MCJK</tt>
                     corresponds to a single CJK Unified ideograph which may be used to refer to the Seal
                     character. The attribute <tt>kSEAL_Rad</tt> provides the radical number associated with each
                     Seal character (1 to 540) along with the radical code point expressed in hexadecimal
-                    notation.</span>
-         </p>
+                    notation.</p>
          <p>
             <i>
                <a name="ucdxml:seal_data_51">[Seal data,
@@ -2156,7 +2140,6 @@
       </a>
         =</i>
             <tt style="white-space: pre;">
-               <span class="changed">
   code-point-attributes &amp;=
     attribute kSEAL_CCZSrc { xsd:string { pattern="C-\d{5}" } }?
 
@@ -2174,15 +2157,14 @@
 
   code-point-attributes &amp;=
     attribute kSEAL_THXSrc { xsd:string { pattern="TH-(\d{5}|X\d{3}|Y\d{3})" } }?
-</span>
-            </tt>
+</tt>
          </p>
          <h4>
             <a name="tangut_data_0">4.4.25 Tangut data</a>
          </h4>
          <p>The Tangut data are represented as attributes. The attribute <tt>kTGT_MergedSrc</tt>
-                    indicates the source reference for the character. <span class="changed">The attribute <tt>kTGT_Numeric</tt>
-                    provides the numeric value of the Tangut character.</span> The attribute <tt>kTGT_RSUnicode</tt>
+                    indicates the source reference for the character. The attribute <tt>kTGT_Numeric</tt>
+                    provides the numeric value of the Tangut character. The attribute <tt>kTGT_RSUnicode</tt>
                     represents the radical stroke index.
                 </p>
          <p>
@@ -2195,8 +2177,8 @@
   code-point-attributes &amp;=
     attribute kTGT_MergedSrc { xsd:string { pattern="H2004-[AB]-\d{4}|H2021-\d{6}|L(19(86|97)|20(06|12))-\d{4}|L2008-\d{4}([AB]|-\d{4})?|N1966-\d{3}-\d{2}[0-9A-Z]{1,2}|N5217-\d{2}|N5314-\d{2}|S1968-\d{4}|UTN42-\d{3}" } }?
 
-  <span class="changed">code-point-attributes &amp;=
-    attribute kTGT_Numeric { xsd:string { pattern="NaN|[0-9]+|[0-9]+\.[0-9]+" } }?</span>
+  code-point-attributes &amp;=
+    attribute kTGT_Numeric { xsd:string { pattern="NaN|[0-9]+|[0-9]+\.[0-9]+" } }?
 
   code-point-attributes &amp;=
     attribute kTGT_RSUnicode { xsd:string { pattern="\d+\.\d+" } }?
@@ -2389,14 +2371,8 @@
          | xsd:string { pattern="VN-[023F][0-9A-F]{4}" }
     }?
 
-  <span class="removed">code-point-attributes &amp;= attribute kIRGDaeJaweon
-    { list { xsd:string { pattern="\d{4}\.\d{2}[01]" }+ } }?</span>
-
   code-point-attributes &amp;= attribute kIRGHanyuDaZidian
     { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" } }?
-
-  <span class="removed">code-point-attributes &amp;= attribute kIRGKangXi
-    { list { xsd:string { pattern="[01]\d{3}\.[0-7]\d[01]" }+ } }?</span>
 
   code-point-attributes &amp;= attribute kJapanese
     { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
@@ -2404,11 +2380,11 @@
   code-point-attributes &amp;= attribute kJapaneseKun
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
 
-  <span class="changed">code-point-attributes &amp;= attribute kJapaneseNewVariant
+  code-point-attributes &amp;= attribute kJapaneseNewVariant
     { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" } }?
 
   code-point-attributes &amp;= attribute kJapaneseOldVariant
-    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?</span>
+    { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
 
   code-point-attributes &amp;= attribute kJapaneseOn
     { list { xsd:string { pattern="[A-Z]+" }+ } }?
@@ -2538,7 +2514,7 @@
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
 
   code-point-attributes &amp;= attribute kUnihanCore2020
-    {  <span class="changed">"" | </span>xsd:string { pattern="[GHJKMPT]{1,7}" } }?
+    {  "" | xsd:string { pattern="[GHJKMPT]{1,7}" } }?
 
   code-point-attributes &amp;= attribute kVietnamese
     { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
@@ -2598,7 +2574,7 @@
     { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &amp;= attribute kEH_Func
-    { <span class="changed">"" | </span>list { ( "/" | xsd:string { pattern='[^\t]+' } )+} }?
+    { "" | list { ( "/" | xsd:string { pattern='[^\t]+' } )+} }?
 
   code-point-attributes &amp;= attribute kEH_FVal
     { list { ("|" | xsd:string { pattern="[BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?&gt;&amp;\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+" } )+} }?
@@ -2912,43 +2888,44 @@
             <a name="Modifications">Modifications</a>
          </h2>
          <p>This section indicates the changes introduced by each revision.</p>
-         <div class="changed">
-            <p>
-               <b>Revision 39</b>
-            </p>
-            <ul>
-               <li>New value for the <tt>age</tt> attribute: <tt>18.0</tt>.
+         <p>
+            <b>Revision 40</b>
+         </p>
+         <ul>
+            <li>New value for the <tt>age</tt> attribute: <tt>18.0</tt>.
                     </li>
-               <li>New values for the <tt>blk</tt> attribute: <tt>Archaic_Cuneiform_Numerals</tt>,
+            <li>New values for the <tt>blk</tt> attribute: <tt>Archaic_Cuneiform_Numerals</tt>,
                         <tt>Bengali_Sup</tt>, <tt>Jurchen</tt>, <tt>Jurchen_Radicals</tt>,
                         <tt>Misc_Arrows_Ext</tt>, <tt>Music_Sup</tt>, <tt>Seal</tt>.
                     </li>
-               <li>New values for the <tt>jg</tt> attribute: <tt>Crown_Ain</tt>, <tt>Crown_Beh</tt>,
+            <li>New values for the <tt>jg</tt> attribute: <tt>Crown_Ain</tt>, <tt>Crown_Beh</tt>,
                         <tt>Crown_Feh</tt>, <tt>Crown_Hah</tt>, <tt>Crown_Heh</tt>, <tt>Crown_Kaf</tt>,
                         <tt>Crown_Meem</tt>, <tt>Crown_Sad</tt>, <tt>Crown_Seen</tt>, <tt>Crown_Tah</tt>.
                     </li>
-               <li>Added patterns for the <tt>na</tt> attribute: <tt>SMALL SEAL CHARACTER-#</tt>
-                  <tt>JURCHEN CHARACTER-#</tt>.
+            <li>Added patterns for the <tt>na</tt> attribute: <tt>SMALL SEAL CHARACTER-#</tt>
+               <tt>JURCHEN CHARACTER-#</tt>.
                     </li>
-               <li>New values for the <tt>script</tt> attribute: <tt>Jurc</tt>, <tt>Pcun</tt>,
+            <li>New values for the <tt>script</tt> attribute: <tt>Jurc</tt>, <tt>Pcun</tt>,
                         <tt>Seal</tt>.
                     </li>
-               <li>New code point attributes for Jurchen: <tt>kJURC_NCReading</tt>, <tt>kJURC_Numeric</tt>,
+            <li>New code point attributes for Jurchen: <tt>kJURC_NCReading</tt>, <tt>kJURC_Numeric</tt>,
                         <tt>kJURC_RSUnicode</tt>, <tt>kJURC_Src</tt>.
                     </li>
-               <li>New code point attributes for Seal: <tt>kSEAL_CCZSrc</tt>, <tt>kSEAL_DYCSrc</tt>,
+            <li>New code point attributes for Seal: <tt>kSEAL_CCZSrc</tt>, <tt>kSEAL_DYCSrc</tt>,
                         <tt>kSEAL_MCJK</tt>, <tt>kSEAL_QJZSrc</tt>, <tt>kSEAL_Rad</tt>, <tt>kSEAL_THXSrc</tt>.
                     </li>
-               <li>New code point attribute for Tangut: <tt>kTGT_Numeric</tt>.
+            <li>New code point attribute for Tangut: <tt>kTGT_Numeric</tt>.
                     </li>
-               <li>New code point attributes for Unihan: <tt>kJapaneseNewVariant</tt>,
+            <li>New code point attributes for Unihan: <tt>kJapaneseNewVariant</tt>,
                         <tt>kJapaneseOldVariant</tt>.
                     </li>
-               <li>Removed code point attributes for Unihan: <tt>kIRGDaeJaweon</tt>,
+            <li>Removed code point attributes for Unihan: <tt>kIRGDaeJaweon</tt>,
                         <tt>kIRGKangXi</tt>.
                     </li>
-            </ul>
-         </div>
+         </ul>
+         <p>Revision 39 being a proposed update, only changes between revisions 38 and 40 are
+                noted here.
+            </p>
          <p>
             <b>Revision 38</b>
          </p>
@@ -2985,15 +2962,12 @@
                     </li>
             <li>New attribute for the <tt>kTayNumeric</tt> property.
                     </li>
-            <li>
-               <span class="changed">Renamed the <tt>kRSTUnicode</tt> property to <tt>kTGT_RSUnicode</tt>.</span>
-            </li>
-            <li>
-               <span class="changed">Renamed the <tt>kSrc_NushuDuben</tt> property to <tt>kNSHU_DubenSrc</tt>.</span>
-            </li>
-            <li>
-               <span class="changed">Renamed the <tt>kReading</tt> property to <tt>kNSHU_Reading</tt>.</span>
-            </li>
+            <li>Renamed the <tt>kRSTUnicode</tt> property to <tt>kTGT_RSUnicode</tt>.
+                    </li>
+            <li>Renamed the <tt>kSrc_NushuDuben</tt> property to <tt>kNSHU_DubenSrc</tt>.
+                    </li>
+            <li>Renamed the <tt>kReading</tt> property to <tt>kNSHU_Reading</tt>.
+                    </li>
             <li>Removed attributes for deprecated properties: <tt>Gr_Link</tt>, <tt>Hyphen</tt>,
                         <tt>isc</tt>, <tt>kGB7</tt>, <tt>kJa</tt>, <tt>XO_NFC</tt>, <tt>XO_NFD</tt>,
                         <tt>XO_NFKC</tt>, <tt>XO_NFKD</tt>, <tt>FC_NFKC</tt>.
