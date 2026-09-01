@@ -955,9 +955,11 @@ public class Indexer {
                         "https://www.unicode.org/Public/draft/charts",
                         "charindex-draft.html",
                         /* language= */ null);
-        // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
+        // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version), but
+        // not if it is γ (i.e., do not link to a file that looks release-final but isn’t).
         main.generateIndex(
                 /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA) >= 0
+                                && Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
                         ? draft
                         : null);
         // Link from the draft to the earlier version unless the draft is release-final (γ).
