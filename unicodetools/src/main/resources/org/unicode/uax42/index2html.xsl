@@ -309,7 +309,7 @@
         <p><i>Please submit corrigenda and other comments with the online reporting form [<a
                 href="https://www.unicode.org/reporting.html">Feedback</a>]. Related information that is useful in
           understanding this annex is found in Unicode Standard Annex #41, &#x201C;<a
-                  href="https://www.unicode.org/reports/tr41/tr41-32.html">Common References for Unicode Standard
+                  href="https://www.unicode.org/reports/tr41/tr41-38.html">Common References for Unicode Standard
             Annexes.</a>&#x201D; For the latest version of the Unicode Standard, see [<a
                   href="https://www.unicode.org/versions/latest/">Unicode</a>]. For a list of current Unicode
           Technical Reports, see [<a href="https://www.unicode.org/reports/">Reports</a>]. For more information about

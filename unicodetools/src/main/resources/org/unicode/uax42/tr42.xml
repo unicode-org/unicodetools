@@ -21,7 +21,7 @@
             </author>
         </authors>
         <revhistory>
-            <revision revnumber="40" date="2026-08-27">
+            <revision revnumber="40" date="2026-09-02">
                 <changes>
                     <change>New value for the <attr>age</attr> attribute: <val>18.0</val>.
                     </change>
