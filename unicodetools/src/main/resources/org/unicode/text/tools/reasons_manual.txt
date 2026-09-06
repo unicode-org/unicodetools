@@ -1,3 +1,12 @@
+# [84-M7] Motion: Give the code point range FDD0..FDEF Not a Character status.
+# Moved by Asmus Freytag, seconded by Michel Suignard
+# 9 for (Apple, Basis, HP, IBM, Microsoft, NCR, Peoplesoft, Sybase, Unisys)
+# 0 against
+# 3 abstain (Compaq, Justsystem, Progress)
+# [84-A21] Action Item for Editorial Committee: Create not a character errata for Unicode 3.0.1 (p. 28 Special Non-character Values, p. 38, and any other appropriate places, but do not add the FDD0..FDEF range until after the September 2000, WG2 meeting.
+# [84-A22] Action Item for Ken Whistler: Update the property files for  the FDD0..FDEF range but delay posting until after V3.0.1.
+Noncharacter_Code_Point ; 3.1 ; [\uFDD0-\uFDEF] ; 84-M20, 84-A21, 84-A22
+
 # [87-M20] Motion: Update the East Asian data files changing the list in L2/01-189, 00AE to 273D to A, and all Jamo to W, post, and include in Unicode 3.1.1.
 # L2/01-189 Updates to EastAsianWidth.
 # First group (to ea=A).  U+00AF not changed.
