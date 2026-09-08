@@ -1167,20 +1167,7 @@ public class GenerateConfusables {
             // if (pieces.length > 2) type = pieces[2].trim();
             final String nfkdSource = NFKD.normalize(source);
             final String nfkdTarget = NFKD.normalize(target);
-            if (NSM.containsAll(source) && NSM.containsNone(target)
-                    || NSM.containsAll(target) && NSM.containsNone(source)) {
-                if (SHOW_SUPPRESS) {
-                    System.out.println(
-                            "*** SUPPRESSING NSM Difference\t"
-                                    + count
-                                    + "\t"
-                                    + DEFAULT_UCD.getCodeAndName(source)
-                                    + ";\t"
-                                    + DEFAULT_UCD.getCodeAndName(target)
-                                    + ";\t"
-                                    + line);
-                }
-            } else if (suppress_NFKC && nfkdSource.equals(nfkdTarget)) {
+            if (suppress_NFKC && nfkdSource.equals(nfkdTarget)) {
                 if (SHOW_SUPPRESS) {
                     System.out.println(
                             "*** Suppressing nfkc for:\t"
