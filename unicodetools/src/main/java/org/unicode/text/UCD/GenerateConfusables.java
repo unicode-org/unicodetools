@@ -705,36 +705,6 @@ public class GenerateConfusables {
         }
     }
 
-    /*    private static class Data2 {
-        String source;
-        String target;
-        int count;
-        Data2(String target, int count) {
-            this.target = target;
-            this.count = count;
-        }
-    }
-     */
-    /*    private static class Data implements Comparable {
-        String source;
-        String target;
-        String type;
-        Data(String source, String target, String type) {
-            this.source = source;
-            this.target = target;
-            this.type = type;
-        }
-        public int compareTo(Object o) {
-            int result;
-            Data that = (Data)o;
-            if (0 != (result = target.compareTo(that.target))) return result;
-            if (0 != (result = source.compareTo(that.source))) return result;
-            if (0 != (result = type.compareTo(that.type))) return result;
-            return 0;
-        }
-    }
-     */
-
     /**
      * @param relation TODO
      */
