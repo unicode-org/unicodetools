@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-09-11, 14:20:17 GMT 
+# Date: 2026-09-11, 15:08:52 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1926,7 +1926,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1EEA1..1EEA3  ; Include # 6.1   [3] (𞺡..𞺣)  ARABIC MATHEMATICAL DOUBLE-STRUCK BEH..ARABIC MATHEMATICAL DOUBLE-STRUCK DAL
 1EEA5..1EEA9  ; Include # 6.1   [5] (𞺥..𞺩)  ARABIC MATHEMATICAL DOUBLE-STRUCK WAW..ARABIC MATHEMATICAL DOUBLE-STRUCK YEH
 1EEAB..1EEBB  ; Include # 6.1  [17] (𞺫..𞺻)  ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
-1EEE0         ; Include # NA        (𞻠)  ARABIC ASTRONOMICAL ZERO
+1EEE0         ; Include # 18.0      (𞻠)  ARABIC ASTRONOMICAL ZERO
 1EEF0..1EEF1  ; Include # 6.1   [2] (𞻰..𞻱)  ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F000..1F02B  ; Include # 5.1  [44] (🀀..🀫)  MAHJONG TILE EAST WIND..MAHJONG TILE BACK
 1F030..1F093  ; Include # 5.1 [100] (🀰..🂓)  DOMINO TILE HORIZONTAL BACK..DOMINO TILE VERTICAL-06-06
