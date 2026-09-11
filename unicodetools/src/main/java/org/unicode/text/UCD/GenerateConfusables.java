@@ -159,7 +159,6 @@ public class GenerateConfusables {
     }
 
     private static final boolean SHOW_SUPPRESS = false;
-    static String recommended_scripts = "recommended";
 
     public static void main(String[] args) throws IOException {
         System.setProperty("line.separator", "\n");
@@ -391,7 +390,7 @@ public class GenerateConfusables {
             ups.getSet("gc=Cc").addAll(ups.getSet("gc=Cf")).addAll(UNASSIGNED).freeze();
     private static UnicodeSet WHITESPACE = ups.getSet("Whitespace=Yes").freeze();
     static UnicodeSet GC_LOWERCASE = ups.getSet("gc=Ll").freeze();
-    private static UnicodeSet _skipNFKD;
+    private static boolean _skipNFKD = false;
     private static UnicodeSet COMBINING =
             ups.getSet("gc=Mn").addAll(ups.getSet("gc=Me")).add(0x3099).add(0x309A).freeze();
     private static UnicodeSet INVISIBLES = ups.getSet("default-ignorable-codepoint=true").freeze();
@@ -564,17 +563,16 @@ public class GenerateConfusables {
                     .add('\u2001')
                     .freeze();
 
-    private static UnicodeSet getSkipNFKD() {
+    private static void makeNfkdMap() {
         nfkdMap = new UnicodeMap();
-        if (_skipNFKD == null) {
-            _skipNFKD = new UnicodeSet();
+        if (!_skipNFKD) {
+            _skipNFKD = true;
 
             // General exceptions
             final UnicodeSet idSet = getIdentifierSet();
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                 Utility.dot(cp);
                 if (SKIP_EXCEPTIONS.contains(cp)) {
-                    _skipNFKD.add(cp);
                     continue;
                 }
                 final int cat = DEFAULT_UCD.getCategory(cp);
@@ -605,7 +603,6 @@ public class GenerateConfusables {
                                 && (mapped.contains("2") || mapped.contains("3")))
                         || cp == '﬩'
                         || cp == '︒') {
-                    _skipNFKD.add(cp);
                     continue;
                 }
                 final String source = Character.toString(cp);
@@ -621,16 +618,11 @@ public class GenerateConfusables {
                 if (mapped.equals(source)) {
                     continue;
                 }
-                if (idSet.contains(cp) && !idSet.contains(mapped)) {
-                    _skipNFKD.add(cp);
-                } else if (!WHITESPACE.contains(cp) && WHITESPACE.containsSome(mapped)) {
-                    _skipNFKD.add(cp);
-                }
             }
         }
         nfkdMap.setMissing("");
         nfkdMap.freeze();
-        return _skipNFKD;
+        return;
     }
 
     /** */
@@ -1536,7 +1528,7 @@ public class GenerateConfusables {
             total.addAll(ds);
             total.close("t*" + names[i]);
         }
-        getSkipNFKD();
+        makeNfkdMap();
 
         total.checkChar("ſ");
         if (DEBUG) System.out.println(nfkdMap.get('ſ'));
