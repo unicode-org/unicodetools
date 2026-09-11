@@ -10,17 +10,26 @@ Ignoring Name Age:
 # normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
+Ignoring Block Unicode_1_Name Bidi_Class General_Category:
+
 Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}
               \N{06F0:۰:EXTENDED ARABIC-INDIC DIGIT ZERO}] AreAlike
 
+end Ignoring;
+
+Ignoring Block Unicode_1_Name General_Category Other_Joining_Type Arabic_Shaping_Schematic_Name:
+
 Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}
               \N{0621:ء:ARABIC LETTER HAMZA}] AreAlike
+
+end Ignoring;
 
 Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}]
 ⧴ [0]
 CorrespondTo [\N{12400:𒐀:CUNEIFORM NUMERIC SIGN TWO ASH}]
 ⧴ [2]
-UpTo: Script(Arabic vs Cuneiform)
+UpTo: Script(Arabic vs Cuneiform), Script_Extensions(Arabic vs Cuneiform), Bidi_Class(Arabic_Letter vs Left_to_Right),
+      Block(Arabic_Mathematical_Alphabetic_Symbols vs Cuneiform_Numbers_And_Punctuation)
 
 end Ignoring;
 
