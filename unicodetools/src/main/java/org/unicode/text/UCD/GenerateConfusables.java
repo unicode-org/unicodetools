@@ -1106,20 +1106,12 @@ public class GenerateConfusables {
         }
 
         public void writeSourceOrder(
-                String directory, String filename, boolean appendFile, boolean skipNFKEquivs)
+                String directory, String filename)
                 throws IOException {
             final PrintWriter out =
                     openAndWriteHeader(
                             directory, filename, "Recommended confusable mapping for IDN");
 
-            if (appendFile) {
-                final String[] replacements = {"%date%", Default.getDate()};
-                Utility.appendFile(
-                        GenerateConfusables.class.getResource("confusablesHeader.txt").getPath(),
-                        Utility.UTF8_WINDOWS,
-                        out,
-                        replacements);
-            }
             Relation<Pair<String, String>, String> confusableMap =
                     Relation.of(new TreeMap(MyPairComparator), TreeSet.class);
             if (true) {
@@ -1128,7 +1120,7 @@ public class GenerateConfusables {
                         dataMixedAnycase,
                         "MA",
                         "Mixed-Script, Anycase Confusables",
-                        skipNFKEquivs,
+                        false,
                         false,
                         false,
                         confusableMap);
@@ -1210,11 +1202,6 @@ public class GenerateConfusables {
                 if (source.equals(target)) {
                     continue;
                 }
-                if (skipNFKEquivs) {
-                    if (!NFKD.normalize(source).equals(source)) {
-                        continue;
-                    }
-                }
                 orderedPairs.add(new String[] {target, source});
                 Pair<String, String> pair = new Pair<String, String>(target, source);
                 confusableMap.put(pair, tag);
@@ -1292,11 +1279,10 @@ public class GenerateConfusables {
         ;
 
         /**
-         * @param script TODO
          * @throws IOException
          */
         public void writeSummary(
-                String outdir, String filename, boolean outputOnly, UnicodeSet script)
+                String outdir, String filename, boolean outputOnly)
                 throws IOException {
             final PrintWriter out =
                     openAndWriteHeader(
@@ -1337,20 +1323,6 @@ public class GenerateConfusables {
                     }
                 }
                 scriptTest:
-                if (script != null) {
-                    // see if at least one item contains the target script
-                    for (final Iterator it2 = equivalents.iterator(); it2.hasNext(); ) {
-                        final String item = (String) it2.next();
-                        if (script.containsAll(item)) {
-                            target = item;
-                            for (final Iterator it3 = equivalents.iterator(); it3.hasNext(); ) {
-                                representable.addAll((String) it3.next());
-                            }
-                            break scriptTest;
-                        }
-                    }
-                    continue; // skip this one
-                }
                 out.println();
                 out.println("#\t" + CollectionUtilities.join(equivalents, "\t"));
                 String status = ""; // getStatus(target);
@@ -1391,16 +1363,6 @@ public class GenerateConfusables {
             out.println();
             out.println("# total : " + count);
             out.println();
-            if (script != null) {
-                out.println();
-                out.println("# Base Letters Representable with Script");
-                out.println();
-                representable.removeAll(script);
-                final BagFormatter bf = makeFormatter();
-                bf.setValueSource(ups.getProperty("script"));
-                bf.setShowLiteral(EXCAPE_FUNNY);
-                bf.showSetNames(out, representable);
-            }
             out.close();
         }
 
@@ -1537,9 +1499,9 @@ public class GenerateConfusables {
         ds.checkChar("ſ");
 
         total.writeData(reformatedInternal + "/source/", "confusablesRaw.txt");
-        total.writeSummary(draftDir, "confusablesSummary.txt", false, null);
-        total.writeSummary(reformatedInternal, "confusablesSummaryIdentifier.txt", true, null);
-        total.writeSourceOrder(draftDir, "confusables.txt", false, false);
+        total.writeSummary(draftDir, "confusablesSummary.txt", false);
+        total.writeSummary(reformatedInternal, "confusablesSummaryIdentifier.txt", true);
+        total.writeSourceOrder(draftDir, "confusables.txt");
     }
 
     private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess();
