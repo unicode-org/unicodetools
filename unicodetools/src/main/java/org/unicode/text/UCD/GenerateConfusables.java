@@ -953,9 +953,6 @@ public class GenerateConfusables {
             if (DEBUG && combined.indexOf("\u0430") >= 0) {
                 System.out.println(DEFAULT_UCD.getCodeAndName(combined));
             }
-            final boolean isLowercase =
-                    combined.equals(DEFAULT_UCD.getCase(combined, UCD_Types.FULL, UCD_Types.FOLD));
-            final boolean isMixed = ScriptInfo.isMixedScript(combined);
             // Here's where we add data, if you need to debug
             raw.add(source, target, type);
             dataMixedAnycase.add(source, target, type);
@@ -990,9 +987,7 @@ public class GenerateConfusables {
                     if (line.length() == 0) {
                         continue;
                     }
-                    boolean isFont = false;
                     if (line.equals("@font")) {
-                        isFont = true;
                         continue;
                     }
                     final String[] pieces = Utility.split(line, ';');
