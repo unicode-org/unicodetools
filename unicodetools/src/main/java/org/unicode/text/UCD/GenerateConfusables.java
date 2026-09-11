@@ -979,7 +979,7 @@ public class GenerateConfusables {
             return dataMixedAnycase.toString();
         }
 
-        private static final int NORMAL = 0, FOLDING = 1, OLD = 2;
+        private static final int NORMAL = 0, FOLDING = 1;
 
         private static final UnicodeSet NSM = new UnicodeSet("[[:Mn:][:Me:]]").freeze();
 
@@ -991,8 +991,6 @@ public class GenerateConfusables {
                 int kind = NORMAL;
                 if (filename.indexOf("Folding") >= 0) {
                     kind = FOLDING;
-                } else if (false && filename.indexOf("-old") >= 0) {
-                    kind = OLD;
                 }
                 while (true) {
                     count++;
@@ -1033,11 +1031,6 @@ public class GenerateConfusables {
                         final String first = UTF16Plus.codePointSubstringAt(nsource, 0);
                         if (!first.equals(target)) {
                             add(source, target, type, count, line);
-                        }
-                    } else if (kind == OLD) {
-                        final String target = sourceString.trim();
-                        for (int i = 1; i < pieces.length; ++i) {
-                            add(pieces[i].trim(), target, type, count, line);
                         }
                     } else {
                         if (targetString.contains("(")) {
