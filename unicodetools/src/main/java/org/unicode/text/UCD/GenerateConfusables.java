@@ -402,7 +402,6 @@ public class GenerateConfusables {
     private static UnicodeSet commonAndInherited =
             new UnicodeSet("[[:script=common:][:script=inherited:]]");
 
-    private static Map gatheredNFKD = new TreeMap();
     private static UnicodeMap nfkdMap;
 
     private static Comparator codepointComparator = new UTF16.StringComparator(true, false, 0);
@@ -630,17 +629,6 @@ public class GenerateConfusables {
         log = FileUtilities.openUTF8Writer(reformatedInternal, "log.txt");
         generateConfusables(indir, reformatedInternal, GEN_SECURITY_DIR);
         log.close();
-        if (false) {
-            for (final Iterator it = gatheredNFKD.keySet().iterator(); it.hasNext(); ) {
-                final String source = (String) it.next();
-                if (DEBUG)
-                    System.out.println(
-                            DEFAULT_UCD.getCodeAndName(source)
-                                    + " => "
-                                    + DEFAULT_UCD.getCodeAndName(
-                                            (String) gatheredNFKD.get(source)));
-            }
-        }
     }
 
     /**
