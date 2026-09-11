@@ -1348,11 +1348,6 @@ public class GenerateConfusables {
             out.println();
             out.close();
         }
-
-        public void writeData(String string, String string2) {
-            // TODO Auto-generated method stub
-
-        }
     }
 
     /** */
@@ -1481,7 +1476,6 @@ public class GenerateConfusables {
         total.close("*");
         ds.checkChar("ſ");
 
-        total.writeData(reformatedInternal + "/source/", "confusablesRaw.txt");
         total.writeSummary(draftDir, "confusablesSummary.txt", false);
         total.writeSummary(reformatedInternal, "confusablesSummaryIdentifier.txt", true);
         total.writeSourceOrder(draftDir, "confusables.txt");
