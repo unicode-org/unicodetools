@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-09-11, 14:20:06 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -699,7 +699,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1EE9C..1EEA0  ; Cn #   [5] <reserved-1EE9C>..<reserved-1EEA0>
 1EEA4         ; Cn #       <reserved-1EEA4>
 1EEAA         ; Cn #       <reserved-1EEAA>
-1EEBC..1EEEF  ; Cn #  [52] <reserved-1EEBC>..<reserved-1EEEF>
+1EEBC..1EEDF  ; Cn #  [36] <reserved-1EEBC>..<reserved-1EEDF>
+1EEE1..1EEEF  ; Cn #  [15] <reserved-1EEE1>..<reserved-1EEEF>
 1EEF2..1EFFF  ; Cn # [270] <reserved-1EEF2>..<reserved-1EFFF>
 1F02C..1F02F  ; Cn #   [4] <reserved-1F02C>..<reserved-1F02F>
 1F094..1F09F  ; Cn #  [12] <reserved-1F094>..<reserved-1F09F>
@@ -751,7 +752,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801722
 
 # ================================================
 
@@ -2764,6 +2765,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1EEA1..1EEA3  ; Lo #   [3] ARABIC MATHEMATICAL DOUBLE-STRUCK BEH..ARABIC MATHEMATICAL DOUBLE-STRUCK DAL
 1EEA5..1EEA9  ; Lo #   [5] ARABIC MATHEMATICAL DOUBLE-STRUCK WAW..ARABIC MATHEMATICAL DOUBLE-STRUCK YEH
 1EEAB..1EEBB  ; Lo #  [17] ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
+1EEE0         ; Lo #       ARABIC ASTRONOMICAL ZERO
 20000..2A6DF  ; Lo # [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
 2A700..2B81E  ; Lo # [4383] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81E
 2B820..2CEAD  ; Lo # [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
@@ -2774,7 +2776,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 153396
+# Total code points: 153397
 
 # ================================================
 

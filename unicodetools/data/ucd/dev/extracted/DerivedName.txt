@@ -1,5 +1,5 @@
 # DerivedName-18.0.0.txt
-# Date: 2026-06-29, 15:25:03 GMT
+# Date: 2026-09-11, 14:20:07 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -43571,6 +43571,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1EEB9         ; ARABIC MATHEMATICAL DOUBLE-STRUCK DAD
 1EEBA         ; ARABIC MATHEMATICAL DOUBLE-STRUCK ZAH
 1EEBB         ; ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
+1EEE0         ; ARABIC ASTRONOMICAL ZERO
 1EEF0         ; ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL
 1EEF1         ; ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F000         ; MAHJONG TILE EAST WIND
@@ -46582,6 +46583,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 172808
+# Total code points: 172809
 
 # EOF
