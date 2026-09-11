@@ -404,7 +404,6 @@ public class GenerateConfusables {
             new UnicodeSet("[[:script=common:][:script=inherited:]]");
 
     private static Map gatheredNFKD = new TreeMap();
-    private static UnicodeMap nfcMap;
     private static UnicodeMap nfkdMap;
 
     private static Comparator codepointComparator = new UTF16.StringComparator(true, false, 0);
@@ -566,7 +565,6 @@ public class GenerateConfusables {
                     .freeze();
 
     private static UnicodeSet getSkipNFKD() {
-        nfcMap = new UnicodeMap();
         nfkdMap = new UnicodeMap();
         if (_skipNFKD == null) {
             _skipNFKD = new UnicodeSet();
@@ -586,9 +584,6 @@ public class GenerateConfusables {
                 final int decompType = DEFAULT_UCD.getDecompositionType(cp);
                 final String nfc = Default.nfc().normalize(cp);
                 final String mapped = NFKD.normalize(cp);
-                if (decompType == UCD_Types.CANONICAL) {
-                    nfcMap.put(cp, nfc);
-                }
                 if (decompType == UCD_Types.COMPAT_CIRCLE
                         || decompType == UCD_Types.COMPAT_SUPER
                         || decompType == UCD_Types.COMPAT_SUB
@@ -633,8 +628,6 @@ public class GenerateConfusables {
                 }
             }
         }
-        nfcMap.setMissing("");
-        nfcMap.freeze();
         nfkdMap.setMissing("");
         nfkdMap.freeze();
         return _skipNFKD;
