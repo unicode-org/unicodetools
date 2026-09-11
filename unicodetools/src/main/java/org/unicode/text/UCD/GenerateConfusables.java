@@ -130,8 +130,6 @@ public class GenerateConfusables {
 
     static final UnicodeSet COMMON_OR_INHERITED;
     static final UnicodeSet CASED;
-    static final UnicodeSet COMMON_OR_INHERITED_NFKD;
-    static final UnicodeSet CASED_NFKD;
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
     static final UnicodeMap<Set<Script_Values>> scriptExtensions =
             iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
@@ -145,22 +143,6 @@ public class GenerateConfusables {
                 scriptExtensions.getSet(Collections.singleton(Script_Values.Inherited));
         COMMON_OR_INHERITED = new UnicodeSet(common).addAll(inherited).freeze();
         CASED = iup.loadEnum(UcdProperty.Changes_When_Casefolded, Binary.class).getSet(Binary.Yes);
-        COMMON_OR_INHERITED_NFKD = new UnicodeSet(COMMON_OR_INHERITED);
-        CASED_NFKD = new UnicodeSet(CASED);
-        for (String s : notNFKD) {
-            if (s.equals("𝐉")) {
-                int debug = 0;
-            }
-            String nfkd = NFKD.normalize(s);
-            if (!COMMON_OR_INHERITED_NFKD.containsAll(nfkd)) {
-                COMMON_OR_INHERITED_NFKD.remove(s);
-            }
-            if (CASED_NFKD.containsSome(nfkd)) {
-                CASED_NFKD.add(s);
-            }
-        }
-        COMMON_OR_INHERITED_NFKD.freeze();
-        CASED_NFKD.freeze();
     }
 
     private static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
