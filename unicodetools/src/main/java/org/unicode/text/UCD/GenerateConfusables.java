@@ -1542,7 +1542,7 @@ public class GenerateConfusables {
         total.writeSourceOrder(draftDir, "confusables.txt", false, false);
     }
 
-    private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess(false);
+    private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess();
 
     private static boolean isXid(String x) {
         return XID.containsAll(x);
@@ -1550,11 +1550,6 @@ public class GenerateConfusables {
 
     private static class _BetterTargetIsLess implements Comparator<String> {
         IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
-        private boolean favorNeutral;
-
-        _BetterTargetIsLess(boolean favorNeutral) {
-            this.favorNeutral = favorNeutral;
-        }
 
         @Override
         public int compare(String a, String b) {
@@ -1579,19 +1574,6 @@ public class GenerateConfusables {
                 return ldiff < 0 ? 1 : -1; // bigger count is less!!
             }
             ;
-
-            if (favorNeutral) {
-                boolean isCommonA = COMMON_OR_INHERITED.containsAll(a);
-                boolean isCommonB = COMMON_OR_INHERITED.containsAll(b);
-                if (isCommonA != isCommonB) {
-                    return isCommonA ? -1 : 1;
-                }
-                boolean isUncasedA = !CASED.containsAll(a);
-                boolean isUncasedB = !CASED.containsAll(b);
-                if (isUncasedA != isUncasedB) {
-                    return isCommonA ? -1 : 1;
-                }
-            }
 
             // favor NFKD
             boolean isNfkdA = !notNFKD.containsSome(a);
