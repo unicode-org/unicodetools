@@ -868,10 +868,10 @@ public class GenerateConfusables {
         MyEquivalenceClass dataMixedAnycase = new MyEquivalenceClass();
         RawData raw = new RawData();
 
-        public DataSet add(
+        public void add(
                 String source, String target, String type, int lineCount, String errorLine) {
             if (SKIP_SET.containsAll(source) || SKIP_SET.containsAll(target)) {
-                return this;
+                return;
             }
             final String nsource = Default.nfd().normalize(source);
             final String ntarget = Default.nfd().normalize(target);
@@ -889,12 +889,12 @@ public class GenerateConfusables {
             }
 
             // if it is just a compatibility match, return
-            // if (nsource.equals(ntarget)) return this;
+            // if (nsource.equals(ntarget)) return;
             if (type.indexOf("skip") >= 0) {
-                return this;
+                return;
             }
             if (target.indexOf('\u203D') >= 0) {
-                return this;
+                return;
             }
 
             type = getReasonFromFilename(type);
@@ -920,7 +920,6 @@ public class GenerateConfusables {
             // Here's where we add data, if you need to debug
             raw.add(source, target);
             dataMixedAnycase.add(source, target, type);
-            return this;
         }
 
         @Override
@@ -932,7 +931,7 @@ public class GenerateConfusables {
 
         private static final UnicodeSet NSM = new UnicodeSet("[[:Mn:][:Me:]]").freeze();
 
-        public DataSet addFile(String directory, String filename) throws IOException {
+        public void addFile(String directory, String filename) throws IOException {
             String line = null;
             int count = 0;
             try {
@@ -996,7 +995,7 @@ public class GenerateConfusables {
                     }
                 }
                 in.close();
-                return this;
+                return;
             } catch (final Exception e) {
                 throw (RuntimeException)
                         new RuntimeException(
