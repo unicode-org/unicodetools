@@ -764,15 +764,8 @@ public class GenerateConfusables {
             return result.toString();
         }
 
-        private Object getBestForm(Collection x) {
-            if (x.size() != 1) {
-                return "[" + x + "]";
-            }
-            final Object item = x.iterator().next();
-            if (!(item instanceof Collection)) {
-                return x.toString();
-            }
-            return getBestForm((Collection) item);
+        private Object getBestForm(Collection<?> x) {
+            return x.size() == 1 ? x.toString() : "[" + x + "]";
         }
 
         public String getParadigm(String item, boolean onlyLowercase, boolean onlySameScript) {
