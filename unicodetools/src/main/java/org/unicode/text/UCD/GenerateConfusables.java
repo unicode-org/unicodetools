@@ -493,10 +493,10 @@ public class GenerateConfusables {
     static UnicodeSet IDNOutputSet;
 
     static UnicodeSet IDNInputSet;
-    private static UnicodeSet _preferredIDSet;
+    private static boolean _idnSetsMade = false;
 
-    static UnicodeSet getIdentifierSet() {
-        if (_preferredIDSet == null) {
+    static void makeIdnSets() {
+        if (!_idnSetsMade) {
             IDNOutputSet = new UnicodeSet();
             IDNInputSet = new UnicodeSet();
             IDNOutputSet.add('-'); // HACK
@@ -522,10 +522,8 @@ public class GenerateConfusables {
                         // no action
                 }
             }
-            _preferredIDSet = new UnicodeSet(IDNOutputSet).addAll(XIDContinueSet);
-            _preferredIDSet.add(0x2018).add(0x2019).freeze();
+            _idnSetsMade = true;
         }
-        return _preferredIDSet;
     }
 
     private static UnicodeSet SKIP_EXCEPTIONS =
@@ -1123,7 +1121,7 @@ public class GenerateConfusables {
             // System.out.println("Code Point Compare: " + c);
             final Set items = data.getOrderedExplicitItems();
             int count = 0;
-            final UnicodeSet preferredID = getIdentifierSet();
+            makeIdnSets();
             final ArrayComparator ac =
                     new ArrayComparator(new Comparator[] {UCAComparator, UCAComparator});
             final Set orderedPairs = new TreeSet(ac);

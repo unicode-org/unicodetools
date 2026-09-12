@@ -176,7 +176,7 @@ public class IdentifierInfo {
                         .addAll(additions.keySet())
                         .retainAll(propNFKCSet);
 
-        GenerateConfusables.getIdentifierSet();
+        GenerateConfusables.makeIdnSets();
         // notInXID = new UnicodeSet(IDNOutputSet).removeAll(xidPlus);
         // removals.putAll(notInXID, PROHIBITED + NOT_IN_XID);
         // UnicodeSet notNfkcXid = new
