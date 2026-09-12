@@ -1589,6 +1589,13 @@ OnPairsOf [$code_points - $noncharacter_charts - $uncharted_block_ends - $unchar
 [$uncharted_block_ends $uncharted_pua_planes] ⊂ \p{Names_List_Block_Header=@none@}
 [$noncharacter_charts] = \p{Names_List_Block_Header=Unassigned}
 
+[0] ⊂ \p{Standardized_Variation_Base}
+[0] ⊂ \p{Emoji_Variation_Base}
+[🅾] ⊂ \p{Standardized_Variation_Base=No}
+[🅾] ⊂ \p{Emoji_Variation_Base}
+[∅] ⊂ \p{Standardized_Variation_Base}
+[∅] ⊂ \p{Emoji_Variation_Base=No}
+
 # Basic Propertywise tests.
 Ignoring Name:
 
