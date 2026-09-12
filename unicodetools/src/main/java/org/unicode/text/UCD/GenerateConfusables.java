@@ -715,7 +715,7 @@ public class GenerateConfusables {
             return false;
         }
 
-        public void close(String reason) {
+        public void close() {
             boolean addedItem;
             final StringBuffer reasons = new StringBuffer();
             do {
@@ -1195,8 +1195,8 @@ public class GenerateConfusables {
             return dataMixedAnycase.getEquivalences(string);
         }
 
-        public void close(String reason) {
-            dataMixedAnycase.close(reason);
+        public void close() {
+            dataMixedAnycase.close();
         }
 
         /** */
@@ -1418,9 +1418,9 @@ public class GenerateConfusables {
                 newDir = reformatedInternal + "/source/";
             }
             ds.writeSource(newDir, newName);
-            ds.close("*");
+            ds.close();
             total.addAll(ds);
-            total.close("t*" + names[i]);
+            total.close();
         }
         makeNfkdMap();
 
@@ -1430,11 +1430,11 @@ public class GenerateConfusables {
         DataSet ds = new DataSet();
         ds.addUnicodeMap(nfkdMap, "nfkd", "nfkd");
         ds.checkChar("ſ");
-        ds.close("*");
+        ds.close();
         ds.checkChar("ſ");
         total.addAll(ds);
         ds.checkChar("ſ");
-        total.close("*");
+        total.close();
         ds.checkChar("ſ");
 
         total.writeSummary(draftDir, "confusablesSummary.txt", false);
