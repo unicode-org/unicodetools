@@ -879,10 +879,6 @@ public class GenerateConfusables {
             final String ntarget = Default.nfd().normalize(target);
 
             if (COMBINING.containsAll(nsource) != COMBINING.containsAll(ntarget)) {
-                if (nsource.contains(testChar)) {
-                    COMBINING.containsAll(nsource);
-                    COMBINING.containsAll(ntarget);
-                }
                 System.err.println(
                         "ERROR: Mixed combining classes: "
                                 + lineCount
