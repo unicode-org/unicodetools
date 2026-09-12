@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -55,9 +54,7 @@ import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.ScriptInfo;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
-import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
@@ -124,24 +121,11 @@ public class GenerateConfusables {
         UnicodeTransform.setFactory(TOOL_FACTORY);
     }
 
-    static final UnicodeSet COMMON_OR_INHERITED;
-    static final UnicodeSet CASED;
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
-    static final UnicodeMap<Set<Script_Values>> scriptExtensions =
-            iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
     static final UnicodeSet notNFKD =
             iup.loadEnum(UcdProperty.NFKD_Quick_Check, NFKD_Quick_Check_Values.class)
                     .getSet(NFKD_Quick_Check_Values.No);
 
-    static {
-        UnicodeSet common = scriptExtensions.getSet(Collections.singleton(Script_Values.Common));
-        UnicodeSet inherited =
-                scriptExtensions.getSet(Collections.singleton(Script_Values.Inherited));
-        COMMON_OR_INHERITED = new UnicodeSet(common).addAll(inherited).freeze();
-        CASED = iup.loadEnum(UcdProperty.Changes_When_Casefolded, Binary.class).getSet(Binary.Yes);
-    }
-
-    private static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
     static final UnicodeProperty AGE = ups.getProperty("age");
 
     private static final String EXCAPE_FUNNY_RULE =
@@ -384,7 +368,6 @@ public class GenerateConfusables {
             ups.getSet("gc=Cn").addAll(ups.getSet("gc=Co")).addAll(ups.getSet("gc=Cs")).freeze();
     private static UnicodeSet SKIP_SET =
             ups.getSet("gc=Cc").addAll(ups.getSet("gc=Cf")).addAll(UNASSIGNED).freeze();
-    private static UnicodeSet WHITESPACE = ups.getSet("Whitespace=Yes").freeze();
     static UnicodeSet GC_LOWERCASE = ups.getSet("gc=Ll").freeze();
     private static boolean _skipNFKD = false;
     private static UnicodeSet COMBINING =
@@ -395,8 +378,6 @@ public class GenerateConfusables {
     private static UnicodeSet RTL = new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:]]").freeze();
     private static UnicodeSet CONTROLS = new UnicodeSet("[[:cc:][:Zl:][:Zp:]]").freeze();
     private static final char LRM = '\u200E';
-    private static UnicodeSet commonAndInherited =
-            new UnicodeSet("[[:script=common:][:script=inherited:]]");
 
     private static UnicodeMap nfkdMap;
 
