@@ -1054,16 +1054,13 @@ public class GenerateConfusables {
         }
 
         public void writeSource(String directory, String filename) throws IOException {
-            final PrintWriter out =
-                    openAndWriteHeader(directory, filename, "Source File for IDN Confusables");
+            final PrintWriter out = openAndWriteHeader(directory, filename);
             raw.writeSource(out);
             out.close();
         }
 
         public void writeSourceOrder(String directory, String filename) throws IOException {
-            final PrintWriter out =
-                    openAndWriteHeader(
-                            directory, filename, "Recommended confusable mapping for IDN");
+            final PrintWriter out = openAndWriteHeader(directory, filename);
 
             Relation<Pair<String, String>, String> confusableMap =
                     Relation.of(new TreeMap(MyPairComparator), TreeSet.class);
@@ -1226,9 +1223,7 @@ public class GenerateConfusables {
          */
         public void writeSummary(String outdir, String filename, boolean outputOnly)
                 throws IOException {
-            final PrintWriter out =
-                    openAndWriteHeader(
-                            outdir, filename, "Summary: Recommended confusable mapping for IDN");
+            final PrintWriter out = openAndWriteHeader(outdir, filename);
             final MyEquivalenceClass data = dataMixedAnycase;
             final Set items = data.getOrderedExplicitItems();
             int count = 0;
@@ -1563,8 +1558,7 @@ public class GenerateConfusables {
         }
     }
 
-    static PrintWriter openAndWriteHeader(String dir, String filename, String title)
-            throws IOException {
+    static PrintWriter openAndWriteHeader(String dir, String filename) throws IOException {
         final PrintWriter out = FileUtilities.openUTF8Writer(dir, filename);
         out.println(
                 Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));

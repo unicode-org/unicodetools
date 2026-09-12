@@ -732,9 +732,7 @@ public class IdentifierInfo {
 
         final PrintWriter out =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.reformatedInternal,
-                        "review.txt",
-                        "Review List for IDN");
+                        GenerateConfusables.reformatedInternal, "review.txt");
         //                        PrintWriter out = FileUtilities.openUTF8Writer(outdir,
         // "review.txt");
         // reviews.putAll(UNASSIGNED, "");
@@ -795,9 +793,7 @@ public class IdentifierInfo {
 
         final PrintWriter out =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.reformatedInternal,
-                        "idnchars.txt",
-                        "Recommended Identifier Profiles for IDN");
+                        GenerateConfusables.reformatedInternal, "idnchars.txt");
 
         out.println("# Allowed as output characters");
         out.println("");
@@ -860,7 +856,7 @@ public class IdentifierInfo {
         PrintWriter out;
         //        PrintWriter out =
         // GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT,
-        // "xidmodifications.txt", "Security Profile for General Identifiers");
+        // "xidmodifications.txt");
         //        /* PrintWriter out = FileUtilities.openUTF8Writer(outdir, "xidmodifications.txt");
         //
         //                out.println("# Security Profile for General Identifiers");
@@ -922,9 +918,7 @@ public class IdentifierInfo {
 
         out =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.reformatedInternal,
-                        "xidAllowed.txt",
-                        "Security Profile for General Identifiers");
+                        GenerateConfusables.reformatedInternal, "xidAllowed.txt");
         final UnicodeSet allowed = new UnicodeSet(xidPlus).removeAll(removals.keySet());
         final UnicodeSet cfAllowed =
                 new UnicodeSet().addAll(allowed).retainAll(isCaseFolded).retainAll(propNFKCSet);
@@ -1079,9 +1073,7 @@ public class IdentifierInfo {
         final String filename = "IdentifierType.txt";
         try (PrintWriter out2 =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.GEN_SECURITY_DIR,
-                        filename,
-                        "Security Profile for General Identifiers: " + propName)) {
+                        GenerateConfusables.GEN_SECURITY_DIR, filename)) {
             out2.println(
                     "# Format\n"
                             + "#\n"
@@ -1140,9 +1132,7 @@ public class IdentifierInfo {
         final String propName = "Identifier_Status";
         try (PrintWriter out2 =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.GEN_SECURITY_DIR,
-                        "IdentifierStatus.txt",
-                        "Security Profile for General Identifiers: " + propName)) {
+                        GenerateConfusables.GEN_SECURITY_DIR, "IdentifierStatus.txt")) {
             out2.println(
                     "# Format\n"
                             + "#\n"
