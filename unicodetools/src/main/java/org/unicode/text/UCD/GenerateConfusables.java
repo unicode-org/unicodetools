@@ -1068,15 +1068,7 @@ public class GenerateConfusables {
             Relation<Pair<String, String>, String> confusableMap =
                     Relation.of(new TreeMap(MyPairComparator), TreeSet.class);
             if (true) {
-                writeSourceOrder(
-                        out,
-                        dataMixedAnycase,
-                        "MA",
-                        "Mixed-Script, Anycase Confusables",
-                        false,
-                        false,
-                        false,
-                        confusableMap);
+                writeSourceOrder(out, dataMixedAnycase, "MA", false, false, confusableMap);
                 Counter<Set<String>> counter = new Counter();
                 Map<Set<String>, Pair<String, String>> examples =
                         new HashMap<Set<String>, Pair<String, String>>();
@@ -1118,8 +1110,6 @@ public class GenerateConfusables {
                 PrintWriter out,
                 MyEquivalenceClass data,
                 String tag,
-                String title,
-                boolean skipNFKEquivs,
                 boolean onlyLowercase,
                 boolean onlySingleScript,
                 Relation<Pair<String, String>, String> confusableMap) {
