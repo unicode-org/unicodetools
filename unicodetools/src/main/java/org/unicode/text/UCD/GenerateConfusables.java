@@ -868,8 +868,6 @@ public class GenerateConfusables {
         MyEquivalenceClass dataMixedAnycase = new MyEquivalenceClass();
         RawData raw = new RawData();
 
-        private static String testChar = Character.toString(0x10A3A);
-
         public DataSet add(
                 String source, String target, String type, int lineCount, String errorLine) {
             if (SKIP_SET.containsAll(source) || SKIP_SET.containsAll(target)) {
@@ -1117,7 +1115,6 @@ public class GenerateConfusables {
             // System.out.println("Code Point Compare: " + c);
             final Set items = data.getOrderedExplicitItems();
             int count = 0;
-            makeIdnSets();
             final ArrayComparator ac =
                     new ArrayComparator(new Comparator[] {UCAComparator, UCAComparator});
             final Set orderedPairs = new TreeSet(ac);
