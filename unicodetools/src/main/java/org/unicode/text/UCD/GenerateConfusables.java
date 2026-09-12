@@ -921,7 +921,7 @@ public class GenerateConfusables {
             }
             // Here's where we add data, if you need to debug
             raw.add(source, target);
-            dataMixedAnycase.add(source, target);
+            dataMixedAnycase.add(source, target, type);
             return this;
         }
 
