@@ -545,7 +545,6 @@ public class GenerateConfusables {
             _skipNFKD = true;
 
             // General exceptions
-            final UnicodeSet idSet = getIdentifierSet();
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                 Utility.dot(cp);
                 if (SKIP_EXCEPTIONS.contains(cp)) {
@@ -591,14 +590,10 @@ public class GenerateConfusables {
                     }
                     nfkdMap.put(cp, kmapped);
                 }
-                if (mapped.equals(source)) {
-                    continue;
-                }
             }
         }
         nfkdMap.setMissing("");
         nfkdMap.freeze();
-        return;
     }
 
     /** */
