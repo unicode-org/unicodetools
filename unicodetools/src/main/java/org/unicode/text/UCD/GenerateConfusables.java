@@ -1239,12 +1239,9 @@ public class GenerateConfusables {
             final PrintWriter out =
                     openAndWriteHeader(
                             outdir, filename, "Summary: Recommended confusable mapping for IDN");
-            final UnicodeSet representable = new UnicodeSet();
             final MyEquivalenceClass data = dataMixedAnycase;
             final Set items = data.getOrderedExplicitItems();
             int count = 0;
-            final UnicodeSet preferredID = getIdentifierSet();
-            final String lastTarget = "";
             final Set itemsSeen = new HashSet();
             final Set equivalents = new TreeSet(betterTargetIsLess);
             final MyCollectionFilter myFilter = new MyCollectionFilter();
@@ -1274,13 +1271,10 @@ public class GenerateConfusables {
                         target = (String) equivalents.iterator().next();
                     }
                 }
-                scriptTest:
                 out.println();
                 out.println("#\t" + CollectionUtilities.join(equivalents, "\t"));
-                String status = ""; // getStatus(target);
                 out.println(
-                        status
-                                + "\t"
+                        "\t"
                                 + "(\u200E "
                                 + target
                                 + " \u200E)\t"
@@ -1296,11 +1290,9 @@ public class GenerateConfusables {
                             XEquivalenceClass.toString(
                                     data.getReasons(source, target), myLinkageTransform);
                     final String reasonOrEmpty = reason.length() == 0 ? "" : "\t# " + reason;
-                    status = ""; // getStatus(source);
 
                     out.println(
                             BACKARROW
-                                    + status
                                     + "\t"
                                     + "(\u200E "
                                     + source
