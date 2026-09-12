@@ -840,15 +840,15 @@ public class GenerateConfusables {
     private static class RawData {
         Map<String, Set<String>> data = new TreeMap<String, Set<String>>();
 
-        public void add(String source, String target, String type) {
+        public void add(String source, String target) {
             if (betterTargetIsLess.compare(source, target) < 0) {
-                add2(source, target, type);
+                add2(source, target);
             } else {
-                add2(target, source, type);
+                add2(target, source);
             }
         }
 
-        private void add2(String source, String target, String type) {
+        private void add2(String source, String target) {
             Set<String> set = data.get(source);
             if (set == null) {
                 data.put(source, set = new TreeSet<String>(betterTargetIsLess));
@@ -926,8 +926,8 @@ public class GenerateConfusables {
                 System.out.println(DEFAULT_UCD.getCodeAndName(combined));
             }
             // Here's where we add data, if you need to debug
-            raw.add(source, target, type);
-            dataMixedAnycase.add(source, target, type);
+            raw.add(source, target);
+            dataMixedAnycase.add(source, target);
             return this;
         }
 
