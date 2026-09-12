@@ -14,7 +14,6 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.EntryRange;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
@@ -27,8 +26,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,7 +33,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -1088,9 +1084,7 @@ public class GenerateConfusables {
             out.close();
         }
 
-        public void writeSourceOrder(
-                String directory, String filename)
-                throws IOException {
+        public void writeSourceOrder(String directory, String filename) throws IOException {
             final PrintWriter out =
                     openAndWriteHeader(
                             directory, filename, "Recommended confusable mapping for IDN");
@@ -1264,8 +1258,7 @@ public class GenerateConfusables {
         /**
          * @throws IOException
          */
-        public void writeSummary(
-                String outdir, String filename, boolean outputOnly)
+        public void writeSummary(String outdir, String filename, boolean outputOnly)
                 throws IOException {
             final PrintWriter out =
                     openAndWriteHeader(
