@@ -988,7 +988,6 @@ public class GenerateConfusables {
                     }
                 }
                 in.close();
-                return;
             } catch (final Exception e) {
                 throw (RuntimeException)
                         new RuntimeException(
