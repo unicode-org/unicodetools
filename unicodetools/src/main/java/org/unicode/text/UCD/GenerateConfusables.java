@@ -1311,7 +1311,6 @@ public class GenerateConfusables {
             if (!names[i].startsWith("confusables")) {
                 continue;
             }
-            final String reason = getReasonFromFilename(names[i]);
             if (DEBUG) System.out.println(names[i]);
             final BufferedReader in = FileUtilities.openUTF8Reader(indir, names[i]);
             String line;
@@ -1607,8 +1606,6 @@ public class GenerateConfusables {
             new Transform<Linkage<String, String>, String>() {
                 @Override
                 public String transform(Linkage<String, String> source) {
-                    String sourceString = source.reasons.toString();
-                    sourceString = sourceString.substring(1, sourceString.length() - 1);
                     return source.result == null
                             ? ""
                             : source.result.length() == 0
