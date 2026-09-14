@@ -67,7 +67,7 @@ public class ChartUtilities {
     }
 
     static String getPointToOther(String outFileName, String title) {
-        return !Emoji.BETA_IS_OPEN && !Emoji.IS_BETA
+        return !Emoji.IS_BETA
                 ? ""
                 : "<blockquote><i>For the "
                         + (Emoji.IS_BETA
