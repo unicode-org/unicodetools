@@ -1023,7 +1023,7 @@ public class Emoji {
 
     public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
     public static final String TR51_HTML =
-            IS_BETA ? TR51_HTML_BETA : "https://www.unicode.org/reports/tr51/#emoji_data";
+            IS_BETA ? TR51_HTML_BETA : "https://www.unicode.org/reports/tr51/";
 
     public static String getHexFromSubdivision(String string) {
         string = string.toLowerCase(Locale.ROOT).replace("-", "");
