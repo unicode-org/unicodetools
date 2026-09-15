@@ -58,7 +58,7 @@ public class UnicodeJsp {
                             .replaceAll("\r?\n", "<br>");
             return result;
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            return "Error: " + UnicodeUtilities.toHTML(String.valueOf(e.getMessage()));
         }
     }
 

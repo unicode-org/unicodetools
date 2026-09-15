@@ -17,7 +17,7 @@
         if (test == null) {
           test = "The 35 quick brown fox jumped over 1.234 lazy dogs: 1:234.";
         }
-        String testPattern = test;
+        String testPattern = Encode.forHtmlContent(test);
 
         String regex = utfParameters.getParameter("a");
         if (regex == null) {
