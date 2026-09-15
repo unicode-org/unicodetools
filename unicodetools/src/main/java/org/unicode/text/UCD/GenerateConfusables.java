@@ -14,7 +14,6 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.EntryRange;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
@@ -27,16 +26,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -59,9 +54,7 @@ import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.ScriptInfo;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
-import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
@@ -128,42 +121,11 @@ public class GenerateConfusables {
         UnicodeTransform.setFactory(TOOL_FACTORY);
     }
 
-    static final UnicodeSet COMMON_OR_INHERITED;
-    static final UnicodeSet CASED;
-    static final UnicodeSet COMMON_OR_INHERITED_NFKD;
-    static final UnicodeSet CASED_NFKD;
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
-    static final UnicodeMap<Set<Script_Values>> scriptExtensions =
-            iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
     static final UnicodeSet notNFKD =
             iup.loadEnum(UcdProperty.NFKD_Quick_Check, NFKD_Quick_Check_Values.class)
                     .getSet(NFKD_Quick_Check_Values.No);
 
-    static {
-        UnicodeSet common = scriptExtensions.getSet(Collections.singleton(Script_Values.Common));
-        UnicodeSet inherited =
-                scriptExtensions.getSet(Collections.singleton(Script_Values.Inherited));
-        COMMON_OR_INHERITED = new UnicodeSet(common).addAll(inherited).freeze();
-        CASED = iup.loadEnum(UcdProperty.Changes_When_Casefolded, Binary.class).getSet(Binary.Yes);
-        COMMON_OR_INHERITED_NFKD = new UnicodeSet(COMMON_OR_INHERITED);
-        CASED_NFKD = new UnicodeSet(CASED);
-        for (String s : notNFKD) {
-            if (s.equals("𝐉")) {
-                int debug = 0;
-            }
-            String nfkd = NFKD.normalize(s);
-            if (!COMMON_OR_INHERITED_NFKD.containsAll(nfkd)) {
-                COMMON_OR_INHERITED_NFKD.remove(s);
-            }
-            if (CASED_NFKD.containsSome(nfkd)) {
-                CASED_NFKD.add(s);
-            }
-        }
-        COMMON_OR_INHERITED_NFKD.freeze();
-        CASED_NFKD.freeze();
-    }
-
-    private static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
     static final UnicodeProperty AGE = ups.getProperty("age");
 
     private static final String EXCAPE_FUNNY_RULE =
@@ -177,7 +139,6 @@ public class GenerateConfusables {
     }
 
     private static final boolean SHOW_SUPPRESS = false;
-    static String recommended_scripts = "recommended";
 
     public static void main(String[] args) throws IOException {
         System.setProperty("line.separator", "\n");
@@ -407,9 +368,8 @@ public class GenerateConfusables {
             ups.getSet("gc=Cn").addAll(ups.getSet("gc=Co")).addAll(ups.getSet("gc=Cs")).freeze();
     private static UnicodeSet SKIP_SET =
             ups.getSet("gc=Cc").addAll(ups.getSet("gc=Cf")).addAll(UNASSIGNED).freeze();
-    private static UnicodeSet WHITESPACE = ups.getSet("Whitespace=Yes").freeze();
     static UnicodeSet GC_LOWERCASE = ups.getSet("gc=Ll").freeze();
-    private static UnicodeSet _skipNFKD;
+    private static boolean _skipNFKD = false;
     private static UnicodeSet COMBINING =
             ups.getSet("gc=Mn").addAll(ups.getSet("gc=Me")).add(0x3099).add(0x309A).freeze();
     private static UnicodeSet INVISIBLES = ups.getSet("default-ignorable-codepoint=true").freeze();
@@ -418,11 +378,7 @@ public class GenerateConfusables {
     private static UnicodeSet RTL = new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:]]").freeze();
     private static UnicodeSet CONTROLS = new UnicodeSet("[[:cc:][:Zl:][:Zp:]]").freeze();
     private static final char LRM = '\u200E';
-    private static UnicodeSet commonAndInherited =
-            new UnicodeSet("[[:script=common:][:script=inherited:]]");
 
-    private static Map gatheredNFKD = new TreeMap();
-    private static UnicodeMap nfcMap;
     private static UnicodeMap nfkdMap;
 
     private static Comparator codepointComparator = new UTF16.StringComparator(true, false, 0);
@@ -537,10 +493,10 @@ public class GenerateConfusables {
     static UnicodeSet IDNOutputSet;
 
     static UnicodeSet IDNInputSet;
-    private static UnicodeSet _preferredIDSet;
+    private static boolean _idnSetsMade = false;
 
-    static UnicodeSet getIdentifierSet() {
-        if (_preferredIDSet == null) {
+    static void makeIdnSets() {
+        if (!_idnSetsMade) {
             IDNOutputSet = new UnicodeSet();
             IDNInputSet = new UnicodeSet();
             IDNOutputSet.add('-'); // HACK
@@ -566,10 +522,8 @@ public class GenerateConfusables {
                         // no action
                 }
             }
-            _preferredIDSet = new UnicodeSet(IDNOutputSet).addAll(XIDContinueSet);
-            _preferredIDSet.add(0x2018).add(0x2019).freeze();
+            _idnSetsMade = true;
         }
-        return _preferredIDSet;
     }
 
     private static UnicodeSet SKIP_EXCEPTIONS =
@@ -583,18 +537,15 @@ public class GenerateConfusables {
                     .add('\u2001')
                     .freeze();
 
-    private static UnicodeSet getSkipNFKD() {
-        nfcMap = new UnicodeMap();
+    private static void makeNfkdMap() {
         nfkdMap = new UnicodeMap();
-        if (_skipNFKD == null) {
-            _skipNFKD = new UnicodeSet();
+        if (!_skipNFKD) {
+            _skipNFKD = true;
 
             // General exceptions
-            final UnicodeSet idSet = getIdentifierSet();
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                 Utility.dot(cp);
                 if (SKIP_EXCEPTIONS.contains(cp)) {
-                    _skipNFKD.add(cp);
                     continue;
                 }
                 final int cat = DEFAULT_UCD.getCategory(cp);
@@ -604,9 +555,6 @@ public class GenerateConfusables {
                 final int decompType = DEFAULT_UCD.getDecompositionType(cp);
                 final String nfc = Default.nfc().normalize(cp);
                 final String mapped = NFKD.normalize(cp);
-                if (decompType == UCD_Types.CANONICAL) {
-                    nfcMap.put(cp, nfc);
-                }
                 if (decompType == UCD_Types.COMPAT_CIRCLE
                         || decompType == UCD_Types.COMPAT_SUPER
                         || decompType == UCD_Types.COMPAT_SUB
@@ -628,7 +576,6 @@ public class GenerateConfusables {
                                 && (mapped.contains("2") || mapped.contains("3")))
                         || cp == '﬩'
                         || cp == '︒') {
-                    _skipNFKD.add(cp);
                     continue;
                 }
                 final String source = Character.toString(cp);
@@ -641,50 +588,10 @@ public class GenerateConfusables {
                     }
                     nfkdMap.put(cp, kmapped);
                 }
-                if (mapped.equals(source)) {
-                    continue;
-                }
-                if (idSet.contains(cp) && !idSet.contains(mapped)) {
-                    _skipNFKD.add(cp);
-                } else if (!WHITESPACE.contains(cp) && WHITESPACE.containsSome(mapped)) {
-                    _skipNFKD.add(cp);
-                }
             }
         }
-        nfcMap.setMissing("");
-        nfcMap.freeze();
         nfkdMap.setMissing("");
         nfkdMap.freeze();
-        return _skipNFKD;
-    }
-
-    /**
-     * Returns the script of the input text. Script values of COMMON and INHERITED are ignored.
-     *
-     * @param source Input text.
-     * @return Script value found in the text. If more than one script values are found, then
-     *     UCD_Types.UNUSED_SCRIPT is returned. If no script value is found (other than COMMON or
-     *     INHERITED), then UCD_Types.COMMON_SCRIPT is returned.
-     */
-    public static int getSingleScript(String source) {
-        if (source.length() == 0) {
-            return UCD_Types.COMMON_SCRIPT;
-        }
-        int lastScript = UCD_Types.COMMON_SCRIPT; // temporary value
-        int cp;
-        for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-            cp = source.codePointAt(i);
-            final int script = DEFAULT_UCD.getScript(cp);
-            if (script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT) {
-                continue;
-            }
-            if (lastScript == UCD_Types.COMMON_SCRIPT) {
-                lastScript = script;
-            } else if (script != lastScript) {
-                return UCD_Types.UNUSED_SCRIPT;
-            }
-        }
-        return lastScript;
     }
 
     /** */
@@ -692,17 +599,6 @@ public class GenerateConfusables {
         log = FileUtilities.openUTF8Writer(reformatedInternal, "log.txt");
         generateConfusables(indir, reformatedInternal, GEN_SECURITY_DIR);
         log.close();
-        if (false) {
-            for (final Iterator it = gatheredNFKD.keySet().iterator(); it.hasNext(); ) {
-                final String source = (String) it.next();
-                if (DEBUG)
-                    System.out.println(
-                            DEFAULT_UCD.getCodeAndName(source)
-                                    + " => "
-                                    + DEFAULT_UCD.getCodeAndName(
-                                            (String) gatheredNFKD.get(source)));
-            }
-        }
     }
 
     /**
@@ -817,7 +713,7 @@ public class GenerateConfusables {
             return false;
         }
 
-        public void close(String reason) {
+        public void close() {
             boolean addedItem;
             final StringBuffer reasons = new StringBuffer();
             do {
@@ -868,15 +764,8 @@ public class GenerateConfusables {
             return result.toString();
         }
 
-        private Object getBestForm(Collection x) {
-            if (x.size() != 1) {
-                return "[" + x + "]";
-            }
-            final Object item = x.iterator().next();
-            if (!(item instanceof Collection)) {
-                return x.toString();
-            }
-            return getBestForm((Collection) item);
+        private Object getBestForm(Collection<?> x) {
+            return x.size() == 1 ? x.toString() : "[" + x + "]";
         }
 
         public String getParadigm(String item, boolean onlyLowercase, boolean onlySameScript) {
@@ -942,15 +831,15 @@ public class GenerateConfusables {
     private static class RawData {
         Map<String, Set<String>> data = new TreeMap<String, Set<String>>();
 
-        public void add(String source, String target, String type) {
+        public void add(String source, String target) {
             if (betterTargetIsLess.compare(source, target) < 0) {
-                add2(source, target, type);
+                add2(source, target);
             } else {
-                add2(target, source, type);
+                add2(target, source);
             }
         }
 
-        private void add2(String source, String target, String type) {
+        private void add2(String source, String target) {
             Set<String> set = data.get(source);
             if (set == null) {
                 data.put(source, set = new TreeSet<String>(betterTargetIsLess));
@@ -972,21 +861,15 @@ public class GenerateConfusables {
         MyEquivalenceClass dataMixedAnycase = new MyEquivalenceClass();
         RawData raw = new RawData();
 
-        private static String testChar = Character.toString(0x10A3A);
-
-        public DataSet add(
+        public void add(
                 String source, String target, String type, int lineCount, String errorLine) {
             if (SKIP_SET.containsAll(source) || SKIP_SET.containsAll(target)) {
-                return this;
+                return;
             }
             final String nsource = Default.nfd().normalize(source);
             final String ntarget = Default.nfd().normalize(target);
 
             if (COMBINING.containsAll(nsource) != COMBINING.containsAll(ntarget)) {
-                if (nsource.contains(testChar)) {
-                    COMBINING.containsAll(nsource);
-                    COMBINING.containsAll(ntarget);
-                }
                 System.err.println(
                         "ERROR: Mixed combining classes: "
                                 + lineCount
@@ -999,12 +882,12 @@ public class GenerateConfusables {
             }
 
             // if it is just a compatibility match, return
-            // if (nsource.equals(ntarget)) return this;
+            // if (nsource.equals(ntarget)) return;
             if (type.indexOf("skip") >= 0) {
-                return this;
+                return;
             }
             if (target.indexOf('\u203D') >= 0) {
-                return this;
+                return;
             }
 
             type = getReasonFromFilename(type);
@@ -1027,13 +910,9 @@ public class GenerateConfusables {
             if (DEBUG && combined.indexOf("\u0430") >= 0) {
                 System.out.println(DEFAULT_UCD.getCodeAndName(combined));
             }
-            final boolean isLowercase =
-                    combined.equals(DEFAULT_UCD.getCase(combined, UCD_Types.FULL, UCD_Types.FOLD));
-            final boolean isMixed = ScriptInfo.isMixedScript(combined);
             // Here's where we add data, if you need to debug
-            raw.add(source, target, type);
+            raw.add(source, target);
             dataMixedAnycase.add(source, target, type);
-            return this;
         }
 
         @Override
@@ -1041,11 +920,11 @@ public class GenerateConfusables {
             return dataMixedAnycase.toString();
         }
 
-        private static final int NORMAL = 0, FOLDING = 1, OLD = 2;
+        private static final int NORMAL = 0, FOLDING = 1;
 
         private static final UnicodeSet NSM = new UnicodeSet("[[:Mn:][:Me:]]").freeze();
 
-        public DataSet addFile(String directory, String filename) throws IOException {
+        public void addFile(String directory, String filename) throws IOException {
             String line = null;
             int count = 0;
             try {
@@ -1053,8 +932,6 @@ public class GenerateConfusables {
                 int kind = NORMAL;
                 if (filename.indexOf("Folding") >= 0) {
                     kind = FOLDING;
-                } else if (false && filename.indexOf("-old") >= 0) {
-                    kind = OLD;
                 }
                 while (true) {
                     count++;
@@ -1066,9 +943,7 @@ public class GenerateConfusables {
                     if (line.length() == 0) {
                         continue;
                     }
-                    boolean isFont = false;
                     if (line.equals("@font")) {
-                        isFont = true;
                         continue;
                     }
                     final String[] pieces = Utility.split(line, ';');
@@ -1096,11 +971,6 @@ public class GenerateConfusables {
                         if (!first.equals(target)) {
                             add(source, target, type, count, line);
                         }
-                    } else if (kind == OLD) {
-                        final String target = sourceString.trim();
-                        for (int i = 1; i < pieces.length; ++i) {
-                            add(pieces[i].trim(), target, type, count, line);
-                        }
                     } else {
                         if (targetString.contains("(")) {
                             System.err.println("WARNING: paren on " + count + "\t" + line);
@@ -1118,7 +988,6 @@ public class GenerateConfusables {
                     }
                 }
                 in.close();
-                return this;
             } catch (final Exception e) {
                 throw (RuntimeException)
                         new RuntimeException(
@@ -1168,39 +1037,18 @@ public class GenerateConfusables {
         }
 
         public void writeSource(String directory, String filename) throws IOException {
-            final PrintWriter out =
-                    openAndWriteHeader(directory, filename, "Source File for IDN Confusables");
+            final PrintWriter out = openAndWriteHeader(directory, filename);
             raw.writeSource(out);
             out.close();
         }
 
-        public void writeSourceOrder(
-                String directory, String filename, boolean appendFile, boolean skipNFKEquivs)
-                throws IOException {
-            final PrintWriter out =
-                    openAndWriteHeader(
-                            directory, filename, "Recommended confusable mapping for IDN");
+        public void writeSourceOrder(String directory, String filename) throws IOException {
+            final PrintWriter out = openAndWriteHeader(directory, filename);
 
-            if (appendFile) {
-                final String[] replacements = {"%date%", Default.getDate()};
-                Utility.appendFile(
-                        GenerateConfusables.class.getResource("confusablesHeader.txt").getPath(),
-                        Utility.UTF8_WINDOWS,
-                        out,
-                        replacements);
-            }
             Relation<Pair<String, String>, String> confusableMap =
                     Relation.of(new TreeMap(MyPairComparator), TreeSet.class);
             if (true) {
-                writeSourceOrder(
-                        out,
-                        dataMixedAnycase,
-                        "MA",
-                        "Mixed-Script, Anycase Confusables",
-                        skipNFKEquivs,
-                        false,
-                        false,
-                        confusableMap);
+                writeSourceOrder(out, dataMixedAnycase, "MA", false, false, confusableMap);
                 Counter<Set<String>> counter = new Counter();
                 Map<Set<String>, Pair<String, String>> examples =
                         new HashMap<Set<String>, Pair<String, String>>();
@@ -1242,8 +1090,6 @@ public class GenerateConfusables {
                 PrintWriter out,
                 MyEquivalenceClass data,
                 String tag,
-                String title,
-                boolean skipNFKEquivs,
                 boolean onlyLowercase,
                 boolean onlySingleScript,
                 Relation<Pair<String, String>, String> confusableMap) {
@@ -1260,7 +1106,6 @@ public class GenerateConfusables {
             // System.out.println("Code Point Compare: " + c);
             final Set items = data.getOrderedExplicitItems();
             int count = 0;
-            final UnicodeSet preferredID = getIdentifierSet();
             final ArrayComparator ac =
                     new ArrayComparator(new Comparator[] {UCAComparator, UCAComparator});
             final Set orderedPairs = new TreeSet(ac);
@@ -1278,11 +1123,6 @@ public class GenerateConfusables {
                 }
                 if (source.equals(target)) {
                     continue;
-                }
-                if (skipNFKEquivs) {
-                    if (!NFKD.normalize(source).equals(source)) {
-                        continue;
-                    }
                 }
                 orderedPairs.add(new String[] {target, source});
                 Pair<String, String> pair = new Pair<String, String>(target, source);
@@ -1324,8 +1164,8 @@ public class GenerateConfusables {
             return dataMixedAnycase.getEquivalences(string);
         }
 
-        public void close(String reason) {
-            dataMixedAnycase.close(reason);
+        public void close() {
+            dataMixedAnycase.close();
         }
 
         /** */
@@ -1361,21 +1201,14 @@ public class GenerateConfusables {
         ;
 
         /**
-         * @param script TODO
          * @throws IOException
          */
-        public void writeSummary(
-                String outdir, String filename, boolean outputOnly, UnicodeSet script)
+        public void writeSummary(String outdir, String filename, boolean outputOnly)
                 throws IOException {
-            final PrintWriter out =
-                    openAndWriteHeader(
-                            outdir, filename, "Summary: Recommended confusable mapping for IDN");
-            final UnicodeSet representable = new UnicodeSet();
+            final PrintWriter out = openAndWriteHeader(outdir, filename);
             final MyEquivalenceClass data = dataMixedAnycase;
             final Set items = data.getOrderedExplicitItems();
             int count = 0;
-            final UnicodeSet preferredID = getIdentifierSet();
-            final String lastTarget = "";
             final Set itemsSeen = new HashSet();
             final Set equivalents = new TreeSet(betterTargetIsLess);
             final MyCollectionFilter myFilter = new MyCollectionFilter();
@@ -1405,27 +1238,10 @@ public class GenerateConfusables {
                         target = (String) equivalents.iterator().next();
                     }
                 }
-                scriptTest:
-                if (script != null) {
-                    // see if at least one item contains the target script
-                    for (final Iterator it2 = equivalents.iterator(); it2.hasNext(); ) {
-                        final String item = (String) it2.next();
-                        if (script.containsAll(item)) {
-                            target = item;
-                            for (final Iterator it3 = equivalents.iterator(); it3.hasNext(); ) {
-                                representable.addAll((String) it3.next());
-                            }
-                            break scriptTest;
-                        }
-                    }
-                    continue; // skip this one
-                }
                 out.println();
                 out.println("#\t" + CollectionUtilities.join(equivalents, "\t"));
-                String status = ""; // getStatus(target);
                 out.println(
-                        status
-                                + "\t"
+                        "\t"
                                 + "(\u200E "
                                 + target
                                 + " \u200E)\t"
@@ -1441,11 +1257,9 @@ public class GenerateConfusables {
                             XEquivalenceClass.toString(
                                     data.getReasons(source, target), myLinkageTransform);
                     final String reasonOrEmpty = reason.length() == 0 ? "" : "\t# " + reason;
-                    status = ""; // getStatus(source);
 
                     out.println(
                             BACKARROW
-                                    + status
                                     + "\t"
                                     + "(\u200E "
                                     + source
@@ -1460,270 +1274,7 @@ public class GenerateConfusables {
             out.println();
             out.println("# total : " + count);
             out.println();
-            if (script != null) {
-                out.println();
-                out.println("# Base Letters Representable with Script");
-                out.println();
-                representable.removeAll(script);
-                final BagFormatter bf = makeFormatter();
-                bf.setValueSource(ups.getProperty("script"));
-                bf.setShowLiteral(EXCAPE_FUNNY);
-                bf.showSetNames(out, representable);
-            }
             out.close();
-        }
-
-        public void writeWholeScripts(String outdir, String filename) throws IOException {
-            final UnicodeSet commonAndInherited =
-                    new UnicodeSet("[[:script=common:][:script=inherited:]]");
-
-            final WholeScript wsLower =
-                    new WholeScript(
-                            new UnicodeSet(IdentifierInfo.getIdentifierInfo().remainingOutputSet)
-                                    .removeAll(new UnicodeSet("[A-Z]")),
-                            "L");
-            final WholeScript wsAny =
-                    new WholeScript(
-                            new UnicodeSet(IdentifierInfo.getIdentifierInfo().remainingOutputSet)
-                                    .addAll(IdentifierInfo.getIdentifierInfo().inputSet_strict),
-                            "A");
-
-            final MyEquivalenceClass data = new MyEquivalenceClass();
-            for (final Object element : dataMixedAnycase.getSamples()) {
-                String target = (String) element;
-                final Set equivalents = getEquivalences(target);
-                boolean first = true;
-                for (final Iterator it2 = equivalents.iterator(); it2.hasNext(); ) {
-                    final String cleaned =
-                            CollectionUtilities.remove((String) it2.next(), commonAndInherited);
-                    if (cleaned.length() == 0) {
-                        continue;
-                    }
-                    if (first) {
-                        target = cleaned;
-                        first = false;
-                    } else {
-                        data.add(target, cleaned);
-                    }
-                }
-            }
-            final Set itemsSeen = new HashSet();
-            for (final Iterator it = data.getOrderedExplicitItems().iterator(); it.hasNext(); ) {
-                final String target = (String) it.next();
-                if (itemsSeen.contains(target)) {
-                    continue;
-                }
-                final Set equivalents = data.getEquivalences(target);
-                itemsSeen.addAll(equivalents);
-                wsAny.addEquivalents(equivalents);
-                wsLower.addEquivalents(equivalents);
-            }
-            final PrintWriter out =
-                    openAndWriteHeader(outdir, filename, "Summary: Whole-Script Confusables");
-            out.println("# This data is used for determining whether a strings is a");
-            out.println("# whole-script or mixed-script confusable.");
-            out.println("# The mappings here ignore common and inherited script characters,");
-            out.println("# such as accents.");
-            out.println("");
-            out.println("# Lowercase Only");
-            out.println("");
-            wsLower.write(out);
-            out.println("");
-            out.println("# Any-Case");
-            out.println("");
-            wsAny.write(out);
-            out.close();
-        }
-
-        public void writeData(String string, String string2) {
-            // TODO Auto-generated method stub
-
-        }
-    }
-
-    static class WholeScript {
-        private final UnicodeSet filterSet;
-        private final UnicodeSet[] script_representables = new UnicodeSet[UCD_Types.LIMIT_SCRIPT];
-        private final UnicodeSet[] script_set = new UnicodeSet[UCD_Types.LIMIT_SCRIPT];
-        private final BagFormatter bf = makeFormatter();
-        private final String label;
-
-        {
-            for (short i = 0; i < UCD_Types.LIMIT_SCRIPT; ++i) {
-                script_representables[i] = new UnicodeSet();
-                script_set[i] = SCRIPT_PROPERTY.getSet(UCD.getScriptID_fromIndex(i)); // ugly hack
-            }
-            bf.setValueSource(ups.getProperty("script"));
-            bf.setShowLiteral(EXCAPE_FUNNY);
-            bf.setLabelSource(UnicodeLabel.NULL);
-        }
-
-        WholeScript(UnicodeSet filterSet, String label) {
-            this.filterSet = filterSet;
-            this.label = label;
-            finished = false;
-        }
-
-        void addEquivalents(Set set) {
-            finished = false;
-            // if we have y ~ x, and both are single scripts
-            // that means that x can be represented in script(y),
-            // and y can be represented in script(x).
-            for (final Iterator it = set.iterator(); it.hasNext(); ) {
-                final String item1 = (String) it.next();
-                if (!filterSet.containsAll(item1)) {
-                    continue;
-                }
-                final int script1 = getSingleScript(item1);
-                if (script1 == UCD_Types.UNUSED_SCRIPT) {
-                    continue;
-                }
-                for (final Iterator it2 = set.iterator(); it2.hasNext(); ) {
-                    final String item2 = (String) it2.next();
-                    if (!filterSet.containsAll(item2)) {
-                        continue;
-                    }
-                    final int script2 = getSingleScript(item2);
-                    if (script2 == UCD_Types.UNUSED_SCRIPT || script2 == script1) {
-                        continue;
-                    }
-                    script_representables[script1].addAll(item2).removeAll(commonAndInherited);
-                }
-            }
-        }
-
-        public static class UnicodeSetToScript {
-            public short getScript() {
-                return script;
-            }
-
-            public UnicodeSetToScript setScript(short script) {
-                this.script = script;
-                return this;
-            }
-
-            public UnicodeSet getSet() {
-                return set;
-            }
-
-            public UnicodeSetToScript setSet(UnicodeSet set) {
-                this.set = set;
-                return this;
-            }
-
-            private UnicodeSet set;
-            private short script;
-        }
-
-        UnicodeSetToScript[][] scriptToUnicodeSetToScript =
-                new UnicodeSetToScript[UCD_Types.LIMIT_SCRIPT][];
-        UnicodeSet[] fastReject = new UnicodeSet[UCD_Types.LIMIT_SCRIPT];
-        boolean finished = false;
-
-        void finish() {
-            if (finished) {
-                return;
-            }
-            for (int j = 0; j < UCD_Types.LIMIT_SCRIPT; ++j) {
-                if (j == UCD_Types.COMMON_SCRIPT || j == UCD_Types.INHERITED_SCRIPT) {
-                    continue;
-                }
-                if (script_representables[j].size() == 0) {
-                    continue;
-                }
-                final UnicodeSet accept = new UnicodeSet();
-                final List curr = new ArrayList();
-                for (short k = 0; k < UCD_Types.LIMIT_SCRIPT; ++k) {
-                    if (k == UCD_Types.COMMON_SCRIPT || k == UCD_Types.INHERITED_SCRIPT) {
-                        continue;
-                    }
-                    if (script_representables[k].size() == 0) {
-                        continue;
-                    }
-
-                    if (script_set[j].containsNone(script_representables[k])) {
-                        continue;
-                    }
-                    final UnicodeSet items =
-                            new UnicodeSet(script_set[j]).retainAll(script_representables[k]);
-                    final UnicodeSetToScript uss =
-                            new UnicodeSetToScript().setScript(k).setSet(items);
-                    curr.add(uss);
-                }
-                scriptToUnicodeSetToScript[j] =
-                        (UnicodeSetToScript[]) curr.toArray(new UnicodeSetToScript[curr.size()]);
-                fastReject[j] = accept.complement();
-            }
-            finished = true;
-        }
-
-        void write(PrintWriter out) throws IOException {
-            finish();
-
-            Map<Pair<String, String>, String> reorder = new TreeMap<>(); // reorder alphabetically
-
-            for (short j = 0; j < UCD_Types.LIMIT_SCRIPT; ++j) {
-                final UnicodeSetToScript[] unicodeSetToScripts = scriptToUnicodeSetToScript[j];
-                if (unicodeSetToScripts == null) {
-                    continue;
-                }
-
-                for (int q = 0; q < unicodeSetToScripts.length; ++q) {
-                    final UnicodeSetToScript uss = unicodeSetToScripts[q];
-                    final short k = uss.getScript();
-                    final UnicodeSet items = uss.getSet();
-
-                    // get other side
-                    UnicodeSet items2 = UnicodeSet.EMPTY;
-                    final UnicodeSetToScript[] unicodeSetToScripts2 = scriptToUnicodeSetToScript[k];
-                    for (int qq = 0; qq < unicodeSetToScripts2.length; ++qq) {
-                        final UnicodeSetToScript uss2 = unicodeSetToScripts2[qq];
-                        if (uss2.getScript() == j) {
-                            items2 = uss2.getSet();
-                            break;
-                        }
-                    }
-
-                    final String sname =
-                            UCD.getScriptID_fromIndex(j, UCD_Types.SHORT)
-                                    + "; "
-                                    + UCD.getScriptID_fromIndex(k, UCD_Types.SHORT)
-                                    + "; "
-                                    + label;
-                    final String name =
-                            getScriptIndexName(j, UCD_Types.LONG)
-                                    + "; "
-                                    + getScriptIndexName(k, UCD_Types.LONG);
-                    StringWriter b = new StringWriter();
-                    PrintWriter out2 = new PrintWriter(b);
-                    out2.println(
-                            "# "
-                                    + name
-                                    + ": "
-                                    + items.toPattern(false)
-                                    + "; "
-                                    + items2.toPattern(false)
-                                    + "\n");
-                    bf.setValueSource(sname);
-                    bf.showSetNames(out2, items);
-                    out2.println("");
-                    out2.flush();
-                    reorder.put(
-                            Pair.of(
-                                    getScriptIndexName(j, UCD_Types.LONG),
-                                    getScriptIndexName(k, UCD_Types.LONG)),
-                            b.toString());
-                    out2.close();
-                }
-            }
-            for (Entry<Pair<String, String>, String> s : reorder.entrySet()) {
-                out.print(s.getValue());
-            }
-        }
-
-        public String getScriptIndexName(short scriptIndex, byte length) {
-            return UCharacter.toTitleCase(
-                    Locale.ENGLISH, UCD.getScriptID_fromIndex(scriptIndex, length), null);
         }
     }
 
@@ -1744,7 +1295,6 @@ public class GenerateConfusables {
             if (!names[i].startsWith("confusables")) {
                 continue;
             }
-            final String reason = getReasonFromFilename(names[i]);
             if (DEBUG) System.out.println(names[i]);
             final BufferedReader in = FileUtilities.openUTF8Reader(indir, names[i]);
             String line;
@@ -1834,11 +1384,11 @@ public class GenerateConfusables {
                 newDir = reformatedInternal + "/source/";
             }
             ds.writeSource(newDir, newName);
-            ds.close("*");
+            ds.close();
             total.addAll(ds);
-            total.close("t*" + names[i]);
+            total.close();
         }
-        getSkipNFKD();
+        makeNfkdMap();
 
         total.checkChar("ſ");
         if (DEBUG) System.out.println(nfkdMap.get('ſ'));
@@ -1846,20 +1396,19 @@ public class GenerateConfusables {
         DataSet ds = new DataSet();
         ds.addUnicodeMap(nfkdMap, "nfkd", "nfkd");
         ds.checkChar("ſ");
-        ds.close("*");
+        ds.close();
         ds.checkChar("ſ");
         total.addAll(ds);
         ds.checkChar("ſ");
-        total.close("*");
+        total.close();
         ds.checkChar("ſ");
 
-        total.writeData(reformatedInternal + "/source/", "confusablesRaw.txt");
-        total.writeSummary(draftDir, "confusablesSummary.txt", false, null);
-        total.writeSummary(reformatedInternal, "confusablesSummaryIdentifier.txt", true, null);
-        total.writeSourceOrder(draftDir, "confusables.txt", false, false);
+        total.writeSummary(draftDir, "confusablesSummary.txt", false);
+        total.writeSummary(reformatedInternal, "confusablesSummaryIdentifier.txt", true);
+        total.writeSourceOrder(draftDir, "confusables.txt");
     }
 
-    private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess(false);
+    private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess();
 
     private static boolean isXid(String x) {
         return XID.containsAll(x);
@@ -1867,11 +1416,6 @@ public class GenerateConfusables {
 
     private static class _BetterTargetIsLess implements Comparator<String> {
         IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
-        private boolean favorNeutral;
-
-        _BetterTargetIsLess(boolean favorNeutral) {
-            this.favorNeutral = favorNeutral;
-        }
 
         @Override
         public int compare(String a, String b) {
@@ -1896,19 +1440,6 @@ public class GenerateConfusables {
                 return ldiff < 0 ? 1 : -1; // bigger count is less!!
             }
             ;
-
-            if (favorNeutral) {
-                boolean isCommonA = COMMON_OR_INHERITED.containsAll(a);
-                boolean isCommonB = COMMON_OR_INHERITED.containsAll(b);
-                if (isCommonA != isCommonB) {
-                    return isCommonA ? -1 : 1;
-                }
-                boolean isUncasedA = !CASED.containsAll(a);
-                boolean isUncasedB = !CASED.containsAll(b);
-                if (isUncasedA != isUncasedB) {
-                    return isCommonA ? -1 : 1;
-                }
-            }
 
             // favor NFKD
             boolean isNfkdA = !notNFKD.containsSome(a);
@@ -2008,8 +1539,7 @@ public class GenerateConfusables {
         }
     }
 
-    static PrintWriter openAndWriteHeader(String dir, String filename, String title)
-            throws IOException {
+    static PrintWriter openAndWriteHeader(String dir, String filename) throws IOException {
         final PrintWriter out = FileUtilities.openUTF8Writer(dir, filename);
         out.println(
                 Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));
@@ -2060,8 +1590,6 @@ public class GenerateConfusables {
             new Transform<Linkage<String, String>, String>() {
                 @Override
                 public String transform(Linkage<String, String> source) {
-                    String sourceString = source.reasons.toString();
-                    sourceString = sourceString.substring(1, sourceString.length() - 1);
                     return source.result == null
                             ? ""
                             : source.result.length() == 0
