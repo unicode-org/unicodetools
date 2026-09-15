@@ -100,6 +100,8 @@
 # Common, until decision 106-C17 made it Unknown (Zzzz).
 # @missing: 0000..10FFFF; Script; Zyyy; v4.1.0
 
+# @missing: 0000..10FFFF; Decomposition_type; None; v3.0.0
+
 # @missing: 0000..10FFFF; Canonical_Combining_Class; Not_Reordered
 # Fixed position classes no longer in use; see
 # https://www.unicode.org/versions/Unicode2.0.0/ch04.pdf.
@@ -254,6 +256,16 @@ jg; ALEF_MAQSURAH ; ALEF_MAQSURAH
 # @missing: 0000..10FFFF; NFKC_SCF; <code point>
 
 # Extras
+
+# @missing: 0000..10FFFF; UCA_Fold_1_Shifted       ; <code point>
+# @missing: 0000..10FFFF; UCA_Fold_2_Shifted       ; <code point>
+# @missing: 0000..10FFFF; UCA_Fold_3_Shifted       ; <code point>
+# @missing: 0000..10FFFF; UCA_Fold_4_Shifted       ; <code point>
+# @missing: 0000..10FFFF; UCA_Fold_1_Non_Ignorable ; <code point>
+# @missing: 0000..10FFFF; UCA_Fold_2_Non_Ignorable ; <code point>
+# @missing: 0000..10FFFF; UCA_Fold_3_Non_Ignorable ; <code point>
+# @missing: 0000..10FFFF; UCA_Next_Shifted         ; <next code point>
+# @missing: 0000..10FFFF; UCA_Next_Non_Ignorable   ; <next code point>
 
 # @missing: 0000..10FFFF; Idn_Status   ; disallowed
 
@@ -470,3 +482,5 @@ Link_Term  ; Open    ; Open
 # @missing: 0000..10FFFF; kTayNumeric ; NaN
 # @missing: 0000..10FFFF; kTGT_Numeric ; NaN
 # @missing: 0000..10FFFF; Non_Unihan_Numeric_Value ; NaN
+
+# @missing: 0000..10FFFF; UCA_Tertiary_Weight ; 0002

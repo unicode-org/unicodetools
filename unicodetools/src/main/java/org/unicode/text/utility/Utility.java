@@ -1496,7 +1496,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             // check the standard ucd directory
             if (filename.contains("/*/")) {
                 // check the idna directory
-                String[] parts = filename.split("/");
+                String[] parts = filename.split("/", 3);
                 String base = parts[0];
                 //                if (base.equals("security")) {
                 //                    // TODO fix versions

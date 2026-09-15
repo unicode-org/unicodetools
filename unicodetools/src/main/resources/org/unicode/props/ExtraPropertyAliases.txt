@@ -99,6 +99,16 @@ Names_List_Cross_Ref_fr ; Names_List_Cross_Ref_fr ; NonUCDNonProperty
 
 Link_Bracket ; Link_Bracket ; NonUCDProperty
 
+UCA_Fold_1_Shifted       ; UCA_Fold_1_Shifted       ; NonUCDNonProperty
+UCA_Fold_2_Shifted       ; UCA_Fold_2_Shifted       ; NonUCDNonProperty
+UCA_Fold_3_Shifted       ; UCA_Fold_3_Shifted       ; NonUCDNonProperty
+UCA_Fold_4_Shifted       ; UCA_Fold_4_Shifted       ; NonUCDNonProperty
+UCA_Fold_1_Non_Ignorable ; UCA_Fold_1_Non_Ignorable ; NonUCDNonProperty
+UCA_Fold_2_Non_Ignorable ; UCA_Fold_2_Non_Ignorable ; NonUCDNonProperty
+UCA_Fold_3_Non_Ignorable ; UCA_Fold_3_Non_Ignorable ; NonUCDNonProperty
+UCA_Next_Shifted         ; UCA_Next_Shifted         ; NonUCDNonProperty
+UCA_Next_Non_Ignorable   ; UCA_Next_Non_Ignorable   ; NonUCDNonProperty
+
 # ================================================
 # Miscellaneous Properties
 # ================================================
@@ -288,3 +298,5 @@ Names_List_Formal_Alias_fr        ; Names_List_Formal_Alias_fr        ; NonUCDNo
 Math_Entity_Name          ; Math_Entity_Name          ; NonUCDNonProperty
 Math_Entity_Set           ; Math_Entity_Set           ; NonUCDNonProperty
 Math_Descriptive_Comments ; Math_Descriptive_Comments ; NonUCDNonProperty
+
+UCA_Tertiary_Weight ; UCA_Tertiary_Weight ; NonUCDNonProperty

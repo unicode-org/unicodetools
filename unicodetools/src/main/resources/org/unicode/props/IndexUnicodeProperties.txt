@@ -70,6 +70,9 @@ FileType ; NamedSequencesProv ; NamedSequences
 FileType ; NamesList ; NamesList
 FileType ; fr/*/NamesList ; NamesList
 
+FileType ; uca/*/allkeys ; AllKeys
+FileType ; uca/*/basekeys ; AllKeys
+
 # =======================================
 # FILES FOR PROPERTIES
 # Note that in (currently) exactly one property a missing value in a field means an empty string; in others it means "no value"
@@ -103,6 +106,8 @@ UnicodeData; General_Category ; 2
 UnicodeData; Canonical_Combining_Class ; 3
 DerivedBidiClass; Bidi_Class ; 1
 DerivedDecompositionType; Decomposition_Type ; 1
+# Prior to 3.1, there is no DerivedDecompositionType.txt.
+UnicodeData; Decomposition_Type ; 5 ; v3.0.1
 UnicodeData; Decomposition_Mapping ; 5
 # Handle the lack of rational Numeric_Value in older DerivedNumericValues by
 # reading it from UnicodeData via an unofficial contributory property.
@@ -534,6 +539,27 @@ USourceData ; cjkUSource_Source              ; {2} ↦ 6
 USourceData ; cjkUSource_Comments            ; {2} ↦ 7
 USourceData ; cjkUSource_TotalStrokes        ; {2} ↦ 8
 USourceData ; cjkUSource_FirstResidualStroke ; {2} ↦ 9
+
+uca/*/allkeys; UCA_Fold_1_Shifted
+uca/*/allkeys; UCA_Fold_2_Shifted
+uca/*/allkeys; UCA_Fold_3_Shifted
+uca/*/allkeys; UCA_Fold_4_Shifted
+uca/*/allkeys; UCA_Fold_1_Non_Ignorable
+uca/*/allkeys; UCA_Fold_2_Non_Ignorable
+uca/*/allkeys; UCA_Fold_3_Non_Ignorable
+uca/*/allkeys; UCA_Next_Shifted
+uca/*/allkeys; UCA_Next_Non_Ignorable
+uca/*/allkeys; UCA_Tertiary_Weight
+uca/*/basekeys; UCA_Fold_1_Shifted ; v3.0.0
+uca/*/basekeys; UCA_Fold_2_Shifted ; v3.0.0
+uca/*/basekeys; UCA_Fold_3_Shifted ; v3.0.0
+uca/*/basekeys; UCA_Fold_4_Shifted ; v3.0.0
+uca/*/basekeys; UCA_Fold_1_Non_Ignorable ; v3.0.0
+uca/*/basekeys; UCA_Fold_2_Non_Ignorable ; v3.0.0
+uca/*/basekeys; UCA_Fold_3_Non_Ignorable ; v3.0.0
+uca/*/basekeys; UCA_Next_Shifted ; v3.0.0
+uca/*/basekeys; UCA_Next_Non_Ignorable ; v3.0.0
+uca/*/basekeys; UCA_Tertiary_Weight ; v3.0.0
 
 idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2

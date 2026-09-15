@@ -1634,7 +1634,9 @@ end Ignoring;
     end Ignoring;
 
     Propertywise [ゟ] ⧴ [{より}]
+                      ⧴ [{ヨリ}]
     CorrespondTo [ヿ] ⧴ [{コト}]
+                      ⧴ [{コト}]
         UpTo: Block             (Hiragana vs Katakana),
               Script            (Hiragana vs Katakana),
               Script_Extensions (Hiragana vs Katakana),

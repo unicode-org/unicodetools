@@ -734,12 +734,12 @@ final class Validity {
         System.out.println("Checking for well-formedness");
 
         log.println("<h2>6. Checking for well-formedness</h2>");
-        if (uca.haveVariableWarning) {
+        if (uca.variableWarning != null) {
             log.println("<p><b>Ill-formed: alternate values overlap!</b></p>");
             errorCount++;
         }
 
-        if (uca.haveZeroVariableWarning) {
+        if (uca.zeroVariableWarning != null) {
             log.println("<p><b>Ill-formed: alternate values on zero primaries!</b></p>");
             errorCount++;
         }
