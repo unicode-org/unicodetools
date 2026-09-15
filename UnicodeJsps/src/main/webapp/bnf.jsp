@@ -36,7 +36,7 @@
             try {
                 random = UnicodeJsp.getBnf(fixedbnf, 100, 10);
             } catch (Exception e) {
-                random = e.getMessage();
+                random = Encode.forHtmlContent(java.util.Objects.toString(e.getMessage(), "error"));
             }
         } catch (Exception e) {
             fixedbnf = e.getMessage();
