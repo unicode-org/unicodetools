@@ -21,6 +21,7 @@ import java.util.Random;
 import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.owasp.encoder.Encode;
 import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.Quoter;
 import org.unicode.idna.Idna2003;
@@ -194,7 +195,7 @@ public class UnicodeJsp {
             a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA));
             a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
         } catch (Exception e) {
-            a_out = e.getMessage();
+            a_out = Encode.forHtmlContent(Objects.toString(e.getMessage(), "error"));
             for (Throwable cause = e; cause != null; cause = cause.getCause()) {
                 cause.printStackTrace();
             }
