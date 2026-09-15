@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-18.0.0.txt
-# Date: 2026-06-29, 15:25:02 GMT
+# Date: 2026-09-11, 15:25:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -699,7 +699,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1EE9C..1EEA0  ; Cn #   [5] <reserved-1EE9C>..<reserved-1EEA0>
 1EEA4         ; Cn #       <reserved-1EEA4>
 1EEAA         ; Cn #       <reserved-1EEAA>
-1EEBC..1EEEF  ; Cn #  [52] <reserved-1EEBC>..<reserved-1EEEF>
+1EEBC..1EEDF  ; Cn #  [36] <reserved-1EEBC>..<reserved-1EEDF>
+1EEE1..1EEEF  ; Cn #  [15] <reserved-1EEE1>..<reserved-1EEEF>
 1EEF2..1EFFF  ; Cn # [270] <reserved-1EEF2>..<reserved-1EFFF>
 1F02C..1F02F  ; Cn #   [4] <reserved-1F02C>..<reserved-1F02F>
 1F094..1F09F  ; Cn #  [12] <reserved-1F094>..<reserved-1F09F>
@@ -751,7 +752,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 801723
+# Total code points: 801722
 
 # ================================================
 
@@ -3464,8 +3465,9 @@ A6E6..A6EF    ; Nl #  [10] BAMUM LETTER MO..BAMUM LETTER KOGHOM
 12475..1247F  ; Nl #  [11] CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12550..12686  ; Nl # [311] CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
 16FF4..16FF6  ; Nl #   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
+1EEE0         ; Nl #       ARABIC ASTRONOMICAL ZERO
 
-# Total code points: 562
+# Total code points: 563
 
 # ================================================
 

@@ -1,0 +1,29 @@
+# Arabic: ARABIC ASTRONOMICAL ZERO (1EEE0)
+# https://github.com/unicode-org/sew/issues/880
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block Unicode_1_Name General_Category Other_Joining_Type Arabic_Shaping_Schematic_Name Numeric_Value Numeric_Type Non_Unihan_Numeric_Value:
+
+Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}
+              \N{0621:ء:ARABIC LETTER HAMZA}] AreAlike
+
+end Ignoring;
+
+Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}]
+⧴ [0]
+CorrespondTo [\N{12400:𒐀:CUNEIFORM NUMERIC SIGN TWO ASH}]
+⧴ [2]
+UpTo: Script(Arabic vs Cuneiform), Script_Extensions(Arabic vs Cuneiform), Bidi_Class(Arabic_Letter vs Left_To_Right),
+      Block(Arabic_Mathematical_Alphabetic_Symbols vs Cuneiform_Numbers_And_Punctuation)
+
+end Ignoring;
+
+end Ignoring;
