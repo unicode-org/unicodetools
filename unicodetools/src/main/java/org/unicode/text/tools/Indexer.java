@@ -934,7 +934,7 @@ public class Indexer {
                             + Utility.hex(chartStart)
                             + ".pdf";
                 default:
-                    return "/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
+                    return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
             }
         }
     }
@@ -953,9 +953,9 @@ public class Indexer {
                         Settings.LATEST_VERSION_INFO,
                         Settings.latestVersionPhase,
                         Settings.LAST_VERSION_INFO,
-                        Settings.latestVersionPhase == ReleasePhase.GAMMA ?
-                        "/charts" :
-                        "/Public/draft/charts",
+                        Settings.latestVersionPhase == ReleasePhase.GAMMA
+                                ? "https://www.unicode.org/charts"
+                                : "https://www.unicode.org/Public/draft/charts",
                         "charindex-draft.html",
                         /* language= */ null);
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version), but
