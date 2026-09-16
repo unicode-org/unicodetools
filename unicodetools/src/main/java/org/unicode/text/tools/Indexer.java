@@ -626,7 +626,23 @@ public class Indexer {
                             htmlLine.replace(
                                             "<!--VERSION HERE-->",
                                             version.getVersionString(2, 2) + phase)
+                                    .replace(
+                                            "<!--FULL-VERSION-HERE-->",
+                                            version.getVersionString(3, 3) + phase)
                                     .replace("CHARTS-ROOT-HERE", chartsRoot)
+                                    .replace(
+                                            "LANDING-PAGE-HERE",
+                                            phase == ReleasePhase.ALPHA
+                                                    ? "https://www.unicode.org/versions/alpha-"
+                                                            + version.getVersionString(3, 3)
+                                                            + ".html"
+                                                    : phase == ReleasePhase.BETA
+                                                            ? "https://www.unicode.org/versions/beta-"
+                                                                    + version.getVersionString(3, 3)
+                                                                    + ".html"
+                                                            : "https://www.unicode.org/versions/Unicode"
+                                                                    + version.getVersionString(3, 3))
+                                    .replace("PHASE-HERE", phase.toString())
                                     .replace(
                                             "<!--DRAFT LINK HERE-->",
                                             linkedVersion == null
