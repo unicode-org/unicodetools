@@ -1649,8 +1649,8 @@
    <char cp="FFEA" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
    <char cp="FFEB" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
    <char cp="FFEC" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
-   <char cp="10D8E" mathclass="R"/>
-   <char cp="10D8F" mathclass="R"/>
+   <char cp="10D8E" mathclass="B"/>
+   <char cp="10D8F" mathclass="B"/>
    <char cp="1CEF0" mathclass="N"/>
    <char cp="1D400" mathclass="A"/>
    <char cp="1D401" mathclass="A"/>

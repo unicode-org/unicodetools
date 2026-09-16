@@ -1729,8 +1729,8 @@ FFE9;X;;;("wide" compatibility variants of arrows) # Sm (￩) HALFWIDTH LEFTWARD
 FFEA;X;;;("wide" compatibility variants of arrows) # Sm (￪) HALFWIDTH UPWARDS ARROW
 FFEB;X;;;("wide" compatibility variants of arrows) # Sm (￫) HALFWIDTH RIGHTWARDS ARROW
 FFEC;X;;;("wide" compatibility variants of arrows) # Sm (￬) HALFWIDTH DOWNWARDS ARROW
-10D8E;R;;; # Sm (𐶎) GARAY PLUS SIGN
-10D8F;R;;; # Sm (𐶏) GARAY MINUS SIGN
+10D8E;B;;; # Sm (𐶎) GARAY PLUS SIGN
+10D8F;B;;; # Sm (𐶏) GARAY MINUS SIGN
 1CEF0;N;;; # Sm (𜻰) MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
 1D400;A;;; # Lu (𝐀) MATHEMATICAL BOLD CAPITAL A
 1D401;A;;; # Lu (𝐁) MATHEMATICAL BOLD CAPITAL B
