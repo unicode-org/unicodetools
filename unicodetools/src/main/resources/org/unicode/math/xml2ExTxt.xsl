@@ -104,7 +104,7 @@
           test="(not(@unassigned) and not(@deprecated)) or @unassigned != 'true' or @deprecated != 'true'"><xsl:value-of
           select="$repertoire/key('cp_key', current()/@cp)/@gc"/><xsl:text> (</xsl:text><xsl:value-of
           select="codepoints-to-string(f:hexToDec(@cp))"/><xsl:text>) </xsl:text><xsl:value-of
-          select="$repertoire/key('cp_key', current()/@cp)/@na"/></xsl:if><xsl:text>&#x000D;</xsl:text>
+          select="$repertoire/key('cp_key', current()/@cp)/@na"/></xsl:if><xsl:text>&#x000A;</xsl:text>
   </xsl:template>
 
   <xsl:template name="introduction">
