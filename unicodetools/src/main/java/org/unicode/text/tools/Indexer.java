@@ -641,7 +641,8 @@ public class Indexer {
                                                                     + version.getVersionString(3, 3)
                                                                     + ".html"
                                                             : "https://www.unicode.org/versions/Unicode"
-                                                                    + version.getVersionString(3, 3))
+                                                                    + version.getVersionString(
+                                                                            3, 3))
                                     .replace("PHASE-HERE", phase.toString())
                                     .replace(
                                             "<!--DRAFT LINK HERE-->",
