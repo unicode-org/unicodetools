@@ -914,6 +914,7 @@ public class Indexer {
                 blockHasNewCharacters = currentBlock.containsSome(NEW_CHARACTERS);
             }
             switch (phase) {
+                // TODO(egg): Figure out where those live in 19.0α and β.
                 case ALPHA:
                     if (blockHasNewCharacters) {
                         return "https://www.unicode.org/charts/PDF/Unicode-"
@@ -933,7 +934,7 @@ public class Indexer {
                             + Utility.hex(chartStart)
                             + ".pdf";
                 default:
-                    return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
+                    return "/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
             }
         }
     }
@@ -944,7 +945,7 @@ public class Indexer {
                         Settings.LAST_VERSION_INFO,
                         ReleasePhase.GAMMA,
                         Settings.LAST2_VERSION_INFO,
-                        "https://www.unicode.org/charts",
+                        "/charts",
                         "charindex.html",
                         /* language= */ null);
         final var draft =
@@ -952,7 +953,9 @@ public class Indexer {
                         Settings.LATEST_VERSION_INFO,
                         Settings.latestVersionPhase,
                         Settings.LAST_VERSION_INFO,
-                        "https://www.unicode.org/Public/draft/charts",
+                        Settings.latestVersionPhase == ReleasePhase.GAMMA ?
+                        "/charts" :
+                        "/Public/draft/charts",
                         "charindex-draft.html",
                         /* language= */ null);
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version), but
