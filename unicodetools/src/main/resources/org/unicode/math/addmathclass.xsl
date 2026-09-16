@@ -1,6 +1,6 @@
 
 <!--
-    Update MathClasEx.xml from ucd.nounihan.gruped.xml
+    Update MathClasEx.xml from ucd.nounihan.grouped.xml
     saxon MathClassEx.xml addmathclass.xsl  > MathClassEx2.xml
     
     New entries will have mathclass="?" which need to be decided and adjusted
