@@ -945,7 +945,7 @@ public class Indexer {
                         Settings.LAST_VERSION_INFO,
                         ReleasePhase.GAMMA,
                         Settings.LAST2_VERSION_INFO,
-                        "/charts",
+                        "https://www.unicode.org/charts",
                         "charindex.html",
                         /* language= */ null);
         final var draft =
