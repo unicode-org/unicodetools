@@ -22,7 +22,7 @@
 #
 # The character encoding of this plain-text file is UTF-8.
 #
-# The data consists of 5 fields, optionally follwed by a comment.
+# The data consists of 5 fields, optionally followed by a comment.
 # The number and type of fields may change in future versions of this file.
 #
 # 1: code point or range

@@ -1,6 +1,6 @@
 # File: MathClass.txt
 # Revision: 16
-# Date: 2026-09-16
+# Date: 2026-09-17
 #
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
