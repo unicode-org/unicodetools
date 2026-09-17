@@ -1,3 +1,4 @@
+<%@ page import="org.owasp.encoder.Encode" %>
 <html>
 <head>
 <%@ include file="header.jsp" %>
@@ -34,8 +35,8 @@
       <th style="width: 50%">Input B</th>
     </tr>
     <tr>
-      <td ><textarea name="a" rows="8" cols="10" style="width: 100%"><%=setA%></textarea></td>
-      <td ><textarea name="b" rows="8" cols="10" style="width: 100%"><%=setB%></textarea></td>
+      <td ><textarea name="a" rows="8" cols="10" style="width: 100%"><%=Encode.forHtmlContent(setA)%></textarea></td>
+      <td ><textarea name="b" rows="8" cols="10" style="width: 100%"><%=Encode.forHtmlContent(setB)%></textarea></td>
     </tr>
     <tr>
       <td colspan="2"><input type="submit" value="Compare" />
