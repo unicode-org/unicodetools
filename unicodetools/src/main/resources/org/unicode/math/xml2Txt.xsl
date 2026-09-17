@@ -36,7 +36,7 @@
     <xsl:if test="@deprecated = 'true' or @unassigned = 'true'">#</xsl:if><xsl:value-of
           select="@cp"/><xsl:if test="@unassigned = 'true' and @equivalent">=<xsl:value-of
           select="@equivalent"/></xsl:if>;<xsl:value-of
-          select="@mathclass"/><xsl:text>&#x000D;</xsl:text>
+          select="@mathclass"/><xsl:text>&#x000A;</xsl:text>
   </xsl:template>
 
   <xsl:template name="introduction">
