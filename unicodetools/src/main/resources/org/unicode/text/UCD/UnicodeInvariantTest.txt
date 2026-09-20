@@ -343,6 +343,19 @@ In \p{dt=canonical}, bc * (take 1) * dm  = bc
 Let $BMExclusions := [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
 In [\p{dt=canonical}-$BMExclusions], (delete-adjacent-duplicates) * Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
+# Precedent (UTC-175-C21; L2/23-079, item 4.1): The UTC will not add further
+# characters to the Unicode Standard with both (a) canonical decompositions,
+# and (b) Bidi_Paired_Bracket_Type ≠ None. Unicode will also not add further
+# characters where the canonical decompositions *contain* characters whose
+# Bidi_Paired_Bracket_Type ≠ None.
+# https://github.com/unicode-org/unicodetools/issues/453
+# The existing exceptions to both restrictions are U+2329 and U+232A.
+Let $decomposableBidiBrackets := [\u2329\u232A]
+[\p{dt=Canonical} & \P{Bidi_Paired_Bracket_Type=None}] ⊆ $decomposableBidiBrackets
+# Use full canonical decomposition so that indirect mappings are checked too.
+In [\p{dt=Canonical} - $decomposableBidiBrackets],
+    \p{Bidi_Paired_Bracket_Type=None} * toNFD = toNFD
+
 # Additional BIDI invariant constants
 Let $AL_blocks := [
     \u0600-\u07BF
