@@ -47,7 +47,10 @@ public class TestAge {
                         .put(removed, currentAge)
                         .freeze();
         UnicodeMap<String> result =
-                ToolUnicodePropertySource.deriveAge(currentVersion, cp -> cp == added, input);
+                ToolUnicodePropertySource.deriveAge(
+                        currentVersion,
+                        cp -> cp == added,
+                        new UnicodeProperty.UnicodeMapProperty().set(input));
 
         assertEquals(currentAge, result.get(added));
         assertEquals("Unassigned", result.get(removed));

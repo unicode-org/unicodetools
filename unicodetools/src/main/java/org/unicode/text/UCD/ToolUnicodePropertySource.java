@@ -79,16 +79,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
 
     static UnicodeMap<String> deriveAge(
-            VersionInfo version, IntPredicate isAllocated, UnicodeMap<String> ageFromFile) {
-        UnicodeMap<String> result = ageFromFile.cloneAsThawed();
+            VersionInfo version, IntPredicate isAllocated, UnicodeProperty ageFromFile) {
+        UnicodeMap<String> result = new UnicodeMap<>();
         String unassigned = UCD_Names.LONG_AGE[UCD_Types.UNKNOWN];
         String currentAge = "V" + version.getMajor() + "_" + version.getMinor();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             // Noncharacters have an Age too, despite having General_Category=Cn.
             if (!isAllocated.test(cp)) {
                 result.put(cp, unassigned);
-            } else if (unassigned.equals(result.get(cp))) {
-                result.put(cp, currentAge);
+            } else {
+                String age = ageFromFile.getValue(cp);
+                result.put(cp, unassigned.equals(age) ? currentAge : age);
             }
         }
         return result.freeze();
@@ -2272,7 +2273,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                 ucd.getVersionInfo(),
                                 ucd::isAllocated,
                                 IndexUnicodeProperties.make(ucd.getVersion())
-                                        .load(UcdProperty.Age));
+                                        .getProperty(UcdProperty.Age));
             }
             return ageMap.get(codePoint);
         }
