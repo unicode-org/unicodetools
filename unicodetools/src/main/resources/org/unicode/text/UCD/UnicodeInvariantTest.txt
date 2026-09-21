@@ -771,6 +771,22 @@ Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^(ARABIC|CHINESE
 # or its decomposition is <square> (㋍ etc.).
 In [\P{Lowercase} - \p{dt=square}], \p{Lowercase} * toNFKD ≠ toNFKD
 
+## Consistency of Soft_Dotted with decompositions.
+# A character that decomposes to a single Soft_Dotted character should be Soft_Dotted.
+# This includes compatibility mappings, but not sequences such as i + acute accent.
+# See https://github.com/unicode-org/unicodetools/issues/277 and L2/22-124 item UCD2.
+# Allow the existing exceptions.
+Let $softDottedDecompositionExceptions := [
+    \N{INFORMATION SOURCE}
+    \N{SMALL ROMAN NUMERAL ONE}
+    \N{CIRCLED LATIN SMALL LETTER I}
+    \N{CIRCLED LATIN SMALL LETTER J}
+    \N{FULLWIDTH LATIN SMALL LETTER I}
+    \N{FULLWIDTH LATIN SMALL LETTER J}
+]
+In [\P{Decomposition_Type=None} - \p{Soft_Dotted} - $softDottedDecompositionExceptions],
+    Decomposition_Mapping ∉ \p{Soft_Dotted}
+
 ## Joining_Type and Joining_Group
 # Where defined, the Joining_Group refines the Joining_Type.
 OnPairsOf \P{Joining_Group=No_Joining_Group}, EqualityOf Joining_Group ⇒ EqualityOf Joining_Type
