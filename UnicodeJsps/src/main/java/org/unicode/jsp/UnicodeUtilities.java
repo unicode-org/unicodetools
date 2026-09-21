@@ -1292,7 +1292,12 @@ public class UnicodeUtilities {
                     }
                     break;
             }
-            out.appendCodePoint(cp);
+            // Escape standalone ZWJ, but preserve it within string elements.
+            if (cp == JOINER && status == Status.NORMAL) {
+                out.append("\\u200D");
+            } else {
+                out.appendCodePoint(cp);
+            }
             oldCp = cp;
         }
         return out.toString();
