@@ -151,8 +151,6 @@ mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UC
 #   and in UCD_Names.java
 # rerun mvn
 cp -r ../Generated/UCD/18.0.0/* unicodetools/data/ucd/dev
-rm unicodetools/data/ucd/dev/ZZZ-UNCHANGED-*
-rm unicodetools/data/ucd/dev/*/ZZZ-UNCHANGED-*
 rm unicodetools/data/ucd/dev/extra/*
 rm unicodetools/data/ucd/dev/cldr/*
 git add unicodetools/src/main/java/org/unicode/text/UCD/UCD_Names.java
