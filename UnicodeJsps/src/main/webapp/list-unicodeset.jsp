@@ -3,14 +3,27 @@
 <%@ page import="org.owasp.encoder.Encode" %>
 <%@ include file="header.jsp" %>
 <title>Unicode Utilities: UnicodeSet</title>
+<script>
+function setSubmissionMethod(form) {
+    const parameters = new URLSearchParams();
+    for (const [name, value] of new FormData(form)) {
+        // Form submission normalizes line endings to CRLF before encoding.
+        parameters.append(name, value.replace(/\r\n|\r|\n/g, "\r\n"));
+    }
+    const url = new URL(form.action);
+    url.search = parameters.toString();
+    // Keep short queries bookmarkable; send long queries in the request body.
+    form.method = url.href.length <= 2048 ? "get" : "post";
+}
+</script>
 </head>
 <body>
 <%
 		request.setCharacterEncoding("UTF-8");
 		//response.setContentType("text/html;charset=UTF-8"); //this is redundant
-		String queryString = request.getQueryString();
-
-		UtfParameters utfParameters = new UtfParameters(queryString);
+		UtfParameters utfParameters = "POST".equals(request.getMethod())
+		        ? new UtfParameters(request.getParameterMap())
+		        : new UtfParameters(request.getQueryString());
 
 		String setA = utfParameters.getParameter("a", "[:ASCII:]");
 		String group = utfParameters.getParameter("g", "");
@@ -28,12 +41,12 @@
 
 		NumberFormat nf = NumberFormat.getIntegerInstance();
 		String sizeStr = nf.format(a.size());
-		//   action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST"
 %>
 <h1>Unicode Utilities: UnicodeSet </h1>
 <%@ include file="subtitle.jsp" %>
 <p><a target="help" href="https://unicode-org.github.io/unicodetools/help/list-unicodeset"><b>help</b></a> | <%@ include file="others.jsp" %></p>
-<form name="myform">
+<form name="myform" action="list-unicodeset.jsp" method="post" accept-charset="UTF-8"
+      onsubmit="setSubmissionMethod(this)">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
       <th style="width: 50%">Input</th>
@@ -43,7 +56,7 @@
     </tr>
     <tr>
       <td>
-      <input id='main' type="submit" value="Show Set" onClick="window.location.href='list-unicodeset.jsp?a='+document.getElementById('main').value"/>&nbsp;&nbsp;
+      <input id='main' type="submit" value="Show Set"/>&nbsp;&nbsp;
       <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">Abbreviate</label>&nbsp;&nbsp;
       <input type="checkbox" <%=collate ? "checked" : ""%> name="c"><label for="c">Collate</label>&nbsp;&nbsp;
       <input type="checkbox" <%=ucdFormat ? "checked" : ""%> name="ucd"><label for="ucd">UCD format</label>&nbsp;&nbsp;
