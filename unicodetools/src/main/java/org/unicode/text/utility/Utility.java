@@ -1296,7 +1296,8 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         return true;
     }
 
-    public static boolean renameIdentical(
+    /** Deletes file2 and the optional batch file if file2 matches file1. */
+    public static boolean deleteIdentical(
             String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
         if (file1 == null) {
             System.out.println("Null file");
@@ -1305,9 +1306,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         final String lines[] = new String[2];
         final boolean identical = filesAreIdentical(file1, file2, skipCopyright, lines);
         if (identical) {
-            renameIdentical(file2);
+            deleteIdentical(file2);
             if (batFile != null) {
-                renameIdentical(batFile);
+                deleteIdentical(batFile);
             }
             return true;
         } else {
@@ -1370,18 +1371,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
     }
 
-    static void renameIdentical(String file2) {
-        final File foo = new File(file2);
-        File newName = new File(foo.getParent(), "ZZZ-UNCHANGED-" + foo.getName());
-        if (newName.exists()) {
-            newName.delete();
-        }
-        System.out.println("IDENTICAL TO PREVIOUS, RENAMING : " + foo);
-        System.out.println("TO : " + newName);
-        final boolean renameResult = foo.renameTo(newName);
-        if (!renameResult) {
-            System.out.println("Couldn't rename!");
-        }
+    static void deleteIdentical(String file2) throws IOException {
+        System.out.println("IDENTICAL TO PREVIOUS, DELETING : " + file2);
+        Files.delete(Path.of(file2));
     }
 
     static String getLineWithoutFluff(BufferedReader br1, boolean first, boolean skipCopyright)
