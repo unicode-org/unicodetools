@@ -51,7 +51,7 @@ public class BagFormatter {
     private UnicodeLabel nameSource;
     private UnicodeLabel labelSource;
     private UnicodeLabel refinedLabelSource;
-    private UnicodeLabel rangeBreakSource;
+    private UnicodeLabel rangeBreakSource = UnicodeLabel.NULL;
     private UnicodeLabel valueSource;
     private String propName = "";
     private boolean showCount = true;
@@ -1189,59 +1189,15 @@ public class BagFormatter {
     }
 
     /**
-     * @return the UnicodeLabel representing the range break source
+     * Returns the source for additional range boundaries. By default there are none; ranges already
+     * split when their values or labels change.
      */
     public UnicodeLabel getRangeBreakSource() {
-        if (rangeBreakSource == null) {
-            Map labelMap = new HashMap();
-            // reflects the code point types on p 25
-            labelMap.put("Lo", "G&");
-            labelMap.put("Lm", "G&");
-            labelMap.put("Lu", "G&");
-            labelMap.put("Lt", "G&");
-            labelMap.put("Ll", "G&");
-            labelMap.put("Mn", "G&");
-            labelMap.put("Me", "G&");
-            labelMap.put("Mc", "G&");
-            labelMap.put("Nd", "G&");
-            labelMap.put("Nl", "G&");
-            labelMap.put("No", "G&");
-            labelMap.put("Zs", "G&");
-            labelMap.put("Pd", "G&");
-            labelMap.put("Ps", "G&");
-            labelMap.put("Pe", "G&");
-            labelMap.put("Pc", "G&");
-            labelMap.put("Po", "G&");
-            labelMap.put("Pi", "G&");
-            labelMap.put("Pf", "G&");
-            labelMap.put("Sm", "G&");
-            labelMap.put("Sc", "G&");
-            labelMap.put("Sk", "G&");
-            labelMap.put("So", "G&");
-
-            labelMap.put("Zl", "Cf");
-            labelMap.put("Zp", "Cf");
-
-            rangeBreakSource =
-                    new UnicodeProperty.FilteredProperty(
-                                    getUnicodePropertyFactory().getProperty("General_Category"),
-                                    new UnicodeProperty.MapFilter(labelMap))
-                            .setAllowValueAliasCollisions(true);
-
-            /*
-            "Cn", // = Other, Not Assigned 0
-            "Cc", // = Other, Control 15
-            "Cf", // = Other, Format 16
-            UnicodeProperty.UNUSED, // missing
-            "Co", // = Other, Private Use 18
-            "Cs", // = Other, Surrogate 19
-             */
-        }
         return rangeBreakSource;
     }
 
     /**
-     * @param label
+     * @param label source whose value changes force additional range boundaries, or null for none
      */
     public BagFormatter setRangeBreakSource(UnicodeLabel label) {
         if (label == null) label = UnicodeLabel.NULL;

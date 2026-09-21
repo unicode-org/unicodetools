@@ -1,5 +1,5 @@
 # IdentifierType.txt
-# Date: 2026-08-06, 01:05:35 GMT
+# Date: 2026-09-21, 17:06:04 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -409,8 +409,7 @@
 06D4          ; Not_XID                        # 1.1        ARABIC FULL STOP
 06D5          ; Recommended                    # 1.1        ARABIC LETTER AE
 06D6..06DC    ; Technical                      # 1.1    [7] ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
-06DD          ; Not_XID                        # 1.1        ARABIC END OF AYAH
-06DE          ; Not_XID                        # 1.1        ARABIC START OF RUB EL HIZB
+06DD..06DE    ; Not_XID                        # 1.1    [2] ARABIC END OF AYAH..ARABIC START OF RUB EL HIZB
 06DF..06E8    ; Technical                      # 1.1   [10] ARABIC SMALL HIGH ROUNDED ZERO..ARABIC SMALL HIGH NOON
 06E9          ; Not_XID                        # 1.1        ARABIC PLACE OF SAJDAH
 06EA..06ED    ; Technical                      # 1.1    [4] ARABIC EMPTY CENTRE LOW STOP..ARABIC SMALL LOW MEEM
@@ -1006,8 +1005,7 @@
 17E0..17E9    ; Recommended                    # 3.0   [10] KHMER DIGIT ZERO..KHMER DIGIT NINE
 17F0..17F9    ; Not_XID                        # 4.0   [10] KHMER SYMBOL LEK ATTAK SON..KHMER SYMBOL LEK ATTAK PRAM-BUON
 1800..180A    ; Exclusion Not_XID              # 3.0   [11] MONGOLIAN BIRGA..MONGOLIAN NIRUGU
-180B..180D    ; Default_Ignorable              # 3.0    [3] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
-180E          ; Default_Ignorable              # 3.0        MONGOLIAN VOWEL SEPARATOR
+180B..180E    ; Default_Ignorable              # 3.0    [4] MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN VOWEL SEPARATOR
 180F          ; Default_Ignorable              # 14.0       MONGOLIAN FREE VARIATION SELECTOR FOUR
 1810..1819    ; Exclusion                      # 3.0   [10] MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
 1820..1877    ; Exclusion                      # 3.0   [88] MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
@@ -4379,9 +4377,7 @@ FFFD          ; Not_XID                        # 1.1        REPLACEMENT CHARACTE
 11070..11075  ; Exclusion                      # 14.0   [6] BRAHMI SIGN OLD TAMIL VIRAMA..BRAHMI LETTER OLD TAMIL LLA
 1107F         ; Exclusion                      # 7.0        BRAHMI NUMBER JOINER
 11080..110BA  ; Exclusion                      # 5.2   [59] KAITHI SIGN CANDRABINDU..KAITHI SIGN NUKTA
-110BB..110BC  ; Exclusion Not_XID              # 5.2    [2] KAITHI ABBREVIATION SIGN..KAITHI ENUMERATION SIGN
-110BD         ; Exclusion Not_XID              # 5.2        KAITHI NUMBER SIGN
-110BE..110C1  ; Exclusion Not_XID              # 5.2    [4] KAITHI SECTION MARK..KAITHI DOUBLE DANDA
+110BB..110C1  ; Exclusion Not_XID              # 5.2    [7] KAITHI ABBREVIATION SIGN..KAITHI DOUBLE DANDA
 110C2         ; Exclusion                      # 14.0       KAITHI VOWEL SIGN VOCALIC R
 110CD         ; Exclusion Not_XID              # 11.0       KAITHI NUMBER SIGN ABOVE
 110D0..110E8  ; Exclusion                      # 6.1   [25] SORA SOMPENG LETTER SAH..SORA SOMPENG LETTER MAE
