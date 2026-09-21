@@ -663,6 +663,7 @@ public final class UCD_Names implements UCD_Types {
         "V16_0",
         "V17_0",
         "V18_0",
+        "V19_0",
         // FIX_FOR_NEW_VERSION
     };
 
