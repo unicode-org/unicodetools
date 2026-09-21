@@ -232,7 +232,7 @@ Value:  V18_0
 # Newly assigned in Unicode 18.0.0 (September, 2026)
 
 Value:  V19_0
-# Newly assigned in Unicode 19.0.0 (September, 2026)
+# Newly assigned in Unicode 19.0.0 (September, 2027)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
