@@ -4548,11 +4548,11 @@ public class GenerateEmoji {
                         }
                         source1 = ProposalData.getSkeleton(source1);
                         output.addAll(
-                                CldrUtility.ifNull(
+                                Objects.requireNonNullElse(
                                         ProposalData.getInstance().proposal.get(source1),
                                         Collections.emptySet()));
                         output.addAll(
-                                CldrUtility.ifNull(
+                                Objects.requireNonNullElse(
                                         CandidateData.getInstance().getProposal(source1),
                                         Collections.emptySet()));
                         outputPlain.add(
