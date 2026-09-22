@@ -39,6 +39,13 @@ CorrespondTo [\N{16EE:ᛮ:RUNIC ARLAUG SYMBOL}]
 UpTo: Script(Arabic vs Runic), Script_Extensions(Arabic vs Runic), Bidi_Class(Arabic_Letter vs Left_To_Right),
       Block(Arabic_Mathematical_Alphabetic_Symbols vs Runic)
 
+Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}]
+⧴ [0]
+CorrespondTo [\N{10341:𐍁:GOTHIC LETTER NINETY}]
+⧴ [{90}]
+UpTo: Script(Arabic vs Gothic), Script_Extensions(Arabic vs Gothic), Bidi_Class(Arabic_Letter vs Left_To_Right),
+      Block(Arabic_Mathematical_Alphabetic_Symbols vs Gothic)
+
 end Ignoring;
 
 end Ignoring;
