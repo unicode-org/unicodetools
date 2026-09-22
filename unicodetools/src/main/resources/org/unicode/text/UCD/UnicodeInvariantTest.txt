@@ -526,6 +526,30 @@ Let $identifier_extend := [\p{GC=Mn}\p{GC=Mc}\p{GC=Nd}\p{GC=Pc}]
 # Stability: Once a character is assigned, its Canonical_Combining_Class will never change. 
 In \P{U-1:GC=Cn}, ccc=U-1:ccc
 
+# Nonspacing marks with names ending in BELOW normally have ccc=220.
+# The gc=Mn condition includes Arabic marks without COMBINING in their names.
+# https://github.com/unicode-org/unicodetools/issues/601
+# List exceptions explicitly so new non-220 assignments require review.
+[[\p{gc=Mn} & \p{Name=/ BELOW$/}] - \p{ccc=220}] = [
+    # Not_Reordered (0)
+    \N{TAI THAM VOWEL SIGN OA BELOW}
+    \N{MIAO TONE BELOW}
+    # Nukta (7)
+    \N{MYANMAR SIGN DOT BELOW}
+    \N{COMBINING BINDU BELOW}
+    # Attached_Below (202)
+    \N{COMBINING PALATALIZED HOOK BELOW}
+    \N{COMBINING RETROFLEX HOOK BELOW}
+    \N{COMBINING IS BELOW}
+    # Above (230): BELOW describes the dots on a small high letter.
+    \N{ARABIC SMALL HIGH YEH BARREE WITH TWO DOTS BELOW}
+    # Double_Below (233)
+    \N{COMBINING DOUBLE BREVE BELOW}
+    \N{COMBINING DOUBLE MACRON BELOW}
+    \N{COMBINING DOUBLE RIGHTWARDS ARROW BELOW}
+    \N{COMBINING DOUBLE INVERTED BREVE BELOW}
+]
+
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
 # except where a character and at least one character in its decomposition are both new in the release.
 Let $New_Decompositions := [
