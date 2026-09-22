@@ -1503,6 +1503,11 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 \p{gc=Mn} ⊆ \P{InPC=/(Left|Right)/}
 [\p{gc=Lo}&\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{InSC=Consonant_Preceding_Repha}\p{InSC=Consonant_Prefixed}]
 
+# Small kana and final Bopomofo letters should be vo=Tu (L2/25-035).
+# https://github.com/unicode-org/unicodetools/issues/1003
+\p{Name=/^(HIRAGANA|KATAKANA) LETTER SMALL /} ⊆ \p{Vertical_Orientation=Tu}
+\p{Name=/^BOPOMOFO FINAL LETTER /} ⊆ \p{Vertical_Orientation=Tu}
+
 # Script Extensions (mostly testing the proper handling of multivalued properties).
 \p{sc=Deva} ⊂ \p{scx=Deva}
 [\p{scx=Deva} & \p{scx=Beng}] ⊃ []
