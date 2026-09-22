@@ -46,6 +46,13 @@ CorrespondTo [\N{10341:𐍁:GOTHIC LETTER NINETY}]
 UpTo: Script(Arabic vs Gothic), Script_Extensions(Arabic vs Gothic), Bidi_Class(Arabic_Letter vs Left_To_Right),
       Block(Arabic_Mathematical_Alphabetic_Symbols vs Gothic)
 
+Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}]
+⧴ [0]
+CorrespondTo [\N{10142:𐅂:GREEK ACROPHONIC ATTIC ONE DRACHMA}]
+⧴ [1]
+UpTo: Script(Arabic vs Greek), Script_Extensions(Arabic vs Greek), Bidi_Class(Arabic_Letter vs Other_Neutral),
+      Block(Arabic_Mathematical_Alphabetic_Symbols vs Ancient_Greek_Numbers)
+
 end Ignoring;
 
 end Ignoring;
