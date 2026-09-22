@@ -534,7 +534,7 @@ Line_Break ; 16.0 ; [🠌-🠏🡈-🡏🡚-🡟🢈-🢏🢮🢯🢼-🢿🣂-�
 Math_Class ; 5.1 ; [!\-/\\\^-`~ ¨¬¯´ˆˇ˘-˚˜ШЩ      ​‼⁄⁎⁡-⁣⃕↯∴∵⊥⎰⎱⬀-⬄〈〉〚〛] ; # Yet unexplained
 Math_Class ; 6.0 ; [؆-؈†‡⃕⇪-⇳⍼▰◐-◓◧-◪⟊⟌⬰-⭄⭇-⭌] ; # Yet unexplained
 Math_Class ; 7.0 ; [☒✗⬛-⬟⬤-⬯⭅⭆⭐-⭔﹧𞸀-𞸃𞸅-𞸟𞸡𞸢𞸤𞸧𞸩-𞸲𞸴-𞸷𞸹𞸻𞹂𞹇𞹉𞹋𞹍-𞹏𞹑𞹒𞹔𞹗𞹙𞹛𞹝𞹟𞹡𞹢𞹤𞹧-𞹪𞹬-𞹲𞹴-𞹷𞹹-𞹼𞹾𞺀-𞺉𞺋-𞺛𞺡-𞺣𞺥-𞺩𞺫-𞺻𞻰𞻱] ; # Yet unexplained
-Math_Class ; 18.0 ; [!ا-غ᫏-᫝᫠-᫫☒⮖⯹] ; # Yet unexplained
+Math_Class ; 18.0 ; [!ا-غ᫏-᫝᫠-᫫⮖⯹] ; # Yet unexplained
 Numeric_Type ; 4.0 ; [²³¹⁰⁴-⁹₀-₉⓫-⓾㉑-㉟㊱-㊿一七万三九二五亿仟伍佰億兆兩八六十千卅叁-參四壱壹廿弌-弎弐拾捌柒玖百肆萬貮贰陆陌陸零] ; # Yet unexplained
 Numeric_Type ; 4.1 ; [፩-፱㐅㒃㠪㭍亖什仨卄卌叄幺廾貳𐍊𠀁𠁤𠃢𠄡𠤪𠦃𠦌𠦜𠫪𠫽𠬙𢎐𢦘𣬛𦉭] ; # Yet unexplained
 Numeric_Type ; 5.0 ; [𐍁] ; # Yet unexplained
@@ -728,7 +728,6 @@ Math ; 4.0.1 ; [(-*\-/\[-\]\{\}ϐ-ϒϕϰϱϴϵ⁀⁡-⁣⃥⃦℩ℽ-ℿⅅ-ⅉ�
 Math ; 5.0 ; [𝚤𝚥] ; # Yet unexplained
 Math ; 5.1 ; [⃫↕-↙↜-↟↡↢↤↥↧↩-↭↰↱↶↷↼-⇍⇐⇑⇓⇕-⇛⇝⇤⇥⎴⎵⏢■□▮-▶▼-◀◆◇◊○●-◓◢◤◧-◬★☆♀♂♠-♣♭♮] ; # Yet unexplained
 Math ; 6.0 ; [ℇ℘] ; # Yet unexplained
-Noncharacter_Code_Point ; 3.1 ; [\uFDD0-\uFDEF] ; # Yet unexplained
 Other_Alphabetic ; 3.2 ; [ஃ] ; # Yet unexplained
 Other_Alphabetic ; 4.0 ; [឴឵] ; # Yet unexplained
 Other_Alphabetic ; 4.1 ; [ᛮ-ᛰⅠ-Ↄ𐍊] ; # Yet unexplained
