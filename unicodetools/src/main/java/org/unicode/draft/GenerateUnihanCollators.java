@@ -51,6 +51,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.text.UCA.RadicalStroke;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
@@ -97,17 +98,18 @@ public class GenerateUnihanCollators {
 
     // Use the development UCD data, which may be newer than ICU's Unicode data.
     private static final UnicodeSet NOT_NFC =
-            IUP.getProperty(UcdProperty.NFC_Quick_Check).getSet("No").freeze();
+            new UnicodeSet("[:nfc_qc=no:]", null, VersionedSymbolTable.forDevelopment()).freeze();
     private static final UnicodeSet NOT_NFD =
-            IUP.getProperty(UcdProperty.NFD_Quick_Check).getSet("No").freeze();
+            new UnicodeSet("[:nfd_qc=no:]", null, VersionedSymbolTable.forDevelopment()).freeze();
     private static final UnicodeSet NOT_NFKD =
-            IUP.getProperty(UcdProperty.NFKD_Quick_Check).getSet("No").freeze();
+            new UnicodeSet("[:nfkd_qc=no:]", null, VersionedSymbolTable.forDevelopment()).freeze();
 
     // TODO: Why Ideographic? That includes Tangut etc.
     private static final UnicodeSet UNIHAN_LATEST =
-            IUP.getProperty(UcdProperty.Ideographic)
-                    .getSet("Yes")
-                    .addAll(IUP.getProperty(UcdProperty.Script).getSet("Han"))
+            new UnicodeSet(
+                            "[[:ideographic:][:script=han:]]",
+                            null,
+                            VersionedSymbolTable.forDevelopment())
                     .removeAll(NOT_NFC)
                     .freeze();
     private static final UnicodeSet UNIHAN = UNIHAN_LATEST;
