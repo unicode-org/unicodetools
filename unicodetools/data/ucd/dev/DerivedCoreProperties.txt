@@ -1,5 +1,5 @@
 # DerivedCoreProperties-18.0.0.txt
-# Date: 2026-08-07, 16:19:42 GMT
+# Date: 2026-08-07, 16:48:32 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3455,7 +3455,7 @@ FFF9..FFFB    ; Case_Ignorable # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLI
 11038..11046  ; Case_Ignorable # Mn  [15] BRAHMI VOWEL SIGN AA..BRAHMI VIRAMA
 11070         ; Case_Ignorable # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
 11073..11074  ; Case_Ignorable # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
-1107F..11081  ; Case_Ignorable # Mn   [3] BRAHMI NUMBER JOINER..KAITHI SIGN ANUSVARA
+1107E..11081  ; Case_Ignorable # Mn   [4] BRAHMI MINIMIZING VIRAMA..KAITHI SIGN ANUSVARA
 110B3..110B6  ; Case_Ignorable # Mn   [4] KAITHI VOWEL SIGN U..KAITHI VOWEL SIGN AI
 110B9..110BA  ; Case_Ignorable # Mn   [2] KAITHI SIGN VIRAMA..KAITHI SIGN NUKTA
 110BD         ; Case_Ignorable # Cf       KAITHI NUMBER SIGN
@@ -3617,7 +3617,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2890
+# Total code points: 2891
 
 # ================================================
 
@@ -8164,7 +8164,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 11071..11072  ; ID_Continue # Lo   [2] BRAHMI LETTER OLD TAMIL SHORT E..BRAHMI LETTER OLD TAMIL SHORT O
 11073..11074  ; ID_Continue # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
 11075         ; ID_Continue # Lo       BRAHMI LETTER OLD TAMIL LLA
-1107F..11081  ; ID_Continue # Mn   [3] BRAHMI NUMBER JOINER..KAITHI SIGN ANUSVARA
+1107E..11081  ; ID_Continue # Mn   [4] BRAHMI MINIMIZING VIRAMA..KAITHI SIGN ANUSVARA
 11082         ; ID_Continue # Mc       KAITHI SIGN VISARGA
 11083..110AF  ; ID_Continue # Lo  [45] KAITHI LETTER A..KAITHI LETTER HA
 110B0..110B2  ; ID_Continue # Mc   [3] KAITHI VOWEL SIGN AA..KAITHI VOWEL SIGN II
@@ -8659,7 +8659,7 @@ FFDA..FFDC    ; ID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F  ; ID_Continue # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF  ; ID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162100
+# Total code points: 162101
 
 # ================================================
 
@@ -10421,7 +10421,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 11071..11072  ; XID_Continue # Lo   [2] BRAHMI LETTER OLD TAMIL SHORT E..BRAHMI LETTER OLD TAMIL SHORT O
 11073..11074  ; XID_Continue # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
 11075         ; XID_Continue # Lo       BRAHMI LETTER OLD TAMIL LLA
-1107F..11081  ; XID_Continue # Mn   [3] BRAHMI NUMBER JOINER..KAITHI SIGN ANUSVARA
+1107E..11081  ; XID_Continue # Mn   [4] BRAHMI MINIMIZING VIRAMA..KAITHI SIGN ANUSVARA
 11082         ; XID_Continue # Mc       KAITHI SIGN VISARGA
 11083..110AF  ; XID_Continue # Lo  [45] KAITHI LETTER A..KAITHI LETTER HA
 110B0..110B2  ; XID_Continue # Mc   [3] KAITHI VOWEL SIGN AA..KAITHI VOWEL SIGN II
@@ -10916,7 +10916,7 @@ FFDA..FFDC    ; XID_Continue # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HA
 3D000..3FC3F  ; XID_Continue # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 162081
+# Total code points: 162082
 
 # ================================================
 
@@ -11241,7 +11241,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 11038..11046  ; Grapheme_Extend # Mn  [15] BRAHMI VOWEL SIGN AA..BRAHMI VIRAMA
 11070         ; Grapheme_Extend # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
 11073..11074  ; Grapheme_Extend # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
-1107F..11081  ; Grapheme_Extend # Mn   [3] BRAHMI NUMBER JOINER..KAITHI SIGN ANUSVARA
+1107E..11081  ; Grapheme_Extend # Mn   [4] BRAHMI MINIMIZING VIRAMA..KAITHI SIGN ANUSVARA
 110B3..110B6  ; Grapheme_Extend # Mn   [4] KAITHI VOWEL SIGN U..KAITHI VOWEL SIGN AI
 110B9..110BA  ; Grapheme_Extend # Mn   [2] KAITHI SIGN VIRAMA..KAITHI SIGN NUKTA
 110C2         ; Grapheme_Extend # Mn       KAITHI VOWEL SIGN VOCALIC R
@@ -11402,7 +11402,7 @@ FF9E..FF9F    ; Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK.
 E0020..E007F  ; Grapheme_Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2269
+# Total code points: 2270
 
 # ================================================
 
@@ -13274,7 +13274,7 @@ ABED          ; Grapheme_Link # Mn       MEETEI MAYEK APUN IYEK
 10A3F         ; Grapheme_Link # Mn       KHAROSHTHI VIRAMA
 11046         ; Grapheme_Link # Mn       BRAHMI VIRAMA
 11070         ; Grapheme_Link # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
-1107F         ; Grapheme_Link # Mn       BRAHMI NUMBER JOINER
+1107E..1107F  ; Grapheme_Link # Mn   [2] BRAHMI MINIMIZING VIRAMA..BRAHMI NUMBER JOINER
 110B9         ; Grapheme_Link # Mn       KAITHI SIGN VIRAMA
 11133..11134  ; Grapheme_Link # Mn   [2] CHAKMA VIRAMA..CHAKMA MAAYYAA
 111C0         ; Grapheme_Link # Mc       SHARADA SIGN VIRAMA
@@ -13304,7 +13304,7 @@ ABED          ; Grapheme_Link # Mn       MEETEI MAYEK APUN IYEK
 11F42         ; Grapheme_Link # Mn       KAWI CONJOINER
 1612F         ; Grapheme_Link # Mn       GURUNG KHEMA SIGN THOLHOMA
 
-# Total code points: 69
+# Total code points: 70
 
 # ================================================
 
@@ -13693,7 +13693,7 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 11038..11046  ; InCB; Extend # Mn  [15] BRAHMI VOWEL SIGN AA..BRAHMI VIRAMA
 11070         ; InCB; Extend # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
 11073..11074  ; InCB; Extend # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
-1107F..11081  ; InCB; Extend # Mn   [3] BRAHMI NUMBER JOINER..KAITHI SIGN ANUSVARA
+1107E..11081  ; InCB; Extend # Mn   [4] BRAHMI MINIMIZING VIRAMA..KAITHI SIGN ANUSVARA
 110B3..110B6  ; InCB; Extend # Mn   [4] KAITHI VOWEL SIGN U..KAITHI VOWEL SIGN AI
 110B9..110BA  ; InCB; Extend # Mn   [2] KAITHI SIGN VIRAMA..KAITHI SIGN NUKTA
 110C2         ; InCB; Extend # Mn       KAITHI VOWEL SIGN VOCALIC R
@@ -13852,6 +13852,6 @@ FF9E..FF9F    ; InCB; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HA
 E0020..E007F  ; InCB; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; InCB; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2254
+# Total code points: 2255
 
 # EOF

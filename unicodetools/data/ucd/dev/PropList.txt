@@ -1,5 +1,5 @@
 # PropList-18.0.0.txt
-# Date: 2026-08-07, 16:20:14 GMT
+# Date: 2026-08-07, 16:49:04 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1113,6 +1113,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 10F82..10F85  ; Diacritic # Mn   [4] OLD UYGHUR COMBINING DOT ABOVE..OLD UYGHUR COMBINING TWO DOTS BELOW
 11046         ; Diacritic # Mn       BRAHMI VIRAMA
 11070         ; Diacritic # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
+1107E         ; Diacritic # Mn       BRAHMI MINIMIZING VIRAMA
 110B9..110BA  ; Diacritic # Mn   [2] KAITHI SIGN VIRAMA..KAITHI SIGN NUKTA
 11133..11134  ; Diacritic # Mn   [2] CHAKMA VIRAMA..CHAKMA MAAYYAA
 11173         ; Diacritic # Mn       MAHAJANI SIGN NUKTA
@@ -1186,7 +1187,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1334
+# Total code points: 1335
 
 # ================================================
 

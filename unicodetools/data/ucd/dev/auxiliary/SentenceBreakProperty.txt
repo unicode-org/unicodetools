@@ -1,5 +1,5 @@
 # SentenceBreakProperty-18.0.0.txt
-# Date: 2026-06-29, 15:25:27 GMT
+# Date: 2026-07-30, 15:35:23 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -383,7 +383,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11038..11046  ; Extend # Mn  [15] BRAHMI VOWEL SIGN AA..BRAHMI VIRAMA
 11070         ; Extend # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
 11073..11074  ; Extend # Mn   [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
-1107F..11081  ; Extend # Mn   [3] BRAHMI NUMBER JOINER..KAITHI SIGN ANUSVARA
+1107E..11081  ; Extend # Mn   [4] BRAHMI MINIMIZING VIRAMA..KAITHI SIGN ANUSVARA
 11082         ; Extend # Mc       KAITHI SIGN VISARGA
 110B0..110B2  ; Extend # Mc   [3] KAITHI VOWEL SIGN AA..KAITHI VOWEL SIGN II
 110B3..110B6  ; Extend # Mn   [4] KAITHI VOWEL SIGN U..KAITHI VOWEL SIGN AI
@@ -603,7 +603,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2680
+# Total code points: 2681
 
 # ================================================
 

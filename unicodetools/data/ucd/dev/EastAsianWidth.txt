@@ -1,5 +1,5 @@
 # EastAsianWidth-18.0.0.txt
-# Date: 2026-06-29, 15:25:05 GMT
+# Date: 2026-07-30, 15:34:53 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2002,7 +2002,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 11071..11072   ; N  # Lo     [2] BRAHMI LETTER OLD TAMIL SHORT E..BRAHMI LETTER OLD TAMIL SHORT O
 11073..11074   ; N  # Mn     [2] BRAHMI VOWEL SIGN OLD TAMIL SHORT E..BRAHMI VOWEL SIGN OLD TAMIL SHORT O
 11075          ; N  # Lo         BRAHMI LETTER OLD TAMIL LLA
-1107F          ; N  # Mn         BRAHMI NUMBER JOINER
+1107E..1107F   ; N  # Mn     [2] BRAHMI MINIMIZING VIRAMA..BRAHMI NUMBER JOINER
 11080..11081   ; N  # Mn     [2] KAITHI SIGN CANDRABINDU..KAITHI SIGN ANUSVARA
 11082          ; N  # Mc         KAITHI SIGN VISARGA
 11083..110AF   ; N  # Lo    [45] KAITHI LETTER A..KAITHI LETTER HA
