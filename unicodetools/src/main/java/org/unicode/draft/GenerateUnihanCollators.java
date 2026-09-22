@@ -95,15 +95,21 @@ public class GenerateUnihanCollators {
     private static final UnicodeSet PINYIN_LETTERS =
             new UnicodeSet("['a-uw-zàáèéìíòóùúüāēěīōūǎǐǒǔǖǘǚǜ]").freeze();
 
-    // TODO: unicodetools/issues/1336 should not use ICU Unicode properties
-
-    private static final UnicodeSet NOT_NFC = new UnicodeSet("[:nfc_qc=no:]").freeze();
-    private static final UnicodeSet NOT_NFD = new UnicodeSet("[:nfd_qc=no:]").freeze();
-    private static final UnicodeSet NOT_NFKD = new UnicodeSet("[:nfkd_qc=no:]").freeze();
+    // Use the development UCD data, which may be newer than ICU's Unicode data.
+    private static final UnicodeSet NOT_NFC =
+            IUP.getProperty(UcdProperty.NFC_Quick_Check).getSet("No").freeze();
+    private static final UnicodeSet NOT_NFD =
+            IUP.getProperty(UcdProperty.NFD_Quick_Check).getSet("No").freeze();
+    private static final UnicodeSet NOT_NFKD =
+            IUP.getProperty(UcdProperty.NFKD_Quick_Check).getSet("No").freeze();
 
     // TODO: Why Ideographic? That includes Tangut etc.
     private static final UnicodeSet UNIHAN_LATEST =
-            new UnicodeSet("[[:ideographic:][:script=han:]]").removeAll(NOT_NFC).freeze();
+            IUP.getProperty(UcdProperty.Ideographic)
+                    .getSet("Yes")
+                    .addAll(IUP.getProperty(UcdProperty.Script).getSet("Han"))
+                    .removeAll(NOT_NFC)
+                    .freeze();
     private static final UnicodeSet UNIHAN = UNIHAN_LATEST;
 
     // UNIHAN was restricted to a requested version, but
