@@ -24,6 +24,14 @@ CorrespondTo [\N{12400:𒐀:CUNEIFORM NUMERIC SIGN TWO ASH}]
 UpTo: Script(Arabic vs Cuneiform), Script_Extensions(Arabic vs Cuneiform), Bidi_Class(Arabic_Letter vs Left_To_Right),
       Block(Arabic_Mathematical_Alphabetic_Symbols vs Cuneiform_Numbers_And_Punctuation)
 
+# Additional comparison tests with other scripts that use a combination of gc=L* and gc=Nl for numbers.
+Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}]
+⧴ [0]
+CorrespondTo [\N{2185:ↅ:ROMAN NUMERAL SIX LATE FORM}]
+⧴ [6]
+UpTo: Script(Arabic vs Latin), Script_Extensions(Arabic vs Latin), Bidi_Class(Arabic_Letter vs Left_To_Right),
+      Block(Arabic_Mathematical_Alphabetic_Symbols vs Number_Forms)
+
 end Ignoring;
 
 end Ignoring;
