@@ -30,7 +30,7 @@ Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}]
 CorrespondTo [\N{2185:ↅ:ROMAN NUMERAL SIX LATE FORM}]
 ⧴ [6]
 UpTo: Script(Arabic vs Latin), Script_Extensions(Arabic vs Latin), Bidi_Class(Arabic_Letter vs Left_To_Right),
-      Block(Arabic_Mathematical_Alphabetic_Symbols vs Number_Forms)
+      Block(Arabic_Mathematical_Alphabetic_Symbols vs Number_Forms), Vertical_Orientation(Rotated vs Upright)
 
 end Ignoring;
 
