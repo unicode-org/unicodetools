@@ -32,6 +32,13 @@ CorrespondTo [\N{2185:ↅ:ROMAN NUMERAL SIX LATE FORM}]
 UpTo: Script(Arabic vs Latin), Script_Extensions(Arabic vs Latin), Bidi_Class(Arabic_Letter vs Left_To_Right),
       Block(Arabic_Mathematical_Alphabetic_Symbols vs Number_Forms), Vertical_Orientation(Rotated vs Upright)
 
+Propertywise [\N{1EEE0:ARABIC ASTRONOMICAL ZERO}]
+⧴ [0]
+CorrespondTo [\N{16EE:ᛮ:RUNIC ARLAUG SYMBOL}]
+⧴ [{17}]
+UpTo: Script(Arabic vs Runic), Script_Extensions(Arabic vs Runic), Bidi_Class(Arabic_Letter vs Left_To_Right),
+      Block(Arabic_Mathematical_Alphabetic_Symbols vs Runic)
+
 end Ignoring;
 
 end Ignoring;
