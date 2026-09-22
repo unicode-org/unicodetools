@@ -54,7 +54,7 @@ public class TestAge {
 
         assertEquals(currentAge, result.get(added));
         assertEquals("Unassigned", result.get(removed));
-        // The input Age map must remain unchanged.
+        // The input Age map remains unchanged.
         assertEquals("Unassigned", input.get(added));
         assertEquals(currentAge, input.get(removed));
     }
