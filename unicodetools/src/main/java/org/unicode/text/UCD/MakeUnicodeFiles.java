@@ -1358,6 +1358,10 @@ public class MakeUnicodeFiles {
             final StringBuffer buffer = new StringBuffer();
             for (final Iterator<String> it = list.iterator(); it.hasNext(); ) {
                 final String propAlias = it.next();
+                if (propAlias.equals("Pretty_Block")) {
+                    // TODO(egg): Should IUP use the EXTENDED_ types?
+                    continue;
+                }
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
                 final List<String> aliases =
@@ -1514,6 +1518,10 @@ public class MakeUnicodeFiles {
             final UnicodeProperty up = toolFactory.getProperty(propName);
             final int type = up.getType();
             if ((type & UnicodeProperty.EXTENDED_MASK) != 0) {
+                continue;
+            }
+            if (propName.equals("Pretty_Block")) {
+                // TODO(egg): Should IUP use the EXTENDED_ types?
                 continue;
             }
             //            if (skipNames.contains(propName)) {
