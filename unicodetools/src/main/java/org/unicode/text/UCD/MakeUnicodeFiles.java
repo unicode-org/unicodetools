@@ -588,9 +588,6 @@ public class MakeUnicodeFiles {
             generateScriptNfkc(filename);
         } else {
             switch (filename) {
-                case "Blocks":
-                    generateBlocks(filename);
-                    break;
                 case "unihan":
                     writeUnihan(outputDir + "unihan/");
                     break;
@@ -660,38 +657,6 @@ public class MakeUnicodeFiles {
                     break;
             }
         }
-    }
-
-    private static void generateBlocks(String filename) throws IOException {
-        UnicodeProperty blocks =
-                IndexUnicodeProperties.make(Default.ucdVersion())
-                        .getProperty(UcdProperty.Pretty_Block);
-        // Sort by code point, preserving the spelling of block names in Blocks.txt.
-        Map<Integer, String> lines = new TreeMap<>();
-        for (String block : blocks.getAvailableValues()) {
-            if (block.equals("No_Block")) {
-                continue;
-            }
-            for (UnicodeSet.EntryRange range : blocks.getSet(block).ranges()) {
-                lines.put(
-                        range.codepoint,
-                        Utility.hex(range.codepoint)
-                                + ".."
-                                + Utility.hex(range.codepointEnd)
-                                + "; "
-                                + block);
-            }
-        }
-        UnicodeDataFile udf =
-                UnicodeDataFile.openAndWriteHeader("UCD/" + Default.ucdVersion() + '/', filename);
-        PrintWriter pw = udf.out;
-        pw.println();
-        Format.theFormat.printFileComments(pw, filename);
-        pw.println();
-        lines.values().forEach(pw::println);
-        pw.println();
-        pw.println("# EOF");
-        udf.close();
     }
 
     private static void generateDerivedName(String filename) throws IOException {
@@ -1803,14 +1768,18 @@ public class MakeUnicodeFiles {
                 if (v == null) {
                     v = ps.skipUnassigned;
                 }
-                if (!v.equals("<code point>")) {
+                if (prop.isType(UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)) {
                     final String v2 = prop.getFirstValueAlias(v);
                     if (UnicodeProperty.compareNames(v, v2) != 0) {
                         v = v + " (" + v2 + ")";
                     }
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
-                pwProp.println("#  All code points not explicitly listed for " + prop.getName());
+                pwProp.println(
+                        "#  All code points not explicitly listed for "
+                                + (prop.getName().equals("Pretty_Block")
+                                        ? "Block"
+                                        : prop.getName()));
                 pwProp.println("#  have the value " + v + ".");
             }
 
@@ -2249,17 +2218,17 @@ public class MakeUnicodeFiles {
 
     private static void writeInterleavedValues(
             PrintWriter pw, BagFormatter bf, UnicodeProperty prop, PrintStyle ps) {
-        if (DEBUG) {
-            System.out.println("Writing Interleaved Values: " + prop.getName());
-        }
         pw.println();
-        bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, new RestoreSpacesFilter(ps)))
+        printDefaultValueComment(pw, prop.getName(), prop, /* showPropName= */ false, ps.skipValue);
+        pw.println();
+        bf.setValueSource(prop)
                 .setNameSource(null)
                 .setLabelSource(null)
                 .setRangeBreakSource(null)
                 .setShowCount(false)
                 .setMergeRanges(ps.mergeRanges)
-                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+                .setShowTotal(false)
+                .showSetNames(pw, prop.getSet(ps.skipValue).complement());
     }
 
     private static void writeStringValues(
@@ -2312,33 +2281,6 @@ public class MakeUnicodeFiles {
                                 + comp.compare(s1, s2));
             }
             return comp.compare(s1, s2);
-        }
-    }
-
-    static class RestoreSpacesFilter extends UnicodeProperty.StringFilter {
-        String skipValue;
-
-        /**
-         * @param ps
-         */
-        public RestoreSpacesFilter(PrintStyle ps) {
-            skipValue = ps.skipValue;
-            if (skipValue == null) {
-                skipValue = ps.skipUnassigned;
-            }
-        }
-
-        @Override
-        public String remap(String original) {
-            // ok, because doesn't change length
-            final String mod = Format.theFormat.hackMap.get(original);
-            if (mod != null) {
-                original = mod;
-            }
-            if (original.equals(skipValue)) {
-                return null;
-            }
-            return original.replace('_', ' ');
         }
     }
 
