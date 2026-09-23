@@ -2235,6 +2235,7 @@ public class MakeUnicodeFiles {
                 .setRangeBreakSource(null)
                 .setShowCount(false)
                 .setMergeRanges(ps.mergeRanges)
+                .setNoSpacesBeforeSemicolon()
                 .setShowTotal(false)
                 .showSetNames(pw, prop.getSet(ps.skipValue).complement());
     }
