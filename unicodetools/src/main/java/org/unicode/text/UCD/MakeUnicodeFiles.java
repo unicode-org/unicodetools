@@ -588,6 +588,9 @@ public class MakeUnicodeFiles {
             generateScriptNfkc(filename);
         } else {
             switch (filename) {
+                case "Blocks":
+                    generateBlocks(filename);
+                    break;
                 case "unihan":
                     writeUnihan(outputDir + "unihan/");
                     break;
@@ -657,6 +660,38 @@ public class MakeUnicodeFiles {
                     break;
             }
         }
+    }
+
+    private static void generateBlocks(String filename) throws IOException {
+        UnicodeProperty blocks =
+                IndexUnicodeProperties.make(Default.ucdVersion())
+                        .getProperty(UcdProperty.Pretty_Block);
+        // Sort by code point, preserving the spelling of block names in Blocks.txt.
+        Map<Integer, String> lines = new TreeMap<>();
+        for (String block : blocks.getAvailableValues()) {
+            if (block.equals("No_Block")) {
+                continue;
+            }
+            for (UnicodeSet.EntryRange range : blocks.getSet(block).ranges()) {
+                lines.put(
+                        range.codepoint,
+                        Utility.hex(range.codepoint)
+                                + ".."
+                                + Utility.hex(range.codepointEnd)
+                                + "; "
+                                + block);
+            }
+        }
+        UnicodeDataFile udf =
+                UnicodeDataFile.openAndWriteHeader("UCD/" + Default.ucdVersion() + '/', filename);
+        PrintWriter pw = udf.out;
+        pw.println();
+        Format.theFormat.printFileComments(pw, filename);
+        pw.println();
+        lines.values().forEach(pw::println);
+        pw.println();
+        pw.println("# EOF");
+        udf.close();
     }
 
     private static void generateDerivedName(String filename) throws IOException {

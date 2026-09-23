@@ -5,7 +5,7 @@
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Format:
 # Start Code..End Code; Block Name
@@ -29,7 +29,7 @@
 #  All code points not explicitly listed for Block
 #  have the value No_Block.
 
-# Property:	Block
+# Property: Block
 #
 # @missing: 0000..10FFFF; No_Block
 

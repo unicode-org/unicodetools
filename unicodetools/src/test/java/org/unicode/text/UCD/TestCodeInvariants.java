@@ -19,17 +19,16 @@ import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
-import org.unicode.jsp.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class TestCodeInvariants {
@@ -57,27 +56,17 @@ public class TestCodeInvariants {
 
     @Test
     void testBlockRanges() {
-        // Check the file entries directly: loading the Block property loses their order.
         // https://github.com/unicode-org/unicodetools/issues/987
-        new FileUtilities.SemiFileReader() {
-            private int previousEnd = -1;
-
-            @Override
-            protected boolean handleLine(int start, int end, String[] items) {
-                String location =
-                        "Blocks.txt:" + getLineCount() + ": " + items[0] + "; " + items[1];
-                assertTrue(
-                        0 <= start && start <= end && end <= 0x10FFFF,
-                        "Invalid code point range: " + location);
-                assertEquals(0x0, start % 16, "Block start must end in 0: " + location);
-                assertEquals(0xF, end % 16, "Block end must end in F: " + location);
-                assertTrue(
-                        start > previousEnd,
-                        "Blocks must be in code point order and must not overlap: " + location);
-                previousEnd = end;
-                return true;
+        UnicodeProperty blocks = IUP.getProperty(UcdProperty.Block);
+        for (Block_Values block : Block_Values.values()) {
+            if (block == Block_Values.No_Block) {
+                continue;
             }
-        }.process(Settings.UnicodeTools.getDataPathStringForLatestVersion("ucd"), "Blocks.txt");
+            UnicodeSet range = blocks.getSet(block);
+            assertEquals(1, range.getRangeCount(), "Block must be one contiguous range: " + block);
+            assertEquals(0x0, range.getRangeStart(0) % 16, "Block start must end in 0: " + block);
+            assertEquals(0xF, range.getRangeEnd(0) % 16, "Block end must end in F: " + block);
+        }
     }
 
     @Test
