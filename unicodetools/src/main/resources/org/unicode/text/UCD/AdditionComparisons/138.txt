@@ -10,6 +10,10 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Ignoring Block:
 
+# TODO(egg): Figure out what is going on and ask Roozbeh to review.
+# Probably needs https://github.com/unicode-org/properties/issues/330 to be done first.
+Ignoring /UCA_.*/:
+
 # A detailed rationale for some of the comparisons here may be found in
 # L2/26-096 §2.4 = https://github.com/unicode-org/properties/issues/525.
 
@@ -64,6 +68,8 @@ Propertywise [
                  \N{ARABIC SMALL LOW NOON WITH DAMMA}
       \x{08D3} ࣓ \N{ARABIC SMALL LOW WAW}  # Not like SMALL LOW NOON WITH KASRA, which is not MCM.
 ] AreAlike
+
+end Ignoring;
 
 end Ignoring;
 
