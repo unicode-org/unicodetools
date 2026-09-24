@@ -254,6 +254,112 @@ Consistent ;;; <0061> <0062> <0063> <0064> ;        ;       4 ; [\x{61}-d]
 Ill_Formed ;;;  ;        ;        ; [\x{61 63}-d]
 Ill_Formed ;;;  ;        ;        ; [\x{61 63}-\x{62 64}]
 
+
+## Parse error tests from ICU.
+
+Ill_Formed ;;;  ;        ;        ; [\u]
+Ill_Formed ;;;  ;        ;        ; [\x{}]
+
+
+Ill_Formed ;;;  ;        ;        ; [a-[b]]
+
+Ill_Formed ;;;  ;        ;        ; a-z
+
+Ill_Formed ;;;  ;        ;        ; [[a]&]
+
+Ill_Formed ;;;  ;        ;        ; [[a]&-[z]]
+Ill_Formed ;;;  ;        ;        ; [[a]--[z]]
+Ill_Formed ;;;  ;        ;        ; [{aa}-{zz}]
+
+Ill_Formed ;;;  ;        ;        ; [a&z]
+Ill_Formed ;;;  ;        ;        ; [{aa}&{zz}]
+
+Ill_Formed ;;;  ;        ;        ; [a^z]
+
+Ill_Formed ;;;  ;        ;        ; [a-{zz}]
+Ill_Formed ;;;  ;        ;        ; [[a]-{zz}]
+Ill_Formed ;;;  ;        ;        ; [[a]&{zz}]
+
+Ill_Formed ;;;  ;        ;        ; [{aa]
+
+Ill_Formed ;;;  ;        ;        ; [a-$]
+Ill_Formed ;;;  ;        ;        ; [!-$]
+
+Ill_Formed ;;;  ;        ;        ; [a-a]
+Ill_Formed ;;;  ;        ;        ; [z-a]
+
+Ill_Formed ;;;  ;        ;        ; [[a]-z]
+Ill_Formed ;;;  ;        ;        ; [[a]&z]
+
+Ill_Formed ;;;  ;        ;        ; [a-z
+
+Ill_Formed ;;;  ;        ;        ; [{\N{LATIN CAPITAL LETTER Z}]
+
+Ill_Formed ;;;  ;        ;        ; [{\Normandie}]
+Ill_Formed ;;;  ;        ;        ; [{\Picardie}]
+Ill_Formed ;;;  ;        ;        ; [{Provence-Al\pes-Côte d'Azur}]
+
+Ill_Formed ;;;  ;        ;        ; \N{ latin small letter a }
+
+# Ill_Formed ;;;  ;        ;        ; [ { Z e i c h e n k e t t e } Zeichenmenge ]
+# Ill_Formed ;;;  ;        ;        ; [ { \x5A e i c h e n k e t t e } \x5Aeichenmenge ]
+# Ill_Formed ;;;  ;        ;        ; [ { Z e i c h e n k e t t e } [] Zeichenmenge ]
+# Ill_Formed ;;;  ;        ;        ; [ { \x5A e i c h e n k e t t e } [] \x5Aeichenmenge ]
+
+Ill_Formed ;;;  ;        ;        ; [\\xD‎F]
+Ill_Formed ;;;  ;        ;        ; [\\00‎7]
+Ill_Formed ;;;  ;        ;        ; [\\0‎07]
+Ill_Formed ;;;  ;        ;        ; [\\uDBFF‎\\uDFFF]
+Ill_Formed ;;;  ;        ;        ; [\\x{DBFF}‎\\U0000DFFF]
+Ill_Formed ;;;  ;        ;        ; [‎:Greek:]
+
+Ill_Formed ;;;  ;        ;        ; [\x{DBFF}\x{DFFF}]
+Ill_Formed ;;;  ;        ;        ; [\U0000DBFF\U0000DFFF]
+
+Ill_Formed ;;;  ;        ;        ; [:]
+Ill_Formed ;;;  ;        ;        ; \p
+Ill_Formed ;;;  ;        ;        ; [:^]
+Ill_Formed ;;;  ;        ;        ; \P
+Ill_Formed ;;;  ;        ;        ; \N
+Ill_Formed ;;;  ;        ;        ; [\p{Some_Property=\u}]
+Ill_Formed ;;;  ;        ;        ; [:Some_Property=\u:]
+Ill_Formed ;;;  ;        ;        ; \p{Some_Property=\N{SOME CHARACTER}}
+Ill_Formed ;;;  ;        ;        ; [\N{}]
+Ill_Formed ;;;  ;        ;        ; [ \N{FFFFFFFF:NOT A CODE POINT} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{0A:LATIN CAPITAL LETTER A} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{41:a:LATIN CAPITAL LETTER A} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒊺𒉀:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240::CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{::CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒉀::CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒉀:CUNEIFORM SIGN NAGA:} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:CUNEIFORM SIGN NAGA:𒉀} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{𒉀:12240:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒉀} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{𒉀:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{BED:BED} ]
+
+Ill_Formed ;;;  ;        ;        ; \p{XID_Continue=}
+Ill_Formed ;;;  ;        ;        ; \p{Uppercase_Letter=}
+
+Ill_Formed ;;;  ;        ;        ; [: ^general category = punctuation :]
+Ill_Formed ;;;  ;        ;        ; // Doubly negated property queries.
+# Ill_Formed ;;;  ;        ;        ; \P{Decomposition_Type≠compat}
+# Ill_Formed ;;;  ;        ;        ; [:^Noncharacter_Code_Point≠No:]
+
+# Ill_Formed ;;;  ;        ;        ; [\N{BEL}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{CJK UNIFIED IDEOGRAPH -55B5}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{Tibetan mark BKA-SHOG-YIG-MGO}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{Tibetan mark BKA--SHOG-YIG-MGO}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{CJK UNIFIED IDEOGRAPH 55B5-}]
+## Miscellanea.
+
 # escaped-element tests
 Consistent             ;;;   <0000> ;        ;       1 ; [   \0]
 Consistent             ;;;   <0008> ;        ;       1 ; [   \10]
@@ -347,7 +453,6 @@ Minimally_Consistent   ;; Block ; <03B1> <03E2> ;     ;     144 ; \p{Block=Greek
 Minimally_Consistent   ;; Numeric_Value ; <0031> ; <002F> <0032> ; ; \p{nv=1}
 # Age tests
 Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11.0.0}
-Ill_Formed ; ; ; ; ; ; [\N{TIBETAN MARK TSA -PHRU}]
 Ill_Formed ; ; ; ; ; ; [\N{TIBETAN MARK BKA SHOG YIG MGO}]
 Ill_Formed ; ; ; ; ; ; \N{LATIN SMALL LETTER A}
 Ill_Formed ; ; ; ; ; ; [[\N{LATIN SMALL LETTER A}-\N{LATIN SMALL LETTER Z}]-\N{LATIN SMALL LETTER A}]

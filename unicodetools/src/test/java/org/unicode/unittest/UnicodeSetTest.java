@@ -21,6 +21,9 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
                         "unicodeset/*/UnicodeSetTest", Settings.latestVersion, true, false);
         for (final String line : FileUtilities.in("", path)) {
             final int commentPosition = line.indexOf('#');
+            if (commentPosition == 0 && line.length() >= 2 && line.charAt(1) == '#') {
+                System.out.println(line);
+            }
             final String contents =
                     commentPosition >= 0 ? line.substring(0, commentPosition) : line;
             if (contents.isEmpty()) {
@@ -71,11 +74,11 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
                 setUnderTest = new UnicodeSet(expression, pp, symbolTable);
                 if (scope.equals("Ill_Formed")) {
                     System.out.println(
-                            "EXTENSION: "
+                            "+++ Extension: "
                                     + expression
                                     + " = "
                                     + setUnderTest.complement().complement()
-                                    + " for\n"
+                                    + " for\n    "
                                     + line);
                 }
             } catch (Exception e) {
@@ -83,21 +86,27 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
                         || e.getMessage()
                                 .contains(
                                         "Unescaped Pattern_White_Space in UnicodeSet string literals is prohibited until ICU 81")) {
-                    System.out.println("RESTRICTION: " + e.getMessage() + " for\n" + line);
+                    System.out.println("--- Restriction: " + e.getMessage() + " for\n    " + line);
                 } else if (!scope.equals("Ill_Formed")) {
-                    errln("Parse error " + e.getMessage() + " for " + line);
+                    errln("*** Parse error " + e.getMessage() + " for " + line);
                 }
                 continue;
             }
             for (final String element : elements) {
                 if (!setUnderTest.contains(element)) {
-                    errln("element <" + Utility.hex(element) + "> " + element + " for\n" + line);
+                    errln(
+                            "*** element <"
+                                    + Utility.hex(element)
+                                    + "> "
+                                    + element
+                                    + " for\n"
+                                    + line);
                 }
             }
             for (final String element : nonElements) {
                 if (setUnderTest.contains(element)) {
                     errln(
-                            "non-element <"
+                            "*** non-element <"
                                     + Utility.hex(element)
                                     + "> "
                                     + element
@@ -107,7 +116,7 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
             }
             if (size != null) {
                 if (setUnderTest.size() != size) {
-                    errln("size is " + setUnderTest.size() + " for\n" + line);
+                    errln("*** size is " + setUnderTest.size() + " for\n" + line);
                 }
             }
         }
