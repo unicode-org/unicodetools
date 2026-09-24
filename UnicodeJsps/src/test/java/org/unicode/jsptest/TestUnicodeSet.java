@@ -291,16 +291,6 @@ public class TestUnicodeSet extends TestFmwk2 {
         logln(emoji.toString());
     }
 
-    private void checkUca(String ucaPropValue, String containedItemsString) {
-        try {
-            UnicodeSet containedItems = new UnicodeSet(containedItemsString);
-            UnicodeSet uca = UnicodeSetUtilities.parseUnicodeSet(ucaPropValue);
-            assertContains(ucaPropValue, containedItems, uca);
-        } catch (Exception e) {
-            errln("Can't parse: " + ucaPropValue + "\t" + e.getMessage());
-        }
-    }
-
     @EnabledIf(
             value = "org.unicode.unittest.TestFmwkMinusMinus#getRunBroken",
             disabledReason = "Skip unless UNICODETOOLS_RUN_BROKEN_TEST=true")
