@@ -102,6 +102,9 @@ Minimally_Consistent   ;; Name Name_Alias ;   <FE18> ;        ;       1 ; [\N{PR
 Minimally_Consistent   ;; Name ;   <0153> ; ;   1 ; [\N{latin small ligature o-e}]
 Minimally_Consistent   ;; Name ;   <1180> ;        ;       1 ; [\N{Hangul jungseong O-E}]
 Minimally_Consistent   ;; Name ;   <116C> ;        ;       1 ; [\N{Hangul jungseong OE}]
+# From the note about ucd-identifier-character.
+Consistent             ;; Name Block General_Category ;   <0020> ; <0021> ;       65 ; [-_\N{SPACE}[\p{block=Basic_Latin}&[\p{Letter}\p{Digit}]]]
+Consistent             ;; Name ;   <0020> ; <0021> ;       65 ; [-_\N{SPACE}A-Za-z0-9]
 # Example from Section 2.4.
 Consistent   ;;;   <> ;        ;       1 ; [{}]
 # Examples from Section 2.5.1.
@@ -162,6 +165,9 @@ Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=16666666666666667/1000000000
 Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{nv=0.16666666666666667}
 Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=0.16666667}
 # Examples from Section 2.5.3.5.
+Minimally_Consistent ;; Uppercase ; <> ; ; 1 ; \p{nv=16666666666666667/100000000000000000}
+Minimally_Consistent ;; Uppercase ; <2159> ; ; ; \p{nv=0.16666666666666667}
+Minimally_Consistent ;; Uppercase ; <> ; ; 1 ; \p{nv=0.16666667}
 Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase=True}
 Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase}
 Minimally_Consistent ;; Uppercase ; <0061> ; <0041> ;; \p{Uppercase=NO}
@@ -196,6 +202,8 @@ Consistent             ;;;   <0061> <0062> <0064> ; <0063> <0043> ;      25 ; [ 
 Consistent             ;;;   <0061> <0062> <0064> ; <0063> <0043> ;      25 ; [a-b d-z]
 Consistent             ;;;   <0061> <0062> ; <0063> <0064> <0043> ;      24 ; [ [a-z] - [[c] [d]] ]
 Consistent             ;;;   <0061> <0062> ; <0063> <0064> <0043> ;      24 ; [a-b e-z]
+Consistent             ;;;   <0061>        ; <0043> <0062>        ;      25 ; [[a-z][]-[a]]
+Consistent             ;;;   <0061> <0062> ; <0043>               ;      26 ; [[a-z][[]-[a]]]
 
 
 ## Examples from https://www.unicode.org/reports/tr35/tr35-78/tr35.html#syntax-special-case-examples.
