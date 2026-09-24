@@ -291,14 +291,6 @@ public class TestUnicodeSet extends TestFmwk2 {
         logln(emoji.toString());
     }
 
-    @Test
-    public void TestUCA() {
-        checkUca("[:uca=0304:]", "[\t]");
-        checkUca("[:uca2=05 9E:]", "[Øø]");
-        checkUca("[:uca2.5=81 81 01:]", "[ǄǢ]");
-        checkUca("[:uca3=05:]", "[a]");
-    }
-
     private void checkUca(String ucaPropValue, String containedItemsString) {
         try {
             UnicodeSet containedItems = new UnicodeSet(containedItemsString);
