@@ -1358,6 +1358,10 @@ public class MakeUnicodeFiles {
             final StringBuffer buffer = new StringBuffer();
             for (final Iterator<String> it = list.iterator(); it.hasNext(); ) {
                 final String propAlias = it.next();
+                if (propAlias.equals("Pretty_Block")) {
+                    // TODO(egg): Should IUP use the EXTENDED_ types?
+                    continue;
+                }
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
                 final List<String> aliases =
@@ -1514,6 +1518,10 @@ public class MakeUnicodeFiles {
             final UnicodeProperty up = toolFactory.getProperty(propName);
             final int type = up.getType();
             if ((type & UnicodeProperty.EXTENDED_MASK) != 0) {
+                continue;
+            }
+            if (propName.equals("Pretty_Block")) {
+                // TODO(egg): Should IUP use the EXTENDED_ types?
                 continue;
             }
             //            if (skipNames.contains(propName)) {
@@ -1768,14 +1776,18 @@ public class MakeUnicodeFiles {
                 if (v == null) {
                     v = ps.skipUnassigned;
                 }
-                if (!v.equals("<code point>")) {
+                if (prop.isType(UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)) {
                     final String v2 = prop.getFirstValueAlias(v);
                     if (UnicodeProperty.compareNames(v, v2) != 0) {
                         v = v + " (" + v2 + ")";
                     }
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
-                pwProp.println("#  All code points not explicitly listed for " + prop.getName());
+                pwProp.println(
+                        "#  All code points not explicitly listed for "
+                                + (prop.getName().equals("Pretty_Block")
+                                        ? "Block"
+                                        : prop.getName()));
                 pwProp.println("#  have the value " + v + ".");
             }
 
@@ -2214,17 +2226,18 @@ public class MakeUnicodeFiles {
 
     private static void writeInterleavedValues(
             PrintWriter pw, BagFormatter bf, UnicodeProperty prop, PrintStyle ps) {
-        if (DEBUG) {
-            System.out.println("Writing Interleaved Values: " + prop.getName());
-        }
         pw.println();
-        bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, new RestoreSpacesFilter(ps)))
+        printDefaultValueComment(pw, prop.getName(), prop, /* showPropName= */ false, ps.skipValue);
+        pw.println();
+        bf.setValueSource(prop)
                 .setNameSource(null)
                 .setLabelSource(null)
                 .setRangeBreakSource(null)
                 .setShowCount(false)
                 .setMergeRanges(ps.mergeRanges)
-                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+                .setNoSpacesBeforeSemicolon()
+                .setShowTotal(false)
+                .showSetNames(pw, prop.getSet(ps.skipValue).complement());
     }
 
     private static void writeStringValues(
@@ -2277,33 +2290,6 @@ public class MakeUnicodeFiles {
                                 + comp.compare(s1, s2));
             }
             return comp.compare(s1, s2);
-        }
-    }
-
-    static class RestoreSpacesFilter extends UnicodeProperty.StringFilter {
-        String skipValue;
-
-        /**
-         * @param ps
-         */
-        public RestoreSpacesFilter(PrintStyle ps) {
-            skipValue = ps.skipValue;
-            if (skipValue == null) {
-                skipValue = ps.skipUnassigned;
-            }
-        }
-
-        @Override
-        public String remap(String original) {
-            // ok, because doesn't change length
-            final String mod = Format.theFormat.hackMap.get(original);
-            if (mod != null) {
-                original = mod;
-            }
-            if (original.equals(skipValue)) {
-                return null;
-            }
-            return original.replace('_', ' ');
         }
     }
 

@@ -105,8 +105,8 @@ Property: BidiPairedBracket
 #
 # @missing: 0000..10FFFF; None
 
-File:	extra/Blocks
-Property: Block
+File:	Blocks
+Property: Pretty_Block
 # Note:   When comparing block names, casing, whitespace, hyphens,
 #         and underbars are ignored.
 #         For example, "Latin Extended-A" and "latin extended a" are equivalent.
@@ -120,14 +120,9 @@ Property: Block
 #  This constraint on block ranges guarantees that allocations
 #  are done in terms of whole columns, and that code chart display
 #  never involves splitting columns in the charts.
-#
-#  All code points not explicitly listed for Block
-#  have the value No_Block.
 
 # Property: Block
-#
-# @missing: 0000..10FFFF; No_Block
-Format:	valueList skipUnassigned=No_Block
+Format:	valueList skipValue=No_Block
 
 File:	CaseFolding
 Property: SPECIAL

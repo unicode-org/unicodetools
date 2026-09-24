@@ -1760,6 +1760,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iupCurrent.getProperty(UcdProperty.Indic_Positional_Category));
         add(iupCurrent.getProperty(UcdProperty.Indic_Syllabic_Category));
         add(iupCurrent.getProperty(UcdProperty.Equivalent_Unified_Ideograph));
+        add(iupCurrent.getProperty(UcdProperty.Pretty_Block));
     }
 
     private void addFakeProperty(

@@ -35,7 +35,7 @@ New scripts only:
 ---
 New blocks only:
 - [ ] ShortBlockNames.txt — Update, keep sorted
-- [ ] Blocks.txt — Update, keep sorted [TODO(egg): This one wants to be generated…]
+- [ ] Blocks.txt — Update; MakeUnicodeFiles regenerates it in code point order.
 - [ ] Commit
 - [ ] PropertyValueAliases.txt — [Regenerate](#regenerate-propertyvaluealiases)
 - [ ] Enums — [Regenerate](#generateenums)

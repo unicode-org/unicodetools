@@ -25,6 +25,7 @@ import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
@@ -52,6 +53,21 @@ public class TestCodeInvariants {
             IUP.loadEnum(
                     UcdProperty.Grapheme_Cluster_Break,
                     UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
+
+    @Test
+    void testBlockRanges() {
+        // https://github.com/unicode-org/unicodetools/issues/987
+        UnicodeProperty blocks = IUP.getProperty(UcdProperty.Block);
+        for (Block_Values block : Block_Values.values()) {
+            if (block == Block_Values.No_Block) {
+                continue;
+            }
+            UnicodeSet range = blocks.getSet(block);
+            assertEquals(1, range.getRangeCount(), "Block must be one contiguous range: " + block);
+            assertEquals(0x0, range.getRangeStart(0) % 16, "Block start must end in 0: " + block);
+            assertEquals(0xF, range.getRangeEnd(0) % 16, "Block end must end in F: " + block);
+        }
+    }
 
     @Test
     public void testScriptExtensions() {
