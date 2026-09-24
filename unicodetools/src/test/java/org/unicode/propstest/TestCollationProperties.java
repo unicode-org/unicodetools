@@ -99,7 +99,7 @@ public class TestCollationProperties extends TestFmwkMinusMinus {
                 "18.0 code point following FFFE in shifted order",
                 "ː",
                 iup18.getProperty(UcdProperty.UCA_Next_Shifted).getValue("\uFFFE"));
-        // Sholud be the same as below, U+0009, once that issue is fixed.
+        // Should be the same as below, U+0009, once that issue is fixed.
         assertEquals(
                 "18.0 code point following FFFE in shifted order",
                 "ː",
