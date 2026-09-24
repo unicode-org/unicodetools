@@ -125,6 +125,16 @@ Math_Class_Ex ;               ORDERED ;                     <enum>
 Math_Descriptive_Comments ;   SINGLE_VALUED ;               .*
 Math_Entity_Name ;            MULTI_VALUED ;                .*
 Math_Entity_Set ;             MULTI_VALUED ;                .*
+UCA_Fold_1_Shifted       ;    SINGLE_VALUED ;               $codePoint
+UCA_Fold_2_Shifted       ;    SINGLE_VALUED ;               $codePoint
+UCA_Fold_3_Shifted       ;    SINGLE_VALUED ;               $codePoint
+UCA_Fold_4_Shifted       ;    SINGLE_VALUED ;               $codePoint
+UCA_Fold_1_Non_Ignorable ;    SINGLE_VALUED ;               $codePoint
+UCA_Fold_2_Non_Ignorable ;    SINGLE_VALUED ;               $codePoint
+UCA_Fold_3_Non_Ignorable ;    SINGLE_VALUED ;               $codePoint
+UCA_Next_Shifted         ;    SINGLE_VALUED ;               $codePoint
+UCA_Next_Non_Ignorable   ;    SINGLE_VALUED ;               $codePoint
+UCA_Tertiary_Weight      ;    SINGLE_VALUED ;               00[01][0-9A-F]
 
 # Regex patterns from UAX 38 (Unihan)
 kAccountingNumeric ;          SINGLE_VALUED ;                NaN|\d+
