@@ -444,7 +444,11 @@ public class TestUnicodeInvariants {
         for (var next = Lookahead.oneToken(pp, source);
                 !next.accept(":");
                 next = Lookahead.oneToken(pp, source)) {
-            excludedProperties.add(Pattern.compile(next.token.charAt(0) == '/' ? next.consume().substring(1, next.token.length() - 1) : Pattern.quote(next.consume())));
+            excludedProperties.add(
+                    Pattern.compile(
+                            next.token.charAt(0) == '/'
+                                    ? next.consume().substring(1, next.token.length() - 1)
+                                    : Pattern.quote(next.consume())));
         }
         return excludedProperties;
     }
