@@ -236,7 +236,7 @@ Ill_Formed ;;;  ;        ;        ; [a$]
 Consistent             ;;; <007D> ;  ; 1 ; [}]
 Ill_Formed ;;;  ;        ;        ; [{]
 # [{}] covered above.
-Ill_Formed ;;;  ; <007D>  <> ;       2 ; [{}}]
+Ill_Formed ;;;  ; <007D> <> ;       2 ; [{}}]
 Consistent             ;;; <007D> ;  ; 1 ; [{{}]
 Consistent             ;;; <0024 0076 0061 0072> ;  ; 1 ; [{$var}]
 Consistent             ;;; <005B 0061 002D 007A> ;  ; 1 ; [{[a-z}]
