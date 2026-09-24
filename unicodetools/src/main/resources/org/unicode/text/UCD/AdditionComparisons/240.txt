@@ -10,9 +10,29 @@ Ignoring Name Age:
 # normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
-Propertywise [\x{1B122}   \N{KATAKANA LETTER ARCHAIC WU}
-              \x{1B127}   \N{KATAKANA LETTER ALTERNATE NE}
-              \x{1B128}   \N{KATAKANA LETTER ALTERNATE WI}] AreAlike
+Ignoring UCA_Tertiary_Weight:
+Propertywise [\N{1B122:KATAKANA LETTER ARCHAIC WU}
+              \N{1B127:KATAKANA LETTER ALTERNATE NE}
+              \N{1B128:KATAKANA LETTER ALTERNATE WI}] AreAlike
+end Ignoring;
+
+# Ken’s comments in unidata.txt:
+# 1B127 is basically the katakana form of 1B098. See L2/25-151r.
+# 1B128 is basically the katakana form of 1B10D. See L2/25-151r.
+# But they don’t collate like each other (no : below), because hentaigana just
+# get their own primary weights.
+
+Propertywise [\N{1B127:KATAKANA LETTER ALTERNATE NE}]
+CorrespondTo [\N{1B098:HENTAIGANA LETTER NE-KO}]
+    UpTo: Block             (Kana_Extended_A vs Kana_Supplement),
+          Script            (Katakana        vs Hiragana),
+          Script_Extensions (Katakana        vs Hiragana),
+          Word_Break        (Katakana        vs Other)
+Propertywise [\N{1B128:KATAKANA LETTER ALTERNATE WI}]
+CorrespondTo [\N{1B10D:HENTAIGANA LETTER WI-1}]
+    UpTo: Script            (Katakana        vs Hiragana),
+          Script_Extensions (Katakana        vs Hiragana),
+          Word_Break        (Katakana        vs Other)
 
 end Ignoring;
 
