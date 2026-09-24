@@ -58,9 +58,13 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
             final var expression = fields[6];
             final var pp = new ParsePosition(0);
             if (scope.equals("Ill_Formed")) {
-                assertEquals("Ill-formed test must not expect elements", 0, elements.length);
-                assertEquals("Ill-formed test must not expect non-elements", 0, nonElements.length);
-                assertEquals("Ill-formed test must not expect size", null, size);
+                assertEquals(
+                        "Ill-formed test must not expect elements:\n" + line, 0, elements.length);
+                assertEquals(
+                        "Ill-formed test must not expect non-elements:\n" + line,
+                        0,
+                        nonElements.length);
+                assertEquals("Ill-formed test must not expect size:\n" + line, null, size);
             }
             UnicodeSet setUnderTest = null;
             try {
@@ -75,7 +79,10 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
                                     + line);
                 }
             } catch (Exception e) {
-                if (e.getMessage().contains("doubly negated property-query")) {
+                if (e.getMessage().contains("doubly negated property-query")
+                        || e.getMessage()
+                                .contains(
+                                        "Unescaped Pattern_White_Space in UnicodeSet string literals is prohibited until ICU 81")) {
                     System.out.println("RESTRICTION: " + e.getMessage() + " for\n" + line);
                 } else if (!scope.equals("Ill_Formed")) {
                     errln("Parse error " + e.getMessage() + " for " + line);

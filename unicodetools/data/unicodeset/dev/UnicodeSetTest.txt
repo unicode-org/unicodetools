@@ -233,11 +233,15 @@ Ill_Formed ;;;  ;        ;        ; [$ a]
 Ill_Formed ;;;  ;        ;        ; [$und]
 Ill_Formed ;;;  ;        ;        ; [$a$]
 Ill_Formed ;;;  ;        ;        ; [a$]
-Consistent             ;;; <007D> ;  ; 1 ; [}]
+# TODO(egg): Ill-formed according to DUTS #61, well-formed according to ICU (currently documented as
+# an extension) and explicitly called out as well-formed in UTS #35.
+# Consider changing DUTS #61 and this line to
+# Consistent             ;;; <007D> ;  ; 1 ; [}]
+Ill_Formed             ;;;;  ;  ;   [}]
 Ill_Formed ;;;  ;        ;        ; [{]
 # [{}] covered above.
-Ill_Formed ;;;  ; <007D> <> ;       2 ; [{}}]
-Consistent             ;;; <007D> ;  ; 1 ; [{{}]
+Ill_Formed ;;;  ; ;; [{}}]
+Consistent             ;;; <007B> ;  ; 1 ; [{{}]
 Consistent             ;;; <0024 0076 0061 0072> ;  ; 1 ; [{$var}]
 Consistent             ;;; <005B 0061 002D 007A> ;  ; 1 ; [{[a-z}]
 # Spaces are no longer ignored in string literals.
