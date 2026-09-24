@@ -17,7 +17,7 @@
         if (test == null) {
           test = "The 35 quick brown fox jumped over 1.234 lazy dogs: 1:234.";
         }
-        String testPattern = test;
+        String testPattern = Encode.forHtmlContent(test);
 
         String bnf = utfParameters.getParameter("a");
         if (bnf == null) {
@@ -36,7 +36,7 @@
             try {
                 random = UnicodeJsp.getBnf(fixedbnf, 100, 10);
             } catch (Exception e) {
-                random = e.getMessage();
+                random = Encode.forHtmlContent(java.util.Objects.toString(e.getMessage(), "error"));
             }
         } catch (Exception e) {
             fixedbnf = e.getMessage();
@@ -67,7 +67,7 @@
   <p><%=Encode.forHtmlContent(fixedbnf)%></p>
   <hr>
   <h2>Underlined Find Values</h2>
-  <p><%=Encode.forHtmlContent(testPattern)%></p>
+  <p><%=testPattern%></p>
   <hr>
   <h2>Random Generation</h2>
   <%=random%>

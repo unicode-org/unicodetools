@@ -133,6 +133,10 @@ function setUbaInput(str) {
     String ubaDetail = utfParams.getParameter("d", "2");
     boolean ubaShowVacuous = !"off".equals(utfParams.getParameter("y", "off"));
     String valInputCharSeq = utfParams.getParameter("s", "\u0645\u0627\u0631\u0652\u0643 \u2066\u0031\u2013\u0033%\u2069 mark (\u0366v.2)\u0368!");
+    if (valInputCharSeq.codePointCount(0, valInputCharSeq.length()) > 200) {
+        response.sendError(400, "Input must not exceed 200 Unicode code points.");
+        return;
+    }
     ArrayList<String> arrInputCpSeq = new ArrayList<String>();
     String[] resLevArray = {};
     String outResLevels = "\"\"";

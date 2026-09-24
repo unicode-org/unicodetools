@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.idna.Regexes;
@@ -1435,6 +1436,22 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
             IndexUnicodeProperties indexUnicodeProperties,
             IndexUnicodeProperties nextProperties,
             Set<PropertyParsingInfo> propInfoSet) {
+        final var binaries =
+                propInfoSet.stream()
+                        .filter(propInfo -> propInfo.property.getType() == PropertyType.Binary)
+                        .toList();
+        if (binaries.size() != 1) {
+            throw new IllegalArgumentException(
+                    "propInfoSet for file of type StandardizedVariants should have one binary property: "
+                            + propInfoSet.stream()
+                                    .map(p -> p.property.toString())
+                                    .collect(Collectors.joining(", ")));
+        }
+        final var baseProperty = binaries.get(0);
+        final var nonBinaries =
+                propInfoSet.stream()
+                        .filter(propInfo -> propInfo.property.getType() != PropertyType.Binary)
+                        .collect(Collectors.toSet());
         for (UcdLineParser.UcdLine line : parser) {
             String[] parts = line.getParts();
             if (!parts[2].isEmpty()) {
@@ -1444,9 +1461,23 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     line,
                     indexUnicodeProperties,
                     nextProperties,
-                    propInfoSet,
+                    nonBinaries,
                     IndexUnicodeProperties.ALPHABETIC_JOINER,
                     false);
+            final var hexCodePoints = parts[0].split("\\s+");
+            if (hexCodePoints.length != 2) {
+                throw new IllegalArgumentException("Bad variation sequence line " + line);
+            }
+            final var base = new IntRange();
+            base.start = base.end = Utility.codePointFromHex(hexCodePoints[0]);
+            baseProperty.put(
+                    indexUnicodeProperties.property2UnicodeMap.get(baseProperty.property),
+                    base,
+                    "Yes",
+                    nextProperties == null
+                            ? null
+                            : nextProperties.getProperty(baseProperty.property),
+                    indexUnicodeProperties.ucdVersion);
         }
     }
 

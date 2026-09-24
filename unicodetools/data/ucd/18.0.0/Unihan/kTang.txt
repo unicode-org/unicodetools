@@ -1,0 +1,3806 @@
+3529	qop
+3650	njiuɛn
+37FC	ngɑu
+38D0	bhæng
+3A73	siǒng
+3AC3	*qiu qo
+3C9A	shra
+3D3E	bhət
+3E0C	hok huɑk
+3E84	iǒ
+3E91	sɑu
+410D	jrhà
+41BD	kèu
+4366	liɛ
+43D1	jiɛk
+4670	liɛ
+48DB	sit
+49FA	qiòng
+4E00	*qit qit
+4E01	*deng deng
+4E03	*tsit tsit
+4E08	*djhiɑ̌ng djhiɑ̌ng
+4E09	*sɑm sɑm
+4E0A	*zhiɑ̀ng zhiɑ̀ng zhiɑ̌ng
+4E0B	hà hǎ
+4E0D	*biət biət
+4E14	*tsiǎ tsiǎ
+4E15	pyi
+4E16	*shiɛì shiɛì
+4E18	*kiou kiou
+4E1E	*zhiəng zhiəng
+4E20	kiou
+4E26	bhěng
+4E2D	*djiùng djiung
+4E31	guàn
+4E38	huɑn
+4E39	*dɑn dɑn
+4E3B	*jiǒ jiǒ
+4E43	*nəǐ nəǐ
+4E45	*gioǔ gioǔ
+4E46	gioǔ
+4E48	qeu
+4E4B	*jiə jiə
+4E4D	jrhà
+4E4E	ho
+4E4F	bhiæp
+4E56	guæi
+4E57	jhiəng
+4E58	jhiəng jhiə̀ng
+4E59	qyit
+4E5D	*gioǔ gioǔ
+4E5E	kiət
+4E5F	iǎ
+4E73	njiǒ
+4E7E	*ghyɛn ghyɛn gɑn
+4E82	*luɑ̀n luɑ̀n
+4E86	*leǔ leǔ
+4E88	*iu iu
+4E8B	*jrhiə̀ jrhiə̀
+4E8C	*njì njì
+4E8E	*hio hio
+4E91	*hiuən hiuən
+4E92	hò
+4E94	*ngǒ ngǒ
+4E95	*tsiɛ̌ng tsiɛ̌ng
+4E9E	qà
+4EA1	*miɑng miɑng
+4EA2	kɑ̀ng
+4EA4	*gau gau
+4EA5	həì
+4EA6	*iɛk iɛk
+4EAC	giæng
+4EAD	*dheng dheng
+4EAE	liɑ̀ng
+4EBA	*njin njin
+4EBE	miɑng
+4EC1	njin
+4EC4	*jriək jriək
+4EC6	più
+4ECA	*gyim gyim
+4ECB	gæì
+4ECD	*nə̌i njiəng
+4ED6	*tɑ tɑ
+4ED7	djhiɑ̀ng djhiɑ̌ng
+4ED8	biò
+4ED9	*siɛn siɛn
+4EDD	dhung
+4EDE	njìn
+4EE3	*dhəì dhəì
+4EE4	*liɛ̀ng liɛng
+4EE5	*iə̌ iə̌
+4EED	nhìn njìn
+4EF0	*ngiɑ̌ng ngiɑ̌ng
+4EF2	*djhiùng djhiùng
+4EFB	*njim njim
+4F0A	*qi qi
+4F0F	*bhiuk bhiuk
+4F10	*bhiæt bhiæt
+4F11	*xiou xiou
+4F2F	bæk
+4F30	gǒ
+4F34	*bhɑ̌n bhɑ̌n
+4F36	leng
+4F38	*shin shin
+4F3A	siə̀
+4F3C	*ziə̌ ziə̌
+4F3D	ghia
+4F46	dhɑ̀n
+4F47	djhiǔ
+4F4D	hyuɛ̀
+4F4E	*dei dei
+4F4F	*djhiò djhiò
+4F55	*hɑ hɑ
+4F57	*tɑ tɑ
+4F59	*iu iu
+4F5B	bhiət
+4F5C	*tzɑk tzɑk
+4F69	*bhə̀i
+4F73	*gɛi gɛi
+4F7A	tsiuɛn
+4F7F	*shriə̌ shriə̀ shriə̌
+4F83	kɑn
+4F86	*ləi ləi
+4F8D	*zhiə̀ zhiə̌
+4F94	miou
+4F9B	*giong giong
+4F9D	*qiəi qiəi
+4FAF	*hou hou
+4FB5	*tsim tsim
+4FB6	liǔ
+4FBF	*bhiɛ̀n bhiɛn
+4FC2	*gèi
+4FC3	*tsiok tsiok
+4FC4	ngɑ
+4FCA	tzuìn
+4FCE	jriǔ
+4FD7	*ziok ziok
+4FD9	xiəi
+4FDB	*biǒ biǒ myɛ̌n
+4FDC	peng
+4FDD	bɑǔ
+4FE0	hep
+4FE1	*sìn
+4FEE	*siou siou
+4FEF	*biǒ
+4FF6	chiuk
+4FF8	*bhiòng
+4FFE	byɛ̌
+5002	*biɛ̌ng biɛ̌ng
+5009	*tsɑng tsɑng
+500D	bhəǐ
+500F	shiuk
+5012	dɑù dɑ̀u
+5015	zhiuɛ
+5016	*hɛ̌ng hɛ̌ng
+5018	tɑ̌ng
+5019	*hòu
+501A	*gyɛ̌ gyɛ̌
+501F	*tzià
+5021	*chiɑ̀ng chiɑ̀ng
+5026	ghyuɛ̀n
+5029	tsiɛ̀ng
+502B	luin
+5036	*gio gio
+503C	*djhiə̀ djhiə
+5043	qiæ̌n
+5047	gǎ
+504F	piɛn
+5053	qak
+505C	*dheng dheng
+5065	*ghiæ̀n
+5074	*jriək jriək
+5076	*ngǒu
+5077	tou
+5085	biò
+508D	*bhɑn bhɑn
+5091	ghyɛt
+5099	*bhyì
+50AC	*tsuəi tsuəi
+50B2	ngɑù
+50B3	djhiuɛ̀n
+50B4	qiǒ
+50B5	jrɛi
+50B7	*shiɑng shiɑng
+50BE	*kiuɛng kiuɛng
+50C2	liǒ
+50C5	ghìn
+50CA	*siɛn siɛn
+50CF	*ziɑ̌ng ziɑ̌ng
+50D5	*bhuk bhuk
+50E7	*səng səng
+50EE	*dhung dgung
+50F5	giɑng
+50F6	mǐn
+50F9	gà
+50FB	pek piɛk
+5100	ngyɛ
+5102	nong
+5109	ghyɛ̌m
+5112	*njio njio
+5114	djhiou
+5115	jrhæi
+512A	qiou
+5132	djhiu
+5140	*nguət nguət
+5143	*ngiuæn ngiuæn
+5144	*xiuæng xiuæng
+5145	chiung
+5146	djhiɛ̌u
+5148	*sen sen
+5149	*guɑng guɑng
+514B	kək
+514D	*myɛ̌n myɛ̌n
+5152	*njiɛ njiɛ
+5154	*tò tò
+5155	zǐ
+5162	giəng
+5165	*njip njip
+5167	*nuə̀i nuə̀i
+5168	*dzhiuɛn dzhiuɛn
+5169	liɑ̀ng liɑ̌ng
+516B	*bat bat
+516C	*gung gung
+516D	*liuk liuk
+516E	*hei hei
+5171	*ghiòng ghiòng
+5175	*biæng biæng
+5176	*ghiə ghiə
+5177	*ghiò ghiò
+5178	*děn děn
+517C	*gem gem
+5180	gyì
+5189	*njiɛ̌m njiɛ̌m
+518D	*tzə̀i tzə̀i
+518F	guěng
+5191	djhiòu
+5192	mɑ̀u
+5195	myɛ̌n
+5197	njiǒng
+51A0	guɑn guɑ̀n
+51A2	*djiǒng djiǒng
+51A5	meng mèng
+51AC	*dong dong
+51B0	*biəng biəng
+51B5	*xiuɑ̀ng
+51B6	iǎ
+51B7	*læ̌ng læ̌ng
+51C4	*tsei tsei
+51C9	liəng
+51CB	*deu deu
+51CC	*liəng
+51CD	*dùng dùng
+51DC	*lǐm lǐm
+51DD	*ngiəng ngiəng
+51E0	gyǐ
+51E1	bhiæm
+51ED	bhiəng bhiə̀ng
+51F0	*huɑng huɑng
+51F6	xiong
+51FA	*chuit
+51FD	hæm
+5200	*dɑu
+5201	deu
+5203	njìn
+5206	*biən bhiə̀n
+5207	tset
+520E	miə̌n
+5211	heng
+5217	liɛt
+521D	*chriu
+5220	shran
+5224	pɑ̀n
+5225	*bhyɛt
+5229	*lì
+522E	guæt
+5230	*dɑ̀u
+5233	ko
+5236	jiɛ̀i
+523A	lɑt tsiɛk tsiɛ̀
+523B	kək
+5247	tzək
+524A	siɑk
+524C	lɑt
+524D	*dzhen
+5254	tek
+5256	pǒu
+525B	gɑng
+525C	guɑn
+525D	pak
+5261	zhiɛ̌m
+526A	*tziɛ̌n
+5272	*gɑt
+5275	chriɑ̀ng
+527A	liə
+527D	piɛ̀u
+5283	huɛk
+5287	*ghiæk
+5288	pek
+5289	*liou
+528D	*gi(u)æ̀m
+5292	*gi(u)æ̀m
+529B	*liək
+529F	*gung
+52A0	ga
+52A3	liuɛt
+52A9	jrhiù
+52AA	nǒ
+52AB	kiæp
+52BE	hək
+52C1	giɛ̀ng
+52C3	bhət
+52C5	tjiək
+52C7	*iǒng
+52C9	myɛ̌n
+52D2	lək
+52D5	*dhǔng
+52D9	miò
+52DD	*shiə̀ng
+52DE	*lɑu lɑ̀u
+52DF	mò
+52E2	*shiɛ̀i
+52E4	*ghiən
+52F3	*xiuən
+52F8	*kiuæ̀n
+52FF	*miət
+5300	uin
+5305	bau
+5306	tsung
+5308	xiong
+5316	*xuɑ̀
+5317	*bək
+5319	zhiɛ
+5320	dzhiɑ̀ng
+5321	*kiuɑng
+5323	hap
+532A	piə̌i
+532F	huə̌i
+5339	*pit
+533F	niək
+5340	gou kio
+5341	*zhip
+5343	*tsen
+5347	*shiəng
+5348	ngǒ
+5349	xiuə̀i xiuə̌i
+534A	bɑ̀n
+5351	biɛ
+5352	*tzuət tsuət tzuit
+5353	djak
+5354	hep
+5357	*nom
+535A	*bɑk bɑk
+535C	*buk
+5360	jiɛm
+5370	qìn
+5371	*ngyuɛ
+5374	*kiɑk
+5377	*gyuɛ̌n gyuɛ̀n
+5379	suit
+537B	*kiɑk
+537D	*tziək
+537F	*kiæng
+539A	hòu hǒu
+539F	*ngiuæn
+53A5	giuæt
+53AD	*qiɛ̀m
+53B2	*liɛ̀i
+53BB	*kiù
+53C2	*chrim shrim tsom
+53C8	*hiòu
+53CA	*ghyip
+53CB	hiǒu
+53CD	*biæ̌n
+53D6	*tsiǒ
+53D7	*zhiǒu
+53DF	*sǒu
+53E2	*dzhung
+53E3	*kǒu
+53E4	*gǒ
+53E5	*giò
+53E9	kǒu
+53EA	*jǐɛ
+53EB	gèu
+53EC	djhiɛ̀u
+53EF	*kɑ̌
+53F0	*təi
+53F1	chit
+53F2	*shriə̌
+53F3	*hiòu
+53F8	*siə
+5401	xio
+5404	*gɑk
+5408	*hop
+5409	git
+540C	*dhung
+540D	*miæng
+540F	*liə̀
+5410	*tǒ
+5411	*xiɑ̀ng
+541B	*giuən
+541E	*tən
+541F	*ngyim
+5420	bhiæ̀i
+5426	biǒu
+542B	*hom
+542E	jhuǐn
+5433..5434	*ngo
+5438	xyip
+5439	*chiuɛ chiuɛ̀
+543B	miə̌n
+543C	xòu xǒu
+543E	*ngo
+5440	nga xa
+5442	*liǔ
+544A	*gɑ̀u
+544E	*jiɛ̌
+5466	giəu
+5468	*jiou
+5473	*miə̀i
+5475	xɑ
+547B	shin
+547C	*xo
+547D	*miæ̀ng
+5484	duɑt duət
+5486	bhɑu
+548C	*huɑ huɑ̀
+548D	xəi
+548E	ghiǒu
+548F	hiuæ̀ng
+54A4	djà
+54A8	tzi
+54AC	gǎu
+54B7	dhɑu
+54B8	*hæm
+54BD	*qet
+54C0	*qəi
+54C1	pǐm
+54E1	hyuɛn
+54E5	gɑ
+54E6	ngɑ
+54ED	*kuk
+54F2	djiɛt
+54F3	djɛt
+54FA	bhò
+5507	jhuin
+550F	*xiə̌i xiə̀i
+5510	dhɑng
+552F	*ui
+5531	*chiɑ̀ng
+5533	lèi
+5544	*duk djak
+5546	*shiɑng
+554F	*miə̀n
+5556	dhɑ̌m
+555C	chiuɛt
+555E	qà
+557C	*dhei
+557E	*tziou
+5584	*zhiɛ̌n
+5598	chiuɛ̌n
+559A	huɑ̀n
+559C	*xiə̌
+559D	xɑt
+559E	tziək
+55A7	*xiuæn
+55AA	*sɑ̀ng
+55AC	ghyɛu
+55AE	*zhiɛn dɑn
+55BB	iò
+55C1	*dhei
+55D4	chin
+55DA	*qo
+55DF	*tzia
+55E3	ziə̀
+55E4	chiə
+55F7	ngɑu
+5606	tɑn tɑ̀n
+5608	dzhɑu
+5609	ga
+5614	qou qǒu
+5617	*zhiɑng
+562F	*sèu
+5632	djau
+5634	tziuɛ̌
+5636	*sei
+5649	dhɑ̌m
+5653	xiu xiù
+5668	kyì
+566A	sɑ̀u
+566B	qiə
+566C	zhiɛ̀i
+566D	gèu
+5674	pən
+56AC	bhin
+56B1	xyɛ̀
+56B4	*ngiæm
+56BC	dzhiɑk
+56C0	djiuɛ̀n
+56CA	*nɑng
+56D1	jiok
+56D3	nget
+56DA	zhiou
+56DB	*sì
+56DE	*huəi
+56E0	*qin
+56F0	*kuə̀n
+56F7	kyun
+56FA	*gò
+5703	bǒ
+5709	ngiǔ
+570B	*guək
+570D	*hiuəi
+5712	*hiuəi
+5713	*hyuɛn
+5716	*dho
+5718	dhuɑn
+571F	*tǒ
+5728	*dzhə̌i
+572D	*guei
+572F	iə
+5730	*dhì
+573B	ghiəi
+5742	biæ̌n
+5747	guin
+574A	biɑng
+574E	*kǒm
+5750	*dzhuɑ̀ *dzhuɑ̌
+5751	kæng
+5761	pɑ
+5764	*kuən
+5766	tɑ̌n
+5773	qau
+577C	*tjæk
+5782	*zhiuɛ
+5793	gəi
+579E	*djhæk
+57A0	ngiən ngyin
+57A2	gǒu
+57A3	hiuæn
+57C3	*qəi
+57CB	*mæi
+57CE	*zhiɛng
+57DF	hiuək
+57F7	jip
+57FA	giə
+57FD	*sɑ̌u
+5802	*dhɑng
+5805	*gen
+5806	*duəi
+581E	dhep
+582A	*kom
+582F	*ngəu
+5831	*bɑ̀u
+5834	*djhiɑng
+5835	dǒ
+584A	kuɑ̀i
+584B	iuɛng
+5852	zhiə
+5854	tɑp
+5857	*dho
+5858	*dhɑng
+585A	*djiǒng
+585E	*sək *sə̀i
+5861	dhen
+5862	qǒ
+5864	xiuæn
+586B	dhen
+5875	*djhin
+5879	tsiɛ̀m
+5880	*djhi
+5887	*giæ̌ng
+5889	iong
+5893	mò
+589C	*djhuì
+589E	*tzəng
+589F	kiu
+58A8	mək
+58AE	dhuɑ̌
+58B3	*bhiən
+58C1	bek
+58C7	dhɑn
+58C8	lǒm
+58D1	*xɑk
+58D3	*qap qiɛp
+58D5	hɑu
+58D8	*luǐ
+58DA	lo
+58DE	huæ̀i
+58DF	liǒng
+58E4	njiɑ̌ng
+58EB	*jrhiə̌
+58EF	*jriɑ̀ng
+58F9	qit
+58FA	*ho
+58FB	sèi
+58FD	zhiòu zhiǒu
+590F	*hǎ
+5914	ghyui
+5915	*ziɛk
+5916	*nguɑ̀i
+5919	siuk
+591A	*dɑ
+591C	*ià
+5922	*mùng
+5924	in
+5927	*dhɑ̀i
+5929	*ten
+592A	*tɑ̀i
+592B	*bio bhio
+592D	qyɛ̌u
+592E	qiɑng
+5931	*shit
+5937	i
+5938	kua
+593E	*gæp
+5947	*ghyɛ gyɛ
+5948	*nɑ̀i
+5949	*bhiǒng
+594F	tzòu
+5951	*kèi ket set
+5954	*bən
+5955	iɛk
+595A	hei
+5960	dhèn
+5961	ngɑ̀u
+5962	shia
+5967	qɑ̀u
+596A	*dhuɑt dhuɑt
+596E	biə̀n
+5970	bhyì
+5973	*niǔ *njiǔ
+5974	*no
+597D	*xɑ̀u *xɑ̌u
+5982	*njiu
+5983	*piəi
+5984	miɑ̀ng
+598D	ngen
+5992	dò
+5993	ghyɛ̌
+5996	*qyɛu
+5999	*miɛ̀u
+599D	*jriɑng
+59A4	iu
+59A5	tuɑ̌
+59A8	piɑng piɑ̀ng
+59AC	dò
+59B2	dɑt
+59B9	*mə̀i
+59BB	*tsei
+59BE	*tsziɛp
+59CA	tzǐ
+59CB	*shiə̌
+59D1	*go
+59D3	siɛ̀ng
+59D4	*gyuɛ gyuɛ̌
+59DA	iɛu
+59E5	mǒ
+59E6	gan
+59E8	i
+59EC	giə
+59EE	*həng
+59FF	*tzi
+5A01	*qiuəi
+5A09	piɛng
+5A11	sɑ
+5A18	*niɑng
+5A1F	*qiuɛn
+5A25	*ngɑ
+5A31	ngio
+5A3F	qɑ
+5A41	lou
+5A46	bhɑ
+5A49	qiuæ̌n
+5A55	tziɛp
+5A5A	xuən
+5A62	bhiɛ̌
+5A66	*bhiǒu
+5A6A	lom
+5A92	məi
+5A95	qom
+5A9A	myì
+5AA7	gua
+5AC1	*gà
+5ACB	*něu
+5ACC	*hem
+5AD6	piɛu
+5AD7	qiò
+5ADC	jiɑng
+5AE6	*həng
+5AE9	nuə̀n
+5AEA	lɑ̀u
+5AEB	mo
+5B0B	zhiɛn
+5B0C	*gyɛu
+5B2A	bhin
+5B30	qiɛng
+5B34	iɛng
+5B3E	lɑ̌n
+5B43	*niɑng
+5B4C	liuɛ̌n
+5B50	*tziə̌
+5B54	*kǔng
+5B57	*dzhiə̀ dzhiə̀
+5B58	*dzuən
+5B5B	bət bə̀i
+5B5C	tziə
+5B5D	xàu
+5B5F	*mæ̀ng
+5B63	gì
+5B64	*go
+5B65	no
+5B69	həi
+5B6B	*suən
+5B70	*zhiuk zhiuk
+5B71	jrhiɛn
+5B78	*hak
+5B7D	ngiɛt
+5B85	*djhæk
+5B87	*hiǒ
+5B88	*shiǒu
+5B89	*qɑn
+5B8B	*sòng
+5B8C	*huɑn
+5B8F	huɛng
+5B93	myit
+5B97	*tzong
+5B98	*guɑn
+5B99	djhiòu
+5B9A	*dhèng
+5B9B	qiuæn qiuæ̌n
+5B9C	*ngyɛ
+5BA2	*kæk
+5BA3	*siuɛn
+5BA4	*shit
+5BA6	*huàn
+5BAE	*giung
+5BB0	*tzə̌i tzə̌i
+5BB3	*hɑ̀i
+5BB4	*qěn qèn
+5BB5	*siɛu
+5BB6	*ga
+5BB8	zhin
+5BB9	*iong
+5BBF	*siuk siòu
+5BC2	*dzhek
+5BC3	qiuæn
+5BC4	*gyɛ̀
+5BC5	in
+5BC6	*myit
+5BC7	kòu
+5BCC	*biòu
+5BD0	mì
+5BD2	*hɑn
+5BD3	ngiǒ
+5BDE	*mɑk
+5BE1	guǎ
+5BE2	*tsǐm
+5BE5	*leu
+5BE6	*jhit
+5BE7	*neng neng
+5BEB	*siǎ
+5BEC	kuɑn
+5BEE	leu
+5BF0	huan
+5BF5	*tjiǒng
+5BF6	*bɑ̌u
+5BF8	*tsuə̀n
+5BFA	*ziə̀
+5C01	biong
+5C04	*jhià ià jhiɛk
+5C07	*tziɑng *tziɑ̀ng
+5C08	jiuɛn
+5C09	qiuə̀i
+5C0A	*tzuən
+5C0B	*zim
+5C0D	*duə̀i
+5C0E	dhɑ̀u
+5C0F	*siɛ̌u
+5C11	*shiɛ̀u *shiɛ̌u
+5C1A	*zhiɑ̀ng zhiɑ̀ng
+5C24	*hiou
+5C31	*dzhiòu
+5C39	iǔn
+5C3A	*chiɛk
+5C3C	ni
+5C3E	*miə̌i
+5C40	ghiok
+5C45	giu
+5C48	*kiuət ghiuət
+5C4B	*quk
+5C4D	shi
+5C4F	*bheng
+5C50	ghiæk
+5C51	set
+5C53	xyì
+5C55	*djiɛ̌n
+5C5B	*bheng biɛ̌ng
+5C60	*dho
+5C62	liò
+5C63	shiɛ̌
+5C64	*dzhəng
+5C65	*lǐ
+5C6C	*jiok zhiok
+5C6F	dhuən djuin
+5C71	*shrɛn
+5C79	ngiət
+5C7C	*nguət
+5C8C	ngyip
+5C90	ghiɛ
+5C91	jrhim
+5CA1	gɑng
+5CA7	dheu
+5CA9	*ngam
+5CAB	ziòu
+5CB1	dhə̀i
+5CB3	*ngak
+5CB7	myin
+5CB8	*ngɑ̀n
+5CD2	dhung
+5CDE	nguə̌i
+5CE8	*ngɑ
+5CF0	*piong
+5CF4	hěn
+5CF6	*dɑ̌u
+5CFB	suìn
+5CFD	*hæp
+5D06	kung
+5D07	jhriung
+5D0E	ghiəi
+5D11	*kuən
+5D12	dzhuət
+5D14	tsuəi
+5D16	*ngɛi
+5D19	luən
+5D1F	ngyim
+5D22	*jrhɛng jrhæng
+5D26	qyɛm qyɛ̌m
+5D29	*bəng
+5D3F	ngɑk
+5D47	hei
+5D4B	myi
+5D4C	kam
+5D50	lom
+5D69	*siung
+5D6C	*nguəi
+5D6F	*dzhɑ
+5D72	nget
+5D78	tzung tzǔng
+5D7D	dhet
+5D82	jiɑ̀ng
+5D87	kio
+5D94	kyim
+5DA2	ngeu
+5DB1	gɑt
+5DB8	*huɛng
+5DBA	*liɛ̌ng
+5DBD	*ngak
+5DC3	lung lǔng
+5DC7	xyɛ
+5DC9	jrham
+5DCD	ngiuəi
+5DD2	luɑn
+5DD4	*den
+5DD6	*ngam
+5DD8	ngiæ̌n
+5DDD	*chiuɛn
+5DDE	*jiou
+5DE1	zuin
+5DE2	*jrhau
+5DE5	gung
+5DE6	tzɑ̌
+5DE7	kǎu
+5DE8	ghiǔ
+5DEB	*mio
+5DEE	*chriɛ
+5DF1	giə̌
+5DF2	*iə̌
+5DF4	*ba
+5DF5	jiɛ
+5DF7	*hàng
+5DFE	*gin
+5E00	tzop
+5E02	*zhiə̌
+5E03	*bò
+5E06	*bhiæm
+5E0C	xiəi
+5E16	tep
+5E19	djhit
+5E1A	jiǒu
+5E1B	bhæk
+5E1D	*dèi
+5E25	shruì
+5E28	chiuɛ̀i shiuɛ̀i
+5E2B	*shri
+5E2D	*ziɛk
+5E33	*djiɑ̀ng
+5E36	*dɑ̀i
+5E37	hyui
+5E38	*zhiɑng
+5E3D	*mɑ̀u
+5E43	*hiuəi
+5E44	qak
+5E45	biuk
+5E54	mɑ̀n
+5E55	*mɑk
+5E58	jrɛk
+5E59	*mɑk
+5E61	piæn
+5E70	xiæ̌n
+5E72	*gɑn gɑn
+5E73	*bhiæng
+5E74	*nen
+5E77	*biɛng
+5E78	hɛ̌ng
+5E79	gɑ̀n
+5E7C	qiə̀u
+5E7D	*qiəu
+5E7E	*giə̌i giəi
+5E87	bì
+5E8A	*jrhiɑng
+5E95	*děi
+5E97	dèm
+5E9A	gæng
+5E9C	*biǒ
+5EA6	*dhò dhɑk
+5EA7	*dzhuɑ̀
+5EAD	*dheng
+5EB3	bhiɛ̌
+5EB6	shiù
+5EB7	kɑng
+5EB8	iong
+5EBE	iǒ
+5EC1	chriə̀
+5EC2	siɑng
+5EC4	giòu
+5EC8	hǎ
+5EC9	liɛm
+5ED3	kuɑk
+5EDA	djhio
+5EDD	siɛ
+5EDF	*myɛ̀u
+5EE2	*biæ̀i
+5EE3	*guɑ̌ng
+5EEA	lǐm
+5EEC	*liu
+5EF6	*iɛn
+5EF7	*dheng
+5EFA	*giæ̀n
+5EFB	*huəi
+5F04	*lùng
+5F08	iɛk
+5F0A	bhiɛ̀i
+5F0B	iək
+5F0F	shiək
+5F13	*giung
+5F14	*dèu
+5F15	*ǐn
+5F18	huəng
+5F1F	*dhěi
+5F26	*hen
+5F27	ho
+5F2D	miɛ̌
+5F31	njiɑk
+5F35	*djiɑng
+5F37	*ghiɑng ghiǎng
+5F48	*dhɑn dhɑ̀n
+5F4A	*ghiɑng
+5F4C	miɛ
+5F4E	quan
+5F57	hiuɛ̀i ziuɛ̀i zui
+5F5D	i
+5F62	*heng
+5F64	dong
+5F66	bgyɛ̀n
+5F69	*tsə̌i
+5F6B	*deu
+5F71	*qiæ̌ng
+5F79	*iuɛk
+5F7C	*byɛ̌
+5F81	*jiɛng
+5F82	dzho
+5F83	*hiuɑ̌ng
+5F85	*dhə̌i
+5F87	zuìn
+5F8A	*huəi
+5F8B	luit
+5F8C	*hǒu hòu
+5F90	*ziu
+5F91	*gèng
+5F92	*dho dho
+5F97	*dək
+5F98	*bhəi
+5F9E	*dzhiong tsiong
+5FA1	*ngiù
+5FA7	*biɛ̀n
+5FA9	*bhiuk bhiòu
+5FAA	zuin
+5FAE	*miəi
+5FB5	*djiəng
+5FB7	dək
+5FB9	djhiɛt tjiɛt
+5FBC	gèu
+5FBD	xiuəi
+5FC3	*sim
+5FC5	*bit
+5FCC	ghiə̀
+5FCD	*njǐn
+5FD7	*jiə̀
+5FD8	*miɑng miɑ̀ng
+5FD9	mɑng
+5FDD	těm
+5FE0	djiung
+5FE4	ngò
+5FEB	kuài
+5FF5	*nèm
+5FFB	xiən
+5FFD	*xuət
+5FFF	piə̀n piə̌n
+600F	qiɑ̀ng
+6012	*nǒ nò
+6015	pà
+601B	dɑt
+601D	*siə siə̀
+6021	iə
+6025	*gyip
+6027	*siɛ̀ng
+6028	*qiuæ̀n
+602A	*guæ̀i
+602F	*kiæp
+6031	tsung
+6033	xiuɑ̌ng
+6035	tjuit
+6043	zhiə̌
+6046	*həng
+604D	xuɑ̌ng
+6050	*kiǒng
+6059	iɑ̀ng
+6062	kuəi
+6063	tzì
+6065	*tjiə̌
+6068	*hə̀n
+6069	*qən
+606D	giung
+606F	*siək
+6070	kæp
+6084	*tsiɛ̌u
+6089	sit
+608C	dhèi
+6094	xuə̌i
+609B	tsiuɛn
+609F	*ngò
+60A0	*iou
+60A3	huàn
+60A6	*iuɛt
+60B2	*byi
+60B4	dzhuì
+60B5	*tjiɑ̀ng
+60B8	ghuì
+60BC	dhɑ̀u
+60BD	*tsei
+60C5	*dzhiɛng
+60C6	*tjiou
+60CB	quɑ̀n
+60D5	tek
+60D8	miɑ̌ng
+60DA	xuət
+60DC	*siɛk
+60DF	*ui ui
+60E0	*huèi
+60E1	*qɑk qò
+60F3	*siɑ̌ng
+60F9	ngiǎ
+60FB	*chriək
+6100	tsiɛ̌u
+6101	*jrhiou
+6106	kyɛn
+6108	*iǒ
+610F	qiə̀
+611A	*ngio
+611B	*qə̀i
+611C	kep
+611F	*gǒm
+6127	*gyuì
+612C	sò
+6134	*chriɑ̀ng
+6137	kə̌i
+613F	ngiuæn
+6144	lit
+6148	*dzhiə
+614B	tə̀i
+614E	*zhìn
+6155	mò
+6158	*tsǒm
+615A	dzhɑm
+615C	myǐn
+615F	dhùng
+6160	ngɑ̀u
+6162	màn
+6163	guɑ̀n
+6167	huèi
+6168	kə̀i
+616E	liù
+6170	qiuə̀i
+6175	zhiong
+6176	kiæ̀ng
+6177	kɑ̌ng
+6182	*qiou
+618E	tzəng
+6190	*len
+6191	*bhiəng
+6194	dzhiɛu
+61A4	bhiə̌n
+61A8	kyɛ̀i
+61B2	*xiæ̀n
+61B6	*qiək
+61C7	kə̌n
+61C9	*qiəng *qiə̀ng
+61CA	qɑ̀u
+61E6	nuɑ̀
+61F2	djhiəng
+61F6	lɑ̌n
+61F7	*huæi
+61F8	*huen
+61FC	ghiò
+61FD	*xuɑn
+61FE	jiɛp
+6200	*liuɛ̀n
+6208	*guɑ
+620D	*shiò
+620E	*njiung
+6210	*zhiɛng
+6211	*ngɑ̌
+6212	gæ̀i
+6216	*huək
+621A	tsek
+621B	gat
+621F	giæk
+6221	kom
+6222	jrip
+622A	dzhet
+622E	*liuk
+6230	*jiɛ̀n
+6232	*xyɛ̀
+6234	də̀i
+6237	*hǒ
+623F	*bhiɑng
+6240	*shriǔ
+6241	*piɛn
+6243	gueng
+6247	*shiɛ̀n
+6248	hǒ
+6249	*biəi
+624B	*shiǒu
+624D	*dzhəi
+6253	děng
+6263	*kǒu kòu
+6276	*bhio
+6279	pei
+627F	*zhiəng
+6289	guet
+628A	*bǎ
+6291	qiək
+6295	*dhou
+6297	kɑ̀ng
+6298	*jiɛt
+629B	pau
+62AB	*pyɛ
+62B1	*bhɑ̌u
+62B5	děi
+62B9	*mɑt
+62BD	*tjiou
+62C2	*piət
+62C6	*tjæk
+62CD	pæk
+62D2	ghiǔ
+62D3	tɑk
+62D4	*bhat
+62D8	gio
+62D9	*jiuɛt
+62DB	*jiɛu
+62DC	*bæ̀i
+62ED	shiək
+62F1	*giǒng
+62F3	ghyuɛn
+62FD	iɛ̀i
+62FE	zhip
+6301	*djhiə
+6302	*guɛi
+6307	*jǐ
+6309	qɑ̀n
+6311	dheu teu
+632F	*jìn
+6331	sɑ
+633A	dheng
+633D	miæ̌n
+6349	jrak
+634B	luɑt
+6350	iuɛn
+6355	bhò
+6367	piǒng
+6368	shiǎ
+6369	let
+636B	mən
+6372	*gyuɛ̌n
+6376	jiuɛ̌
+6377	dzhiɛp
+6383	*sɑ̌u sɑ̀u
+6387	duɑt
+6388	zhiòu
+6389	dhèu
+638C	*jiɑ̌ng
+638E	gyiɛ̌
+6392	*bhæi
+6396	iɛk
+6398	ghiuæt ghiuət
+639B	*guɛ̀i
+63A0	liɑk
+63A1	*tsə̌i
+63A2	tɑm tɑ̀m
+63A3	chiɛt
+63A5	*tziɛp
+63A7	*kùng
+63A8	tuəi
+63A9	*qyɛ̌m
+63AC	giuk
+63BE	iuɛ̀n
+63C0	gɛ̌n
+63D0	dhei zhiɛ
+63D2	*chræp
+63D6	qip
+63DA	*iang
+63DB	*huɑ̀n
+63E1	qak
+63EE	*xiuəi
+63F4	hiuæn
+640F	bɑk pɑk
+6414	*sɑu
+641C	shrǎu shriou
+6425	duəi
+642A	dhɑng
+6434	gyɛ̌n
+6447	*iɛu
+6450	chrang dzhiong
+6458	djɛk
+645B	tjiɛ
+6467	*dzhuəi
+6469	*mɑ
+646D	jiɛk
+6475	shrɛk
+6476	dhuɑn
+647B	shræ̌m
+6487	pet
+6490	*tjæ̌ng
+6492	sɑt
+6493	nǎu
+649A	něn
+649D	xyuɛ
+64A5	*bɑt
+64A9	leu lěu
+64AB	*piǒ
+64B0	jrhiuɛ̌n
+64B2	puk
+64BB	tɑt
+64BC	hǒm
+64C1	*qiǒng
+64C5	zhiɛ̀n
+64C7	djhæk
+64CA	*gek
+64CD	tsɑu tsɑ̀u
+64CE	ghiæng
+64D2	ghyim
+64D7	bɛk
+64DA	*giù
+64E2	djhak
+64E3	*dɑ̌u
+64EC	ngiə̌
+64F2	*djhiɛk
+64F7	het xet
+64FA	bɛ̌i
+64FE	njiɛ̌u
+64FF	*djhiɛk
+6500	*pan
+650F	lǔng
+6514	*lɑn
+651C	*huei
+651D	shiɛp
+6522	dzhuɑn
+6523	liuɛn
+652A	gǎu
+652C	lɑ̌m
+652F	jiɛ
+6536	*shiou shiòu
+6538	iou
+6539	*gə̌i
+653B	gong gung
+653E	*biɑ̀ng
+6545	*gò
+6548	hàu
+6551	*giòu
+6555	tjiək
+6556	ngɑu
+6557	bhài
+6559	*gau gàu
+655D	bhiɛ̀i
+655E	chiɑ̌ng
+6562	*gɑ̌m
+6563	*sɑ̀n
+6566	duəi
+6567	gyɛ kyɛ
+656C	*giæ̀ng
+6572	kau
+6574	jiɛ̌ng
+6575	*dhek
+6577	pio
+6578	*shriò *shriǒ
+6582	liɛ̀m liɛ̌m
+6583	bhiɛ̀i
+6586	gàu
+6587	*miən
+6591	ban
+6597	*dǒu
+6599	*lèu
+659B	huk
+659C	*zia
+659F	jim
+65A5	chiɛk
+65A7	biǒ
+65AB	jiɑk
+65AC	*jræ̌m
+65AF	*siɛ
+65B0	*sin
+65B7	*dhuɑ̌n
+65B9	*biɑng
+65BD	*shiɛ shiɛ shiɛ̀
+65C1	*bhɑng
+65C3	jiɛn
+65C4	*mɑu
+65C5	*liǔ
+65C6	bhɑ̀i
+65CB	*ziuɛn
+65CC	*tziɛng
+65CE	niɛ̌
+65CF	dzhuk
+65D2	liou
+65D6	qyɛ̌
+65D7	*ghiə
+65DB	piæn
+65E3	*giə̀i
+65E5	*njit
+65E6	dɑ̀n
+65E8	jǐ
+65E9	*tzɑ̌u
+65EC	zuin
+65F0	gɑ̀n
+65FB	myin
+6602	*ngɑng
+6606	guən
+6607	*shiəng
+660A	*hɑ̌u
+660C	chiɑng
+660E	*miæng
+660F	*xuən
+6613	*iɛ̀ iɛk
+6614	*siɛk
+661F	*seng
+6620	*qiæ̀ng
+6625	*chuin
+6627	*mə̀i
+6628	*dzhɑk
+662D	*jiɛu
+662F	*zhiɛ̌
+6635	nit
+6642	*zhiə
+664B	*tzìn
+664F	qàn qèn qěn
+665A	*miæ̌n
+665D	*djiòu
+665E	xiəi
+6661	bo
+6666	xuə̀i
+6668	*jhin zhin
+666F	*giæ̌ng *qiæ̌ng
+6674	*dzhiɛng
+6676	tziɛng
+667A	djiɛ̀
+667C	*qiuæ̌n
+6687	hà
+6688	ngiuən
+6689	*xiuəi
+6691	shiǔ
+6696	*nuɑ̌n
+6697	*qòm
+669D	*mèng meng
+66A2	tjiɑ̀ng
+66A8	gyì
+66AB	*dzhɑ̀m
+66AE	*mò
+66B4	bhɑ̀u
+66C9	*xěu
+66D9	*zhiù
+66DC	iɛ̀u
+66E0	*kuɑ̀ng
+66E6	xyɛ
+66F0	*hiuæt
+66F2	*kiok
+66F3	*iɛ̀i
+66F4	*gæng gæ̀ng
+66F7	hɑt
+66F8	*shiu
+66F9	*dzhɑu
+66FC	miæ̀n
+66FE	*dzhəng *tzəng
+66FF	tèi
+6700	*tzuɑ̀i
+6703	*huɑ̀i
+6708	*ngiuæt
+6709	*hiǒu
+670B	bhəng
+670D	*bhiuk
+6714	*shrak
+6717	lɑ̌ng
+671B	*miɑng miɑ̀ng
+671D	*djhiɛu *djiɛu
+671F	*ghiə
+6723	dhung
+6726	mung
+6727	lung
+6728	*muk
+672A	*miə̀i
+672B	mɑt
+672C	*bə̌n
+672D	jrat
+6731	*jio zhio
+6735	duɑ̌
+673D	xiǒu
+6746	*gɑn
+6748	chrɛ̀i
+6749	shræm
+674E	*liə̌
+674F	hæ̌ng
+6750	*dzhəi
+6751	*tsuən
+6753	zhiɑk
+6755	dhèi
+6756	*dhjiɑ̌ng
+675C	*dhǒ
+675E	kiə̌
+675F	*shiok
+676A	miɛ̌u
+676F	*bəi
+6771	*dung
+6772	gɑ̌u
+6773	*qěu
+6775	chiǔ
+6777	bha
+677E	*ziong
+677F	bǎn
+6789	*qiuɑ̌ng
+6790	sek
+6792	nga
+6795	*jǐm
+6797	*lim
+679A	miɛ̌u
+679C	*guɑ̌
+679D	*jiɛ
+67AF	*ko
+67B3	gyɛ̌ jiɛ̌
+67BB	iɛ̀i
+67C4	biæ̀ng
+67CF	*bæk
+67D3	njiɛ̀m njiɛ̌m
+67D4	njiou
+67DA	iòu
+67DD	tɑk
+67DF	nom
+67EF	gɑ
+67F1	*djhiǒ
+67F3	*liǒu
+67F4	*jrhɛi
+6816	*sei
+6817	*lit
+6821	gàu hàu
+682A	djio
+6839	*gən
+683C	gæk
+6841	hɑ̀ng
+6842	*guèi
+6843	*dhɑu
+6848	qɑ̀n
+684E	jit
+6850	*dhung
+6851	*sɑng
+6853	huɑn
+6877	gak
+6881	*liɑng
+6885	*məi
+688F	gok
+6893	tziə̌
+6894	jiɛ
+6897	gæ̌ng
+689D	*dheu
+689F	keu
+68A2	shrau
+68A7	*ngo
+68A8	*li
+68AD	suɑ
+68AF	tei
+68B3	*shriu
+68B5	bhiæ̀m
+68C3	*li
+68C4	*kì
+68C6	luin
+68C9	*miɛn
+68CB	ghiə
+68D7	tzɑ̌u
+68D8	*giək
+68DF	dùng
+68E0	dhɑng
+68E7	jrhàn
+68EE	*shrim
+68F1	ləng lə̀ng
+68F2	*sei
+68F9	*djhàu
+68FA	guɑn
+6900	quɑ̌n
+690D	djhiə̀
+690E	djhui
+6912	tziɛu
+6936	tzung
+693D	djhiuɛn
+694A	*iɑng
+6953	*biung
+695A	*chriǔ
+696B	tziɛp
+696D	*ngiæp
+6975	*ghiək
+6978	tsiou
+6979	iɛng
+6986	io
+6995	iong
+699B	jrin
+699C	bæ̀ng bɑ̀ng
+69A6	gɑ̀n
+69AD	zià
+69AE	*hiuæng
+69B4	liou
+69BB	tɑp
+69C1	gɑ̌u
+69CB	gòu
+69CD	tsiɑng
+69CE	jrha
+69D0	hiəi huɛi
+69E9..69EA	gə̀i
+69F3	tziɑ̌ng
+69FF	giə̌n
+6A02	*lɑk *ngak
+6A13	*lou
+6A17	chio
+6A19	*biɛu
+6A1B	giəu
+6A1E	chio
+6A23	iɑ̀ng
+6A35	*dzhiɛu
+6A38	pak
+6A39	*zhiò *zhiǒ
+6A3D	*tzuən
+6A48	njiɛu
+6A4B	*ghyɛu
+6A50	tɑk
+6A58	*guit
+6A59	djhɛng
+6A5F	*giəi
+6A61	ziɑ̌ng
+6A66	dhung djhang jiong
+6A6B	*huæng guɑ̀ng
+6A80	dhɑn
+6A84	hek
+6A90	*iɛm
+6A9D	tziɛp
+6AA2	gyɛ̌m
+6AA3	dzhiɑng
+6ABB	hǎm
+6AC2	*djhàu
+6ADA	liu
+6ADB	jrit
+6AEA	lek
+6AF3	lung
+6AFB	qɛng
+6B03	chram
+6B04	*lɑn
+6B0A	*ghyuɛn
+6B12	luɑn
+6B20	kiuæ̀m
+6B21	tsì
+6B23	xiən
+6B32	*iok
+6B38	qə̌i
+6B39	gyɛ
+6B3A	kiə
+6B3B	xiuət
+6B3D	kim
+6B3E	kuɑn
+6B47	*xiæt
+6B4C	*gɑ
+6B4E	*tɑn tɑ̀n
+6B50	qǒu
+6B58	xiuət
+6B5B	liɛ̀m liɛ̌m
+6B61	*xuɑn
+6B62	*jiə̌
+6B63	*jiɛ̀ng
+6B64	*tsiɛ̌
+6B65	*bhò
+6B66	*miǒ
+6B67	ghiɛ
+6B72	*siuɛ̀i
+6B77	*lek
+6B78	*giuəi
+6B7B	*sǐ
+6B7E	mət
+6B89	zuìn
+6B8A	*zhio
+6B98	*dzhɑn
+6B9E	hyuǐn
+6BB2	tziɛm
+6BB7	*qiən qiə̌n qɛn
+6BBA	*shrat *shræ̀i
+6BBC	kak
+6BBF	*dhèn
+6BC5	ngiə̀i
+6BCB	mio
+6BCD	*mǒu
+6BCF	*mə̌i
+6BD2	dhok
+6BD4	*bǐ bhi bì
+6BDB	*mɑu
+6BEB	hɑu
+6BFF	som
+6C0A	jiɛn
+6C0F	*zhiɛ̌ jiɛ
+6C11	min
+6C1B	piən
+6C23	*kiə̀i
+6C33	qiuən
+6C34	*shuǐ
+6C38	*hiuæ̌ng
+6C40	teng
+6C42	*ghiou
+6C4E	*piæ̀m
+6C57	*hɑ̀n hɑn
+6C5D	*njiǔ
+6C5F	*gang
+6C60	*cjhiɛ
+6C61	qo qò
+6C68	mek
+6C69	guət
+6C6A	quɑng
+6C70	tɑ̀i
+6C72	*gyip
+6C74	bhyɛ̀n
+6C76	miə̀n
+6C7E	bhiən
+6C83	qok
+6C85	ngiuæn
+6C88	*djhim shǐm
+6C89	*djhim
+6C90	muk
+6C93	dhop
+6C99	*shra
+6CA1	*mət
+6CAC	mɑt
+6CAE	dzhiǔ tsiu tziù
+6CB1	dhɑ
+6CB3	*ha
+6CB8	piə̀i
+6CB9	iou
+6CBB	djhiə djhiə̀ djhì
+6CBC	jiɛ̌u
+6CBD	*go gò
+6CBE	*djiɛm
+6CBF	*iuɛn
+6CC1	*xiuɑ̀ng
+6CC4	siɛt
+6CC9	*dzhiuɛn
+6CCA	*bhɑk
+6CD5	*biæp
+6CD7	sì
+6CDB	*piæ̀m
+6CDD	sò
+6CE0	leng
+6CE2	*bɑ
+6CE3	*kyip
+6CE5	*nei nèi
+6CE8	jiò
+6CEB	huěn
+6CEF	mǐn
+6CF1	qiɑng
+6CF3	hiuæ̀ng
+6D04	*huəi
+6D0B	iɑng
+6D0E	ghyì
+6D17	*sěi
+6D1B	*lɑk
+6D1E	*dhùng dhung
+6D25	*tsin
+6D29	iɛ̀i
+6D2A	*hung
+6D2E	tɑu
+6D32	*jiou
+6D36	xiǒng
+6D3B	huɑt
+6D3E	pɛ̀i
+6D41	*liou
+6D63	huɑ̌n
+6D64	huɛng
+6D65	gyip
+6D66	*pǒ
+6D69	*hɑ̌u
+6D6A	*lɑ̀ng lɑng
+6D6E	*bhiou
+6D74	iok
+6D77	*xə̌i
+6D78	tzìm
+6D87	geng
+6D88	siɛu
+6D89	zhiɛp
+6D8C	*iǒng
+6D8E	ziɛn
+6D93	*guen
+6D95	*tèi
+6DAF	*ngɛi
+6DB2	iɛk
+6DB5	*hom
+6DB8	hɑk
+6DBC	*liɑng
+6DCB	*lim
+6DD1	zhiuk
+6DD2	*tsei
+6DD9	czhong jrhang
+6DDA	*luì
+6DDE	siong
+6DE1	*dhɑ̀m *dhɑ̌m
+6DE8	*dzhiɛ̀ng
+6DE9	liəng
+6DEE	*huæi
+6DF1	*shim
+6DF3	zhuin
+6DF7	huə̌n
+6DF9	*gyɛm
+6DFA	*tsiɛ̌n
+6DFB	*tem
+6DFC	miɛ̌u
+6E05	*tsiɛng
+6E0C	liok luk
+6E1A	*jiǔ
+6E1B	gæ̌m
+6E1D	io
+6E20	ghio
+6E21	*dhò
+6E26	guɑ
+6E2C	chriək
+6E2D	*hiuə̀i
+6E34	kɑt
+6E38	*iou
+6E3A	*miɛ̌u
+6E3C	myǐ
+6E3E	huən huə̌n
+6E4A	tsòu
+6E4D	tuɑn
+6E53	bhən
+6E56	*ho
+6E58	*siɑng
+6E5B	djhæ̌m
+6E5F	huɑng
+6E67	*iǒng
+6E6B	tsiou
+6E6F	tɑng
+6E72	hyɛn
+6E90	*ngiuæn
+6E96	juǐn
+6E9C	liòu
+6E9D	gou
+6E9F	meng
+6EA2	qit
+6EA7	lit
+6EAA	*kei
+6EAB	quən
+6EB6	iong
+6EBA	nek
+6EBC	*ship
+6EC2	pɑng
+6EC4	*tsɑng
+6EC5	*miɛt
+6ECB	*tziə
+6ECC	dhek
+6ED3	tziə̌
+6ED4	tɑu
+6EEF	*djhiɛ̀i
+6EF4	*dek
+6EFE	guən
+6EFF	*mɑ̌n
+6F01	*ngiu
+6F02	piɛu
+6F06	tsit
+6F0F	*lòu
+6F13	liɛ
+6F14	iɛ̌n
+6F15	dzhɑ̀u
+6F20	*mɑk
+6F22	*xɑ̀n
+6F23	liɛn
+6F2A	qyE
+6F2B	*mɑn *mɑ̀n
+6F31	shriòu sòu
+6F32	dzhiɑ̀ng
+6F33	djiɑng
+6F35	ziǔ
+6F38	*dzhiɛ̌m
+6F3E	*iɑ̌ng iɑ̀ng
+6F3F	*tziɑng
+6F41	iuɛ̌ng
+6F4F	guet
+6F54	get
+6F58	pɑn
+6F5B	*dzhiɛm
+6F62	huɑng
+6F64	njuìn
+6F66	lɑ̀u
+6F6D	*dhom
+6F6E	*djhiɛu
+6F6F	zim
+6F78	shran shrǎn
+6F7A	jrhɛn
+6F7C	*dhung
+6F7E	lin
+6F80	shrip
+6F84	*djhiəng djhiæng
+6F86	keu
+6F8C	siɛ
+6F92	hǔng
+6F97	*gɑ̀n
+6FA4	*djhæk
+6FA6	iò
+6FA7	lěi
+6FB9	*dhɑ̀m *dhɑ̌m
+6FC0	*gek
+6FC1	djhak
+6FC3	*niong
+6FD5	*ship
+6FDB	mung
+6FDF	tzèi
+6FE0	hɑu
+6FE1	njio
+6FE4	*dhɑu
+6FE9	huɑk
+6FEF	*djhak
+6FF1	*bin
+6FFA	tziɛ̀n
+7001	*iɑ̌ng iɑ̀ng
+7009	siǎ
+700D	djhiɛn
+7011	bhuk
+701A	hɑ̀n
+701B	iɛng
+701F	*seu
+7026	djiu
+7027	shrang
+7028	lɑ̀i
+7030	miɛ miɛ̌
+703C	njiɑng
+703E	*lɑn lɑ̀n
+7043	piung
+704C	guɑ̀n
+7051	*shrǎ shri shriɛ̀ shriɛ̌ shrɛ̌i
+7058	*tɑn
+705E	bà
+7063	quan
+7069	iɛ̀m
+706B	*xuɑ̌
+7070	*xuəi
+707C	jiɑk
+707D	tzəi
+708A	*chiuɛ
+708E	*hyɛm
+7099	jiɛk
+70AC	*ghiǔ
+70AD	tɑ̀n
+70B3	biæ̌ng
+70C8	*liɛt
+70CF	*qo
+70DC	xiuæ̌n
+70DD	jiəng
+70DF	qen
+70F9	pæng
+70FD	*piong
+7109	*qyɛn hyɛn
+711A	bhiən
+7121	*mio
+7126	tziɛu
+7136	*njiɛn
+714C	huɑng
+714E	tziɛn
+7156	*nuɑ̌n
+7159	qen
+7165	xuɑ̀n
+7167	*jiɛ̀u
+7169	*bhiæn
+716C	iɑ̀ng
+716E	jiǔ
+718A	*hiung
+718F	*xiuən
+7192	hueng
+7199	xiə
+719F	*zhiuk
+71B1	*njiɛt
+71B3	mɑ̀n
+71C0	chiɛ̌n jiɛ̌n
+71C3	njiɛn
+71C4	iɛ̌m
+71C8	*dəng
+71CE	liɛ̀u liɛ̌u
+71D2	*shiɛu
+71D5	*qen *qèn
+71DF	*iuɛng iuɛng
+71E0	qiuk
+71E5	sɑ̌u
+71E7	zuì
+71ED	*jiok
+71FC	zìn
+71FE	dhɑ̀u
+720D	shiɑk
+7210	*lo
+721B	*lɑ̀n lɑ̀n
+722A	jrǎu
+722D	*jrɛng
+7230	hiuæn
+7232	*hyuɛ *hyuɛ̀
+7236	*bhiǒ
+723A	ia
+723D	shriɑ̌ng
+723E	*njiɛ̌ njiɛ̌
+7240	*jrhiɑng
+7246	*dzhiɑng
+7247	*pèn
+7248	bǎn
+724B	tzen
+7253	bɑ̌ng
+7255	*chrang
+7256	iǒu
+7259	*nga
+725B	*ngiou
+7262	lɑu
+7267	*miuk
+7269	*miət
+7272	shræng
+7279	dhək
+727D	*ken kèn
+7280	sei
+7282	lei
+7292	kɑ̀u
+7296	lak
+72A7	xyɛ
+72AD	*kuěn
+72AF	bhiæ̌m
+72C0	jrhiɑ̀ng
+72C2	*ghiuɑng
+72D0	*ho
+72D2	bhiə̀i
+72D6	iòu
+72D7	gǒu
+72D9	tsiu
+72E1	gǎu
+72E9	shiòu
+72F8	liə
+72F9	hæp
+72FB	suɑn
+72FC	*lɑng
+72FD	bɑ̀i
+730A	ngei
+7317	gyɛ
+731B	*mæ̌ng
+731C	tsəi
+7325	quə̌i
+7328	*hiuæn
+7329	*shræng
+7330	qat
+7331	nɑu
+7334	hou
+7336	*iou
+7337	iou
+733F	*hiuæn
+7345	shri
+7368	*dhuk
+7372	huɛk
+7375	*liɛp
+7378	*shiòu
+737B	*xiæ̀n
+737C	miɛ
+7384	*huen
+7387	luì shruit
+7389	*ngiok
+738B	*hiuɑng hiuɑ̀ng
+73A6	guet
+73A9	nguɑ̀n
+73B2	*leng
+73B3	dhə̀i
+73C0	pæk
+73C2	kɑ
+73C9	myin
+73CA	sɑn
+73CD	*djin
+73D3	gàu
+73E0	*jio
+73EA	guei
+73ED	ban
+73EE	*bhə̀i
+7405	lɑng
+7406	*liə̌
+7409	liou
+7425	xǒ
+742C	qiuæ̌n
+7430	iɛ̌m
+7433	lim
+7434	*ghyim
+7435	*bhi
+7436	*bha
+7441	mɑ̀u mə̀i
+7455	ha
+7459	nɑ̌u
+745A	ho
+745F	*shrit
+7463	*suɑ̌
+7469	hiuæng qèng
+746A	mǎ
+7476	iɛu
+7483	liɛ
+7485	tzɑ̌u
+74A3	giəi
+74A7	biɛk
+74AB	dɑng
+74B0	*huan
+74BD	siɛ̌
+74CA	ghiuɛng
+74CC	guəi
+74CF	*lung
+74DC	*gua
+74E2	*bhiɛu
+74E6	nguǎ
+7501	bheng
+7504	gyɛn
+7511	tziə̀ng
+7515	qùng
+7516	qɛng
+7518	*gɑm
+751A	*zhǐm zhìm
+751F	*shræng
+7522	shrɛ̌n
+7528	*iòng
+752B	biǒ
+7530	*dhen
+7531	*iou
+7532	*gap
+7533	shin
+7537	*nom
+754B	dhen dhèn
+754C	gæ̀i
+754F	*qiuə̀i
+7554	*bhɑ̀n
+7559	*liou
+755D	mǒu
+7562	*bit
+7564	djhiə̌ jiə̌
+7566	huei
+7567	liɑk
+756B	*huɛ̀i huɛk
+756C	shia
+7570	*iə̀
+7576	*dɑng dɑ̀ng
+757F	ghiəi
+7586	giɑng
+758A	*dhep
+758E	*shriu
+758F	*shriu shriù
+7591	*ngiə
+75B2	bhyɛ
+75B4	qɑ
+75B5	dzhiɛ
+75B9	jǐn
+75BE	*dzhit
+75C5	*bhiæ̀ng
+75CA	tsiuɛn
+75CD	i
+75D5	*hən
+75DB	*tùng
+7621	chriɑng
+7626	*shriòu
+7634	chriɑng
+7643	liung
+7658	liɛ̀i
+7661	tjiə
+767B	*dəng
+767C	*biæt
+767D	*bhæk
+767E	*bæk
+7684	dek
+7686	*gæi
+7687	*huɑng
+768B	gɑu
+768E	*gěu
+7693	hɑ̌u
+76A4	bhɑ
+76AE	bhyɛ
+76B4	tsuin
+76BA	jriòu
+76C3	*bəi
+76C8	*iɛng
+76CC	quɑ̌n
+76CD	hɑp
+76CE	qɑ̀ng qɑ̌ng
+76DB	*zhiɛ̀ng
+76DC	*dhɑ̀u
+76E1	*dzhǐn
+76E3	gam gàm
+76E4	*bhɑn bhɑn
+76E7	*lo
+76EA	dhɑ̌ng
+76EE	*miuk
+76F1	xio
+76F3	mæng
+76F4	*djhiək *djhiə̀
+76F8	*siɑng *siɑ̀ng
+76FC	pɛ̀n
+7701	*shræ̌ng siɛ̌ng
+7704	mèn měn
+7707	miɛ̌u
+7709	*myi
+770A	mɑ̀u
+770B	*kɑn kɑ̀n
+771F	*jin
+7720	*men
+7725	dzhiɛ̌
+7729	huèn
+7737	gyuɛ̀n
+7738	miou
+773A	tèu
+773C	*ngɛ̌n
+7740	*djiɑk djiɑk
+7747	dhèi
+7752	shiɛ̌m
+7757	shiɛk
+775B	tziɛng
+7761	zhuiɛ̀
+7762	xiuɛ xyui
+777F	iuɛ̀i
+778B	chin
+77A5	piɛt
+77AD	leu lěu
+77B3	dhung
+77BB	jiɛm
+77BF	ghio
+77DA	jiok
+77DB	miou
+77DC	giəng
+77E2	shǐ
+77E3	*hiə̌
+77E5	*djiɛ
+77E9	giǔ
+77ED	*duɑ̌n
+77EF	gyɛ̌u
+77F0	tzəng
+77F3	*zhiɛk
+7802	*shra
+780C	tsèi
+780D	kǒm
+7827	*djim
+782F..7830	pɛng
+7834	*pɑ̀
+7849	luət
+7860	lɑng
+7864	*hæp
+786C	ngɛ̀ng
+786E	hak
+786F	ngèn
+7881	ghiə
+788E	*suə̀i
+7891	*byɛ
+7893	duə̀i
+78A3	ghiæt ghiɛt
+78A7	*biɛk
+78CA	luəi
+78CB	tsɑ
+78D0	bhɑn
+78D3	duəi
+78D4	djæk
+78D5	kɑp
+78E7	tsiɛk
+78E8	*mɑ
+78EC	kèng
+78EF	giəi
+78F4	də̀ng
+78F5	*gàn
+7919	ngə̀i
+792A	liɛ̀i
+793A	jhì
+793E	zhiǎ
+7940	ziə̌
+7941	ghyi
+7947	*jiɛ̌ ghiɛ
+7948	ghiəi
+7956	*tzǒ
+7957	*jiɛ̌
+795A	dzhò
+795B	kiu
+795D	jiuk
+795E	*jhin
+7960	*ziə
+7965	ziɑng
+7967	teu
+796D	*tziɛ̀i
+7972	tzìm
+797F	luk
+7981	*gyìm
+798D	huɑ̌
+798F	biuk
+79A6	ngiǔ
+79A8	giəi
+79AA	*zhiɛn zhiɛ̀n
+79AE	*lěi
+79B0	něi
+79B1	dɑ̀u dɑ̌u
+79B9	*hiǒ
+79BD	*ghyim
+79BE	huɑ
+79C0	*siòu
+79C1	*si
+79C3	tuk
+79C9	biæ̌ng
+79CC	*tsiou
+79D1	kuɑ
+79DF	tzo
+79E3	mɑt
+79E6	*dzhin
+79E9	djhit
+79FB	*iɛ
+7A00	*xiəi
+7A09	gæng
+7A0B	djhiɛng
+7A0D	*shràu
+7A0E	shiuɛ̀i
+7A1A	*djhì
+7A1C	ləng
+7A1F	byǐm
+7A20	djhiou
+7A2E	*jiòng jiǒng
+7A31	*chiəng chiə̀ng
+7A37	tziək
+7A3B	dhɑ̀u
+7A3D	gei kěi
+7A46	miuk
+7A4D	*tziɛk
+7A4E	iuɛ̌ng
+7A69	quə̌n
+7A70	njiɑng njiɑ̌ng
+7A74	*huet
+7A79	kiung
+7A7A	*kung kùng
+7A7F	*chiuɛn tjæng tjæ̀ng
+7A81	*tuət
+7A84	*jræk
+7A85	*qěu
+7A88	*qěu
+7A95	dhěu
+7A97	*chrang
+7A9F	*kuət
+7AA0	kuɑ
+7AA3	suət
+7AAE	*ghiung
+7AB6	ghiǒ
+7AB8	sit
+7ABA	*kiuɛ
+7AC4	*tsuɑ̀n
+7AC7	dhòu
+7AC8	tzɑ̀u
+7ACA	*tset
+7ACB	*lip
+7ADF	*giæ̀ng
+7AE0	*jiɑng
+7AE5	*dhung
+7AED	ghyɛt
+7AEF	*duɑn
+7AF6	*ghiæ̀ng
+7AF9	*djiuk
+7AFD	hio
+7AFF	*gɑn
+7B0F	xuət
+7B11	*siɛ̀u
+7B19	*shræng
+7B1B	*dhek
+7B1E	djhiɛ
+7B20	lip
+7B26	bhio
+7B2C	*dhèi
+7B31	gǒu
+7B33	*ga
+7B46	*byit
+7B49	*də̌ng
+7B4B	giən
+7B4C	tsiuɛn
+7B4D	suǐn
+7B50	kiuɑng
+7B52	dhung
+7B54	*dop
+7B56	*chrɛk
+7B60	hyun
+7B6F	djhiù
+7B72	shrau
+7B75	*iɛn
+7B84	biɛ
+7B86	bei
+7B87	gɑ̀
+7B8B	tzen
+7B8F	*jrɛng
+7B94	bhɑk
+7B9C	kung
+7BA1	*guɑ̌n
+7BAD	*tziɛ̀n
+7BB1	siɑng
+7BB8	djhiù
+7BC0	*tzet
+7BC1	huɑng
+7BC7	*piɛn
+7BC9	djiuk
+7BCB	kep
+7BCC	hou
+7BDA	biəi
+7BEA	djhiɛ
+7BF2	ziuɛ̀i
+7C07	tsuk
+7C1E	dɑn
+7C1F	*dhěm
+7C21	gɛ̌n
+7C2A	*jrim
+7C2B	*seu
+7C34	ghiǒ
+7C37	*iɛm
+7C3E	*liɛm
+7C4C	djhiou
+7C4D	dzhiɛk
+7C59	liok
+7C5E	ngiǔ
+7C5F	lɑ̀i
+7C60	*lung lǔng
+7C6C	*liɛ
+7C73	měi
+7C89	*biə̌n
+7C92	lip
+7C97	dzhǒ tso
+7C9F	siok
+7CA7	*jriɑng
+7CB1	liɑng
+7CB2	tsɑ̀n
+7CB9	suì
+7CBE	*tziɛng
+7CD2	bhyì
+7CD7	kiǒu
+7CDC	myɛ
+7CDE	biə̀n
+7CDF	tzɑu
+7CE7	liɑng
+7CF2	liɛ̀i
+7CF4	dhek
+7CFE	giə̌u
+7D00	giə̌
+7D04	qiɑk
+7D05	*hung
+7D06	qio
+7D07	huət
+7D08	huɑn
+7D0B	miən
+7D0D	*nop
+7D17	*shra
+7D19	jiɛ̌
+7D1B	*piən
+7D20	*sò
+7D22	shræk shrɛk sɑk
+7D2B	*tziɛ̌
+7D2F	liuɛ̀ liuɛ̌
+7D30	*sèi
+7D39	zhiɛ̌u
+7D42	*jiung
+7D43	*hen
+7D44	tzǒ
+7D46	bɑ̀n
+7D50	*get
+7D55	*dzhiuɛt
+7D5B	tɑu
+7D61	lɑk
+7D66	gyip
+7D6E	*siù
+7D71	tòng
+7D72	*siə
+7D73	gàng
+7D79	giuɛ̀n
+7D7A	djhi
+7D83	siɛu
+7D8C	kiæk
+7D93	*geng
+7DA0	*liok
+7DA2	djhiou
+7DAC	zhiǒu
+7DAD	ui
+7DB1	gɑng
+7DB2	miɑ̌ng
+7DB4	djiuɛ̀i
+7DB5	*tsə̌i
+7DB8	*luin
+7DBA	*kyɛ̌
+7DBB	djhɛ̀n
+7DBD	chiɑk
+7DBF	*miɛn
+7DCB	biəi
+7DD2	ziǔ
+7DD7	siɑng
+7DD8	gæm
+7DDA	siɛ̀n
+7DDC	*miɛn
+7DE1	myin
+7DE3	*iuɛn
+7DE8	ben
+7DE9	huɑ̌n
+7DEA	gə̀ng
+7DEB	*tzǔng
+7DEC	miɛ̌n
+7DEF	hiuə̀i
+7DF1	gou
+7DF2	*miɛ̌u
+7DF4	lèn
+7E08	qiuɛng
+7E1B	*bhiɑk
+7E1E	gɑ̀u gɑ̌u
+7E23	*huèn
+7E2B	bhiong
+7E2D	liɛ
+7E2E	shriuk
+7E31	tziong tziòng
+7E37	liǒ
+7E39	piɛ̌u
+7E3B	myɛ
+7E3D	*tzǔng
+7E41	*bhiæn
+7E46	miəu
+7E50	huèi siuɛ̀i
+7E54	*jiək
+7E55	zhiɛ̀n
+7E5E	*njiɛ̌u njiɛ̀u
+7E61	*siòu
+7E69	jhiəng
+7E6B	*gèi
+7E6D	gěn
+7E73	jiɑk
+7E79	iɛk
+7E7C	*gèi
+7E86	mək
+7E88	het
+7E8A	kuɑ̀ng
+7E8C	ziok
+7E8F	*dhjiɛn
+7E93	*qiɛng
+7E94	*dzhəi
+7E96	*siɛm
+7E9B	dhok dhɑ̀u
+7E9C	*lɑ̀m
+7F3A	*kuet
+7F47	*tzuən
+7F4D	luəi
+7F4F	*lo
+7F58	bhiou
+7F5B	go
+7F5D	tzia
+7F5F	gǒ
+7F65	guěn
+7F6A	dzhuə̌i
+7F6E	*djiə̀
+7F70	*bhɛ̌i bhiæt
+7F72	zhiǔ
+7F73	siə
+7F77	bhyɛ *bhɛ̌i
+7F79	liɛ
+7F7E	tzəng
+7F85	*la
+7F86	*byɛ
+7F87..7F88	*gyɛ
+7F8A	iɑng
+7F8C	*kiɑng
+7F8E	*myǐ
+7F9E	*siou
+7FA4	*ghiuɛn
+7FA8	ziɛ̀n
+7FA9	ngyɛ̀
+7FAF	giæt
+7FB2	*xyɛ
+7FB6	shiɛn
+7FB8	liuɛ
+7FB9	gæng
+7FBD	*hiǒ
+7FBF	ngèi
+7FC1	qung
+7FC5	*shiə̌
+7FCA	iək
+7FCE	leng
+7FD2	zip
+7FD4	*ziɑng
+7FE0	*tsuì
+7FE1	*bhiə̀i
+7FE5	jiù
+7FE6	*tziɛ̌n
+7FE9	*piɛn
+7FEB	nguɑ̀n
+7FEC	xiuəi
+7FEE	hɛk
+7FF0	hɑ̀n
+7FF3	qèi
+7FF9	ghiɛu
+7FFA	ngɑu
+7FFB	*piæn
+7FFC	*iək
+7FFE	xiuɛn
+8000	iɛ̀u
+8001	*lɑ̌u
+8003	kɑ̌u
+8004	mɑ̀u
+8005	*jiǎ
+800B	dhet
+800C	*njiə
+8010	nə̀i
+8015	*gɛng
+8017	xɑ̀u
+8028	nòu
+8030	qiou
+8033	*njiə̌
+8036	ia
+803D	dom
+803F	*gɛ̌ng
+8046	leng
+804A	leu
+8052	guɑt
+8056	*shiɛ̀ng
+805A	dzhiò
+805E	*miən
+806F	*liɛn
+8070	tsung
+8072	*shiɛng
+8073	siǒng
+8077	jiək
+807D	*teng tèng
+807E	lung
+8085	*siuk
+8086	sì
+8089	*njiuk
+808C	gyi
+8096	siɛ̀u
+8098	djiǒu
+809D	*gɑn
+80A1	gǒ
+80A2	jiɛ
+80A5	*bhiəi
+80A9	gen
+80AF	*kə̌ng
+80B2	iuk
+80BA	piæ̀i
+80CC	*bə̀i
+80DD	dji
+80E1	*ho
+80E5	siu
+80F8	xiong
+80FD	*nəng
+8102	*ji
+8105	xiæp
+8106	tsiuɛ̀i
+8108	mɛk
+811A	giɑk
+811B	hèng hěng
+8123	jhuin
+8129	*siou
+812F	biǒ
+8131	*tuɑt
+813E	bhiɛ
+8150	*bhiǒ
+8153	bhiəi
+8155	quɑ̀n
+8165	seng
+8166	nɑ̌u
+816E	səi
+8170	*qiɛu
+8173	giɑk
+8174	io
+8178	*djhiɑng
+8179	*biuk
+818F	gɑu gɑ̀u
+819A	*bio
+819D	sit
+81A0	gau
+81A9	nì
+81B3	zhiɛ̀n
+81BA	qiəng
+81BD	dɑ̌m
+81BE	guɑ̀i
+81C2	biɛ̀
+81C6	qiək
+81C9	læ̌m
+81CA	sɑu
+81CD	dzhei
+81D8	lɑp
+81E3	*zhin
+81E5	nguɑ̀
+81E8	*lim
+81EA	*dzhì
+81EC	nget
+81ED	chiòu
+81F3	*jì
+81F4	*djì
+81FA	*dhəi
+81FB	jrin
+81FC	ghiǒu
+81FE	io
+8202	shiong
+8204	siɛk
+8205	ghiǒu
+8207	*iǔ iu
+8208	*xièng *xiəng
+8209	*giǔ
+820A	*ghiòu
+820D	*shià
+8212	*shiu
+8214	tèm
+8215	tɑ̀m
+821B	shuìn
+821E	*miǒ
+821F	*jiou
+8220	*dɑu
+822A	hɑng
+822B	biɑ̀ng
+8232	leng
+8233	djhiuk
+8237	hen
+8238	gɑ̌
+8239	*jhiuɛn
+8258	seu sɑu
+826B	lo
+826F	liɑng
+8271	*gɛn
+8272	*shriək
+828A	tsen
+828B	hiò
+8292	mɑng
+8299	*bhio
+829F	shram
+82AC	piən
+82AD	ba
+82AE	njiuɛ̀i
+82B0	ghyiɛ̀
+82B1	*xua
+82B3	*piɑng
+82BC	mɑ̀u
+82BD	nga
+82D1	*qiuæ̌n
+82D2	njiɛ̌m
+82D4	*dhəi
+82D7	myɛu
+82DB	hɑ
+82DC	miuk
+82DE	bau
+82E5	*njiɑk
+82E6	*kǒ
+82F1	*qiæng
+82F6	nep net njiɛt
+82FB	bhio
+8302	*mòu
+8303	bhiæ̌m
+8305	*mau
+830D	gǒu
+8328	dzhi
+832B	*mɑng
+8331	zhio
+8332	*tziə dzhiə
+8335	qin
+8336	djha
+8338	njiong
+8347	hæ̌ng
+8349	*tsɑ̌u
+834A	*giæng
+834F	njǐm
+8351	dhei
+8352	*xuɑng
+8354	lèi liɛ̀
+8377	hɑ hɑ̌
+837B	dhek
+838A	jriɑng
+838E	suɑ
+8393	məi
+8396	*hɛng
+839E	guɑn huɑn
+83AB	*mɑk
+83BD	*mɑ̌ng
+83C1	tziɛng
+83C9	liok
+83CA	*giuk
+83D1	jriə
+83DC	tsèi
+83DF	dho
+83E1	hǒm
+83E2	bhɑ̀u
+83EF	*hua huà
+83F0	go
+83F1	*liəng
+83F2	piəi piə̌i
+83FC	tɑ̌m
+8404	dhɑu
+840A	*ləi
+840B	*tsei
+840D	bheng
+840E	qyuɛ
+840F	dhǒm
+842C	*miæ̀n
+8438	io
+843C	ngɑk
+843D	*lɑk
+8445	jriu
+8449	*iɛp
+8451	biong
+8457	*djiù *djiɑk djhiɑk
+845B	gɑt
+8461	bho
+8463	dǔng
+8466	hiuə̌i
+846C	*tzɑ̀ng
+846D	ga
+8471	tsung
+8473	qiuəi
+8475	ghui
+8479	shiɛ
+8490	shriou
+8499	*mung
+84A8	tsèn
+84B2	*bho
+84B8	jiəng jiɛng
+84B9	gem
+84BC	*tsɑng
+84BF	*hɑu
+84C4	xiuk
+84C9	*iong
+84CB	*gɑ̀i
+84D1	suɑ
+84EC	*bhung
+84EE	*len
+84FD	bit
+84FF	siuk
+8513	*miæ̀n
+8515	dèi
+8517	jià
+851A	qiuət
+8521	*tsɑ̀i
+852C	shriu
+852D	qyìm
+853B	xòu
+853D	biɛ̀i
+8543	biæn
+8549	tziɛu
+854A	njuǐ
+8559	huei
+8564	njui
+8568	kiuæt
+8569	*dhɑ̌ng dhɑng tɑng
+856A	*mio
+856D	*seu
+8584	*bhɑk
+8587	miəi
+858A	gèi
+858B	dzhi
+8594	dzhiɑng
+859C	bhèi
+85A4	hæ̀i
+85A6	*tzèn
+85AA	sin
+85B0	*xiuən
+85BA	dzhi
+85BF	ngiə̌
+85C1	gɑ̌u
+85C9	dzhià
+85CD	lɑm
+85CE	zìn
+85CF	*dzhɑng dzhɑng
+85DC	lei
+85DD	ngiɛ̀i
+85E4	*dhəng
+85E5	*iɑk
+85E9	bhiæn
+85F9	qɑ̀i
+85FB	tzɑ̌u
+85FF	xuɑk
+8602	njiuɛ̌
+8604	ghiə
+8606	*lo
+8607	*so
+860B	*bhin
+861A	siɛ̌n
+862D	*lɑn
+863F	*lɑ
+864E	*xǒ
+8650	ngiɑk
+8654	ghyɛn
+8655	*chiù *chiǔ
+865B	*xiu
+865E	*ngio
+865F	*hɑu hɑ̀u
+8662	guæk
+8667	kyuɛ
+866C	kiəu
+866F	kiəu
+8679	gàng gùng hung
+868D	bhi
+86A4	tzɑ̌u
+86A9	chiə
+86C4	go
+86C7	*jhia tɑ
+86D9	qua
+86DF	*gau
+86E9	ghiong
+86FA	gep
+86FE	*ngɑ
+8700	*zhiok
+8702	biong
+8703	zhin
+8709	bhiou
+870D	zhiu
+8712	dhěn
+8729	dheu
+873B	tseng
+874C	kuɑ
+8755	*jhiək
+8758	qěn
+8759	ben
+875F	hiuə̀i
+8760	biuk
+8765	mau
+8766	ha
+8768	shrit
+876E	piuk
+8774	ho
+8776	*tep dhep
+878E	*iung
+8798	*ngyɛ̌
+87A2	*hueng
+87AD	tjiɛ
+87BB	lou
+87BD	jiung
+87BF	tziɑng
+87C4	djhip
+87C6	*ma
+87E0	bhɑn
+87E2	xiə̌
+87E3	giə̌i
+87EA	huek
+87EC	*zhiɛn
+87F2	*djhiung
+87FB	*ngyɛ̌
+87FE	zhiɛm
+8805	iəng
+8806	tjài
+881F	*lɑp
+8821	lěi
+8822	chuǐn
+8832	guen
+8836	*dzhom
+883B	*man
+8840	*xuet
+8846	*jiùng
+884C	*hæng *hɑng
+884D	iɛ̀n
+8853	jhuit
+8857	gæi gɛi
+885B	*hiuɛ̀i
+885D	chiong
+885E	*hiuɛ̀i
+8861	*hæng
+8862	*ghio
+8863	*qiəi qièi
+8868	*biɛ̌i
+886B	shram
+886E	guə̌n
+8870	*shrui chriuɛ
+8871	ghyɛp giæp
+8877	djiong
+887E	*kyim
+887F	*gyim
+8881	hiuæn
+8882	miɛ̀i
+888D	*bhɑu
+8896	*ziòu
+889E	guə̌n
+88AB	*bhyɛ̌
+88B4	kò
+88B7	gæp
+88C1	*dzhəi
+88C2	*liɛt
+88CA	*něu
+88CB	zhiǒ
+88CF	*liə̌
+88D8	*ghiou
+88D9	ghiuən
+88DB	qip
+88DC	*bǒ
+88DD	jriɑng
+88E8	bhiɛ
+88EF	djhiou
+88F3	*zhiɑng
+88F9	guɑ̌
+88FE	giu
+8907	*bhiòu
+890A	biɛ̌n
+8910	hɑt
+8912	bɑu
+8925	njiok
+892D	něu
+8930	kyɛn
+8937	shriɛ
+8944	*siɑng
+895F	*gyim
+8966	njio
+896A	miæt
+896F	tsìn
+8972	zip
+897F	*sei
+8981	*qiɛ̀u
+8986	*piòu bhiuk
+898B	*gèn
+898F	giuɛ
+8993	*mek
+8996	*zhǐ zhì
+89A9	dǒ
+89AA	*tsin
+89AC	gyì
+89BA	*gak
+89BD	lɑ̌m
+89BF	dhek
+89C0	*guɑn guɑ̀n
+89D2	*gak
+89DC	tziuɛ̌
+89E3	*gɛ̌i
+89F0	dja
+89F1	bit hiuət
+89F4	*shiɑng
+89F8	chiok
+89FF	huei xiuɛ
+8A00	*ngiæn
+8A07	xuɛng
+8A08	*gèi
+8A0A	sìn
+8A0E	tɑ̌u
+8A13	xiuə̀n
+8A16	kiət
+8A17	*tɑk
+8A18	giə̀
+8A1B	nguɑ
+8A1D	ngà
+8A1F	ziòng
+8A23	guet
+8A2A	*piɑ̀ng
+8A2D	shiɛt
+8A31	*xiǔ
+8A34	sò
+8A3E	tziɛ
+8A4E	*ghiǔ
+8A54	*jiɛ̀u
+8A5E	*ziə
+8A60	*hiuæ̀ng
+8A63	ngèi
+8A66	*shiə̀
+8A69	*shiə
+8A6E	tsiuɛn
+8A71	huài
+8A7C	kuə̀i
+8A85	djio
+8A87	*kuɑ
+8A8D	njìn
+8A91	giuɑ̀ng
+8A93	*shiɛ̀i
+8A95	dhɑ̌n
+8A9A	dzhiɛ̀u
+8A9E	*ngiǔ ngiù
+8AA0	*zhiɛng
+8AA3	mio
+8AA4	*ngò
+8AA5	*gɑ̀u
+8AA6	ziòng
+8AAC	*shiuɛt shiuɛ̀i
+8AB0	*zhui
+8ABC	ngyɛ̀
+8ABF	*dhèu dheu
+8AC7	dhɑm
+8ACB	*tsiɛ̌ng
+8ACD	jrɛ̀ng
+8AD2	liɑ̀ng
+8AD6	*luən luin luə̀n
+8AE7	hæi
+8AEB	gàn
+8AF3	qom
+8AF7	biùng
+8AF8	*jiu
+8B00	*miou
+8B01	qiæt
+8B02	*hiuə̀i
+8B14	xiɑk
+8B17	bɑ̀ng
+8B19	kem
+8B1B	gǎng
+8B1D	*zià
+8B20	iɛu
+8B28	mò
+8B2B	*djɛk
+8B33	qou
+8B3E	màn
+8B41	xua
+8B4F	giəi
+8B58	*shiək
+8B5F	sɑ̀u
+8B66	giæ̌ng
+8B6C	piɛ̀
+8B70	ngyɛ̀
+8B74	kiɛ̀n
+8B77	*hò
+8B7D	iù
+8B80	*dhuk
+8B8A	byɛ̀n
+8B90	zhiou
+8B92	jrhæm
+8B93	*njiɑ̀ng
+8B96	chrìm
+8B99	xiuæn xuɑn
+8C37	*guk iok
+8C3F	*kei
+8C41	xuɑt
+8C46	dhòu
+8C48	*kiə̌i
+8C4E	zhiǒ
+8C50	*piung
+8C54	*iɛ̀m
+8C55	shiɛ̌
+8C57	xuəi
+8C5A	dhuən
+8C61	*ziɑ̌ng
+8C6A	hɑu
+8C6B	iù
+8C79	bàu
+8C7A	jrhæi
+8C82	*deu
+8C8C	mak màu
+8C94	bhi
+8C99	tjio
+8C9D	*bɑ̀i
+8C9E	djiɛng
+8CA0	*bhiou
+8CA1	dzhəi
+8CA2	*gùng
+8CA7	*bhyin
+8CAA	tom
+8CAB	guɑ̀n
+8CAC	jrɛk
+8CAF	djiǔ
+8CB2	tziɛ
+8CB4	*giuə̀i
+8CB6	byɛ̌m
+8CB7	*mɛ̌i
+8CBB	piə̀i
+8CBD	iə
+8CC0	hɑ̀
+8CC7	tzi
+8CC8	*gǎ
+8CCA	*dzhək
+8CD2	shia
+8CD3	*bin
+8CDC	*siɛ̀
+8CDE	*shiɑ̌ng
+8CE2	*hen
+8CE3	*mɛ̀i
+8CE4	*dzhiɛ̀n
+8CE6	*biò biò
+8CEA	*jit
+8CED	dǒ
+8CF4	*lɑ̀i
+8D08	*dzhə̀ng
+8D0A	tzɑ̀n
+8D0F	iɛng
+8D16	jhiok
+8D64	*chiɛk
+8D66	shià
+8D67	nǎn
+8D6B	xæk
+8D6D	jiǎ
+8D70	*tzǒu tzòu
+8D74	*pio
+8D77	*kiə̌
+8D81	tjìn
+8D85	tjiɛu
+8D8A	*hiuæt
+8D99	*djiɛ̀u
+8DA3	*tsiò
+8DA8	*tsio
+8DB3	*tziok
+8DBF	sop
+8DCB	bhɑt
+8DCC	dhet
+8DCE	*dhɑ
+8DD5	tep
+8DD6	jiɛk
+8DE1	*tziɛk
+8DE8	kuà
+8DEA	ghyuɛ̌
+8DEF	*lò
+8DF3	dheu
+8DFC	ghiok
+8E06	tsuin
+8E0F	*top
+8E10	dzhiɛ̌n
+8E23	bhək
+8E30	*iu
+8E34	iǒng
+8E3C	dhɑ̀ng
+8E44	*dhei
+8E47	kiæ̌n
+8E48	dhɑ̀u
+8E49	*tsɑ
+8E4A	hei
+8E4B	dhɑp
+8E4F	*dhei
+8E54	*dzhɑ̀m
+8E59	tziuk
+8E64	tziong
+8E69	bhet
+8E6C	dhə̀ng
+8E6D	tsə̀ng
+8E72	dzhuən
+8E74	*tziuk tsiuk
+8E76	giuæt
+8E81	tzɑ̀u
+8E87	djhiu
+8E8A	djhiou
+8E8B	tzei
+8E8D	iɑk
+8E94	djhiɛn
+8EA0	set
+8EAB	*shin
+8EAC	giung
+8EC0	kio
+8ECA	*giu chia
+8ECC	gyuǐ
+8ECD	*giuən
+8ED2	*xiæn
+8EDF	njiuɛ̌n
+8EEB	jǐn
+8EF8	djhiuk
+8EFA	iɛu zhiɛu
+8EFB	kɑ kɑ̌
+8F03	gàu
+8F09	*tzə̀i *tzə̌i dzhə̀i tzə̀i
+8F0A	djì
+8F12	djiɛp
+8F14	*bhiǒ
+8F15	*kiɛng
+8F1D	*xiuəi
+8F1F	djiuɛt
+8F26	*liɛ̌n
+8F29	*bə̀i
+8F2A	*luin
+8F35	gɑt
+8F38	shio
+8F3E	djiɛ̌n
+8F3F	*iu
+8F45	hiuæn
+8F49	*djiuɛ̌n
+8F4D	djhiɛt
+8F54	lin
+8F5F	xuəng
+8F61	byì
+8F9B	*sin
+8F9C	go
+8F9F	bhiɛk biɛk
+8FA6	*bhyɛ̌n
+8FAD	*ziə
+8FAF	*bhyɛ̌n
+8FB0	zhin
+8FB1	njiok
+8FB2	nong
+8FC5	*sìn
+8FCD	djuin
+8FCE	*ngiæng
+8FD1	*ghiə̌n
+8FD4	*biæ̌n
+8FD5	ngò
+8FE2	*dheu
+8FE4	*iɛ iɛ̌
+8FE5	*huěng
+8FE6	ga
+8FEB	*bæk
+8FED	dhet
+8FF0	jhuit
+8FF4	*huəi
+8FF7	*mei
+8FF8	bɛ̀ng
+8FF9	*tziɛk
+8FFD	*djui
+9000	*tuə̀i
+9001	*sùng
+9003	dhɑu
+9005	hòu
+9006	ngiæk
+900D	siɛu
+900F	tòu
+9010	*djhiuk
+9014	*dho
+9015	*gèng
+9017	dhòu
+901A	*tung
+901D	zhiɛ̀i
+901F	suk
+9020	dzhɑ̌u tsɑ̀u
+9021	tsuin
+9022	*bhiong
+9023	*liɛn
+902E	dhèi dhə̀i
+9032	*tzìn
+9036	*qyuɛ
+9038	it
+903C	biək
+903E	*io
+9041	dhuə̀n dhuə̌n
+9042	*zuì
+9047	*ngiò
+904A	*iou
+904B	*hiuə̀n
+904D	*biɛ̀n
+904E	*guɑ guɑ̀
+9050	ha
+9053	*dhɑ̀u *dhɑ̌u
+9054	*dhɑt
+9055	*hiuəi
+9059	*iɛu
+905C	suə̀n
+905D	dhop
+905E	*dhěi dhèi
+9060	*hiuæ̌n
+9063	*kiɛ̌n
+9069	*shiɛk
+906D	*tzɑu
+906E	*jia
+9072	*djhi
+9075	tzuin
+9076	*njiɛ̌u njiɛ̀u
+9077	*tsiɛn
+9078	*siuɛ̌n
+907A	*ui uì
+907C	*leu
+907D	ghiù
+907F	*bhiɛ̀
+9080	*qiɛu
+9081	mài
+9082	hɛ̀i
+9084	*huan
+9085	djiɛn
+9088	mak
+908A	*ben
+908F	lɑ̀
+9090	tjiɛ̌
+9091	*qyip
+9095	qiong
+9097	ghiong
+90A0	bin
+90A3	*nɑ nɑ̌
+90A6	bang
+90AA	zia
+90AF	hɑn
+90B1	*kiou
+90B3	bhyi
+90B5	zhiɛ̀n
+90CA	*gau
+90DC	gɑ̀u
+90DE	*lɑng
+90E1	*ghiuə̀n
+90E2	iɛ̌ng
+90E4	*kiɑk
+90E8	bhǒ
+90ED	*guɑk
+90FD	*do
+9102	ngɑk
+9115	*xiɑng
+9119	byǐ
+911C	pio
+9120	hǒ
+9127	dhə̀ng
+912D	*djiɛ̀ng
+9130	*lin
+9132	dɑn
+9134	ngiæp
+9139	jriou
+914A	děng
+914C	*jiɑk
+914D	pə̀i
+9152	*tziǒu
+9163	*hɑm
+9164	*go gò hǒ
+9169	měng
+916C	*zhiou zhiou
+9178	*suɑn
+9185	pəi
+9186	jiɛ̌n
+9189	*tzuì
+9192	*seng sěng
+919C	chiǒu
+919E	qiuə̀n
+91A2	xə̌i
+91AC	tziɑ̀ng
+91B1	pɑt
+91BA	xiuən
+91C0	niɑ̀ng
+91C1	xyìn
+91C7	*tsə̌i
+91CB	shiɛk
+91CC	*liə̌
+91CD	*djhiong *djhiǒng djhiòng
+91CE	*iǎ
+91CF	liɑng liɑ̀ng
+91D1	*gyim
+91DC	bhiǒ
+91DD	*jim
+91E3	*dèu
+91E7	chiuɛ̀n
+91F5	*chrɛi
+920D	dhuə̀n
+9215	niǒu
+921E	guin
+9234	leng
+923F	*dhen dhèn
+9245	ghiǔ
+925B	iuɛn
+925E	hiuæt
+9264	gou
+9280	*ngyin
+9285	*dhung
+9293	tsiuɛn
+9296	zhio
+9298	meng
+929C	*ham
+92B7	*siɛu
+92CB	iɛn
+92D2	piong
+92E4	jrhiu
+92E9	miɑng
+92EA	*po
+92ED	iuɛ̀i
+9310	jui
+9322	*dzhiɛn
+9326	*gyǐm
+932B	sek
+932F	tsò tsɑk
+934A	lèn
+9354	ngɑk
+937C	*jim
+937E	*jiong
+9396	*suɑ̌
+93A9	shræ̀i
+93AC	hɑ̌u
+93AE	djìn
+93C1	*suɑ̌
+93C7	ziuɛ̀n
+93D7	kɛng
+93D8	tsiɑng
+93DF	chrɛ̌n
+93E1	*giæ̀ng
+9403	nau
+9418	*jiong
+9419	*dəng
+942B	tziuɛn
+9435	*tet
+9436	*huan
+943A	chræng
+9444	jiò
+9460	shiɑk
+946A	lo
+9470	iɑk
+9471	jhram
+947D	tzuɑn
+947E	luɑn
+947F	dzhɑk
+9577	*djhiɑng djhiɑ̀ng djhiɑ̌ng
+9580	*mən
+9583	shiɛ̌m
+9589	*bèi
+958B	*kəi
+958F	njuìn
+9591	*hɛn
+9592	*gɛn *hɛn
+9593	*gɛn
+959F	byì
+95A3	*gɑk
+95A8	*guei
+95A9	myin
+95AB	kuə̌n
+95AD	liu
+95B2	iuɛt
+95B6	*chiɑng
+95BB	iɛm
+95BD	xuən
+95C7	qòm
+95C8	hiuəi
+95CA	*kuɑt
+95CC	*lɑn
+95D4	*hɑp
+95D5	*kiuæt
+95DC	*guan
+95E2	bhiɛk
+95E5	tɑt
+961C	bhiǒu
+9621	tsen
+962E	ngiuæ̌n
+9632	*bhiɑng
+963B	*jriǔ
+963F	qɑ
+9640	dhɑ
+9642	byɛ pɑ
+9644	*bhiò
+964B	lòu
+964C	*mæk
+964D	gàng hang
+9650	*hɛ̌n
+965B	bhěi
+9662	*hyuɛ̀n
+9663	*djhìn
+9664	*djhiu djhiu
+966A	bhəi
+966C	jriou
+9670	*qim
+9672	*zhiuɛ
+9673	*djhin
+9674	bhiɛ
+9675	*liəng
+9676	*dhɑu
+9677	hæ̀m
+9678	*liuk
+967D	*iɑng
+9684	*dei dhei
+9685	*ngio
+9686	*liung
+9688	quəi
+968B	ziuɛ
+968D	huɑng
+968E	*gæi
+9694	*gɛk
+9697	nguə̌i
+9698	qɛ̀i
+9699	kiæk
+969B	*tziɛ̀i
+969C	*jiɑng jiɑ̀ng
+96A3	*lin
+96A8	*ziuɛ
+96A9	qiuk qɑ̀u
+96AA	*xyɛ̌m
+96B1	qiə̌n
+96B3	xiuɛ
+96B4	*liǒng
+96B7	lèi
+96BC	suǐn
+96C0	*tziɑk
+96C1	*ngàn
+96C4	*hiung
+96C5	*ngǎ
+96C6	*dzhip
+96C9	*djhǐ
+96CA	gòu
+96CC	tsiɛ
+96D5	*deu
+96D6	*sui
+96D9	*shrang
+96DB	jrhio
+96DC	*dzhop
+96DE	*gei
+96E2	*liɛ
+96E3	*nɑn
+96E8	*hiǒ
+96EA	*siuɛt
+96F2	*hiuən
+96F6	*leng
+96F7	*luəi
+96FB	*dhèn
+9704	*siɛu
+9706	dheng
+9707	jìn
+970D	xuɑk
+970F	piəi
+9711	djiɛm
+9713	*ngei
+971C	*shriɑng
+971E	*ha
+9727	*miò
+9730	sèn
+9732	lò
+973D	*tzèi
+973E	mæi
+9742	lek
+9744	qɑ̀i
+9748	*leng
+9752	*tseng
+975C	*dzhiɛ̌ng
+975E	*biəi
+9761	myɛ̌
+9762	*miɛ̀n
+9776	bà
+978B	hæi hɛi
+978D	*qɑn
+9798	shrau
+979A	kùng
+97A0	giuk
+97A6	tsiou
+97AD	*biɛn
+97AE	dei
+97BF	giəi
+97C0	tzen
+97C1	giɑng
+97C6	tsiɛn
+97CB	hiuəi
+97D3	*hɑn
+97DD	gou kou
+97ED	giǒu
+97F3	*qyim
+97F6	zhiɛu
+97FF	*xiɑ̌ng
+9802	*děng
+9803	kiuɛ̌ng
+9806	*jhuìn
+9808	*sio sio
+980C	ziòng
+980E	ghiəi
+980F	hɑng
+9810	iù
+9811	nguan
+9813	duə̀n
+9817	*pɑ pɑ̌
+9818	liɛ̌ng
+9821	het
+9823	iə
+982D	*dhou
+9830	gep
+9837	hòm hǒm
+9838	giɛ̌ng
+9839	*dhuəi
+983B	*bhin
+9846	kuɑ̌
+9847	dzhuì
+984C	*dhei
+984D	ngæk
+984F	*ngan
+9858	*ngiuæ̀n
+9859	sɑ̌ng
+985B	den
+985E	luì
+9865	*hɑ̌u
+9866	dzhiɛu
+9867	*gò
+986F	xěn
+9870	bhin
+98A8	*biung
+98AD	jiɛ̌m
+98AF	*sop
+98BA	*iɑng
+98BB	iɛu
+98BC	shriou
+98C0	liou
+98C4	*piɛu
+98C6	biɛu
+98CA	biɛu
+98CB	*shrit
+98DB	*biəi
+98DC	*piæn
+98DF	*jhiək
+98E1	*tsɑn
+98E2	*gyi giəi
+98EB	qiù
+98EF	bhiæ̀n bhiæ̌n
+98F1	suən
+98F2	*qyìm *qyǐm
+98FD	bǎu
+98FE	shiək
+9909	shiɑ̀ng
+990A	*iɑ̌ng
+990C	njiə̀
+9910	*tsɑn
+9913	ngɑ̀
+9918	*iu
+991E	dzhiɛ̀n dzhiɛ̌n
+9927	qyiɛ̀
+9928	*guɑ̀n
+994B	ghyuì
+994C	jrhiuɛ̀n jrhuǎn
+9951	*giəi
+9952	njiɛu
+995E	jrhæm
+9996	*shiǒu
+9999	*xiɑng
+99A8	xeng
+99AC	*mǎ
+99AD	*ngiù
+99AE	bhiung
+99B2	lɑk tɑk
+99B3	*djhiɛ
+99B4	zuin
+99D0	djiò
+99D1	no
+99D2	qio
+99D5	*gà
+99DD..99DE	*dhɑ
+99DF	sì
+99ED	hæ̀i
+99F1	lɑk
+99FF	*tzuìn
+9A01	tjiɛ̌ng
+9A05	jui
+9A08	bhen
+9A0E	*ghyɛ *ghyɛ̀
+9A11	biəi
+9A15	qěu
+9A27	gua guɛi
+9A2B	kyɛn
+9A2E	*liou
+9A30	*dhəng
+9A36	jriou
+9A37	sɑu
+9A41	ngɑu ngɑ̀u
+9A42	tsom
+9A44	*tsung
+9A45	*kio
+9A4A	hua
+9A4D	geu
+9A55	*gyɛu
+9A5A	*giæng
+9A5B	*iɛk
+9A5F	jrhiou
+9A62	liu
+9A64	siɑng
+9A65	gyì
+9A69	xuɑn
+9A6A	*liɛ
+9AA8	*guət
+9AB4	dzhiɛ dzhiɛ̀
+9ABC	gæk
+9AD3	siuɛ̌
+9AD4	*těi
+9AD8	*gɑu
+9AE3	piɑ̌ng
+9AE6	mɑu
+9AED	tziɛ
+9AEE	*biæt
+9AF4	piət
+9AFB	gèi
+9B1A	*sio
+9B1F	huan
+9B22	*bìn
+9B23	liɛp
+9B2D	dòu
+9B31	*qiuɛt
+9B3C	*giuə̌i
+9B42	*huən
+9B44	*pæk
+9B45	myì
+9B4D	miɑ̌ng
+9B4E	liɑ̌ng
+9B4F	*ngiuə̀i
+9B51	tjiɛ
+9B5A	*ngiu
+9B6F	*lǒ
+9B91	bhǎu
+9BAE	siɛn
+9BC1	gæ̌ng
+9BC9	liə̌
+9BE8	*ghiæng
+9C57	*lin
+9C63	djiɛn
+9CE5	*děu
+9CE7	bhio
+9CE9	giou
+9CF3	*bhiùng
+9CF4	*miæng
+9CF6	iuɛn
+9D03	guet
+9D08	*ngàn
+9D09	*qa
+9D10	ga
+9D12	leng
+9D1B	*qiuæn
+9D1F	chi
+9D23	go
+9D26	*qiɑng
+9D28	qap
+9D3B	*hung
+9D41	gau
+9D51	*guen
+9D52	iok
+9D5C	dhei
+9D5D	ngɑ
+9D60	hok
+9D61	miǒ
+9D6C	bhəng
+9D70	*deu
+9D72	tsiɑk
+9D77	qiuæn
+9D84	tziɛng
+9D89	zhuin
+9D92	tjiək
+9D96	tsiou
+9D97	dhei
+9D9A	ngɑk
+9DA9	miò muk
+9DAC	tsɑng
+9DAF	*qɛng
+9DB4	*hɑk
+9DBA	tzek
+9DBB	huət
+9DC0	dzhiə tziə
+9DC4	*gei
+9DC7	kòu xou
+9DD3	jià
+9DD7	*qou
+9DD9	jì
+9DF2	dzhiòu
+9DF9	*qiəng
+9DFA	lò
+9E02	kei
+9E07	jiɛn
+9E0A	bhek
+9E0E	*qɛng
+9E15	lo
+9E1A	*qɛng
+9E1C	ghio
+9E1D	liɛ
+9E1E	*luɑn
+9E7D	iɛm iɛ̀m
+9E7F	*luk
+9E84	tso
+9E8B	myi
+9E92	ghiə
+9E97	*lèi
+9E9B	mei
+9E9D	jhià
+9E9F	*lin
+9EA4	tso
+9EA5	*mɛk
+9EB4	kiuk
+9EBB	*ma
+9EBD	mɑ̌
+9EBE	*xyuɛ
+9EC4	*huɑng
+9ECD	shiǔ
+9ECE	lei
+9ECF	niɛm
+9ED0	liɛ tjiɛ
+9ED1	*xək
+9ED4	ghyɛm
+9ED5	tǒm
+9ED8	*mək
+9EDB	*dhə̀i
+9EDC	tjuit
+9EDE	*děm
+9EE4	qǒm
+9EE8	dɑ̌ng
+9EEF	*qæ̌m
+9EF7	dhuk
+9EFE	miɛ̌n mǐn
+9EFF	ngiuæn
+9F07	ngɑu
+9F08	biɛt
+9F09	dhɑ
+9F0E	*děng
+9F14	*gǒ
+9F19	*bhei
+9F20	*shiǔ
+9F2F	ngo
+9F3B	bhì
+9F4A	*dzhei
+9F4B	*jræi jræi
+9F52	*chiə̌
+9F61	leng
+9F67	nget
+9F8D	*liong
+9F8E	mang
+9F90	bhang
+9F9C	giou gyui
+F928	lɑng
+F936	*lǒ
+FA17	*qiɛk
+20009	kiou
+2000D	shiɛì
+206EC	heng
+21E23	ngei
+21F8B	luə̌i
+23F4A	suìn
+2475E	tjuit
+248AA	*liɛp
+278F4	jrɛ̌n

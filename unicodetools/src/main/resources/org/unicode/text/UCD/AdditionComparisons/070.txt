@@ -3,7 +3,13 @@ Ignoring Name Age:
 # HXG (briefly known as HZXG) and SZP are just like all the other CJK strokes.
 # In particular, they are scx=Hani:
 # https://www.unicode.org/review/pri502/feedback.html#ID20240523095709.
-Propertywise [\N{CJK STROKE HXG}\N{CJK STROKE SZP}
-              \N{CJK STROKE T}] AreAlike
+# Unicode 18.0: SZP has a variation sequence (slanted S form, like S, SZ, SZWG),
+# whereas HXG does not (though H has a variation sequence).
+# We compare SZP with SZWG rather than ㇑ S and ㇗ SZ because those two have an
+# Equivalent_Unified_Ideograph.
+Propertywise [\N{31E5:㇥:CJK STROKE SZP}
+              \N{31C9:㇉:CJK STROKE SZWG}] AreAlike
+Propertywise [\N{31E4:㇤:CJK STROKE HXG}
+              \N{31C2:㇂:CJK STROKE XG}] AreAlike
 
 end Ignoring;
