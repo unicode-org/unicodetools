@@ -281,7 +281,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                     + queriedProperty.getName());
                 }
             } else if (queriedProperty.isType(
-                    UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) { // Case 4.
+                    UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) { // Case 3.
                 if (!queriedProperty.isValidValue(propertyValue)) {
                     throw new IllegalArgumentException(
                             "The value '"
