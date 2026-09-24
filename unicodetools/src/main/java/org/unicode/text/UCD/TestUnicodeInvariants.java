@@ -252,12 +252,12 @@ public class TestUnicodeInvariants {
                 final ParsePosition pp = new ParsePosition(0);
                 boolean followingParseError = false;
                 class IgnoringBlock {
-                    public IgnoringBlock(Set<String> properties, int position) {
+                    public IgnoringBlock(Set<Pattern> properties, int position) {
                         this.properties = properties;
                         this.position = new ParsePosition(position);
                     }
 
-                    Set<String> properties;
+                    Set<Pattern> properties;
                     ParsePosition position;
                 }
                 ;
@@ -434,23 +434,23 @@ public class TestUnicodeInvariants {
         }
     }
 
-    private static Set<String> ignoringPropertiesLine(
+    private static Set<Pattern> ignoringPropertiesLine(
             ParsePosition pp,
             String source,
             String file,
             Function<ParsePosition, Integer> getLineNumber)
             throws ParseException {
-        Set<String> excludedProperties = new HashSet<>();
+        Set<Pattern> excludedProperties = new HashSet<>();
         for (var next = Lookahead.oneToken(pp, source);
                 !next.accept(":");
                 next = Lookahead.oneToken(pp, source)) {
-            excludedProperties.add(next.consume());
+            excludedProperties.add(Pattern.compile(next.token.charAt(0) == '/' ? next.consume().substring(1, next.token.length() - 1) : Pattern.quote(next.consume())));
         }
         return excludedProperties;
     }
 
     private static void propertywiseLine(
-            Set<String> ignoredProperties,
+            Set<Pattern> ignoredProperties,
             ParsePosition pp,
             String source,
             String file,
@@ -470,7 +470,7 @@ public class TestUnicodeInvariants {
     }
 
     private static void propertywiseAlikeLine(
-            Set<String> ignoredProperties,
+            Set<Pattern> ignoredProperties,
             UnicodeSet set,
             ParsePosition pp,
             String source,
@@ -487,7 +487,11 @@ public class TestUnicodeInvariants {
             }
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
-                    .anyMatch(alias -> ignoredProperties.contains(alias))) {
+                    .anyMatch(
+                            alias ->
+                                    ignoredProperties.stream()
+                                            .anyMatch(
+                                                    pattern -> pattern.matcher(alias).matches()))) {
                 continue;
             }
             final int first = set.charAt(0);
@@ -549,7 +553,7 @@ public class TestUnicodeInvariants {
     }
 
     private static void propertywiseCorrespondenceLine(
-            Set<String> ignoredProperties,
+            Set<Pattern> ignoredProperties,
             UnicodeSet firstSet,
             ParsePosition pp,
             String source,
@@ -660,7 +664,11 @@ public class TestUnicodeInvariants {
             }
             final var property = iup.getProperty(p);
             if (property.getNameAliases().stream()
-                    .anyMatch(alias -> ignoredProperties.contains(alias))) {
+                    .anyMatch(
+                            alias ->
+                                    ignoredProperties.stream()
+                                            .anyMatch(
+                                                    pattern -> pattern.matcher(alias).matches()))) {
                 continue;
             }
             ExpectedPropertyDifference expectedDifference = null;
@@ -1074,6 +1082,11 @@ public class TestUnicodeInvariants {
             int start = next.getIndex();
             int startCp = text.codePointAt(start);
             if (PATTERN_SYNTAX.contains(startCp)) {
+                final var regex = REGEX.matcher(text).region(start, text.length());
+                if (regex.lookingAt()) {
+                    next.setIndex(regex.end());
+                    return new Lookahead(regex.group(), pp, next);
+                }
                 final String syntax = Character.toString(startCp);
                 next.setIndex(start + syntax.length());
                 final String marks = scan(NONSPACING_MARK, text, next, true);
@@ -1887,6 +1900,7 @@ public class TestUnicodeInvariants {
     private static final UnicodeSet NONSPACING_MARK = new UnicodeSet("\\p{Mn}").freeze();
     private static final UnicodeSet PATTERN_SYNTAX_OR_WHITE_SPACE =
             new UnicodeSet("[\\p{pattern white space}\\p{pattern syntax}]").freeze();
+    private static final Pattern REGEX = Pattern.compile("/([^/\\\\]|\\\\.)*/");
 
     private static int testFailureCount;
     private static int parseErrorCount;
