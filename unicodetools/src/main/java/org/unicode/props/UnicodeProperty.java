@@ -778,17 +778,23 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (aIsNaN) return -1;
         if (bIsNaN) return 1;
         if (a.contains(".") || b.contains(".")) {
-            final var aFraction = a.split("/", 2);
-            final var bFraction = b.split("/", 2);
-            double aRounded = Double.parseDouble(aFraction[0]);
-            if (aFraction.length > 1) {
-                aRounded /= Double.parseDouble(aFraction[1]);
+            try {
+                final var aFraction = a.split("/", 2);
+                final var bFraction = b.split("/", 2);
+                double aRounded = Double.parseDouble(aFraction[0]);
+                if (aFraction.length > 1) {
+                    aRounded /= Double.parseDouble(aFraction[1]);
+                }
+                double bRounded = Double.parseDouble(bFraction[0]);
+                if (bFraction.length > 1) {
+                    bRounded /= Double.parseDouble(bFraction[1]);
+                }
+                // Check equality first for 0s of different signs.
+                return aRounded == bRounded ? 0 : Double.compare(aRounded, bRounded);
+            } catch (NumberFormatException e) {
+                // See below.
+                return a.compareTo(b);
             }
-            double bRounded = Double.parseDouble(bFraction[0]);
-            if (bFraction.length > 1) {
-                bRounded /= Double.parseDouble(bFraction[1]);
-            }
-            return Double.compare(aRounded, bRounded);
         }
         try {
             return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));

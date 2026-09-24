@@ -306,11 +306,11 @@ Ill_Formed ;;;  ;        ;        ; \N{ latin small letter a }
 # Ill_Formed ;;;  ;        ;        ; [ { Z e i c h e n k e t t e } [] Zeichenmenge ]
 # Ill_Formed ;;;  ;        ;        ; [ { \x5A e i c h e n k e t t e } [] \x5Aeichenmenge ]
 
-Ill_Formed ;;;  ;        ;        ; [\\xD‎F]
-Ill_Formed ;;;  ;        ;        ; [\\00‎7]
-Ill_Formed ;;;  ;        ;        ; [\\0‎07]
-Ill_Formed ;;;  ;        ;        ; [\\uDBFF‎\\uDFFF]
-Ill_Formed ;;;  ;        ;        ; [\\x{DBFF}‎\\U0000DFFF]
+Ill_Formed ;;;  ;        ;        ; [\xD‎F]
+Ill_Formed ;;;  ;        ;        ; [\00‎7]
+Ill_Formed ;;;  ;        ;        ; [\0‎07]
+Ill_Formed ;;;  ;        ;        ; [\uDBFF‎\uDFFF]
+Ill_Formed ;;;  ;        ;        ; [\x{DBFF}‎\U0000DFFF]
 Ill_Formed ;;;  ;        ;        ; [‎:Greek:]
 
 Ill_Formed ;;;  ;        ;        ; [\x{DBFF}\x{DFFF}]
@@ -345,7 +345,7 @@ Ill_Formed ;;;  ;        ;        ; \p{XID_Continue=}
 Ill_Formed ;;;  ;        ;        ; \p{Uppercase_Letter=}
 
 Ill_Formed ;;;  ;        ;        ; [: ^general category = punctuation :]
-Ill_Formed ;;;  ;        ;        ; // Doubly negated property queries.
+
 # Ill_Formed ;;;  ;        ;        ; \P{Decomposition_Type≠compat}
 # Ill_Formed ;;;  ;        ;        ; [:^Noncharacter_Code_Point≠No:]
 
@@ -451,8 +451,13 @@ Minimally_Consistent   ;; Script ;   <03B1> ;   <03E2> ;         ; \p{IsGreek}
 Minimally_Consistent   ;; Block ; <03B1> <03E2> ;     ;     144 ; \p{Block=Greek}
 Minimally_Consistent   ;; Block ; <03B1> <03E2> ;     ;     144 ; \p{Block=Greek and Coptic}
 Minimally_Consistent   ;; Numeric_Value ; <0031> ; <002F> <0032> ; ; \p{nv=1}
+Minimally_Consistent ;; Numeric_Value ; <0030> ;; ; \p{nv=-0.0}
+Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=NaN}
+Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=naN}
 # Age tests
 Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11.0.0}
+Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11 . 0}
+Minimally_Consistent ;; Age ; <50005> ; <FFFF> ;; \p{Age=Unassigned}
 Ill_Formed ; ; ; ; ; ; [\N{TIBETAN MARK BKA SHOG YIG MGO}]
 Ill_Formed ; ; ; ; ; ; \N{LATIN SMALL LETTER A}
 Ill_Formed ; ; ; ; ; ; [[\N{LATIN SMALL LETTER A}-\N{LATIN SMALL LETTER Z}]-\N{LATIN SMALL LETTER A}]

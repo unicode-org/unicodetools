@@ -213,9 +213,14 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     valid = queriedProperty.isValidValue(version.getVersionString(2, 3));
                 } else {
                     String shortAlias = null;
-                    for (final String alias : queriedProperty.getAvailableValues()) {
-                        if (UnicodeProperty.compareNames(alias, propertyValue) == 0) {
-                            shortAlias = alias;
+                    for (final String longAlias : queriedProperty.getAvailableValues()) {
+                        final var aliases = queriedProperty.getValueAliases(longAlias);
+                        if (aliases.stream()
+                                .anyMatch(
+                                        alias ->
+                                                UnicodeProperty.equalNames(alias, propertyValue))) {
+                            shortAlias = aliases.get(0);
+                            break;
                         }
                     }
                     if (shortAlias != null) {
@@ -223,9 +228,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                         if (shortAlias.equals("NA")) {
                             return queriedProperty.getSet(propertyValue);
                         }
-                        // Turn "V1_1" into "1.1".
-                        version =
-                                VersionInfo.getInstance(shortAlias.substring(1).replace('_', '.'));
+                        version = VersionInfo.getInstance(shortAlias);
                     }
                 }
                 if (!valid) {
@@ -268,7 +271,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 }
                 return result;
             } else if (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)) { // Case 5.
-                if (UnicodeProperty.equalNames(propertyValue, "NaN")
+                if (!UnicodeProperty.equalNames(propertyValue, "NaN")
                         && !RATIONAL_PATTERN.matcher(propertyValue).matches()
                         && !FLOAT_PATTERN.matcher(propertyValue).matches()) {
                     throw new IllegalArgumentException(
