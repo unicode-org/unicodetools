@@ -454,6 +454,7 @@ Minimally_Consistent   ;; Numeric_Value ; <0031> ; <002F> <0032> ; ; \p{nv=1}
 Minimally_Consistent ;; Numeric_Value ; <0030> ;; ; \p{nv=-0.0}
 Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=NaN}
 Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=naN}
+Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{Numeric_Value=+1/6}
 # Age tests
 Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11.0.0}
 Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11 . 0}

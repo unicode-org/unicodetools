@@ -797,6 +797,12 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             }
         }
         try {
+            if (a.startsWith("+")) {
+                a = a.substring(1);
+            }
+            if (b.startsWith("+")) {
+                b = b.substring(1);
+            }
             return RationalParser.BASIC.parse(a).compareTo(RationalParser.BASIC.parse(b));
         } catch (ICUException e) {
             // If either string fails to parse as a rational, compare the strings.
