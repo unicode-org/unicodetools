@@ -226,7 +226,7 @@ function setUbaInput(str) {
 
 <h1>Unicode Utilities: BIDI (UBA) C Reference</h1>
 <%@ include file="subtitle.jsp" %>
-<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/breaks"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/bidi"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <p>Shows processing of a single paragraph of text by the Unicode Bidirectional Algorithm (UBA),
     Versions
         <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-27.html">6.2</a>
