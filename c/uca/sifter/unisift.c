@@ -70,6 +70,8 @@
  *   2026-Aug-25 Add Jurchen and Seal to calculateImplicitBase.
  *               Add range definitions for Jurchen and Seal.
  *               Adjust end range for CJK Ext D.
+ *   2026-Sep-03 Fix omitted FontToken case in weightFromToken().
+ *               Bump version to 19.0.
  */
 
 /*
@@ -194,13 +196,13 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 18.0.0d5, 2026-08-25\n";
+static char versionString[] = "Sifter version 19.0.0d1, 2026-09-03\n";
 
-static char unidatafilename[] = "unidata-18.0.0.txt";
-static char allkeysfilename[] = "allkeys-18.0.0.txt";
-static char decompsfilename[] = "decomps-18.0.0.txt";
+static char unidatafilename[] = "unidata-19.0.0.txt";
+static char allkeysfilename[] = "allkeys-19.0.0.txt";
+static char decompsfilename[] = "decomps-19.0.0.txt";
 
-static char versionstring[] = "@version 18.0.0\n\n";
+static char versionstring[] = "@version 19.0.0\n\n";
 
 #define COPYRIGHTYEAR (2026)
 
@@ -1403,6 +1405,7 @@ int weightFromToken ( WALNUTPTR t1, int tokenType )
     case VerticalToken :
     case FractionToken :
     case SuperToken    :
+    case FontToken     :
         return ( lowerTertiaryWeights[tokenType] );
 /*
  * For circled compatibility forms, preserve case distinctions if
