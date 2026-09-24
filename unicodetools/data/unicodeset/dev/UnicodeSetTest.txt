@@ -445,7 +445,7 @@ Minimally_Consistent   ;; General_Category ;   <0041> ;   <0061> ;         ; \p{
 Minimally_Consistent   ;; General_Category ;   <0041> <0061> ; <002E> ;         ; \p{L}
 Minimally_Consistent   ;; General_Category ;   <0041> <0061> ; <002E> ;         ; [:L:]
 Minimally_Consistent   ;; General_Category ;   <002E> ; <0041> <0061> ;         ; \p{Punctuation}
-Minimally_Consistent   ;; General_Category ;   <0024> ;  ;       1 ; [\p{currencysymbol}&[\u0000-u007F]]
+Minimally_Consistent   ;; General_Category ;   <0024> ;  ;       1 ; [\p{currencysymbol}&[\u0000-\u007F]]
 Minimally_Consistent   ;; Script ;   <03B1> ;   <03E2> ;         ; \p{Greek}
 Minimally_Consistent   ;; Script ;   <03B1> ;   <03E2> ;         ; \p{IsGreek}
 Minimally_Consistent   ;; Block ; <03B1> <03E2> ;     ;     144 ; \p{Block=Greek}
