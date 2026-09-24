@@ -16,9 +16,6 @@ Ignoring
 
 Ignoring FC_NFKC_Closure:
 
-# TODO(egg): We should be able to bring back level 2 and UCA_Tertiary_Weight
-# once https://github.com/unicode-org/properties/issues/663 is fixed.
-Ignoring /UCA_Fold_2.*/ UCA_Tertiary_Weight:
 Propertywise [\N{1D6A6:MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S}]
            ⧴ [\N{1DF95:LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
            ⧴ [ß]
@@ -29,11 +26,8 @@ CorrespondTo [𝜛]
            ⧴ [π]
            ⧴ [π]
            ⧴ [ℼ]  # Level 3 folding.
-end Ignoring;
 
-# TODO(egg): We should be able to bring back level 2 and UCA_Tertiary_Weight
-# once https://github.com/unicode-org/properties/issues/663 is fixed.
-Ignoring /UCA_Fold_[234].*/ UCA_Tertiary_Weight
+Ignoring /UCA_Fold_[34].*/
          Block Script Script_Extensions
          Simple_Titlecase_Mapping Simple_Uppercase_Mapping:
 Propertywise [\N{1D6A6:MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S}]
@@ -52,8 +46,6 @@ end Ignoring;
 
 end Ignoring;
 
-# TODO(egg): We should be able to bring back level 2 once
-# https://github.com/unicode-org/properties/issues/663 is fixed.
 Ignoring /UCA_Fold_[234].*/ Block
          Decomposition_Mapping NFKC_Simple_Casefold Expands_On_NFKC Expands_On_NFKD:
 Propertywise [\x{1DF95} \N{LATIN SMALL LIGATURE LONG S WITH DESCENDER S}]
