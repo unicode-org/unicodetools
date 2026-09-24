@@ -11,10 +11,15 @@ Ignoring Name Age:
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring Block:
-Propertywise [  \N{KATAKANA DIGRAPH YORI}]
-           ⧴ [{ヨリ} {\N{KATAKANA LETTER YO}\N{KATAKANA LETTER RI}}]
-CorrespondTo [ヿ\N{KATAKANA DIGRAPH KOTO}]
-           ⧴ [{コト} {\N{KATAKANA LETTER KO}\N{KATAKANA LETTER TO}}]
+Propertywise [\N{1B126:KATAKANA DIGRAPH YORI}]
+           ⧴ [{\N{30E8:ヨ:KATAKANA LETTER YO}\N{30EA:リ:KATAKANA LETTER RI}}]
+             # Katakana and Hiragana digraphs are equal at levels 1 through 3,
+             # so they fold to the first code point: Katakana for KOTO, Hiragana
+             # for Yori.
+           ⧴ [\N{309F:ゟ:HIRAGANA DIGRAPH YORI}]
+CorrespondTo [\N{30FF:ヿ:KATAKANA DIGRAPH KOTO}]
+           ⧴ [{\N{30B3:コ:KATAKANA LETTER KO}\N{30C8:ト:KATAKANA LETTER TO}}]
+           ⧴ [\N{30FF:ヿ:KATAKANA DIGRAPH KOTO}]
 end Ignoring;
 
 end Ignoring;
