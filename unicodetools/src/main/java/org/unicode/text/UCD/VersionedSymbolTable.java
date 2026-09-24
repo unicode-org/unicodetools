@@ -205,8 +205,50 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                             .set(propertyPredicate.substring(1, propertyPredicate.length() - 1)));
         } else {
             String propertyValue = propertyPredicate;
+            if (isAge) {
+                VersionInfo version = null;
+                boolean valid = false;
+                if (VERSION_NUMBER_PATTERN.matcher(propertyValue).matches()) {
+                    version = VersionInfo.getInstance(propertyValue);
+                    valid = queriedProperty.isValidValue(version.getVersionString(2, 3));
+                } else {
+                    String shortAlias = null;
+                    for (final String alias : queriedProperty.getAvailableValues()) {
+                        if (UnicodeProperty.compareNames(alias, propertyValue) == 0) {
+                            shortAlias = alias;
+                        }
+                    }
+                    if (shortAlias != null) {
+                        valid = true;
+                        if (shortAlias.equals("NA")) {
+                            return queriedProperty.getSet(propertyValue);
+                        }
+                        // Turn "V1_1" into "1.1".
+                        version =
+                                VersionInfo.getInstance(shortAlias.substring(1).replace('_', '.'));
+                    }
+                }
+                if (!valid) {
+                    throw new IllegalArgumentException(
+                            "The value '"
+                                    + propertyValue
+                                    + "' is illegal. Values for "
+                                    + queriedProperty.getName()
+                                    + " must match "
+                                    + queriedProperty.getAvailableValues()
+                                    + " or "
+                                    + queriedProperty.getValueAliases());
+                }
+                return queriedProperty.getSet(
+                        new UnicodePropertySymbolTable.ComparisonMatcher<VersionInfo>(
+                                version,
+                                UnicodePropertySymbolTable.Relation.geq,
+                                Comparator.nullsFirst(Comparator.naturalOrder()),
+                                UnicodePropertySymbolTable::parseVersionInfoOrMax));
+            }
             // Validation.  For Name, validation entails computing the query, so we return here.
-            if (isName) {
+            // See https://www.unicode.org/reports/tr61/#Valid-Values-and-Resolved-Sets.
+            if (isName) { // Case 1.
                 var result = queriedProperty.getSet(propertyValue);
                 if (result.isEmpty()) {
                     result =
@@ -219,13 +261,13 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                             "No character name nor name alias matches " + propertyValue);
                 }
                 return result;
-            } else if (queriedProperty.getName().startsWith("Name_Alias")) {
+            } else if (queriedProperty.getName().startsWith("Name_Alias")) { // Case 2.
                 var result = queriedProperty.getSet(propertyValue);
                 if (result.isEmpty()) {
                     throw new IllegalArgumentException("No name alias matches " + propertyValue);
                 }
                 return result;
-            } else if (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)) {
+            } else if (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)) { // Case 5.
                 if (UnicodeProperty.equalNames(propertyValue, "NaN")
                         || !RATIONAL_PATTERN.matcher(propertyValue).matches()) {
                     throw new IllegalArgumentException(
@@ -235,7 +277,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                     + queriedProperty.getName());
                 }
             } else if (queriedProperty.isType(
-                    UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+                    UnicodeProperty.BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) { // Case 4.
                 if (!queriedProperty.isValidValue(propertyValue)) {
                     throw new IllegalArgumentException(
                             "The value '"
@@ -247,16 +289,8 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                     + " or in "
                                     + queriedProperty.getValueAliases());
                 }
-            } else {
+            } else { // Case 4.
                 // TODO(egg): Check for unescaped :, @, =, etc. and unescape.
-            }
-            if (isAge) {
-                return queriedProperty.getSet(
-                        new UnicodePropertySymbolTable.ComparisonMatcher<VersionInfo>(
-                                UnicodePropertySymbolTable.parseVersionInfoOrMax(propertyValue),
-                                UnicodePropertySymbolTable.Relation.geq,
-                                Comparator.nullsFirst(Comparator.naturalOrder()),
-                                UnicodePropertySymbolTable::parseVersionInfoOrMax));
             }
             if (queriedProperty.getName().equals("General_Category")) {
                 return getGeneralCategorySet(queriedProperties, propertyValue);
@@ -503,7 +537,10 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
     private boolean requireSuffixForLatest;
     private UnicodeProperty.Factory unversionedExtensions;
     private Supplier<VersionInfo> oldestLoadedUcd;
+    private static Pattern VERSION_NUMBER_PATTERN =
+            Pattern.compile("[0-9]+(\\.[0-9]+(\\.[0-9]+)?)?");
     private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
+    private static Pattern FLOAT_PATTERN = Pattern.compile("[+-]?[0-9]+\\.[0-9]+");
 
     public static UnicodeSet.XSymbolTable NO_PROPS =
             new UnicodeSet.XSymbolTable() {
