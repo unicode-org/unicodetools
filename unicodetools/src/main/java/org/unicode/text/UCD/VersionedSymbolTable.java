@@ -269,7 +269,8 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 return result;
             } else if (queriedProperty.isType(UnicodeProperty.NUMERIC_MASK)) { // Case 5.
                 if (UnicodeProperty.equalNames(propertyValue, "NaN")
-                        || !RATIONAL_PATTERN.matcher(propertyValue).matches()) {
+                        && !RATIONAL_PATTERN.matcher(propertyValue).matches()
+                        && !FLOAT_PATTERN.matcher(propertyValue).matches()) {
                     throw new IllegalArgumentException(
                             "Invalid value '"
                                     + propertyValue

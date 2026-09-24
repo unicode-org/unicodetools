@@ -165,9 +165,9 @@ Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=16666666666666667/1000000000
 Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{nv=0.16666666666666667}
 Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=0.16666667}
 # Examples from Section 2.5.3.5.
-Minimally_Consistent ;; Uppercase ; <> ; ; 1 ; \p{nv=16666666666666667/100000000000000000}
-Minimally_Consistent ;; Uppercase ; <2159> ; ; ; \p{nv=0.16666666666666667}
-Minimally_Consistent ;; Uppercase ; <> ; ; 1 ; \p{nv=0.16666667}
+Minimally_Consistent ;; Uppercase ;  ; ; 0 ; \p{nv=16666666666666667/100000000000000000}
+Minimally_Consistent ;; Uppercase ; <2159> ; <0031> ; ; \p{nv=0.16666666666666667}
+Minimally_Consistent ;; Uppercase ;  ; ; 0 ; \p{nv=0.16666667}
 Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase=True}
 Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase}
 Minimally_Consistent ;; Uppercase ; <0061> ; <0041> ;; \p{Uppercase=NO}
@@ -202,7 +202,7 @@ Consistent             ;;;   <0061> <0062> <0064> ; <0063> <0043> ;      25 ; [ 
 Consistent             ;;;   <0061> <0062> <0064> ; <0063> <0043> ;      25 ; [a-b d-z]
 Consistent             ;;;   <0061> <0062> ; <0063> <0064> <0043> ;      24 ; [ [a-z] - [[c] [d]] ]
 Consistent             ;;;   <0061> <0062> ; <0063> <0064> <0043> ;      24 ; [a-b e-z]
-Consistent             ;;;   <0061>        ; <0043> <0062>        ;      25 ; [[a-z][]-[a]]
+Consistent             ;;;   <0062>        ; <0043> <0061>        ;      25 ; [[a-z][]-[a]]
 Consistent             ;;;   <0061> <0062> ; <0043>               ;      26 ; [[a-z][[]-[a]]]
 
 
