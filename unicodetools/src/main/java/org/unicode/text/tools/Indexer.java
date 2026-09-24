@@ -626,7 +626,23 @@ public class Indexer {
                             htmlLine.replace(
                                             "<!--VERSION HERE-->",
                                             version.getVersionString(2, 2) + phase)
+                                    .replace(
+                                            "<!--FULL-VERSION-HERE-->",
+                                            version.getVersionString(3, 3) + phase)
                                     .replace("CHARTS-ROOT-HERE", chartsRoot)
+                                    .replace(
+                                            "LANDING-PAGE-HERE",
+                                            phase == ReleasePhase.ALPHA
+                                                    ? "https://www.unicode.org/versions/alpha-"
+                                                            + version.getVersionString(3, 3)
+                                                            + ".html"
+                                                    : phase == ReleasePhase.BETA
+                                                            ? "https://www.unicode.org/versions/beta-"
+                                                                    + version.getVersionString(3, 3)
+                                                                    + ".html"
+                                                            : "https://www.unicode.org/versions/Unicode"
+                                                                    + version.getVersionString(
+                                                                            3, 3))
                                     .replace(
                                             "<!--DRAFT LINK HERE-->",
                                             linkedVersion == null
@@ -914,6 +930,7 @@ public class Indexer {
                 blockHasNewCharacters = currentBlock.containsSome(NEW_CHARACTERS);
             }
             switch (phase) {
+                // TODO(egg): Figure out where those live in 19.0α and β.
                 case ALPHA:
                     if (blockHasNewCharacters) {
                         return "https://www.unicode.org/charts/PDF/Unicode-"
@@ -952,7 +969,9 @@ public class Indexer {
                         Settings.LATEST_VERSION_INFO,
                         Settings.latestVersionPhase,
                         Settings.LAST_VERSION_INFO,
-                        "https://www.unicode.org/Public/draft/charts",
+                        Settings.latestVersionPhase == ReleasePhase.GAMMA
+                                ? "https://www.unicode.org/charts"
+                                : "https://www.unicode.org/Public/draft/charts",
                         "charindex-draft.html",
                         /* language= */ null);
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version), but

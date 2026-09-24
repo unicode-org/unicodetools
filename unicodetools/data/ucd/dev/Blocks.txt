@@ -1,11 +1,11 @@
-# Blocks-18.0.0.txt
-# Date: 2026-07-08
+# Blocks-19.0.0.txt
+# Date: 2026-09-23, 23:47:29 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Format:
 # Start Code..End Code; Block Name
@@ -25,12 +25,12 @@
 #  This constraint on block ranges guarantees that allocations
 #  are done in terms of whole columns, and that code chart display
 #  never involves splitting columns in the charts.
-#
+
+# Property: Block
+
 #  All code points not explicitly listed for Block
 #  have the value No_Block.
 
-# Property:	Block
-#
 # @missing: 0000..10FFFF; No_Block
 
 0000..007F; Basic Latin

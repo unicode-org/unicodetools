@@ -92,6 +92,9 @@
 # @missing: 0000..10FFFF; Link_Bracket; <none>
 # @missing: 0000..10FFFF; Link_Email ; No
 
+# @missing: 0000..10FFFF; Emoji_Variation_Base        ; No
+# @missing: 0000..10FFFF; Standardized_Variation_Base ; No
+
 # End of binary properties.
 
 # Common, until decision 106-C17 made it Unknown (Zzzz).

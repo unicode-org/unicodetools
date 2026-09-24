@@ -71,18 +71,8 @@ public class Emoji {
      */
     public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false);
 
-    public static final boolean BETA_IS_OPEN = CldrUtility.getProperty("emoji-beta-open", false);
-
-    /**
-     * Set the following to true iff the charts for the release should still point to proposed.html
-     * for TR51. The main function is to add pointers between the release and beta charts.
-     */
-    public static final boolean USE_PROPOSED =
-            true; // set to true between the release of Emoji 5.0 & Unicode 10.0. (or similar
-
-    // situation)
-
     // Constants for versions
+    public static final VersionInfo VERSION19 = VersionInfo.getInstance(19);
     public static final VersionInfo VERSION18 = VersionInfo.getInstance(18);
     public static final VersionInfo VERSION17 = VersionInfo.getInstance(17);
     public static final VersionInfo VERSION16 = VersionInfo.getInstance(16);
@@ -137,7 +127,8 @@ public class Emoji {
 
     public static final Map<VersionInfo, String> EMOJI_TO_DATE =
             ImmutableMap.<VersionInfo, String>builder()
-                    .put(VERSION18, "2026-09-15")
+                    .put(VERSION19, "2027-09-15")
+                    .put(VERSION18, "2026-09-16")
                     .put(VERSION17, "2025-09-09")
                     .put(VERSION16, "2024-09-10")
                     .put(VERSION15_1, "2023-09-12")
@@ -1034,7 +1025,7 @@ public class Emoji {
 
     public static final String TR51_HTML_BETA = "../../reports/tr51/proposed.html";
     public static final String TR51_HTML =
-            IS_BETA || USE_PROPOSED ? TR51_HTML_BETA : "https://unicode.org/reports/tr51/tr51.html";
+            IS_BETA ? TR51_HTML_BETA : "https://www.unicode.org/reports/tr51/";
 
     public static String getHexFromSubdivision(String string) {
         string = string.toLowerCase(Locale.ROOT).replace("-", "");

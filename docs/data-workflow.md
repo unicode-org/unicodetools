@@ -185,7 +185,7 @@ https://github.com/unicode-org/unicodetools/releases/tag/final-15.1-20230908
 Copy a snapshot of the unicodetools repo .../dev/ files to a versioned unicodetools folder;
 for example: .../unicodetools/data/ucd/17.0.0/ .
 (We no longer append a “-Update” suffix to the folder name.)
-List: emoji, idna, security, uca, ucd, ucdxml
+List: emoji, idna, linkification, security, uca, ucd, ucdxml
 Watch for different naming conventions: emoji versions use only two fields, not three.
 
 Edit the pub/*.sh scripts and advance the version numbers.

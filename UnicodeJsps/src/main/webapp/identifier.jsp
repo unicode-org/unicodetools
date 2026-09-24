@@ -1,3 +1,4 @@
+<%@ page import="org.owasp.encoder.Encode" %>
 <html>
 <head>
 <%@ include file="header.jsp" %>
@@ -29,7 +30,7 @@
     </tr>
     <tr>
       <td>
-      <input name="a" type="text" value="<%=test%>" style="width: 100%">
+      <input name="a" type="text" value="<%=Encode.forHtmlAttribute(test)%>" style="width: 100%">
       </td>
     </tr>
     <tr>

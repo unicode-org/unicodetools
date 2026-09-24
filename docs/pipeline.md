@@ -35,7 +35,7 @@ New scripts only:
 ---
 New blocks only:
 - [ ] ShortBlockNames.txt — Update, keep sorted
-- [ ] Blocks.txt — Update, keep sorted [TODO(egg): This one wants to be generated…]
+- [ ] Blocks.txt — Update; MakeUnicodeFiles regenerates it in code point order.
 - [ ] Commit
 - [ ] PropertyValueAliases.txt — [Regenerate](#regenerate-propertyvaluealiases)
 - [ ] Enums — [Regenerate](#generateenums)
@@ -150,9 +150,7 @@ mvn -s ~/.m2/settings.xml compile exec:java -Dexec.mainClass=org.unicode.text.UC
 # fix merge conflicts in unicodetools/src/main/java/org/unicode/text/UCD/UCD_Types.java
 #   and in UCD_Names.java
 # rerun mvn
-cp -r ../Generated/UCD/18.0.0/* unicodetools/data/ucd/dev
-rm unicodetools/data/ucd/dev/ZZZ-UNCHANGED-*
-rm unicodetools/data/ucd/dev/*/ZZZ-UNCHANGED-*
+cp -r ../Generated/UCD/19.0.0/* unicodetools/data/ucd/dev
 rm unicodetools/data/ucd/dev/extra/*
 rm unicodetools/data/ucd/dev/cldr/*
 git add unicodetools/src/main/java/org/unicode/text/UCD/UCD_Names.java
