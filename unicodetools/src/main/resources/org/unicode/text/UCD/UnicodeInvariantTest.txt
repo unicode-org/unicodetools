@@ -857,7 +857,11 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
 # 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
 # 16.0.0: UTC-180-A54: U+19DA from lb=SA to lb=NU.
 Let $NUInclusions := [\u066B\u066C\u19DA]
+# PCM characters must be LB=NU unless explicitly excluded after review.
+# https://github.com/unicode-org/unicodetools/issues/507
+# U+070F SYRIAC ABBREVIATION MARK is the current exception.
 Let $NUFormats := [[:PCM:]-[\u070F]]
+$NUFormats ⊆ \p{LB=NU}
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
 # Digits are lb=AS in scripts with brahmic line breaking.
