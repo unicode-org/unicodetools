@@ -204,6 +204,12 @@ kIRG_GSource ; 18.0 ; [𡆮𫔶] ; 187-C19, 187-A67
 # [187-C40] Consensus: Accept the normative kIRG_GSource property value changes for U+236AC, U+24A1E, and U+24E82, based on Recommendation M66.10 in document IRG N2909 (IRG) and Section 38 of document L2/26-099, for Unicode Version 18.0.
 # [187-A119] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kIRG_GSource property values of U+236AC, U+24A1E, and U+24E82, based on Recommendation M66.10 in document IRG N2909 (IRG) and Section 38 of document L2/26-099, for Unicode Version 18.0.
 kIRG_GSource ; 18.0 ; [𣚬𤨞𤺂] ; 187-C40, 187-A119
+# [188-C37] Consensus: Accept the normative kIRG_GSource property value change for U+32CDD, based on PRI #534 feedback [ID20260706081427] and Section 07 of document L2/26-157, for Unicode Version 18.0.
+# [188-A86] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kIRG_GSource property value of U+32CDD, based on PRI #534 feedback [ID20260706081427] and Section 07 of document L2/26-157, for Unicode Version 18.0.
+kIRG_GSource ; 18.0 ; [𲳝] ; 188-C37, 188-A86
+# [188-C44] Consensus: Accept the normative kIRG_GSource property value change for U+48B4, based on documents IRG N2926 (Chan) and WG 2 N5359 (Chan), and Section 18 of document L2/26-157, for Unicode Version 18.0.
+# [188-A116] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kIRG_GSource property value of U+48B4, based on documents IRG N2926 and WG 2 N5359, and Section 18 of document L2/26-157, for Unicode Version 18.0.
+kIRG_GSource ; 18.0 ; [䢴] ; 188-C44, 188-A116
 
 # ==========================================================
 # Documentation for changes to kIRG_HSource assignments
@@ -658,6 +664,12 @@ kRSUnicode ; 18.0 ; [𫢠] ; 187-C22, 187-A84
 # [187-C37] Consensus: Accept the informative kRSUnicode property value change for U+2DB7C, based on Recommendation M66.13 in document IRG N2909 (IRG) and Section 36 of document L2/26-099, for Unicode Version 18.0.
 # [187-A116] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property value of U+2DB7C, based on Recommendation M66.13 in document IRG N2909 (IRG) and Section 36 of document L2/26-099, for Unicode Version 18.0.
 kRSUnicode ; 18.0 ; [𭭼] ; 187-C37, 187-A116
+# [188-C35] Consensus: Accept the informative kRSUnicode property value change for U+2BB89, based on PRI #534 feedback [ID20260517144156] and Section 02 of document L2/26-157, for Unicode Version 18.0.
+# [188-A74] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property value of U+2BB89, based on PRI #534 feedback [ID20260517144156] and Section 02 of document L2/26-157, for Unicode Version 18.0.
+kRSUnicode ; 18.0 ; [𫮉] ; 188-C35, 188-A74
+# [188-C36] Consensus: Accept the informative kRSUnicode property value change for U+2C07B, based on PRI #534 feedback [ID20260628220827] and Section 04 of document L2/26-157, for Unicode Version 18.0.
+# [188-A79] Action Item for Ken Lunde, CJK: Update the Unihan database to change the kRSUnicode property value of U+2C07B, based on PRI #534 feedback [ID20260628220827] and Section 04 of document L2/26-157, for Unicode Version 18.0.
+kRSUnicode ; 18.0 ; [𬁻] ; 188-C36, 188-A79
 
 # ==========================================================
 # Documentation for changes to kTotalStrokes assignments
@@ -902,6 +914,9 @@ Script_Extensions ; 17.0 ; [̣̆̈] ; 181-C42, 181-A106
 Script_Extensions ; 17.0 ; [̱] ; 184-A57
 
 # Script_Extensions assignment changes in Unicode Version 18.0
+# [188-C31] Consensus: Add Kannada, Malayalam, and Telugu to the Script_Extensions values of U+0B83 TAMIL SIGN VISARGA, for Unicode Version 18.0. [Ref: 4.1 in L2/26-158]
+# [188-A61] Action Item for Roozbeh Pournader, PAG: Add scx=Knda Mlym Taml Telu to U+0B83 TAMIL SIGN VISARGA, for Unicode Version 18.0. [Ref: 4.1 in L2/26-158]
+Script_Extensions ; 18.0 ; [ஃ] ; 188-C31, 188-A61
 # [187-A35] Action Item for Roozbeh Pournader, PAG: Remove scx=Deva for U+1CF5 and U+1CF6, for Unicode Version 18.0. [Ref: 4.2 in L2/26-100]
 # [186-A48] Action Item for Roozbeh Pournader, PAG: Remove scx=deva from U+1CF5 VEDIC SIGN JIHVAMULIYA and U+1CF6 ​​VEDIC SIGN UPADHMANIYA. [Ref: 2.2 in L2/26-010]
 Script_Extensions ; 18.0 ; [ᳵᳶ] ; 187-A35, 186-A48
@@ -979,6 +994,11 @@ Bidi_Class ; 16.0 ; [𑜞] ; 177-C40, 177-A95
 # [179-C22] Consensus: Change the Bidi_Class of the five ∇ mathematical variants, U+1D6C1 (BOLD), U+1D6FB (ITALIC), U+1D735 (BOLD ITALIC), U+1D76F (SANS-SERIF BOLD), and U+1D7A9 (SANS-SERIF BOLD ITALIC), from Left_To_Right (L) to Other_Neutral (ON). For Unicode Version 16.0. See document L2/24-064 item 2.2.
 # [179-A90] Action Item for Robin Leroy, PAG: In UnicodeData.txt and derived files, change the Bidi_Class of the five ∇ mathematical variants, U+1D6C1 (BOLD), U+1D6FB (ITALIC), U+1D735 (BOLD ITALIC), U+1D76F (SANS-SERIF BOLD), and U+1D7A9 (SANS-SERIF BOLD ITALIC), from Left_To_Right (L) to Other_Neutral (ON). For Unicode Version 16.0. See document L2/24-064 item 2.2.
 Bidi_Class ; 16.0 ; [𝛁𝛻𝜵𝝯𝞩] ; 179-C22, 179-A90
+
+# Bidi_Class assignment changes in Unicode Version 18.0
+# [188-C22] Consensus: Change the Bidi_Class of U+1B42 ᭂ BALINESE VOWEL SIGN PEPET, U+1B3C ᬼ BALINESE VOWEL SIGN LA LENGA, and U+1B3A ᬺ BALINESE VOWEL SIGN RA REPA from Nonspacing_Mark (NSM) to Left_To_Right (L). For Unicode Version 18.0. See L2/26-154 item 5.2.
+# [188-A39] Action Item for Robin Leroy, PAG: In UCD file UnicodeData.txt and derived files, change the Bidi_Class of U+1B42, U+1B3C, and U+1B3A from Nonspacing_Mark (NSM) to Left_To_Right (L). For Unicode Version 18.0. See L2/26-154 item 5.2.
+Bidi_Class ; 18.0 ; [ᬺᬼᭂ] ; 188-C22, 188-A39
 
 # ==========================================================
 # Documentation for changes to Canonical_Combining_Class assignments
@@ -1348,6 +1368,11 @@ Indic_Syllabic_Category ; 17.0 ; [𑨺] ; 183-C15, 183-A33
 # [183-A33] Action Item for Roozbeh Pournader, PAG: Change the Indic_Syllabic_Category for U+11A3A ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA to Consonant_With_Stacker (and remove it from IndicPositionalCategory.txt) and for U+11A86 SOYOMBO CLUSTER-INITIAL LETTER RA to Consonant_Preceding_Repha, as described in L2/25-119, for Unicode Version 17.0. [Ref. 3.2 in L2/25-091R]
 Indic_Syllabic_Category ; 17.0 ; [𑪆] ; 183-C16, 183-A33
 
+# Indic_Syllabic_Category assignment changes in Unicode Version 18.0
+# [188-C21] Consensus: Change the Indic_Syllabic_Category of U+16100 GURUNG KHEMA LETTER A from Vowel_Independent to Consonant. For Unicode Version 18.0. See L2/24-203 and L2/26-154 item 2.3.
+# [188-A37] Action Item for Robin Leroy, PAG: In UCD file IndicSyllabicCategory.txt, Change the Indic_Syllabic_Category of U+16100 GURUNG KHEMA LETTER A from Vowel_Independent to Consonant. For Unicode Version 18.0. See L2/24-203 and L2/26-154 item 2.3.
+Indic_Syllabic_Category ; 18.0 ; [𖄀] ; 188-C21, 188-A37
+
 # ==========================================================
 # Documentation for changes to Joining_Group assignments
 # ==========================================================
@@ -1524,6 +1549,16 @@ Line_Break ; 18.0 ; [﹑] ; 187-C44, 187-A127
 # [187-C45] Consensus: Change the Line_Break assignments of U+2012 ‒ FIGURE DASH and U+2013 – EN DASH from Line_Break=Unambiguous_Hyphen to Line_Break=Break_After, and U+00AD SOFT HYPHEN from Line_Break=Break_After to Line_Break=Unambiguous_Hyphen, for Unicode Version 18.0. See L2/26-096 item 4.5.
 # [187-A128] Action Item for Robin Leroy, PAG: In UCD file LineBreak.txt and derived files, Change the Line_Break assignments of U+2012 ‒ FIGURE DASH and U+2013 – EN DASH from Line_Break=Unambiguous_Hyphen to Line_Break=Break_After, and U+00AD SOFT HYPHEN from Line_Break=Break_After to Line_Break=Unambiguous_Hyphen. For Unicode Version 18.0. See L2/26-096 item 4.5.
 Line_Break ; 18.0 ; [­‒–] ; 187-C45, 187-A128
+# [188-C24] Consensus: Change the Line_Break assignments of U+00B7 · MIDDLE DOT from Ambiguous (AI) to Infix_Numeric (IS) and U+0387 · GREEK ANO TELEIA from Alphabetic (AL) to Infix_Numeric (IS). For Unicode Version 18.0. See L2/26-154 item 7.1.
+# [188-A41] Action Item for Robin Leroy, PAG: In UCD file LineBreak.txt and derived files, change the Line_Break assignments of U+00B7 · MIDDLE DOT from Ambiguous (AI) to Infix_Numeric (IS) and U+0387 · GREEK ANO TELEIA from Alphabetic (AL) to Infix_Numeric (IS). For Unicode Version 18.0. See L2/26-154 item 7.1.
+Line_Break ; 18.0 ; [·] ; 188-C24, 188-A41
+# [188-C24] Consensus: Change the Line_Break assignments of U+00B7 · MIDDLE DOT from Ambiguous (AI) to Infix_Numeric (IS) and U+0387 · GREEK ANO TELEIA from Alphabetic (AL) to Infix_Numeric (IS). For Unicode Version 18.0. See L2/26-154 item 7.1.
+# [188-A41] Action Item for Robin Leroy, PAG: In UCD file LineBreak.txt and derived files, change the Line_Break assignments of U+00B7 · MIDDLE DOT from Ambiguous (AI) to Infix_Numeric (IS) and U+0387 · GREEK ANO TELEIA from Alphabetic (AL) to Infix_Numeric (IS). For Unicode Version 18.0. See L2/26-154 item 7.1.
+# [188-A42] Action Item for Robin Leroy, PAG: In UCD file LineBreakTest.txt and derived files, add test cases for Chinese usage of U+00B7. For Unicode Version 18.0. See L2/26-154 item 7.1.
+Line_Break ; 18.0 ; [·] ; 188-C24, 188-A41, 188-A42
+# [188-C25] Consensus: Change the Line_Break assignment of code points U+1F7DB and U+1F7F1..U+1F7FF from Ideographic (ID) to Alphabetic (AL). For Unicode Version 18.0. See L2/26-154 item 7.2.
+# [188-A43] Action Item for Robin Leroy, PAG: In LineBreak.txt, change the Line_Break assignment of code points U+1F7DB and U+1F7F1..U+1F7FF from Ideographic (ID) to Alphabetic (AL). For Unicode Version 18.0. See L2/26-154 item 7.2.
+Line_Break ; 18.0 ; [🟛🟱-🟿] ; 188-C25, 188-A43
 
 # ==========================================================
 # Documentation for changes to Numeric_Type assignments

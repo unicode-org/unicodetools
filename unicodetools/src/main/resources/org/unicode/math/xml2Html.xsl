@@ -201,7 +201,7 @@
     <xsl:param name="unicode"/>
     <xsl:param name="tr25"/>
     <p>File: <b>MathClassEx</b></p>
-    <p>Revision: <b><xsl:value-of select="$unicode"/></b></p>
+    <p>Revision: <b><xsl:value-of select="$tr25"/></b></p>
     <p>Date: <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/></p>
     <p>This file provides a more readable version of <a href="MathClassEx.txt">MathClassEx.txt</a>.</p>
     <p>This file is a classification of characters based on their usage in mathematical notation and providing a

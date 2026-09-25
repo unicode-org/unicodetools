@@ -507,6 +507,19 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // 16.0.
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Standardized_Variant
+                        && Settings.latestVersion.equals("18.0.0")
+                        && value.contains(" form (")) {
+                    // [188-C33] Consensus: Update the Mongolian section of StandardizedVariants.txt
+                    // as discussed in the meeting, for Unicode Version 18.0. [Ref: L2/26-203 and
+                    // 5.3 in L2/26-158]
+                    //
+                    // [188-A68] Action Item for Ken Whistler, PAG: Make changes to
+                    // StandardizedVariants.txt per 188-C33, for Unicode Version 18.0.
+                    //
+                    // See also L2/26-163 “Proposal to update the Mongolian variant data in UCD”.
+                    level = LOG;
+                }
                 msg(
                         testName
                                 + ": Unicode "

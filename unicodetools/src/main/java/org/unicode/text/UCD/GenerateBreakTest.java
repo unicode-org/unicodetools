@@ -31,6 +31,9 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.Sampler;
+import org.unicode.text.UCD.GenerateBreakTest.XGenerateBreakTest;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -1648,6 +1651,17 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // first pair to the second.  This was incorrectly segmented by ICU for many
                         // years.
                         "🇿\u200D🇿\u200D🇿🇿",
+                        // U+00B7, see 188-C24
+                        // Example from https://github.com/unicode-org/icu4x/issues/7500.
+                        "诗经\u00B7秦风\u30FB蒹葭",
+                        // Two examples mentioned in
+                        // https://www.unicode.org/L2/L2026/26154-utc188-properties-recs.pdf
+                        // Section 7.1.
+                        "Paral·lel",
+                        "(4·)$",
+                        // Both canonically equivalent ways of writing the άνω τελεία.
+                        "τὸν δ' ἠμείβετ' ἔπειτα θεὰ γλαυκῶπις Ἀθήνη\u00B7 «ὦ πάτερ ἡμέτερε Κρονίδη",
+                        "τὸν δ' ἠμείβετ' ἔπειτα θεὰ γλαυκῶπις Ἀθήνη\u0387 «ὦ πάτερ ἡμέτερε Κρονίδη",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM

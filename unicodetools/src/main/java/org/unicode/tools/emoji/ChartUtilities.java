@@ -67,22 +67,14 @@ public class ChartUtilities {
     }
 
     static String getPointToOther(String outFileName, String title) {
-        return !Emoji.BETA_IS_OPEN && !Emoji.IS_BETA
+        return !Emoji.IS_BETA
                 ? ""
-                : "<blockquote><i>For the "
-                        + (Emoji.IS_BETA
-                                ? "current released version, see <b><a href='../charts-"
-                                        + Emoji.VERSION_LAST_RELEASED_STRING
-                                        + "/"
-                                        + outFileName
-                                        + "'>v"
-                                        + Emoji.VERSION_LAST_RELEASED_STRING
-                                : "new beta version, see <b><a href='../charts-"
-                                        + Emoji.VERSION_BETA_STRING
-                                        + "/"
-                                        + outFileName
-                                        + "'>v"
-                                        + Emoji.VERSION_BETA_STRING_WITH_COLOR)
+                : "<blockquote><i>For the current released version, see <b><a href='../charts-"
+                        + Emoji.VERSION_LAST_RELEASED_STRING
+                        + "/"
+                        + outFileName
+                        + "'>v"
+                        + Emoji.VERSION_LAST_RELEASED_STRING
                         + "</a></b>.</i></blockquote>\n";
     }
 

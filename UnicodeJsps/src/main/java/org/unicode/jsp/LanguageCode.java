@@ -13,6 +13,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.owasp.encoder.Encode;
 
 public class LanguageCode {
 
@@ -83,7 +84,7 @@ public class LanguageCode {
         StringBuilder canonical = new StringBuilder();
         String prefix = "";
 
-        builder.append("<h4>Source: " + input + "</h4>");
+        builder.append("<h4>Source: " + Encode.forHtmlContent(input) + "</h4>");
         input = input.replace("_", "-");
         Matcher m = languageID.matcher(input);
         if (!m.matches()) {
@@ -99,13 +100,14 @@ public class LanguageCode {
                     }
                     prefix =
                             "<p><i><b>Ill-Formed Language Identifier: </b></i>"
-                                    + input.substring(0, posBefore)
+                                    + Encode.forHtmlContent(input.substring(0, posBefore))
                                     + "<span class='x'>"
-                                    + input.substring(posBefore, i)
+                                    + Encode.forHtmlContent(input.substring(posBefore, i))
                                     + "×"
-                                    + input.substring(i, posAfter)
+                                    + Encode.forHtmlContent(input.substring(i, posAfter))
                                     + "</span>"
-                                    + input.substring(posAfter, input.length())
+                                    + Encode.forHtmlContent(
+                                            input.substring(posAfter, input.length()))
                                     + "<br><i>Couldn't parse past the point marked with <span class='x'>×</span>.</i></p>\n";
                     if (posBefore <= 0) {
                         builder.append(prefix);

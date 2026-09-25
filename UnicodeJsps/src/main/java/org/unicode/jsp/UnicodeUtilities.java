@@ -41,6 +41,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.owasp.encoder.Encode;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
@@ -1291,7 +1292,12 @@ public class UnicodeUtilities {
                     }
                     break;
             }
-            out.appendCodePoint(cp);
+            // Escape standalone ZWJ, but preserve it within string elements.
+            if (cp == JOINER && status == Status.NORMAL) {
+                out.append("\\u200D");
+            } else {
+                out.appendCodePoint(cp);
+            }
             oldCp = cp;
         }
         return out.toString();
@@ -1355,8 +1361,14 @@ public class UnicodeUtilities {
         // }
         int a_bSize = 0, b_aSize = 0, abSize = 0;
         if (a == null || b == null) {
-            a_b = a == null ? aMessage[0] : "error";
-            b_a = b == null ? bMessage[0] : "error";
+            a_b =
+                    a == null
+                            ? Encode.forHtmlContent(Objects.toString(aMessage[0], "error"))
+                            : "error";
+            b_a =
+                    b == null
+                            ? Encode.forHtmlContent(Objects.toString(bMessage[0], "error"))
+                            : "error";
             ab = "error";
         } else {
             UnicodeSet temp = new UnicodeSet(a).removeAll(b);

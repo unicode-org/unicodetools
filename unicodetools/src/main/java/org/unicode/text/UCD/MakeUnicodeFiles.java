@@ -980,7 +980,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Bengali),
                             new DoNotEmitSubsection(
-                                    "Gurmukhi, from Table 12-16",
+                                    "Gurmukhi, from Table 12-17",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -988,7 +988,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Gurmukhi),
                             new DoNotEmitSubsection(
-                                    "Gujarati, from Table 12-20",
+                                    "Gujarati, from Table 12-21",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -996,7 +996,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Gujarati),
                             new DoNotEmitSubsection(
-                                    "Oriya (Odia), from Table 12-22",
+                                    "Oriya (Odia), from Table 12-23",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1004,7 +1004,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Oriya),
                             new DoNotEmitSubsection(
-                                    "Tamil, from Table 12-27",
+                                    "Tamil, from Table 12-28",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1012,7 +1012,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Tamil),
                             new DoNotEmitSubsection(
-                                    "Telugu, from Table 12-31",
+                                    "Telugu, from Table 12-32",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1020,7 +1020,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Telugu),
                             new DoNotEmitSubsection(
-                                    "Kannada, from Table 12-32",
+                                    "Kannada, from Table 12-33",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1028,7 +1028,7 @@ public class MakeUnicodeFiles {
                                                                     dispreferred.codePointAt(0)))
                                                     == UcdPropertyValues.Script_Values.Kannada),
                             new DoNotEmitSubsection(
-                                    "Malayalam, from Table 12-34",
+                                    "Malayalam, from Table 12-35",
                                     "[:Do_Not_Emit_Type=Indic_Vowel_Letter:]",
                                     dispreferred ->
                                             UcdPropertyValues.Script_Values.forName(
@@ -1358,6 +1358,10 @@ public class MakeUnicodeFiles {
             final StringBuffer buffer = new StringBuffer();
             for (final Iterator<String> it = list.iterator(); it.hasNext(); ) {
                 final String propAlias = it.next();
+                if (propAlias.equals("Pretty_Block")) {
+                    // TODO(egg): Should IUP use the EXTENDED_ types?
+                    continue;
+                }
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
                 final List<String> aliases =
@@ -1514,6 +1518,10 @@ public class MakeUnicodeFiles {
             final UnicodeProperty up = toolFactory.getProperty(propName);
             final int type = up.getType();
             if ((type & UnicodeProperty.EXTENDED_MASK) != 0) {
+                continue;
+            }
+            if (propName.equals("Pretty_Block")) {
+                // TODO(egg): Should IUP use the EXTENDED_ types?
                 continue;
             }
             //            if (skipNames.contains(propName)) {
@@ -1768,14 +1776,18 @@ public class MakeUnicodeFiles {
                 if (v == null) {
                     v = ps.skipUnassigned;
                 }
-                if (!v.equals("<code point>")) {
+                if (prop.isType(UnicodeProperty.ENUMERATED_OR_CATALOG_MASK)) {
                     final String v2 = prop.getFirstValueAlias(v);
                     if (UnicodeProperty.compareNames(v, v2) != 0) {
                         v = v + " (" + v2 + ")";
                     }
                 }
                 pwProp.println(ps.roozbehFile ? "#" : "");
-                pwProp.println("#  All code points not explicitly listed for " + prop.getName());
+                pwProp.println(
+                        "#  All code points not explicitly listed for "
+                                + (prop.getName().equals("Pretty_Block")
+                                        ? "Block"
+                                        : prop.getName()));
                 pwProp.println("#  have the value " + v + ".");
             }
 
@@ -2214,17 +2226,18 @@ public class MakeUnicodeFiles {
 
     private static void writeInterleavedValues(
             PrintWriter pw, BagFormatter bf, UnicodeProperty prop, PrintStyle ps) {
-        if (DEBUG) {
-            System.out.println("Writing Interleaved Values: " + prop.getName());
-        }
         pw.println();
-        bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, new RestoreSpacesFilter(ps)))
+        printDefaultValueComment(pw, prop.getName(), prop, /* showPropName= */ false, ps.skipValue);
+        pw.println();
+        bf.setValueSource(prop)
                 .setNameSource(null)
                 .setLabelSource(null)
                 .setRangeBreakSource(null)
                 .setShowCount(false)
                 .setMergeRanges(ps.mergeRanges)
-                .showSetNames(pw, new UnicodeSet(0, 0x10FFFF));
+                .setNoSpacesBeforeSemicolon()
+                .setShowTotal(false)
+                .showSetNames(pw, prop.getSet(ps.skipValue).complement());
     }
 
     private static void writeStringValues(
@@ -2277,33 +2290,6 @@ public class MakeUnicodeFiles {
                                 + comp.compare(s1, s2));
             }
             return comp.compare(s1, s2);
-        }
-    }
-
-    static class RestoreSpacesFilter extends UnicodeProperty.StringFilter {
-        String skipValue;
-
-        /**
-         * @param ps
-         */
-        public RestoreSpacesFilter(PrintStyle ps) {
-            skipValue = ps.skipValue;
-            if (skipValue == null) {
-                skipValue = ps.skipUnassigned;
-            }
-        }
-
-        @Override
-        public String remap(String original) {
-            // ok, because doesn't change length
-            final String mod = Format.theFormat.hackMap.get(original);
-            if (mod != null) {
-                original = mod;
-            }
-            if (original.equals(skipValue)) {
-                return null;
-            }
-            return original.replace('_', ' ');
         }
     }
 

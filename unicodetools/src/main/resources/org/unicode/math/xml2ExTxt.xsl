@@ -104,14 +104,14 @@
           test="(not(@unassigned) and not(@deprecated)) or @unassigned != 'true' or @deprecated != 'true'"><xsl:value-of
           select="$repertoire/key('cp_key', current()/@cp)/@gc"/><xsl:text> (</xsl:text><xsl:value-of
           select="codepoints-to-string(f:hexToDec(@cp))"/><xsl:text>) </xsl:text><xsl:value-of
-          select="$repertoire/key('cp_key', current()/@cp)/@na"/></xsl:if><xsl:text>&#x000D;</xsl:text>
+          select="$repertoire/key('cp_key', current()/@cp)/@na"/></xsl:if><xsl:text>&#x000A;</xsl:text>
   </xsl:template>
 
   <xsl:template name="introduction">
     <xsl:param name="unicode"/>
     <xsl:param name="tr25"/>
     <xsl:text># File: MathClassEx.txt
-# Revision: </xsl:text><xsl:value-of select="$unicode"/><xsl:text>
+# Revision: </xsl:text><xsl:value-of select="$tr25"/><xsl:text>
 # Date: </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/><xsl:text>
 #
 # © </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]')"/><xsl:text> Unicode®, Inc.
@@ -134,8 +134,8 @@
 #
 # The character encoding of this plain-text file is UTF-8.
 #
-# The data consists of 8 fields. The number and type of fields may change
-# in future versions of this file.
+# The data consists of 5 fields, optionally followed by a comment.
+# The number and type of fields may change in future versions of this file.
 #
 # 1: code point or range
 #
@@ -162,9 +162,12 @@
 # also useful in determining extra spacing around the operators as discussed
 # in UTR #25.
 #
-# 3: entity name
+# 3: entity names
+# Whitespace separated list of names.
 #
 # 4: entity set
+# This is HTML-MathML or empty, other legacy sets of entity names are
+# no longer listed in this file.
 #
 # 5: descriptive comments (of various types)
 # The descriptive comments provide more information about a character,
@@ -176,7 +179,8 @@
 # systematic differences in terminology, such as filled vs. black.
 # In principle this allows location of entities by their description.
 #
-# 6: Comment with Unicode General Category, character (UTf-8)
+# Comment:
+#    with Unicode General Category, character (UTF-8)
 #    and Unicode character name or names
 #    Character names are provided for ease of reference only.
 #

@@ -5,7 +5,8 @@
 # This Powershell should be run from the root of the unicodetools repository, as
 # .\docs\update_charts_files.ps1 [filename.txt].
 param (
-    [string]$file = "NamesList.txt"
+    [string]$file = "NamesList.txt",
+    [string]$branch = "main"
 )
 
 if ($file -eq "NamesList.txt") {
@@ -18,8 +19,8 @@ $ErrorActionPreference = "Stop"
 
 pushd ..\charts
 git fetch
-git checkout origin/main
-$versions = git log --pretty=format:"%H" origin/main -- $chartsPath
+git checkout origin/$branch
+$versions = git log --pretty=format:"%H" origin/$branch -- $chartsPath
 # Go back in time in the charts repository until we find a version of
 # the file that matches the one from unicodetools.
 for ($i = 0; $i -lt $versions.Length; ++$i) {

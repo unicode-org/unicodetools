@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Jurchen data" id='schema.jurchen'><edit
-        flag="changed">
+<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="Jurchen data" id='schema.jurchen'>
   code-point-attributes &amp;=
     attribute kJURC_NCReading { xsd:string { pattern='[^\t"]+' } }?
 
@@ -12,4 +11,4 @@
 
   code-point-attributes &amp;=
     attribute kJURC_Src { xsd:string { pattern="NC:\d{3}\.\d{2}(,\d{3}\.\d{2})?|SJ-B:\d{3}[A-Z]\.\d|JJ:\d{3}|N5131:X-\d{4}" } }?
-</edit></ucdxml:block>
+</ucdxml:block>

@@ -67,6 +67,11 @@
  *   2026-Feb-26 Tweak test for infinite recursion in doRecursiveDecomp.
  *   2026-Mar-16 Add special handling to give primary weights to FFFE and FFFF.
  *               Add the 10 contractions required for Tibetan table well-formedness.
+ *   2026-Aug-25 Add Jurchen and Seal to calculateImplicitBase.
+ *               Add range definitions for Jurchen and Seal.
+ *               Adjust end range for CJK Ext D.
+ *   2026-Sep-03 Fix omitted FontToken case in weightFromToken().
+ *               Bump version to 19.0.
  */
 
 /*
@@ -191,13 +196,13 @@
 #define PATHNAMELEN (256)
 #define LONGESTARG  (256)
 
-static char versionString[] = "Sifter version 18.0.0d4, 2026-03-16\n";
+static char versionString[] = "Sifter version 19.0.0d1, 2026-09-03\n";
 
-static char unidatafilename[] = "unidata-18.0.0.txt";
-static char allkeysfilename[] = "allkeys-18.0.0.txt";
-static char decompsfilename[] = "decomps-18.0.0.txt";
+static char unidatafilename[] = "unidata-19.0.0.txt";
+static char allkeysfilename[] = "allkeys-19.0.0.txt";
+static char decompsfilename[] = "decomps-19.0.0.txt";
 
-static char versionstring[] = "@version 18.0.0\n\n";
+static char versionstring[] = "@version 19.0.0\n\n";
 
 #define COPYRIGHTYEAR (2026)
 
@@ -299,7 +304,7 @@ int digitsInitialized;
 #define CJK_EXTC_FIRST (0x2A700)
 #define CJK_EXTC_LAST  (0x2B73F)
 #define CJK_EXTD_FIRST (0x2B740)
-#define CJK_EXTD_LAST  (0x2B81D)
+#define CJK_EXTD_LAST  (0x2B81E)
 #define CJK_EXTE_FIRST (0x2B820)
 #define CJK_EXTE_LAST  (0x2CEAD)
 #define CJK_EXTF_FIRST (0x2CEB0)
@@ -329,6 +334,10 @@ int digitsInitialized;
 #define TANGUT_COMP_SUP_LAST  (0x18DF2)
 #define NUSHU_FIRST       (0x1B170)
 #define NUSHU_LAST        (0x1B2FB)
+#define JURCHEN_FIRST     (0x18E00)
+#define JURCHEN_LAST      (0x19191)
+#define SEAL_FIRST        (0x3D000)
+#define SEAL_LAST         (0x3FC3F)
 
 /*
  * Constants used to branch processing by decomposition type.
@@ -1224,7 +1233,7 @@ static char keyTemplate3[] = "[.%04X.%04X.%04X][.%04X.%04X.%04X]";
  * calculateImplicitBase()
  *
  * Based on a code point, determine which implicit base
- * value will be used for calculating a weight for a CJK
+ * value will be used for calculating a weight for a CJK (or other ideographic)
  * character (or unassigned code point).
  */
 static void calculateImplicitBase ( UInt32 i, UShort16 *base1, UShort16 *base2 )
@@ -1269,6 +1278,14 @@ UShort16 base;
     else if ( ( i >= KHITAN_FIRST ) && ( i <= KHITAN_LAST ) )
     {
         base = 0xFB03; /* Khitan Small Script */
+    }
+    else if ( ( i >= JURCHEN_FIRST ) && ( i <= JURCHEN_LAST ) )
+    {
+        base = 0xFB04; /* Jurchen */
+    }
+    else if ( ( i >= SEAL_FIRST ) && ( i <= SEAL_LAST ) )
+    {
+        base = 0xFB05; /* Seal */
     }
     else
     {
@@ -1388,6 +1405,7 @@ int weightFromToken ( WALNUTPTR t1, int tokenType )
     case VerticalToken :
     case FractionToken :
     case SuperToken    :
+    case FontToken     :
         return ( lowerTertiaryWeights[tokenType] );
 /*
  * For circled compatibility forms, preserve case distinctions if

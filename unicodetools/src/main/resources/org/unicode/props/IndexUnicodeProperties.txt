@@ -514,7 +514,9 @@ EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
+StandardizedVariants ; Standardized_Variation_Base
 emoji-variation-sequences ; emoji-variation-sequence
+emoji-variation-sequences ; Emoji_Variation_Base
 DoNotEmit ; Do_Not_Emit_Preferred ; 1
 DoNotEmit ; Do_Not_Emit_Dispreferred ; "1" ↦ 0
 DoNotEmit ; Do_Not_Emit_Dispreferred_Type ; "1" ↦ 2

@@ -1,0 +1,474 @@
+# Each test case is a semicolon-separated line with the following fields:
+# scope ; general ; properties ; elements ; non-elements ; size ; expression
+# The expression field is the expression under test; except in Ill_Formed test
+# cases, it represents a set according to the UnicodeSet specification.
+# This is the set under test.
+#
+# The scope field has one of the following values:
+# * Syntactically_Complete
+#   Any conformant implementation shall pass these test cases.
+# * Minimally_Consistent
+#   Any conformant shall either pass these test cases, or reject the
+#   expressions without interpreting them.
+#   If it rejects an expression, it shall declare the restriction to lexical
+#   elements that causes it to reject that expression (see UTS61-C2).
+# * Consistent
+#   A consistent implementation shall either pass these test cases, or reject
+#   expressions without interpreting them.
+#   If it rejects an expression, it shall declare the restriction to lexical
+#   elements that causes it to reject that expression (see UTS61-C2).
+#   A conformant implementation may fail these test cases by interpreting these
+#   expressions differently from the specification, so long as it declares which
+#   expressions are interpreted differently (see UTS61-C3).
+# * Ill_Formed
+#   An implementation with no extension shall reject these expressions.
+#
+# The general field is empty unless the test case makes use of syntactic
+# categories not recommended for support in general-purpose APIs (those with a
+# gray background in the grammar).
+# When it is nonempty, it lists the syntactic categories used among the
+# following:
+# * version-qualifier
+# * regular-expression-match
+# * property-comparison
+#
+# The properties field is a space-separated list of property aliases.
+# These are the properties involved in the evaluation of the set under test.
+# An implementation that restricts property queries by supporting only some
+# properties can use these to determine whether it expects to pass the test case
+# or reject the expression.
+# Tests using a named-element are considered to use the Name property.
+# Tests using a formal name alias in either a named-element or a property-query
+# for the Name property are considered to use both the Name and Name_Alias
+# properties.
+#
+# The elements field is a space-separated list of code point sequences, with
+# sequence represented as < LESS-THAN SIGN, followed by space-separated code 
+# points in hexadecimal, followed by > GREATER-THAN SIGN.  For example:
+# * <> for the empty string;
+# * <0040> for the lone code point U+0040 @ COMMERCIAL AT;
+# * <0055 006E> for the string "Un".
+# In order for the test case to pass, all of these code points and code point
+# sequences must be elements of the set under test.
+#
+# The non-elements field has the same syntax as the elements field.
+# In order for the test case to pass, none of these code points and code point
+# sequences must be elements of the set under test.
+#
+# The size field may be empty, or may contain a number.
+# If it contains a number, in order for the test case to pass, the number of
+# elements of the set under test must be equal to that number.
+#
+
+## Examples from UTS #61.
+
+# Basic examples from the introduction.
+Minimally_Consistent ;; XID_Continue ; <0061> ; <002F> ; ; \p{XID_Continue}
+Minimally_Consistent ;; Line_Break East_Asian_Width ; <0028> ; <0029> <3008> ; ; [\p{lb=OP}-[\p{ea=F}\p{ea=W}\p{ea=H}]]
+Minimally_Consistent ;; Other_ID_Start Other_ID_Continue General_Category Pattern_Syntax Pattern_White_Space ; ; ; ; [\p{Other_ID_Start}\p{Other_ID_Continue}\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}-\p{Pattern_Syntax}-\p{Pattern_White_Space}]
+Minimally_Consistent ;; General_Category ; ; ; ; [\p{L}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}-[\u2E2F]]
+# Advanced examples from the introduction.
+Minimally_Consistent ; property-comparison ; Uppercase_Mapping Simple_Uppercase_Mapping ; ; ; ; \p{Uppercase_Mapping≠@Simple_Uppercase_Mapping@}
+Minimally_Consistent ; version-qualifier property-comparison ; Simple_Case_Folding ; <1FD3> <1FE3> <FB05> ; ; 3 ; \p{U15.1:Simple_Case_Folding≠@U15.0:Simple_Case_Folding@}
+Minimally_Consistent ; regular-expression-match ; kDefinition kEH_Desc ; <8C93> <130E0> ; ; ; [\p{cjkDefinition=/\bcat\b/} \p{kEH_Desc=/\bcat\b/}]
+Minimally_Consistent ; property-comparison ; Case_Folding Changes_When_Casefolded ; <01F0> ; <01F1> ; 24 ; [\p{Case_Folding≠@code point@}-\p{Changes_When_Casefolded}]
+# Examples from the beginning of Section 2.
+Consistent ;;; <0000> ; <0030> ; 1;     [\00]
+Consistent ;;; <0000> <0030> ; ; 2;     [\0 0]
+Ill_Formed ;;;           ;;;     [\xD‎F]
+Consistent ;;; <000D> <0046> ; ; 2 ; [\xD‎ F]
+Consistent ;;; <0000> <0628> ; ; 2 ; [ب‎\0]
+# Examples from Section 2.2.
+Consistent             ;;;   <005C> ;        ;       1 ; [\\]
+Consistent             ;;;   <005C> ;        ;       1 ; [\134]
+Minimally_Consistent   ;;;   <005C> ;        ;       1 ; [\x5C]
+Minimally_Consistent   ;;;   <005C> ;        ;       1 ; [\u005C]
+Minimally_Consistent   ;;;   <005C> ;        ;       1 ; [\x{05C}]
+Minimally_Consistent   ;;;   <005C> ;        ;       1 ; [\U0000005C]
+Consistent             ;;;   <0007> ;        ;       1 ; [   \a]
+Consistent             ;;;   <0007> ;        ;       1 ; [   \7]
+Minimally_Consistent   ;;;   <0007> ;        ;       1 ; [   \x7]
+Consistent             ;;;   <0007> ;        ;       1 ; [   \cG]
+Ill_Formed ;;;         ;;;     [\x{110000}]
+# Examples from Section 2.3.
+Minimally_Consistent   ;; Name ;   <0020> ;        ;       1 ; [\N{SPACE}]
+Minimally_Consistent   ;; Name ;   <0020> ;        ;       1 ; [\N{0020:SPACE}]
+Minimally_Consistent   ;; Name ;   <0020> ;        ;       1 ; [\N{20: :SPACE}]
+Ill_Formed ;;;         ;;;     [\N{THIS IS NOT A CHARACTER}]
+Ill_Formed ;;;         ;;;     [\N{0A:LATIN CAPITAL LETTER A}]
+Ill_Formed ;;;         ;;;     [\N{41:a:LATIN CAPITAL LETTER A}]
+Minimally_Consistent   ;; Name ;   <FE18> ;        ;       1 ; [\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}]
+Minimally_Consistent   ;; Name Name_Alias ;   <FE18> ;        ;       1 ; [\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}]
+Minimally_Consistent   ;; Name ;   <0153> ; ;   1 ; [\N{latin small ligature o-e}]
+Minimally_Consistent   ;; Name ;   <1180> ;        ;       1 ; [\N{Hangul jungseong O-E}]
+Minimally_Consistent   ;; Name ;   <116C> ;        ;       1 ; [\N{Hangul jungseong OE}]
+# From the note about ucd-identifier-character.
+Consistent             ;; Name Block General_Category ;   <0020> ; <0021> ;       65 ; [-_\N{SPACE}[\p{block=Basic_Latin}&[\p{Letter}\p{Digit}]]]
+Consistent             ;; Name ;   <0020> ; <0021> ;       65 ; [-_\N{SPACE}A-Za-z0-9]
+# Example from Section 2.4.
+Consistent   ;;;   <> ;        ;       1 ; [{}]
+# Examples from Section 2.5.1.
+Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; \P{Cn}
+Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; [:^Cn:]
+Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; \P{General_Category=Cn}
+Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; [:^General_Category=Cn:]
+Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; [:^General_Category≠Cn:]
+Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; \p{General_Category≠Cn}
+Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; [:General_Category≠Cn:]
+Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; \p{Cn}
+Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; [:General_Category=Cn:]
+Minimally_Consistent   ;;;   <03D6> ;  <03C0> ;       ; \P{Decomposition_Type≠compat}
+Minimally_Consistent   ;;;   <03D6> ;  <03C0> ;       ; \p{Decomposition_Type=compat}
+Minimally_Consistent   ;;;   ;  <10FFFF> ; 1114046 ; [:^Noncharacter_Code_Point≠No:]
+Minimally_Consistent   ;;;   ;  <10FFFF> ; 1114046 ; [:Noncharacter_Code_Point=No:]
+# Examples from Section 2.5.2.
+Minimally_Consistent   ;;;   <0021> ;  <0061> ; 2760 ; \p{Pattern_Syntax}
+Minimally_Consistent   ;;;   <0061> ;  <0021> ;      ; \p{XID_Continue}
+Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; \p{GC=unassigned}
+Minimally_Consistent   ; version-qualifier ;;   <10FFFF> ;  <0061> ;       ; \p{U-1:GC=unassigned}
+# Examples from Section 2.5.3.1.
+Minimally_Consistent   ;;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; \p{Age=6.0}
+Minimally_Consistent   ;;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; \p{Age=6}
+Minimally_Consistent   ;;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; \p{Age=06.00.00}
+Minimally_Consistent   ; version-qualifier ;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; [ \P{U6:Cn} \p{U6:Noncharacter_Code_Point} ]
+Ill_Formed ;;;         ;;; \p{Age=@U6:Age@}
+Ill_Formed ;;;         ;;; \p{Age=/1/}
+Minimally_Consistent   ; version-qualifier ;Age;  <0061> <1F408> ; <1F62C> <10FFFF> ; 248965 ; \p{U6:gc≠Unassigned}
+Minimally_Consistent   ;;Age;  <0061> <1F408> ; <1F62C> <10FFFF> ; 248965 ; [ \p{Age=6} - \p{Noncharacter_Code_Point} ]
+Minimally_Consistent ;; Age ; <0041> ; <12000> ; 33979 ; \p{Age=v11}
+Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11}
+Minimally_Consistent ;; Age ; <0041> ; <12000> ; 33979 ; \p{Age=1.1}
+# Examples from Section 2.5.3.2.
+Minimally_Consistent ; property-comparison ; Simple_Case_Folding Lowercase_Mapping ; <03BC> <4E00> <FB06> <12000> ; <00B5> <13A0> <AB70> <FB05> ;; \p{scf=@lc@}
+Minimally_Consistent ; version-qualifier property-comparison ; Simple_Case_Folding Lowercase_Mapping ; <03BC> <4E00> <FB06> <12000> ; <00B5> <13A0> <AB70> <FB05> ; 1113914 ; \p{U15.1:scf=@U15.1:lc@}
+Minimally_Consistent ; version-qualifier property-comparison ; Line_Break ; <0600> <11005> ;; 560 ; \p{U15.0:Line_Break≠@U15.1:Line_Break@}
+Minimally_Consistent ; property-comparison ; kIRG_GSource ; <0061> <0041> ; <4E00> ;; \p{kIRG_GSource=@none@}
+Minimally_Consistent ; property-comparison ; Case_Folding ; <0061> <4E00> ; <0041> <00DF> ;; \p{case folding=@code point@}
+Ill_Formed ;;;         ;;; \p{kIRG_GSource=@U16:none@}
+Ill_Formed ;;;         ;;; \p{case folding=@U16:code point@}
+Minimally_Consistent ; version-qualifier property-comparison ; Simple_Case_Folding Lowercase_Mapping ; <03BC> <4E00> <FB05> <FB06> <12000> ; <00B5> <13A0> <AB70> ; 1113917 ; \p{U15.0:scf=@U15.0:lc@}
+Ill_Formed ;;;         ;;; \p{Decomposition_Mapping=@Ideographic@}
+Minimally_Consistent ; property-comparison; Uppercase Changes_When_Lowercased ; <1D504> ; <0061> <0041> <1D51E> ; 580 ; \p{Uppercase≠@Changes_When_Lowercased@}
+Minimally_Consistent ;; Uppercase Changes_When_Lowercased ; <1D504> ; <0061> <0041> <1D51E> ; 580 ; [[\p{Uppercase}\p{Changes_When_Lowercased}]-[\p{Uppercase}&\p{Changes_When_Lowercased}]]
+Minimally_Consistent ; property-comparison; Uppercase Changes_When_Lowercased ; <00DF> ; <0061> <0041> ;; \p{scf≠@cf@}
+Minimally_Consistent ; property-comparison; Numeric_Value kPrimaryNumeric ; <4E00> <0061> ; <0031> <5146> <79ED> ;; \p{Numeric_Value=@kPrimaryNumeric@}
+Minimally_Consistent ; property-comparison; Script Script_Extensions ; <0061> ; <0964> ;; \p{Script_Extensions=@Script@}
+# \p{U15.0:Line_Break≠@U15.1:Line_Break@} already covered above.
+Minimally_Consistent ; property-comparison; kPrimaryNumeric ; <5146> ;;; \p{U16.0:kPrimaryNumeric≠@U17.0:kPrimaryNumeric@}
+# Examples from Section 2.5.3.3.
+Minimally_Consistent ; property-comparison ; Simple_Case_Folding ; <0061> <00DF> <4E00> ; <0041> ;; \p{scf=@code point@}
+Minimally_Consistent ; property-comparison ; kIRG_GSource ; <4E00> ; <0061> ;; [:^kIRG_GSource=@none@:]
+Minimally_Consistent ; property-comparison ; Bidi_Paired_Bracket ; <0061> ; <0028> ;; \p{Bidi_Paired_Bracket=@none@}
+Minimally_Consistent ;; Bidi_Paired_Bracket_Type ; <0061> ; <0028> ;; \p{Bidi_Paired_Bracket_Type=None}
+# Examples from Section 2.5.3.4.
+Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=16666666666666667/100000000000000000}
+Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{nv=0.16666666666666667}
+Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=0.16666667}
+# Examples from Section 2.5.3.5.
+Minimally_Consistent ;; Uppercase ;  ; ; 0 ; \p{nv=16666666666666667/100000000000000000}
+Minimally_Consistent ;; Uppercase ; <2159> ; <0031> ; ; \p{nv=0.16666666666666667}
+Minimally_Consistent ;; Uppercase ;  ; ; 0 ; \p{nv=0.16666667}
+Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase=True}
+Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase}
+Minimally_Consistent ;; Uppercase ; <0061> ; <0041> ;; \p{Uppercase=NO}
+Minimally_Consistent ;; Uppercase ; <0061> ; <0041> ;; \P{Uppercase}
+Minimally_Consistent ;; Script_Extensions ; <0061> <0041> <0301> ; <0947> ;; \p{Script_Extensions=Latin}
+Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{nv=2/12}
+Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{Numeric_Value=1/6}
+Minimally_Consistent   ;; Name_Alias ;   <0007> ;        ;       1 ; [\p{Name_Alias=BEL}]
+Minimally_Consistent   ;; Name Name_Alias ;   <0007> ;        ;  1 ; [\p{Name=BEL}]
+Minimally_Consistent   ;; Name_Alias ;   <FE18> ;        ;       1 ; [\p{Name_Alias=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}]
+Minimally_Consistent   ;; Name Name_Alias ;   <FE18> ;        ;  1 ; [\p{Name=PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}]
+# Examples from Section 2.5.3.6.
+Minimally_Consistent ; regular-expression-match ; Name ; <0041> <1D7B> ; <0061> ;; \p{Name=/CAPITAL LETTER/}
+Minimally_Consistent ; regular-expression-match ; Block ; <0400> <2DE0> <A640> <1C80> <1E030> ; <0061> <1D2B> ;; \p{Block=/^Cyrillic/}
+Minimally_Consistent ; regular-expression-match ; Script_Extensions ; <0964> <11D00> <11D6C> ; <0905> ;; \p{scx=/Gondi/}
+Minimally_Consistent ; regular-expression-match ; General_Category ; <0021> <0028> <002D> <005F> <0029> <2029> <E000> ; <0041> <0061> ;; \p{gc=/^P/}
+Minimally_Consistent ; regular-expression-match ; Name ;;; 0 ; \p{Name=/NO BREAK SPACE/}
+Minimally_Consistent ; regular-expression-match ; Name ; <00A0> <202F> <FEFF> ;; 3 ; \p{Name=/NO-BREAK SPACE/}
+Minimally_Consistent ; regular-expression-match ; Script ;;; 0 ; \p{Script=/ Gondi/}
+Minimally_Consistent ; regular-expression-match ; Script ; <11D00> <11D6C> ; <0905> <0964> ;; \p{Script=/_Gondi/}
+Minimally_Consistent ; regular-expression-match ; General_Category ;;; 0 ; \p{gc=/Cased_Letter/}
+Minimally_Consistent ; regular-expression-match ; General_Category ; <0021> ; <0028> <002D> <005F> <0029> <0041> <0061> <2029> <E000> ;; \p{gc=/^Po$/}
+# Examples from Section 3.1.
+Consistent             ;;;   <0061> <0062> ; <0043> ;      26 ; [a-z]
+Ill_Formed ; ; ; ; ; ; [z-a]
+Consistent             ;;;   <0061> ; <0062> <0043> ;      25 ; [ac-z]
+Syntactically_Complete ;;;        ;        ;       0 ; []
+Consistent             ;;;   <0064> ;;      1 ; [ [a-z] - [c] & [d] ]
+Consistent             ;;;   <0064> ;;      1 ; [d]
+Consistent             ;;;   <0061> <0062> ; <0043> ;      26 ; [ [a-z] - [[c] & [d]] ]
+Consistent             ;;;   <0061> <0062> <0064> ; <0063> <0043> ;      25 ; [ [a-z] - [c] [d] ]
+Consistent             ;;;   <0061> <0062> <0064> ; <0063> <0043> ;      25 ; [a-b d-z]
+Consistent             ;;;   <0061> <0062> ; <0063> <0064> <0043> ;      24 ; [ [a-z] - [[c] [d]] ]
+Consistent             ;;;   <0061> <0062> ; <0063> <0064> <0043> ;      24 ; [a-b e-z]
+Consistent             ;;;   <0062>        ; <0043> <0061>        ;      25 ; [[a-z][]-[a]]
+Consistent             ;;;   <0061> <0062> ; <0043>               ;      26 ; [[a-z][[]-[a]]]
+
+
+## Examples from https://www.unicode.org/reports/tr35/tr35-78/tr35.html#syntax-special-case-examples.
+Consistent             ;;;    ; <0061> ; 1114111 ; [^a]
+# Not actually a syntax error:
+Consistent             ;;;    ; <0061> ; 1114111 ; [ ^a]
+Ill_Formed        ;;;    ; ;  ; [a^]
+Minimally_Consistent   ;; General_Category ;   <0041> <0061> ; <002E> ; ; [:L:]
+Ill_Formed        ;;;    ; ;  ; [:L]
+Ill_Formed        ;;;    ; ;  ; [:]
+Consistent             ;;; <003A> ;  ; 1 ; [ :]
+Consistent             ;;; <003A> <004C> ;  ; 2 ; [L:]
+Syntactically_Complete ;;;   <002D> ;        ;       1 ; [-]
+Syntactically_Complete ;;;   <002D> ;        ;       1 ; [ - ]
+Consistent ;;; <0061> <002D> ;        ;       2 ; [a-]
+Consistent ;;; <0061> <002D> ;        ;       2 ; [-a]
+Consistent ;;; <0061> <0062> ;        ;       2 ; [a -b]
+Consistent ;;; <0061> ;        ;       1 ; [[a-b] -[b]]
+Consistent ;;; <0061> ;        ;       1 ; [[a]-[b]-[c]]
+Ill_Formed ;;;  ;        ;        ; [a-b-c]
+Syntactically_Complete ;;;    ; <002D> ; 1114111 ; [^ - ]
+# Not actually a syntax error:
+Syntactically_Complete ;;;    ; <002D> ; 1114111 ; [ ^ - ]
+Ill_Formed ;;;  ;        ;        ; [$]
+Ill_Formed ;;;  ;        ;        ; [ $ ]
+Ill_Formed ;;;  ;        ;        ; [$a]
+Ill_Formed ;;;  ;        ;        ; [$ a]
+Ill_Formed ;;;  ;        ;        ; [$und]
+Ill_Formed ;;;  ;        ;        ; [$a$]
+Ill_Formed ;;;  ;        ;        ; [a$]
+# TODO(egg): Ill-formed according to DUTS #61, well-formed according to ICU (currently documented as
+# an extension) and explicitly called out as well-formed in UTS #35.
+# Consider changing DUTS #61 and this line to
+# Consistent             ;;; <007D> ;  ; 1 ; [}]
+Ill_Formed             ;;;;  ;  ;   [}]
+Ill_Formed ;;;  ;        ;        ; [{]
+# [{}] covered above.
+Ill_Formed ;;;  ; ;; [{}}]
+Consistent             ;;; <007B> ;  ; 1 ; [{{}]
+Consistent             ;;; <0024 0076 0061 0072> ;  ; 1 ; [{$var}]
+Consistent             ;;; <005B 0061 002D 007A> ;  ; 1 ; [{[a-z}]
+# Spaces are no longer ignored in string literals.
+Consistent             ;;; <0020 005B 0020 0061 0020 002D 0020 007A> ;  ; 1 ; [{ [ a - z}]
+# Never implemented, not standardized in UTS #61 (was meant to be a string in UTS #35).
+Ill_Formed ;;;  ;        ;        ; [\x{10FFFF 1}]
+Ill_Formed ;;;  ;        ;        ; [\x{10FFFF1}]
+Consistent ;;; <0061> <0062> <0063> <0064> ;        ;       4 ; [\x{61}-d]
+Ill_Formed ;;;  ;        ;        ; [\x{61 63}-d]
+Ill_Formed ;;;  ;        ;        ; [\x{61 63}-\x{62 64}]
+
+
+## Parse error tests from ICU.
+
+Ill_Formed ;;;  ;        ;        ; [\u]
+Ill_Formed ;;;  ;        ;        ; [\x{}]
+
+
+Ill_Formed ;;;  ;        ;        ; [a-[b]]
+
+Ill_Formed ;;;  ;        ;        ; a-z
+
+Ill_Formed ;;;  ;        ;        ; [[a]&]
+
+Ill_Formed ;;;  ;        ;        ; [[a]&-[z]]
+Ill_Formed ;;;  ;        ;        ; [[a]--[z]]
+Ill_Formed ;;;  ;        ;        ; [{aa}-{zz}]
+
+Ill_Formed ;;;  ;        ;        ; [a&z]
+Ill_Formed ;;;  ;        ;        ; [{aa}&{zz}]
+
+Ill_Formed ;;;  ;        ;        ; [a^z]
+
+Ill_Formed ;;;  ;        ;        ; [a-{zz}]
+Ill_Formed ;;;  ;        ;        ; [[a]-{zz}]
+Ill_Formed ;;;  ;        ;        ; [[a]&{zz}]
+
+Ill_Formed ;;;  ;        ;        ; [{aa]
+
+Ill_Formed ;;;  ;        ;        ; [a-$]
+Ill_Formed ;;;  ;        ;        ; [!-$]
+
+Ill_Formed ;;;  ;        ;        ; [a-a]
+Ill_Formed ;;;  ;        ;        ; [z-a]
+
+Ill_Formed ;;;  ;        ;        ; [[a]-z]
+Ill_Formed ;;;  ;        ;        ; [[a]&z]
+
+Ill_Formed ;;;  ;        ;        ; [a-z
+
+Ill_Formed ;;;  ;        ;        ; [{\N{LATIN CAPITAL LETTER Z}]
+
+Ill_Formed ;;;  ;        ;        ; [{\Normandie}]
+Ill_Formed ;;;  ;        ;        ; [{\Picardie}]
+Ill_Formed ;;;  ;        ;        ; [{Provence-Al\pes-Côte d'Azur}]
+
+Ill_Formed ;;;  ;        ;        ; \N{ latin small letter a }
+
+# Ill_Formed ;;;  ;        ;        ; [ { Z e i c h e n k e t t e } Zeichenmenge ]
+# Ill_Formed ;;;  ;        ;        ; [ { \x5A e i c h e n k e t t e } \x5Aeichenmenge ]
+# Ill_Formed ;;;  ;        ;        ; [ { Z e i c h e n k e t t e } [] Zeichenmenge ]
+# Ill_Formed ;;;  ;        ;        ; [ { \x5A e i c h e n k e t t e } [] \x5Aeichenmenge ]
+
+Ill_Formed ;;;  ;        ;        ; [\xD‎F]
+Ill_Formed ;;;  ;        ;        ; [\00‎7]
+Ill_Formed ;;;  ;        ;        ; [\0‎07]
+Ill_Formed ;;;  ;        ;        ; [\uDBFF‎\uDFFF]
+Ill_Formed ;;;  ;        ;        ; [\x{DBFF}‎\U0000DFFF]
+Ill_Formed ;;;  ;        ;        ; [‎:Greek:]
+
+Ill_Formed ;;;  ;        ;        ; [\x{DBFF}\x{DFFF}]
+Ill_Formed ;;;  ;        ;        ; [\U0000DBFF\U0000DFFF]
+
+Ill_Formed ;;;  ;        ;        ; [:]
+Ill_Formed ;;;  ;        ;        ; \p
+Ill_Formed ;;;  ;        ;        ; [:^]
+Ill_Formed ;;;  ;        ;        ; \P
+Ill_Formed ;;;  ;        ;        ; \N
+Ill_Formed ;;;  ;        ;        ; [\p{Some_Property=\u}]
+Ill_Formed ;;;  ;        ;        ; [:Some_Property=\u:]
+Ill_Formed ;;;  ;        ;        ; \p{Some_Property=\N{SOME CHARACTER}}
+Ill_Formed ;;;  ;        ;        ; [\N{}]
+Ill_Formed ;;;  ;        ;        ; [ \N{FFFFFFFF:NOT A CODE POINT} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{0A:LATIN CAPITAL LETTER A} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{41:a:LATIN CAPITAL LETTER A} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒊺𒉀:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240::CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{::CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒉀::CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒉀:CUNEIFORM SIGN NAGA:} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:CUNEIFORM SIGN NAGA:𒉀} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{𒉀:12240:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{12240:𒉀} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{𒉀:CUNEIFORM SIGN NAGA} ]
+Ill_Formed ;;;  ;        ;        ; [ \N{BED:BED} ]
+
+Ill_Formed ;;;  ;        ;        ; \p{XID_Continue=}
+Ill_Formed ;;;  ;        ;        ; \p{Uppercase_Letter=}
+
+Ill_Formed ;;;  ;        ;        ; [: ^general category = punctuation :]
+
+# Ill_Formed ;;;  ;        ;        ; \P{Decomposition_Type≠compat}
+# Ill_Formed ;;;  ;        ;        ; [:^Noncharacter_Code_Point≠No:]
+
+# Ill_Formed ;;;  ;        ;        ; [\N{BEL}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{CJK UNIFIED IDEOGRAPH -55B5}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{Tibetan mark BKA-SHOG-YIG-MGO}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{Tibetan mark BKA--SHOG-YIG-MGO}]
+
+Ill_Formed ;;;  ;        ;        ; [\N{CJK UNIFIED IDEOGRAPH 55B5-}]
+## Miscellanea.
+
+# escaped-element tests
+Consistent             ;;;   <0000> ;        ;       1 ; [   \0]
+Consistent             ;;;   <0008> ;        ;       1 ; [   \10]
+Consistent             ;;;   <0038> ;        ;       1 ; [   \8]
+Consistent             ;;;   <01FF> ;        ;       1 ; [   \777]
+Consistent             ;;;   <0008> ;        ;       1 ; [   \b]
+Consistent             ;;;   <0009> ;        ;       1 ; [   \t]
+Consistent             ;;;   <000A> ;        ;       1 ; [   \n]
+Consistent             ;;;   <000B> ;        ;       1 ; [   \v]
+Consistent             ;;;   <000C> ;        ;       1 ; [   \f]
+Consistent             ;;;   <000D> ;        ;       1 ; [   \r]
+Consistent             ;;;   <001B> ;        ;       1 ; [   \e]
+Consistent             ;;;   <001B> ;        ;       1 ; [ \c[]
+Consistent             ;;;   <001D> ;        ;       1 ; [ \c]]
+Consistent             ;;;   <005B> ;        ;       1 ; [  \[]
+Consistent             ;;;   <005D> ;        ;       1 ; [  \]]
+Minimally_Consistent   ;;;   <0007> ;        ;       1 ; [\u0007]
+Minimally_Consistent   ;;;   <0007> ;        ;       1 ; [\U00000007]
+Minimally_Consistent   ;;;   <0007> ;        ;       1 ; [\x{7}]
+Minimally_Consistent   ;;;   <0007> ;        ;       1 ; [\x{000007}]
+Minimally_Consistent   ;;; <10FFFF> ;        ;       1 ; [\x{10FFFF}]
+Minimally_Consistent   ;;; <DBFF> <DFFF> ; <10FFFF> ;    2 ; [\uDBFF \uDFFF]
+Ill_Formed   ;;;  ; ;     ; [\uDBFF‎\uDFFF]
+Ill_Formed   ;;;  ; ;     ; [\uDBFF\uDFFF]
+# Some set arithmetic on top of escaped elements in the minimally-consistent set.
+Minimally_Consistent   ;;;   <0000> ;        ;     256 ; [[\x00-\x7f][\x80-\xff]]
+Minimally_Consistent   ;;;        ;        ;       0 ; [[\x00-\x7f]&[\x80-\xff]]
+Minimally_Consistent   ;;;   <0039> ;   <0040> ;      64 ; [[\x{0}-\x{7f}]-[\x{40}-\x{10FFFF}]]
+# Expressions that use only set-operators.
+Syntactically_Complete ;;;        ;        ; 1114112 ; [^]
+Syntactically_Complete ;;;        ;        ; 1114112 ; [[^] & [	^	]]
+Syntactically_Complete ;;;        ;        ;       0 ; [[^]&[]]
+Syntactically_Complete ;;;        ;        ; 1114112 ; [[^]-[]]
+Syntactically_Complete ;;;        ;   <002D> ; 1114111 ; [[^]-[-]]
+Syntactically_Complete ;;;        ;        ; 1114112 ; [[^]-[-]-]
+Syntactically_Complete ;;;        ;        ;       0 ; [[] - [^]]
+Syntactically_Complete ;;;        ;        ;       0 ; [[] []]
+Syntactically_Complete ;;;        ;        ; 1114112 ; [ [ ] [^] ]
+Syntactically_Complete ;;;        ;        ;       0 ; [ ^ [^] ]
+Syntactically_Complete ;;;        ;        ;       0 ; ‏[ ‏^ [‏^‏] ]‏
+Syntactically_Complete ;;;   <002D> ;        ;       1 ; [‎-‏]
+# Some basic examples involving literal-elements.
+Consistent             ;;;   <0043> ;   <0061> ;      26 ; [A-Z]
+Consistent             ;;; <0041> ; <0043> <0061> ;     25 ; [[A-Z]-[C]]
+Consistent             ;;; <0066> <0075> <0153>   ; ;    3 ; [œuf]
+Consistent             ;;; <0153 0075 0066> ; ;    1 ; [{œuf}]
+Consistent             ;;; <1F95A> ; ;    1 ; [🥚]
+# An expression that can realistically be tailored to mean something else
+# (\p{lb≠HL} in UAX #14).
+Consistent             ;;;        ;        ; 1114110 ; [^HL]
+# named-element tests
+Minimally_Consistent   ;; Name Name_Alias ;   <0007> ;        ;       1 ; [\N{BEL}]
+Minimally_Consistent   ;; Name Name_Alias ;   <0007> ;        ;       1 ; [\N{7:BEL}]
+Minimally_Consistent   ;; Name ;   <0037> ;        ;       1 ; [\N{37:7:DIGIT SEVEN}]
+Minimally_Consistent   ;; Name ;   <0061> ;   <0041> ;      26 ; [\N{LATIN SMALL LETTER A}-\N{LATIN SMALL LETTER Z}]
+Minimally_Consistent   ;; Name ;   <00A0> ;        ;       1 ; [\N{NO-BREAK SPACE}]
+Minimally_Consistent   ;; Name ;   <00A0> ;        ;       1 ; [\N{no break space}]
+Minimally_Consistent   ;; Name ;   <1180> ;        ;       1 ; [\N{HANGUL JUNGSEONG O-E}]
+Minimally_Consistent   ;; Name ;   <116C> ;        ;       1 ; [\N{HANGUL JUNGSEONG OE}]
+Minimally_Consistent   ;; Name ;   <1180> ;        ;       1 ; [\N{Hangul jungseong o-e}]
+Minimally_Consistent   ;; Name ;   <116C> ;        ;       1 ; [\N{Hangul jungseong oe}]
+Minimally_Consistent   ;; Name ;   <1180> ;        ;       1 ; [\N{HANGUL JUNGSEONG O -E}]
+Minimally_Consistent   ;; Name ;   <1180> ;        ;       1 ; [\N{ HANGUL JUNGSEONG O-E }]
+Minimally_Consistent   ;; Name ;   <1180> ;        ;       1 ; [\N{_HANGUL_JUNGSEONG_O-E_}]
+Minimally_Consistent   ;; Name ;   <117F> ;        ;       1 ; [\N{HANGUL JUNGSEONG O-EO}]
+Minimally_Consistent   ;; Name ;  <11C88> ;        ;       1 ; [\N{MARCHEN LETTER -A}]
+Minimally_Consistent   ;; Name ;  <11C88> ;        ;       1 ; [\N{MARCHEN_LETTER_-A}]
+Minimally_Consistent   ;; Name ;  <11C8F> ;        ;       1 ; [\N{MARCHEN LETTER A}]
+Minimally_Consistent   ;; Name ;   <0F39> ;        ;       1 ; [\N{TIBETAN MARK TSA -PHRU}]
+Minimally_Consistent   ;; Name ;   <0F0A> ;        ;       1 ; [\N{TIBETAN MARK BKA- SHOG YIG MGO}]
+Minimally_Consistent   ;; Name Name_Alias ;   <000A> ; ;   1 ; [\N{newline}]
+Minimally_Consistent   ;; Name Name_Alias ;   <000A> ; ;   1 ; [\N{NEW LINE}]
+Minimally_Consistent   ;; Name ;   <2E3A> ; ;   1 ; [\N{twoemdash}]
+Minimally_Consistent   ;; Name ;  <1F648> ; ;   1 ; [\N{SeeNoEvil_Monkey}]
+Minimally_Consistent   ;; Name ;  <1FA70> ; ;   1 ; [\N{BALLET S-H-O-E-S}]
+Minimally_Consistent   ;; Name ;   <0153> ; ;   1 ; [\N{LATIN SMALL LIGATURE O-E}]
+# property-query tests
+Minimally_Consistent   ;; General_Category ;   <0041> ;   <0061> ;         ; [:Lu:]
+Minimally_Consistent   ;; General_Category ;   <0041> ;   <0061> ;         ; \p{Lu}
+Minimally_Consistent   ;; General_Category ;   <0041> ;   <0061> ;         ; \p{Uppercase_Letter}
+Minimally_Consistent   ;; General_Category ;   <0041> ;   <0061> ;         ; \p{General_Category=Lu}
+Minimally_Consistent   ;; General_Category ;   <0041> ;   <0061> ;         ; \p{ general category = upper-case letter }
+Minimally_Consistent   ;; General_Category ;   <0041> <0061> ; <002E> ;         ; \p{L}
+Minimally_Consistent   ;; General_Category ;   <0041> <0061> ; <002E> ;         ; [:L:]
+Minimally_Consistent   ;; General_Category ;   <002E> ; <0041> <0061> ;         ; \p{Punctuation}
+Minimally_Consistent   ;; General_Category ;   <0024> ;  ;       1 ; [\p{currencysymbol}&[\u0000-\u007F]]
+Minimally_Consistent   ;; Script ;   <03B1> ;   <03E2> ;         ; \p{Greek}
+Minimally_Consistent   ;; Script ;   <03B1> ;   <03E2> ;         ; \p{IsGreek}
+Minimally_Consistent   ;; Block ; <03B1> <03E2> ;     ;     144 ; \p{Block=Greek}
+Minimally_Consistent   ;; Block ; <03B1> <03E2> ;     ;     144 ; \p{Block=Greek and Coptic}
+Minimally_Consistent   ;; Numeric_Value ; <0031> ; <002F> <0032> ; ; \p{nv=1}
+Minimally_Consistent ;; Numeric_Value ; <0030> ;; ; \p{nv=-0.0}
+Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=NaN}
+Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=naN}
+Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{Numeric_Value=+1/6}
+# Age tests
+Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11.0.0}
+Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11 . 0}
+Minimally_Consistent ;; Age ; <50005> ; <FFFF> ;; \p{Age=Unassigned}
+Ill_Formed ; ; ; ; ; ; [\N{TIBETAN MARK BKA SHOG YIG MGO}]
+Ill_Formed ; ; ; ; ; ; \N{LATIN SMALL LETTER A}
+Ill_Formed ; ; ; ; ; ; [[\N{LATIN SMALL LETTER A}-\N{LATIN SMALL LETTER Z}]-\N{LATIN SMALL LETTER A}]
+Ill_Formed ; ; ; ; ; ; [z-a]
+Ill_Formed ; ; ; ; ; ; [&]
+Ill_Formed ; ; ; ; ; ; [x&y]
+Ill_Formed ; ; ; ; ; ; [[a]--[z]]
+Ill_Formed ; ; ; ; ; ; [[a]&&[z]]
+Ill_Formed ; ; ; ; ; ; [[a]^[z]]
+Ill_Formed ; ; ; ; ; ; [[a]-⊔-[z]]
+Ill_Formed ; ; ; ; ; ; $name
+Ill_Formed ; ; ; ; ; ; [$name]
+Ill_Formed ; ; ; ; ; ; [$]

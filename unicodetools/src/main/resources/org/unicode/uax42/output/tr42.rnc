@@ -90,7 +90,7 @@
                    "TANGUT IDEOGRAPH-#" |
                    "KHITAN SMALL SCRIPT CHARACTER-#" |
                    "NUSHU CHARACTER-#" |
-                   "SEAL CHARACTER-#" |
+                   "SMALL SEAL CHARACTER-#" |
                    "JURCHEN CHARACTER-#" |
                    xsd:string { pattern="[a-zA-Z0-9]+(( -|- |[\-_ ])[a-zA-Z0-9]+)*" }
                  }?
@@ -154,7 +154,6 @@
                   | "Cherokee"
                   | "Cherokee_Sup"
                   | "Chess_Symbols"
-                  | "Chisoi"
                   | "Chorasmian"
                   | "CJK"
                   | "CJK_Compat"
@@ -704,8 +703,8 @@
            | "Avst"
            | "Bali" | "Bamu" | "Bass" | "Batk" | "Beng" | "Berf"
            | "Bhks" | "Bopo" | "Brah" | "Brai" | "Bugi" | "Buhd"
-           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chis"
-           | "Chrs" | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
+           | "Cakm" | "Cans" | "Cari" | "Cham" | "Cher" | "Chrs"
+           | "Copt" | "Cpmn" | "Cprt" | "Cyrl"
            | "Deva" | "Diak" | "Dogr" | "Dsrt" | "Dupl"
            | "Egyp" | "Elba" | "Elym" | "Ethi"
            | "Gara" | "Geor" | "Glag" | "Gong" | "Gonm" | "Goth"
@@ -1174,12 +1173,8 @@
          | xsd:string { pattern="VN-[023F][0-9A-F]{4}" }
     }?
 
-  
-
   code-point-attributes &= attribute kIRGHanyuDaZidian
     { xsd:string { pattern="[1-8]\d{4}\.[0-3]\d[01]" } }?
-
-  
 
   code-point-attributes &= attribute kJapanese
     { list { xsd:string { pattern="[\x{3041}-\x{3096}\x{3099}\x{309A}\x{30A1}-\x{30FA}\x{30FC}]+" }+ } }?
@@ -1321,7 +1316,7 @@
     { list { xsd:string { pattern="U\+[23]?[0-9A-F]{4}" }+ } }?
 
   code-point-attributes &= attribute kUnihanCore2020
-    { xsd:string { pattern="[GHJKMPT]{1,7}" } }?
+    {  "" | xsd:string { pattern="[GHJKMPT]{1,7}" } }?
 
   code-point-attributes &= attribute kVietnamese
     { list { xsd:string { pattern="[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+" }+ } }?
@@ -1404,7 +1399,7 @@
     { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &= attribute kEH_Func
-    { list { ("/" | xsd:string { pattern='[^\t]+' } )+} }?
+    { "" | list { ( "/" | xsd:string { pattern='[^\t]+' } )+} }?
 
   code-point-attributes &= attribute kEH_FVal
     { list { ("|" | xsd:string { pattern="[BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?>&\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+" } )+} }?
