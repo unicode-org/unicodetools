@@ -5,7 +5,7 @@
 ⍝ property factory that does the main UCD derivations),
 ⍝ Property: and Format: directives specify the contents of the files.
 ⍝ Files that use the Property: SPECIAL directive require ad hoc code in
-⍝ MakeUnicodeFiles.
+⍝ MakeUnicodeFiles.java.
 ⍝
 ⍝ TODO(egg): Provide general documentation on Property and Format.
 ⍝
