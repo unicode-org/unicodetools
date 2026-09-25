@@ -220,10 +220,10 @@ Unicode Tools.
     1.  Repeat step §4.2 above, but choose the service **unicode-jsps** instead
         of **unicode-jsps-staging**.
 7.  Check
-    1.  Go to <http://unicode.org/cldr/utility/> to check that that works, using
+    1.  Go to <https://util.unicode.org/UnicodeJsps/> to check that that works, using
         the same steps as #3, that is:
     2.  To check new characters (for example):
-        <http://unicode.org/cldr/utility/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
+        <https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
     3.  Check at the bottom for the right Unicode and ICU versions.
     4.  Click once on each top link to do simple sanity check.
 8.  Revert?

@@ -203,7 +203,7 @@ public class CheckXidmod {
                 UnicodeSet diff = new UnicodeSet(target).retainAll(script);
                 logln(
                         UScript.getName(i)
-                                + "\thttp://unicode.org/cldr/utility/list-unicodeset.jsp?abb=on&g=sc+gc+subhead&"
+                                + "\thttps://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?abb=on&g=sc+gc+subhead&"
                                 + diff.toPattern(false));
             }
         }

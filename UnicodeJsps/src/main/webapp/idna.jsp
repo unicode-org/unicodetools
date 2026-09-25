@@ -41,7 +41,7 @@
 <hr>
 <h2 id='notes'>Notes</h2>
 <ol>
-<li><a href='http://unicode.org/reports/tr46'>Unicode UTS #46: Unicode IDNA Compatibility Processing</a>
+<li><a href='https://www.unicode.org/reports/tr46'>Unicode UTS #46: Unicode IDNA Compatibility Processing</a>
 is designed to allow implementations to support both IDNA2008 and IDNA2003,
 without the compatibility problems resulting from the conflicts between them.</li>
 <li>Errors in labels are shown with red; the results may show &#xFFFD; if they are not determinant.</li>

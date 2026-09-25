@@ -1315,7 +1315,7 @@ class GeneratePickerData {
         }
 
         private String getUnicodeSetUrl(UnicodeSet set) {
-            return "http://unicode.org/cldr/utility/list-unicodeset.jsp?a="
+            return "https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a="
                     + fixURL(set.toPattern(false));
         }
 

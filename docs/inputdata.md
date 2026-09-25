@@ -47,13 +47,13 @@ Only for Unicode 15.0 and earlier:
 
 The source files that you will need for a release such as 8.0.0 are in:
 
-*   [ftp://unicode.org/Public/8.0.0/ucd](ftp://unicode.org/Public/8.0.0/ucd)
-*   [ftp://unicode.org/Public/UCA/8.0.0/](ftp://unicode.org/Public/UCA/8.0.0/)
-*   [ftp://unicode.org/Public/idna/8.0.0/](ftp://unicode.org/Public/idna/8.0.0/)
-*   [ftp://unicode.org/Public/security/8.0.0/](ftp://unicode.org/Public/security/8.0.0/)
-*   [ftp://unicode.org/Public/emoji/1.0/](ftp://unicode.org/Public/emoji/1.0/)
+*   [https://www.unicode.org/Public/8.0.0/ucd](https://www.unicode.org/Public/8.0.0/ucd)
+*   [https://www.unicode.org/Public/UCA/8.0.0/](https://www.unicode.org/Public/UCA/8.0.0/)
+*   [https://www.unicode.org/Public/idna/8.0.0/](https://www.unicode.org/Public/idna/8.0.0/)
+*   [https://www.unicode.org/Public/security/8.0.0/](https://www.unicode.org/Public/security/8.0.0/)
+*   [https://www.unicode.org/Public/emoji/1.0/](https://www.unicode.org/Public/emoji/1.0/)
     *— note version*
-*   [ftp://unicode.org/Public/8.0.0/ucdxml/](ftp://unicode.org/Public/8.0.0/ucdxml/)
+*   [https://www.unicode.org/Public/8.0.0/ucdxml/](https://www.unicode.org/Public/8.0.0/ucdxml/)
     *— but NOT:*
     *   ucd.\*.flat.zip or
     *   ucd.all.\*.zip

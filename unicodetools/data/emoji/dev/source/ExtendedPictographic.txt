@@ -10,7 +10,7 @@
 # It also includes unassigned codepoints that are in blocks intended for use for emoji characters, 
 # previously added to the Unicode 9.0 Linebreak property.
 #
-# For usage information, see http://unicode.org/reports/tr35/#Property_Data
+# For usage information, see https://www.unicode.org/reports/tr35/#Property_Data
 # 
 # Format
 #

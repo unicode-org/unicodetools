@@ -99,7 +99,7 @@ property is cached on disk and in memory.
 
 To test the XML properties from https://www.unicode.org/Public/XXX/ucdxml/
 
-1.  Make sure that the following files from ftp://unicode.org/Public/xxx/ucdxml/
+1.  Make sure that the following files from https://www.unicode.org/Public/xxx/ucdxml/
     are checked into <workspace>/unicodetools/data/ucdxml/xxx (unzipping as
     necessary).
     *   ucd.nounihan.grouped.xml

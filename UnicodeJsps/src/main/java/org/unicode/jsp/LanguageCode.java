@@ -383,7 +383,7 @@ public class LanguageCode {
             case script:
                 {
                     code =
-                            "<a href='http://unicode.org/iso15924/iso15924-en.html' target='iso'"
+                            "<a href='https://www.unicode.org/iso15924/iso15924-en.html' target='iso'"
                                     + name
                                     + ">"
                                     + code

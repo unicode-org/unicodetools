@@ -88,7 +88,7 @@ PR preparation:
 - [ ] pipeline-* — Set label:
   - **pipeline-recommended-to-UTC** if the characters are not yet in the pipeline,
   - **pipeline-provisionally-assigned**, or
-  - **pipeline-`<version>`** depending on their status in [the Pipeline](https://unicode.org/alloc/Pipeline.html#future).
+  - **pipeline-`<version>`** depending on their status in [the Pipeline](https://www.unicode.org/alloc/Pipeline.html#future).
 - [ ] PR button — Set to DRAFT pull request
   - unless approved for the upcoming version
 - [ ] PR button — Press

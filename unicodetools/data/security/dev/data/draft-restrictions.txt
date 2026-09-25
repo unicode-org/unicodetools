@@ -2,13 +2,13 @@
 #
 # This file contains a draft list of characters for use in
 #     UTR #36: Unicode Security Considerations
-#     http://unicode.org/draft/reports/tr36/tr36.html
+#     https://www.unicode.org/draft/reports/tr36/tr36.html
 # According to the recommendations in that document, these characters
 # would be restricted in domain names: people would only be able to use them
 # by using lenient security settings.
 #
 # If you have any feedback on this list, please use the submission form at:
-#     http://unicode.org/reporting.html.
+#     https://www.unicode.org/reporting.html.
 #
 # Notes:
 # - Characters are listed along with a reason for their removal.
@@ -19,7 +19,7 @@
 # - Characters listed as ~Unicode Identifiers are restricted because they
 #   do not fit the specification of identifiers given in
 #      UAX #31: Identifier and Pattern Syntax
-#      http://unicode.org/reports/tr31/
+#      https://www.unicode.org/reports/tr31/
 # - Characters listed as ~IICore are restricted because they are Ideographic,
 #   but not part of the IICore set defined by the IRG as the minimal set
 #   of required ideographs for East Asian use.

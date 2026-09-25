@@ -1216,7 +1216,7 @@ public final class BidiReference {
     private void setRule(String rule) {
         String[] anchor = rule.split("-");
         this.rule =
-                "<a target='doc' href='http://unicode.org/reports/tr9/#"
+                "<a target='doc' href='https://www.unicode.org/reports/tr9/#"
                         + anchor[0]
                         + "'>"
                         + rule

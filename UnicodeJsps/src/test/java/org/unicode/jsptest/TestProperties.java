@@ -132,7 +132,7 @@ public class TestProperties extends TestFmwk2 {
             if (scope == null) {
                 msg(
                         propName
-                                + " in PropertyAliases, but not in http://unicode.org/reports/tr44/proposed.html#Property_Index_Table",
+                                + " in PropertyAliases, but not in https://www.unicode.org/reports/tr44/proposed.html#Property_Index_Table",
                         SKIP_CJK.contains(propName)
                                 ? LOG
                                 : SKIP_FOR_NOW.contains(propName) ? WARN : ERR,

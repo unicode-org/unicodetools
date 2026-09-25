@@ -1263,10 +1263,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "ស្ត្រី",
                             "ᬦᬗ᭄ᬓ",
                             // Balinese example with subjoined U+1B0B from
-                            // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-17/#G27073:
+                            // https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-17/#G27073:
                             "ᬧᬓ᭄ᬋᬋᬄ",
                             // Khmer Examples with subscript independent vowel signs from
-                            // https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
+                            // https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G37635:
                             "ផ្ឯម",
                             "ហ្ឫទ័យ",
                             // Balinese example: AKARA with subjoined HA (and SURANG), from Figure 3
@@ -1278,12 +1278,12 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             // it is a single extended grapheme cluster.
                             "ᬅ᭄ᬳᬃ",
                             // Kannada examples from
-                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G695652.
+                            // https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G695652.
                             "ೱಕ",
                             "ೲಫ",
                             "ೱಕಿ",
                             // Bengali examples from
-                            // https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G723286.
+                            // https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G723286.
                             "ᳵক",
                             "ᳶপ",
                             "ᳵ\u200Cক",

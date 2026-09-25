@@ -983,13 +983,13 @@ public class IdentifierInfo {
         out.println("#");
         out.println("# This file contains a draft list of characters for use in");
         out.println("#     UTR #36: Unicode Security Considerations");
-        out.println("#     http://unicode.org/draft/reports/tr36/tr36.html");
+        out.println("#     https://www.unicode.org/draft/reports/tr36/tr36.html");
         out.println("# According to the recommendations in that document, these characters");
         out.println("# would be restricted in domain names: people would only be able to use them");
         out.println("# by using lenient security settings.");
         out.println("#");
         out.println("# If you have any feedback on this list, please use the submission form at:");
-        out.println("#     http://unicode.org/reporting.html.");
+        out.println("#     https://www.unicode.org/reporting.html.");
         out.println("#");
         out.println("# Notes:");
         out.println("# - Characters are listed along with a reason for their removal.");
@@ -1002,7 +1002,7 @@ public class IdentifierInfo {
         out.println("# - Characters listed as ~Unicode Identifiers are restricted because they");
         out.println("#   do not fit the specification of identifiers given in");
         out.println("#      UAX #31: Identifier and Pattern Syntax");
-        out.println("#      http://unicode.org/reports/tr31/");
+        out.println("#      https://www.unicode.org/reports/tr31/");
         out.println(
                 "# - Characters listed as ~IICore are restricted because they are Ideographic,");
         out.println("#   but not part of the IICore set defined by the IRG as the minimal set");
