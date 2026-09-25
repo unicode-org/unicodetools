@@ -11,8 +11,8 @@ core            := hangul-syllable
                  | core-linker-conjunct
                  | [^Control CR LF Extend ZWJ SpacingMark]
                  | postcore
-postcore        := [Extend ZWJ SpacingMark]
-                 | conjunct-extension
+postcore        := conjunct-extension
+                 | [Extend ZWJ SpacingMark]
 precore         := Prepend
 RI-Sequence     := RI RI
 hangul-syllable := L* (V+ | LV V* | LVT) T*
