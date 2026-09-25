@@ -86,7 +86,7 @@ public class PolaritySet<T> {
         return isPositive ? Collections.disjoint(source, c) : source.containsAll(c);
     }
 
-    // see https://unicode.org/reports/tr18/#Resolving_Character_Ranges_with_Strings
+    // see https://www.unicode.org/reports/tr18/#Resolving_Character_Ranges_with_Strings
 
     public boolean addAll(PolaritySet<T> other) {
         if (isPositive && other.isPositive) {

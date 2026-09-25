@@ -1,5 +1,5 @@
 This directory contains files needed for the bidiref1 tool invoked from
-the Bidi C Reference demo at http://www.unicode.org/cldr/utility/bidic.jsp
+the Bidi C Reference demo at https://util.unicode.org/UnicodeJsps/bidic.jsp
 
 The executable is built from the source files of the Bidi C Reference
 implementation.  Copies of the C source files used to be found in the

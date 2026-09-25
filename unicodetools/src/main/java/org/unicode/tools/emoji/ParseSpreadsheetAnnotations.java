@@ -980,7 +980,7 @@ public class ParseSpreadsheetAnnotations {
     <tr style='height:20px;'>
     <th id="155761641R3" style="height: 20px;" class="row-headers-background"><div class="row-header-wrapper" style="line-height: 20px;">4</div></th>
     <td class="s5" dir="ltr">_1f468_200d_2695</td>
-    <td class="s6" dir="ltr"><div style='width:71px;height:20px;background:url(//images-docs-opensocial.googleusercontent.com/gadgets/proxy?url=http://unicode.org/draft/reports/tr51/images/android/android_1f468_200d_2695.png&container=docs&gadget=docs&rewriteMime=image/*&resize_h=36&resize_w=36) no-repeat center top'/></td>
+    <td class="s6" dir="ltr"><div style='width:71px;height:20px;background:url(//images-docs-opensocial.googleusercontent.com/gadgets/proxy?url=https://www.unicode.org/draft/reports/tr51/images/android/android_1f468_200d_2695.png&container=docs&gadget=docs&rewriteMime=image/*&resize_h=36&resize_w=36) no-repeat center top'/></td>
     <td class="s7" dir="ltr">male health worker</td>
     <td class="s7" dir="ltr">doctor | healthcare | male | man | nurse | therapist</td>
     <td class="s8"></td>

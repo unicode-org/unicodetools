@@ -14,7 +14,7 @@ public class CandidateAnnotations {
         final TreeSet<String> sorted = cd.keySet().addAllTo(new TreeSet<String>(cd.comparator));
         // Internal sheet
         // U+1F600      =image(C1,4,36,36)
-        // http://unicode.org/reports/tr51/images/android/android_1f600.png
+        // https://www.unicode.org/reports/tr51/images/android/android_1f600.png
         // Native template
         // U+1F471      =vlookup(A1,Internal!A:B,2,0)   person with blond hair  sarı saçlı adam
 
@@ -31,7 +31,7 @@ public class CandidateAnnotations {
                             + "\t=image(C"
                             + row
                             + ",4,36,36)"
-                            + "\thttp://unicode.org/draft/reports/tr51/images/android/android_"
+                            + "\thttps://www.unicode.org/draft/reports/tr51/images/android/android_"
                             + hex
                             + ".png");
         }

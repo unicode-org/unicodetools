@@ -37,8 +37,8 @@ public class ShowMetaproperties {
         }
         System.out.println(
                 "# Table 9 Status+\n"
-                        + "# http://unicode.org/reports/tr44/proposed.html#Property_List_Table\n"
-                        + "# http://unicode.org/reports/tr38/proposed.html#AlphabeticalListing\n"
+                        + "# https://www.unicode.org/reports/tr44/proposed.html#Property_List_Table\n"
+                        + "# https://www.unicode.org/reports/tr38/proposed.html#AlphabeticalListing\n"
                         + "# property ; property_type ; property_status(s)");
         EnumSet<PropertyStatus> lastStatusSet = EnumSet.noneOf(PropertyStatus.class);
         for (final Entry<EnumSet<PropertyStatus>, UcdProperty> entry : map.keyValueSet()) {

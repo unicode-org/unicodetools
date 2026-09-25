@@ -349,7 +349,7 @@ public class VerifyXmlUcd {
 
             //    if (property.equals("Comp_Ex") || property.equals("CE")) {
             //    // all of Eric's values appear wrong. example: cp=0000, Comp_Ex=<y> != <n>
-            //    // http://unicode.org/Public/UNIDATA/CompositionExclusions.txt
+            //    // https://www.unicode.org/Public/UNIDATA/CompositionExclusions.txt
             //    // so skip them for now, since they muddy up the list
             //    return null;
             //    }
@@ -410,7 +410,7 @@ public class VerifyXmlUcd {
 
             if (property.equals("nv")) {
                 // I'm using the format in
-                // http://unicode.org/Public/UNIDATA/extracted/DerivedNumericValues.txt
+                // https://www.unicode.org/Public/UNIDATA/extracted/DerivedNumericValues.txt
                 toolValue = dumbFraction(toolValue);
             }
 

@@ -13,7 +13,7 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 Ignoring Block:
 
 # Note that the corresponding dispreferred sequences use Greek rather than Latin beta and chi,
-# since these are the letters used in the IPA (see https://unicode.org/charts/PDF/U0250.pdf).
+# since these are the letters used in the IPA (see https://www.unicode.org/charts/PDF/U0250.pdf).
 Propertywise [ \N{LATIN SMALL LETTER BETA WITH PALATAL HOOK}
                \N{LATIN SMALL LETTER THETA WITH PALATAL HOOK}
                \N{LATIN SMALL LETTER CHI WITH PALATAL HOOK} ]
