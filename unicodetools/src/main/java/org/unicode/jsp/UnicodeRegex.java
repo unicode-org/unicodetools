@@ -302,7 +302,9 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
             pos.setIndex(i);
             UnicodeSet x = temp.clear().applyPattern(regex, pos, symbolTable, 0);
             x.complement().complement(); // hack to fix toPattern
-            result.append(x.toPattern(false));
+            // # starts a comment in Java's COMMENTS mode, even in a set.
+            // https://github.com/unicode-org/unicodetools/issues/420
+            result.append(x.toPattern(false).replace("#", "\\x{23}"));
             i = pos.getIndex() - 1; // allow for the loop increment
             return i;
         } catch (Exception e) {
