@@ -1,8 +1,12 @@
 ; charset=UTF-8
-@@@	The Unicode Standard 18.0.0
-@@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-08-10, 15:32:05 GMT
-	Unicode 18.0.0 final names list.
+@@@	The Unicode Standard 19.0.0
+@@@+	NamesList-19.0.0.txt
+@+	Generation Date: 2026-09-25, 10:46:42 GMT
+	Unicode 19.0.0 names list.
+	Roll up of post 18.0 release bug fixes and suggestions.
+	Repertoire synched with UnicodeData-18.0.0d10.txt.
+	Add aliases for 2339, 235D.
+	Update annotation for 024B.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -1981,7 +1985,7 @@
 0249	LATIN SMALL LETTER J WITH STROKE
 024A	LATIN CAPITAL LETTER SMALL Q WITH HOOK TAIL
 024B	LATIN SMALL LETTER Q WITH HOOK TAIL
-	* this is actually a small letter alpha with a hook tail
+@+		This character represents [gb] in Lutheran missionary orthographies for some Papua New Guinea languages. It is also used in the English Phonotypic Alphabet, where it is treated instead as a small letter alpha with a hook tail.
 024C	LATIN CAPITAL LETTER R WITH STROKE
 024D	LATIN SMALL LETTER R WITH STROKE
 	x (latin small letter r with middle tilde - 1D72)
@@ -15173,6 +15177,7 @@
 	x (n-ary white vertical bar - 2AFF)
 2338	APL FUNCTIONAL SYMBOL QUAD EQUAL
 2339	APL FUNCTIONAL SYMBOL QUAD DIVIDE
+	= domino
 233A	APL FUNCTIONAL SYMBOL QUAD DIAMOND
 	x (white diamond in square - 26CB)
 233B	APL FUNCTIONAL SYMBOL QUAD JOT
@@ -15229,6 +15234,7 @@
 235B	APL FUNCTIONAL SYMBOL JOT UNDERBAR
 235C	APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR
 235D	APL FUNCTIONAL SYMBOL UP SHOE JOT
+	= lamp
 	x (intersection with dot - 2A40)
 235E	APL FUNCTIONAL SYMBOL QUOTE QUAD
 235F	APL FUNCTIONAL SYMBOL CIRCLE STAR
