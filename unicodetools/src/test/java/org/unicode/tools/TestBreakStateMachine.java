@@ -1,7 +1,6 @@
 package org.unicode.tools;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
@@ -21,10 +20,49 @@ import org.unicode.unittest.TestFmwkMinusMinus;
 public class TestBreakStateMachine extends TestFmwkMinusMinus {
 
     @Test
-    public void testLine() throws IOException {
-        final VersionInfo version = UCharacter.getUnicodeVersion();
+    public void testLine18() throws IOException {
+        testStateMachine("Line", "Line", VersionInfo.UNICODE_18_0);
+    }
+
+    @Test
+    public void testGrapheme18() throws IOException {
+        testStateMachine("GraphemeCluster", "Grapheme", VersionInfo.UNICODE_18_0);
+    }
+
+    @Test
+    public void testWord18() throws IOException {
+        testStateMachine("Word", "Word", VersionInfo.UNICODE_18_0);
+    }
+
+    @Test
+    public void testSentence18() throws IOException {
+        testStateMachine("Sentence", "Sentence", VersionInfo.UNICODE_18_0);
+    }
+
+    @Test
+    public void testLine17() throws IOException {
+        testStateMachine("Line", "Line", VersionInfo.UNICODE_17_0);
+    }
+
+    @Test
+    public void testGrapheme17() throws IOException {
+        testStateMachine("GraphemeCluster", "Grapheme", VersionInfo.UNICODE_17_0);
+    }
+
+    @Test
+    public void testWord17() throws IOException {
+        testStateMachine("Word", "Word", VersionInfo.UNICODE_17_0);
+    }
+
+    @Test
+    public void testSentence17() throws IOException {
+        testStateMachine("Sentence", "Sentence", VersionInfo.UNICODE_17_0);
+    }
+
+    public void testStateMachine(String kind, String testKind, VersionInfo version)
+            throws IOException {
         final var symbolTable = VersionedSymbolTable.frozenAt(version);
-        UnicodeMap<String> classes = new UnicodeMap<>();
+        UnicodeMap<String> symbols = new UnicodeMap<>();
         class State {
             boolean unconditionallyAccepting = false;
             String acceptingForLookahead = null;
@@ -35,7 +73,12 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
         try (var file =
                 new BufferedReader(
                         new FileReader(
-                                "C:\\Users\\robin\\Projects\\Unicode\\unicodetools\\LineBreakClasses.txt"))) {
+                                Settings.UnicodeTools.DATA_DIR
+                                        + "pri555/"
+                                        + version.getVersionString(3, 3)
+                                        + "/"
+                                        + kind
+                                        + "BreakSymbols.txt"))) {
             for (; ; ) {
                 String line = file.readLine();
                 if (line == null) {
@@ -46,14 +89,19 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
                     continue;
                 }
                 final String[] parts = line.split(" *; *", -1);
-                classes.putAll(
+                symbols.putAll(
                         new UnicodeSet(parts[1], new ParsePosition(0), symbolTable), parts[0]);
             }
         }
         try (var file =
                 new BufferedReader(
                         new FileReader(
-                                "C:\\Users\\robin\\Projects\\Unicode\\unicodetools\\LineBreakStates.txt"))) {
+                                Settings.UnicodeTools.DATA_DIR
+                                        + "pri555/"
+                                        + version.getVersionString(3, 3)
+                                        + "/"
+                                        + kind
+                                        + "BreakStates.txt"))) {
             for (; ; ) {
                 String line = file.readLine();
                 if (line == null) {
@@ -81,7 +129,12 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
         try (var file =
                 new BufferedReader(
                         new FileReader(
-                                "C:\\Users\\robin\\Projects\\Unicode\\unicodetools\\LineBreakTransitions.txt"))) {
+                                Settings.UnicodeTools.DATA_DIR
+                                        + "pri555/"
+                                        + version.getVersionString(3, 3)
+                                        + "/"
+                                        + kind
+                                        + "BreakTransitions.txt"))) {
             for (; ; ) {
                 String line = file.readLine();
                 if (line == null) {
@@ -100,7 +153,7 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
                         new FileReader(
                                 Settings.UnicodeTools.getDataPath(
                                                 "ucd", version.getVersionString(3, 3))
-                                        .resolve("auxiliary/LineBreakTest.txt")
+                                        .resolve("auxiliary/" + testKind + "BreakTest.txt")
                                         .toFile()))) {
             int errors = 0;
             int testCases = 0;
@@ -148,10 +201,10 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
 
                         String classAhead;
                         if (i == testString.length()) {
-                            classAhead = "eot";
+                            classAhead = symbols.get("eot");
                         } else {
                             int cp = testString.codePointAt(i);
-                            classAhead = classes.get(cp);
+                            classAhead = symbols.get(cp);
                             i += Character.charCount(cp);
                         }
                         state = state.transitions.get(classAhead);
@@ -163,6 +216,9 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
                         }
                     }
                     computedBreaks.add(lastBreak);
+                }
+                if (!kind.equals("Line")) {
+                    computedBreaks.add(0);
                 }
                 if (!computedBreaks.equals(expectedBreaks)) {
                     ++errors;
@@ -180,7 +236,7 @@ public class TestBreakStateMachine extends TestFmwkMinusMinus {
                 }
             }
             System.out.println("Ran " + testCases + " line breaking test cases");
-            assertEquals("LineBreakTest.txt errors", errors, 0);
+            assertEquals(testKind + "BreakTest.txt errors", errors, 0);
         }
     }
 }
