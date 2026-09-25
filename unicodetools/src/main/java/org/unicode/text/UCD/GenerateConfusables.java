@@ -164,8 +164,6 @@ public class GenerateConfusables {
                     throw new IllegalArgumentException("Unknown option: " + arg);
                 }
             }
-        } catch (final Exception e) {
-            e.printStackTrace();
         } finally {
             System.out.println("Done");
             System.out.println(
@@ -1123,6 +1121,17 @@ public class GenerateConfusables {
                 }
                 if (source.equals(target)) {
                     continue;
+                }
+                // UTS #39 normalizes to NFD before looking up confusable mappings.
+                if (!Default.nfd().isNormalized(source)) {
+                    throw new IllegalArgumentException(
+                            "Non-NFD source in confusables.txt: "
+                                    + Utility.hex(source)
+                                    + " ; "
+                                    + Utility.hex(target)
+                                    + " (NFD(source): "
+                                    + Utility.hex(Default.nfd().normalize(source))
+                                    + ")");
                 }
                 orderedPairs.add(new String[] {target, source});
                 Pair<String, String> pair = new Pair<String, String>(target, source);
