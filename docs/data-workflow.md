@@ -188,10 +188,13 @@ for example: .../unicodetools/data/ucd/17.0.0/ .
 List: emoji, idna, linkification, security, uca, ucd, ucdxml
 Watch for different naming conventions: emoji versions use only two fields, not three.
 
+In .\unicodetools\src\main\resources\org\unicode\tools\, In *name*-dev.txt to *name*-*version*.txt,
+e.g., Segmenter-dev.txt to Segmenter-17.0.0.txt.
+
 Edit the pub/*.sh scripts and advance the version numbers.
 
 Change the Unicode Tools code as necessary for the start of work on the next version.
-Settings.java lastVersion & latestVersion and more.
+Settings.java lastVersion & latestVersion and more. Look for FIX_FOR_NEW_VERSION.
 
 Example, Unicode 15.1→16.0: https://github.com/unicode-org/unicodetools/pull/539
 
