@@ -771,6 +771,12 @@ Let $nonLowercaseSmallModifierLetters := [ \p{gc=Lm} & \p{name=/^(ARABIC|CHINESE
 # or its decomposition is <square> (㋍ etc.).
 In [\P{Lowercase} - \p{dt=square}], \p{Lowercase} * toNFKD ≠ toNFKD
 
+# Modifier letters with a cased character in their decomposition must be Other_Lowercase,
+# including when they decompose to uppercase letters. See L2/22-124, UCD3 and UCD4.
+# https://github.com/unicode-org/unicodetools/issues/278
+In [\p{gc=Lm} - \p{dt=None} - \p{Other_Lowercase}],
+    \p{Cased} * Decomposition_Mapping = []
+
 ## Joining_Type and Joining_Group
 # Where defined, the Joining_Group refines the Joining_Type.
 OnPairsOf \P{Joining_Group=No_Joining_Group}, EqualityOf Joining_Group ⇒ EqualityOf Joining_Type
