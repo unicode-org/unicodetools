@@ -1,4 +1,5 @@
 <%@ page import="org.owasp.encoder.Encode" %>
+<%@ page import="java.util.regex.Pattern" %>
 <html>
 <head>
 <%@ include file="header.jsp" %>
@@ -26,8 +27,8 @@
 
         String fixedRegex;
         try {
-            fixedRegex = org.unicode.jsp.UnicodeRegex.fix(regex);
-            org.unicode.jsp.UnicodeRegex.compile(regex); // just to get the error message
+            fixedRegex = org.unicode.jsp.UnicodeRegex.fix(regex, Pattern.COMMENTS);
+            Pattern.compile(fixedRegex, Pattern.COMMENTS); // just to get the error message
             testPattern = UnicodeJsp.showRegexFind(fixedRegex, test);
         } catch (Exception e) {
             fixedRegex = e.getMessage();

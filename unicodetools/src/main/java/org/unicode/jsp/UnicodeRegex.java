@@ -16,8 +16,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParsePosition;
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -65,58 +67,32 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * @return A processed Java regex pattern, suitable for input to Pattern.compile().
      */
     public String transform(String regex) {
+        return transform(regex, 0);
+    }
+
+    /**
+     * Like {@link #transform(String)}, using the flags that will be passed to {@link
+     * Pattern#compile(String, int)}. Comments and ignored whitespace must be removed before
+     * expanding UnicodeSets, while literal characters introduced by expansion must be preserved.
+     */
+    public String transform(String regex, int flags) {
+        if ((flags & Pattern.LITERAL) != 0) {
+            return regex;
+        }
+        regex = removeComments(escapeQuotedText(regex), flags);
         StringBuilder result = new StringBuilder();
         UnicodeSet temp = new UnicodeSet();
         ParsePosition pos = new ParsePosition(0);
-        int state = 0; // 1 = after \
-
-        // We add each character unmodified to the output, unless we have a
-        // UnicodeSet. Note that we don't worry about supplementary characters,
-        // since none of the syntax uses them.
-
         for (int i = 0; i < regex.length(); ++i) {
-            // look for UnicodeSets, allowing for quoting with \ and \Q
             char ch = regex.charAt(i);
-            switch (state) {
-                case 0: // we only care about \, and '['.
-                    if (ch == '\\') {
-                        if (UnicodeSet.resemblesPattern(regex, i)) {
-                            // should only happen with \p
-                            i = processSet(regex, i, result, temp, pos);
-                            continue;
-                        }
-                        state = 1;
-                    } else if (ch == '[') {
-                        // if we have what looks like a UnicodeSet
-                        if (UnicodeSet.resemblesPattern(regex, i)) {
-                            i = processSet(regex, i, result, temp, pos);
-                            continue;
-                        }
-                    }
-                    break;
-
-                case 1: // we are after a \
-                    if (ch == 'Q') {
-                        state = 1;
-                    } else {
-                        state = 0;
-                    }
-                    break;
-
-                case 2: // we are in a \Q...
-                    if (ch == '\\') {
-                        state = 3;
-                    }
-                    break;
-
-                case 3: // we are in at \Q...\
-                    if (ch == 'E') {
-                        state = 0;
-                    }
-                    state = 2;
-                    break;
+            if ((ch == '\\' || ch == '[') && UnicodeSet.resemblesPattern(regex, i)) {
+                i = processSet(regex, i, result, temp, pos);
+                continue;
             }
             result.append(ch);
+            if (ch == '\\' && i + 1 < regex.length()) {
+                result.append(regex.charAt(++i));
+            }
         }
         return result.toString();
     }
@@ -129,6 +105,11 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      */
     public static String fix(String regex) {
         return STANDARD.transform(regex);
+    }
+
+    /** Like {@link #fix(String)}, with the flags used to compile the result. */
+    public static String fix(String regex, int flags) {
+        return STANDARD.transform(regex, flags);
     }
 
     /**
@@ -218,7 +199,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
      * @return Pattern
      */
     public static Pattern compile(String regex, int options) {
-        return Pattern.compile(STANDARD.transform(regex), options);
+        return Pattern.compile(STANDARD.transform(regex, options), options);
     }
 
     public String getBnfCommentString() {
@@ -296,13 +277,170 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
 
     // ===== PRIVATES =====
 
+    // Java processes quoting before comments. Hex escapes also let quoted text appear in a
+    // UnicodeSet, whose parser does not recognize Java's \Q...\E syntax.
+    private static String escapeQuotedText(String regex) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < regex.length(); ++i) {
+            char ch = regex.charAt(i);
+            if (ch == '\\' && i + 1 < regex.length()) {
+                char escaped = regex.charAt(++i);
+                if (escaped == 'Q') {
+                    int end = regex.indexOf("\\E", i + 1);
+                    if (end < 0) {
+                        end = regex.length();
+                    }
+                    for (++i; i < end; ) {
+                        int cp = regex.codePointAt(i);
+                        // Even a quoted line separator ends a preceding comment in Java.
+                        if (cp == 0
+                                || cp == '\n'
+                                || cp == '\r'
+                                || cp == 0x85
+                                || cp == 0x2028
+                                || cp == 0x2029) {
+                            result.append('\\').appendCodePoint(cp);
+                        } else {
+                            result.append("\\x{").append(Integer.toHexString(cp)).append('}');
+                        }
+                        i += Character.charCount(cp);
+                    }
+                    i = end < regex.length() ? end + 1 : end;
+                } else {
+                    result.append(ch).append(escaped);
+                }
+            } else {
+                result.append(ch);
+            }
+        }
+        return result.toString();
+    }
+
+    private static String removeComments(String regex, int flags) {
+        StringBuilder result = new StringBuilder();
+        Deque<Integer> groupFlags = new ArrayDeque<>();
+        int setDepth = 0;
+        // Parentheses and brackets in UnicodeSet string literals do not affect regex scopes.
+        boolean inString = false;
+        for (int i = 0; (i = skipIgnored(regex, i, flags)) < regex.length(); ++i) {
+            char ch = regex.charAt(i);
+            if (ch == '\\' && i + 1 < regex.length()) {
+                result.append(ch);
+                char escaped = regex.charAt(++i);
+                result.append(escaped);
+                if ("pPN".indexOf(escaped) >= 0
+                        && i + 1 < regex.length()
+                        && regex.charAt(i + 1) == '{') {
+                    // Property and character names have their own syntax (including spaces).
+                    int end = regex.indexOf('}', i + 2);
+                    if (end >= 0) {
+                        result.append(regex, i + 1, end + 1);
+                        i = end;
+                    }
+                }
+                continue;
+            }
+            if (!inString && regex.startsWith("[:", i)) {
+                int end = regex.indexOf(":]", i + 2);
+                if (end >= 0) {
+                    result.append(regex, i, end + 2);
+                    i = end + 1;
+                    continue;
+                }
+            }
+            if (setDepth > 0 && ch == '{') {
+                inString = true;
+            } else if (inString) {
+                if (ch == '}') {
+                    inString = false;
+                }
+            } else if (ch == '[') {
+                ++setDepth;
+            } else if (ch == ']' && setDepth > 0) {
+                --setDepth;
+            } else if (setDepth == 0 && ch == '(') {
+                groupFlags.push(flags);
+                int j = skipIgnored(regex, i + 1, flags);
+                if (j < regex.length() && regex.charAt(j) == '?') {
+                    StringBuilder prefix = new StringBuilder("(?");
+                    int newFlags = flags;
+                    boolean enable = true;
+                    boolean foundFlags = false;
+                    for (++j; (j = skipIgnored(regex, j, newFlags)) < regex.length(); ++j) {
+                        char flag = regex.charAt(j);
+                        if (flag == '-' && enable) {
+                            enable = false;
+                        } else if ("cdimsuUx".indexOf(flag) >= 0) {
+                            // Only these two flags affect comment parsing.
+                            int mask =
+                                    flag == 'x'
+                                            ? Pattern.COMMENTS
+                                            : flag == 'd' ? Pattern.UNIX_LINES : 0;
+                            newFlags = enable ? newFlags | mask : newFlags & ~mask;
+                        } else {
+                            if (flag == ':' || flag == ')') {
+                                result.append(prefix).append(flag);
+                                flags = newFlags;
+                                i = j;
+                                if (flag == ')') {
+                                    // An unscoped flag change lasts until the enclosing group ends.
+                                    groupFlags.pop();
+                                }
+                                foundFlags = true;
+                            }
+                            break;
+                        }
+                        prefix.append(flag);
+                    }
+                    if (foundFlags) {
+                        continue;
+                    }
+                }
+            } else if (setDepth == 0 && ch == ')' && !groupFlags.isEmpty()) {
+                flags = groupFlags.pop();
+            }
+            result.append(ch);
+        }
+        return result.toString();
+    }
+
+    private static int skipIgnored(String regex, int i, int flags) {
+        if ((flags & Pattern.COMMENTS) == 0) {
+            return i;
+        }
+        while (i < regex.length()) {
+            char ch = regex.charAt(i);
+            // Java COMMENTS uses ASCII whitespace, not UnicodeSet.IGNORE_SPACE.
+            if (ch == ' ' || (ch >= '\t' && ch <= '\r')) {
+                ++i;
+            } else if (ch == '#') {
+                while (++i < regex.length()) {
+                    ch = regex.charAt(i);
+                    if (ch == '\n'
+                            || ch == 0
+                            || ((flags & Pattern.UNIX_LINES) == 0
+                                    && (ch == '\r'
+                                            || ch == '\u0085'
+                                            || ch == '\u2028'
+                                            || ch == '\u2029'))) {
+                        break;
+                    }
+                }
+            } else {
+                break;
+            }
+        }
+        return i;
+    }
+
     private int processSet(
             String regex, int i, StringBuilder result, UnicodeSet temp, ParsePosition pos) {
         try {
             pos.setIndex(i);
             UnicodeSet x = temp.clear().applyPattern(regex, pos, symbolTable, 0);
             x.complement().complement(); // hack to fix toPattern
-            // # starts a comment in Java's COMMENTS mode, even in a set.
+            // Input comments have already been removed. Escape literal # characters introduced
+            // by expansion, since they would otherwise start comments in Java's COMMENTS mode.
             // https://github.com/unicode-org/unicodetools/issues/420
             result.append(x.toPattern(false).replace("#", "\\x{23}"));
             i = pos.getIndex() - 1; // allow for the loop increment
