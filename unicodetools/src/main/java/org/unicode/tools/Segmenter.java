@@ -525,8 +525,8 @@ public class Segmenter {
         private Map<Double, String> htmlRules = new TreeMap<Double, String>();
         private List<String> lastComments = new ArrayList<String>();
 
-        class NamedSet {
-            NamedSet(String name, String definition, UnicodeSet set) {
+        public static class NamedSet {
+            public NamedSet(String name, String definition, UnicodeSet set) {
                 this.name = name;
                 this.definition = definition;
                 this.set = set;
@@ -537,7 +537,7 @@ public class Segmenter {
             UnicodeSet set;
         }
 
-        public class NamedRefinedSet {
+        public static class NamedRefinedSet {
             public NamedRefinedSet clone() {
                 NamedRefinedSet result = new NamedRefinedSet();
                 for (var term : intersectionTerms) {
@@ -613,14 +613,17 @@ public class Segmenter {
 
             private UnicodeSet getIntersection() {
                 UnicodeSet result = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
+                if (!intersectionTerms.isEmpty()) {
+                    result = intersectionTerms.get(0).set;
+                }
                 for (var term : intersectionTerms) {
                     result.retainAll(term.set);
                 }
                 return result;
             }
 
-            private List<NamedSet> intersectionTerms = new ArrayList<>();
-            private List<NamedSet> subtrahends = new ArrayList<>();
+            public List<NamedSet> intersectionTerms = new ArrayList<>();
+            public List<NamedSet> subtrahends = new ArrayList<>();
             private UnicodeSet set = UnicodeSet.ALL_CODE_POINTS.cloneAsThawed();
         }
 
