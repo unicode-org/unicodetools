@@ -34,7 +34,7 @@
             String fixedbnfNoPercent = fixedbnf2.replaceAll("[0-9]+%", "");
             testPattern = UnicodeJsp.showRegexFind(fixedbnfNoPercent, test);
             try {
-                random = UnicodeJsp.getBnf(fixedbnf, 100, 10);
+                random = UnicodeJsp.getBnf(fixedbnf2, 100, 10);
             } catch (Exception e) {
                 random = Encode.forHtmlContent(java.util.Objects.toString(e.getMessage(), "error"));
             }
