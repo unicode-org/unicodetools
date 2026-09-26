@@ -299,4 +299,4 @@ Math_Entity_Name          ; Math_Entity_Name          ; NonUCDNonProperty
 Math_Entity_Set           ; Math_Entity_Set           ; NonUCDNonProperty
 Math_Descriptive_Comments ; Math_Descriptive_Comments ; NonUCDNonProperty
 
-UCA_Tertiary_Weight ; UCA_Tertiary_Weight ; NonUCDNonProperty
+UCA_Lead_Tertiary_Weight ; UCA_Lead_Tertiary_Weight ; NonUCDNonProperty

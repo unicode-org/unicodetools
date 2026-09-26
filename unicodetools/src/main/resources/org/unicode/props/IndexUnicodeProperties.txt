@@ -549,7 +549,7 @@ uca/*/allkeys; UCA_Fold_2_Non_Ignorable
 uca/*/allkeys; UCA_Fold_3_Non_Ignorable
 uca/*/allkeys; UCA_Next_Shifted
 uca/*/allkeys; UCA_Next_Non_Ignorable
-uca/*/allkeys; UCA_Tertiary_Weight
+uca/*/allkeys; UCA_Lead_Tertiary_Weight
 uca/*/basekeys; UCA_Fold_1_Shifted ; v3.0.0
 uca/*/basekeys; UCA_Fold_2_Shifted ; v3.0.0
 uca/*/basekeys; UCA_Fold_3_Shifted ; v3.0.0
@@ -559,7 +559,7 @@ uca/*/basekeys; UCA_Fold_2_Non_Ignorable ; v3.0.0
 uca/*/basekeys; UCA_Fold_3_Non_Ignorable ; v3.0.0
 uca/*/basekeys; UCA_Next_Shifted ; v3.0.0
 uca/*/basekeys; UCA_Next_Non_Ignorable ; v3.0.0
-uca/*/basekeys; UCA_Tertiary_Weight ; v3.0.0
+uca/*/basekeys; UCA_Lead_Tertiary_Weight ; v3.0.0
 
 idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2

@@ -324,10 +324,10 @@ public enum UcdProperty {
             null,
             ValueCardinality.Unordered,
             "SV"),
-    UCA_Tertiary_Weight(
+    UCA_Lead_Tertiary_Weight(
             PropertyType.Miscellaneous,
             DerivedPropertyStatus.NonUCDNonProperty,
-            "UCA_Tertiary_Weight"),
+            "UCA_Lead_Tertiary_Weight"),
     Unicode_1_Name(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "na1"),
     cjkUSource_Comments(
             PropertyType.Miscellaneous,

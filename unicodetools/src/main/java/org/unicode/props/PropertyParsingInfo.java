@@ -1106,8 +1106,8 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     propInfoSet);
         }
         putPropertyFromMap(
-                UcdProperty.UCA_Tertiary_Weight,
-                CollationProperties.getTertiaryWeights(indexUnicodeProperties.ucdVersion),
+                UcdProperty.UCA_Lead_Tertiary_Weight,
+                CollationProperties.getLeadTertiaryWeights(indexUnicodeProperties.ucdVersion),
                 indexUnicodeProperties,
                 nextProperties,
                 propInfoSet);

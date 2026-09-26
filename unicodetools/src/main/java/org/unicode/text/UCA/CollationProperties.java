@@ -298,7 +298,7 @@ public class CollationProperties {
         return next;
     }
 
-    public static UnicodeMap<String> getTertiaryWeights(VersionInfo version) {
+    public static UnicodeMap<String> getLeadTertiaryWeights(VersionInfo version) {
         if (version.compareTo(VersionInfo.UNICODE_2_1_9) < 0) {
             return new UnicodeMap<>();
         }
@@ -310,15 +310,9 @@ public class CollationProperties {
                 result.put(cp, Utility.hex(0));
                 continue;
             }
-            final int tertiaryWeight = CEList.getTertiary(collationElements.at(0));
-            for (int i = 1; i < collationElements.length(); ++i) {
-                if (CEList.getTertiary(collationElements.at(0)) != tertiaryWeight) {
-                    throw new IllegalArgumentException(
-                            "Mixed tertiaries: " + Utility.hex(cp) + " " + collationElements);
-                }
-            }
-            if (tertiaryWeight != 2) {
-                result.put(cp, Utility.hex(tertiaryWeight));
+            final int leadTertiary = CEList.getTertiary(collationElements.at(0));
+            if (leadTertiary != 2) {
+                result.put(cp, Utility.hex(leadTertiary));
             }
         }
         return result;

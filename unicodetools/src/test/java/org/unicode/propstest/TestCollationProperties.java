@@ -129,7 +129,7 @@ public class TestCollationProperties extends TestFmwkMinusMinus {
         assertEquals(
                 "Tertiary weight of ideograph one",
                 "0002",
-                iup.getProperty(UcdProperty.UCA_Tertiary_Weight).getValue("\u4E00"));
+                iup.getProperty(UcdProperty.UCA_Lead_Tertiary_Weight).getValue("\u4E00"));
         final var iup18 = IndexUnicodeProperties.make(VersionInfo.getInstance(18));
         // Defect in 18.0: https://github.com/unicode-org/properties/issues/663.
         assertEquals(
@@ -139,8 +139,10 @@ public class TestCollationProperties extends TestFmwkMinusMinus {
                         .removeAll(
                                 new UnicodeSet(
                                         "[ℏ\\N{1D6A6:MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S}]")),
-                iup18.getProperty(UcdProperty.UCA_Tertiary_Weight)
+                iup18.getProperty(UcdProperty.UCA_Lead_Tertiary_Weight)
                         .getSet("0005")
-                        .addAll(iup18.getProperty(UcdProperty.UCA_Tertiary_Weight).getSet("000B")));
+                        .addAll(
+                                iup18.getProperty(UcdProperty.UCA_Lead_Tertiary_Weight)
+                                        .getSet("000B")));
     }
 }

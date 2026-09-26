@@ -134,7 +134,7 @@ UCA_Fold_2_Non_Ignorable ;    SINGLE_VALUED ;               $codePoint
 UCA_Fold_3_Non_Ignorable ;    SINGLE_VALUED ;               $codePoint
 UCA_Next_Shifted         ;    SINGLE_VALUED ;               $codePoint
 UCA_Next_Non_Ignorable   ;    SINGLE_VALUED ;               $codePoint
-UCA_Tertiary_Weight      ;    SINGLE_VALUED ;               00[01][0-9A-F]
+UCA_Lead_Tertiary_Weight      ;    SINGLE_VALUED ;               00[01][0-9A-F]
 
 # Regex patterns from UAX 38 (Unihan)
 kAccountingNumeric ;          SINGLE_VALUED ;                NaN|\d+
