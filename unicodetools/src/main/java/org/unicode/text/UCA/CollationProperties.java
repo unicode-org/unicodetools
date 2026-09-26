@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.UCAContents;
 import org.unicode.text.UCA.UCA_Types.Alternate;
@@ -215,6 +219,39 @@ public class CollationProperties {
                 if (collationFolding.stringKeys() != null) {
                     collationFolding.removeAll(
                             new UnicodeSet().addAll(collationFolding.stringKeys()));
+                }
+            }
+            final var dt =
+                    IndexUnicodeProperties.make(version)
+                            .getProperty(UcdProperty.Decomposition_Type);
+            // We compute the foldings before decomposing so that we handle contractions properly
+            // without having to actually do the special handling of contraction required of a an:
+            // implementation of collation folding of strings: a canonical composite that is not a
+            // singleton is a contraction (like й) if it primary folds to itself.
+            // As far as equivalences of code points are concerned, folding to the decomposition
+            // would work too (we would need to keep the combining breve around in the primary
+            // folding), but it would be harder to find the contractions based on properties.
+            // Either way, contractions that do not correspond to a single character are have no
+            // effect on these mappings.
+            // When it comes to folding of strings, contractions require special handling, and the
+            // exact special handling would probably depend on this choice.
+
+            // Now add the canonical composites that are not listed in allkeys.txt (the Hangul
+            // syllables).
+            for (final String cp :
+                    dt.getSet(UcdPropertyValues.Decomposition_Type_Values.Canonical)) {
+                if (!collationFolding.containsKey(cp)) {
+                    collationFolding.put(
+                            cp,
+                            uca.getNFDNormalizer()
+                                    .normalize(cp)
+                                    .codePoints()
+                                    .mapToObj(
+                                            c ->
+                                                    Objects.requireNonNullElse(
+                                                            collationFolding.get(c),
+                                                            Character.toString(c)))
+                                    .collect(Collectors.joining()));
                 }
             }
         }
