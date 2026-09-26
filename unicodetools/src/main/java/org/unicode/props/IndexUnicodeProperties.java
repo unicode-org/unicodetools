@@ -773,14 +773,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             var raw = _getRawUnicodeMap();
             if (prop == UcdProperty.Name
                     || raw.containsValue("<code point>")
-                    || raw.containsValue("<codepoint>")) {
+                    || raw.containsValue("<codepoint>")
+                    || raw.containsValue("<next code point>")) {
                 final long start = System.currentTimeMillis();
                 UnicodeMap<String> newMap = new UnicodeMap<>();
                 for (UnicodeMap.EntryRange<String> range : raw.entryRanges()) {
+                    final var defaultValueType = DefaultValueType.forString(range.value);
                     if (range.codepoint == -1) {
                         newMap.put(range.string, range.value);
-                    } else if (DefaultValueType.forString(range.value)
-                                    == DefaultValueType.CODE_POINT
+                    } else if (defaultValueType == DefaultValueType.CODE_POINT
+                            || defaultValueType == DefaultValueType.NEXT_CODE_POINT
                             || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
                         for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
                             newMap.put(c, resolveValue(range.value, c));
