@@ -3,6 +3,7 @@ package org.unicode.test;
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.Composer;
+import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.MapComparator;
-import org.unicode.jsp.UnicodeRegex;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
@@ -58,8 +58,10 @@ public class TestSegment {
                 generationRules.append('\n');
             }
         }
-        rules = new UnicodeRegex().compileBnf(generationRules.toString());
-        String fixed = UnicodeRegex.fix(rules);
+        UnicodeRegex regex =
+                new UnicodeRegex().setSymbolTable(VersionedSymbolTable.forDevelopment());
+        rules = regex.compileBnf(generationRules.toString());
+        String fixed = regex.transform(rules);
 
         bnf = Pattern.compile(fixed);
     }
