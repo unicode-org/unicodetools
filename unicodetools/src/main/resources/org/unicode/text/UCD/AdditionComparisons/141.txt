@@ -12,14 +12,23 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Ignoring Block:
 
-Propertywise [  \N{HIRAGANA DIGRAPH KOTO}] ⧴ [{こと} {\N{HIRAGANA LETTER KO}\N{HIRAGANA LETTER TO}}]
-CorrespondTo [ゟ\N{HIRAGANA DIGRAPH YORI}] ⧴ [{より} {\N{HIRAGANA LETTER YO}\N{HIRAGANA LETTER RI}}]
+Propertywise [  \N{HIRAGANA DIGRAPH KOTO}]
+           ⧴ [{\N{3053:こ:HIRAGANA LETTER KO}\N{3068:と:HIRAGANA LETTER TO}}]
+           ⧴ [{\N{30B3:コ:KATAKANA LETTER KO}\N{30C8:ト:KATAKANA LETTER TO}}]
+           ⧴ [\N{30FF:ヿ:KATAKANA DIGRAPH KOTO}]
+CorrespondTo [\N{309F:ゟ:HIRAGANA DIGRAPH YORI}]
+           ⧴ [{より} {\N{HIRAGANA LETTER YO}\N{HIRAGANA LETTER RI}}]
+           ⧴ [{\N{30E8:ヨ:KATAKANA LETTER YO}\N{30EA:リ:KATAKANA LETTER RI}}]
+             # There is a KATAKANA DIGRAPH YORI in 18.0, but Katakana and
+             # Hiragana digraphs are equal at levels 1 through 3, so they fold
+             # to the first code point: Katakana for KOTO, Hiragana for Yori.
+           ⧴ [\N{309F:ゟ:HIRAGANA DIGRAPH YORI}]
 
-Propertywise [  \N{KATAKANA DIGRAPH TOTE} \N{KATAKANA DIGRAPH TOKI}]
-           ⧴ [{トテ} {\N{KATAKANA LETTER TO}\N{KATAKANA LETTER TE}}
-              {トキ} {\N{KATAKANA LETTER TO}\N{KATAKANA LETTER KI}}]
+Propertywise [\N{KATAKANA DIGRAPH TOTE} \N{KATAKANA DIGRAPH TOKI}]
+           ⧴ [{\N{30C8:ト:KATAKANA LETTER TO}\N{30C6:テ:KATAKANA LETTER TE}}
+              {\N{30C8:ト:KATAKANA LETTER TO}\N{30AD:キ:KATAKANA LETTER KI}}]
 CorrespondTo [ヿ\N{KATAKANA DIGRAPH KOTO}]
-           ⧴ [{コト} {\N{KATAKANA LETTER KO}\N{KATAKANA LETTER TO}}]
+           ⧴ [{\N{30B3:コ:KATAKANA LETTER KO}\N{30C8:ト:KATAKANA LETTER TO}}]
 
 end Ignoring;
 

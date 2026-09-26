@@ -11,6 +11,7 @@ package org.unicode.text.UCA;
 
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,6 +26,8 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
@@ -111,7 +114,7 @@ public final class UCA implements Comparator<String> {
 
     public static UCA getDucetCollator() {
         if (ducetCollator == null) {
-            ducetCollator = buildDucetCollator();
+            ducetCollator = buildDucetCollator(Settings.LATEST_VERSION_INFO);
         }
         return ducetCollator;
     }
@@ -250,8 +253,8 @@ public final class UCA implements Comparator<String> {
      * Initializes the collation from a stream of rules in the allkeys.txt format. If the source is
      * null, uses the normal Unicode data files, which need to be in BASE_DIR.
      */
-    public UCA(String sourceFile, String unicodeVersion) throws java.io.IOException {
-        this(sourceFile, unicodeVersion, -1, -1);
+    public UCA(String sourceFile, VersionInfo unicodeVersion) throws java.io.IOException {
+        this(new String[] {sourceFile}, unicodeVersion, unicodeVersion, -1, -1);
     }
 
     /**
@@ -259,25 +262,27 @@ public final class UCA implements Comparator<String> {
      * null, uses the normal Unicode data files, which need to be in BASE_DIR. Supports explicit
      * variableHigh for the CLDR sort order.
      */
-    UCA(String sourceFile, String unicodeVersion, int variableHigh, int firstNonVariable)
+    UCA(
+            String[] sourceFiles,
+            VersionInfo ducetVersion,
+            VersionInfo unicodeVersion,
+            int variableHigh,
+            int firstNonVariable)
             throws java.io.IOException {
-        fullData = sourceFile == null;
-        fileVersion = sourceFile;
+        final String versionString = unicodeVersion.getVersionString(3, 3);
+        fullData = sourceFiles == null;
+        fileVersion = sourceFiles == null ? null : sourceFiles[0];
 
         // load the normalizer
         if (toD == null) {
-            // TODO: We should remove the unicodeVersion argument and
-            // not try to create a collator for an old Unicode version
-            // because we do not track changes to special weight values and algorithm edge cases.
-            // Also, toD is static, so we cannot have multiple versions at the same time.
-            toD = Normalizer.getOrMakeNfdInstance(unicodeVersion);
+            toD = Normalizer.getOrMakeNfdInstance(versionString);
         }
 
-        ucd = UCD.make(unicodeVersion);
+        ucd = UCD.make(versionString);
         ucdVersion = ucd.getVersion();
 
         ucaData = new UCA_Data(toD, ucd, variableHigh, firstNonVariable);
-        implicit = new Implicit(ucd);
+        implicit = new Implicit(unicodeVersion);
 
         moreSamples = new UnicodeSet();
         moreSamples.add("\u09C7\u09BE");
@@ -298,9 +303,9 @@ public final class UCA implements Comparator<String> {
             moreSamples.add(r.codepoint).add(r.codepointEnd);
         }
 
-        {
+        for (final String sourceFile : sourceFiles) {
             final BufferedReader in = new BufferedReader(new FileReader(sourceFile), BUFFER_SIZE);
-            addCollationElements(in);
+            addCollationElements(in, ducetVersion);
             in.close();
         }
         cleanup();
@@ -723,9 +728,9 @@ public final class UCA implements Comparator<String> {
         // Otherwise concatenate all lists into a new one.
         final IntStack stack = new IntStack(30);
         ces1.appendNonZeroTo(stack);
-        do {
+        for (; ces != null; ces = nextCEs()) {
             ces.appendNonZeroTo(stack);
-        } while ((ces = nextCEs()) != null);
+        }
         return stack.isEmpty() ? CEList.EMPTY : new CEList(stack);
     }
 
@@ -833,7 +838,7 @@ public final class UCA implements Comparator<String> {
     }
 
     /** NFD required */
-    private static Normalizer toD;
+    private Normalizer toD;
 
     /** Records the dataversion */
     public static final String BADVERSION = "Missing @version in data!!";
@@ -929,7 +934,7 @@ public final class UCA implements Comparator<String> {
         return getCEListForImplicit(c);
     }
 
-    CEList getCEListForImplicit(int c) {
+    public CEList getCEListForImplicit(int c) {
         int implicitPair = implicit.primaryPairForCodePoint(c);
         int p =
                 makeKey(
@@ -1184,7 +1189,8 @@ public final class UCA implements Comparator<String> {
      * Adds the collation elements from a file (or other stream) in the UCA format. Values will
      * override any previous mappings.
      */
-    private void addCollationElements(BufferedReader in) throws java.io.IOException {
+    private void addCollationElements(BufferedReader in, VersionInfo ducetVersion)
+            throws java.io.IOException {
         final IntStack tempStack = new IntStack(100);
         final StringBuilder multiChars = new StringBuilder(); // used for contracting chars
         String inputLine = "";
@@ -1232,6 +1238,12 @@ public final class UCA implements Comparator<String> {
                             implicit.addRange(r);
                             continue;
                         }
+                    } else if (line.startsWith("@rearrange ")
+                            && ducetVersion.compareTo(VersionInfo.UNICODE_3_0_1) <= 0) {
+                        // TODO(egg): We probably need to do something about this to get a correct
+                        // collator, but it might be fine to ignore them for the code point folding
+                        // and order pseudoproperties.
+                        continue;
                     }
 
                     throw new IllegalArgumentException("Illegal @ command: " + line);
@@ -1468,6 +1480,12 @@ public final class UCA implements Comparator<String> {
         if (SHOW_STATS) {
             System.out.println("\trenumberedVariable: " + getStatistics().renumberedVariable);
         }
+        if (variableWarning != null || zeroVariableWarning != null) {
+            throw new IllegalArgumentException(
+                    Stream.of(variableWarning, zeroVariableWarning)
+                            .filter(w -> w != null)
+                            .collect(Collectors.joining("\n")));
+        }
     }
 
     /** Remove comments, extra whitespace */
@@ -1590,6 +1608,10 @@ public final class UCA implements Comparator<String> {
         return count;
     }
 
+    String variableWarning = null;
+
+    String zeroVariableWarning = null;
+
     /**
      * Gets a CE from a UCA format line
      *
@@ -1598,10 +1620,6 @@ public final class UCA implements Comparator<String> {
      * @param position on input, the place to start at. On output, updated to point to the next
      *     place to search.
      */
-    boolean haveVariableWarning = false;
-
-    boolean haveZeroVariableWarning = false;
-
     private int getCEFromLine(
             int value,
             String line,
@@ -1618,9 +1636,8 @@ public final class UCA implements Comparator<String> {
         final int key2 = Integer.parseInt(line.substring(start + 7, start + 11), 16);
         final int key3 = Integer.parseInt(line.substring(start + 12, start + 16), 16);
         if (key1 == 0 && variable) {
-            if (!haveZeroVariableWarning) {
-                System.out.println("\tBAD DATA: Zero L1s cannot be variable!!: " + line);
-                haveZeroVariableWarning = true;
+            if (zeroVariableWarning == null && !dataVersion.equals("2.1.9d8")) {
+                zeroVariableWarning = "\tBAD DATA: Zero L1s cannot be variable!!: " + line;
             }
             variable = false; // FIX DATA FILE
         }
@@ -1635,14 +1652,13 @@ public final class UCA implements Comparator<String> {
         // adjust variable bounds, if needed
         if (variable) {
             if (key1 > ucaData.nonVariableLow) {
-                if (!haveVariableWarning) {
-                    System.out.println(
+                if (variableWarning == null) {
+                    variableWarning =
                             "\tBAD DATA: Variable overlap, nonvariable low: "
                                     + Utility.hex(ucaData.nonVariableLow)
                                     + ", line: \""
                                     + line
-                                    + "\"");
-                    haveVariableWarning = true;
+                                    + "\"";
                 }
             } else {
                 if (key1 < ucaData.variableLow) {
@@ -1652,16 +1668,16 @@ public final class UCA implements Comparator<String> {
                     ucaData.variableHigh = key1;
                 }
             }
-        } else if (key1 != 0) { // not variable, not zero
+        } else if (key1 != 0 && !(value == '\uFFFE' && key1 == MAX_LOW_SPECIAL_PRIMARY)) {
+            // Not variable, not zero nor the weight of U+FFFE.
             if (key1 < ucaData.variableHigh) {
-                if (!haveVariableWarning) {
-                    System.out.println(
+                if (variableWarning == null) {
+                    variableWarning =
                             "\tBAD DATA: Variable overlap, variable high: "
                                     + Utility.hex(ucaData.variableHigh)
                                     + ", line: \""
                                     + line
-                                    + "\"");
-                    haveVariableWarning = true;
+                                    + "\"";
                 }
             } else {
                 if (key1 < ucaData.nonVariableLow) {
@@ -1735,17 +1751,39 @@ public final class UCA implements Comparator<String> {
         return getStatistics().homelessSecondaries;
     }
 
-    public static UCA buildDucetCollator() {
-        return buildCollator(-1, -1);
+    public static UCA buildDucetCollator(VersionInfo version) {
+        return buildCollator(version, -1, -1);
     }
 
-    private static UCA buildCollator(int variableHigh, int firstNonVariable) {
+    private static UCA buildCollator(VersionInfo version, int variableHigh, int firstNonVariable) {
         try {
             if (VERBOSE) System.out.println("Building UCA");
-            final Path dataPath = Settings.UnicodeTools.getDataPathForLatestVersion("uca");
-            final String file = Utility.searchDirectory(dataPath.toFile(), "allkeys", true, ".txt");
+            VersionInfo ducetVersion = version;
+            if (ducetVersion == VersionInfo.UNICODE_4_0_1) {
+                ducetVersion = VersionInfo.UNICODE_4_0;
+            } else if (ducetVersion == VersionInfo.UNICODE_3_2) {
+                ducetVersion = VersionInfo.UNICODE_3_1_1;
+            } else if (ducetVersion == VersionInfo.UNICODE_3_1_0) {
+                ducetVersion = VersionInfo.UNICODE_3_0_1;
+            } else if (ducetVersion == VersionInfo.UNICODE_3_0) {
+                ducetVersion = VersionInfo.UNICODE_2_1_9;
+            }
+            final Path dataPath =
+                    Settings.UnicodeTools.getDataPath("uca", ducetVersion.getVersionString(3, 3));
+            final String[] files =
+                    ducetVersion == VersionInfo.UNICODE_2_1_9
+                            ? new String[] {
+                                Utility.searchDirectory(
+                                        dataPath.toFile(), "basekeys", true, ".txt"),
+                                Utility.searchDirectory(
+                                        dataPath.toFile(), "compkeys", true, ".txt"),
+                                Utility.searchDirectory(dataPath.toFile(), "ctrckeys", true, ".txt")
+                            }
+                            : new String[] {
+                                Utility.searchDirectory(dataPath.toFile(), "allkeys", true, ".txt")
+                            };
             final UCA collator =
-                    new UCA(file, Default.ucdVersion(), variableHigh, firstNonVariable);
+                    new UCA(files, ducetVersion, version, variableHigh, firstNonVariable);
             if (VERBOSE)
                 System.out.println(
                         "Built version "
@@ -1794,7 +1832,9 @@ public final class UCA implements Comparator<String> {
                     break;
             }
         }
-        final UCA result = buildCollator(cldrVariableHigh, firstDucetNonVariable);
+        final UCA result =
+                buildCollator(
+                        Settings.LATEST_VERSION_INFO, cldrVariableHigh, firstDucetNonVariable);
 
         return result;
     }

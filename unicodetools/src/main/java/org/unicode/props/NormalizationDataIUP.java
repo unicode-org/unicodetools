@@ -29,7 +29,7 @@ public class NormalizationDataIUP implements NormalizationData {
     private final VersionInfo versionInfo;
     private final String version;
     private final UnicodeMap<Decomposition_Type_Values> decompType;
-    private final UnicodeMap<String> decompMap;
+    private final UnicodeProperty decompMap;
     private final UnicodeMap<Integer> ccc;
     private final UnicodeMap<General_Category_Values> gc;
 
@@ -41,7 +41,7 @@ public class NormalizationDataIUP implements NormalizationData {
         UnicodeSet compExclude = factory.loadEnumSet(UcdProperty.Composition_Exclusion, Binary.Yes);
         decompType =
                 factory.loadEnum(UcdProperty.Decomposition_Type, Decomposition_Type_Values.class);
-        decompMap = factory.load(UcdProperty.Decomposition_Mapping);
+        decompMap = factory.getProperty(UcdProperty.Decomposition_Mapping);
         ccc = factory.loadInt(UcdProperty.Canonical_Combining_Class);
 
         for (int i = 0; i < 0x10FFFF; ++i) {
@@ -77,7 +77,7 @@ public class NormalizationDataIUP implements NormalizationData {
             }
             try {
                 // final String s = ucd.getDecompositionMapping(i);
-                final String s = decompMap.get(i);
+                final String s = decompMap.getValue(i);
                 if (s.equals("<code point>")) { // could optimize
                     continue;
                 }
@@ -213,7 +213,7 @@ public class NormalizationDataIUP implements NormalizationData {
         // we know we decompose all CANONICAL, plus > CANONICAL if compat is TRUE.
         // if (dt == UCD_Types.CANONICAL || dt > UCD_Types.CANONICAL && compat) {
         if (dt == Decomposition_Type_Values.Canonical || isCompat(dt) && compat) {
-            final String s = decompMap.get(cp);
+            final String s = decompMap.getValue(cp);
             if (s.equals("<code point>") || s.equals(Character.toString(cp))) {
                 throw new IllegalArgumentException("decomp, but no map, " + Utility.hex(cp));
             }

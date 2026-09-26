@@ -1729,7 +1729,7 @@ public final class UCD implements UCD_Types {
         for (int i = 0; i < blockNames.size(); ++i) {
             final String longName = blockNames.get(i);
             final String shortName = longToShortBlockNames.get(longName);
-            if (shortName == null) {
+            if (shortName == null && versionInfo == Settings.LATEST_VERSION_INFO) {
                 throw new IllegalArgumentException(
                         "Missing short block name for "
                                 + longName

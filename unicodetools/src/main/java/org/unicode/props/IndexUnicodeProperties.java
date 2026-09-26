@@ -88,6 +88,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         LITERAL(null),
         NONE(null),
         CODE_POINT(null),
+        NEXT_CODE_POINT(null),
         Script(UcdProperty.Script),
         Simple_Lowercase_Mapping(UcdProperty.Simple_Lowercase_Mapping),
         Simple_Titlecase_Mapping(UcdProperty.Simple_Titlecase_Mapping),
@@ -102,6 +103,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             mapping.put("<suc>", Simple_Uppercase_Mapping);
             mapping.put("<codepoint>", CODE_POINT);
             mapping.put("<code point>", CODE_POINT);
+            mapping.put("<next code point>", NEXT_CODE_POINT);
             mapping.put("<script>", Script);
             // mapping.put("NaN", LITERAL);
         }
@@ -282,9 +284,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public UnicodeMap<Integer> loadInt(UcdProperty prop2) {
         UnicodeMap<Integer> result = INT_CACHE.get(prop2);
         if (result == null) {
-            UnicodeMap<String> m = load(prop2);
+            UnicodeProperty m = getProperty(prop2);
             result = new UnicodeMap<>();
-            for (String value : m.values()) {
+            for (String value : m.getAvailableValues()) {
                 UnicodeSet uset = m.getSet(value);
                 if (prop2 == UcdProperty.Canonical_Combining_Class) { // hack
                     value = ((Named) prop2.getEnum(value)).getNames().getShortName();
@@ -322,8 +324,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             return result;
         }
         result = new UnicodeMap<>();
-        UnicodeMap<String> m = load(prop2);
-        for (String value : m.values()) {
+        UnicodeProperty m = getProperty(prop2);
+        for (String value : m.getAvailableValues()) {
             T enumv = (T) prop2.getEnum(value);
             UnicodeSet uset = m.getSet(value);
             result.putAll(uset, enumv);
@@ -754,6 +756,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             switch (defaultValueType) {
                 case CODE_POINT:
                     return Character.toString(codePoint).equals(value);
+                case NEXT_CODE_POINT:
+                    return Character.toString(Math.min(codePoint + 1, 0x10FFFF)).equals(value);
                 case NONE:
                     return value == null;
                 case LITERAL:
@@ -769,14 +773,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             var raw = _getRawUnicodeMap();
             if (prop == UcdProperty.Name
                     || raw.containsValue("<code point>")
-                    || raw.containsValue("<codepoint>")) {
+                    || raw.containsValue("<codepoint>")
+                    || raw.containsValue("<next code point>")) {
                 final long start = System.currentTimeMillis();
                 UnicodeMap<String> newMap = new UnicodeMap<>();
                 for (UnicodeMap.EntryRange<String> range : raw.entryRanges()) {
+                    final var defaultValueType = DefaultValueType.forString(range.value);
                     if (range.codepoint == -1) {
                         newMap.put(range.string, range.value);
-                    } else if (DefaultValueType.forString(range.value)
-                                    == DefaultValueType.CODE_POINT
+                    } else if (defaultValueType == DefaultValueType.CODE_POINT
+                            || defaultValueType == DefaultValueType.NEXT_CODE_POINT
                             || (prop == UcdProperty.Name && range.value.endsWith("#"))) {
                         for (int c = range.codepoint; c <= range.codepointEnd; ++c) {
                             newMap.put(c, resolveValue(range.value, c));
@@ -827,6 +833,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         protected String _getValue(String string) {
+            if (!string.isEmpty()) {
+                final int cp = string.codePointAt(0);
+                if (Character.charCount(cp) == string.length()) {
+                    return _getValue(cp);
+                }
+            }
             return _getRawUnicodeMap().get(string);
         }
 
@@ -866,6 +878,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             if (DefaultValueType.forString(rawValue) == DefaultValueType.CODE_POINT) {
                 return Character.toString(codepoint);
+            } else if (DefaultValueType.forString(rawValue) == DefaultValueType.NEXT_CODE_POINT) {
+                return Character.toString(Math.min(codepoint + 1, 0x10FFFF));
             } else if (prop == UcdProperty.Name && rawValue != null && rawValue.endsWith("#")) {
                 return rawValue.substring(0, rawValue.length() - 1) + Utility.hex(codepoint);
             } else {

@@ -5,10 +5,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.CollationElementIterator;
 import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.RawCollationKey;
-import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
@@ -189,7 +186,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .set(new UnicodeSet("[\\u0000-\\uFFFF]"))
                         .setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
 
-        addCollationProperty();
         addExamplarProperty(LocaleData.ES_STANDARD, "exem", "exemplar");
         addExamplarProperty(LocaleData.ES_AUXILIARY, "exema", "exemplar_aux");
         addExamplarProperty(LocaleData.ES_PUNCTUATION, "exemp", "exemplar_punct");
@@ -268,102 +264,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .setMain(propertyName, propertyAbbreviation, UnicodeProperty.MISC, "1.1")
                         .addValueAliases(locales, AliasAddAction.ADD_MAIN_ALIAS)
                         .setMultivalued(true));
-    }
-
-    private void addCollationProperty() {
-        RuleBasedCollator c = UnicodeSetUtilities.RAW_COLLATOR;
-        // (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
-        // c.setCaseLevel(true);
-
-        UnicodeMap<String> collationMap0 = new UnicodeMap<String>();
-        UnicodeMap<String> collationMap1 = new UnicodeMap<String>();
-        UnicodeMap<String> collationMap2 = new UnicodeMap<String>();
-        UnicodeMap<String> collationMap3 = new UnicodeMap<String>();
-        RawCollationKey key = new RawCollationKey();
-        StringBuilder[] builder = {
-            new StringBuilder(), new StringBuilder(), new StringBuilder(), new StringBuilder()
-        };
-        UnicodeSet contractions = new UnicodeSet();
-        UnicodeSet expansions = new UnicodeSet();
-        try {
-            c.getContractionsAndExpansions(contractions, expansions, true);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e);
-        }
-        UnicodeSet stuff =
-                new UnicodeSet(ALL)
-                        .addAll(contractions)
-                        .addAll(expansions)
-                        .removeAll(new UnicodeSet("[:unified_ideograph:]"));
-        for (String s : stuff) {
-            // c.getRawCollationKey(s, key);
-            builder[0].setLength(0);
-            builder[1].setLength(0);
-            builder[2].setLength(0);
-            builder[3].setLength(0);
-            CollationElementIterator it = c.getCollationElementIterator(s);
-            int primary = 0;
-            int secondary = 0;
-            int tertiary = 0;
-            int caseLevel = 0;
-
-            int nextCe = it.next();
-            while (true) {
-                // we need to peek
-                int ce = nextCe;
-                if (ce == CollationElementIterator.NULLORDER) {
-                    break;
-                }
-                nextCe = it.next();
-                if (ce == 0) {
-                    continue;
-                }
-                primary = CollationElementIterator.primaryOrder(ce);
-                secondary = CollationElementIterator.secondaryOrder(ce);
-                tertiary = CollationElementIterator.tertiaryOrder(ce);
-                caseLevel = tertiary & (0x80 + 0x40);
-                tertiary ^= caseLevel;
-                caseLevel |= 1; // fake 1 bit
-
-                while (nextCe != CollationElementIterator.NULLORDER
-                        && (nextCe & 0xC0) == 0xC0) { // Continuation!!
-                    ce = nextCe;
-                    nextCe = it.next();
-                    primary = (primary << 16) | CollationElementIterator.primaryOrder(ce);
-                    secondary = (secondary << 8) | CollationElementIterator.secondaryOrder(ce);
-                    tertiary =
-                            (tertiary << 8) | (CollationElementIterator.tertiaryOrder(ce) & 0x3F);
-                }
-                addBytes(builder[0], primary);
-                addBytes(builder[1], secondary);
-                addBytes(builder[2], caseLevel);
-                addBytes(builder[3], tertiary);
-            }
-            collationMap0.put(s, builder[0].toString());
-            collationMap1.put(s, builder[1].toString());
-            collationMap2.put(s, builder[2].toString());
-            collationMap3.put(s, builder[3].toString());
-        }
-        //        System.out.println(collationMap0.values().size());
-        //        System.out.println(collationMap1.values().size());
-        //        System.out.println(collationMap2.values().size());
-        //        System.out.println(collationMap3.values().size());
-        add(
-                new UnicodeProperty.UnicodeMapProperty()
-                        .set(collationMap0)
-                        .setMain("uca", "uca1", UnicodeProperty.ENUMERATED, "1.1"));
-        add(
-                new UnicodeProperty.UnicodeMapProperty()
-                        .set(collationMap1)
-                        .setMain("uca2", "uca2", UnicodeProperty.ENUMERATED, "1.1"));
-        add(
-                new UnicodeProperty.UnicodeMapProperty()
-                        .set(collationMap2)
-                        .setMain("uca2.5", "uca2.5", UnicodeProperty.ENUMERATED, "1.1"));
-        add(
-                new UnicodeProperty.UnicodeMapProperty()
-                        .set(collationMap3)
-                        .setMain("uca3", "uca3", UnicodeProperty.ENUMERATED, "1.1"));
     }
 
     private void addBytes(StringBuilder builder, int bytes) {

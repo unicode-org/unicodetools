@@ -1,10 +1,12 @@
 package org.unicode.text.UCA;
 
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.util.ArrayList;
 import java.util.List;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 
 /**
@@ -111,11 +113,20 @@ public class Implicit {
     final UnicodeSet unifiedIdeographSet;
     List<Range> ranges = new ArrayList<Range>();
 
-    Implicit(UCD ucd) {
-        String unicodeVersion = ucd.getVersion();
-        ToolUnicodePropertySource propSource = ToolUnicodePropertySource.make(unicodeVersion);
-        unassignedSet = propSource.getProperty("General_Category").getSet("Cn");
-        unifiedIdeographSet = propSource.getProperty("Unified_Ideograph").getSet("True");
+    Implicit(VersionInfo version) {
+        final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
+        unassignedSet = iup.getProperty("General_Category").getSet("Cn");
+        if (version.compareTo(VersionInfo.UNICODE_3_2) < 0) {
+            // The Unified_Ideograph property was added in 3.2.0.
+            unifiedIdeographSet =
+                    iup.getProperty(UcdProperty.Decomposition_Type)
+                            .getSet("none")
+                            .removeAll(
+                                    iup.getProperty(UcdProperty.kRSUnicode)
+                                            .getSet(UnicodeProperty.NULL_MATCHER));
+        } else {
+            unifiedIdeographSet = iup.getProperty("Unified_Ideograph").getSet("True");
+        }
         unifiedIdeographSet.freeze();
     }
 
@@ -183,6 +194,14 @@ public class Implicit {
     }
 
     public int codePointForPrimaryPair(int lead, int trail) {
+        if (lead < 0 || lead > 0xFFFF || trail < 0 || trail > 0xFFFF) {
+            throw new IllegalArgumentException(
+                    "("
+                            + Utility.hex(lead)
+                            + ", "
+                            + Utility.hex(trail)
+                            + ") is not a primary pair (did you pass entire collation elements instead or primary weights?)");
+        }
         if (lead < START || trail <= 0x7FFF) {
             // not implicit
         } else if (lead < CJK_BASE) {
