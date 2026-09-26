@@ -12,6 +12,10 @@ public class TestCollationProperties extends TestFmwkMinusMinus {
     public void TestCollationFolding() {
         final var iup = IndexUnicodeProperties.make();
         assertEquals(
+                "Primary equivalence of 가 and ㉮",
+                iup.getProperty(UcdProperty.UCA_Fold_1_Shifted).getValue("㉮"),
+                iup.getProperty(UcdProperty.UCA_Fold_1_Shifted).getValue("가"));
+        assertEquals(
                 "Shifted primary equivalents of ideograph one",
                 new UnicodeSet("[㈠ ⼀㊀㆒🈩一]"),
                 iup.getProperty(UcdProperty.UCA_Fold_1_Shifted).getSet("\u4E00"));
