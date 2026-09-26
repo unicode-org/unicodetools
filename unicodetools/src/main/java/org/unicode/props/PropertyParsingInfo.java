@@ -1934,6 +1934,9 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // Supply the default value before applying the first real data line.
                     String defaultValue = null;
                     switch (propInfo.property) {
+                        case Bidi_Class:
+                            defaultValue = "L";
+                            break;
                         case Bidi_Mirroring_Glyph:
                             defaultValue = "<none>";
                             break;
@@ -2048,6 +2051,16 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                         line.getOriginalLine(),
                         line.getType() == UcdLineParser.UcdLine.Contents.EMPTY,
                         version);
+            }
+        }
+        if (propInfo.property == UcdProperty.Bidi_Class
+                && version.compareTo(VersionInfo.UNICODE_4_0) < 0) {
+            // Before 4.0, DerivedBidiClass omitted unassigned code points, including those
+            // with regional defaults other than L. Fill only entries absent from the file.
+            final var defaults =
+                    DefaultValues.BidiClass.forVersion(version, DefaultValues.BidiClass.Option.ALL);
+            for (final int cp : data.getSet(null).codePoints()) {
+                data.put(cp, defaults.get(cp).toString());
             }
         }
     }
