@@ -1918,6 +1918,16 @@ Lowercase ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 Math ; 6.0 ; [⟎⟏] ; 120-A78
 
 # ==========================================================
+# Documentation for changes to Noncharacter_Code_Point assignments
+# ==========================================================
+
+# Noncharacter_Code_Point assignment changes in Unicode Version 3.1
+# null
+# null
+# null
+Noncharacter_Code_Point ; 3.1 ; [\uFDD0-\uFDEF] ; 84-M20, 84-A21, 84-A22
+
+# ==========================================================
 # Documentation for changes to Other_Alphabetic assignments
 # ==========================================================
 
