@@ -179,7 +179,8 @@ public class GenerateNormalizeForMatch {
             }
         }
         // add fake numbers that aren't handled with the number hack above
-        // see also https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=[:name=/NUMBER/:]&[:scx=common:]
+        // see also
+        // https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=[:name=/NUMBER/:]&[:scx=common:]
         builder.put("NUMBER SIXTY", "60");
         builder.put("NUMBER SEVENTY", "70");
         builder.put("NUMBER EIGHTY", "80");
