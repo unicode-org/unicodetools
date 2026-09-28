@@ -97,6 +97,19 @@
 
 # End of binary properties.
 
+# These files gained @missing lines in Unicode 5.0. Supply the earlier defaults
+# without depending on another version of the property having been loaded first.
+# @missing: 0000..10FFFF; Age; Unassigned; v4.1.0
+# @missing: 0000..10FFFF; Block; No_Block; v4.1.0
+# @missing: 0000..10FFFF; East_Asian_Width; Neutral; v4.1.0
+# @missing: 0000..10FFFF; Grapheme_Cluster_Break; Other; v4.1.0
+# @missing: 0000..10FFFF; Hangul_Syllable_Type; Not_Applicable; v4.1.0
+# @missing: 0000..10FFFF; Joining_Type; Non_Joining; v4.1.0
+# @missing: 0000..10FFFF; Line_Break; Unknown; v4.1.0
+# @missing: 0000..10FFFF; Numeric_Type; None; v4.1.0
+# @missing: 0000..10FFFF; Sentence_Break; Other; v4.1.0
+# @missing: 0000..10FFFF; Word_Break; Other; v4.1.0
+
 # Common, until decision 106-C17 made it Unknown (Zzzz).
 # @missing: 0000..10FFFF; Script; Zyyy; v4.1.0
 
