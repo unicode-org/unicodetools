@@ -348,7 +348,7 @@ public class GenerateIdna {
                 "Base Valid Set & nfkcqc=n"
                         + new UnicodeSet("[:nfkcqc=n:]").retainAll(baseValidSet));
 
-        // https://www.unicode.org/reports/tr46/#TableDerivationStep3
+        // https://unicode.org/reports/tr46/#TableDerivationStep3
         // Fixed base exclusion set since Unicode 16.
         // (We now ignore mapping changes between IDNA2003 and UTS #46.)
         // U+FFFC OBJECT REPLACEMENT CHARACTER
