@@ -33,7 +33,7 @@ public class TestBidiClassDefaults {
         // An ordinary unassigned code point still has the overall default, L.
         assertEquals("Left_To_Right", bidi.getValue(0x0378));
 
-        // The regional defaults must not overwrite explicit assignments in these ranges.
+        // The complex default values must not overwrite explicit assignments in these ranges.
         assertEquals("Nonspacing_Mark", bidi.getValue(0x0591));
         assertEquals("Arabic_Number", bidi.getValue(0x0660));
         assertEquals("Boundary_Neutral", bidi.getValue(0xFEFF));
