@@ -2,7 +2,9 @@ package org.unicode.text.UCA;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.ibm.icu.text.UnicodeSet;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -16,6 +18,7 @@ public class TestImplicit {
         UCA uca = UCA.getDucetCollator();
         UnicodeProperty blocks =
                 IndexUnicodeProperties.make(uca.getUCDVersion()).getProperty(UcdProperty.Block);
+        UnicodeSet noBlock = blocks.getSet(Block_Values.No_Block);
         assertFalse(
                 uca.implicit.declaredRanges.isEmpty(),
                 "No @implicitweights directives found in allkeys.txt");
@@ -36,12 +39,9 @@ public class TestImplicit {
                         "Implicit-weight range ends inside a block: " + description);
             }
             // Include unassigned code points when checking for gaps between blocks.
-            for (int cp = range.start(); cp <= range.end(); ++cp) {
-                assertNotEquals(
-                        Block_Values.No_Block.toString(),
-                        blocks.getValue(cp),
-                        "Implicit-weight range includes No_Block: " + description);
-            }
+            assertTrue(
+                    noBlock.containsNone(range.start(), range.end()),
+                    "Implicit-weight range includes No_Block: " + description);
         }
     }
 }
