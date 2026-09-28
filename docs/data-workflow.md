@@ -188,6 +188,9 @@ for example: .../unicodetools/data/ucd/17.0.0/ .
 List: emoji, idna, linkification, security, uca, ucd, ucdxml
 Watch for different naming conventions: emoji versions use only two fields, not three.
 
+Internal security inputs and review files in `unicodetools/data/security/internal/`
+are shared across Unicode versions and are not copied into the versioned release folders.
+
 In .\unicodetools\src\main\resources\org\unicode\tools\, In *name*-dev.txt to *name*-*version*.txt,
 e.g., Segmenter-dev.txt to Segmenter-17.0.0.txt.
 

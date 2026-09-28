@@ -78,8 +78,8 @@ public class GenerateConfusables {
     private static final String REVISION = Settings.latestVersion;
     static final String VERSION_PROP_VALUE = REVISION; // "V7_0";
 
-    static final String reformatedInternal =
-            Settings.UnicodeTools.getDataPathString("security", REVISION) + "/data/";
+    // Internal inputs and review files are shared across Unicode versions.
+    static final String reformatedInternal = Settings.UnicodeTools.DATA_DIR + "security/internal/";
     public static final String GEN_SECURITY_DIR =
             Settings.Output.GEN_DIR + "security/" + REVISION + "/";
 
