@@ -483,7 +483,9 @@ public class TestTypology extends TestFmwk {
         }
         String uset2 = uset.toPattern(false);
         String href =
-                "<a href='http://unicode.org/cldr/utility/list-unicodeset.jsp?a=" + uset2 + "'>";
+                "<a href='https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a="
+                        + uset2
+                        + "'>";
         return "<span class='b'>" + href + setString + "</a></span>";
     }
 
