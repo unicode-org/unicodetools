@@ -20,7 +20,7 @@ public class TestBidiClassDefaults {
             String version, Bidi_Class_Values expectedFdd0, Bidi_Class_Values expected07c0) {
         final var bidi = IndexUnicodeProperties.make(version).getProperty(UcdProperty.Bidi_Class);
 
-        // Unassigned code points with regional defaults, omitted from the pre-4.0 files.
+        // Unassigned code points with complex default values, omitted from the pre-4.0 files.
         assertEquals("Right_To_Left", bidi.getValue(0x0590));
         assertEquals("Right_To_Left", bidi.getValue(0xFB37));
         assertEquals("Arabic_Letter", bidi.getValue(0x070E));
