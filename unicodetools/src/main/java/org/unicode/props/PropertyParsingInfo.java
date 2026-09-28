@@ -2053,7 +2053,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         if (propInfo.property == UcdProperty.Bidi_Class
                 && version.compareTo(VersionInfo.UNICODE_4_0) < 0) {
             // Before 4.0, DerivedBidiClass omitted unassigned code points, including those
-            // with regional defaults other than L. Fill only entries absent from the file.
+            // with complex default values other than L. Fill only entries absent from the file.
             final var defaults =
                     DefaultValues.BidiClass.forVersion(version, DefaultValues.BidiClass.Option.ALL);
             for (final int cp : data.getSet(null).codePoints()) {
