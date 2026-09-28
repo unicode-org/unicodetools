@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -13,6 +14,7 @@ import java.text.ParsePosition;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.UCD.TestUnicodeInvariants.BackwardParseException;
+import org.unicode.text.UCD.TestUnicodeInvariants.PairRelation;
 import org.unicode.text.utility.Settings;
 
 public class TestTestUnicodeInvariants {
@@ -88,6 +90,44 @@ public class TestTestUnicodeInvariants {
         int rc =
                 TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", "security", true);
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(security) failed");
+    }
+
+    @Test
+    void testOnPairsOf() throws IOException {
+        assertEquals(0, TestUnicodeInvariants.testInvariants("OnPairsOf.txt", "on-pairs-of", true));
+    }
+
+    @Test
+    void testPairedByCounterexamples() throws ParseException {
+        final var domain = new UnicodeSet("[Aab]");
+        final var original = PairRelation.parse(domain, "PairedBy lc, uc", new ParsePosition(0));
+        // Keep the first member A, but change the second member from a to b.
+        final var changed =
+                PairRelation.parse(
+                        domain, "PairedBy (constant b), (constant A)", new ParsePosition(0));
+        final var lost = original.counterexamplesTo(changed);
+        final var gained = changed.counterexamplesTo(original);
+        assertEquals(1, lost.size());
+        assertEquals(1, gained.size());
+        assertTrue(lost.get(0).contains("(U+0041, U+0061)"));
+        assertTrue(gained.get(0).contains("(U+0041, U+0062)"));
+    }
+
+    @Test
+    void testPairRelationParsingErrors() {
+        for (String source :
+                new String[] {
+                    "PairedBy , uc",
+                    "PairedBy lc, ⇔",
+                    "PairedBy lc, ",
+                    "PairedBy lc ⇔",
+                    "Unknown lc"
+                }) {
+            assertThrows(
+                    ParseException.class,
+                    () -> PairRelation.parse(new UnicodeSet("[Aa]"), source, new ParsePosition(0)),
+                    source);
+        }
     }
 
     @Test

@@ -90,13 +90,25 @@
 #   For each character in the first <unicodeSet>, verify that the result of applying the left <props>
 #   is (∈|∉) the right-hand-side unicodeSet.
 ##########################
-# OnPairsOf <unicodeSet>, EqualityOf <props> (⇐|⇔|⇒|⇍|⇎|⇏) EqualityOf <props>
-# 
-# Verify that the equivalence of elements of <unicodeSet> up to the left <props> is is implied,
-# equivalent, or implies equivalence up to the right <props>, or verify the negation of these
-# relations.
+# OnPairsOf <unicodeSet>, <pairRelation> (⇐|⇔|⇒|⇍|⇎|⇏) <pairRelation>
 #
-# On both sides, <props> is a composition of properties and filters, as in an “In” line.
+# Verify that the left relation on ordered pairs of elements of <unicodeSet> is
+# implied by, equivalent to, or implies the right relation, or verify the negation
+# of that assertion. A negated operator requires at least one counterexample to
+# the corresponding unnegated assertion; it does not negate each individual pair.
+#
+# A <pairRelation> is one of:
+#   EqualityOf <props>: <props>(X) = <props>(Y).
+#   PairedBy <forwardProps>, <reverseProps>:
+#       X ≠ Y AND <forwardProps>(X) = Y AND <reverseProps>(Y) = X.
+# Both X and Y must belong to the domain. They may be code points or strings.
+# In particular, when the domain contains only code points, a mapping to a
+# multi-code-point string cannot form a pair.
+#
+# Each <props> is a composition of properties and filters, as in an “In” line.
+# For string elements, apply it to each code point and concatenate the results.
+# Either relation kind can occur on either side. EqualityOf includes (X, X);
+# PairedBy excludes it, so EqualityOf cannot imply PairedBy on a nonempty domain.
 #
 #   Example:
 #       The case-insensitive comparison of ASCII identifiers defined by comparing their uppercase
@@ -111,6 +123,10 @@
 #       Specifically, full case folding is coarser than simple case folding.
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇏ EqualityOf Simple_Case_Folding
 #          OnPairsOf $strings, EqualityOf Case_Folding ⇐ EqualityOf Simple_Case_Folding
+#       Case pairs between previously assigned characters are stable:
+#          OnPairsOf \P{U-1:gc=Cn},
+#              PairedBy U-1:Lowercase_Mapping, U-1:Uppercase_Mapping
+#              ⇔ PairedBy Lowercase_Mapping, Uppercase_Mapping
 ##########################
 # Ignoring <properties>:
 #     <propertywise checks>
@@ -310,43 +326,18 @@ In \p{U-1:XID_Continue}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 In \P{U-1:gc=Cn}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
-#
-# A pair can change only if its lowercase or uppercase mapping changes. For each
-# changed mapping, check that it forms neither an old pair nor a new pair between
-# two distinct, previously assigned characters. Both mapping directions must be
-# checked, since changing either one can destroy or create a pair.
-# Filtering the intermediate value to old characters allows pairs involving a
-# newly assigned character. [$code_points] is the identity transformation.
+# Both members must have been assigned in the previous version. Pairs involving
+# newly assigned characters are allowed.
 Let $oldAssigned := \P{U-1:gc=Cn}
-
-# Full mappings must have a single-code-point value to form a pair. The regular
-# expression (?s:.) matches exactly one code point, including line terminators.
-# Exclude identity mappings because the members of a case pair must be distinct.
-Let $fullChangedLower := [$oldAssigned & \p{lc≠@U-1:lc@}]
-In [$fullChangedLower & \p{U-1:lc≠@code point@} & \p{U-1:lc=/(?s:.)/}],
-    U-1:uc * [$oldAssigned] * U-1:lc ≠ [$code_points]
-In [$fullChangedLower & \p{lc≠@code point@} & \p{lc=/(?s:.)/}],
-    uc * [$oldAssigned] * lc ≠ [$code_points]
-
-Let $fullChangedUpper := [$oldAssigned & \p{uc≠@U-1:uc@}]
-In [$fullChangedUpper & \p{U-1:uc≠@code point@} & \p{U-1:uc=/(?s:.)/}],
-    U-1:lc * [$oldAssigned] * U-1:uc ≠ [$code_points]
-In [$fullChangedUpper & \p{uc≠@code point@} & \p{uc=/(?s:.)/}],
-    lc * [$oldAssigned] * uc ≠ [$code_points]
+OnPairsOf $oldAssigned,
+    PairedBy U-1:Lowercase_Mapping, U-1:Uppercase_Mapping
+    ⇔ PairedBy Lowercase_Mapping, Uppercase_Mapping
 
 # Not yet included in the published stability policy, but see https://www.unicode.org/L2/L2023/23005.htm#174-A11
-# Simple counterparts of the above; simple mappings always have one code point.
-Let $simpleChangedLower := [$oldAssigned & \p{slc≠@U-1:slc@}]
-In [$simpleChangedLower & \p{U-1:slc≠@code point@}],
-    U-1:suc * [$oldAssigned] * U-1:slc ≠ [$code_points]
-In [$simpleChangedLower & \p{slc≠@code point@}],
-    suc * [$oldAssigned] * slc ≠ [$code_points]
-
-Let $simpleChangedUpper := [$oldAssigned & \p{suc≠@U-1:suc@}]
-In [$simpleChangedUpper & \p{U-1:suc≠@code point@}],
-    U-1:slc * [$oldAssigned] * U-1:suc ≠ [$code_points]
-In [$simpleChangedUpper & \p{suc≠@code point@}],
-    slc * [$oldAssigned] * suc ≠ [$code_points]
+# Simple counterpart of the above.
+OnPairsOf $oldAssigned,
+    PairedBy U-1:Simple_Lowercase_Mapping, U-1:Simple_Uppercase_Mapping
+    ⇔ PairedBy Simple_Lowercase_Mapping, Simple_Uppercase_Mapping
 
 # Red Flag: cased and case_ignorable should be disjoint,
 # except for modifier letters and ◌ͅ.
