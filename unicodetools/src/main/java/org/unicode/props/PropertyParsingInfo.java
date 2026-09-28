@@ -1934,9 +1934,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                     // Supply the default value before applying the first real data line.
                     String defaultValue = null;
                     switch (propInfo.property) {
-                        case Bidi_Class:
-                            defaultValue = "L";
-                            break;
                         case Bidi_Mirroring_Glyph:
                             defaultValue = "<none>";
                             break;
