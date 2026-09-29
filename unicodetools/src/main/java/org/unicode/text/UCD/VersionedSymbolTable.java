@@ -307,14 +307,14 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 // property-value, sticking it in a string deals with unescaping escaped-element and
                 // named-element without having to export the relevant ICU innards (nor
                 // reimplementing them here).
+                final UnicodeSet valueString;
                 try {
-                    UnicodeSet valueString =
-                            new UnicodeSet("[{" + propertyValue + "}]", null, this);
-                    return queriedProperty.getSet(valueString.iterator().next());
+                     valueString = new UnicodeSet("[{" + propertyValue + "}]", null, this);
                 } catch (IllegalArgumentException e) {
                     throw new IllegalArgumentException(
                             "Invalid property-value " + propertyValue, e);
                 }
+                return queriedProperty.getSet(valueString.iterator().next());
             }
             if (queriedProperty.getName().equals("General_Category")) {
                 return getGeneralCategorySet(queriedProperties, propertyValue);
