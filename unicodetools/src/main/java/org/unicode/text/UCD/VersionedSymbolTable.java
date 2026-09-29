@@ -309,7 +309,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 // reimplementing them here).
                 final UnicodeSet valueString;
                 try {
-                     valueString = new UnicodeSet("[{" + propertyValue + "}]", null, this);
+                    valueString = new UnicodeSet("[{" + propertyValue + "}]", null, this);
                 } catch (IllegalArgumentException e) {
                     throw new IllegalArgumentException(
                             "Invalid property-value " + propertyValue, e);
