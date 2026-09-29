@@ -74,7 +74,6 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
                                     .toArray(String[]::new);
             final Integer size = fields[5].isBlank() ? null : Integer.parseInt(fields[5]);
             final var expression = fields[6];
-            final var pp = new ParsePosition(0);
             if (scope.equals("Ill_Formed")) {
                 assertEquals(
                         "Ill-formed test must not expect elements:\n" + line, 0, elements.length);
@@ -87,7 +86,7 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
             UnicodeSet setUnderTest = null;
             final var symbolTable = new UnicodeSetTestSymbolTable(Settings.LATEST_VERSION_INFO);
             try {
-                setUnderTest = new UnicodeSet(expression, pp, symbolTable);
+                setUnderTest = new UnicodeSet(expression, null, symbolTable);
                 if (scope.equals("Ill_Formed")) {
                     System.out.println(
                             "+++ Extension: "
