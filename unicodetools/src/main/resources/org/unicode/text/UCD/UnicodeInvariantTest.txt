@@ -1139,8 +1139,8 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 
 # TODO(egg): We could check that the variation selectors are used consistently, but this would
 # require UnicodeProperty to support strings properly.
-\p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
-\p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
+\p{emoji_variation_sequence=text\ style} ⊃ [{♈︎}]
+\p{emoji_variation_sequence=emoji\ style} ⊃ [{♈️}]
 
 # The file emoji-test.txt states that
 # • The RGI set is covered by the listed fully-qualified emoji.
@@ -1496,7 +1496,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 
 # TODO(egg): We could check that the variation selectors are used consistently, but this would
 # require UnicodeProperty to support strings properly.
-\p{Standardized_Variant=rotated 90 degrees} ⊃ [{𓏲\uFE00}]
+\p{Standardized_Variant=rotated\ 90\ degrees} ⊃ [{𓏲\uFE00}]
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.

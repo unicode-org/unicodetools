@@ -307,8 +307,14 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                 // property-value, sticking it in a string deals with unescaping escaped-element and
                 // named-element without having to export the relevant ICU innards (nor
                 // reimplementing them here).
-                UnicodeSet valueString = new UnicodeSet("[{" + propertyValue + "}]");
-                return queriedProperty.getSet(valueString.iterator().next());
+                try {
+                    UnicodeSet valueString =
+                            new UnicodeSet("[{" + propertyValue + "}]", null, this);
+                    return queriedProperty.getSet(valueString.iterator().next());
+                } catch (IllegalArgumentException e) {
+                    throw new IllegalArgumentException(
+                            "Invalid property-value " + propertyValue, e);
+                }
             }
             if (queriedProperty.getName().equals("General_Category")) {
                 return getGeneralCategorySet(queriedProperties, propertyValue);
@@ -563,7 +569,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
     private static Pattern FLOAT_PATTERN = Pattern.compile("[+-]?[0-9]+\\.[0-9]+");
     private static Pattern PROPERTY_VALUE_PATTERN =
             Pattern.compile(
-                    "((\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@/])(\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@])*)?");
+                    "((\\\\[xN]\\{[^}]*\\}|\\\\c?.|[^\\\\:{}=≠@/])(\\\\[xN]\\{[^}]*\\}|\\\\c?.|[^\\\\:{}=≠@])*)?");
 
     public static UnicodeSet.XSymbolTable NO_PROPS =
             new UnicodeSet.XSymbolTable() {
