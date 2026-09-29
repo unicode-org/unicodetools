@@ -445,7 +445,7 @@ Minimally_Consistent   ;; General_Category ;   <0041> ;   <0061> ;         ; \p{
 Minimally_Consistent   ;; General_Category ;   <0041> <0061> ; <002E> ;         ; \p{L}
 Minimally_Consistent   ;; General_Category ;   <0041> <0061> ; <002E> ;         ; [:L:]
 Minimally_Consistent   ;; General_Category ;   <002E> ; <0041> <0061> ;         ; \p{Punctuation}
-Minimally_Consistent   ;; General_Category ;   <0024> ;  ;       1 ; [\p{currencysymbol}&[\u0000-u007F]]
+Minimally_Consistent   ;; General_Category ;   <0024> ;  ;       1 ; [\p{currencysymbol}&[\u0000-\u007F]]
 Minimally_Consistent   ;; Script ;   <03B1> ;   <03E2> ;         ; \p{Greek}
 Minimally_Consistent   ;; Script ;   <03B1> ;   <03E2> ;         ; \p{IsGreek}
 Minimally_Consistent   ;; Block ; <03B1> <03E2> ;     ;     144 ; \p{Block=Greek}
@@ -454,6 +454,7 @@ Minimally_Consistent   ;; Numeric_Value ; <0031> ; <002F> <0032> ; ; \p{nv=1}
 Minimally_Consistent ;; Numeric_Value ; <0030> ;; ; \p{nv=-0.0}
 Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=NaN}
 Minimally_Consistent ;; Numeric_Value ; <0061> ; <0030> ; ; \p{nv=naN}
+Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{Numeric_Value=+1/6}
 # Age tests
 Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11.0.0}
 Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11 . 0}
