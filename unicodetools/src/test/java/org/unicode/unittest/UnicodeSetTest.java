@@ -2,7 +2,6 @@ package org.unicode.unittest;
 
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
-import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;

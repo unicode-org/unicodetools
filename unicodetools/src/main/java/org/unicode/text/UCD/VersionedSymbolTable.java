@@ -561,9 +561,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             Pattern.compile("[0-9]+(\\.[0-9]+(\\.[0-9]+)?)?");
     private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
     private static Pattern FLOAT_PATTERN = Pattern.compile("[+-]?[0-9]+\\.[0-9]+");
-    private static Pattern PROPERTY_VALUE_PATTERN = Pattern.compile(
-        "((\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@/])(\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@])*)?"
-    );
+    private static Pattern PROPERTY_VALUE_PATTERN =
+            Pattern.compile(
+                    "((\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@/])(\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@])*)?");
 
     public static UnicodeSet.XSymbolTable NO_PROPS =
             new UnicodeSet.XSymbolTable() {
