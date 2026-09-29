@@ -360,6 +360,17 @@ Ill_Formed ;;;  ;        ;        ; [\N{Tibetan mark BKA--SHOG-YIG-MGO}]
 Ill_Formed ;;;  ;        ;        ; [\N{CJK UNIFIED IDEOGRAPH 55B5-}]
 ## Miscellanea.
 
+# String-valued queries, including with escapes.
+Minimally_Consistent   ;; Case_Folding ; ; ; 0 ; \p{cf=A}
+Minimally_Consistent   ;; Case_Folding ;  <0041> <0061> ; ; 2 ; \p{cf=a}
+Minimally_Consistent   ;; Case_Folding ;  <0041> <0061> ; ; 2 ; \p{cf=\u0061}
+Minimally_Consistent   ;; Case_Folding Name ;  <0041> <0061> ; ; 2 ; \p{cf=\N{LATIN SMALL LETTER A}}
+Minimally_Consistent   ;; Case_Folding Name ; <00DF> <1E9E> ; <0053> <0073> ; ; \p{cf=\N{LATIN SMALL LETTER S}\N{LATIN SMALL LETTER S}}
+Minimally_Consistent   ;; Case_Folding ; <00DF> <1E9E> ; <0053> <0073> ; ; \p{cf=\x{0073}\x{0073}}
+Ill_Formed   ;;; ; ; ; \p{Ideographic=\u004E}
+Ill_Formed   ;;; ; ; ; \p{Ideographic=\u004E\u006F}
+Ill_Formed   ;;; ; ; ; \p{Numeric_Value=\u0031}
+
 # escaped-element tests
 Consistent             ;;;   <0000> ;        ;       1 ; [   \0]
 Consistent             ;;;   <0008> ;        ;       1 ; [   \10]

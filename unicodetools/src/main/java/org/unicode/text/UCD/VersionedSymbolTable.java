@@ -300,7 +300,15 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                     + queriedProperty.getValueAliases());
                 }
             } else { // Case 4.
-                // TODO(egg): Check for unescaped :, @, =, etc. and unescape.
+                if (!PROPERTY_VALUE_PATTERN.matcher(propertyValue).matches()) {
+                    throw new IllegalArgumentException("Invalid property-value " + propertyValue);
+                }
+                // Now that we have checked that we don’t have any of the characters forbidden in
+                // property-value, sticking it in a string deals with unescaping escaped-element and
+                // named-element without having to export the relevant ICU innards (nor
+                // reimplementing them here).
+                UnicodeSet valueString = new UnicodeSet("[{" + propertyValue + "}]");
+                return queriedProperty.getSet(valueString.iterator().next());
             }
             if (queriedProperty.getName().equals("General_Category")) {
                 return getGeneralCategorySet(queriedProperties, propertyValue);
@@ -553,6 +561,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             Pattern.compile("[0-9]+(\\.[0-9]+(\\.[0-9]+)?)?");
     private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
     private static Pattern FLOAT_PATTERN = Pattern.compile("[+-]?[0-9]+\\.[0-9]+");
+    private static Pattern PROPERTY_VALUE_PATTERN = Pattern.compile(
+        "((\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@/])(\\\\[xN]\\{[^}]*\\}|\\\\.|[^\\\\:{}=≠@])*)?"
+    );
 
     public static UnicodeSet.XSymbolTable NO_PROPS =
             new UnicodeSet.XSymbolTable() {
