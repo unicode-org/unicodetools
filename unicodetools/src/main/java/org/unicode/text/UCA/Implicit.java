@@ -107,9 +107,14 @@ public class Implicit {
         }
     }
 
+    record DeclaredRange(int start, int end) {}
+
     private final UnicodeSet unassignedSet;
     final UnicodeSet unifiedIdeographSet;
     List<Range> ranges = new ArrayList<Range>();
+
+    /** Unmerged @implicitweights ranges, including unassigned code points. */
+    final List<DeclaredRange> declaredRanges = new ArrayList<>();
 
     Implicit(UCD ucd) {
         String unicodeVersion = ucd.getVersion();
@@ -137,6 +142,7 @@ public class Implicit {
      * same lead primary, then this range is merged into the existing one.
      */
     void addRange(Range r) {
+        declaredRanges.add(new DeclaredRange(r.startCP, r.endCP));
         for (Range old : ranges) {
             if (old.leadPrimary == r.leadPrimary) {
                 old.mergeFrom(r);

@@ -400,6 +400,7 @@ public class MakeUnicodeFiles {
                     if (line == null) {
                         break;
                     }
+                    line = line.split("⍝", 2)[0];
                     line = line.trim();
                     if (line.length() == 0) {
                         if (comments.length() != 0) {

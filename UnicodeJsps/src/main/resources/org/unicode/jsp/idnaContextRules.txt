@@ -45,7 +45,7 @@
 
 # The regex expressions use Java / Perl syntax, with Unicode properties. 
 # If the regex does not support Unicode Properties (the latest version!), then explicit ranges can be substituted.
-# For example, for [:bc=nsm:], using the set on http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:bc=nsm:]
+# For example, for [:bc=nsm:], using the set on https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=[:bc=nsm:]
 # Interior spaces are ignored, and may be used for readability.
 
 # The expressions are limited to a basic format which should work in any regex engine (perhaps with some syntax tweeks).
@@ -311,7 +311,7 @@ $EAD .* [$WD $AD] ; fail
 # The details here are all from http://tools.ietf.org/html/draft-ietf-idnabis-bidi-03
 
 # Note that $NSM != Non-spacing Marks in the general sense
-# See http://unicode.org/cldr/utility/unicodeset.jsp?a=[:bc=nsm:]&b=[[:me:][:mn:]]
+# See https://util.unicode.org/UnicodeJsps/unicodeset.jsp?a=[:bc=nsm:]&b=[[:me:][:mn:]]
 
 $NSM = [:bc=NSM:]
 $ESON = [[:bc=ES:][:bc=ON:]]

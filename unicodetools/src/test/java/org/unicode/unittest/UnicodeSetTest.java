@@ -9,7 +9,6 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
@@ -32,7 +31,6 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
 
     @Test
     void testLatest() {
-        final var iup = IndexUnicodeProperties.make();
         String path =
                 org.unicode.text.utility.Utility.getMostRecentUnicodeDataFile(
                         "unicodeset/*/UnicodeSetTest", Settings.latestVersion, true, false);
@@ -99,7 +97,7 @@ public class UnicodeSetTest extends TestFmwkMinusMinus {
                                     + " for\n    "
                                     + line);
                 }
-            } catch (IllegalArgumentException e) {
+            } catch (Exception e) {
                 if (e.getMessage().contains("doubly negated property-query")
                         || e.getMessage()
                                 .contains(

@@ -1,6 +1,6 @@
 # properties - Unicode Properties and Values
 
-[Demo](http://unicode.org/cldr/utility/properties.jsp)
+[Demo](https://util.unicode.org/UnicodeJsps/properties.jsp)
 
 This page shows the names of the Unicode character properties and some extended
 properties. It also lets you see the values of a given property.
