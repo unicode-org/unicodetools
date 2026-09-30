@@ -201,27 +201,13 @@ public class GenerateBreakStateTables {
             rbbiPartition.get(partIndex).add(cp);
         }
         final var table = rbbi.fRData.fFTable;
-        boolean usesEOT = false;
-        for (int state = 1; state < table.fNumStates; ++state) {
-            final int row = rbbi.fRData.getRowIndex(state);
-            for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
-                int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
-                if (next != 0) {
-                    if (col == 1) {
-                        usesEOT = true;
-                    }
-                }
-            }
+        if (!rbbiPartition.containsKey(1)) {
+            rbbiPartition.put(1, new UnicodeSet());
         }
-        if (usesEOT) {
-            if (!rbbiPartition.containsKey(1)) {
-                rbbiPartition.put(1, new UnicodeSet());
-            }
-            rbbiPartition.get(1).add("eot");
-            namedPartition.add(
-                    new NamedRefinedSet()
-                            .intersect(new NamedSet("eot", "[{eot}]", new UnicodeSet("[{eot}]"))));
-        }
+        rbbiPartition.get(1).add("eot");
+        namedPartition.add(
+                new NamedRefinedSet()
+                        .intersect(new NamedSet("eot", "[{eot}]", new UnicodeSet("[{eot}]"))));
         loopOverRbbiPartition:
         for (var entry : rbbiPartition.entrySet()) {
             // UnicodeSet strings = new UnicodeSet().addAll(entry.getValue().strings());
