@@ -463,6 +463,10 @@ public class GenerateBreakStateTables {
                                         + (checkNoOp ? "-new" : "")
                                         + ".txt"))) {
             file.println(
+                    Utility.getDataHeader(
+                            name + "BreakSymbols-" + version.getVersionString(3, 3) + ".txt"));
+            printReference(file);
+            file.println(
                     "# Symbol name ; Symbol definition in UnicodeSet notation ; Optional non-dictionary equivalent symbol");
             for (final var entry : rbbiNames.entrySet()) {
                 final int i = entry.getKey();
@@ -522,6 +526,10 @@ public class GenerateBreakStateTables {
                                         + (checkNoOp ? "-new" : "")
                                         + ".txt"))) {
             file.println(
+                    Utility.getDataHeader(
+                            name + "BreakStates-" + version.getVersionString(3, 3) + ".txt"));
+            printReference(file);
+            file.println(
                     "# State name ; Accepting (Yes, No, or lookahead name); lookahead name or empty; Break type.");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
@@ -557,6 +565,10 @@ public class GenerateBreakStateTables {
                                         + "BreakTransitions"
                                         + (checkNoOp ? "-new" : "")
                                         + ".txt"))) {
+            file.println(
+                    Utility.getDataHeader(
+                            name + "BreakTransitions-" + version.getVersionString(3, 3) + ".txt"));
+            printReference(file);
             file.println("# From state ; symbol ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
@@ -607,5 +619,16 @@ public class GenerateBreakStateTables {
                 new File(outDir + name + "Break" + f + "-new.txt").delete();
             }
         }
+    }
+
+    private static void printReference(PrintStream file) {
+        // TODO(egg): Once these files get added to the UCD, use UnicodeDataFile or print what that
+        // prints.
+        file.println("#");
+        file.println(
+                "# Public Review Issue #555, Finite automata for line breaking and segmentation");
+        file.println(
+                "#   For documentation, see https://www.unicode.org/L2/L2026/26135-finite-automata.pdf");
+        file.println("#");
     }
 }
