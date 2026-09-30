@@ -54,6 +54,10 @@ public class DiffingPrintWriter extends Writer {
         tempPrintWriter.flush();
     }
 
+    public void print(String line) {
+        tempPrintWriter.print(line);
+    }
+
     public void println(String line) {
         tempPrintWriter.println(line);
     }

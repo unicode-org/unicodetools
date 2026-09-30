@@ -6,7 +6,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -23,6 +22,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
@@ -201,27 +201,13 @@ public class GenerateBreakStateTables {
             rbbiPartition.get(partIndex).add(cp);
         }
         final var table = rbbi.fRData.fFTable;
-        boolean usesEOT = false;
-        for (int state = 1; state < table.fNumStates; ++state) {
-            final int row = rbbi.fRData.getRowIndex(state);
-            for (int col = 0; col < rbbi.fRData.fHeader.fCatCount; ++col) {
-                int next = table.fTable[row + RBBIDataWrapper.NEXTSTATES + col];
-                if (next != 0) {
-                    if (col == 1) {
-                        usesEOT = true;
-                    }
-                }
-            }
+        if (!rbbiPartition.containsKey(1)) {
+            rbbiPartition.put(1, new UnicodeSet());
         }
-        if (usesEOT) {
-            if (!rbbiPartition.containsKey(1)) {
-                rbbiPartition.put(1, new UnicodeSet());
-            }
-            rbbiPartition.get(1).add("eot");
-            namedPartition.add(
-                    new NamedRefinedSet()
-                            .intersect(new NamedSet("eot", "[{eot}]", new UnicodeSet("[{eot}]"))));
-        }
+        rbbiPartition.get(1).add("eot");
+        namedPartition.add(
+                new NamedRefinedSet()
+                        .intersect(new NamedSet("eot", "[{eot}]", new UnicodeSet("[{eot}]"))));
         loopOverRbbiPartition:
         for (var entry : rbbiPartition.entrySet()) {
             // UnicodeSet strings = new UnicodeSet().addAll(entry.getValue().strings());
@@ -469,13 +455,17 @@ public class GenerateBreakStateTables {
             nameToLookahead.put(entry.getValue(), entry.getKey());
         }
         try (var file =
-                new PrintStream(
+                new DiffingPrintWriter(
                         new File(
                                 outDir
                                         + name
                                         + "BreakSymbols"
                                         + (checkNoOp ? "-new" : "")
                                         + ".txt"))) {
+            file.println(
+                    Utility.getDataHeader(
+                            name + "BreakSymbols-" + version.getVersionString(3, 3) + ".txt"));
+            printReference(file);
             file.println(
                     "# Symbol name ; Symbol definition in UnicodeSet notation ; Optional non-dictionary equivalent symbol");
             for (final var entry : rbbiNames.entrySet()) {
@@ -528,13 +518,17 @@ public class GenerateBreakStateTables {
             }
         }
         try (var file =
-                new PrintStream(
+                new DiffingPrintWriter(
                         new File(
                                 outDir
                                         + name
                                         + "BreakStates"
                                         + (checkNoOp ? "-new" : "")
                                         + ".txt"))) {
+            file.println(
+                    Utility.getDataHeader(
+                            name + "BreakStates-" + version.getVersionString(3, 3) + ".txt"));
+            printReference(file);
             file.println(
                     "# State name ; Accepting (Yes, No, or lookahead name); lookahead name or empty; Break type.");
             for (int state = 1; state < table.fNumStates; ++state) {
@@ -564,13 +558,17 @@ public class GenerateBreakStateTables {
             }
         }
         try (var file =
-                new PrintStream(
+                new DiffingPrintWriter(
                         new File(
                                 outDir
                                         + name
                                         + "BreakTransitions"
                                         + (checkNoOp ? "-new" : "")
                                         + ".txt"))) {
+            file.println(
+                    Utility.getDataHeader(
+                            name + "BreakTransitions-" + version.getVersionString(3, 3) + ".txt"));
+            printReference(file);
             file.println("# From state ; symbol ; to state");
             for (int state = 1; state < table.fNumStates; ++state) {
                 final int row = rbbi.fRData.getRowIndex(state);
@@ -621,5 +619,16 @@ public class GenerateBreakStateTables {
                 new File(outDir + name + "Break" + f + "-new.txt").delete();
             }
         }
+    }
+
+    private static void printReference(DiffingPrintWriter file) {
+        // TODO(egg): Once these files get added to the UCD, use UnicodeDataFile or print what that
+        // prints.
+        file.println("#");
+        file.println(
+                "# Public Review Issue #555, Finite automata for line breaking and segmentation");
+        file.println(
+                "#   For documentation, see https://www.unicode.org/L2/L2026/26135-finite-automata.pdf");
+        file.println("#");
     }
 }
