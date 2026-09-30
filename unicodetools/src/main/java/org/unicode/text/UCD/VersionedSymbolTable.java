@@ -41,12 +41,14 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return result;
     }
 
+    protected VersionedSymbolTable(VersionInfo version) {
+        requireSuffixForLatest = false;
+        implicitVersion = version;
+        previousVersion = Utility.getVersionPreceding(version);
+    }
+
     public static VersionedSymbolTable frozenAt(VersionInfo version) {
-        var result = new VersionedSymbolTable();
-        result.requireSuffixForLatest = false;
-        result.implicitVersion = version;
-        result.previousVersion = Utility.getVersionPreceding(version);
-        return result;
+        return new VersionedSymbolTable(version);
     }
 
     public VersionedSymbolTable setUnversionedExtensions(UnicodeProperty.Factory factory) {
@@ -100,9 +102,11 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         final var script = queriedProperties.getProperty(UcdProperty.Script);
         final var generalCategory = queriedProperties.getProperty(UcdProperty.General_Category);
         if (script.isValidValue(unqualifiedQuery)) {
+            notifyUsedProperty(script);
             return script.getSet(unqualifiedQuery);
         }
         if (generalCategory.isValidValue(unqualifiedQuery)) {
+            notifyUsedProperty(generalCategory);
             return getGeneralCategorySet(queriedProperties, unqualifiedQuery);
         }
         UnicodeProperty queriedProperty = queriedProperties.getProperty(unqualifiedQuery);
@@ -118,6 +122,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     "Invalid unary-query-expression for non-binary property "
                             + queriedProperty.getName());
         }
+        notifyUsedProperty(queriedProperty);
         return queriedProperty.getSet(UcdPropertyValues.Binary.Yes);
     }
 
@@ -135,6 +140,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                     "Invalid binary-query-expression; could not find property "
                             + unqualifiedLeftHandSide);
         }
+        notifyUsedProperty(queriedProperty);
         final boolean isAge = queriedProperty.getName().equals("Age");
         final boolean isName = queriedProperty.getName().equals("Name");
         final boolean isPropertyComparison =
@@ -193,6 +199,7 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                             "Invalid binary-query-expression; could not find comparison property "
                                     + unqualifiedRightHandSide);
                 }
+                notifyUsedProperty(comparisonProperty);
                 return compareProperties(queriedProperty, comparisonProperty);
             }
         } else if (isRegularExpressionMatch) {
@@ -254,10 +261,9 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
             if (isName) { // Case 1.
                 var result = queriedProperty.getSet(propertyValue);
                 if (result.isEmpty()) {
-                    result =
-                            queriedProperties
-                                    .getProperty(UcdProperty.Name_Alias)
-                                    .getSet(propertyValue);
+                    final var nameAlias = queriedProperties.getProperty(UcdProperty.Name_Alias);
+                    notifyUsedProperty(nameAlias);
+                    result = nameAlias.getSet(propertyValue);
                 }
                 if (result.isEmpty()) {
                     throw new IllegalArgumentException(
@@ -294,7 +300,21 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
                                     + queriedProperty.getValueAliases());
                 }
             } else { // Case 4.
-                // TODO(egg): Check for unescaped :, @, =, etc. and unescape.
+                if (!PROPERTY_VALUE_PATTERN.matcher(propertyValue).matches()) {
+                    throw new IllegalArgumentException("Invalid property-value " + propertyValue);
+                }
+                // Now that we have checked that we don’t have any of the characters forbidden in
+                // property-value, sticking it in a string deals with unescaping escaped-element and
+                // named-element without having to export the relevant ICU innards (nor
+                // reimplementing them here).
+                final UnicodeSet valueString;
+                try {
+                    valueString = new UnicodeSet("[{" + propertyValue + "}]", null, this);
+                } catch (IllegalArgumentException e) {
+                    throw new IllegalArgumentException(
+                            "Invalid property-value " + propertyValue, e);
+                }
+                return queriedProperty.getSet(valueString.iterator().next());
             }
             if (queriedProperty.getName().equals("General_Category")) {
                 return getGeneralCategorySet(queriedProperties, propertyValue);
@@ -536,15 +556,28 @@ public class VersionedSymbolTable extends UnicodeSet.XSymbolTable {
         return text.substring(start, i);
     }
 
-    private VersionInfo implicitVersion;
-    private VersionInfo previousVersion;
-    private boolean requireSuffixForLatest;
+    protected void notifyUsedProperty(UnicodeProperty property) {}
+
+    protected VersionInfo implicitVersion;
+    protected VersionInfo previousVersion;
+    protected boolean requireSuffixForLatest;
     private UnicodeProperty.Factory unversionedExtensions;
     private Supplier<VersionInfo> oldestLoadedUcd;
     private static Pattern VERSION_NUMBER_PATTERN =
             Pattern.compile("[0-9]+(\\.[0-9]+(\\.[0-9]+)?)?");
     private static Pattern RATIONAL_PATTERN = Pattern.compile("[+-]?[0-9]+(/[0-9]*[1-9][0-9]*)?");
     private static Pattern FLOAT_PATTERN = Pattern.compile("[+-]?[0-9]+\\.[0-9]+");
+    private static Pattern INITIAL_PROPERTY_VALUE_ELEMENT =
+            Pattern.compile("(\\\\[xN]\\{[^}]*\\}|\\\\c?.|[^\\\\:{}=≠@/])");
+    private static Pattern PROPERTY_VALUE_PATTERN =
+            Pattern.compile(
+                    "("
+                            + INITIAL_PROPERTY_VALUE_ELEMENT.pattern()
+                            + "("
+                            + INITIAL_PROPERTY_VALUE_ELEMENT.pattern()
+                            + "|/)*"
+                            + ")?",
+                    Pattern.DOTALL);
 
     public static UnicodeSet.XSymbolTable NO_PROPS =
             new UnicodeSet.XSymbolTable() {

@@ -108,33 +108,33 @@ Consistent             ;; Name ;   <0020> ; <0021> ;       65 ; [-_\N{SPACE}A-Za
 # Example from Section 2.4.
 Consistent   ;;;   <> ;        ;       1 ; [{}]
 # Examples from Section 2.5.1.
-Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; \P{Cn}
-Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; [:^Cn:]
-Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; \P{General_Category=Cn}
-Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; [:^General_Category=Cn:]
-Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; [:^General_Category≠Cn:]
-Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; \p{General_Category≠Cn}
-Minimally_Consistent   ;;;   <0061> ;  <10FFFF> ;       ; [:General_Category≠Cn:]
-Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; \p{Cn}
-Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; [:General_Category=Cn:]
-Minimally_Consistent   ;;;   <03D6> ;  <03C0> ;       ; \P{Decomposition_Type≠compat}
-Minimally_Consistent   ;;;   <03D6> ;  <03C0> ;       ; \p{Decomposition_Type=compat}
-Minimally_Consistent   ;;;   ;  <10FFFF> ; 1114046 ; [:^Noncharacter_Code_Point≠No:]
-Minimally_Consistent   ;;;   ;  <10FFFF> ; 1114046 ; [:Noncharacter_Code_Point=No:]
+Minimally_Consistent   ;; General_Category ;   <0061> ;  <10FFFF> ;       ; \P{Cn}
+Minimally_Consistent   ;; General_Category ;   <0061> ;  <10FFFF> ;       ; [:^Cn:]
+Minimally_Consistent   ;; General_Category ;   <0061> ;  <10FFFF> ;       ; \P{General_Category=Cn}
+Minimally_Consistent   ;; General_Category ;   <0061> ;  <10FFFF> ;       ; [:^General_Category=Cn:]
+Minimally_Consistent   ;; General_Category ;   <10FFFF> ;  <0061> ;       ; [:^General_Category≠Cn:]
+Minimally_Consistent   ;; General_Category ;   <0061> ;  <10FFFF> ;       ; \p{General_Category≠Cn}
+Minimally_Consistent   ;; General_Category ;   <0061> ;  <10FFFF> ;       ; [:General_Category≠Cn:]
+Minimally_Consistent   ;; General_Category ;   <10FFFF> ;  <0061> ;       ; \p{Cn}
+Minimally_Consistent   ;; General_Category ;   <10FFFF> ;  <0061> ;       ; [:General_Category=Cn:]
+Minimally_Consistent   ;; Decomposition_Type ;   <03D6> ;  <03C0> ;       ; \P{Decomposition_Type≠compat}
+Minimally_Consistent   ;; Decomposition_Type ;   <03D6> ;  <03C0> ;       ; \p{Decomposition_Type=compat}
+Minimally_Consistent   ;; Noncharacter_Code_Point ;   ;  <10FFFF> ; 1114046 ; [:^Noncharacter_Code_Point≠No:]
+Minimally_Consistent   ;; Noncharacter_Code_Point ;   ;  <10FFFF> ; 1114046 ; [:Noncharacter_Code_Point=No:]
 # Examples from Section 2.5.2.
-Minimally_Consistent   ;;;   <0021> ;  <0061> ; 2760 ; \p{Pattern_Syntax}
-Minimally_Consistent   ;;;   <0061> ;  <0021> ;      ; \p{XID_Continue}
-Minimally_Consistent   ;;;   <10FFFF> ;  <0061> ;       ; \p{GC=unassigned}
-Minimally_Consistent   ; version-qualifier ;;   <10FFFF> ;  <0061> ;       ; \p{U-1:GC=unassigned}
+Minimally_Consistent   ;; Pattern_Syntax ;   <0021> ;  <0061> ; 2760 ; \p{Pattern_Syntax}
+Minimally_Consistent   ;; XID_Continue ;   <0061> ;  <0021> ;      ; \p{XID_Continue}
+Minimally_Consistent   ;; General_Category ;   <10FFFF> ;  <0061> ;       ; \p{GC=unassigned}
+Minimally_Consistent   ; version-qualifier ; General_Category ;   <10FFFF> ;  <0061> ;       ; \p{U-1:GC=unassigned}
 # Examples from Section 2.5.3.1.
 Minimally_Consistent   ;;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; \p{Age=6.0}
 Minimally_Consistent   ;;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; \p{Age=6}
 Minimally_Consistent   ;;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; \p{Age=06.00.00}
-Minimally_Consistent   ; version-qualifier ;Age;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; [ \P{U6:Cn} \p{U6:Noncharacter_Code_Point} ]
+Minimally_Consistent   ; version-qualifier ; General_Category Noncharacter_Code_Point ;  <0061> <1F408> <10FFFF> ; <1F62C> ; 249031 ; [ \P{U6:Cn} \p{U6:Noncharacter_Code_Point} ]
 Ill_Formed ;;;         ;;; \p{Age=@U6:Age@}
 Ill_Formed ;;;         ;;; \p{Age=/1/}
-Minimally_Consistent   ; version-qualifier ;Age;  <0061> <1F408> ; <1F62C> <10FFFF> ; 248965 ; \p{U6:gc≠Unassigned}
-Minimally_Consistent   ;;Age;  <0061> <1F408> ; <1F62C> <10FFFF> ; 248965 ; [ \p{Age=6} - \p{Noncharacter_Code_Point} ]
+Minimally_Consistent   ; version-qualifier ;General_Category;  <0061> <1F408> ; <1F62C> <10FFFF> ; 248965 ; \p{U6:gc≠Unassigned}
+Minimally_Consistent   ;;Age Noncharacter_Code_Point ;  <0061> <1F408> ; <1F62C> <10FFFF> ; 248965 ; [ \p{Age=6} - \p{Noncharacter_Code_Point} ]
 Minimally_Consistent ;; Age ; <0041> ; <12000> ; 33979 ; \p{Age=v11}
 Minimally_Consistent ;; Age ; <0041> <12000> ; ; 277021 ; \p{Age=11}
 Minimally_Consistent ;; Age ; <0041> ; <12000> ; 33979 ; \p{Age=1.1}
@@ -150,7 +150,7 @@ Minimally_Consistent ; version-qualifier property-comparison ; Simple_Case_Foldi
 Ill_Formed ;;;         ;;; \p{Decomposition_Mapping=@Ideographic@}
 Minimally_Consistent ; property-comparison; Uppercase Changes_When_Lowercased ; <1D504> ; <0061> <0041> <1D51E> ; 580 ; \p{Uppercase≠@Changes_When_Lowercased@}
 Minimally_Consistent ;; Uppercase Changes_When_Lowercased ; <1D504> ; <0061> <0041> <1D51E> ; 580 ; [[\p{Uppercase}\p{Changes_When_Lowercased}]-[\p{Uppercase}&\p{Changes_When_Lowercased}]]
-Minimally_Consistent ; property-comparison; Uppercase Changes_When_Lowercased ; <00DF> ; <0061> <0041> ;; \p{scf≠@cf@}
+Minimally_Consistent ; property-comparison; Simple_Case_Folding Case_Folding ; <00DF> ; <0061> <0041> ;; \p{scf≠@cf@}
 Minimally_Consistent ; property-comparison; Numeric_Value kPrimaryNumeric ; <4E00> <0061> ; <0031> <5146> <79ED> ;; \p{Numeric_Value=@kPrimaryNumeric@}
 Minimally_Consistent ; property-comparison; Script Script_Extensions ; <0061> ; <0964> ;; \p{Script_Extensions=@Script@}
 # \p{U15.0:Line_Break≠@U15.1:Line_Break@} already covered above.
@@ -165,9 +165,9 @@ Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=16666666666666667/1000000000
 Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ;; \p{nv=0.16666666666666667}
 Minimally_Consistent ;; Numeric_Value ;;; 0 ; \p{nv=0.16666667}
 # Examples from Section 2.5.3.5.
-Minimally_Consistent ;; Uppercase ;  ; ; 0 ; \p{nv=16666666666666667/100000000000000000}
-Minimally_Consistent ;; Uppercase ; <2159> ; <0031> ; ; \p{nv=0.16666666666666667}
-Minimally_Consistent ;; Uppercase ;  ; ; 0 ; \p{nv=0.16666667}
+Minimally_Consistent ;; Numeric_Value ;  ; ; 0 ; \p{nv=16666666666666667/100000000000000000}
+Minimally_Consistent ;; Numeric_Value ; <2159> ; <0031> ; ; \p{nv=0.16666666666666667}
+Minimally_Consistent ;; Numeric_Value ;  ; ; 0 ; \p{nv=0.16666667}
 Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase=True}
 Minimally_Consistent ;; Uppercase ; <0041> ; <0061> ;; \p{Uppercase}
 Minimally_Consistent ;; Uppercase ; <0061> ; <0041> ;; \p{Uppercase=NO}
@@ -359,6 +359,21 @@ Ill_Formed ;;;  ;        ;        ; [\N{Tibetan mark BKA--SHOG-YIG-MGO}]
 
 Ill_Formed ;;;  ;        ;        ; [\N{CJK UNIFIED IDEOGRAPH 55B5-}]
 ## Miscellanea.
+
+# String-valued queries, including with escapes.
+Minimally_Consistent   ;; Case_Folding ; ; ; 0 ; \p{cf=A}
+Minimally_Consistent   ;; Case_Folding ;  <0041> <0061> ; ; 2 ; \p{cf=a}
+Minimally_Consistent   ;; Case_Folding ;  <0041> <0061> ; ; 2 ; \p{cf=\u0061}
+Minimally_Consistent   ;; Case_Folding Name ;  <0041> <0061> ; ; 2 ; \p{cf=\N{LATIN SMALL LETTER A}}
+Minimally_Consistent   ;; Case_Folding ;  <0000> ; ; 1 ; \p{cf=\c@}
+Minimally_Consistent   ;; Case_Folding ;  <001C> ; ; 1 ; \p{cf=\c\}
+Minimally_Consistent   ;; Case_Folding ;  <005C> ; ; 1 ; \p{cf=\\}
+Minimally_Consistent   ;; Case_Folding ;  <002F> ; ; 1 ; \p{cf=\/}
+Minimally_Consistent   ;; Case_Folding Name ; <00DF> <1E9E> ; <0053> <0073> ; ; \p{cf=\N{LATIN SMALL LETTER S}\N{LATIN SMALL LETTER S}}
+Minimally_Consistent   ;; Case_Folding ; <00DF> <1E9E> ; <0053> <0073> ; ; \p{cf=\x{0073}\x{0073}}
+Ill_Formed   ;;; ; ; ; \p{Ideographic=\u004E}
+Ill_Formed   ;;; ; ; ; \p{Ideographic=\u004E\u006F}
+Ill_Formed   ;;; ; ; ; \p{Numeric_Value=\u0031}
 
 # escaped-element tests
 Consistent             ;;;   <0000> ;        ;       1 ; [   \0]
