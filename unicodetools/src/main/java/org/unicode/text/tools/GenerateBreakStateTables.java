@@ -6,7 +6,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -23,6 +22,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Segmenter;
@@ -455,7 +455,7 @@ public class GenerateBreakStateTables {
             nameToLookahead.put(entry.getValue(), entry.getKey());
         }
         try (var file =
-                new PrintStream(
+                new DiffingPrintWriter(
                         new File(
                                 outDir
                                         + name
@@ -518,7 +518,7 @@ public class GenerateBreakStateTables {
             }
         }
         try (var file =
-                new PrintStream(
+                new DiffingPrintWriter(
                         new File(
                                 outDir
                                         + name
@@ -558,7 +558,7 @@ public class GenerateBreakStateTables {
             }
         }
         try (var file =
-                new PrintStream(
+                new DiffingPrintWriter(
                         new File(
                                 outDir
                                         + name
@@ -621,7 +621,7 @@ public class GenerateBreakStateTables {
         }
     }
 
-    private static void printReference(PrintStream file) {
+    private static void printReference(DiffingPrintWriter file) {
         // TODO(egg): Once these files get added to the UCD, use UnicodeDataFile or print what that
         // prints.
         file.println("#");
