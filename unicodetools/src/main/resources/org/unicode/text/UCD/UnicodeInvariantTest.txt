@@ -1081,61 +1081,61 @@ Let $TwoVietnameseReadingMarks := [\p{U15.1.0:ccc=6}]
 
 # Use full NFD from the repository's normalization data, including singletons,
 # composition exclusions, Hangul syllables and newly encoded characters.
-Let $CanonicalDecompositions := \p{dt=Canonical}
+Let $CanonicalDecomposables := \p{dt=Canonical}
 
 # Canonical decomposition preserves the initial GCB, except for LV and LVT.
-In [$CanonicalDecompositions-[\p{GCB=LV}\p{GCB=LVT}]], GCB * (take 1) * toNFD = GCB
+In [$CanonicalDecomposables-[\p{GCB=LV}\p{GCB=LVT}]], GCB * (take 1) * toNFD = GCB
 
 # GB6..GB8 preserve the surrounding context for LV -> L V, LVT -> L V T,
 # and the V -> V+ expansions of Kirat Rai vowel signs.
-In [$CanonicalDecompositions&[\p{GCB=LV}\p{GCB=LVT}]], GCB * (take 1) * toNFD = (constant L)
-In [$CanonicalDecompositions&\p{GCB=LV}], (string-join) * GCB * (drop 1) * toNFD = (constant V)
-In [$CanonicalDecompositions&\p{GCB=LVT}], (string-join) * GCB * (drop 1) * toNFD = (constant VT)
-In [$CanonicalDecompositions&\p{GCB=V}], \P{GCB=V} * (drop 1) * toNFD = []
+In [$CanonicalDecomposables&[\p{GCB=LV}\p{GCB=LVT}]], GCB * (take 1) * toNFD = (constant L)
+In [$CanonicalDecomposables&\p{GCB=LV}], (string-join) * GCB * (drop 1) * toNFD = (constant V)
+In [$CanonicalDecomposables&\p{GCB=LVT}], (string-join) * GCB * (drop 1) * toNFD = (constant VT)
+In [$CanonicalDecomposables&\p{GCB=V}], \P{GCB=V} * (drop 1) * toNFD = []
 
 # Other, Extend and SpacingMark may gain only an Extend suffix, absorbed by GB9.
 # Every other GCB must have a singleton NFD with the same GCB.
 Let $GcbExtendSuffix := [\p{GCB=Other}\p{GCB=Extend}\p{GCB=SpacingMark}]
-In [$CanonicalDecompositions&$GcbExtendSuffix], \P{GCB=Extend} * (drop 1) * toNFD = []
-In [$CanonicalDecompositions-[$GcbExtendSuffix\p{GCB=LV}\p{GCB=LVT}\p{GCB=V}]], (drop 1) * toNFD = []
+In [$CanonicalDecomposables&$GcbExtendSuffix], \P{GCB=Extend} * (drop 1) * toNFD = []
+In [$CanonicalDecomposables-[$GcbExtendSuffix\p{GCB=LV}\p{GCB=LVT}\p{GCB=V}]], (drop 1) * toNFD = []
 
 # WB5 permits ALetter to expand to ALetter (ALetter|Extend)*.  For the other
 # expanding classes, WB4 ignores an Extend suffix.  Classes with earlier rules
 # or significant repetition, such as WSegSpace and Regional_Indicator, must
 # instead have a singleton NFD with the same WB.
-In $CanonicalDecompositions, WB * (take 1) * toNFD = WB
-In [$CanonicalDecompositions&\p{WB=ALetter}], [^\p{WB=ALetter}\p{WB=Extend}] * (drop 1) * toNFD = []
+In $CanonicalDecomposables, WB * (take 1) * toNFD = WB
+In [$CanonicalDecomposables&\p{WB=ALetter}], [^\p{WB=ALetter}\p{WB=Extend}] * (drop 1) * toNFD = []
 Let $WbExtendSuffix := [\p{WB=Hebrew_Letter}\p{WB=Katakana}\p{WB=Other}\p{WB=Extend}]
-In [$CanonicalDecompositions&$WbExtendSuffix], \P{WB=Extend} * (drop 1) * toNFD = []
-In [$CanonicalDecompositions-[$WbExtendSuffix\p{WB=ALetter}]], (drop 1) * toNFD = []
+In [$CanonicalDecomposables&$WbExtendSuffix], \P{WB=Extend} * (drop 1) * toNFD = []
+In [$CanonicalDecomposables-[$WbExtendSuffix\p{WB=ALetter}]], (drop 1) * toNFD = []
 
 # OLetter may expand to OLetter (OLetter|Extend)* without changing sentence
 # breaks.  Other expanding classes may gain only an Extend suffix, ignored by
 # SB5; every remaining SB must have a singleton NFD with the same SB.
-In $CanonicalDecompositions, SB * (take 1) * toNFD = SB
-In [$CanonicalDecompositions&\p{SB=OLetter}], [^\p{SB=OLetter}\p{SB=Extend}] * (drop 1) * toNFD = []
+In $CanonicalDecomposables, SB * (take 1) * toNFD = SB
+In [$CanonicalDecomposables&\p{SB=OLetter}], [^\p{SB=OLetter}\p{SB=Extend}] * (drop 1) * toNFD = []
 Let $SbExtendSuffix := [\p{SB=Upper}\p{SB=Lower}\p{SB=Other}\p{SB=Extend}]
-In [$CanonicalDecompositions&$SbExtendSuffix], \P{SB=Extend} * (drop 1) * toNFD = []
-In [$CanonicalDecompositions-[$SbExtendSuffix\p{SB=OLetter}]], (drop 1) * toNFD = []
+In [$CanonicalDecomposables&$SbExtendSuffix], \P{SB=Extend} * (drop 1) * toNFD = []
+In [$CanonicalDecomposables-[$SbExtendSuffix\p{SB=OLetter}]], (drop 1) * toNFD = []
 
 # GB9c, GB11 and WB3c also inspect InCB and Extended_Pictographic.  Preserve
 # their initial values and the context contributed by decomposition suffixes.
-In $CanonicalDecompositions, InCB * (take 1) * toNFD = InCB
+In $CanonicalDecomposables, InCB * (take 1) * toNFD = InCB
 # TODO: Remove the U+21AE exception below after the UTC agrees to change
 # U+21AE to Extended_Pictographic=Yes and the property data has been updated.
 # Its NFD starts with U+2194, which already has Extended_Pictographic=Yes.
-In [$CanonicalDecompositions-[\u21AE]], Extended_Pictographic * (take 1) * toNFD = Extended_Pictographic
-In $CanonicalDecompositions, \p{Extended_Pictographic} * (drop 1) * toNFD = []
+In [$CanonicalDecomposables-[\u21AE]], Extended_Pictographic * (take 1) * toNFD = Extended_Pictographic
+In $CanonicalDecomposables, \p{Extended_Pictographic} * (drop 1) * toNFD = []
 
 # Conjoining expansions (LV, LVT or V expanding to at least two code points)
 # must have InCB=None and Extended_Pictographic=No throughout.  All other
 # decomposition suffixes must have InCB=Extend to preserve the GB9c context.
 # (\p{toNFD=/(?s)^..+$/} is the set of code points whose NFD form contains at least two code points.)
-Let $ConjoiningExpansions := [$CanonicalDecompositions&[\p{GCB=LV}\p{GCB=LVT}\p{GCB=V}]&\p{toNFD=/(?s)^..+$/}]
+Let $ConjoiningExpansions := [$CanonicalDecomposables&[\p{GCB=LV}\p{GCB=LVT}\p{GCB=V}]&\p{toNFD=/(?s)^..+$/}]
 $ConjoiningExpansions ⊆ \p{InCB=None}
 $ConjoiningExpansions ∥ \p{Extended_Pictographic}
 In $ConjoiningExpansions, \P{InCB=None} * (drop 1) * toNFD = []
-In [$CanonicalDecompositions-$ConjoiningExpansions], \P{InCB=Extend} * (drop 1) * toNFD = []
+In [$CanonicalDecomposables-$ConjoiningExpansions], \P{InCB=Extend} * (drop 1) * toNFD = []
 
 # ICU relies on this to avoid carrying data for HST which would be mostly
 # redundant with GCB.  If this breaks, it should be noted on the landing page,
