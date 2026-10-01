@@ -352,9 +352,9 @@ In [\p{dt=canonical}-$BMExclusions], (delete-adjacent-duplicates) * Bidi_M * \P{
 # The existing exceptions to both restrictions are U+2329 and U+232A.
 Let $decomposableBidiBrackets := [\u2329\u232A]
 [\p{dt=Canonical} & \p{Bidi_Paired_Bracket_Type≠None}] ⊆ $decomposableBidiBrackets
-# Use full canonical decomposition so that indirect mappings are checked too.
+# Checking every direct mapping also checks each step of recursive decomposition.
 In [\p{dt=Canonical} - $decomposableBidiBrackets],
-    \p{Bidi_Paired_Bracket_Type=None} * toNFD = toNFD
+    (delete-adjacent-duplicates) * Bidi_Paired_Bracket_Type * Decomposition_Mapping = (constant None)
 
 # Additional BIDI invariant constants
 Let $AL_blocks := [
