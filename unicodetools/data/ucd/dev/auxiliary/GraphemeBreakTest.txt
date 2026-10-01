@@ -1,5 +1,5 @@
-# GraphemeBreakTest-18.0.0.txt
-# Date: 2026-06-12, 00:44:16 GMT
+# GraphemeBreakTest-19.0.0.txt
+# Date: 2026-10-01, 08:18:04 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -855,6 +855,7 @@
 ÷ 0915 × 093C × 200D × 094D × 0924 ÷	#  ÷ [1.0] DEVANAGARI LETTER KA (LinkingConsonant) × [9.0] DEVANAGARI SIGN NUKTA (Extend_ConjunctExtender) × [9.0] ZERO WIDTH JOINER (ZWJ) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER TA (LinkingConsonant) ÷ [2.0]
 ÷ 0915 × 093C × 094D × 200D × 0924 ÷	#  ÷ [1.0] DEVANAGARI LETTER KA (LinkingConsonant) × [9.0] DEVANAGARI SIGN NUKTA (Extend_ConjunctExtender) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.0] ZERO WIDTH JOINER (ZWJ) × [9.3] DEVANAGARI LETTER TA (LinkingConsonant) ÷ [2.0]
 ÷ 0915 × 094D × 0924 × 094D × 092F ÷	#  ÷ [1.0] DEVANAGARI LETTER KA (LinkingConsonant) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER TA (LinkingConsonant) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER YA (LinkingConsonant) ÷ [2.0]
+÷ 0915 × 094D × 0924 × 093C × 094D × 092F ÷	#  ÷ [1.0] DEVANAGARI LETTER KA (LinkingConsonant) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER TA (LinkingConsonant) × [9.0] DEVANAGARI SIGN NUKTA (Extend_ConjunctExtender) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER YA (LinkingConsonant) ÷ [2.0]
 ÷ 0915 × 094D ÷ 0061 ÷	#  ÷ [1.0] DEVANAGARI LETTER KA (LinkingConsonant) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) ÷ [999.0] LATIN SMALL LETTER A (XXmConjunctLinkermLinkingConsonantmExtPict) ÷ [2.0]
 ÷ 0061 × 094D × 0924 ÷	#  ÷ [1.0] LATIN SMALL LETTER A (XXmConjunctLinkermLinkingConsonantmExtPict) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER TA (LinkingConsonant) ÷ [2.0]
 ÷ 003F × 094D × 0924 ÷	#  ÷ [1.0] QUESTION MARK (XXmConjunctLinkermLinkingConsonantmExtPict) × [9.0] DEVANAGARI SIGN VIRAMA (Extend_ConjunctLinker) × [9.3] DEVANAGARI LETTER TA (LinkingConsonant) ÷ [2.0]
@@ -878,6 +879,6 @@
 ÷ 1CF6 × 200C ÷ 09AA ÷	#  ÷ [1.0] VEDIC SIGN UPADHMANIYA (ConjunctLinkermExtend) × [9.0] ZERO WIDTH NON-JOINER (ExtendmConjunctLinkermConjunctExtender) ÷ [999.0] BENGALI LETTER PA (LinkingConsonant) ÷ [2.0]
 ÷ 11A3A × 11A0B ÷	#  ÷ [1.0] ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA (ConjunctLinkermExtend) × [9.3] ZANABAZAR SQUARE LETTER KA (LinkingConsonant) ÷ [2.0]
 #
-# Lines: 853
+# Lines: 854
 #
 # EOF
