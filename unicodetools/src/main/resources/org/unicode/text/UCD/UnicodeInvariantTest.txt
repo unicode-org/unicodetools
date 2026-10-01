@@ -1079,8 +1079,6 @@ Let $TwoVietnameseReadingMarks := [\p{U15.1.0:ccc=6}]
 # check the context in which V and T occur.
 [\p{NFC_QC=Maybe}&\p{ccc=0}] ⊆ [\p{GCB=Extend}\p{GCB=T}\p{GCB=V}]
 
-# Use full NFD from the repository's normalization data, including singletons,
-# composition exclusions, Hangul syllables and newly encoded characters.
 Let $CanonicalDecomposables := \p{dt=Canonical}
 
 # Canonical decomposition preserves the initial GCB, except for LV and LVT.
