@@ -100,15 +100,15 @@ public class TestCodeInvariants {
                         .freeze();
 
         // By the stability policy, this number cannot change.
-        assertEquals(defaultIdentifiers.cloneAsThawed().removeAll(immutableIdentifiers).size(), 0);
-        assertEquals(defaultIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size(), 4);
+        assertEquals(0, defaultIdentifiers.cloneAsThawed().removeAll(immutableIdentifiers).size());
+        assertEquals(4, defaultIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size());
         assertEquals(
-                immutableIdentifiers.cloneAsThawed().removeAll(defaultIdentifiers).size(), 809_619);
+                809_619, immutableIdentifiers.cloneAsThawed().removeAll(defaultIdentifiers).size());
         // By the stability policy, this number cannot change.
-        assertEquals(immutableIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size(), 259);
-        assertEquals(xmlNameChar.cloneAsThawed().removeAll(defaultIdentifiers).size(), 809_556);
+        assertEquals(259, immutableIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size());
+        assertEquals(809_556, xmlNameChar.cloneAsThawed().removeAll(defaultIdentifiers).size());
         // By the stability policy, this number cannot change.
-        assertEquals(xmlNameChar.cloneAsThawed().removeAll(immutableIdentifiers).size(), 192);
+        assertEquals(192, xmlNameChar.cloneAsThawed().removeAll(immutableIdentifiers).size());
     }
 
     @Test
