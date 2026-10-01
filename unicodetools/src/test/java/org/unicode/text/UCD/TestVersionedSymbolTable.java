@@ -258,6 +258,30 @@ public class TestVersionedSymbolTable {
                 .doesNotContain("𒀀");
     }
 
+    @Test
+    void testRegularExpressionQueriesOnStringProperties() {
+        // A dot matches one code point, including line terminators and supplementary characters.
+        assertThatUnicodeSet("\\p{Decomposition_Mapping=/^.$/}")
+                .contains("\n")
+                .contains("\r")
+                .contains("\u0085")
+                .contains("\u2028")
+                .contains("\u2029")
+                .contains("😀")
+                .doesNotContain("À");
+        assertThatUnicodeSet("\\p{Decomposition_Mapping=/(?-s)^.$/}")
+                .doesNotContain("\n")
+                .contains("😀");
+
+        // Unanchored patterns search within a value, so /../ also matches longer mappings.
+        assertThatUnicodeSet("\\p{Case_Folding=/../}")
+                .contains("ß")
+                .contains("ﬃ")
+                .doesNotContain("A")
+                .doesNotContain("😀");
+        assertThatUnicodeSet("\\p{Case_Folding=/^..$/}").contains("ß").doesNotContain("ﬃ");
+    }
+
     /** Helper class for testing multiple properties of the same UnicodeSet. */
     private static class UnicodeSetTestFluent {
         UnicodeSetTestFluent(String expression) {

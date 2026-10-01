@@ -1396,7 +1396,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
         @Override
         public UnicodeProperty.PatternMatcher set(String pattern) {
-            matcher = Pattern.compile(pattern).matcher("");
+            matcher = Pattern.compile(pattern, Pattern.DOTALL).matcher("");
             return this;
         }
 
