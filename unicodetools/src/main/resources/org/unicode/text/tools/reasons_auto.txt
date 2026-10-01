@@ -1195,6 +1195,12 @@ General_Category ; 17.0 ; [𖿴-𖿶] ; 180-N4
 # [146-C21] Consensus: Change the GCB, WB, and LB properties of the undeprecated Tag characters at U+E00020..U+E007F to be the same as the variation selectors: GCB and WB have the value "Extend"; LB has the value "Combining Mark" for Unicode 9.0.
 Grapheme_Cluster_Break ; 9.0 ; [󠁿] ; 146-C21
 
+# Grapheme_Cluster_Break assignment changes in Unicode Version 11.0
+# PRI-355@Tue Jan 2 08:14:48 CST 2018
+# L2/18-055
+# [154-C30] Consensus: UTC considered feedback on PRI #355 and came to the consensus documented in L2/18-055.
+Grapheme_Cluster_Break ; 11.0 ; [☝⛹✊-✍🎅🏂-🏄🏇🏊-🏌🏻-🏿👂👃👆-👐👮👰-👸👼💁-💃💅-💇💪🕴🕵🕺🖐🖕🖖🙅-🙇🙋-🙏🚣🚴-🚶🛀🛌🤘-🤜🤞🤟🤦🤰-🤹🤽🤾🧑-🧝] ; PRI-355@Tue Jan 2 08:14:48 CST 2018, L2/18-055, 154-C30
+
 # Grapheme_Cluster_Break assignment changes in Unicode Version 12.0
 # [157-C14] Consensus: Change the Grapheme_Cluster_Break property of U+1B35 BALINESE VOWEL SIGN TEDUNG from Spacing_Mark to Extend, for Unicode 12.0.
 Grapheme_Cluster_Break ; 12.0 ; [ᬵ] ; 157-C14
@@ -1857,6 +1863,14 @@ Emoji_Modifier_Base ; 13.0 ; [🥷] ; 162-A18
 # Extended_Pictographic assignment changes in Unicode Version 13.0
 # [162-A63] Action Item for Markus Scherer: Remove the range U+1FB00..U+1FBFF from Extended_Pictographic for Unicode version 13.0.
 Extended_Pictographic ; 13.0 ; [🬀-🯿] ; 162-A63
+
+# Extended_Pictographic assignment changes in Unicode Version 17.0
+# PRI-453@Fri Jun 24 10:24:49 CDT 2022
+# L2/22-124
+# [172-A68] Action Item for Mark Davis, PAG: Check Extended_Pictographic values of non-emoji characters for inconsistencies with other similar characters; consider removing ExtPict from non-emoji characters; for a future version of the Unicode Standard. See L2/22-124 item UCD12.
+# L2/25-006
+# [182-C20] Consensus: Unassign the Extended_Pictographic property from the 672 assigned characters that do not have the Emoji property. For Unicode Version 17.0. See L2/25-006 item 5.1.
+Extended_Pictographic ; 17.0 ; [⎈★☇-☍☏☐☒☖☗☙-☜☞☟☡☤☥☧-☩☫-☭☰-☷☻-☿♁♃-♇♔-♞♡♢♤♧♩-♺♼♽⚀-⚅⚐⚑⚘⚚⚝-⚟⚢-⚦⚨⚩⚬-⚯⚲-⚼⚿-⛃⛆⛇⛉-⛍⛐⛒⛕-⛨⛫-⛯⛶⛻⛼⛾-✁✃✄✎✐✑❥-❧🀀-🀃🀅-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃎🃑-🃵🄍-🄏🄯🅬-🅯🆭🉠-🉥🌢🌣🎔🎕🎘🎜🎝🏱🏲🏶📾🕆-🕈🕏🕨-🕮🕱🕲🕻-🖆🖈🖉🖎🖏🖑-🖔🖗-🖣🖦🖧🖩-🖰🖳-🖻🖽-🗁🗅-🗐🗔-🗛🗟🗠🗢🗤-🗧🗩-🗮🗰-🗲🗴-🗹🛆-🛊🛓🛔🛦-🛨🛪🛱🛲🝴-🝶🝻-🝿🟕-🟙🢰-🢻🣀🣁🨀-🩓🩠-🩭] ; PRI-453@Fri Jun 24 10:24:49 CDT 2022, L2/22-124, 172-A68, L2/25-006, 182-C20
 
 # ==========================================================
 # Documentation for changes to Extender assignments

@@ -33,6 +33,17 @@ Cased            ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 Lowercase        ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 Sentence_Break   ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 
+# From L2/18-055:
+# Action: do what is proposed. (It simplifies the
+#  expressions, and the additional degenerate cases that
+# it allows don’t matter much in practice.) That is:
+# 1. Move E_Modifier characters into Extend
+# 2. Mark E_Modifier and E_Base characters as
+# “This value is obsolete and unused.”
+# 3. Remove G10.
+# [154-C30] Consensus: UTC considered feedback on PRI #355 and came to the consensus documented in L2/18-055.
+Grapheme_Cluster_Break ; 11.0 ; [\p{U10:gcb=E_Modifier}\p{U10:gcb=E_Base}] ; PRI-355@Tue Jan 2 08:14:48 CST 2018, L2/18-055, 154-C30
+
 # [179-C26] Consensus: Change the derivation of Indic_Conjunct_Break = Extend to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
 # [179-A99] Action Item for Ken Whistler, PAG: Change the statement of the derivation of Indic_Conjunct_Break = Extend in UAX #44 to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
 # [179-A100] Action Item for Robin Leroy, PAG: In DerivedCoreProperties.txt, update the Indic_Conjunct_Break assignments according to the corrected derivation. For Unicode Version 16.0. See document L2/24-064 item 5.3.
@@ -102,3 +113,6 @@ kMandarin ; 18.0 ; [ [㗑㟷么乛乼了亇亪们伬佦侤們兯匙吗吧呀呗�
 kMandarin ; 18.0 ; [耴䎲] ; PRI-483@ID20240402063204, 179-A27, L2/26-084, 187-C26
 kMandarin ; 18.0 ; [𦝠𡿪] ; L2/24-063@ID20240112185925, 179-A38, L2/26-084, 187-C26
 kMandarin ; 18.0 ; [鉄] ; L2/24-008@ID20240107183744, 178-A54, L2/26-084, 187-C26
+
+# [182-C20] Consensus: Unassign the Extended_Pictographic property from the 672 assigned characters that do not have the Emoji property. For Unicode Version 17.0. See L2/25-006 item 5.1.
+Extended_Pictographic ; 17.0 ; [\p{U16:Extended_Pictographic}-\p{U16:Unassigned}-\p{U16:Emoji}] ; PRI-453@Fri Jun 24 10:24:49 CDT 2022, L2/22-124, 172-A68, L2/25-006, 182-C20
