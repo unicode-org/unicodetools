@@ -403,7 +403,7 @@ Script_Extensions ; 13.0 ; [،؛؟٠-٩᷸꜀-꜇] ; # Yet unexplained
 Script_Extensions ; 14.0 ; [ـ﴾﴿𐄀𐄁𐫲𖿢𖿣] ; # Yet unexplained
 Script_Extensions ; 16.0 ; [ʼˇˉ-ˋˍ˗˙́-̆̉̋-̠̥̭̮̰̱̎̐̑̓͘͞ʹ͵։،؛؟।॥೦-೯჻ᳲ᳴ ⁏⁚⁝⸗⸰⸱⹁⿰-⿿㇯꠰-꠵꣱] ; # Yet unexplained
 Script_Extensions ; 17.0 ; [̠॒᳕॑-᳢᳘ᳩ-ᳫ᳭] ; # Yet unexplained
-Bidi_Class ; 4.0 ; [͏ͣ-ͯ϶֐ֺ֢ׅ-׏׫-ׯ׵-׿؄-؋ؖ-ؚ؜-؞ؠػ-ؿٙ-ٟٮٯ۝܎݋݌ݐ-ݿޱ-ࣿᜒ-᜔ᜲ-᜴ᝒᝓᝲᝳ᠋-᠎⁇⁎-⁒⁗ -⁣₰₱⃤-⃪⅀-⅄⅊⅋⇴-⇿⋲-⋿⍼⎛-⏎⓫-⓾▖-▟◸-◿☖☗♲-♽⚀-⚉❨-❵⟐-⟫⟰-⟿⤀-⫿〽゠㉑-㉟㊱-㊿꒢꒣꒴꓁꓅﬷﬽﬿﭂﭅﮲-﯒﵀-﵏﶐﶑﷈-﷏﷼﷾-️﹅﹆ﹳ﹵﻽﻾｟｠𐠆𐠇𐠉𐠶𐠹-𐠻𐠽𐠾𐡀-𐿿] ; # Yet unexplained
+Bidi_Class ; 4.0 ; [͏ͣ-ͯ϶۝߀-ࣿᜒ-᜔ᜲ-᜴ᝒᝓᝲᝳ᠋-᠎⁇⁎-⁒⁗ -⁣₰₱⃤-⃪⅀-⅄⅊⅋⇴-⇿⋲-⋿⍼⎛-⏎⓫-⓾▖-▟◸-◿☖☗♲-♽⚀-⚉❨-❵⟐-⟫⟰-⟿⤀-⫿〽゠㉑-㉟㊱-㊿꒢꒣꒴꓁꓅\uFDD0-\uFDEF︀-️﹅﹆｟｠𐠆𐠇𐠉𐠶𐠹-𐠻𐠽𐠾𐡀-𐿿] ; # Yet unexplained
 Bidi_Class ; 4.0.1 ; [­⁤-⁩①-⒇⓪⠀-⣿\uFDD0-\uFDEF￰-￻\uFFFE\uFFFF\U0001FFFE\U0001FFFF\U0002FFFE\U0002FFFF\U0003FFFE\U0003FFFF\U0004FFFE\U0004FFFF\U0005FFFE\U0005FFFF\U0006FFFE\U0006FFFF\U0007FFFE\U0007FFFF\U0008FFFE\U0008FFFF\U0009FFFE\U0009FFFF\U000AFFFE\U000AFFFF\U000BFFFE\U000BFFFF\U000CFFFE\U000CFFFF\U000DFFFE-󠀀󠀂-󠀟󠂀-󠃿󠇰-󠿿\U000EFFFE\U000EFFFF\U000FFFFE\U000FFFFF\U0010FFFE\U0010FFFF] ; # Yet unexplained
 Bidi_Class ; 4.1 ; [ ⁺⁻₊₋−﬩﹢﹣＋－／] ; # Yet unexplained
 Bidi_Class ; 5.0 ; [Ⅎ𐏑-𐏕] ; # Yet unexplained
@@ -457,7 +457,7 @@ Grapheme_Cluster_Break ; 7.0 ; [ᮬᮭ] ; # Yet unexplained
 Grapheme_Cluster_Break ; 8.0 ; [ᦵ-ᦷᦺ] ; # Yet unexplained
 Grapheme_Cluster_Break ; 9.0 ; [؀-؅۝܏ൎᢅᢆ‍☝⛹✊-✍❤𑂽𑇂𑇃🎅🏃🏄🏊🏋🏻-🏿👂👃👆-👐👦-👩👮👰-👸👼💁-💃💅-💇💋💪🕵🖐🖕🖖🗨🙅-🙇🙋-🙏🚣🚴-🚶🛀🤘󠀠-󠁾] ; # Yet unexplained
 Grapheme_Cluster_Break ; 10.0 ; [♀♂⚕⚖✈🌈🌾🍳🎓🎤🎨🏂🏇🏌🏫🏭💻💼🔧🔬🕴🚀🚒🛌🤝🤼] ; # Yet unexplained
-Grapheme_Cluster_Break ; 11.0 ; [☝♀♂⚕⚖⛹✈✊-✍❤𑇉𑨇𑨈🌈🌾🍳🎅🎓🎤🎨🏂-🏄🏇🏊-🏌🏫🏭🏻-🏿👂👃👆-👐👦-👩👮👰-👸👼💁-💃💅-💇💋💪💻💼🔧🔬🕴🕵🕺🖐🖕🖖🗨🙅-🙇🙋-🙏🚀🚒🚣🚴-🚶🛀🛌🤘-🤜🤞🤟🤦🤰-🤹🤽🤾🧑-🧝] ; # Yet unexplained
+Grapheme_Cluster_Break ; 11.0 ; [♀♂⚕⚖✈❤𑇉𑨇𑨈🌈🌾🍳🎓🎤🎨🏫🏭👦-👩💋💻💼🔧🔬🗨🚀🚒] ; # Yet unexplained
 Grapheme_Cluster_Break ; 12.0 ; [ᳲᳳꦽ\uD800-\uDFFF] ; # Yet unexplained
 Grapheme_Cluster_Break ; 14.0 ; [᜴] ; # Yet unexplained
 Grapheme_Cluster_Break ; 16.0 ; [𑜞] ; # Yet unexplained
@@ -534,7 +534,7 @@ Line_Break ; 16.0 ; [🠌-🠏🡈-🡏🡚-🡟🢈-🢏🢮🢯🢼-🢿🣂-�
 Math_Class ; 5.1 ; [!\-/\\\^-`~ ¨¬¯´ˆˇ˘-˚˜ШЩ      ​‼⁄⁎⁡-⁣⃕↯∴∵⊥⎰⎱⬀-⬄〈〉〚〛] ; # Yet unexplained
 Math_Class ; 6.0 ; [؆-؈†‡⃕⇪-⇳⍼▰◐-◓◧-◪⟊⟌⬰-⭄⭇-⭌] ; # Yet unexplained
 Math_Class ; 7.0 ; [☒✗⬛-⬟⬤-⬯⭅⭆⭐-⭔﹧𞸀-𞸃𞸅-𞸟𞸡𞸢𞸤𞸧𞸩-𞸲𞸴-𞸷𞸹𞸻𞹂𞹇𞹉𞹋𞹍-𞹏𞹑𞹒𞹔𞹗𞹙𞹛𞹝𞹟𞹡𞹢𞹤𞹧-𞹪𞹬-𞹲𞹴-𞹷𞹹-𞹼𞹾𞺀-𞺉𞺋-𞺛𞺡-𞺣𞺥-𞺩𞺫-𞺻𞻰𞻱] ; # Yet unexplained
-Math_Class ; 18.0 ; [!ا-غ᫏-᫝᫠-᫫⮖⯹] ; # Yet unexplained
+Math_Class ; 19.0 ; [!ا-غ᫏-᫝᫠-᫫⮖⯹𐶎𐶏𜻰🣐-🣘] ; # Yet unexplained
 Numeric_Type ; 4.0 ; [²³¹⁰⁴-⁹₀-₉⓫-⓾㉑-㉟㊱-㊿一七万三九二五亿仟伍佰億兆兩八六十千卅叁-參四壱壹廿弌-弎弐拾捌柒玖百肆萬貮贰陆陌陸零] ; # Yet unexplained
 Numeric_Type ; 4.1 ; [፩-፱㐅㒃㠪㭍亖什仨卄卌叄幺廾貳𐍊𠀁𠁤𠃢𠄡𠤪𠦃𠦌𠦜𠫪𠫽𠬙𢎐𢦘𣬛𦉭] ; # Yet unexplained
 Numeric_Type ; 5.0 ; [𐍁] ; # Yet unexplained
@@ -666,7 +666,6 @@ Diacritic ; 14.0 ; [᜔᪾𑁆᷻᷼] ; # Yet unexplained
 Emoji ; 13.0 ; [⚧] ; # Yet unexplained
 Emoji_Modifier_Base ; 9.0 ; [🏂🏇🏌🕴🛌] ; # Yet unexplained
 Emoji_Modifier_Base ; 12.0 ; [👪-👭👯💏💑🤝🤼] ; # Yet unexplained
-Extended_Pictographic ; 17.0 ; [⎈★☇-☍☏☐☒☖☗☙-☜☞☟☡☤☥☧-☩☫-☭☰-☷☻-☿♁♃-♇♔-♞♡♢♤♧♩-♺♼♽⚀-⚅⚐⚑⚘⚚⚝-⚟⚢-⚦⚨⚩⚬-⚯⚲-⚼⚿-⛃⛆⛇⛉-⛍⛐⛒⛕-⛨⛫-⛯⛶⛻⛼⛾-✁✃✄✎✐✑❥-❧🀀-🀃🀅-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃎🃑-🃵🄍-🄏🄯🅬-🅯🆭🉠-🉥🌢🌣🎔🎕🎘🎜🎝🏱🏲🏶📾🕆-🕈🕏🕨-🕮🕱🕲🕻-🖆🖈🖉🖎🖏🖑-🖔🖗-🖣🖦🖧🖩-🖰🖳-🖻🖽-🗁🗅-🗐🗔-🗛🗟🗠🗢🗤-🗧🗩-🗮🗰-🗲🗴-🗹🛆-🛊🛓🛔🛦-🛨🛪🛱🛲🝴-🝶🝻-🝿🟕-🟙🢰-🢻🣀🣁🨀-🩓🩠-🩭] ; # Yet unexplained
 Extender ; 2.1.8 ; [゛゜ﾞﾟ] ; # Yet unexplained
 Extender ; 4.1 ; [ꀕ] ; # Yet unexplained
 Grapheme_Base ; 4.0 ; [­ःा-ीॉ-ौংঃিীেৈোৌਾ-ੀઃા-ીૉોૌଂଃୀେୈୋୌிுூெ-ைொ-ௌఁ-ఃు-ౄಂಃಾೀುೃೄೇೈೊೋംഃിീെ-ൈൊ-ൌංඃැෑෘ-ෞෲෳ༾༿ཿာေးၖၗាើ-ៅះៈ᠎ﾞﾟ𝅦𝅰𝅭-𝅲] ; # Yet unexplained
