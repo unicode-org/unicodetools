@@ -2247,6 +2247,11 @@ public class UnicodeUtilities {
     }
 
     public static String showBidi(String str, int baseDirection, boolean asciiHack) {
+        if (str.codePoints().anyMatch(cp -> 0x2066 <= cp && cp <= 0x2069)) {
+            return "<p>This legacy demo does not support directional isolates. Use the "
+                    + "<a href='bidic.jsp'>C Reference demo</a>.</p>";
+        }
+
         // warning, only BMP for now
         final StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);

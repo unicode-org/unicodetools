@@ -736,6 +736,20 @@ public class TestJsp extends TestFmwkMinusMinus {
     }
 
     @Test
+    public void TestBidiIsolates() {
+        for (String text :
+                new String[] {
+                    "\u2066", "\u2067", "\u2068", "\u2069", "print(\"\u2067hi\u2069\")"
+                }) {
+            for (boolean asciiHack : new boolean[] {false, true}) {
+                String result = UnicodeJsp.showBidi(text, -1, asciiHack);
+                assertContains(result, "does not support directional isolates");
+                assertContains(result, "href='bidic.jsp'");
+            }
+        }
+    }
+
+    @Test
     public void TestMapping() {
         String sample;
         sample = UnicodeJsp.showTransform("(.) > '<' $1 '> ' &hex/perl($1) ', ';", "Hi There.");
