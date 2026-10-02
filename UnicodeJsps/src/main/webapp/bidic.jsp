@@ -226,14 +226,14 @@ function setUbaInput(str) {
 
 <h1>Unicode Utilities: BIDI (UBA) C Reference</h1>
 <%@ include file="subtitle.jsp" %>
-<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/breaks"><b>help</b></a> | <%@ include file="others.jsp" %></p>
+<p><a target="help" href="https://unicode-org.github.io/unicodetools/help/bidi"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <p>Shows processing of a single paragraph of text by the Unicode Bidirectional Algorithm (UBA),
     Versions
-        <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-27.html">6.2</a>
+        <a target="doc" href="https://www.unicode.org/reports/tr9/tr9-27.html">6.2</a>
     through
-        <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-44.html">14.0</a>,
+        <a target="doc" href="https://www.unicode.org/reports/tr9/"><%= UBAVersion.getCurrent().getShortName() %></a>,
     using the C Reference Implementation, Version
-        <a target="doc" href="http://www.unicode.org/Public/PROGRAMS/BidiReferenceC/14.0.0/">14.0</a>.</p>
+        <a target="doc" href="https://www.unicode.org/Public/PROGRAMS/BidiReferenceC/<%= UBAVersion.getCurrent().getShortName() %>.0/"><%= UBAVersion.getCurrent().getShortName() %></a>.</p>
 
 <h3>Source</h3>
 <form name="naInputForm">
