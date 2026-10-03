@@ -1,5 +1,6 @@
 package org.unicode.jsp;
 
+import com.ibm.icu.impl.Punycode;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -49,7 +50,6 @@ import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.IdnaTypes;
-import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
 import org.unicode.props.DerivedPropertyStatus;
 import org.unicode.props.IndexUnicodeProperties;
@@ -2581,7 +2581,7 @@ public class UnicodeUtilities {
                 if (!punycode || IdnaTypes.ASCII.containsAll(label)) {
                     result.append(label);
                 } else {
-                    StringBuffer puny = Punycode.encode(new StringBuffer(label), null);
+                    StringBuilder puny = Punycode.encode(label, null);
                     if (puny.length() == 0) {
                         throw new IllegalArgumentException();
                     }
