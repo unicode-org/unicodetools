@@ -64,7 +64,9 @@ $CR = [:LineBreak =  Carriage_Return:];
 $EB = [:LineBreak =  EB:];
 $EM = [:LineBreak =  EM:];
 $EX = [:LineBreak =  Exclamation:];
-$GL = [:LineBreak =  Glue:];
+# Split Glue by canonical combining class until CG is a UCD property value.
+$CG = [[:LineBreak = Glue:] - [:ccc=0:]];
+$GL = [[:LineBreak = Glue:] & [:ccc=0:]];
 $HL = [:LineBreak =  Hebrew_Letter:];
 $HY = [:LineBreak =  Hyphen:];
 $H2 = [ [:LineBreak =  H2:] ];# $EAST_ASIAN_PHRASE_H2
@@ -96,16 +98,22 @@ $XX = [[:LineBreak =  Unknown:]-[ $UNCLASSIFIED $LOOSE_IN $POX $PRX $LOOSE_HYPHE
 $ZW = [:LineBreak =  ZWSpace:];
 $ZWJ = [:LineBreak = ZWJ:];
 
-$EastAsian = [ [\p{ea=F}\p{ea=W}\p{ea=H}] $EAST_ASIAN_UNCLASSIFIED $EAST_ASIAN_LOOSE_IN $EAST_ASIAN_POX $EAST_ASIAN_PRX ];# $EAST_ASIAN_PHRASE $EAST_ASIAN_ID_AL
+$EastAsian = [ $JV $JT [\p{ea=F}\p{ea=W}\p{ea=H}] $EAST_ASIAN_UNCLASSIFIED $EAST_ASIAN_LOOSE_IN $EAST_ASIAN_POX $EAST_ASIAN_PRX ];# $EAST_ASIAN_PHRASE $EAST_ASIAN_ID_AL
 
 $ExtPictUnassigned = [\p{Extended_Pictographic} & \p{Cn}];
 
-# By LB9, a ZWJ also behaves as a CM. Including it in the definition of CM avoids having to explicitly
+# By LB9, ZWJ and the proposed CG also behave as CM. Including it in the definition of CM avoids having to explicitly
 #         list it in the numerous rules that use CM.
-# By LB1, SA characters with general categor of Mn or Mc also resolve to CM.
+# By LB1, SA characters with general category Mn or Mc also resolve to CM.
+# VI and VF retain their classes; do not include them in $CM.
 
-$CM = [[:LineBreak = Combining_Mark:] $ZWJ [$SA & [[:Mn:][:Mc:]]] ];# $EAST_ASIAN_PHRASE_CM
-$CMX = [[$CM] - [$ZWJ]];
+$CM = [[:LineBreak = Combining_Mark:] $CG $ZWJ [$SA & [[:Mn:][:Mc:]]] ];# $EAST_ASIAN_PHRASE_CM
+# Suffixes at which an explicit break is not prohibited by CG or ZWJ.
+$CMNoCG = [$CM - $CG];
+$CMX = [$CMNoCG - $ZWJ];
+
+# A combining-mark suffix that prohibits a following break.
+$CMJoin = ($ZWJ | $CG $CM*);
 
 #   Dictionary character set, for triggering language-based break engines. Currently
 #   limited to LineBreak=Complex_Context (SA).
@@ -181,14 +189,23 @@ $LB8Breaks    = [$LB4Breaks $ZW];
 $LB8NonBreaks = [[$LB4NonBreaks] - [$ZW]];
 $ZW $SP* / [^$SP $ZW $LB4Breaks];
 
-# LB 8a        ZWJ x            Do not break Emoji ZWJ sequences.
-#
-# We do not let the rules for LB8a and LB9 join an RI to an RI, as chaining on
-# that would flip the parity of RI sequences.  RI ZWJ RI is handled below as
-# part of the RI-specific rules, with more context.
-$ZWJ [^$CM $RI];
-[$CAN_CM - $RI] $CM* $ZWJ $RI;
-^ $CM* $ZWJ $RI;
+# LB 8a and the CM-only part of the proposed combining-glue rule.
+# ZWJ prohibits a following break; CG also carries this through later CMs.
+# Do not chain RI to RI here, which would flip the parity of RI sequences.
+# Such cases are handled by LB30a with more context.
+$CMJoin [^$CM $RI];
+[$CAN_CM - $RI] $CM* $CMJoin $RI;
+^ $CM* $CMJoin $RI;
+
+# Attach viramas, retaining their classes for LB28a.  Explicitly exclude
+# earlier hard breaks: these ICU rules are chained, not first-match rules.
+[^$BK $CR $LF $NL $SP $ZW] [$VI $VF];
+
+# Carry CG glue through at least one virama.  That virama ends any RI run,
+# so the final character may be RI.  $CM includes both CG and ZWJ.
+# The optional SP IS prefix preserves the glue when LB15d lookahead would
+# otherwise consume the first virama and prevent chaining on the earlier CG.
+($SP $IS $CM*)? $CG $CM* [$VI $VF] [$CM $VI $VF]* .;
 
 # LB 9     Combining marks.      X   $CM needs to behave like X, where X is not $SP, $BK $CR $LF $NL
 #                                $CM not covered by the above needs to behave like $AL
@@ -249,15 +266,15 @@ $CAN_CM $CM*  $SY;
 #
 $OP $CM* $SP* .;
 
-$OP $CM* $SP+ ($CM+ $AL_FOLLOW? | $CM* $ZWJ $RI?);  # by rule 10, stand-alone CM behaves as AL
+$OP $CM* $SP+ ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);  # by rule 10, stand-alone CM behaves as AL
                                                     # by rule 8, CM following a SP is stand-alone.
 
 
 # LB 15a
 ($OP $CM* $SP+ | [$OP $QU $GL] $CM*) ([\p{Pi} & $QU] $CM* $SP*)+ .;
-($OP $CM* $SP+ | [$OP $QU $GL] $CM*) ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $ZWJ $RI?);
+($OP $CM* $SP+ | [$OP $QU $GL] $CM*) ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
 ^([\p{Pi} & $QU] $CM* $SP*)+ .;
-^([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $ZWJ $RI?);
+^([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
 
 # LB 15b
 $LB8NonBreaks [\p{Pf} & $QU] $CM* [$SP $GL $WJ $CL $QU $CP $EX $IS $SY $BK $CR $LF $NL $ZW {eof}];
@@ -266,11 +283,11 @@ $CAN_CM $CM*  [\p{Pf} & $QU] $CM* [$SP $GL $WJ $CL $QU $CP $EX $IS $SY $BK $CR $
 
 # Messy interaction: manually chain between LB 15b and LB 15a on Pf Pi.
 $LB8NonBreaks [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ .;
-$LB8NonBreaks [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $ZWJ $RI?);
+$LB8NonBreaks [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
 $CAN_CM $CM*  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ .;
-$CAN_CM $CM*  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $ZWJ $RI?);
+$CAN_CM $CM*  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
 ^$CM+  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ .;
-^$CM+  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $ZWJ $RI?);
+^$CM+  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
 
 
 # LB 15c Force a break before start of a number with a leading decimal pt, e.g. " .23"
@@ -279,16 +296,16 @@ $CAN_CM $CM*  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLL
 
 
 $CanFollowIS = [$BK $CR $LF $NL $SP $ZW $WJ $GL $CL $CP $EX $IS $SY $QU $BA $HH $HY $NS $ALPlus $HL $IN];
-$SP $IS           / [^ $CanFollowIS $NU $CM];
-$SP $IS $CM* $CMX / [^ $CanFollowIS $NU $CM];
+$SP $IS           / [^ $CanFollowIS $NU $CM $VI $VF];
+$SP $IS $CMNoCG* $CMX / [^ $CanFollowIS $NU $CM $VI $VF];
 
 #
 # LB 15d Do not break before numeric separators (IS), even after spaces.
 # SP IS QU is handled below as part of LB 19.
 
 [$LB8NonBreaks - $SP] $IS;
-$SP $IS $CM* [$CanFollowIS {eof}];
-$SP $IS $CM* $ZWJ [^$CM $NU];
+$SP $IS $CM* [$CanFollowIS $VI $VF {eof}];
+$SP $IS $CM* $CMJoin [^$CM $NU];
 
 $CAN_CM $CM*  $IS;
 ^$CM+         $IS;              # by rule 10, stand-alone CM behaves as AL
@@ -318,11 +335,11 @@ $LB18NonBreaks $CM* $QU;
 ^$CM+               $QU;
 
 [$LB18NonBreaks & $EastAsian - [$OP $GL]]           / [\p{Pi} & $QU] $CM* [ $EastAsian - $CM];
-[$LB18NonBreaks & $EastAsian - [$OP $GL]] $CM* $CMX / [\p{Pi} & $QU] $CM* [ $EastAsian - $CM];
+[$LB18NonBreaks & $EastAsian - [$OP $GL]] $CMNoCG* $CMX / [\p{Pi} & $QU] $CM* [ $EastAsian - $CM];
 
 $QU $CM* .;
 [$LB18NonBreaks & $EastAsian] $CM* [\p{Pf} & $QU]           / [ $EastAsian - [$NS $BA $EX $CL $IN $IS $GL $CM]];
-[$LB18NonBreaks & $EastAsian] $CM* [\p{Pf} & $QU] $CM* $CMX / [ $EastAsian - [$NS $BA $EX $CL $IN $IS $GL $CM]];
+[$LB18NonBreaks & $EastAsian] $CM* [\p{Pf} & $QU] $CMNoCG* $CMX / [ $EastAsian - [$NS $BA $EX $CL $IN $IS $GL $CM]];
 
 # LB 20
 #        <break>  $CB
@@ -336,8 +353,8 @@ $LB20NonBreaks = [$LB18NonBreaks - $CB];
 #
 ^($HY | $HH) $CM* ($ALPlus | $HL);
 $GL $CM* ($HY | $HH) $CM* ($ALPlus | $HL ); 
-# Non-breaking CB from LB8a:
-$CB $CM* $ZWJ ($HY | $HH) $CM* ($ALPlus | $HL );
+# Non-breaking CB from LB8a or the proposed combining-glue rule:
+$CB $CM* $CMJoin ($HY | $HH) $CM* ($ALPlus | $HL );
 # Non-breaking SP from LB14:
 $OP $CM* $SP+ ($HY | $HH) $CM* ($ALPlus | $HL ); 
 # Non-breaking SP from LB15a:
@@ -431,12 +448,13 @@ $IS $CM* ($ALPlus | $HL);
 [$CP - $EastAsian] $CM* ($ALPlus | $HL | $NU);
 
 # LB 30a  Do not break between regional indicators. Break after pairs of them.
-#         Tricky interaction with LB8a: ZWJ x .   together with ZWJ acting like a CM.
-$RI $CM* $RI                 / [[^$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $CM]];
-$RI $CM* $RI $CM* [$CM-$ZWJ] / [[^$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $CM]];
-$RI $CM* $RI $CM* [$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $ZWJ {eof}];
-$RI $CM* $RI $CM* $ZWJ $RI;
-# note: the preceding rule includes {eof} rather than having the last [set] term qualified with '?'
+#         ZWJ and CG act like CM but also prohibit certain following breaks.
+#         Attach VI/VF without absorbing them or resetting RI parity at CG.
+$RI $CM* $RI                 / [[^$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $CM $VI $VF]];
+$RI $CM* $RI $CMNoCG* $CMX  / [[^$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $CM $VI $VF]];
+$RI $CM* $RI $CM* [$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $ZWJ $CG $VI $VF {eof}];
+$RI $CM* $RI $CM* $CMJoin $RI;
+# note: the rule containing {eof} must not instead make its last [set] term optional
 #       because of the chain-out behavior difference. The rule must chain out only from the [set characters],
 #       not from the preceding $RI or $CM, which it would be able to do if the set were optional.
 
