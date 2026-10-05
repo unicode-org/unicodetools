@@ -497,7 +497,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         } else if (getName().equals("Name") || getName().startsWith("Name_Alias")) {
             // UAX44-LM2.
             matcher = new SimpleMatcher(propertyValue, CHARACTER_NAME_COMPARATOR);
-        } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
+        } else if (isType(ENUMERATED_OR_CATALOG_MASK )) {
             // UAX44-LM3
             matcher = new AliasMatcher(propertyValue);
         } else {
