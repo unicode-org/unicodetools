@@ -478,7 +478,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             if (binValue == Boolean.TRUE) {
                 if (binaryYesSet == null) {
                     // Property queries can reenter this class during static initialization.
-                    binaryYesSet = getSet(new NameMatcher("Yes"), null).freeze();
+                    binaryYesSet = getSet(new AliasMatcher("Yes"), null).freeze();
                 }
                 if (result == null) {
                     return binaryYesSet.cloneAsThawed();
@@ -489,7 +489,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 if (binaryNoSet == null) {
                     // Unlike complementing Yes, this preserves missing values, string keys,
                     // and subclass lookups such as IndexUnicodeProperty's version deltas.
-                    binaryNoSet = getSet(new NameMatcher("No"), null).freeze();
+                    binaryNoSet = getSet(new AliasMatcher("No"), null).freeze();
                 }
                 if (result == null) {
                     return binaryNoSet.cloneAsThawed();
@@ -508,8 +508,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
             // UAX44-LM3
             matcher =
-                    useNameMatcher()
-                            ? new NameMatcher(propertyValue)
+                    useAliasMatcher()
+                            ? new AliasMatcher(propertyValue)
                             : new SimpleMatcher(propertyValue, PROPERTY_COMPARATOR);
         } else {
             // String-valued or Miscellaneous property.
@@ -519,7 +519,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     // Cache query skeletons only for the types with substantial measured gains.
-    private boolean useNameMatcher() {
+    private boolean useAliasMatcher() {
         return isType(BINARY_MASK)
                 || (!isMultivalued && isType((1 << ENUMERATED) | (1 << EXTENDED_ENUMERATED)));
     }
@@ -1392,10 +1392,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     /** Matches skeleton strings. Computes the pattern skeleton only once. */
-    private static final class NameMatcher extends SimpleMatcher {
+    private static final class AliasMatcher extends SimpleMatcher {
         private String skeleton;
 
-        NameMatcher(String pattern) {
+        AliasMatcher(String pattern) {
             super(pattern, PROPERTY_COMPARATOR);
             skeleton = toSkeleton(pattern);
         }
