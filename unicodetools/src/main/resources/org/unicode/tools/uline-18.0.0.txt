@@ -64,7 +64,7 @@ $CR = [:LineBreak =  Carriage_Return:];
 $EB = [:LineBreak =  EB:];
 $EM = [:LineBreak =  EM:];
 $EX = [:LineBreak =  Exclamation:];
-# Split Glue by canonical combining class until CG is a UCD property value.
+# Separate non-starter glue from ccc=0 glue for the proposed CG class.
 $CG = [[:LineBreak = Glue:] - [:ccc=0:]];
 $GL = [[:LineBreak = Glue:] & [:ccc=0:]];
 $HL = [:LineBreak =  Hebrew_Letter:];
@@ -102,18 +102,21 @@ $EastAsian = [ $JV $JT [\p{ea=F}\p{ea=W}\p{ea=H}] $EAST_ASIAN_UNCLASSIFIED $EAST
 
 $ExtPictUnassigned = [\p{Extended_Pictographic} & \p{Cn}];
 
-# By LB9, ZWJ and the proposed CG also behave as CM. Including it in the definition of CM avoids having to explicitly
+# By LB9, a ZWJ also behaves as a CM. Including it in the definition of CM avoids having to explicitly
 #         list it in the numerous rules that use CM.
-# By LB1, SA characters with general category Mn or Mc also resolve to CM.
-# VI and VF retain their classes; do not include them in $CM.
+# By LB1, SA characters with general categor of Mn or Mc also resolve to CM.
 
 $CM = [[:LineBreak = Combining_Mark:] $CG $ZWJ [$SA & [[:Mn:][:Mc:]]] ];# $EAST_ASIAN_PHRASE_CM
-# Suffixes at which an explicit break is not prohibited by CG or ZWJ.
+# Explicit breaks must not override CG glue, including intervening CMs.
 $CMNoCG = [$CM - $CG];
 $CMX = [$CMNoCG - $ZWJ];
 
-# A combining-mark suffix that prohibits a following break.
-$CMJoin = ($ZWJ | $CG $CM*);
+# These are suffixes, not rules or chaining entry points.  Every use below
+# supplies its base/context and a required non-CM endpoint.  CG carries glue
+# through CM, ZWJ, VI and VF; VI/VF otherwise retain their LB28a behavior.
+$Virama = [$VI $VF];
+$CMGlue = $CM* $CG $CM*;
+$CMGlueVirama = $CMGlue $Virama [$CM $VI $VF]*;
 
 #   Dictionary character set, for triggering language-based break engines. Currently
 #   limited to LineBreak=Complex_Context (SA).
@@ -147,7 +150,13 @@ $CANT_CM = [ $SP $BK $CR $LF $NL $ZW $CM];       # Bases that can't take CMs
 # AL_FOLLOW  set of chars that can unconditionally follow an AL
 #            Needed in rules where stand-alone $CM s are treated as AL.
 #
-$AL_FOLLOW      = [$BK $CR $LF $NL $ZW $SP $CL $CP $EX $HL $IS $SY $WJ $GL [$OP - $EastAsian] $QU $BA $HH $HY $NS $IN $NU $PR $PO $POX $ALPlus];
+$AL_FOLLOW      = [$VI $VF $BK $CR $LF $NL $ZW $SP $CL $CP $EX $HL $IS $SY $WJ $GL [$OP - $EastAsian] $QU $BA $HH $HY $NS $IN $NU $PR $PO $POX $ALPlus];
+
+# LB10 after an unbroken SP (LB14/LB15a).  No following CM is a chaining
+# entry point: keep CG's entire continuation in this same expression.
+$StandaloneCM = ($CM+ $AL_FOLLOW? | $CM* $ZWJ $RI?
+                 | $CMGlue [^$CM] | $CMGlueVirama [^$CM]);
+
 
 # LB 3.
 # A rule
@@ -189,23 +198,26 @@ $LB8Breaks    = [$LB4Breaks $ZW];
 $LB8NonBreaks = [[$LB4NonBreaks] - [$ZW]];
 $ZW $SP* / [^$SP $ZW $LB4Breaks];
 
-# LB 8a and the CM-only part of the proposed combining-glue rule.
-# ZWJ prohibits a following break; CG also carries this through later CMs.
-# Do not chain RI to RI here, which would flip the parity of RI sequences.
-# Such cases are handled by LB30a with more context.
-$CMJoin [^$CM $RI];
-[$CAN_CM - $RI] $CM* $CMJoin $RI;
-^ $CM* $CMJoin $RI;
+# LB 8a        ZWJ x            Do not break Emoji ZWJ sequences.
+#
+# We do not let the rules for LB8a and LB9 join an RI to an RI, as chaining on
+# that would flip the parity of RI sequences.  RI ZWJ RI is handled below as
+# part of the RI-specific rules, with more context.
+$ZWJ [^$CM $RI];
+[$CAN_CM - $RI] $CM* $ZWJ $RI;
+^ $CM* $ZWJ $RI;
 
-# Attach viramas, retaining their classes for LB28a.  Explicitly exclude
-# earlier hard breaks: these ICU rules are chained, not first-match rules.
-[^$BK $CR $LF $NL $SP $ZW] [$VI $VF];
+# Proposed attachment before VI/VF.  As with LB9, chain on the base, not CM.
+$CAN_CM $CM* $Virama;
+^ $CM+ $Virama;
 
-# Carry CG glue through at least one virama.  That virama ends any RI run,
-# so the final character may be RI.  $CM includes both CG and ZWJ.
-# The optional SP IS prefix preserves the glue when LB15d lookahead would
-# otherwise consume the first virama and prevent chaining on the earlier CG.
-($SP $IS $CM*)? $CG $CM* [$VI $VF] [$CM $VI $VF]* .;
+# CG glue.  A following RI can be joined here only if the base is not RI,
+# or a virama has ended the RI run.  LB30a handles the other RI contexts.
+$CAN_CM $CMGlue [^$CM $RI];
+[$CAN_CM - $RI] $CMGlue $RI;
+^ $CMGlue [^$CM];
+$CAN_CM $CMGlueVirama [^$CM];
+^ $CMGlueVirama [^$CM];
 
 # LB 9     Combining marks.      X   $CM needs to behave like X, where X is not $SP, $BK $CR $LF $NL
 #                                $CM not covered by the above needs to behave like $AL
@@ -266,15 +278,15 @@ $CAN_CM $CM*  $SY;
 #
 $OP $CM* $SP* .;
 
-$OP $CM* $SP+ ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);  # by rule 10, stand-alone CM behaves as AL
+$OP $CM* $SP+ $StandaloneCM;  # by rule 10, stand-alone CM behaves as AL
                                                     # by rule 8, CM following a SP is stand-alone.
 
 
 # LB 15a
 ($OP $CM* $SP+ | [$OP $QU $GL] $CM*) ([\p{Pi} & $QU] $CM* $SP*)+ .;
-($OP $CM* $SP+ | [$OP $QU $GL] $CM*) ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
+($OP $CM* $SP+ | [$OP $QU $GL] $CM*) ([\p{Pi} & $QU] $CM* $SP*)+ $SP $StandaloneCM;
 ^([\p{Pi} & $QU] $CM* $SP*)+ .;
-^([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
+^([\p{Pi} & $QU] $CM* $SP*)+ $SP $StandaloneCM;
 
 # LB 15b
 $LB8NonBreaks [\p{Pf} & $QU] $CM* [$SP $GL $WJ $CL $QU $CP $EX $IS $SY $BK $CR $LF $NL $ZW {eof}];
@@ -283,11 +295,11 @@ $CAN_CM $CM*  [\p{Pf} & $QU] $CM* [$SP $GL $WJ $CL $QU $CP $EX $IS $SY $BK $CR $
 
 # Messy interaction: manually chain between LB 15b and LB 15a on Pf Pi.
 $LB8NonBreaks [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ .;
-$LB8NonBreaks [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
+$LB8NonBreaks [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP $StandaloneCM;
 $CAN_CM $CM*  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ .;
-$CAN_CM $CM*  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
+$CAN_CM $CM*  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP $StandaloneCM;
 ^$CM+  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ .;
-^$CM+  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP ($CM+ $AL_FOLLOW? | $CM* $CMJoin $RI?);
+^$CM+  [\p{Pf} & $QU] $CM* ([\p{Pi} & $QU] $CM* $SP*)+ $SP $StandaloneCM;
 
 
 # LB 15c Force a break before start of a number with a leading decimal pt, e.g. " .23"
@@ -305,7 +317,11 @@ $SP $IS $CMNoCG* $CMX / [^ $CanFollowIS $NU $CM $VI $VF];
 
 [$LB8NonBreaks - $SP] $IS;
 $SP $IS $CM* [$CanFollowIS $VI $VF {eof}];
-$SP $IS $CM* $CMJoin [^$CM $NU];
+$SP $IS $CM* $ZWJ [^$CM $NU];
+# LB15d consumes its following context.  Carry CG glue within that match;
+# a separate match starting at IS or CG cannot overlap that whole context.
+$SP $IS $CMGlue [^$CM $NU];
+$SP $IS $CMGlueVirama [^$CM];
 
 $CAN_CM $CM*  $IS;
 ^$CM+         $IS;              # by rule 10, stand-alone CM behaves as AL
@@ -353,8 +369,9 @@ $LB20NonBreaks = [$LB18NonBreaks - $CB];
 #
 ^($HY | $HH) $CM* ($ALPlus | $HL);
 $GL $CM* ($HY | $HH) $CM* ($ALPlus | $HL ); 
-# Non-breaking CB from LB8a or the proposed combining-glue rule:
-$CB $CM* $CMJoin ($HY | $HH) $CM* ($ALPlus | $HL );
+# Non-breaking CB from LB8a:
+$CB $CM* $ZWJ ($HY | $HH) $CM* ($ALPlus | $HL );
+$CB $CMGlue ($HY | $HH) $CM* ($ALPlus | $HL );
 # Non-breaking SP from LB14:
 $OP $CM* $SP+ ($HY | $HH) $CM* ($ALPlus | $HL ); 
 # Non-breaking SP from LB15a:
@@ -437,7 +454,12 @@ $PR $CM* ($JL | $JV | $JT | $H2 | $H3);
 ^$CM+ ($ALPlus | $HL);      # The $CM+ is from rule 10, an unattached CM is treated as AL
 
 #LB 28a  Do not break Orthographic syllables
-($AP $CM*)? ($AS | $AK | [◌] ) ($CM* $VI $CM* ($AK | [◌] ))* ($CM* $VI | (($CM* ($AS | $AK | [◌] ) )? $CM* $VF))?;
+$Aksara = [$AS $AK ◌];
+$OrthographicSyllable = ($AP $CM*)? $Aksara ($CM* $VI $CM* ($AK | [◌]))*;
+$OrthographicSyllable ($CM* $VI | (($CM* $Aksara)? $CM* $VF))?;
+# The final AS/AK before VF is conditional right context: do not rely on
+# chaining at it or at CG.  Keep its CG continuation in the LB28a match.
+$OrthographicSyllable ($CM* $Aksara)? $CMGlue $VF [$CM $VI $VF]* [^$CM];
 
 # LB 29
 $IS $CM* ($ALPlus | $HL);
@@ -448,13 +470,16 @@ $IS $CM* ($ALPlus | $HL);
 [$CP - $EastAsian] $CM* ($ALPlus | $HL | $NU);
 
 # LB 30a  Do not break between regional indicators. Break after pairs of them.
-#         ZWJ and CG act like CM but also prohibit certain following breaks.
-#         Attach VI/VF without absorbing them or resetting RI parity at CG.
+#         Tricky interaction with LB8a: ZWJ x .   together with ZWJ acting like a CM.
 $RI $CM* $RI                 / [[^$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $CM $VI $VF]];
-$RI $CM* $RI $CMNoCG* $CMX  / [[^$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $CM $VI $VF]];
-$RI $CM* $RI $CM* [$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $ZWJ $CG $VI $VF {eof}];
-$RI $CM* $RI $CM* $CMJoin $RI;
-# note: the rule containing {eof} must not instead make its last [set] term optional
+$RI $CM* $RI $CMNoCG* $CMX / [[^$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $CM $VI $VF]];
+$RI $CM* $RI $CM* [$BK $CR $LF $NL $SP $ZW $WJ $CL $CP $EX $IS $SY $GL $QU $BA $HH $HY $NS $IN $ZWJ $VI $VF {eof}];
+$RI $CM* $RI $CM* $ZWJ $RI;
+# Preserve the pair's context through CG, without chaining on a CM or
+# restarting the parity count at the second RI.
+$RI $CM* $RI $CMGlue [^$CM];
+$RI $CM* $RI $CMGlueVirama [^$CM];
+# note: the preceding rule includes {eof} rather than having the last [set] term qualified with '?'
 #       because of the chain-out behavior difference. The rule must chain out only from the [set characters],
 #       not from the preceding $RI or $CM, which it would be able to do if the set were optional.
 
