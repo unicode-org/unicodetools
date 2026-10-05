@@ -472,24 +472,83 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (propertyValue == null) {
             return getSet(NULL_MATCHER, result);
         }
-        Comparator<String> comparator;
+        // Extended binary properties need not support all standard Yes/No aliases.
+        if (getType() == BINARY) {
+            Boolean binValue = binaryValueOrNull(propertyValue);
+            if (binValue == Boolean.TRUE) {
+                if (binaryYesSet == null) {
+                    binaryYesSet = getSet(YES_MATCHER, null).freeze();
+                }
+                if (result == null) {
+                    return binaryYesSet.cloneAsThawed();
+                } else {
+                    return result.addAll(binaryYesSet);
+                }
+            } else if (binValue == Boolean.FALSE) {
+                if (binaryNoSet == null) {
+                    // Unlike complementing Yes, this preserves missing values, string keys,
+                    // and subclass lookups such as IndexUnicodeProperty's version deltas.
+                    binaryNoSet = getSet(NO_MATCHER, null).freeze();
+                }
+                if (result == null) {
+                    return binaryNoSet.cloneAsThawed();
+                } else {
+                    return result.addAll(binaryNoSet);
+                }
+            }
+        }
+        PatternMatcher matcher;
         if (isType(NUMERIC_MASK)) {
             // UAX44-LM1.
-            comparator = RATIONAL_OR_FLOATING_POINT_COMPARATOR;
+            matcher = new SimpleMatcher(propertyValue, RATIONAL_OR_FLOATING_POINT_COMPARATOR);
         } else if (getName().equals("Name") || getName().startsWith("Name_Alias")) {
             // UAX44-LM2.
-            comparator = CHARACTER_NAME_COMPARATOR;
+            matcher = new SimpleMatcher(propertyValue, CHARACTER_NAME_COMPARATOR);
         } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
             // UAX44-LM3
-            comparator = PROPERTY_COMPARATOR;
+            matcher =
+                    useNameMatcher()
+                            ? new NameMatcher(propertyValue)
+                            : new SimpleMatcher(propertyValue, PROPERTY_COMPARATOR);
         } else {
             // String-valued or Miscellaneous property.
-            comparator = null;
+            matcher = new SimpleMatcher(propertyValue, null);
         }
-        return getSet(new SimpleMatcher(propertyValue, comparator), result);
+        return getSet(matcher, result);
+    }
+
+    // Cache query skeletons only for the types with substantial measured gains.
+    private boolean useNameMatcher() {
+        return isType(BINARY_MASK)
+                || (!isMultivalued && isType((1 << ENUMERATED) | (1 << EXTENDED_ENUMERATED)));
+    }
+
+    private static final Boolean binaryValueOrNull(String value) {
+        if ("Yes".equals(value)) { // fastpath
+            return Boolean.TRUE;
+        }
+        if (value == null) {
+            return null;
+        }
+        switch (toSkeleton(value)) {
+            case "n":
+            case "no":
+            case "f":
+            case "false":
+                return Boolean.FALSE;
+            case "y":
+            case "yes":
+            case "t":
+            case "true":
+                return Boolean.TRUE;
+            default:
+                return null;
+        }
     }
 
     private UnicodeMap<String> unicodeMap = null;
+    private UnicodeSet binaryYesSet = null;
+    private UnicodeSet binaryNoSet = null;
 
     public static final String UNUSED = "??";
 
@@ -1330,6 +1389,33 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return valueMap;
         }
     }
+
+    /** Matches skeleton strings. Computes the pattern skeleton only once. */
+    private static final class NameMatcher extends SimpleMatcher {
+        private String skeleton;
+
+        NameMatcher(String pattern) {
+            super(pattern, PROPERTY_COMPARATOR);
+            skeleton = toSkeleton(pattern);
+        }
+
+        @Override
+        public boolean test(String value) {
+            return pattern == value
+                    || (pattern != null
+                            && (pattern.equals(value) || skeleton.equals(toSkeleton(value))));
+        }
+
+        @Override
+        public PatternMatcher set(String pattern) {
+            super.set(pattern);
+            skeleton = toSkeleton(pattern);
+            return this;
+        }
+    }
+
+    private static final NameMatcher YES_MATCHER = new NameMatcher("Yes");
+    private static final NameMatcher NO_MATCHER = new NameMatcher("No");
 
     public interface PatternMatcher extends Predicate<String> {
         public PatternMatcher set(String pattern);
