@@ -477,7 +477,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             Boolean binValue = binaryValueOrNull(propertyValue);
             if (binValue == Boolean.TRUE) {
                 if (binaryYesSet == null) {
-                    binaryYesSet = getSet(YES_MATCHER, null).freeze();
+                    // Property queries can reenter this class during static initialization.
+                    binaryYesSet = getSet(new NameMatcher("Yes"), null).freeze();
                 }
                 if (result == null) {
                     return binaryYesSet.cloneAsThawed();
@@ -488,7 +489,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 if (binaryNoSet == null) {
                     // Unlike complementing Yes, this preserves missing values, string keys,
                     // and subclass lookups such as IndexUnicodeProperty's version deltas.
-                    binaryNoSet = getSet(NO_MATCHER, null).freeze();
+                    binaryNoSet = getSet(new NameMatcher("No"), null).freeze();
                 }
                 if (result == null) {
                     return binaryNoSet.cloneAsThawed();
@@ -1413,9 +1414,6 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return this;
         }
     }
-
-    private static final NameMatcher YES_MATCHER = new NameMatcher("Yes");
-    private static final NameMatcher NO_MATCHER = new NameMatcher("No");
 
     public interface PatternMatcher extends Predicate<String> {
         public PatternMatcher set(String pattern);

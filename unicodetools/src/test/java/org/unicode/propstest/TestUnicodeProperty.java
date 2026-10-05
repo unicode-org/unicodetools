@@ -8,7 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.unicode.props.UnicodeProperty;
 
 public class TestUnicodeProperty {
@@ -29,6 +35,66 @@ public class TestUnicodeProperty {
                 };
         result.set(map).setMain(name, name, type, "test");
         return result;
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Yes", "No"})
+    void testBinaryLookupDuringClassInitialization(String firstValue, @TempDir Path tempDir)
+            throws Exception {
+        // A fresh JVM is required: other tests may already have initialized UnicodeProperty.
+        Path output = tempDir.resolve("initialization.log");
+        Process process =
+                new ProcessBuilder(
+                                Path.of(System.getProperty("java.home"), "bin", "java").toString(),
+                                "-cp",
+                                System.getProperty(
+                                        "surefire.test.class.path",
+                                        System.getProperty("java.class.path")),
+                                InitializationProbe.class.getName(),
+                                firstValue)
+                        .redirectErrorStream(true)
+                        .redirectOutput(output.toFile())
+                        .start();
+        try {
+            assertTrue(process.waitFor(30, TimeUnit.SECONDS), "Class initialization timed out");
+            assertEquals(0, process.exitValue(), Files.readString(output));
+        } finally {
+            process.destroyForcibly();
+        }
+    }
+
+    public static class InitializationProbe {
+        public static void main(String[] args) {
+            // Model GenerateIdnaTest's startup: install a symbol table before UnicodeProperty
+            // initializes NONCHARACTERS. Resolving that set reenters getSet during initialization.
+            UnicodeSet.setDefaultXSymbolTable(
+                    new UnicodeSet.XSymbolTable() {
+                        @Override
+                        public boolean applyPropertyAlias(
+                                String propertyName, String propertyValue, UnicodeSet result) {
+                            if (!propertyName.equals("noncharactercodepoint")) {
+                                return false;
+                            }
+                            UnicodeProperty p =
+                                    property(
+                                            "DuringInitialization",
+                                            UnicodeProperty.BINARY,
+                                            new UnicodeMap<String>()
+                                                    .put('A', "Yes")
+                                                    .put('B', "No"));
+                            // Exercise both caches, varying which one is initialized first.
+                            for (String value :
+                                    new String[] {args[0], args[0].equals("Yes") ? "No" : "Yes"}) {
+                                assertEquals(
+                                        new UnicodeSet().add(value.equals("Yes") ? 'A' : 'B'),
+                                        p.getSet(value));
+                            }
+                            result.clear().add('A');
+                            return true;
+                        }
+                    });
+            assertEquals(new UnicodeSet("[A]"), UnicodeProperty.NONCHARACTERS);
+        }
     }
 
     @Test
