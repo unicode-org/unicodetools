@@ -472,8 +472,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (propertyValue == null) {
             return getSet(NULL_MATCHER, result);
         }
-        // Extended binary properties need not support all standard Yes/No aliases.
-        if (getType() == BINARY) {
+        if (isType(BINARY_MASK)) {
             Boolean binValue = binaryValueOrNull(propertyValue);
             if (binValue == Boolean.TRUE) {
                 if (binaryYesSet == null) {
