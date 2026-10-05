@@ -472,6 +472,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         if (propertyValue == null) {
             return getSet(NULL_MATCHER, result);
         }
+        PatternMatcher matcher;
         if (isType(BINARY_MASK)) {
             boolean binValue = binaryValue(propertyValue);
             UnicodeSet binarySet = binValue ? binaryYesSet : binaryNoSet;
@@ -489,15 +490,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             } else {
                 return result.addAll(binarySet);
             }
-        }
-        PatternMatcher matcher;
-        if (isType(NUMERIC_MASK)) {
+        } else if (isType(NUMERIC_MASK)) {
             // UAX44-LM1.
             matcher = new SimpleMatcher(propertyValue, RATIONAL_OR_FLOATING_POINT_COMPARATOR);
         } else if (getName().equals("Name") || getName().startsWith("Name_Alias")) {
             // UAX44-LM2.
             matcher = new SimpleMatcher(propertyValue, CHARACTER_NAME_COMPARATOR);
-        } else if (isType(ENUMERATED_OR_CATALOG_MASK )) {
+        } else if (isType(ENUMERATED_OR_CATALOG_MASK)) {
             // UAX44-LM3
             matcher = new AliasMatcher(propertyValue);
         } else {
