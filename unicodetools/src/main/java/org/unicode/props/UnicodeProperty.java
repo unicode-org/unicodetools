@@ -473,27 +473,21 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             return getSet(NULL_MATCHER, result);
         }
         if (isType(BINARY_MASK)) {
-            Boolean binValue = binaryValueOrNull(propertyValue);
-            if (binValue == Boolean.TRUE) {
-                if (binaryYesSet == null) {
-                    // Property queries can reenter this class during static initialization.
-                    binaryYesSet = getSet(new AliasMatcher("Yes"), null).freeze();
-                }
-                if (result == null) {
-                    return binaryYesSet.cloneAsThawed();
+            boolean binValue = binaryValue(propertyValue);
+            UnicodeSet binarySet = binValue ? binaryYesSet : binaryNoSet;
+            if (binarySet == null) {
+                // Property queries can reenter this class during static initialization.
+                binarySet = getSet(new AliasMatcher(binValue ? "Yes" : "No"), null).freeze();
+                if (binValue) {
+                    binaryYesSet = binarySet;
                 } else {
-                    return result.addAll(binaryYesSet);
+                    binaryNoSet = binarySet;
                 }
-            } else if (binValue == Boolean.FALSE) {
-                if (binaryNoSet == null) {
-                    // No is the codepoint complement of the resolved Yes set.
-                    binaryNoSet = getSet("Yes").complement().removeAllStrings().freeze();
-                }
-                if (result == null) {
-                    return binaryNoSet.cloneAsThawed();
-                } else {
-                    return result.addAll(binaryNoSet);
-                }
+            }
+            if (result == null) {
+                return binarySet.cloneAsThawed();
+            } else {
+                return result.addAll(binarySet);
             }
         }
         PatternMatcher matcher;
@@ -513,26 +507,23 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return getSet(matcher, result);
     }
 
-    private static final Boolean binaryValueOrNull(String value) {
+    private static final boolean binaryValue(String value) {
         if ("Yes".equals(value)) { // fastpath
-            return Boolean.TRUE;
-        }
-        if (value == null) {
-            return null;
+            return true;
         }
         switch (toSkeleton(value)) {
             case "n":
             case "no":
             case "f":
             case "false":
-                return Boolean.FALSE;
+                return false;
             case "y":
             case "yes":
             case "t":
             case "true":
-                return Boolean.TRUE;
+                return true;
             default:
-                return null;
+                throw new IllegalArgumentException("Invalid binary value: " + value);
         }
     }
 
