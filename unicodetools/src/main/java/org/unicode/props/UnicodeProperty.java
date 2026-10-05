@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -34,6 +35,7 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import org.unicode.cldr.util.Rational.RationalParser;
 import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.utility.UTF16Plus;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
@@ -474,16 +476,15 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
         PatternMatcher matcher;
         if (isType(BINARY_MASK)) {
-            boolean binValue = binaryValue(propertyValue);
-            UnicodeSet binarySet = binValue ? binaryYesSet : binaryNoSet;
+            Binary binValue = binaryValue(propertyValue);
+            if (binarySets == null) {
+                binarySets = new EnumMap<>(Binary.class);
+            }
+            UnicodeSet binarySet = binarySets.get(binValue);
             if (binarySet == null) {
                 // Property queries can reenter this class during static initialization.
-                binarySet = getSet(new AliasMatcher(binValue ? "Yes" : "No"), null).freeze();
-                if (binValue) {
-                    binaryYesSet = binarySet;
-                } else {
-                    binaryNoSet = binarySet;
-                }
+                binarySet = getSet(new AliasMatcher(binValue.name()), null).freeze();
+                binarySets.put(binValue, binarySet);
             }
             if (result == null) {
                 return binarySet.cloneAsThawed();
@@ -506,29 +507,28 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return getSet(matcher, result);
     }
 
-    private static final boolean binaryValue(String value) {
+    private static final Binary binaryValue(String value) {
         if ("Yes".equals(value)) { // fastpath
-            return true;
+            return Binary.Yes;
         }
         switch (toSkeleton(value)) {
             case "n":
             case "no":
             case "f":
             case "false":
-                return false;
+                return Binary.No;
             case "y":
             case "yes":
             case "t":
             case "true":
-                return true;
+                return Binary.Yes;
             default:
                 throw new IllegalArgumentException("Invalid binary value: " + value);
         }
     }
 
     private UnicodeMap<String> unicodeMap = null;
-    private UnicodeSet binaryYesSet = null;
-    private UnicodeSet binaryNoSet = null;
+    private Map<Binary, UnicodeSet> binarySets = null;
 
     public static final String UNUSED = "??";
 
