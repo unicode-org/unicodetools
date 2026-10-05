@@ -487,9 +487,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 }
             } else if (binValue == Boolean.FALSE) {
                 if (binaryNoSet == null) {
-                    // Unlike complementing Yes, this preserves missing values, string keys,
-                    // and subclass lookups such as IndexUnicodeProperty's version deltas.
-                    binaryNoSet = getSet(new AliasMatcher("No"), null).freeze();
+                    // No is the codepoint complement of the resolved Yes set.
+                    binaryNoSet = getSet("Yes").complement().removeAllStrings().freeze();
                 }
                 if (result == null) {
                     return binaryNoSet.cloneAsThawed();
