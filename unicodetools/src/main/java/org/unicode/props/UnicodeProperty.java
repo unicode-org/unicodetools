@@ -1381,7 +1381,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         }
     }
 
-    /** Matches skeleton strings. Computes the pattern skeleton only once. */
+    /** Matches according to UAX44-LM3. Computes the pattern skeleton only once. */
     private static final class AliasMatcher extends SimpleMatcher {
         private String skeleton;
 
