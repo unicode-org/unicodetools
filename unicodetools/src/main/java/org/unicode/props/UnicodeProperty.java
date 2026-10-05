@@ -507,21 +507,12 @@ public abstract class UnicodeProperty extends UnicodeLabel {
             matcher = new SimpleMatcher(propertyValue, CHARACTER_NAME_COMPARATOR);
         } else if (isType(BINARY_OR_ENUMERATED_OR_CATALOG_MASK)) {
             // UAX44-LM3
-            matcher =
-                    useAliasMatcher()
-                            ? new AliasMatcher(propertyValue)
-                            : new SimpleMatcher(propertyValue, PROPERTY_COMPARATOR);
+            matcher = new AliasMatcher(propertyValue);
         } else {
             // String-valued or Miscellaneous property.
             matcher = new SimpleMatcher(propertyValue, null);
         }
         return getSet(matcher, result);
-    }
-
-    // Cache query skeletons only for the types with substantial measured gains.
-    private boolean useAliasMatcher() {
-        return isType(BINARY_MASK)
-                || (!isMultivalued && isType((1 << ENUMERATED) | (1 << EXTENDED_ENUMERATED)));
     }
 
     private static final Boolean binaryValueOrNull(String value) {
