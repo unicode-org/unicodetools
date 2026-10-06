@@ -773,7 +773,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     /** Returns a representative of the equivalence class of source under UAX44-LM3. */
     public static String toSkeleton(String source) {
         if (source == null) return null;
-        StringBuffer skeletonBuffer = new StringBuffer();
+        StringBuilder skeletonBuffer = new StringBuilder();
         boolean gotOne = false;
         // remove spaces, '_', '-'
         // we can do this with char, since no surrogates are involved
