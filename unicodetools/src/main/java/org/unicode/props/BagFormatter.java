@@ -507,6 +507,7 @@ public class BagFormatter {
                 output.print("<table>");
                 inTable = true;
             }
+            System.err.println(s.replace("\t", "␉"));
             output.print(tabber.process(s) + lineSeparator);
         }
 

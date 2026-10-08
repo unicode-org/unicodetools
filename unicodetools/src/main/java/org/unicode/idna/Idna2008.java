@@ -1,7 +1,19 @@
 package org.unicode.idna;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.props.BagFormatter;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.text.utility.DiffingPrintWriter;
 import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.text.SimpleFormatter;
 import com.ibm.icu.text.UnicodeSet;
+import org.unicode.text.utility.Settings;
+import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
 
 public class Idna2008 extends Idna {
 
@@ -149,6 +161,94 @@ public class Idna2008 extends Idna {
             IDNA2008Computed.put(cp, value);
         }
         IDNA2008Computed.freeze();
+    }
+
+    static final Instant now = Instant.now();
+    static final DateTimeFormatter dt =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss' GMT'")
+                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
+    static final DateTimeFormatter dty =
+            DateTimeFormatter.ofPattern("y")
+                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
+
+    public static final String DATA_DIR_DEV =
+            Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/idna/dev/";
+
+    static final  SimpleFormatter HEADER = SimpleFormatter.compile("""
+        # Idna2008-{0}.txt
+        # Date: {1}
+        # Copyright {2} Unicode, Inc.
+        # For terms of use and license, see https://www.unicode.org/terms_of_use.html
+        #
+        #
+        # IDNA2008_Category Property
+        #
+        # This file lists the "IDNA Derived Property" as defined in RFC 5892.
+        # It is provided as a convenience for implementers by performing
+        # the calculations defined in RFC 5892 concurrent with the release
+        # of each version of the Unicode Character Database.
+        #
+        # The format is two fields separated by a semicolon.
+        # Field 0: Unicode code point value or range of code point values
+        #            Ranges in this file, unlike in other property files, may cross
+        #            script and block boundaries; their extent is only determined
+        #            by the range of the common IDNA2008_Category value.
+        #            They are indicated in the usual notation using "..".
+        # Field 1: IDNA2008_Category, consisting of one of these values
+        #            "PVALID"     - Protocol valid (generally Letters, Digits and Hyphen)
+        #            "CONTEXTJ"   - Join control
+        #            "CONTEXTO"   - Other code points requiring context
+        #            "DISALLOWED" - The code point is not allowed in IDNA2008
+        #            "UNASSIGNED" - The code point is not assigned in this version
+        # Following Field 1 is a comment field that lists the character name
+        # (or code point label) for the code point, or the first and last character
+        # name for the characters in the code point range.
+        #
+        # The values of the IDNA2008_Category property are derived from
+        # other Unicode properties in the current version of the Unicode
+        # Character Database as follows:
+        #
+        # The precise algorithm for deriving the property is defined in
+        # Section 3 "Calculation of the Derived Property" of RFC 5892.
+        #
+        # Section 2.6 "Exceptions" in RFC 5892 lists code point for which
+        # the derivation is overridden by exceptional values. All the exceptions
+        # known at the time this data file was created have been applied.
+        # However, future updates of the IDNA protocol may add to this list
+        # of exceptions, which then would override the values derived here.
+        #
+        # However, once published, this file will not be updated.
+        #
+        # A value of the property is given for each code point.
+        #
+        # For more information, see RFC 5892, "The Unicode Code Points and
+        # Internationalized Domain Names for Applications (IDNA)",
+        # at https://www.rfc-editor.org/info/rfc5892
+        #
+        # @missing: 0000..10FFFF; UNASSIGNED
+        #
+        """);
+
+    public static void generateIdna2008() {
+        final var map = new UnicodeMap<String>();
+        for (final var v : Idna2008Type.values()) {
+            map.putAll(IDNA2008Computed.keySet(v), v.toString());
+        }
+        try (final var out = new DiffingPrintWriter(DATA_DIR_DEV, "Idna2008.txt")) {
+            out.println(HEADER.format("Idna2008-" + Settings.latestVersion + ".txt", dt.format(now) , dty.format(now)));
+            final BagFormatter bf = new BagFormatter(IndexUnicodeProperties.make())
+            .setLineSeparator("\n")
+            .setValueSource(new UnicodeMapProperty().set(map))
+                .setRangeBreakSource(
+                        new UnicodeLabel.Constant(""))
+            .setMinSpacesBeforeSemicolon(-2)
+            .setLabelSource(null)
+            .setMinSpacesBeforeComment(2)
+            .setShowCount(false);
+            bf.showSetNames(out.tempPrintWriter, UnicodeSet.ALL_CODE_POINTS);
+            out.println("");
+            out.flush();
+        }
     }
 
     public static Idna2008 SINGLETON = new Idna2008();
