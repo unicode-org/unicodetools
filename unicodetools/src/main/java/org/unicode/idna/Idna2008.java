@@ -237,9 +237,11 @@ public class Idna2008 extends Idna {
             .setLabelSource(null)
             .setMinSpacesBeforeComment(2)
             .setShowCount(false)
-            .setMinSpacesBeforeName(0);
+            .setMinSpacesBeforeName(0)
+            .setShowTotal(false);
             bf.showSetNames(out.tempPrintWriter, UnicodeSet.ALL_CODE_POINTS);
-            out.println("");
+            out.println();
+            out.println("# EOF");
             out.flush();
         }
     }
