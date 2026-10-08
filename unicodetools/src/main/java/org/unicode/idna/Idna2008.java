@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.DiffingPrintWriter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.SimpleFormatter;
@@ -124,18 +123,11 @@ public class Idna2008 extends Idna {
         // Else If .cp. .in. LetterDigits Then PVALID;
         // Else DISALLOWED;
 
-        final UnicodeMap<Idna2008Type> Incompatible =
-                new UnicodeMap<Idna2008Type>()
-                        .putAll(GRANDFATHERED_VALID, Idna2008Type.PVALID)
-                        .freeze();
-
         IDNA2008Computed = new UnicodeMap<Idna2008Type>();
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Idna2008Type value;
-            if (Incompatible.containsKey(cp)) {
-                value = Incompatible.get(cp);
-            } else if (Exceptions.containsKey(cp)) {
+            if (Exceptions.containsKey(cp)) {
                 value = Exceptions.get(cp);
             } else if (BackwardCompatible.containsKey(cp)) {
                 value = BackwardCompatible.get(cp);
