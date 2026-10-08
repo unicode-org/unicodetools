@@ -51,7 +51,7 @@
 ##########################
 # In <unicodeSet>, <props> (=|≠) <props>
 #
-# For each character in <unicodeSet>, verify that the result of applying the left <props>
+# For each element (code point or string) in <unicodeSet>, verify that the result of applying the left <props>
 # is (=|≠) the result of applying the right <props>.
 #   <props> is of the form (<unicodeSet> | <prop>) ("*" (<unicodeSet> | <prop> | <sequenceTransformation>))?
 #   It is the functional composition of the properties applied to strings, whereby
@@ -87,7 +87,7 @@
 #       It then compares that with the result of filtering out NSM characters from X, then getting the Bidi_Class.
 #
 # In <unicodeSet>, <props> (∈|∉) <unicodeSet>
-#   For each character in the first <unicodeSet>, verify that the result of applying the left <props>
+#   For each element (code point or string) in the first <unicodeSet>, verify that the result of applying the left <props>
 #   is (∈|∉) the right-hand-side unicodeSet.
 ##########################
 # OnPairsOf <unicodeSet>, EqualityOf <props> (⇐|⇔|⇒|⇍|⇎|⇏) EqualityOf <props>
@@ -1102,6 +1102,25 @@ In [\p{gcb=LV}\p{gcb=LVT}], (take 1) * dm ∈ [\p{gcb=L} \p{gcb=LV} \p{gcb=LVT}]
 \p{HST=T}   = \p{GCB=T}
 
 ##########################
+# Variation sequences
+##########################
+
+# Formal requirements from Core Spec D57a, D57b, and D57c;
+# see also L2/26-070R and https://github.com/unicode-org/unicodetools/issues/1339.
+# Match all non-null values to include the string keys from both
+# StandardizedVariants.txt and emoji-variation-sequences.txt.
+Let $variationSequences := [\p{Standardized_Variant=/.*/} \p{emoji_variation_sequence=/.*/}]
+Let $variationBases := [
+    [\p{gc=L} \p{gc=M} \p{gc=N} \p{gc=P} \p{gc=S} \p{gc=Zs}]
+    & \p{ccc=0} & \p{NFD_QC=Yes} & \p{NFC_QC=Yes}
+]
+Let $variationSelectors := [\p{Variation_Selector} & \p{Default_Ignorable_Code_Point} & \p{ccc=0}]
+In $variationSequences, (take 1) ∈ $variationBases
+# The suffix must be one code point in this set, so this also checks that
+# each sequence has exactly two code points.
+In $variationSequences, (drop 1) ∈ $variationSelectors
+
+##########################
 # Emoji
 ##########################
 
@@ -1150,8 +1169,7 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 # And nearly all emoji are Extended_Pictographic.
 [\p{Extended_Pictographic}-\p{gc=Cn}] = [\p{Emoji}-\p{Regional_Indicator}-\p{Emoji_Modifier}-\p{Block=Basic Latin}]
 
-# TODO(egg): We could check that the variation selectors are used consistently, but this would
-# require UnicodeProperty to support strings properly.
+# TODO(egg): Check that the variation selectors are used consistently.
 \p{emoji_variation_sequence=text\ style} ⊃ [{♈︎}]
 \p{emoji_variation_sequence=emoji\ style} ⊃ [{♈️}]
 
@@ -1507,8 +1525,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 \p{kEH_Core=Legacy} ⊂ \p{Block=Egyptian Hieroglyphs}
 [\p{kEH_Core=None} & $unikemetScope] ⊂ \p{Block=Egyptian Hieroglyphs Extended-A}
 
-# TODO(egg): We could check that the variation selectors are used consistently, but this would
-# require UnicodeProperty to support strings properly.
+# TODO(egg): Check that the variation selectors are used consistently.
 \p{Standardized_Variant=rotated\ 90\ degrees} ⊃ [{𓏲\uFE00}]
 
 # InPC-InSC-gc invariants
