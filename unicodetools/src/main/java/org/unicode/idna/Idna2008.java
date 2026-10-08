@@ -236,7 +236,8 @@ public class Idna2008 extends Idna {
             .setMinSpacesBeforeSemicolon(-2)
             .setLabelSource(null)
             .setMinSpacesBeforeComment(2)
-            .setShowCount(false);
+            .setShowCount(false)
+            .setMinSpacesBeforeName(0);
             bf.showSetNames(out.tempPrintWriter, UnicodeSet.ALL_CODE_POINTS);
             out.println("");
             out.flush();

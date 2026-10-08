@@ -292,6 +292,15 @@ public class BagFormatter {
         return this;
     }
 
+    /**
+     * @param n minimum number of spaces before the name in the comment (default: 1)
+     * @return this (for chaining)
+     */
+    public BagFormatter setMinSpacesBeforeName(int n) {
+        minSpacesBeforeName = n;
+        return this;
+    }
+
     public BagFormatter setUnicodeDataStyleRanges(boolean unicodeDataStyleRanges) {
         this.unicodeDataStyleRanges = unicodeDataStyleRanges;
         return this;
@@ -413,6 +422,7 @@ public class BagFormatter {
 
     private int minSpacesBeforeSemicolon = 0;
     private int minSpacesAfterSemicolon = 1;
+    private int minSpacesBeforeName = 1;
     private boolean mergeRanges = true;
     private boolean unicodeDataStyleRanges = false;
     private Transliterator showLiteral = null;
@@ -507,7 +517,6 @@ public class BagFormatter {
                 output.print("<table>");
                 inTable = true;
             }
-            System.err.println(s.replace("\t", "␉"));
             output.print(tabber.process(s) + lineSeparator);
         }
 
@@ -717,7 +726,7 @@ public class BagFormatter {
                             + label
                             + count
                             + insertLiteral(start, end, value)
-                            + getName("\t ", start, end);
+                            + getName("\t" + " ".repeat(minSpacesBeforeName), start, end);
             if (start != end && unicodeDataStyleRanges) {
                 if (rightHandSide.contains(RANGE_PLACEHOLDER)) {
                     toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "First"));
@@ -736,7 +745,7 @@ public class BagFormatter {
                                 + label
                                 + count
                                 + insertLiteral(start, end, value)
-                                + getName("\t ", start, end));
+                                + getName("\t" + " ".repeat(minSpacesBeforeName), start, end));
             }
         }
 
