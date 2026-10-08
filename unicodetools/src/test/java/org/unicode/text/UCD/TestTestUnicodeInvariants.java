@@ -6,14 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.TestUnicodeInvariants.BackwardParseException;
 import org.unicode.text.utility.Settings;
 
@@ -40,43 +38,6 @@ public class TestTestUnicodeInvariants {
     void testUnicodeInvariants() throws IOException {
         int rc = TestUnicodeInvariants.testInvariants(null, null, true);
         assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(default) failed");
-    }
-
-    @Test
-    void testPropertyComparisonOnStrings() throws ParseException {
-        final var comparison = new TestUnicodeInvariants.PropertyComparison();
-        comparison.valueSet = new UnicodeSet("[a{ab}{😀b}]");
-        comparison.property1 =
-                TestUnicodeInvariants.CompoundProperty.of(
-                        IndexUnicodeProperties.make(), "(take 1)", new ParsePosition(0));
-        comparison.property2 =
-                TestUnicodeInvariants.CompoundProperty.of(
-                        IndexUnicodeProperties.make(), "(constant a)", new ParsePosition(0));
-        comparison.shouldBeEqual = true;
-        assertEquals(new UnicodeSet("[{😀b}]"), comparison.getFailures().keySet());
-        assertEquals("😀≠a", comparison.getFailures().get("😀b"));
-        comparison.shouldBeEqual = false;
-        assertEquals(new UnicodeSet("[a{ab}]"), comparison.getFailures().keySet());
-    }
-
-    @Test
-    void testPropertyValueContainmentOnStrings() throws ParseException {
-        final var containment = new TestUnicodeInvariants.PropertyValueContainment();
-        // Include a supplementary base and selector, a missing selector, an invalid selector,
-        // and an extra selector. Failures must retain the complete input strings.
-        containment.valueSet =
-                new UnicodeSet("[a{a\\uFE0F}{😀\\uFE0F}{a\\U000E0100}{a\\uFE0F\\uFE0F}{ab}]");
-        containment.property1 =
-                TestUnicodeInvariants.CompoundProperty.of(
-                        IndexUnicodeProperties.make(), "(drop 1)", new ParsePosition(0));
-        containment.set = new UnicodeSet("[\\uFE0F\\U000E0100]");
-        containment.shouldBeInSet = true;
-        assertEquals(
-                new UnicodeSet("[a{a\\uFE0F\\uFE0F}{ab}]"), containment.getFailures().keySet());
-        containment.shouldBeInSet = false;
-        assertEquals(
-                new UnicodeSet("[{a\\uFE0F}{😀\\uFE0F}{a\\U000E0100}]"),
-                containment.getFailures().keySet());
     }
 
     @Test

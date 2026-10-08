@@ -86,9 +86,25 @@
 #       then deduplicates runs of the same Bidi_Class.
 #       It then compares that with the result of filtering out NSM characters from X, then getting the Bidi_Class.
 #
+#   Examples for strings:
+#       Full case folding maps both spellings of Straße to the same string.
+            In [{Straße}{STRASSE}], Case_Folding = (constant strasse)
+#       Unlike simple case folding, full case folding expands ß to ss, both on its own
+#       and within a string.
+            In [ß{Straße}], Case_Folding ≠ Simple_Case_Folding
+#
 # In <unicodeSet>, <props> (∈|∉) <unicodeSet>
 #   For each element (code point or string) in the first <unicodeSet>, verify that the result of applying the left <props>
 #   is (∈|∉) the right-hand-side unicodeSet.
+#
+#   Examples for strings:
+#       Each of these strings starts with a "letter" followed by a variation selector.
+            In [{𓏲\uFE00}{一\U000E0100}], (take 1) ∈ \p{gc=Lo}
+            In [{𓏲\uFE00}{一\U000E0100}], (drop 1) ∈ \p{Variation_Selector}
+#       Membership requires the entire result to be an element of the set. An empty suffix,
+#       two variation selectors, or an ordinary letter does not match a single variation selector.
+            In [一{一\U000E0100\U000E0101}{一x}], (drop 1) ∉ \p{Variation_Selector}
+#
 ##########################
 # OnPairsOf <unicodeSet>, EqualityOf <props> (⇐|⇔|⇒|⇍|⇎|⇏) EqualityOf <props>
 # 
