@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,7 +35,6 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.With;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
@@ -2328,7 +2328,8 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static UnicodeSet getCharSourceSet(Emoji.CharSource charSource) {
-        return CldrUtility.ifNull(charSourcesToUnicodeSet.get(charSource), UnicodeSet.EMPTY);
+        return Objects.requireNonNullElse(
+                charSourcesToUnicodeSet.get(charSource), UnicodeSet.EMPTY);
     }
 
     public static Set<CharSource> getCharSources(int codepoint) {
@@ -2336,6 +2337,7 @@ public class EmojiData implements EmojiDataSource {
     }
 
     public static Set<CharSource> getCharSources(String codepoints) {
-        return CldrUtility.ifNull(codepointToCharSource.get(codepoints), Collections.emptySet());
+        return Objects.requireNonNullElse(
+                codepointToCharSource.get(codepoints), Collections.emptySet());
     }
 }

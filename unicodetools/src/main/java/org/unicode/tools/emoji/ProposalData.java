@@ -19,13 +19,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.EmojiConstants;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
@@ -95,10 +95,10 @@ public class ProposalData {
         Set<String> output = new TreeSet<>(Collections.reverseOrder());
         source = getSkeleton(source);
         String tempDebug = Utility.hex(source);
-        output.addAll(CldrUtility.ifNull(proposal.get(source), Collections.emptySet()));
+        output.addAll(Objects.requireNonNullElse(proposal.get(source), Collections.emptySet()));
         if (output.isEmpty()) { // get provisional candidates
             output.addAll(
-                    CldrUtility.ifNull(
+                    Objects.requireNonNullElse(
                             CandidateData.getInstance().getProposal(source),
                             Collections.emptySet()));
         }
@@ -204,7 +204,7 @@ public class ProposalData {
 
         //        if (output.isEmpty()) {
         //
-        // output.addAll(CldrUtility.ifNull(CandidateData.getInstance().getProposal(source),
+        // output.addAll(Objects.requireNonNullElse(CandidateData.getInstance().getProposal(source),
         // Collections.emptySet()));
         //        }
 

@@ -12,13 +12,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Function;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
@@ -116,8 +116,8 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
             Set<String> props = new LinkedHashSet<>(oldProps.keySet());
             props.addAll(newProps.keySet());
             for (String prop : props) {
-                UnicodeMap<String> oldMap = CldrUtility.ifNull(oldProps.get(prop), empty);
-                UnicodeMap<String> newMap = CldrUtility.ifNull(newProps.get(prop), empty);
+                UnicodeMap<String> oldMap = Objects.requireNonNullElse(oldProps.get(prop), empty);
+                UnicodeMap<String> newMap = Objects.requireNonNullElse(newProps.get(prop), empty);
                 boolean isError = false;
                 String fileName =
                         oldPropToFile.get(prop) == null
