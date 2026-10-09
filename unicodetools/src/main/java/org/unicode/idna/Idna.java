@@ -5,19 +5,23 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.regex.Pattern;
+import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.UnicodeTransform.Type;
 
 public class Idna implements StringTransform {
 
-    public static final UnicodeTransform NFC = UnicodeTransform.getInstance(Type.NFC);
-    public static final UnicodeTransform NFD = UnicodeTransform.getInstance(Type.NFD);
-    public static final UnicodeTransform NFKC = UnicodeTransform.getInstance(Type.NFKC);
-    public static final UnicodeTransform NFKD = UnicodeTransform.getInstance(Type.NFKD);
+    // Use UCD data even if this class loads before a generator sets the global transform factory.
+    private static final UnicodeTransform.Factory TRANSFORM_FACTORY =
+            new ToolUnicodeTransformFactory();
+
+    public static final UnicodeTransform NFC = TRANSFORM_FACTORY.getInstance(Type.NFC);
+    public static final UnicodeTransform NFD = TRANSFORM_FACTORY.getInstance(Type.NFD);
+    public static final UnicodeTransform NFKC = TRANSFORM_FACTORY.getInstance(Type.NFKC);
+    public static final UnicodeTransform NFKD = TRANSFORM_FACTORY.getInstance(Type.NFKD);
     public static final UnicodeTransform NFKC_3_2 =
             new FilteredUnicodeTransform(NFKC, new UnicodeSet("[:age=3.2:]"));
-    public static final UnicodeTransform CASEFOLD =
-            UnicodeTransform.getInstance(UnicodeTransform.Type.CASEFOLD);
+    public static final UnicodeTransform CASEFOLD = TRANSFORM_FACTORY.getInstance(Type.CASEFOLD);
     public static final Pattern FULL_STOP = Pattern.compile("\\.");
 
     public enum IdnaType {

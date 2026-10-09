@@ -31,8 +31,6 @@ public class Idna2008 extends Idna {
     static final UnicodeMap<Idna2008Type> IDNA2008Computed;
 
     static {
-        final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
-        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
         // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
         final UnicodeSet LetterDigits =
                 new UnicodeSet(
@@ -172,7 +170,6 @@ public class Idna2008 extends Idna {
             IDNA2008Computed.put(cp, value);
         }
         IDNA2008Computed.freeze();
-        UnicodeSet.setDefaultXSymbolTable(oldDefaultXSymbolTable);
     }
 
     static final Instant now = Instant.now();
