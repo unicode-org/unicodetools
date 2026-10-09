@@ -31,7 +31,6 @@ public class Idna2008 extends Idna {
     static final UnicodeMap<Idna2008Type> IDNA2008Computed;
 
     static {
-        IndexUnicodeProperties.make(Settings.LATEST_VERSION_INFO);
         final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
         try {
