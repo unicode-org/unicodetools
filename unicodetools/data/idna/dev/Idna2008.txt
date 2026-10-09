@@ -1,5 +1,5 @@
 # Idna2008-Idna2008-19.0.0.txt.txt
-# Date: 2026-10-08, 23:51:08 GMT
+# Date: 2026-10-09, 00:09:36 GMT
 # Copyright 2026 Unicode, Inc.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -50,7 +50,6 @@
 #
 # @missing: 0000..10FFFF; UNASSIGNED
 #
-
 0000..002C  ; DISALLOWED  # <control-0000>..COMMA
 002D        ; PVALID      # HYPHEN-MINUS
 002E..002F  ; DISALLOWED  # FULL STOP..SOLIDUS
