@@ -140,7 +140,7 @@ public class GenerateIdnaTest {
             out2.println("\n# SELECTED TESTS\n");
 
             count += generateLine("\u00a1", out, out2);
-            for (String s : Idna2008.GRANDFATHERED_VALID) {
+            for (String s : Idna2008.XV8) {
                 count += generateLine(s, out, out2);
             }
 
@@ -490,7 +490,7 @@ public class GenerateIdnaTest {
                         + (hasAsciiErrors
                                 ? showErrors(asciiErrors)
                                 : unicode.equals(ascii) ? "" : escape(ascii))
-                        + (Idna2008.GRANDFATHERED_VALID.containsSome(unicode)
+                        + (Idna2008.XV8.containsSome(unicode)
                                 ? ";\tXV8"
                                 : hasUnicodeErrors || validIdna2008 ? "" : ";\tNV8") // checking
                         + (!NEW_FORMAT
@@ -623,7 +623,8 @@ public class GenerateIdnaTest {
         final UnicodeMap<Idna2008Type> typeMapping = Idna2008.getTypeMapping();
         return new UnicodeSet(typeMapping.getSet(Idna2008Type.PVALID))
                 .addAll(typeMapping.getSet(Idna2008Type.CONTEXTJ))
-                .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO));
+                .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO))
+                .addAll(Idna2008.XV8);
     }
 
     public static Transliterator hexForTest =
