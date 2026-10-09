@@ -1,5 +1,5 @@
 # IdnaTestV2.txt
-# Date: 2026-10-08, 23:58:45 GMT
+# Date: 2026-09-21, 22:34:47 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
