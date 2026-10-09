@@ -31,6 +31,17 @@ public class Idna2008 extends Idna {
     static final UnicodeMap<Idna2008Type> IDNA2008Computed;
 
     static {
+        IndexUnicodeProperties.make(Settings.LATEST_VERSION_INFO);
+        final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
+        try {
+            IDNA2008Computed = computeTypeMapping();
+        } finally {
+            UnicodeSet.setDefaultXSymbolTable(oldDefaultXSymbolTable);
+        }
+    }
+
+    private static UnicodeMap<Idna2008Type> computeTypeMapping() {
         // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
         final UnicodeSet LetterDigits =
                 new UnicodeSet(
@@ -140,7 +151,7 @@ public class Idna2008 extends Idna {
         // Else If .cp. .in. LetterDigits Then PVALID;
         // Else DISALLOWED;
 
-        IDNA2008Computed = new UnicodeMap<Idna2008Type>();
+        final UnicodeMap<Idna2008Type> result = new UnicodeMap<>();
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Idna2008Type value;
@@ -167,9 +178,9 @@ public class Idna2008 extends Idna {
             } else {
                 value = Idna2008Type.DISALLOWED;
             }
-            IDNA2008Computed.put(cp, value);
+            result.put(cp, value);
         }
-        IDNA2008Computed.freeze();
+        return result.freeze();
     }
 
     static final Instant now = Instant.now();
