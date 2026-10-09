@@ -1396,7 +1396,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (line1.startsWith("# Date")) {
                 continue;
             }
-            if (skipCopyright && line1.startsWith("# Copyright")) {
+            if (skipCopyright && (line1.startsWith("# Copyright") || line1.startsWith("# ©"))) {
                 continue;
             }
             if (line1.startsWith("<p><b>Date:</b>")) {
