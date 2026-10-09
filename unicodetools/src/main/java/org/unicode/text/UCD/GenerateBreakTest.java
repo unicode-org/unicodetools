@@ -1248,6 +1248,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "क" + "\u093C" + zwj + "\u094D" + "त",
                             "क" + "\u093C" + "\u094D" + zwj + "त",
                             "क" + "\u094D" + "त" + '\u094D' + "य",
+                            // Nukta before the second virama in a three-consonant cluster (#506).
+                            "क" + "\u094D" + "त" + "\u093C" + "\u094D" + "य",
                             "क" + "\u094D" + "a",
                             "a" + "\u094D" + "त",
                             "?" + "\u094D" + "त",
