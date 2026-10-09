@@ -229,7 +229,7 @@ public class Idna2008 extends Idna {
         try (final var out = new DiffingPrintWriter(DATA_DIR_DEV, "Idna2008.txt")) {
             out.println(
                     HEADER.format(
-                            "Idna2008-" + Settings.latestVersion + ".txt",
+                            Settings.latestVersion,
                             dt.format(now),
                             dty.format(now)));
             final BagFormatter bf =
