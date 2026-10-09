@@ -10,6 +10,9 @@ import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 
@@ -28,17 +31,23 @@ public class Idna2008 extends Idna {
     static final UnicodeMap<Idna2008Type> IDNA2008Computed;
 
     static {
+        final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
         // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
         final UnicodeSet LetterDigits =
-                new UnicodeSet("[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]").freeze();
+                new UnicodeSet(
+                                "[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]",
+                                null,
+                                VersionedSymbolTable.forDevelopment())
+                        .freeze();
 
         // B: toNFKC(toCaseFold(toNFKC(cp))) != cp
         final UnicodeSet Unstable = new UnicodeSet();
         for (int i = 0; i <= 0x10FFFF; ++i) {
             final String s = Character.toString(i);
-            final String nfkc = NFKC.transform(s);
-            final String cased = CASEFOLD.transform(nfkc);
-            final String full = NFKC.transform(cased);
+            final String nfkc = Normalizer.getNfkcInstance().transform(s);
+            final String cased = UCD.makeLatestVersion().getCase(nfkc, UCD.FULL, UCD.FOLD);
+            final String full = Normalizer.getNfkcInstance().transform(cased);
             if (!s.equals(full)) {
                 Unstable.add(i);
             }
@@ -52,7 +61,9 @@ public class Idna2008 extends Idna {
                 new UnicodeSet(
                                 "[[:Default_Ignorable_Code_Point:]"
                                         + "[:White_Space:]"
-                                        + "[:Noncharacter_Code_Point:]]")
+                                        + "[:Noncharacter_Code_Point:]]",
+                                null,
+                                VersionedSymbolTable.forDevelopment())
                         .freeze();
 
         // Block(cp) is in {Combining Diacritical Marks for Symbols,
@@ -61,7 +72,9 @@ public class Idna2008 extends Idna {
                 new UnicodeSet(
                                 "[[:block=Combining Diacritical Marks for Symbols:]"
                                         + "[:block=Musical Symbols:]"
-                                        + "[:block=Ancient Greek Musical Notation:]]")
+                                        + "[:block=Ancient Greek Musical Notation:]]",
+                                null,
+                                VersionedSymbolTable.forDevelopment())
                         .freeze();
 
         // E: cp is in {002D, 0030..0039, 0061..007A}
@@ -95,7 +108,8 @@ public class Idna2008 extends Idna {
 
         // H: Join_Control(cp) = True
 
-        final UnicodeSet JoinControl = new UnicodeSet("[:Join_Control:]");
+        final UnicodeSet JoinControl =
+                new UnicodeSet("[:Join_Control:]", null, VersionedSymbolTable.forDevelopment());
 
         // Hangul_Syllable_Type(cp) is in {L, V, T}
 
@@ -103,12 +117,18 @@ public class Idna2008 extends Idna {
                 new UnicodeSet(
                         "[[:Hangul_Syllable_Type=L:]"
                                 + "[:Hangul_Syllable_Type=V:]"
-                                + "[:Hangul_Syllable_Type=T:]]");
+                                + "[:Hangul_Syllable_Type=T:]]",
+                        null,
+                        VersionedSymbolTable.forDevelopment());
 
         // J: General_Category(cp) is in {Cn} and
         // Noncharacter_Code_Point(cp) = False
 
-        final UnicodeSet Unassigned = new UnicodeSet("[[:Cn:]-[:Noncharacter_Code_Point:]]");
+        final UnicodeSet Unassigned =
+                new UnicodeSet(
+                        "[[:Cn:]-[:Noncharacter_Code_Point:]]",
+                        null,
+                        VersionedSymbolTable.forDevelopment());
 
         // If .cp. .in. Exceptions Then Exceptions(cp);
         // Else If .cp. .in. BackwardCompatible Then BackwardCompatible(cp);
@@ -152,6 +172,7 @@ public class Idna2008 extends Idna {
             IDNA2008Computed.put(cp, value);
         }
         IDNA2008Computed.freeze();
+        UnicodeSet.setDefaultXSymbolTable(oldDefaultXSymbolTable);
     }
 
     static final Instant now = Instant.now();
