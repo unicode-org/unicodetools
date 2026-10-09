@@ -227,11 +227,7 @@ public class Idna2008 extends Idna {
             map.putAll(IDNA2008Computed.keySet(v), v.toString());
         }
         try (final var out = new DiffingPrintWriter(DATA_DIR_DEV, "Idna2008.txt")) {
-            out.println(
-                    HEADER.format(
-                            Settings.latestVersion,
-                            dt.format(now),
-                            dty.format(now)));
+            out.println(HEADER.format(Settings.latestVersion, dt.format(now), dty.format(now)));
             final BagFormatter bf =
                     new BagFormatter(IndexUnicodeProperties.make())
                             .setLineSeparator("\n")
