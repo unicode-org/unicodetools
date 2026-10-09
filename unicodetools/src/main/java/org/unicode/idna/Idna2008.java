@@ -1,22 +1,21 @@
 package org.unicode.idna;
 
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-
-import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.props.BagFormatter;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.text.utility.DiffingPrintWriter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.SimpleFormatter;
 import com.ibm.icu.text.UnicodeSet;
-import org.unicode.text.utility.Settings;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.props.BagFormatter;
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.utility.DiffingPrintWriter;
+import org.unicode.text.utility.Settings;
 
 public class Idna2008 extends Idna {
 
-    public static final UnicodeSet GRANDFATHERED_VALID = new UnicodeSet().add(0x19DA).freeze();
+    public static final UnicodeSet XV8 = new UnicodeSet().add(0x19DA).freeze();
 
     public enum Idna2008Type {
         UNASSIGNED,
@@ -166,7 +165,9 @@ public class Idna2008 extends Idna {
     public static final String DATA_DIR_DEV =
             Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/idna/dev/";
 
-    static final  SimpleFormatter HEADER = SimpleFormatter.compile("""
+    static final SimpleFormatter HEADER =
+            SimpleFormatter.compile(
+                    """
         # Idna2008-{0}.txt
         # Date: {1}
         # Copyright {2} Unicode, Inc.
@@ -218,8 +219,7 @@ public class Idna2008 extends Idna {
         # at https://www.rfc-editor.org/info/rfc5892
         #
         # @missing: 0000..10FFFF; UNASSIGNED
-        #
-        """);
+        #""");
 
     public static void generateIdna2008() {
         final var map = new UnicodeMap<String>();
@@ -227,18 +227,22 @@ public class Idna2008 extends Idna {
             map.putAll(IDNA2008Computed.keySet(v), v.toString());
         }
         try (final var out = new DiffingPrintWriter(DATA_DIR_DEV, "Idna2008.txt")) {
-            out.println(HEADER.format("Idna2008-" + Settings.latestVersion + ".txt", dt.format(now) , dty.format(now)));
-            final BagFormatter bf = new BagFormatter(IndexUnicodeProperties.make())
-            .setLineSeparator("\n")
-            .setValueSource(new UnicodeMapProperty().set(map))
-                .setRangeBreakSource(
-                        new UnicodeLabel.Constant(""))
-            .setMinSpacesBeforeSemicolon(-2)
-            .setLabelSource(null)
-            .setMinSpacesBeforeComment(2)
-            .setShowCount(false)
-            .setMinSpacesBeforeName(0)
-            .setShowTotal(false);
+            out.println(
+                    HEADER.format(
+                            "Idna2008-" + Settings.latestVersion + ".txt",
+                            dt.format(now),
+                            dty.format(now)));
+            final BagFormatter bf =
+                    new BagFormatter(IndexUnicodeProperties.make())
+                            .setLineSeparator("\n")
+                            .setValueSource(new UnicodeMapProperty().set(map))
+                            .setRangeBreakSource(new UnicodeLabel.Constant(""))
+                            .setMinSpacesBeforeSemicolon(-2)
+                            .setLabelSource(null)
+                            .setMinSpacesBeforeComment(2)
+                            .setShowCount(false)
+                            .setAlignNames(false)
+                            .setShowTotal(false);
             bf.showSetNames(out.tempPrintWriter, UnicodeSet.ALL_CODE_POINTS);
             out.println();
             out.println("# EOF");

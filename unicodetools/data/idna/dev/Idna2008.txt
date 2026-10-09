@@ -1,5 +1,5 @@
 # Idna2008-Idna2008-19.0.0.txt.txt
-# Date: 2026-10-08, 23:37:09 GMT
+# Date: 2026-10-08, 23:51:08 GMT
 # Copyright 2026 Unicode, Inc.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -3167,5 +3167,6 @@ E0020..E007F; DISALLOWED  # TAG SPACE..CANCEL TAG
 E0080..E00FF; UNASSIGNED  # <reserved-E0080>..<reserved-E00FF>
 E0100..E01EF; DISALLOWED  # VARIATION SELECTOR-17..VARIATION SELECTOR-256
 E01F0..EFFFD; UNASSIGNED  # <reserved-E01F0>..<reserved-EFFFD>
-EFFFE..10FFFF; DISALLOWED  #<noncharacter-EFFFE>..<noncharacter-10FFFF>
+EFFFE..10FFFF; DISALLOWED  # <noncharacter-EFFFE>..<noncharacter-10FFFF>
+
 # EOF

@@ -293,11 +293,11 @@ public class BagFormatter {
     }
 
     /**
-     * @param n minimum number of spaces before the name in the comment (default: 1)
+     * @param align Whether to align names in comments (default: true).
      * @return this (for chaining)
      */
-    public BagFormatter setMinSpacesBeforeName(int n) {
-        minSpacesBeforeName = n;
+    public BagFormatter setAlignNames(boolean align) {
+        alignNames = align;
         return this;
     }
 
@@ -422,7 +422,7 @@ public class BagFormatter {
 
     private int minSpacesBeforeSemicolon = 0;
     private int minSpacesAfterSemicolon = 1;
-    private int minSpacesBeforeName = 1;
+    private boolean alignNames = true;
     private boolean mergeRanges = true;
     private boolean unicodeDataStyleRanges = false;
     private Transliterator showLiteral = null;
@@ -726,7 +726,7 @@ public class BagFormatter {
                             + label
                             + count
                             + insertLiteral(start, end, value)
-                            + getName("\t" + " ".repeat(minSpacesBeforeName), start, end);
+                            + getName(alignNames ? "\t " : " ", start, end);
             if (start != end && unicodeDataStyleRanges) {
                 if (rightHandSide.contains(RANGE_PLACEHOLDER)) {
                     toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "First"));
@@ -745,7 +745,7 @@ public class BagFormatter {
                                 + label
                                 + count
                                 + insertLiteral(start, end, value)
-                                + getName("\t" + " ".repeat(minSpacesBeforeName), start, end));
+                                + getName(alignNames ? "\t " : " ", start, end));
             }
         }
 
