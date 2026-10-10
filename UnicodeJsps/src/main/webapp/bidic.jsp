@@ -129,6 +129,7 @@ function setUbaInput(str) {
     UtfParameters utfParams = new UtfParameters(queryStr);
 
     String ubaPara = utfParams.getParameter("b", "2");
+    final String currentUbaVersion = UBAVersion.getCurrent().getShortName();
     String ubaVersion = utfParams.getParameter("u", UBAVersion.toSelect(UBAVersion.getCurrent()));
     String ubaDetail = utfParams.getParameter("d", "2");
     boolean ubaShowVacuous = !"off".equals(utfParams.getParameter("y", "off"));
@@ -227,13 +228,13 @@ function setUbaInput(str) {
 <h1>Unicode Utilities: BIDI (UBA) C Reference</h1>
 <%@ include file="subtitle.jsp" %>
 <p><a target="help" href="https://unicode-org.github.io/unicodetools/help/breaks"><b>help</b></a> | <%@ include file="others.jsp" %></p>
-<p>Shows processing of a single paragraph of text by the Unicode Bidirectional Algorithm (UBA),
+<p>Shows processing of a single paragraph of text by the
+    <a target="doc" href="https://www.unicode.org/reports/tr9/">Unicode Bidirectional Algorithm (UBA)</a>,
     Versions
-        <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-27.html">6.2</a>
-    through
-        <a target="doc" href="http://www.unicode.org/reports/tr9/tr9-44.html">14.0</a>,
+        <a target="doc" href="https://www.unicode.org/reports/tr9/tr9-27.html">6.2</a>
+    through <%= currentUbaVersion %>,
     using the C Reference Implementation, Version
-        <a target="doc" href="http://www.unicode.org/Public/PROGRAMS/BidiReferenceC/14.0.0/">14.0</a>.</p>
+        <a target="doc" href="https://www.unicode.org/Public/PROGRAMS/BidiReferenceC/<%= currentUbaVersion %>.0/"><%= currentUbaVersion %></a>.</p>
 
 <h3>Source</h3>
 <form name="naInputForm">
