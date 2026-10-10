@@ -5,23 +5,10 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.regex.Pattern;
-import org.unicode.text.UCD.ToolUnicodeTransformFactory;
-import org.unicode.text.utility.UnicodeTransform;
-import org.unicode.text.utility.UnicodeTransform.Type;
+import org.unicode.text.UCD.Default;
 
 public class Idna implements StringTransform {
 
-    // Use UCD data even if this class loads before a generator sets the global transform factory.
-    private static final UnicodeTransform.Factory TRANSFORM_FACTORY =
-            new ToolUnicodeTransformFactory();
-
-    public static final UnicodeTransform NFC = TRANSFORM_FACTORY.getInstance(Type.NFC);
-    public static final UnicodeTransform NFD = TRANSFORM_FACTORY.getInstance(Type.NFD);
-    public static final UnicodeTransform NFKC = TRANSFORM_FACTORY.getInstance(Type.NFKC);
-    public static final UnicodeTransform NFKD = TRANSFORM_FACTORY.getInstance(Type.NFKD);
-    public static final UnicodeTransform NFKC_3_2 =
-            new FilteredUnicodeTransform(NFKC, new UnicodeSet("[:age=3.2:]"));
-    public static final UnicodeTransform CASEFOLD = TRANSFORM_FACTORY.getInstance(Type.CASEFOLD);
     public static final Pattern FULL_STOP = Pattern.compile("\\.");
 
     public enum IdnaType {
@@ -67,7 +54,7 @@ public class Idna implements StringTransform {
 
     public String transform(String source, boolean display) {
         final String remapped = (display ? mappings_display : mappings).transform(source);
-        return NFC.transform(remapped); // Normalizer.normalize(remapped, Normalizer.NFC);
+        return Default.nfc().transform(remapped);
     }
 
     public String toUnicode(String source, boolean[] error, boolean display) {
@@ -150,7 +137,7 @@ public class Idna implements StringTransform {
         if (string.startsWith("-") || string.endsWith("-")) {
             return 3;
         }
-        if (!NFC.isTransformed(string)) { // Normalizer.isNormalized(string, Normalizer.NFC, 0))
+        if (!Default.nfc().isNormalized(string)) {
             return 4;
         }
         if (string.contains(".")) {
@@ -167,7 +154,6 @@ public class Idna implements StringTransform {
 
     public boolean isValid(String string) {
         final String trans = transform(string);
-        return NFC.isTransformed(trans)
-                && validSet.containsAll(trans); // Normalizer.isNormalized(trans, Normalizer.NFC, 0)
+        return Default.nfc().isNormalized(trans) && validSet.containsAll(trans);
     }
 }

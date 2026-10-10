@@ -357,10 +357,10 @@ public class GenerateIdnaTest {
             result += 1;
         }
         if (NEW_FORMAT) {
-            result += generateLine(Idna.NFC.transform(source), out, out2);
-            result += generateLine(Idna.NFD.transform(source), out, out2);
-            result += generateLine(Idna.NFKC.transform(source), out, out2);
-            result += generateLine(Idna.NFKD.transform(source), out, out2);
+            result += generateLine(Default.nfc().transform(source), out, out2);
+            result += generateLine(Default.nfd().transform(source), out, out2);
+            result += generateLine(Default.nfkc().transform(source), out, out2);
+            result += generateLine(Default.nfkd().transform(source), out, out2);
         }
         result += generateLine(UCharacter.toLowerCase(source), out, out2);
         result += generateLine(UCharacter.toUpperCase(source), out, out2);
@@ -453,7 +453,7 @@ public class GenerateIdnaTest {
         //        final Matcher m = labelSeparator.reset(source);
         //        for (final String label : labelSeparator.split(source)) {
         //            if (IdnaTypes.LABEL_ASCII.containsAll(label)) {
-        //                final String folded = Idna.CASEFOLD.transform(label);
+        //                final String folded = Default.ucd().getCase(label, UCD.FULL, UCD.FOLD);
         //                result.append(folded);
         //                continue;
         //            }

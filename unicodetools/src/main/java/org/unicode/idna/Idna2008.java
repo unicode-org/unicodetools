@@ -31,22 +31,20 @@ public class Idna2008 extends Idna {
     static final UnicodeMap<Idna2008Type> IDNA2008Computed;
 
     static {
+        final var symbolTable = VersionedSymbolTable.forDevelopment();
         final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
         try {
-            IDNA2008Computed = computeTypeMapping();
+            IDNA2008Computed = computeTypeMapping(symbolTable);
         } finally {
             UnicodeSet.setDefaultXSymbolTable(oldDefaultXSymbolTable);
         }
     }
 
-    private static UnicodeMap<Idna2008Type> computeTypeMapping() {
+    private static UnicodeMap<Idna2008Type> computeTypeMapping(VersionedSymbolTable symbolTable) {
         // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
         final UnicodeSet LetterDigits =
-                new UnicodeSet(
-                                "[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]",
-                                null,
-                                VersionedSymbolTable.forDevelopment())
+                new UnicodeSet("[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]", null, symbolTable)
                         .freeze();
 
         // B: toNFKC(toCaseFold(toNFKC(cp))) != cp
@@ -71,7 +69,7 @@ public class Idna2008 extends Idna {
                                         + "[:White_Space:]"
                                         + "[:Noncharacter_Code_Point:]]",
                                 null,
-                                VersionedSymbolTable.forDevelopment())
+                                symbolTable)
                         .freeze();
 
         // Block(cp) is in {Combining Diacritical Marks for Symbols,
@@ -82,7 +80,7 @@ public class Idna2008 extends Idna {
                                         + "[:block=Musical Symbols:]"
                                         + "[:block=Ancient Greek Musical Notation:]]",
                                 null,
-                                VersionedSymbolTable.forDevelopment())
+                                symbolTable)
                         .freeze();
 
         // E: cp is in {002D, 0030..0039, 0061..007A}
@@ -116,8 +114,7 @@ public class Idna2008 extends Idna {
 
         // H: Join_Control(cp) = True
 
-        final UnicodeSet JoinControl =
-                new UnicodeSet("[:Join_Control:]", null, VersionedSymbolTable.forDevelopment());
+        final UnicodeSet JoinControl = new UnicodeSet("[:Join_Control:]", null, symbolTable);
 
         // Hangul_Syllable_Type(cp) is in {L, V, T}
 
@@ -127,16 +124,13 @@ public class Idna2008 extends Idna {
                                 + "[:Hangul_Syllable_Type=V:]"
                                 + "[:Hangul_Syllable_Type=T:]]",
                         null,
-                        VersionedSymbolTable.forDevelopment());
+                        symbolTable);
 
         // J: General_Category(cp) is in {Cn} and
         // Noncharacter_Code_Point(cp) = False
 
         final UnicodeSet Unassigned =
-                new UnicodeSet(
-                        "[[:Cn:]-[:Noncharacter_Code_Point:]]",
-                        null,
-                        VersionedSymbolTable.forDevelopment());
+                new UnicodeSet("[[:Cn:]-[:Noncharacter_Code_Point:]]", null, symbolTable);
 
         // If .cp. .in. Exceptions Then Exceptions(cp);
         // Else If .cp. .in. BackwardCompatible Then BackwardCompatible(cp);
