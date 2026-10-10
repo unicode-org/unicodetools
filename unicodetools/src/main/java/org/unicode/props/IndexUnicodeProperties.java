@@ -8,8 +8,6 @@ import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
@@ -127,7 +125,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     private IndexUnicodeProperties(VersionInfo ucdVersion2, IndexUnicodeProperties base) {
         ucdVersion = ucdVersion2;
-        oldVersion = ucdVersion2.compareTo(GenerateEnums.ENUM_VERSION_INFO) < 0;
         baseVersionProperties = base;
     }
 
@@ -180,7 +177,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     final VersionInfo ucdVersion;
-    final boolean oldVersion;
     final IndexUnicodeProperties baseVersionProperties;
     final EnumMap<UcdProperty, UnicodeMap<String>> property2UnicodeMap =
             new EnumMap<UcdProperty, UnicodeMap<String>>(UcdProperty.class);
@@ -191,9 +187,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public Map<UcdProperty, Long> getCacheFileSize() {
         return Collections.unmodifiableMap(cacheFileSize);
     }
-
-    static final Transform<String, String> fromNumericPinyin =
-            Transliterator.getInstance("NumericPinyin-Latin;nfc");
 
     static final Merge<String> MULTIVALUED_JOINER = new PropertyUtilities.Joiner("|");
     static final Merge<String> ALPHABETIC_JOINER =
