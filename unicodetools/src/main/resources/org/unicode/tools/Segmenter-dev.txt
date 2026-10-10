@@ -77,7 +77,9 @@ $CP=\p{Line_Break=CP}
 $CMorig=\p{Line_Break=Combining_Mark}
 $CR=\p{Line_Break=Carriage_Return}
 $EX=\p{Line_Break=Exclamation}
-$GL=\p{Line_Break=Glue}
+# Split GL by canonical combining class until CG is added to the UCD.
+$CG=[\p{Line_Break=Glue}-\p{ccc=0}]
+$GL=[\p{Line_Break=Glue}&\p{ccc=0}]
 $H2=\p{Line_Break=H2}
 $H3=\p{Line_Break=H3}
 $HH=\p{Line_Break=Unambiguous_Hyphen}
@@ -123,7 +125,7 @@ $QU_Pf=[$QU & $Pf]
 $QUmPi=[$QU - $Pi]
 $QUmPf=[$QU - $Pf]
 
-$EastAsian   = [\p{ea=F}\p{ea=W}\p{ea=H}]
+$EastAsian   = [\p{ea=F}\p{ea=W}\p{ea=H} $JV $JT]
 
 $DottedCircle = [◌]
 
@@ -171,11 +173,15 @@ $NS=[$NSorig $CJ]
 8) $ZW $SP* ÷
 # LB 8a  Don't break between ZWJ and IDs (for use in Emoji ZWJ sequences)
 8.1) $ZWJ ×
+# LB 8b Do not break before viramas and final viramas, except after spaces.
+8.2) [^$SP] × ( $VI | $VF )
+# LB 8c Do not break after combining glue, even across combining marks and viramas.
+8.3) $CG ( $CM | $ZWJ | $VI | $VF )* ×
 # LB 9  Do not break a combining character sequence; treat it as if it has the line breaking class
-# of the base character in all of the following rules. Treat ZWJ as if it were CM.
-9) (?<X>[^$BK $CR $LF $NL $SP $ZW]) ( $CM | $ZWJ )* → ${X}
-# LB10 Treat any remaining combining mark or ZWJ as AL.
-10) ( $CM | $ZWJ ) → A
+# of the base character in all of the following rules. Treat ZWJ and CG as if they were CM.
+9) (?<X>[^$BK $CR $LF $NL $SP $ZW]) ( $CM | $ZWJ | $CG )* → ${X}
+# LB10 Treat any remaining combining mark, ZWJ, or CG as AL.
+10) ( $CM | $ZWJ | $CG ) → A
 ## LB 11  Do not break before or after WORD JOINER and related characters.
 11.01) × $WJ
 11.02) $WJ ×
