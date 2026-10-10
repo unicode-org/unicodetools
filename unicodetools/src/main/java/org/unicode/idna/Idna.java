@@ -5,7 +5,7 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.regex.Pattern;
-import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 
 public class Idna implements StringTransform {
 
@@ -54,7 +54,7 @@ public class Idna implements StringTransform {
 
     public String transform(String source, boolean display) {
         final String remapped = (display ? mappings_display : mappings).transform(source);
-        return Default.nfc().transform(remapped);
+        return Normalizer.getNfcInstance().transform(remapped);
     }
 
     public String toUnicode(String source, boolean[] error, boolean display) {
@@ -137,7 +137,7 @@ public class Idna implements StringTransform {
         if (string.startsWith("-") || string.endsWith("-")) {
             return 3;
         }
-        if (!Default.nfc().isNormalized(string)) {
+        if (!Normalizer.getNfcInstance().isNormalized(string)) {
             return 4;
         }
         if (string.contains(".")) {
@@ -154,6 +154,6 @@ public class Idna implements StringTransform {
 
     public boolean isValid(String string) {
         final String trans = transform(string);
-        return Default.nfc().isNormalized(trans) && validSet.containsAll(trans);
+        return Normalizer.getNfcInstance().isNormalized(trans) && validSet.containsAll(trans);
     }
 }

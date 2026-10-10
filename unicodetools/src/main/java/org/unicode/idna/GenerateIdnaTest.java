@@ -26,6 +26,7 @@ import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.UCD.VersionedSymbolTable;
@@ -357,10 +358,10 @@ public class GenerateIdnaTest {
             result += 1;
         }
         if (NEW_FORMAT) {
-            result += generateLine(Default.nfc().transform(source), out, out2);
-            result += generateLine(Default.nfd().transform(source), out, out2);
-            result += generateLine(Default.nfkc().transform(source), out, out2);
-            result += generateLine(Default.nfkd().transform(source), out, out2);
+            result += generateLine(Normalizer.getNfcInstance().transform(source), out, out2);
+            result += generateLine(Normalizer.getNfdInstance().transform(source), out, out2);
+            result += generateLine(Normalizer.getNfkcInstance().transform(source), out, out2);
+            result += generateLine(Normalizer.getNfkdInstance().transform(source), out, out2);
         }
         result += generateLine(UCharacter.toLowerCase(source), out, out2);
         result += generateLine(UCharacter.toUpperCase(source), out, out2);

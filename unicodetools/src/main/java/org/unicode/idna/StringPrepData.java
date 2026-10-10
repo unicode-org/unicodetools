@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.UnicodeTransform;
 
@@ -24,7 +24,7 @@ public class StringPrepData {
     private static final class Nfkc32 {
         static final UnicodeTransform INSTANCE =
                 new FilteredUnicodeTransform(
-                        Default.nfkc(),
+                        Normalizer.getNfkcInstance(),
                         new UnicodeSet("[:age=3.2:]", null, VersionedSymbolTable.forDevelopment())
                                 .freeze());
     }

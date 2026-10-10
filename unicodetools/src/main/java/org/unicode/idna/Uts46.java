@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 import org.unicode.jsp.FileUtilities;
-import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Settings;
 
 public class Uts46 extends Idna {
@@ -479,7 +479,7 @@ public class Uts46 extends Idna {
 
         // Normalize. Normalize the domain_name string to Unicode Normalization
         // Form C.
-        domainName = Default.nfc().transform(domainName);
+        domainName = Normalizer.getNfcInstance().transform(domainName);
         // Break. Break the string into labels at U+002E ( . ) FULL STOP.
         final Iterable<String> labels = PERIOD.split(domainName);
         // Convert/Validate. For each label in the domain_name string:
@@ -646,7 +646,7 @@ public class Uts46 extends Idna {
         // Each of the following criteria must be satisfied for a label:
         //
         // The label must be in Unicode Normalization Form NFC.
-        if (!Default.nfc().isNormalized(label)) {
+        if (!Normalizer.getNfcInstance().isNormalized(label)) {
             errors.add(Errors.V1);
         }
         // The label must not contain a U+002D HYPHEN-MINUS character in both
