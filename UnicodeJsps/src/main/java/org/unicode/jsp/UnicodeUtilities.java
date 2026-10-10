@@ -2437,7 +2437,7 @@ public class UnicodeUtilities {
             Predicate<String> verifier2008 =
                     new Predicate<String>() {
                         public boolean is(String item) {
-                            return Idna2008.SINGLETON.isValid(item);
+                            return Idna2008.getInstance().isValid(item);
                         }
                     };
 

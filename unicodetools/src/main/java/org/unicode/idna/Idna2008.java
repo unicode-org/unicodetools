@@ -28,17 +28,16 @@ public class Idna2008 extends Idna {
         CONTEXTO
     }
 
-    static final UnicodeMap<Idna2008Type> IDNA2008Computed;
+    private static Idna2008 instance;
 
-    static {
-        final var symbolTable = VersionedSymbolTable.forDevelopment();
-        final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
-        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
-        try {
-            IDNA2008Computed = computeTypeMapping(symbolTable);
-        } finally {
-            UnicodeSet.setDefaultXSymbolTable(oldDefaultXSymbolTable);
+    private final UnicodeMap<Idna2008Type> typeMapping;
+
+    /** Computes the derived properties on first use, outside class initialization. */
+    public static synchronized Idna2008 getInstance() {
+        if (instance == null) {
+            instance = new Idna2008();
         }
+        return instance;
     }
 
     private static UnicodeMap<Idna2008Type> computeTypeMapping(VersionedSymbolTable symbolTable) {
@@ -176,20 +175,8 @@ public class Idna2008 extends Idna {
         return result.freeze();
     }
 
-    static final Instant now = Instant.now();
-    static final DateTimeFormatter dt =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss' GMT'")
-                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
-    static final DateTimeFormatter dty =
-            DateTimeFormatter.ofPattern("y")
-                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
-
-    public static final String DATA_DIR_DEV =
-            Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/idna/dev/";
-
-    static final SimpleFormatter HEADER =
-            SimpleFormatter.compile(
-                    """
+    private static final String HEADER =
+            """
         # Idna2008-{0}.txt
         # Date: {1}
         # Copyright {2} Unicode, Inc.
@@ -241,15 +228,25 @@ public class Idna2008 extends Idna {
         # at https://www.rfc-editor.org/info/rfc5892
         #
         # @missing: 0000..10FFFF; UNASSIGNED
-        #""");
+        #""";
 
     public static void generateIdna2008() {
+        final var typeMapping = getTypeMapping();
+        final var now = Instant.now();
+        final var dt =
+                DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss' GMT'")
+                        .withZone(ZoneId.of("UTC"));
+        final var dty = DateTimeFormatter.ofPattern("y").withZone(ZoneId.of("UTC"));
+        final String dataDir =
+                Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/idna/dev/";
         final var map = new UnicodeMap<String>();
         for (final var v : Idna2008Type.values()) {
-            map.putAll(IDNA2008Computed.keySet(v), v.toString());
+            map.putAll(typeMapping.keySet(v), v.toString());
         }
-        try (final var out = new DiffingPrintWriter(DATA_DIR_DEV, "Idna2008.txt")) {
-            out.println(HEADER.format(Settings.latestVersion, dt.format(now), dty.format(now)));
+        try (final var out = new DiffingPrintWriter(dataDir, "Idna2008.txt")) {
+            out.println(
+                    SimpleFormatter.compile(HEADER)
+                            .format(Settings.latestVersion, dt.format(now), dty.format(now)));
             final BagFormatter bf =
                     new BagFormatter(IndexUnicodeProperties.make())
                             .setLineSeparator("\n")
@@ -268,11 +265,17 @@ public class Idna2008 extends Idna {
         }
     }
 
-    public static Idna2008 SINGLETON = new Idna2008();
-
     private Idna2008() {
-        for (final Idna2008Type oldType : IDNA2008Computed.values()) {
-            final UnicodeSet uset = IDNA2008Computed.getSet(oldType);
+        final var symbolTable = VersionedSymbolTable.forDevelopment();
+        final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
+        try {
+            typeMapping = computeTypeMapping(symbolTable);
+        } finally {
+            UnicodeSet.setDefaultXSymbolTable(oldDefaultXSymbolTable);
+        }
+        for (final Idna2008Type oldType : typeMapping.values()) {
+            final UnicodeSet uset = typeMapping.getSet(oldType);
             switch (oldType) {
                 case UNASSIGNED:
                 case DISALLOWED:
@@ -293,7 +296,7 @@ public class Idna2008 extends Idna {
     }
 
     public static UnicodeMap<Idna2008Type> getTypeMapping() {
-        return IDNA2008Computed;
+        return getInstance().typeMapping;
     }
 
     public static UnicodeSet getIdna2008Valid() {

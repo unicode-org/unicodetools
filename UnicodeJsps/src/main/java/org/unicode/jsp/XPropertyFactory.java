@@ -517,7 +517,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         @Override
         protected String _getValue(int codepoint) {
-            return Idna2008.SINGLETON.getType(codepoint).toString();
+            return Idna2008.getInstance().getType(codepoint).toString();
         }
     }
 
