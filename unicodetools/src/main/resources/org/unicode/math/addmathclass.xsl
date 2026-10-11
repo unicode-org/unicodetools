@@ -15,7 +15,7 @@
   <xsl:key name="c" match="char" use="@cp"/>
     
   <xsl:template match="/">
-    <mathchars unicode="17.0" tr25="16">
+    <mathchars unicode="18.0" tr25="16">
       <xsl:message select="'###', count($ucd//*:char[@Math='Y']|$ucd//*:group[@Math='Y']/*:char[not(@Math='N')])"/>
       <xsl:for-each select="$ucd//*:char[@Math='Y']|
 			    $ucd//*:group[@Math='Y']/*:char[not(@Math='N')]|
@@ -30,6 +30,9 @@
 	  <xsl:copy-of select="key('c',@cp,$ex)/@note"/>
 	  <xsl:copy-of select="key('c',@cp,$ex)/@deprecated"/>
 	</char>
+	<xsl:if test="not(key('c',@cp|@first-cp,$ex))">
+	  <xsl:comment select="(@gc|../@gc),@na"/>
+	</xsl:if>
 	<xsl:if test="@first-cp">
 	  <xsl:text>&#10;   </xsl:text>
 	  <char>
