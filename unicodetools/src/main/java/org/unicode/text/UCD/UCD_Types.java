@@ -10,7 +10,7 @@
 package org.unicode.text.UCD;
 
 public interface UCD_Types {
-    static final byte BINARY_FORMAT = 23; // bumped if binary format of UCD changes. Forces rebuild
+    static final byte BINARY_FORMAT = 24; // bumped if binary format of UCD changes. Forces rebuild
 
     public static final char DOTTED_CIRCLE = '\u25CC';
 
