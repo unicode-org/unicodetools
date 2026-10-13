@@ -1047,7 +1047,14 @@ Let $PostBaseSpacingMarks_Missed := []
 [$PostBaseSpacingMarks_All - $PostBaseSpacingMarks_Tweak - $PostBaseSpacingMarks_Missed] ⊂ [:GCB=XX:]
 
 # Check the consistency of grapheme cluster segmentation (both legacy and
-# extended) with canonical equivalence.
+# extended), word segmentation and sentence segmentation with canonical equivalence.
+# https://github.com/unicode-org/unicodetools/issues/522
+# NFD consists of recursive canonical decomposition and canonical ordering.
+# These are sufficient data conditions for both of those operations to preserve the
+# current UAX #29 rules in arbitrary context, subject to the U+21AE exception below.
+# They are stronger than necessary; review them if the rules change or a new
+# decomposition needs a different safe pattern.
+
 # Non-starters are GCB=Extend or GCB=SpacingMark, so that GB9 and GB9a keep
 # together any sequences that may be reordered by the Canonical Ordering
 # Algorithm.  This has been true ever since Extended Grapheme Clusters were
@@ -1070,22 +1077,82 @@ Let $TwoVietnameseReadingMarks := [\p{U15.1.0:ccc=6}]
                                                     $TwoVietnameseReadingMarks]
  \P{        ccc=0} ⊆ \p{        GCB=Extend}
 
-# Characters that appear in non-initial position in the canonical decomposition
-# of another character are either Extend, V, or T, so that sequences that are
-# equivalent to a canonical composite are kept together by GB6..GB9.
-# We only look at the starters, since we dealt with non-starters above.
-# Characters that appear in non-initial position in the canonical decomposition
-# of a primary composite are NFC_QC=Maybe.  We would need to separately check
-# the characters that appear in non-initial position in the canonical
-# decomposition of a full composition exclusion.
-# We would also need to separately check that the characters are T or V only
-# appear in canonical decompositions where they follow an LV, LVT, V, or T, or
-# an LV or V, respectively.
+# WB4 and SB5 likewise ignore non-starters.  For GB9c, swapping non-starters
+# must preserve the linker context: InCB=Extend preserves it and InCB=Linker
+# establishes it, and these operations commute.  Non-starters must not introduce
+# an Extended_Pictographic character into the context used by GB11 or WB3c.
+\P{ccc=0} ⊆ \p{WB=Extend}
+\P{ccc=0} ⊆ \p{SB=Extend}
+\P{ccc=0} ⊆ [\p{InCB=Extend}\p{InCB=Linker}]
+\P{ccc=0} ∥ \p{Extended_Pictographic}
+
+# Non-initial characters in the canonical decomposition of a primary composite
+# are NFC_QC=Maybe.  Such starters must be kept together by GB6..GB9.
+# The decomposition checks below also cover composition exclusions and
+# check the context in which V and T occur.
 [\p{NFC_QC=Maybe}&\p{ccc=0}] ⊆ [\p{GCB=Extend}\p{GCB=T}\p{GCB=V}]
 
+# Check each canonical Decomposition_Mapping before recursive decomposition.
+# The normalization invariants above restrict each mapping to one or two code
+# points; $expandingCanonicalDecompositions selects the two-code-point case.
+# Together with the reordering checks above, preserving segmentation at each
+# step also preserves segmentation under NFD.
+Let $CanonicalDecomposables := \p{dt=Canonical}
+
 # Canonical decomposition preserves the initial GCB, except for LV and LVT.
-In [\p{dt=canonical}-[\p{gcb=LV}\p{gcb=LVT}]], gcb * (take 1) * dm = gcb
-In [\p{gcb=LV}\p{gcb=LVT}], (take 1) * dm ∈ [\p{gcb=L} \p{gcb=LV} \p{gcb=LVT}]
+In [$CanonicalDecomposables-[\p{GCB=LV}\p{GCB=LVT}]], GCB * (take 1) * Decomposition_Mapping = GCB
+
+# GB6..GB8 preserve the surrounding context for LV -> L V, LVT -> LV T,
+# and the V -> V V mappings of Kirat Rai vowel signs.  Recursive decomposition
+# of the initial LV then gives L V T for an LVT syllable.
+In [$CanonicalDecomposables&\p{GCB=LV}], (take 1) * Decomposition_Mapping ∈ \p{GCB=L}
+In [$CanonicalDecomposables&\p{GCB=LV}], (drop 1) * Decomposition_Mapping ∈ \p{GCB=V}
+In [$CanonicalDecomposables&\p{GCB=LVT}], (take 1) * Decomposition_Mapping ∈ \p{GCB=LV}
+In [$CanonicalDecomposables&\p{GCB=LVT}], (drop 1) * Decomposition_Mapping ∈ \p{GCB=T}
+In [$expandingCanonicalDecompositions&\p{GCB=V}], (drop 1) * Decomposition_Mapping ∈ \p{GCB=V}
+
+# Other, Extend and SpacingMark may gain only an Extend suffix, absorbed by GB9.
+# Every other GCB must have a singleton mapping with the same GCB.
+Let $GcbExtendSuffix := [\p{GCB=Other}\p{GCB=Extend}\p{GCB=SpacingMark}]
+In [$expandingCanonicalDecompositions&$GcbExtendSuffix], (drop 1) * Decomposition_Mapping ∈ \p{GCB=Extend}
+$expandingCanonicalDecompositions ⊆ [$GcbExtendSuffix\p{GCB=LV}\p{GCB=LVT}\p{GCB=V}]
+
+# WB5 permits ALetter to map to ALetter (ALetter|Extend).  For the other
+# expanding classes, WB4 ignores an Extend suffix.  Classes with earlier rules
+# or significant repetition, such as WSegSpace and Regional_Indicator, must
+# instead have a singleton mapping with the same WB.
+In $CanonicalDecomposables, WB * (take 1) * Decomposition_Mapping = WB
+In [$expandingCanonicalDecompositions&\p{WB=ALetter}], (drop 1) * Decomposition_Mapping ∈ [\p{WB=ALetter}\p{WB=Extend}]
+Let $WbExtendSuffix := [\p{WB=Hebrew_Letter}\p{WB=Katakana}\p{WB=Other}\p{WB=Extend}]
+In [$expandingCanonicalDecompositions&$WbExtendSuffix], (drop 1) * Decomposition_Mapping ∈ \p{WB=Extend}
+$expandingCanonicalDecompositions ⊆ [$WbExtendSuffix\p{WB=ALetter}]
+
+# OLetter may map to OLetter (OLetter|Extend) without changing sentence
+# breaks.  Other expanding classes may gain only an Extend suffix, ignored by
+# SB5; every remaining SB must have a singleton mapping with the same SB.
+In $CanonicalDecomposables, SB * (take 1) * Decomposition_Mapping = SB
+In [$expandingCanonicalDecompositions&\p{SB=OLetter}], (drop 1) * Decomposition_Mapping ∈ [\p{SB=OLetter}\p{SB=Extend}]
+Let $SbExtendSuffix := [\p{SB=Upper}\p{SB=Lower}\p{SB=Other}\p{SB=Extend}]
+In [$expandingCanonicalDecompositions&$SbExtendSuffix], (drop 1) * Decomposition_Mapping ∈ \p{SB=Extend}
+$expandingCanonicalDecompositions ⊆ [$SbExtendSuffix\p{SB=OLetter}]
+
+# GB9c, GB11 and WB3c also inspect InCB and Extended_Pictographic.  Preserve
+# their initial values and the context contributed by decomposition suffixes.
+In $CanonicalDecomposables, InCB * (take 1) * Decomposition_Mapping = InCB
+# TODO: Remove the U+21AE exception below after the UTC agrees to change
+# U+21AE to Extended_Pictographic=Yes and the property data has been updated.
+# Its Decomposition_Mapping starts with U+2194, which already has Extended_Pictographic=Yes.
+In [$CanonicalDecomposables-[\u21AE]], Extended_Pictographic * (take 1) * Decomposition_Mapping = Extended_Pictographic
+In $expandingCanonicalDecompositions, (drop 1) * Decomposition_Mapping ∈ \p{Extended_Pictographic=No}
+
+# Conjoining expansions (LV, LVT or V mapping to two code points)
+# must have InCB=None and Extended_Pictographic=No throughout.  All other
+# decomposition suffixes must have InCB=Extend to preserve the GB9c context.
+Let $ConjoiningExpansions := [$expandingCanonicalDecompositions&[\p{GCB=LV}\p{GCB=LVT}\p{GCB=V}]]
+$ConjoiningExpansions ⊆ \p{InCB=None}
+$ConjoiningExpansions ∥ \p{Extended_Pictographic}
+In $ConjoiningExpansions, (drop 1) * Decomposition_Mapping ∈ \p{InCB=None}
+In [$expandingCanonicalDecompositions-$ConjoiningExpansions], (drop 1) * Decomposition_Mapping ∈ \p{InCB=Extend}
 
 # ICU relies on this to avoid carrying data for HST which would be mostly
 # redundant with GCB.  If this breaks, it should be noted on the landing page,
