@@ -57,6 +57,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer.NormalizationForm;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeTransform;
@@ -1540,7 +1541,21 @@ public class GenerateConfusables {
     }
 
     static PrintWriter openAndWriteHeader(String dir, String filename) throws IOException {
-        final PrintWriter out = FileUtilities.openUTF8Writer(dir, filename);
+        final PrintWriter out;
+        if (Settings.BUILD_FOR_COMPARE) {
+            out = FileUtilities.openUTF8Writer(dir, filename);
+        } else {
+            // Published files can also match the checked-in data in a clean output directory.
+            // Internal files are written into the source tree and match the existing output.
+            out =
+                    new PrintWriter(
+                            new DiffingPrintWriter(
+                                    new File(dir, filename),
+                                    Settings.UnicodeTools.getDataPath("security", REVISION)
+                                            .resolve(filename)
+                                            .toFile(),
+                                    /* skipCopyright= */ true));
+        }
         out.println(
                 Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));
         return out;
