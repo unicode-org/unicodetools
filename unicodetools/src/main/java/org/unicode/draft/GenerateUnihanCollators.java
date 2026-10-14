@@ -51,6 +51,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.text.UCA.RadicalStroke;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.VersionedSymbolTable;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
@@ -95,15 +96,22 @@ public class GenerateUnihanCollators {
     private static final UnicodeSet PINYIN_LETTERS =
             new UnicodeSet("['a-uw-zàáèéìíòóùúüāēěīōūǎǐǒǔǖǘǚǜ]").freeze();
 
-    // TODO: unicodetools/issues/1336 should not use ICU Unicode properties
-
-    private static final UnicodeSet NOT_NFC = new UnicodeSet("[:nfc_qc=no:]").freeze();
-    private static final UnicodeSet NOT_NFD = new UnicodeSet("[:nfd_qc=no:]").freeze();
-    private static final UnicodeSet NOT_NFKD = new UnicodeSet("[:nfkd_qc=no:]").freeze();
+    // Use the development UCD data, which may be newer than ICU's Unicode data.
+    private static final UnicodeSet NOT_NFC =
+            new UnicodeSet("[:nfc_qc=no:]", null, VersionedSymbolTable.forDevelopment()).freeze();
+    private static final UnicodeSet NOT_NFD =
+            new UnicodeSet("[:nfd_qc=no:]", null, VersionedSymbolTable.forDevelopment()).freeze();
+    private static final UnicodeSet NOT_NFKD =
+            new UnicodeSet("[:nfkd_qc=no:]", null, VersionedSymbolTable.forDevelopment()).freeze();
 
     // TODO: Why Ideographic? That includes Tangut etc.
     private static final UnicodeSet UNIHAN_LATEST =
-            new UnicodeSet("[[:ideographic:][:script=han:]]").removeAll(NOT_NFC).freeze();
+            new UnicodeSet(
+                            "[[:ideographic:][:script=han:]]",
+                            null,
+                            VersionedSymbolTable.forDevelopment())
+                    .removeAll(NOT_NFC)
+                    .freeze();
     private static final UnicodeSet UNIHAN = UNIHAN_LATEST;
 
     // UNIHAN was restricted to a requested version, but
