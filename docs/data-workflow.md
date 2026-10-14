@@ -82,6 +82,9 @@ https://github.com/unicode-org/unicodetools/tree/main/unicodetools/data/emoji/de
 
 ## Publication
 
+> An experimental GitHub workflow, [publish-data.yml](/.github/workflows/publish-data.yml),
+can create a dev (UCD), alpha, or beta snapshot.
+
 Certain snapshots of the .../dev/ files are copied into https://www.unicode.org/Public/draft/
 for Unicode alpha, beta, and final releases, and more as appropriate.
 *   UCD files go into https://www.unicode.org/Public/draft/ucd/
