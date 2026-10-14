@@ -2,6 +2,7 @@ package org.unicode.idna;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableSortedSet;
+import com.ibm.icu.impl.Punycode;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -368,9 +369,7 @@ public class Uts46 extends Idna {
             return label;
         }
         try {
-            final StringBuffer temp = new StringBuffer();
-            temp.append(label.substring(4));
-            final StringBuffer depuny = Punycode.decode(temp, null);
+            final StringBuilder depuny = Punycode.decode(label.substring(4), null);
             // Unicode 16: If the label is empty,
             // or if the label contains only ASCII code points, record that there was an error.
             if (depuny.length() == 0 || depuny.chars().allMatch((c) -> c <= 0x7f)) {
@@ -719,9 +718,7 @@ public class Uts46 extends Idna {
             // [RFC3492]. This may record an error.
             if (!ASCII.containsAll(label)) {
                 try {
-                    final StringBuffer temp = new StringBuffer();
-                    temp.append(label);
-                    final StringBuffer punycoded = Punycode.encode(temp, null);
+                    final StringBuilder punycoded = Punycode.encode(label, null);
                     punycoded.insert(0, "xn--");
                     label = punycoded.toString();
                 } catch (final Exception e) {
