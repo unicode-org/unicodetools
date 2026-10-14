@@ -34,12 +34,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Differ;
 import org.unicode.cldr.util.MultiComparator;
@@ -585,7 +585,7 @@ public class GenerateUnihanCollators {
             final String code = Utility.hex(item);
             buffer.append(pad(code, 6)).append(";\t");
 
-            int strokes = CldrUtility.ifNull(bestStrokesS.get(item), 0);
+            int strokes = Objects.requireNonNullElse(bestStrokesS.get(item), 0);
             buffer.append(pad(String.valueOf(strokes), 3)).append(";\t");
 
             long order = getRSOrder(item.codePointAt(0));
@@ -691,7 +691,8 @@ public class GenerateUnihanCollators {
         out.println("#Code\tkTotalStrokes\tValue\t#\tChar\tUnihan");
 
         for (final String s : new UnicodeSet(bihuaData.keySet()).addAll(bestStrokesS.keySet())) {
-            final int unihanStrokes = CldrUtility.ifNull(bestStrokesS.get(s), NO_STROKE_INFO);
+            final int unihanStrokes =
+                    Objects.requireNonNullElse(bestStrokesS.get(s), NO_STROKE_INFO);
             final R2<String, String> bihua = bihuaData.get(s);
             final int bihuaStrokes = bihua == null ? NO_STROKE_INFO : bihua.get1().length();
             if (bihuaStrokes != NO_STROKE_INFO) {
@@ -787,8 +788,7 @@ public class GenerateUnihanCollators {
             final String firstPinyin = allPinyins == null ? "?" : allPinyins.iterator().next();
             final String rs = kRSUnicode.get(s);
 
-            final int totalStrokes =
-                    org.unicode.cldr.util.CldrUtility.ifNull(bestStrokesS.get(s), 0);
+            final int totalStrokes = Objects.requireNonNullElse(bestStrokesS.get(s), 0);
             // for (String rsItem : rs.split(" ")) {
             // RsInfo rsInfo = RsInfo.from(rsItem);
             // int totalStrokes = rsInfo.totalStrokes;

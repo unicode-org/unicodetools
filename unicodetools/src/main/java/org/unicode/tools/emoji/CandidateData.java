@@ -1,7 +1,6 @@
 package org.unicode.tools.emoji;
 
 import com.google.common.base.Joiner;
-import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
@@ -32,6 +31,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Predicate;
@@ -849,7 +849,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
     }
 
     public Set<String> getAnnotations(int source) {
-        return CldrUtility.ifNull(annotations.get(source), Collections.<String>emptySet());
+        return Objects.requireNonNullElse(annotations.get(source), Collections.<String>emptySet());
     }
 
     public Set<String> getAttributes(String source) {
@@ -1209,7 +1209,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                 if (DEBUG) System.out.println("\n@ " + majorGroup.name());
                 lastMajorGroup = majorGroup;
             }
-            if (!Objects.equal(category, lastCategory)) {
+            if (!Objects.equals(category, lastCategory)) {
                 if (lastCategory != null) {
                     if (DEBUG)
                         System.out.println(
