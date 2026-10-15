@@ -1290,7 +1290,7 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "ᳶ\u200Cপ",
                             // Malayalam YA, ZWNJ, VIRAMA, YA, from
                             // https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G706410.
-                            // Until Unicode Version 18.0, this broke after the virama, as യ‌്÷യ‌.
+                            // Until Unicode Version 18.0, this broke after the virama, as യ‌്÷യ.
                             "യ‌്യ",
                             // Zanabazar square example from L2/14-024, p. 15.
                             // The cluster-initial RA 𑨺 was InSC=Consonant_Prefixed in 10.0..16.0,
