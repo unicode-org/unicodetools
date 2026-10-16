@@ -120,16 +120,16 @@ public class TestJsp extends TestFmwkMinusMinus {
         checkValidity(Uts46.SINGLETON, "\u0080.de", false, true);
         checkValidity(Uts46.SINGLETON, "xn--a.de", false, true);
 
-        checkValidity(Idna2008.SINGLETON, "a", true, true);
-        checkValidity(Idna2008.SINGLETON, "ÖBB.at", false, false);
-        checkValidity(Idna2008.SINGLETON, "xn--BB-nha.at", true, true);
-        checkValidity(Idna2008.SINGLETON, "xn--bb-eka.at", true, true);
-        checkValidity(Idna2008.SINGLETON, "a\u200cb", true, true);
-        checkValidity(Idna2008.SINGLETON, "xn--ab-j1t", true, true);
-        checkValidity(Idna2008.SINGLETON, "faß.de", true, true);
-        checkValidity(Idna2008.SINGLETON, "xn--fa-hia.de", true, true);
-        checkValidity(Idna2008.SINGLETON, "\u0080.de", false, false);
-        checkValidity(Idna2008.SINGLETON, "xn--a.de", true, true);
+        checkValidity(Idna2008.getInstance(), "a", true, true);
+        checkValidity(Idna2008.getInstance(), "ÖBB.at", false, false);
+        checkValidity(Idna2008.getInstance(), "xn--BB-nha.at", true, true);
+        checkValidity(Idna2008.getInstance(), "xn--bb-eka.at", true, true);
+        checkValidity(Idna2008.getInstance(), "a\u200cb", true, true);
+        checkValidity(Idna2008.getInstance(), "xn--ab-j1t", true, true);
+        checkValidity(Idna2008.getInstance(), "faß.de", true, true);
+        checkValidity(Idna2008.getInstance(), "xn--fa-hia.de", true, true);
+        checkValidity(Idna2008.getInstance(), "\u0080.de", false, false);
+        checkValidity(Idna2008.getInstance(), "xn--a.de", true, true);
     }
 
     private void checkValidity(Idna uts46, String url, boolean expectedPuny, boolean expectedUni) {
@@ -359,10 +359,10 @@ public class TestJsp extends TestFmwkMinusMinus {
             // if mapped, then mapped the same
             String map2003 = Idna2003.SINGLETON.mappings.get(i);
             String map46 = Uts46.SINGLETON.mappings.get(i);
-            String map2008 = Idna2008.SINGLETON.mappings.get(i);
+            String map2008 = Idna2008.getInstance().mappings.get(i);
             IdnaType type2003 = Idna2003.SINGLETON.types.get(i);
             IdnaType type46 = Uts46.SINGLETON.types.get(i);
-            IdnaType type2008 = Idna2008.SINGLETON.types.get(i);
+            IdnaType type2008 = Idna2008.getInstance().types.get(i);
             checkNullOrEqual("2003/46", i, type2003, map2003, type46, map46);
             checkNullOrEqual("2003/2008", i, type2003, map2003, type2008, map2008);
             checkNullOrEqual("46/2008", i, type46, map46, type2008, map2008);
@@ -945,13 +945,13 @@ public class TestJsp extends TestFmwkMinusMinus {
         checkToUnicodeAndPunyCode(
                 Idna2003.SINGLETON, "نامه\u200Cای.de", "نامهای.de", "xn--mgba3gch31f.de");
 
-        checkValues(error, Idna2008.SINGLETON);
-        checkToUnicode(Idna2008.SINGLETON, "ß", "ß");
-        checkToPunyCode(Idna2008.SINGLETON, "ß", "xn--zca");
-        checkInvalidIdna(Idna2008.SINGLETON, "À");
-        checkInvalidIdna(Idna2008.SINGLETON, "÷");
-        checkInvalidIdna(Idna2008.SINGLETON, "≠");
-        checkInvalidIdna(Idna2008.SINGLETON, "ß｡");
+        checkValues(error, Idna2008.getInstance());
+        checkToUnicode(Idna2008.getInstance(), "ß", "ß");
+        checkToPunyCode(Idna2008.getInstance(), "ß", "xn--zca");
+        checkInvalidIdna(Idna2008.getInstance(), "À");
+        checkInvalidIdna(Idna2008.getInstance(), "÷");
+        checkInvalidIdna(Idna2008.getInstance(), "≠");
+        checkInvalidIdna(Idna2008.getInstance(), "ß｡");
 
         Uts46.SINGLETON.isValid("≠");
         assertTrue("uts46 a", Uts46.SINGLETON.isValid("a"));

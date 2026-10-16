@@ -26,6 +26,7 @@ import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.UCD.VersionedSymbolTable;
@@ -357,10 +358,10 @@ public class GenerateIdnaTest {
             result += 1;
         }
         if (NEW_FORMAT) {
-            result += generateLine(Idna.NFC.transform(source), out, out2);
-            result += generateLine(Idna.NFD.transform(source), out, out2);
-            result += generateLine(Idna.NFKC.transform(source), out, out2);
-            result += generateLine(Idna.NFKD.transform(source), out, out2);
+            result += generateLine(Normalizer.getNfcInstance().transform(source), out, out2);
+            result += generateLine(Normalizer.getNfdInstance().transform(source), out, out2);
+            result += generateLine(Normalizer.getNfkcInstance().transform(source), out, out2);
+            result += generateLine(Normalizer.getNfkdInstance().transform(source), out, out2);
         }
         result += generateLine(UCharacter.toLowerCase(source), out, out2);
         result += generateLine(UCharacter.toUpperCase(source), out, out2);
@@ -453,7 +454,7 @@ public class GenerateIdnaTest {
         //        final Matcher m = labelSeparator.reset(source);
         //        for (final String label : labelSeparator.split(source)) {
         //            if (IdnaTypes.LABEL_ASCII.containsAll(label)) {
-        //                final String folded = Idna.CASEFOLD.transform(label);
+        //                final String folded = Default.ucd().getCase(label, UCD.FULL, UCD.FOLD);
         //                result.append(folded);
         //                continue;
         //            }
