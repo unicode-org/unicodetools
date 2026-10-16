@@ -388,17 +388,17 @@ public class TestUnicodeInvariants {
         public UnicodeMap<String> getFailures() {
             final UnicodeMap<String> failures = new UnicodeMap<>();
 
-            for (final UnicodeSetIterator it = new UnicodeSetIterator(valueSet); it.next(); ) {
-                final String failure = getFailure(it.codepoint);
+            for (final String element : valueSet) {
+                final String failure = getFailure(element);
                 if (failure != null) {
-                    failures.put(it.codepoint, failure);
+                    failures.put(element, failure);
                 }
             }
             return failures;
         }
 
-        // A description of the failure for the given codepoint, or null if the predicate holds.
-        protected abstract String getFailure(int codepoint);
+        // A description of the failure for the given element, or null if the predicate holds.
+        protected abstract String getFailure(String element);
     }
 
     static class PropertyComparison extends PropertyPredicate {
@@ -406,9 +406,9 @@ public class TestUnicodeInvariants {
         UnicodeProperty property2;
 
         @Override
-        protected String getFailure(int codepoint) {
-            final String value1 = property1.getValue(codepoint);
-            final String value2 = property2.getValue(codepoint);
+        protected String getFailure(String element) {
+            final String value1 = property1.getValue(element);
+            final String value2 = property2.getValue(element);
             final boolean areEqual = Objects.equals(value1, value2);
             if (areEqual == shouldBeEqual) {
                 return null;
@@ -423,8 +423,8 @@ public class TestUnicodeInvariants {
         UnicodeSet set;
 
         @Override
-        protected String getFailure(int codepoint) {
-            final String value = property1.getValue(codepoint);
+        protected String getFailure(String element) {
+            final String value = property1.getValue(element);
             final boolean isInSet = set.contains(value);
             if (isInSet == shouldBeInSet) {
                 return null;
@@ -1328,8 +1328,12 @@ public class TestUnicodeInvariants {
 
         @Override
         protected String _getValue(int codepoint) {
+            return _getValue(Character.toString(codepoint));
+        }
+
+        @Override
+        protected String _getValue(String value) {
             final StringBuffer buffer = new StringBuffer();
-            String value = Character.toString(codepoint);
             List<String> values = null;
             int cp;
 
@@ -1421,11 +1425,6 @@ public class TestUnicodeInvariants {
                 }
             }
             return value;
-        }
-
-        @Override
-        protected String _getValue(String string) {
-            throw new UnsupportedOperationException();
         }
 
         @Override
