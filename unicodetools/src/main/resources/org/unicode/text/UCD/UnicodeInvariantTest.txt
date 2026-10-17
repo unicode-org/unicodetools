@@ -863,6 +863,17 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
     - \p{LB=HH}  # 187-C45 changed U+00AD SOFT HYPHEN from lb=BA to lb=HH.
 ]
 
+# Combining marks normally have LB=CM or LB=SA, with exceptions for glue and
+# the viramas used in Brahmic line breaking (whose classes are checked above).
+# The only other exception is U+0F7F TIBETAN SIGN RNAM BCAD, which has LB=BA.
+# https://github.com/unicode-org/unicodetools/issues/279
+[\p{GC=M} - [\N{0F7F:TIBETAN SIGN RNAM BCAD}]] ⊆ [
+    \p{LB=CM} \p{LB=SA} \p{LB=GL} \p{LB=VI} \p{LB=VF}
+]
+
+# Double diacritics span two bases and must prevent line breaks between them.
+[\p{ccc=Double_Below} \p{ccc=Double_Above}] ⊆ \p{LB=GL}
+
 #  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
 #         except those with East_Asian_Width F (Fullwidth)
 # 15.1.0: and those from scripts that use the Brahmic style of context analysis,
