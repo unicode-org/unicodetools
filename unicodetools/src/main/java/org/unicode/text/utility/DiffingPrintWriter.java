@@ -16,24 +16,24 @@ public class DiffingPrintWriter extends Writer {
     final String tempName;
     final String filename;
     private final File referenceFile;
-    private final boolean skipCopyright;
+    private boolean skipCopyright;
 
     public DiffingPrintWriter(String dir, String filename) {
         this(new File(dir, filename));
     }
 
     public DiffingPrintWriter(File file) {
-        this(file, null, false);
+        this(file, null);
     }
 
     /**
      * Reuse referenceFile when there are no substantive changes; otherwise compare with the
-     * existing output. Dates are ignored, and copyright lines are ignored if skipCopyright is true.
+     * existing output. Dates are ignored. Call {@link #skipCopyright()} to also ignore copyright
+     * lines.
      */
-    public DiffingPrintWriter(File file, File referenceFile, boolean skipCopyright) {
+    public DiffingPrintWriter(File file, File referenceFile) {
         super();
         this.referenceFile = referenceFile;
-        this.skipCopyright = skipCopyright;
         final String parentFile = file.getParent();
         this.filename = file.toString();
         Random rand = new Random();
@@ -47,6 +47,17 @@ public class DiffingPrintWriter extends Writer {
         } catch (IOException e) {
             throw new ICUUncheckedIOException(e);
         }
+    }
+
+    /** Ignores copyright lines when comparing files and returns this writer for chaining. */
+    public DiffingPrintWriter skipCopyright() {
+        skipCopyright = true;
+        return this;
+    }
+
+    /** Returns a PrintWriter whose close() also compares and finalizes the output file. */
+    public PrintWriter toPrintWriter() {
+        return new PrintWriter(this);
     }
 
     @Override

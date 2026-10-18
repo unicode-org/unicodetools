@@ -1548,13 +1548,13 @@ public class GenerateConfusables {
             // Published files can also match the checked-in data in a clean output directory.
             // Internal files are written into the source tree and match the existing output.
             out =
-                    new PrintWriter(
-                            new DiffingPrintWriter(
+                    new DiffingPrintWriter(
                                     new File(dir, filename),
                                     Settings.UnicodeTools.getDataPath("security", REVISION)
                                             .resolve(filename)
-                                            .toFile(),
-                                    /* skipCopyright= */ true));
+                                            .toFile())
+                            .skipCopyright()
+                            .toPrintWriter();
         }
         out.println(
                 Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));

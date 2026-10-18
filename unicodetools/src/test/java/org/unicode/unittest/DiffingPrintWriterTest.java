@@ -3,6 +3,7 @@ package org.unicode.unittest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.unicode.text.utility.DiffingPrintWriter;
 
 public class DiffingPrintWriterTest {
+    // With JUnit's default PER_METHOD lifecycle, this non-static @TempDir is fresh for each test
+    // invocation, so reference and output files cannot be left over from another test.
     @TempDir Path directory;
 
     private static final String OLD =
@@ -28,10 +31,11 @@ public class DiffingPrintWriterTest {
     }
 
     private void generate(String text) {
-        try (DiffingPrintWriter out =
-                new DiffingPrintWriter(
-                        output().toFile(), reference().toFile(), /* skipCopyright= */ true)) {
-            out.write(text.toCharArray(), 0, text.length());
+        try (PrintWriter out =
+                new DiffingPrintWriter(output().toFile(), reference().toFile())
+                        .skipCopyright()
+                        .toPrintWriter()) {
+            out.write(text);
         }
     }
 
@@ -104,7 +108,7 @@ public class DiffingPrintWriterTest {
     public void testDefaultConstructorDoesNotIgnoreCopyright() throws IOException {
         Files.writeString(output(), OLD);
         try (DiffingPrintWriter out = new DiffingPrintWriter(output().toFile())) {
-            out.write(NEW_HEADER.toCharArray(), 0, NEW_HEADER.length());
+            out.write(NEW_HEADER);
         }
         assertEquals(NEW_HEADER, Files.readString(output()));
     }
