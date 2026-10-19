@@ -1304,13 +1304,6 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                                     + ":  "
                                     + line.getOriginalLine());
                 }
-                if (propInfo.property == UcdProperty.kMandarin) {
-                    if (indexUnicodeProperties.oldVersion) {
-                        value =
-                                IndexUnicodeProperties.fromNumericPinyin.transform(
-                                        value.toLowerCase(Locale.ENGLISH));
-                    }
-                }
             }
             if (line.getType() == UcdLineParser.UcdLine.Contents.DATA) {
                 if (propInfo.getDefaultValue(indexUnicodeProperties.ucdVersion) == null) {
