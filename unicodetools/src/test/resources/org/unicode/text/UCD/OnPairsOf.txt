@@ -1,0 +1,49 @@
+# EqualityOf retains its existing equivalence-class semantics and string support.
+OnPairsOf [A-Za-z], EqualityOf lc ⇔ EqualityOf uc
+OnPairsOf [KkK], EqualityOf uc ⇒ EqualityOf lc
+OnPairsOf [KkK], EqualityOf lc ⇐ EqualityOf uc
+OnPairsOf [KkK], EqualityOf lc ⇏ EqualityOf uc
+OnPairsOf [KkK], EqualityOf uc ⇍ EqualityOf lc
+OnPairsOf [KkK], EqualityOf lc ⇎ EqualityOf uc
+OnPairsOf [{Straße}{STRASSE}], EqualityOf cf ⇎ EqualityOf scf
+
+# All six operators, including strict implication and the negation of an assertion.
+OnPairsOf [ABab], PairedBy lc, uc ⇔ PairedBy slc, suc
+OnPairsOf [ABab], PairedBy [a] * lc, uc ⇒ PairedBy lc, uc
+OnPairsOf [ABab], PairedBy lc, uc ⇐ PairedBy [a] * lc, uc
+OnPairsOf [ABab], PairedBy lc, uc ⇏ PairedBy [a] * lc, uc
+OnPairsOf [ABab], PairedBy [a] * lc, uc ⇍ PairedBy lc, uc
+OnPairsOf [ABab], PairedBy lc, uc ⇎ PairedBy [a] * lc, uc
+
+# These are ordered pairs: (A, a) and (a, A) are different.
+OnPairsOf [Aa], PairedBy lc, uc ⇎ PairedBy uc, lc
+
+# Both elements must belong to the domain, and they must be distinct.
+OnPairsOf [A], PairedBy lc, uc ⇔ PairedBy (constant B), (constant A)
+OnPairsOf [A], PairedBy (constant A), (constant A) ⇔ PairedBy lc, uc
+
+# Kelvin sign lowercases to k, but k uppercases to K, not Kelvin sign.
+OnPairsOf [Kk], PairedBy lc, uc ⇔ PairedBy (constant z), (constant Q)
+
+# Identity and empty mappings do not form pairs on this domain.
+OnPairsOf [123], PairedBy lc, uc ⇔ PairedBy [] * lc, uc
+
+# Full uppercase expands the Greek small letter to two code points; simple
+# uppercase returns the capital letter. Only the latter is a case pair.
+OnPairsOf [\u1F80\u1F88], PairedBy lc, uc ⇎ PairedBy slc, suc
+
+# Supplementary code points and multi-code-point string elements.
+OnPairsOf [\U00010400\U00010428], PairedBy lc, uc ⇎ PairedBy uc, lc
+OnPairsOf [{AB}{ab}], PairedBy lc, uc ⇎ PairedBy uc, lc
+
+# Version prefixes and property composition use the existing property parser.
+OnPairsOf [Aa], PairedBy U-1:lc, U-1:uc ⇔ PairedBy [a] * lc, [A] * uc
+
+# Either relation kind may occur on either side. EqualityOf is reflexive,
+# whereas PairedBy excludes pairs whose elements are identical.
+OnPairsOf [Aa], PairedBy lc, uc ⇒ EqualityOf lc
+OnPairsOf [Aa], EqualityOf lc ⇐ PairedBy lc, uc
+OnPairsOf [Aa], EqualityOf lc ⇏ PairedBy lc, uc
+
+# Both relations are empty on an empty domain, even in a mixed comparison.
+OnPairsOf [], PairedBy lc, uc ⇔ EqualityOf lc
