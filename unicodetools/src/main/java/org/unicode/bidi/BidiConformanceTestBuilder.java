@@ -46,6 +46,31 @@ public class BidiConformanceTestBuilder {
     private static final byte PDI = BidiReference.PDI;
 
     private static byte[][] extraTests = {
+        // Preserve PDI identity when joining isolating run sequences after an override.
+        {RLO, RLI, R, PDI, PDF, RLE, L, RLI, R, PDI, L},
+        // An overflow isolate must not split a level run.
+        {
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE,
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE,
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE,
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, R, LRI, R
+        },
+        // Do not reverse a level-126 run when no odd level is present.
+        {
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE,
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE,
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE,
+            LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, LRE, AN, AN
+        },
+        // An unmatched PDI must receive the active directional override.
+        {LRE, L, PDF, RLO, PDI, LRE, L},
+        // Class-only counterpart; bracket overflow is tested in BidiCharacterTest.txt.
+        {
+            L, ON, L, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON,
+            ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON,
+            ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON, ON,
+            ON, ON
+        },
         // Test data provided by Behdad Esfahbod, Dov Grobgeld, Aharon Lanin, and Roozbeh Pournader
         {AL, AL, R, WS, R, R, WS, L, L, L, WS, L, L, L, WS, R, R, WS, AL, R, R, R, R, R, R},
         {

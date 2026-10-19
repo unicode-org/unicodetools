@@ -485,6 +485,9 @@ public final class BidiReference {
                         --validIsolateCount;
                     }
                     resultLevels[i] = stack.lastEmbeddingLevel();
+                    if (stack.lastDirectionalOverrideStatus() != ON) {
+                        resultTypes[i] = stack.lastDirectionalOverrideStatus();
+                    }
                     break;
 
                 // Rule X7
