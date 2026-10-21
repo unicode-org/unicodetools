@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.utility.Settings;
 
 public enum PropertyStatus {
@@ -376,15 +376,15 @@ public enum PropertyStatus {
     }
 
     public static PropertyScope getScope(String propName) {
-        return CldrUtility.ifNull(SCOPE.get(propName), PropertyScope.Unknown);
+        return Objects.requireNonNullElse(SCOPE.get(propName), PropertyScope.Unknown);
     }
 
     public static PropertyOrigin getOrigin(String propName) {
-        return CldrUtility.ifNull(ORIGIN.get(propName), PropertyOrigin.Unknown);
+        return Objects.requireNonNullElse(ORIGIN.get(propName), PropertyOrigin.Unknown);
     }
 
     public static PropertyType getDatatype(String propName) {
-        return CldrUtility.ifNull(DATATYPE.get(propName), PropertyType.Unknown);
+        return Objects.requireNonNullElse(DATATYPE.get(propName), PropertyType.Unknown);
     }
 
     /*

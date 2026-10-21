@@ -1,14 +1,13 @@
 package org.unicode.draft;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Pair;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -213,7 +212,7 @@ public class CompareCldrUnihanData {
             for (int i = range.codepoint; i <= range.codepointEnd; ++i) {
                 T v1 = a.get(i);
                 T v2 = b.get(i);
-                if (!Objects.equal(v1, v2)) {
+                if (!Objects.equals(v1, v2)) {
                     result.put(i, Pair.of(v1, v2));
                 }
             }
@@ -221,7 +220,7 @@ public class CompareCldrUnihanData {
         for (String string : sources.strings()) {
             T v1 = a.get(string);
             T v2 = b.get(string);
-            if (!Objects.equal(v1, v2)) {
+            if (!Objects.equals(v1, v2)) {
                 result.put(string, Pair.of(v1, v2));
             }
         }
@@ -260,8 +259,8 @@ public class CompareCldrUnihanData {
     }
 
     static <T extends Comparable<T>> String show(Pair<T, T> pair) {
-        return CldrUtility.ifNull(pair.getFirst(), "∅")
+        return Objects.requireNonNullElse(pair.getFirst(), "∅")
                 + " → "
-                + CldrUtility.ifNull(pair.getSecond(), "∅");
+                + Objects.requireNonNullElse(pair.getSecond(), "∅");
     }
 }

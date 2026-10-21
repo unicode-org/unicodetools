@@ -12,13 +12,13 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
 import org.unicode.cldr.util.CLDRFile;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.NameGetter;
 import org.unicode.cldr.util.NameType;
 import org.unicode.text.utility.Birelation;
@@ -497,7 +497,7 @@ public class EmojiAnnotations extends Birelation<String, String> {
     }
 
     public Status getStatus(String s) {
-        return CldrUtility.ifNull(statusValues.get(s), Status.missing);
+        return Objects.requireNonNullElse(statusValues.get(s), Status.missing);
     }
 
     public UnicodeSet getStatusKeys() {

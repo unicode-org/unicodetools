@@ -19,7 +19,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.LoadIdnaTest.TestLine;
 import org.unicode.idna.Uts46.Errors;
@@ -321,15 +320,19 @@ public class GenerateIdnaTest {
                         + "; "
                         + escapeIfDifferentElseEmpty(unicode, source)
                         + "; "
-                        + CldrUtility.ifEqual(toUnicodeErrors, Collections.EMPTY_SET, "")
+                        + (toUnicodeErrors.isEmpty() ? "" : toUnicodeErrors)
                         + "; "
                         + escapeIfDifferentElseEmpty(nontransitional, unicode)
                         + "; "
-                        + CldrUtility.ifEqual(nonTransitionalErrors, toUnicodeErrors, "")
+                        + (nonTransitionalErrors.equals(toUnicodeErrors)
+                                ? ""
+                                : nonTransitionalErrors)
                         + "; "
                         + escapeIfDifferentElseEmpty(transitional, nontransitional)
                         + "; "
-                        + CldrUtility.ifEqual(transitionalErrors, nonTransitionalErrors, "")
+                        + (transitionalErrors.equals(nonTransitionalErrors)
+                                ? ""
+                                : transitionalErrors)
                         + " # "
                         + removeInvisible.transform(unicode));
 
