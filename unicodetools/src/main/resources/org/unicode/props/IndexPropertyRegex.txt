@@ -31,7 +31,18 @@ $positiveDecimal    =   $digits\.$digits
 #$decimal    =   -?$positiveDecimal
 $rational   =   -?$digits(/$digits)?
 #$optionalDecimal    =   -?$digits(\.$digits)?
-$name   =   $label(( -|- |[-_ ])$label)*
+
+# Character name syntax (https://www.unicode.org/versions/latest/core-spec/#G135165).
+# R1: Only uppercase ASCII letters, digits, space, and hyphen. Names are nonempty.
+$nameCharacters = [A-Z0-9 -]+
+# R2: No digit initially or immediately after a space.
+$nameDigitCheck = (?![0-9]|.*[ ][0-9])
+# R3: No initial/final hyphen, consecutive hyphens, or a hyphen between two spaces.
+$nameHyphenCheck = (?!-|.*(?:-$|--|[ ]-[ ]))
+# R4: No initial/final space or consecutive spaces.
+$nameSpaceCheck = (?![ ]|.*(?:[ ]$|[ ]{2}))
+$name = $nameDigitCheck$nameHyphenCheck$nameSpaceCheck$nameCharacters
+
 $name2  =   $label([-_ ]$label)*
 $annotatedName  =   $name2( \(.*\))?
 $shortName  =   [A-Z]{0,3}
@@ -48,7 +59,8 @@ Case_Folding ;                SINGLE_VALUED ;               $codePoints
 Decomposition_Mapping ;       SINGLE_VALUED ;               $codePoints
 Equivalent_Unified_Ideograph; SINGLE_VALUED ;               $codePoint
 FC_NFKC_Closure ;             SINGLE_VALUED ;               $codePoints
-ISO_Comment ;                 SINGLE_VALUED ;               $name
+# ISO_Comment has been empty for all code points since Unicode 5.2.
+ISO_Comment ;                 SINGLE_VALUED ;               ^$
 Jamo_Short_Name ;             SINGLE_VALUED ;               $shortName
 Lowercase_Mapping ;           SINGLE_VALUED ;               $codePoints
 Name ;                        SINGLE_VALUED ;               CJK UNIFIED IDEOGRAPH-#|CJK COMPATIBILITY IDEOGRAPH-#|EGYPTIAN HIEROGLYPH-#|TANGUT IDEOGRAPH-#|KHITAN SMALL SCRIPT CHARACTER-#|NUSHU CHARACTER-#|SMALL SEAL CHARACTER-#|JURCHEN CHARACTER-#|\$HANGUL_SYLLABLE\$|$name
