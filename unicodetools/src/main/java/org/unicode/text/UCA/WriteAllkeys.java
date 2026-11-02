@@ -45,7 +45,7 @@ public class WriteAllkeys {
                             + "# Unlike the DUCET, the ordering is by non-ignorable sort order.\n");
         }
 
-        final UCA collator = WriteCollationData.getCollator(collatorType);
+        final UCA collator = UCA.getCollator(collatorType);
         final UCA.UCAContents cc = collator.getContents(null);
         log.println("@version " + collator.getDataVersion() + "\n");
 
@@ -89,7 +89,8 @@ public class WriteAllkeys {
 
     public static String addString(UCA collator, String s, Map<String, String> sorted) {
         final String colDbase =
-                collator.getSortKey(s, UCA_Types.NON_IGNORABLE, true, AppendToCe.tieBreaker);
+                collator.getSortKey(
+                        s, UCA_Types.Alternate.NON_IGNORABLE, true, AppendToCe.tieBreaker);
         sorted.put(colDbase, s);
         return colDbase;
     }

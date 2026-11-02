@@ -30,10 +30,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestInvariants extends TestFmwkMinusMinus {
-    static {
-        System.setProperty("DISABLE_PROP_FILE_CACHE", "TRUE");
-    }
-
     private static final IndexUnicodeProperties iup =
             IndexUnicodeProperties.make(Settings.latestVersion);
     private static final UnicodeMap<Script_Values> SCRIPTS =
@@ -153,6 +149,7 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.NFKC_Simple_Casefold,
                         UcdProperty.Age,
                         UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
                         UcdProperty.Bidi_Class,
                         UcdProperty.East_Asian_Width,
                         UcdProperty.Grapheme_Cluster_Break,
@@ -167,11 +164,24 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Names_List_Cross_Ref,
                         UcdProperty.Names_List_Comment,
                         UcdProperty.Names_List_Subheader,
-                        UcdProperty.Names_List_Subheader_Notice));
+                        UcdProperty.Names_List_Subheader_Notice,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
         exceptions.putAll(
                 General_Category_Values.Private_Use,
-                Arrays.asList(UcdProperty.Age, UcdProperty.Block));
-        exceptions.put(General_Category_Values.Surrogate, UcdProperty.Block);
+                Arrays.asList(
+                        UcdProperty.Age,
+                        UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
+        exceptions.putAll(
+                General_Category_Values.Surrogate,
+                Arrays.asList(
+                        UcdProperty.Block,
+                        UcdProperty.Pretty_Block,
+                        UcdProperty.Names_List_Block_Header,
+                        UcdProperty.Names_List_Block_Header_Notice));
 
         List<UcdProperty> ordered = new ArrayList<>();
         // ordered.add(UcdProperty.Bidi_Class);
@@ -443,6 +453,32 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // [183-A75] Change Identifier_Type of 753 characters
                     level = LOG;
                 }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Uncommon_Use")
+                        && Settings.latestVersion.equals("18.0.0")
+                        && missing.size() == 101
+                        && missing.containsAll(
+                                new UnicodeSet(
+                                        "[\\u0591-\\u05A1\\u05A3-\\u05AF\\u05BF\\u05C4\\u0615-\\u061A\\u065C\\u06D6-\\u06DC\\u06DF-\\u06E4\\u06E7\\u06E8\\u06EA-\\u06ED\\u0898-\\u089F\\u08CA-\\u08E1\\u08F0-\\u08F3\\u08F8\\u08FB\\U00010EFA\\U00010EFC-\\U00010EFF]"))) {
+                    // PAG issue 555: Cleanup Identifier_Type of Arabic and Hebrew combining marks
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Uncommon_Use|Technical")
+                        && Settings.latestVersion.equals("18.0.0")
+                        && missing.size() == 2
+                        && missing.containsAll("\u05C7\uFB1E")) {
+                    // PAG issue 555: Cleanup Identifier_Type of Arabic and Hebrew combining marks
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Identifier_Type
+                        && value.equals("Uncommon_Use|Obsolete")
+                        && Settings.latestVersion.equals("18.0.0")
+                        && missing.size() == 2
+                        && missing.containsAll("\u05A2\u05C5")) {
+                    // PAG issue 555: Cleanup Identifier_Type of Arabic and Hebrew combining marks
+                    level = LOG;
+                }
                 if (ucdProperty == UcdProperty.Idn_Status
                         && value.equals("disallowed_STD3_valid")
                         && Settings.latestVersion.equals("15.1.0")
@@ -469,6 +505,19 @@ public class TestInvariants extends TestFmwkMinusMinus {
                     // recommending that UTC Rescind the Egyptian Hieroglyph standardized variation
                     // sequence 1333B FE00 as described in document L2/24-177 for Unicode version
                     // 16.0.
+                    level = LOG;
+                }
+                if (ucdProperty == UcdProperty.Standardized_Variant
+                        && Settings.latestVersion.equals("18.0.0")
+                        && value.contains(" form (")) {
+                    // [188-C33] Consensus: Update the Mongolian section of StandardizedVariants.txt
+                    // as discussed in the meeting, for Unicode Version 18.0. [Ref: L2/26-203 and
+                    // 5.3 in L2/26-158]
+                    //
+                    // [188-A68] Action Item for Ken Whistler, PAG: Make changes to
+                    // StandardizedVariants.txt per 188-C33, for Unicode Version 18.0.
+                    //
+                    // See also L2/26-163 “Proposal to update the Mongolian variant data in UCD”.
                     level = LOG;
                 }
                 msg(

@@ -123,7 +123,7 @@ public class Common {
     //            // IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
     //            // idnaTypeSet.get(idnaType).add(cp);
     //
-    //            String s = UTF16.valueOf(cp);
+    //            String s = Character.toString(cp);
     //            if (UCharacter.foldCase(s, true).equals(s)) {
     //                Common.isCaseFolded.add(cp);
     //            }

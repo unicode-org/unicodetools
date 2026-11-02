@@ -332,12 +332,29 @@ In \P{U-1:gc=Cn}, R-1:NFKC_Simple_Casefold = NFKC_Simple_Casefold
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
 In \p{dt=canonical}, (delete-adjacent-duplicates) * bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+# We care about initial bc=NSM though, so check consistency of the first character of the
+# decomposition without filtering.  See 93-C25 and
+# https://github.com/unicode-org/properties/issues/574.
+In \p{dt=canonical}, bc * (take 1) * dm  = bc
 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
 # There are 6 special cases, all symmetric symbols—which are not mirrored—with a solidus overlay:
 Let $BMExclusions := [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
 In [\p{dt=canonical}-$BMExclusions], (delete-adjacent-duplicates) * Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
+
+# Precedent (UTC-175-C21; L2/23-079, item 4.1): The UTC will not add further
+# characters to the Unicode Standard with both (a) canonical decompositions,
+# and (b) Bidi_Paired_Bracket_Type ≠ None. Unicode will also not add further
+# characters where the canonical decompositions *contain* characters whose
+# Bidi_Paired_Bracket_Type ≠ None.
+# https://github.com/unicode-org/unicodetools/issues/453
+# The existing exceptions to both restrictions are U+2329 and U+232A.
+Let $decomposableBidiBrackets := [\u2329\u232A]
+[\p{dt=Canonical} & \p{Bidi_Paired_Bracket_Type≠None}] ⊆ $decomposableBidiBrackets
+# Checking every direct mapping also checks each step of recursive decomposition.
+In [\p{dt=Canonical} - $decomposableBidiBrackets],
+    (delete-adjacent-duplicates) * Bidi_Paired_Bracket_Type * Decomposition_Mapping = (constant None)
 
 # Additional BIDI invariant constants
 Let $AL_blocks := [
@@ -394,7 +411,7 @@ Let $BN_Exceptions := [\u001C-\u001F\u17B4\u17B5]
 ]
 
 # Nonspacing and enclosing combining marks are bc=NSM, with a few exceptions (all of which are nonspacing)
-Let $gcMn_bcL := [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F]
+Let $gcMn_bcL := [\u0CBF\u0CC6\U00011A07\U00011A08\U00011C3F\u1B42\u1B3C\u1B3A]
 \p{bc=NSM} = [\p{gc=Mn} \p{gc=Me} - $gcMn_bcL]
 
 ##########################
@@ -843,6 +860,7 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
     - \p{LB=GL} - \p{LB=AL} - \p{LB=ZWJ}
     - \p{LB=VI} - \p{LB=VF}
     - \p{LB=NU}  # 176-A81 changed [[:PCM:]-\u070F] from lb=AL to lb=NU
+    - \p{LB=HH}  # 187-C45 changed U+00AD SOFT HYPHEN from lb=BA to lb=HH.
 ]
 
 #  3.0.0: Numeric characters consist of decimal digits (all characters of General_Category Nd),
@@ -852,7 +870,10 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
 # 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
 # 16.0.0: UTC-180-A54: U+19DA from lb=SA to lb=NU.
 Let $NUInclusions := [\u066B\u066C\u19DA]
-Let $NUFormats := [[:PCM:]-[\u070F]]
+# PCM characters must be LB=NU unless explicitly excluded after review.
+# https://github.com/unicode-org/unicodetools/issues/507
+Let $NUFormats := [[:PCM:]-[\N{070F:SYRIAC ABBREVIATION MARK}]]
+$NUFormats ⊆ \p{LB=NU}
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
 # Digits are lb=AS in scripts with brahmic line breaking.
@@ -1131,8 +1152,8 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 
 # TODO(egg): We could check that the variation selectors are used consistently, but this would
 # require UnicodeProperty to support strings properly.
-\p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
-\p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
+\p{emoji_variation_sequence=text\ style} ⊃ [{♈︎}]
+\p{emoji_variation_sequence=emoji\ style} ⊃ [{♈️}]
 
 # The file emoji-test.txt states that
 # • The RGI set is covered by the listed fully-qualified emoji.
@@ -1377,6 +1398,7 @@ $CommonIdeographs = [\p{Ideographic} & \p{sc=Common}]
 [ [\p{Ideographic}&\p{sc=Han}] - \p{nfkcqc=n} - $NonOtherLetterIdeographs ] = \p{Unified_Ideograph}
 
 Let $unihanScope := [\p{Block=/^CJK.(Unified|Compatibility).Ideographs/} - \p{gc=Cn}]
+$unihanScope ⊂ \p{Script=Han}
 \p{Unified_Ideograph} ⊂ $unihanScope
 $unihanScope = [\p{gc=Lo} & \p{sc=Hani}]
 $unihanScope = \P{kRSUnicode=@none@}
@@ -1395,11 +1417,7 @@ $unihanScope = [
     \P{kIRG_VSource=@none@}
 ]
 
-# TODO(eggrobin): Should those two have a kMandarin, or this not actually an invariant?
-# See https://www.unicode.org/review/pri483/feedback.html#ID20240118004124.
-# Change to \P{kHanyuPinyin=@none@} ⊆ \P{kMandarin=@none@} once this gets fixed.
-Let $ideographsMissingkMandarin := [\x{228F5}\x{2574C}]
-[\P{kHanyuPinyin=@none@} - \P{kMandarin=@none@}] = $ideographsMissingkMandarin
+\P{kHanyuPinyin=@none@} ⊆ \P{kMandarin=@none@}
 
 Let $cjkStrokes := \p{Name=/^CJK STROKE /}
 Let $kangxiRadicals := \p{Name=/^KANGXI RADICAL /}
@@ -1444,6 +1462,7 @@ In $japaneseSimplifiedRadicals, Equivalent_Unified_Ideograph ∈ \p{kRSUnicode=/
 # Tangut invariants
 
 Let $tangutSourcesScope := [\p{Block=/^Tangut(.Supplement)?$/} - \p{gc=Cn}]
+$tangutSourcesScope ⊂ \p{sc=Tangut}
 $tangutSourcesScope = [ [\p{gc=Lo} & \p{sc=Tangut}] - \p{name=/^TANGUT COMPONENT-/} ]
 $tangutSourcesScope = \P{kTGT_MergedSrc=@none@}
 $tangutSourcesScope = \P{kRSTUnicode=@none@}
@@ -1451,6 +1470,7 @@ $tangutSourcesScope = \P{kRSTUnicode=@none@}
 # Jurchen invariants
 
 Let $jurchenSourcesScope := [\p{Block=/^Jurchen(.Supplement)?$/} - \p{gc=Cn}]
+$jurchenSourcesScope ⊂ \p{sc=Jurchen}
 $jurchenSourcesScope = [ [\p{gc=Lo} & \p{sc=Jurchen}] - \p{name=/^JURCHEN RADICAL-/} ]
 $jurchenSourcesScope = \P{kJURC_Src=@none@}
 $jurchenSourcesScope = \P{kJURC_RSUnicode=@none@}
@@ -1460,6 +1480,7 @@ $jurchenSourcesScope ⊃ \P{kJURC_NCReading=@none@}
 # Nüshu invariants
 
 Let $nüshuSourcesScope := [\p{Block=Nushu} - \p{gc=Cn}]
+$nüshuSourcesScope ⊂ \p{sc=Nushu}
 $nüshuSourcesScope = [\p{gc=Lo} & \p{sc=Nushu}]
 $nüshuSourcesScope = \P{kSrc_NushuDuben=@none@}
 $nüshuSourcesScope = \P{kReading=@none@}
@@ -1467,6 +1488,7 @@ $nüshuSourcesScope = \P{kReading=@none@}
 # Seal invariants
 
 Let $sealSourcesScope := \p{Block=Seal}
+$sealSourcesScope ⊆ \p{sc=Seal}
 $sealSourcesScope = \P{kSEAL_THXSrc=@none@}
 $sealSourcesScope ⊃ [\P{kSEAL_CCZSrc=@none@}\P{kSEAL_QJZSrc=@none@}\P{kSEAL_DYCSrc=@none@}]
 In [\P{kSEAL_MCJK=@none@}], Script * kSEAL_MCJK = (constant Han)
@@ -1475,6 +1497,7 @@ $sealSourcesScope = \P{kSEAL_Rad=@none@}
 # Egyptian hieroglyph invariants
 
 Let $unikemetScope := [\p{Block=/^Egyptian.Hieroglyphs/} - \p{gc=Cn}]
+$unikemetScope ⊂ \p{sc=Egyptian Hieroglyphs}
 $unikemetScope = [ [\p{gc=Lo} & \p{sc=Egyp}] - \p{Name=/^EGYPTIAN HIEROGLYPH (FULL |HALF |TALL |WIDE )?(BLANK|LOST SIGN)$/} ]
 $unikemetScope = \P{kEH_Cat=@none@}
 $unikemetScope = \P{kEH_UniK=@none@}
@@ -1486,7 +1509,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 
 # TODO(egg): We could check that the variation selectors are used consistently, but this would
 # require UnicodeProperty to support strings properly.
-\p{Standardized_Variant=rotated 90 degrees} ⊃ [{𓏲\uFE00}]
+\p{Standardized_Variant=rotated\ 90\ degrees} ⊃ [{𓏲\uFE00}]
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
@@ -1495,6 +1518,11 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 [\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{gc=Mn}\p{gc=Lo}]
 \p{gc=Mn} ⊆ \P{InPC=/(Left|Right)/}
 [\p{gc=Lo}&\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{InSC=Consonant_Preceding_Repha}\p{InSC=Consonant_Prefixed}]
+
+# Small kana and final Bopomofo letters should be vo=Tu (L2/25-035).
+# https://github.com/unicode-org/unicodetools/issues/1003
+\p{Name=/^(HIRAGANA|KATAKANA) LETTER SMALL /} ⊆ \p{Vertical_Orientation=Tu}
+\p{Name=/^BOPOMOFO FINAL LETTER /} ⊆ \p{Vertical_Orientation=Tu}
 
 # Script Extensions (mostly testing the proper handling of multivalued properties).
 \p{sc=Deva} ⊂ \p{scx=Deva}
@@ -1517,14 +1545,7 @@ In [\p{Block=Hangul Syllables} - \p{gc=Cn}], (prepend HANGUL SYLLABLE ) * (strin
 # https://www.unicode.org/review/pri497/feedback.html#ID20240216135149.
 In \p{Decomposition_Type=font}, Bidi_Class = Bidi_Class * Decomposition_Mapping
 
-# All Math characters should be covered by Math_Class.
-# (But right now, they are not because of Unicode 16+ additions.)
-[\p{Math} - \P{Math_Class=None}] = [
-  \x{10D8E}\x{10D8F}   # Garay
-  \x{1CEF0}            # Standard state
-  \x{1F8D0}-\x{1F8D8}  # Arrows
-  \x{1CEF1}-\x{1CEF5}  # Leibnizian operators
-]
+# When Math_Class gets updated, it normally covers all Math characters.
 \p{U9:Math} ⊂ \P{U9:Math_Class=None}
 [\p{U5:Math} - \P{U5:Math_Class=None}] = [ \u237C \u27CA ]
 
@@ -1544,6 +1565,57 @@ In \P{U6.1:Math_Class_Ex=None}, U6.1:Math_Class = U6.1:Math_Class_Ex
 In \P{U6.0:Math_Class_Ex=None}, U6.0:Math_Class = U6.0:Math_Class_Ex
 \p{U6.1:Math_Class=None} ⊂ \p{U6.1:Math_Class_Ex=None}
 \p{U6.0:Math_Class=None} ⊂ \p{U6.0:Math_Class_Ex=None}
+
+# Pretty_Block is just Block, but prettier.
+
+OnPairsOf $code_points, EqualityOf Block ⇔ EqualityOf Pretty_Block
+
+# Names_List_Block_Header is different:
+# - for blocks without a names list, the block header gives the assigned range,
+#   not the range of the block;
+# - for planes 15 and 16, the block header with the block name only covers the
+#   last eight columns of the plane, for the chart that shows the noncharacters;
+# - for planes 1–14, there is a block header Unassigned covering the last eight
+#   columns of the plane, again for the noncharacters.
+Let $uncharted_block_ends := [
+    [
+        \p{Block=Hangul Syllables}
+        \p{Block=Tangut Supplement}
+        \p{Block=Jurchen}
+        \p{Block=/^CJK.Unified.Ideographs/}
+    ] & \p{gc=Cn}
+]
+Let $noncharacter_charts := [
+    \x{1FF80}-\x{1FFFF}
+    \x{2FF80}-\x{2FFFF}
+    \x{3FF80}-\x{3FFFF}
+    \x{4FF80}-\x{4FFFF}
+    \x{5FF80}-\x{5FFFF}
+    \x{6FF80}-\x{6FFFF}
+    \x{7FF80}-\x{7FFFF}
+    \x{8FF80}-\x{8FFFF}
+    \x{9FF80}-\x{9FFFF}
+    \x{AFF80}-\x{AFFFF}
+    \x{BFF80}-\x{BFFFF}
+    \x{CFF80}-\x{CFFFF}
+    \x{DFF80}-\x{DFFFF}
+    \x{EFF80}-\x{EFFFF}
+]
+Let $uncharted_pua_planes := [
+    \x{F0000}-\x{FFF7F}
+    \x{100000}-\x{10FF7F}
+]
+OnPairsOf [$code_points - $noncharacter_charts - $uncharted_block_ends - $uncharted_pua_planes],
+    EqualityOf Block ⇔ EqualityOf Names_List_Block_Header
+[$uncharted_block_ends $uncharted_pua_planes] ⊂ \p{Names_List_Block_Header=@none@}
+[$noncharacter_charts] = \p{Names_List_Block_Header=Unassigned}
+
+[0] ⊂ \p{Standardized_Variation_Base}
+[0] ⊂ \p{Emoji_Variation_Base}
+[🅾] ⊂ \p{Standardized_Variation_Base=No}
+[🅾] ⊂ \p{Emoji_Variation_Base}
+[∅] ⊂ \p{Standardized_Variation_Base}
+[∅] ⊂ \p{Emoji_Variation_Base=No}
 
 # Basic Propertywise tests.
 Ignoring Name:

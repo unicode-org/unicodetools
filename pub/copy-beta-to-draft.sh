@@ -11,9 +11,9 @@ DEST=$2
 UNITOOLS_DATA=$UNICODETOOLS/unicodetools/data
 
 # Adjust the following for each year and version as needed.
-COPY_YEAR=2025
-UNI_VER=18.0.0
-EMOJI_VER=18.0
+COPY_YEAR=2026
+UNI_VER=19.0.0  # FIX_FOR_NEW_VERSION
+EMOJI_VER=19.0  # FIX_FOR_NEW_VERSION
 
 TODAY=`date --iso-8601`
 
@@ -46,8 +46,8 @@ cp $UNITOOLS_DATA/idna/dev/* $DEST/idna
 mkdir -p $DEST/security
 cp $UNITOOLS_DATA/security/dev/* $DEST/security
 
-mkdir -p $DEST/links
-cp $UNITOOLS_DATA/links/dev/* $DEST/links
+mkdir -p $DEST/linkification
+cp $UNITOOLS_DATA/linkification/dev/* $DEST/linkification
 
 # Fix permissions. Everyone can read, and search directories.
 chmod a+rX -R $DEST
@@ -79,5 +79,4 @@ echo "--------------------"
 echo "Copy files from elsewhere:"
 echo "- Unihan.zip to $DEST/ucd"
 echo "- UCDXML files to $DEST/ucdxml"
-echo "- beta charts to $DEST/charts"
 

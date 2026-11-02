@@ -88,28 +88,31 @@ public class TestVersionedSymbolTable {
         assertThatUnicodeSet("[:^General_Category=Cn:]").contains("a").doesNotContain("\uFFFF");
         assertThatUnicodeSet("\\p{General_Category≠Cn}").contains("a").doesNotContain("\uFFFF");
         assertThatUnicodeSet("[:General_Category≠Cn:]").contains("a").doesNotContain("\uFFFF");
-        assertThatUnicodeSet("[:^General_Category≠Cn:]").doesNotContain("a").contains("\uFFFF");
-        assertThatUnicodeSet("[:^General_Category≠Cn:]").doesNotContain("a").contains("\uFFFF");
-        assertThatUnicodeSet("[:^General_Category≠Cn:]").doesNotContain("a").contains("\uFFFF");
+        assertThatUnicodeSet("[:^General_Category≠Cn:]")
+                .isIllFormed("Found doubly negated property-query [:^General_Category≠☜Cn:]");
+        assertThatUnicodeSet("\\P{General_Category≠Cn}")
+                .isIllFormed("Found doubly negated property-query \\P{General_Category≠☜Cn}");
 
         assertThatUnicodeSet("\\P{Decomposition_Type≠compat}")
-                .contains("∯")
-                .doesNotContain("∮")
-                .isEqualToUnicodeSet("\\p{Decomposition_Type=compat}");
+                .isIllFormed("Found doubly negated property-query \\P{Decomposition_Type≠☜compat}");
     }
 
     @Test
-    void testNamedSingleton() {
-        assertThatUnicodeSet("\\N{SPACE}").consistsOf(" ");
-        assertThatUnicodeSet("\\N{THIS IS NOT A CHARACTER}")
+    void testNamedElement() {
+        // NamedSingleton (from L2/25-127) was rejected.
+        assertThatUnicodeSet("\\N{SPACE}")
+                .isIllFormed("Expected property-query | [, got named-element");
+
+        assertThatUnicodeSet("[\\N{SPACE}]").consistsOf(" ");
+        assertThatUnicodeSet("[\\N{THIS IS NOT A CHARACTER}]")
                 .isIllFormed("No character name nor name alias matches");
-        assertThatUnicodeSet("\\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}")
+        assertThatUnicodeSet("[\\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET}]")
                 .isEqualToUnicodeSet(
-                        "\\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}")
+                        "[\\N{PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET}]")
                 .consistsOf("︘");
-        assertThatUnicodeSet("\\N{Latin small ligature o-e}").consistsOf("œ");
-        assertThatUnicodeSet("\\N{Hangul jungseong O-E}").consistsOf("ᆀ");
-        assertThatUnicodeSet("\\N{Hangul jungseong OE}").consistsOf("ᅬ");
+        assertThatUnicodeSet("[\\N{Latin small ligature o-e}]").consistsOf("œ");
+        assertThatUnicodeSet("[\\N{Hangul jungseong O-E}]").consistsOf("ᆀ");
+        assertThatUnicodeSet("[\\N{Hangul jungseong OE}]").consistsOf("ᅬ");
     }
 
     @Test
@@ -184,6 +187,8 @@ public class TestVersionedSymbolTable {
         assertThatUnicodeSet("\\p{Name      =CUNEIFORM SIGN A}").consistsOf("𒀀");
         assertThatUnicodeSet("\\p{Name_Alias=CUNEIFORM SIGN A}")
                 .isIllFormed("No name alias matches");
+        assertThatUnicodeSet("\\p{Name_Alias_Figment=New Line}")
+                .isIllFormed("No name alias matches");
         assertThatUnicodeSet("\\p{Line_Break=Meow}").isIllFormed("The value 'Meow' is illegal.");
         assertThatUnicodeSet("\\p{kDefinition=meow}").isEmpty();
         assertThatUnicodeSet("\\p{Uppercase_Mapping=meow}").isEmpty();
@@ -214,6 +219,9 @@ public class TestVersionedSymbolTable {
                 .doesNotContain("½")
                 .doesNotContain("X");
         assertThatUnicodeSet("\\p{Name_Alias=New Line}")
+                .isEqualToUnicodeSet("\\p{Name=New Line}")
+                .consistsOf("\n");
+        assertThatUnicodeSet("\\p{Name_Alias_Control=New Line}")
                 .isEqualToUnicodeSet("\\p{Name=New Line}")
                 .consistsOf("\n");
     }

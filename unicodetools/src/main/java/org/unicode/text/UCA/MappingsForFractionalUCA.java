@@ -1,7 +1,6 @@
 package org.unicode.text.UCA;
 
 import com.ibm.icu.text.CanonicalIterator;
-import com.ibm.icu.text.UTF16;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -54,7 +53,11 @@ public final class MappingsForFractionalUCA {
         }
 
         private MappingWithSortKey(UCA uca, String prefix, String s, CEList ces) {
-            this(prefix, s, ces, uca.getSortKey(ces, UCA_Types.NON_IGNORABLE, AppendToCe.none));
+            this(
+                    prefix,
+                    s,
+                    ces,
+                    uca.getSortKey(ces, UCA_Types.Alternate.NON_IGNORABLE, AppendToCe.none));
         }
 
         private MappingWithSortKey(String prefix, String s, CEList ces, String sortKey) {
@@ -153,7 +156,7 @@ public final class MappingsForFractionalUCA {
      * <p>This method also adds canonical equivalents (canonical closure), if any are missing.
      */
     private SortedSet<MappingWithSortKey> getSortedUCAMappings() {
-        final String highCompat = UTF16.valueOf(0x2F805);
+        final String highCompat = Character.toString(0x2F805);
 
         System.out.println("Sorting");
         final SortedSet<MappingWithSortKey> ordered = new TreeSet<MappingWithSortKey>();
@@ -207,7 +210,7 @@ public final class MappingsForFractionalUCA {
             if (UCD.isHangulSyllable(i)) {
                 continue;
             }
-            final String s = UTF16.valueOf(i);
+            final String s = Character.toString(i);
             if (!contentsForCanonicalIteration.contains(s)) {
                 contentsForCanonicalIteration.add(s);
                 ordered.add(new MappingWithSortKey(uca, s));
@@ -256,9 +259,10 @@ public final class MappingsForFractionalUCA {
                 // Than what we would get if we didn't decompose!!
                 final CEList ces = uca.getCEList(s, true);
                 final String sortKey =
-                        uca.getSortKey(ces, UCA_Types.NON_IGNORABLE, AppendToCe.none);
+                        uca.getSortKey(ces, UCA_Types.Alternate.NON_IGNORABLE, AppendToCe.none);
                 final String nonDecompSortKey =
-                        uca.getSortKey(s, UCA_Types.NON_IGNORABLE, false, AppendToCe.none);
+                        uca.getSortKey(
+                                s, UCA_Types.Alternate.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -284,7 +288,7 @@ public final class MappingsForFractionalUCA {
                if (type >= UCA.FIXED_CE && !nfd.hasDecomposition(ch))
                    continue;
                }
-               String s = org.unicode.text.UTF16.valueOf(ch);
+               String s = org.unicode.text.Character.toString(ch);
                ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
            }
 

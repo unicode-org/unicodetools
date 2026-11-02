@@ -1,6 +1,6 @@
-# PropertyValueAliases-18.0.0.txt
-# Date: 2025-12-04, 00:43:21 GMT
-# © 2025 Unicode®, Inc.
+# PropertyValueAliases-19.0.0.txt
+# Date: 2026-11-02, 14:08:06 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -95,6 +95,7 @@ age; 15.1                             ; V15_1
 age; 16.0                             ; V16_0
 age; 17.0                             ; V17_0
 age; 18.0                             ; V18_0
+age; 19.0                             ; V19_0
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -182,6 +183,7 @@ blk; Bamum_Sup                        ; Bamum_Supplement
 blk; Bassa_Vah                        ; Bassa_Vah
 blk; Batak                            ; Batak
 blk; Bengali                          ; Bengali
+blk; Bengali_Sup                      ; Bengali_Supplement
 blk; Beria_Erfe                       ; Beria_Erfe
 blk; Bhaiksuki                        ; Bhaiksuki
 blk; Block_Elements                   ; Block_Elements
@@ -200,7 +202,6 @@ blk; Cham                             ; Cham
 blk; Cherokee                         ; Cherokee
 blk; Cherokee_Sup                     ; Cherokee_Supplement
 blk; Chess_Symbols                    ; Chess_Symbols
-blk; Chisoi                           ; Chisoi
 blk; Chorasmian                       ; Chorasmian
 blk; CJK                              ; CJK_Unified_Ideographs
 blk; CJK_Compat                       ; CJK_Compatibility
@@ -364,6 +365,7 @@ blk; Meroitic_Cursive                 ; Meroitic_Cursive
 blk; Meroitic_Hieroglyphs             ; Meroitic_Hieroglyphs
 blk; Miao                             ; Miao
 blk; Misc_Arrows                      ; Miscellaneous_Symbols_And_Arrows
+blk; Misc_Arrows_Ext                  ; Miscellaneous_Symbols_And_Arrows_Extended
 blk; Misc_Math_Symbols_A              ; Miscellaneous_Mathematical_Symbols_A
 blk; Misc_Math_Symbols_B              ; Miscellaneous_Mathematical_Symbols_B
 blk; Misc_Pictographs                 ; Miscellaneous_Symbols_And_Pictographs
@@ -1360,7 +1362,6 @@ sc ; Cans                             ; Canadian_Aboriginal
 sc ; Cari                             ; Carian
 sc ; Cham                             ; Cham
 sc ; Cher                             ; Cherokee
-sc ; Chis                             ; Chisoi
 sc ; Chrs                             ; Chorasmian
 sc ; Copt                             ; Coptic                           ; Qaac
 sc ; Cpmn                             ; Cypro_Minoan

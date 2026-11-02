@@ -1,7 +1,6 @@
 package org.unicode.propstest;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.File;
 import java.util.List;
@@ -37,7 +36,7 @@ public class Ids {
                     pua = puaCounter;
                     data.put(m.group(), puaCounter++);
                 }
-                b.append(UTF16.valueOf(pua));
+                b.append(Character.toString(pua));
                 start = m.end();
             }
             b.append(string.substring(start));
@@ -66,7 +65,7 @@ public class Ids {
             List<String> parts = semi.splitToList(line);
             int radical = Integer.parseInt(parts.get(1), 16);
             int ideo = Integer.parseInt(parts.get(2), 16);
-            DecompIds.put(ideo, UTF16.valueOf(radical));
+            DecompIds.put(ideo, Character.toString(radical));
         }
     }
 
@@ -119,7 +118,7 @@ public class Ids {
                         "U+"
                                 + Utility.hex(key)
                                 + "\t"
-                                + UTF16.valueOf(key)
+                                + Character.toString(key)
                                 + "\t"
                                 + value
                                 + "\t=>\t"
@@ -131,7 +130,8 @@ public class Ids {
         //        for (Entry<Integer, String> entry : Ids.entrySet()) {
         //            int key = entry.getKey();
         //            String value = entry.getValue();
-        //            System.out.println("U+" + Utility.hex(key) + "\t" + UTF16.valueOf(key) + "\t"
+        //            System.out.println("U+" + Utility.hex(key) + "\t" + Character.toString(key) +
+        // "\t"
         // + value);
         //        }
         for (Entry<String, Integer> entry : cleanup.data.entrySet()) {
@@ -161,7 +161,7 @@ public class Ids {
                 } else {
                     value = Ids.get(codePoint);
                     if (value == null) { // PUA
-                        value = UTF16.valueOf(codePoint);
+                        value = Character.toString(codePoint);
                         DecompIds.put(codePoint, value);
                     } else if (codePoint == value.codePointAt(0)) {
                         DecompIds.put(codePoint, value);

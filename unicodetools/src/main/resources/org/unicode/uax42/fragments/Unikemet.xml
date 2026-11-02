@@ -10,14 +10,13 @@
     { xsd:string { pattern='[^\t"]+' } }?
 
   code-point-attributes &amp;= attribute kEH_Func
-    { list { ("/" | xsd:string { pattern='[^\t]+' } )+} }?
+    { "" | list { ( "/" | xsd:string { pattern='[^\t]+' } )+} }?
 
   code-point-attributes &amp;= attribute kEH_FVal
     { list { ("|" | xsd:string { pattern="[BDF-HJKMNPR-TWY-bdf-hjkmnpr-twy\.,/\-\+=;?>&amp;\(\)\{\}\s\x{303}\x{30C}\x{323}\x{32E}\x{331}\x{A722}\x{A723}\x{A724}\x{A725}\x{A7BC}\x{A7BD}]+" } )+} }?
 
   code-point-attributes &amp;= attribute kEH_UniK
     { xsd:string { pattern="([A-IK-Z]|AA|NL|NU)\d{3}[A-Z]{0,2}" }
-     | xsd:string { pattern="HJ ([A-IK-Z]|AA)\d{3}[A-Z]{0,2}" }
     }?
 
   code-point-attributes &amp;= attribute kEH_JSesh

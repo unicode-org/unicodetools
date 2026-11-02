@@ -361,7 +361,7 @@ public class XMLProperties {
                             break;
                         }
                     case NORMALIZATION_CORRECTION:
-                        // ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
+                    // ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
                     default:
                         leavesNotHandled.add(qName);
                         break;
@@ -508,7 +508,7 @@ public class XMLProperties {
                     }
                     break;
                 }
-                // $FALL-THROUGH$
+            // $FALL-THROUGH$
             case Enumerated:
             case Catalog:
                 if (propertyValue != null) {
@@ -529,8 +529,8 @@ public class XMLProperties {
                             propertyValue =
                                     IndexUnicodeProperties.normalizeValue(property, propertyValue);
                             break;
-                            //                case Name:
-                            //                    break;
+                        //                case Name:
+                        //                    break;
                         default:
                             propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
                     }

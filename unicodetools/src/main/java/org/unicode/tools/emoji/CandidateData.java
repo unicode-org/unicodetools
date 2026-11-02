@@ -242,7 +242,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                     String rightSide = equalPos < 0 ? null : line.substring(equalPos + 1).trim();
                     switch (leftSide) {
 
-                            // go before character
+                        // go before character
                         case "Status":
                             status = CandidateData.Status.fromString(rightSide);
                             break;
@@ -260,7 +260,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
                             proposalItem = rightSide;
                             break;
 
-                            // go after character
+                        // go after character
                         case "Name":
                             final String name = rightSide;
                             if (name.contains("|")) {
@@ -729,7 +729,7 @@ public class CandidateData implements Transform<String, String>, EmojiDataSource
         //        if (Emoji.HAIR_PIECES.containsSome(cp)) { // HACK
         //            names.put(combo,
         //
-        // EmojiData.EMOJI_DATA.getName(UTF16.valueOf(Character.codePointAt(combo, 0)))
+        // EmojiData.EMOJI_DATA.getName(Character.toString(Character.codePointAt(combo, 0)))
         //                    + ": " +
         //                    getName(Character.codePointBefore(combo, combo.length())));
         //        }

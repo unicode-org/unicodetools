@@ -318,7 +318,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (i != 0) {
                 result.append(separator);
             }
-            ch = UTF16.charAt(s, i);
+            ch = s.codePointAt(i);
             result.append(hex(ch, places));
         }
         return result.toString();
@@ -420,7 +420,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static int codePointFromHex(String p) {
         final String temp = Utility.fromHex(p);
-        if (UTF16.countCodePoint(temp) != 1) {
+        if (!UTF16Plus.isSingleCodePoint(temp)) {
             throw new ChainException("String is not single (UTF32) character: " + p, null);
         }
         return temp.codePointAt(0);
@@ -491,7 +491,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                 "bad hex value: ‘{0}’ at position {1} in \"{2}\"",
                                 new Object[] {String.valueOf(ch), new Integer(i), p});
                     }
-                    // fall through!!
+                // fall through!!
                 case 'U':
                 case 'u':
                 case '+': // for the U+ case
@@ -741,9 +741,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             case '"':
                 return "&quot;";
 
-                // fix controls, since XML can't handle
+            // fix controls, since XML can't handle
 
-                // also do this for 09, 0A, and 0D, so we can see them.
+            // also do this for 09, 0A, and 0D, so we can see them.
             case 0x00:
             case 0x01:
             case 0x02:
@@ -778,19 +778,19 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             case 0x1F:
             case 0x7F:
 
-                // fix noncharacters, since XML can't handle
+            // fix noncharacters, since XML can't handle
             case 0xFFFE:
             case 0xFFFF:
                 return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 
         // fix surrogates, since XML can't handle
-        if (UTF32.isSurrogate(c)) {
+        if (UTF16.isSurrogate(c)) {
             return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 
         if (c <= 0x7E) {
-            return UTF32.valueOf32(c);
+            return Character.toString(c);
         }
 
         // fix supplementaries & high characters, because of IE bug
@@ -808,7 +808,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
         final StringBuffer result = new StringBuffer();
         for (int i = 0; i < source.length(); ++i) {
-            final int c = UTF16.charAt(source, i);
+            final int c = source.codePointAt(i);
             if (Character.isSupplementaryCodePoint(c)) {
                 ++i;
             }
@@ -893,6 +893,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static final String[] searchPath = {
         // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "19.0.0",
         "18.0.0",
         "17.0.0",
         "16.0.0",
@@ -1295,7 +1296,8 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         return true;
     }
 
-    public static boolean renameIdentical(
+    /** Deletes file2 and the optional batch file if file2 matches file1. */
+    public static boolean deleteIdentical(
             String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
         if (file1 == null) {
             System.out.println("Null file");
@@ -1304,9 +1306,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         final String lines[] = new String[2];
         final boolean identical = filesAreIdentical(file1, file2, skipCopyright, lines);
         if (identical) {
-            renameIdentical(file2);
+            deleteIdentical(file2);
             if (batFile != null) {
-                renameIdentical(batFile);
+                deleteIdentical(batFile);
             }
             return true;
         } else {
@@ -1369,18 +1371,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
     }
 
-    static void renameIdentical(String file2) {
-        final File foo = new File(file2);
-        File newName = new File(foo.getParent(), "ZZZ-UNCHANGED-" + foo.getName());
-        if (newName.exists()) {
-            newName.delete();
-        }
-        System.out.println("IDENTICAL TO PREVIOUS, RENAMING : " + foo);
-        System.out.println("TO : " + newName);
-        final boolean renameResult = foo.renameTo(newName);
-        if (!renameResult) {
-            System.out.println("Couldn't rename!");
-        }
+    static void deleteIdentical(String file2) throws IOException {
+        System.out.println("IDENTICAL TO PREVIOUS, DELETING : " + file2);
+        Files.delete(Path.of(file2));
     }
 
     static String getLineWithoutFluff(BufferedReader br1, boolean first, boolean skipCopyright)
@@ -1403,7 +1396,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (line1.startsWith("# Date")) {
                 continue;
             }
-            if (skipCopyright && line1.startsWith("# Copyright")) {
+            if (skipCopyright && (line1.startsWith("# Copyright") || line1.startsWith("# ©"))) {
                 continue;
             }
             if (line1.startsWith("<p><b>Date:</b>")) {
@@ -1889,7 +1882,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                         + "\t# "
                                         + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
                                         + (withChar && (cp >= 0x20)
-                                                ? "(" + UTF16.valueOf(cp) + ") "
+                                                ? "(" + Character.toString(cp) + ") "
                                                 : "")
                                         + (names != null ? names.getValue(cp) + " " : "")
                                         + ucd.getName(cp)
@@ -1907,9 +1900,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                     + "\t# "
                                     + (withChar && (start >= 0x20)
                                             ? " ("
-                                                    + UTF16.valueOf(start)
+                                                    + Character.toString(start)
                                                     + ((start != end)
-                                                            ? (".." + UTF16.valueOf(end))
+                                                            ? (".." + Character.toString(end))
                                                             : "")
                                                     + ") "
                                             : "")

@@ -11,7 +11,6 @@ import com.ibm.icu.text.RawCollationKey;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.LocaleData;
@@ -552,7 +551,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         @Override
         protected String _getValue(int codepoint) {
-            return transform.transform(UTF16.valueOf(codepoint));
+            return transform.transform(Character.toString(codepoint));
         }
     }
 

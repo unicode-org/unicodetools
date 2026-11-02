@@ -2,7 +2,7 @@
 // License & terms of use: https://www.unicode.org/copyright.html
 /*
 **      Unilib
-**      Copyright 2025
+**      Copyright 2026
 **      Ken Whistler, All rights reserved.
 */
 
@@ -44,6 +44,11 @@
  *   2025-Feb-18 Tweak for typo.
  *   2025-Feb-19 Add time stamp and CTT table ID to output.
  *   2025-Jul-22 Update publication date for TR 30112.
+ *   2026-Feb-18 Update CTT table ID for 18.0.
+ *               Add implicit weights for Jurchen and Seal.
+ *   2026-Mar-16 Adjustments for weighting of FFFE and FFFF.
+ *   2026-Aug-25 Add Jurchen and Small Seal to unisift_PrintSymWtTree.
+ *               Extend symbol range for CJK on Plane 3.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -59,7 +64,7 @@ extern int debugLevel;
  * of UTS #10.
  */
 
-static char *cttID = "CTT_V17_0";
+static char *cttID = "CTT_V18_0";
 
 /*
  * Node to build up tree of symbolic line entries for the table.
@@ -1052,16 +1057,18 @@ char localbuf[120];
     fputs ( "collating-symbol <SFD3E>..<SFD3F> % Ornate parentheses (Arabic)\n", fd );
     fputs ( "collating-symbol <SFDFD>          % Bismillah symbol (Arabic)\n", fd );
     fputs ( "collating-symbol <SFE45>..<SFE46> % Sesame dots\n", fd );
-    fputs ( "collating-symbol <SFFFC>..<SFFFD> % Specials\n", fd );
+    fputs ( "collating-symbol <SFFFC>..<SFFFE> % Specials\n", fd );
     fputs ( "collating-symbol <SAC00>..<SD7A3> % Symbols for Hangul syllables (weights must be constructed)\n", fd );
     fputs ( "collating-symbol <SD7B0>..<SD7FB> % Hangul Jamo\n", fd );
     fputs ( "collating-symbol <RFB00>          % Symbol for first element of computed weights for Tangut ideographs\n", fd );
     fputs ( "collating-symbol <RFB01>          % Symbol for first element of computed weights for Tangut components\n", fd );
     fputs ( "collating-symbol <RFB02>          % Symbol for first element of computed weights for Nushu ideographs\n", fd );
     fputs ( "collating-symbol <RFB03>          % Symbol for first element of computed weights for Khitan Small Script\n", fd );
+    fputs ( "collating-symbol <RFB04>          % Symbol for first element of computed weights for Jurchen ideographs\n", fd );
+    fputs ( "collating-symbol <RFB05>          % Symbol for first element of computed weights for Seal ideographs\n", fd );
     fputs ( "collating-symbol <RFB40>..<RFB41> % Symbols for first element of computed weights for core Han unified ideographs\n", fd );
     fputs ( "collating-symbol <RFB80>          % Symbol for first element of computed weights for Han unified ideographs Ext-A\n", fd );
-    fputs ( "collating-symbol <RFB84>..<RFB85> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );
+    fputs ( "collating-symbol <RFB84>..<RFB86> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );
     fputs ( "collating-symbol <RFBC0>..<RFBE1> % Symbols for first element of computed weights for unassigned characters and others\n", fd );
     fputs ( "collating-symbol <T8000>..<TFFFF> % Symbols for second element of computed weights for Han, Tangut, Nushu and others\n", fd );
     fputs ( "collating-symbol <S10000>..<S12543> % Alphabetics from SMP\n", fd );
@@ -1819,7 +1826,7 @@ int hitimplicitbase;
         /* 
          * UCA 10.0 and later. Level 4 
          * If the element is not variable, just use <SFFFF>.
-         * Otherwise if it is variable and teh symbolBase is not 0,
+         * Otherwise if it is variable and the symbolBase is not 0,
          * use the symbolBase value.
          */
 /* Print the fourth level weight symbols for non-ignorables. */
@@ -2593,11 +2600,13 @@ void unisift_PrintSymWtTreeP ( PSYMWTTREENODE p, FILE *fd )
     {
         printf ( "WARNING: p->value %05X too large.\n", p->value );
     }
-    else if ( p->value != 0xFFFD )
+    else if ( ( p->value != 0xFFFD ) && ( p->value != 0xFFFF ) )
     /*
      * 0xFFFD is omitted, because it is artificially fixed at a high
      * primary weight. See below, where an entry for SFFFD is dumped
      * explicitly at the end of the table.
+     *
+     * This also applies to the noncharacter value 0xFFFF.
      */
     {
     WALNUTPTR tmp;
@@ -2630,9 +2639,11 @@ void unisift_PrintSymWtTree ( FILE *fd )
     fputs ( "<RFB01> % Symbol for first element of computed weights for Tangut components\n", fd );
     fputs ( "<RFB02> % Symbol for first element of computed weights for Nushu ideographs\n", fd );
     fputs ( "<RFB03> % Symbol for first element of computed weights for Khitan Small Script\n", fd );
+    fputs ( "<RFB04> % Symbol for first element of computed weights for Jurchen ideographs\n", fd );
+    fputs ( "<RFB05> % Symbol for first element of computed weights for Small Seal ideographs\n", fd );
     fputs ( "<RFB40>..<RFB41> % Symbols for first element of computed weights for core Han unified ideographs\n", fd );
     fputs ( "<RFB80> % Symbol for first element of computed weights for Han unified ideographs Ext-A\n", fd );
-    fputs ( "<RFB84>..<RFB85> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );
+    fputs ( "<RFB84>..<RFB86> % Symbols for first element of computed weights for Han unified ideographs Ext-B, ...\n", fd );
     fputs ( "<RFBC0>..<RFBE1> % Symbols for first element of computed weights for unassigned characters\n", fd );
     fputs ( "<T8000>..<TFFFF> % Symbols for second element of computed weights for Han, Tangut, Nushu and others\n", fd );
     fputs ( "<SFFFD> % Special weight for replacement character\n\n", fd );

@@ -13,7 +13,6 @@ import com.ibm.icu.text.SpoofChecker;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -42,6 +41,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.owasp.encoder.Encode;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
@@ -54,9 +54,11 @@ import org.unicode.idna.Uts46;
 import org.unicode.props.DerivedPropertyStatus;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.tools.Ætiologer;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -187,8 +189,8 @@ public class UnicodeUtilities {
         String s = Common.MyNormalize(codepoint, compat);
         int cp;
         String lastPart = null;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = s.codePointAt(i);
             String part = Common.getXStringPropertyValue(propertyEnum, cp, nameChoice);
             if (lastPart == null) {
                 lastPart = part;
@@ -423,6 +425,15 @@ public class UnicodeUtilities {
             if (specialSet.size() != 0) {
                 items.put(specials, specialSet);
             }
+            // Reuse resolved properties for every code point in this set.
+            UnicodeProperty blockProperty = getFactory().getProperty("Block");
+            UnicodeProperty subheadProperty = getFactory().getProperty("Names_List_Subheader");
+            UnicodeProperty devBlockProperty =
+                    showDevProperties ? getFactory().getProperty("Udev:Block") : null;
+            UnicodeProperty devSubheadProperty =
+                    showDevProperties
+                            ? getFactory().getProperty("Udev:Names_List_Subheader")
+                            : null;
             for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next(); ) {
                 int s = it.codepoint;
                 if (s == UnicodeSetIterator.IS_STRING) {
@@ -432,8 +443,10 @@ public class UnicodeUtilities {
                     set.add(it.string);
                 } else {
                     String devBlock =
-                            getFactory().getProperty("Udev:Block").getValue(s).replace('_', ' ');
-                    String block = getFactory().getProperty("Block").getValue(s).replace('_', ' ');
+                            showDevProperties
+                                    ? devBlockProperty.getValue(s).replace('_', ' ')
+                                    : null;
+                    String block = blockProperty.getValue(s).replace('_', ' ');
                     String newBlock =
                             showDevProperties && !devBlock.equals(block)
                                     ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
@@ -449,9 +462,8 @@ public class UnicodeUtilities {
                                             + "}'>"
                                             + block
                                             + "</a>";
-                    String devSubhead =
-                            getFactory().getProperty("Udev:Names_List_Subheader").getValue(s);
-                    String subhead = getFactory().getProperty("Names_List_Subheader").getValue(s);
+                    String devSubhead = showDevProperties ? devSubheadProperty.getValue(s) : null;
+                    String subhead = subheadProperty.getValue(s);
                     String newSubhead =
                             showDevProperties && devSubhead != null && !devSubhead.equals(subhead)
                                     ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
@@ -606,7 +618,7 @@ public class UnicodeUtilities {
     private static UnicodeSet RTL = new UnicodeSet("[[:bc=R:][:bc=AL:]]");
 
     private static String showCodePoint(int codepoint) {
-        return showCodePoint(UTF16.valueOf(codepoint));
+        return showCodePoint(Character.toString(codepoint));
     }
 
     private static String showCodePoint(String s) {
@@ -619,7 +631,7 @@ public class UnicodeUtilities {
     }
 
     private static String getLiteral(int codepoint) {
-        return getLiteral(UTF16.valueOf(codepoint));
+        return getLiteral(Character.toString(codepoint));
     }
 
     private static String getLiteral(String s) {
@@ -667,7 +679,7 @@ public class UnicodeUtilities {
         }
 
         void showCodePoint(int codePoint, Appendable out) throws IOException {
-            final String string = UTF16.valueOf(codePoint);
+            final String string = Character.toString(codePoint);
             String separator = ", ";
             showString(string, separator, out);
         }
@@ -859,8 +871,8 @@ public class UnicodeUtilities {
             boolean plainText) {
         StringBuilder result = new StringBuilder();
         int cp;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(string, i);
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
+            cp = string.codePointAt(i);
             if (i != 0) {
                 result.append(separator);
             }
@@ -916,11 +928,11 @@ public class UnicodeUtilities {
             String string, String separator, boolean ucdFormat, List<String> additionalParameters) {
         StringBuilder result = new StringBuilder();
         int cp;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
             if (i != 0) {
                 result.append(separator);
             }
-            result.append(getHex(cp = UTF16.charAt(string, i), ucdFormat, additionalParameters));
+            result.append(getHex(cp = string.codePointAt(i), ucdFormat, additionalParameters));
         }
         return result.toString();
     }
@@ -928,11 +940,11 @@ public class UnicodeUtilities {
     //  private static void showString(String s, String separator, boolean ucdFormat, Writer out)
     // throws IOException {
     //    int cp;
-    //    for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+    //    for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
     //      if (i != 0) {
     //        out.write(separator);
     //      }
-    //      showCodePoint(cp = UTF16.charAt(s, i), ucdFormat, out);
+    //      showCodePoint(cp = s.codePointAt(i), ucdFormat, out);
     //    }
     //  }
 
@@ -1156,7 +1168,7 @@ public class UnicodeUtilities {
     //    StringBuilder rules = new StringBuilder();
     //    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
     //      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
-    //        String s = UTF16.valueOf(i);
+    //        String s = Character.toString(i);
     //        String caseFold = UCharacter.foldCase(s, true);
     //        String lower = UCharacter.toLowerCase(Locale.ENGLISH, s);
     //        if (!caseFold.equals(lower) || i == 'Σ') {
@@ -1243,8 +1255,8 @@ public class UnicodeUtilities {
         StringBuffer out = new StringBuffer();
         int charCount = 0;
         Status status = Status.NORMAL;
-        for (int i = 0; i < a_out.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(a_out, i);
+        for (int i = 0; i < a_out.length(); i += Character.charCount(cp)) {
+            cp = a_out.codePointAt(i);
             ++charCount;
             switch (status) {
                 case AFTERSLASH:
@@ -1290,7 +1302,12 @@ public class UnicodeUtilities {
                     }
                     break;
             }
-            UTF16.append(out, cp);
+            // Escape standalone ZWJ, but preserve it within string elements.
+            if (cp == JOINER && status == Status.NORMAL) {
+                out.append("\\u200D");
+            } else {
+                out.appendCodePoint(cp);
+            }
             oldCp = cp;
         }
         return out.toString();
@@ -1354,8 +1371,14 @@ public class UnicodeUtilities {
         // }
         int a_bSize = 0, b_aSize = 0, abSize = 0;
         if (a == null || b == null) {
-            a_b = a == null ? aMessage[0] : "error";
-            b_a = b == null ? bMessage[0] : "error";
+            a_b =
+                    a == null
+                            ? Encode.forHtmlContent(Objects.toString(aMessage[0], "error"))
+                            : "error";
+            b_a =
+                    b == null
+                            ? Encode.forHtmlContent(Objects.toString(bMessage[0], "error"))
+                            : "error";
             ab = "error";
         } else {
             UnicodeSet temp = new UnicodeSet(a).removeAll(b);
@@ -1411,7 +1434,7 @@ public class UnicodeUtilities {
             List<String> originalParameters,
             Appendable out)
             throws IOException {
-        String text = UTF16.valueOf(cp);
+        String text = Character.toString(cp);
 
         String name = getFactory().getProperty("Name").getValue(cp);
         final String devName =
@@ -1469,8 +1492,6 @@ public class UnicodeUtilities {
         TreeSet<String> sortedProps =
                 Builder.with(new TreeSet<String>(col)).addAll(availableNames).get();
 
-        String kRSUnicode = getFactory().getProperty("kRSUnicode").getValue(cp);
-        boolean isUnihan = kRSUnicode != null;
         List<UcdProperty> indexedProperties =
                 sortedProps.stream()
                         .map(UcdProperty::forString)
@@ -1502,11 +1523,35 @@ public class UnicodeUtilities {
                                                         == DerivedPropertyStatus.NonUCDNonProperty)
                         .collect(Collectors.toList());
 
-        List<UcdProperty> cjkProperties =
+        Map<UcdPropertyValues.Script_Values, List<UcdProperty>> scriptSpecificUCDProperties =
                 ucdProperties.stream()
-                        .filter(p -> p.getNames().getShortName().startsWith("cjk"))
-                        .collect(Collectors.toList());
-        ucdProperties.removeIf(p -> p.getNames().getShortName().startsWith("cjk"));
+                        .filter(UcdProperty::isScriptSpecific)
+                        .collect(
+                                Collectors.groupingBy(
+                                        UcdProperty::associatedScript, Collectors.toList()));
+        ucdProperties.removeIf(UcdProperty::isScriptSpecific);
+        Map<UcdPropertyValues.Script_Values, List<UcdProperty>> otherScriptSpecificUCDData =
+                ucdNonProperties.stream()
+                        .filter(UcdProperty::isScriptSpecific)
+                        .collect(
+                                Collectors.groupingBy(
+                                        UcdProperty::associatedScript, Collectors.toList()));
+        ucdNonProperties.removeIf(UcdProperty::isScriptSpecific);
+        UcdPropertyValues.Script_Values devScript =
+                UcdPropertyValues.Script_Values.forName(
+                        getFactory().getProperty("Udev:Script").getValue(cp));
+        UcdPropertyValues.Script_Values script =
+                UcdPropertyValues.Script_Values.forName(
+                        getFactory().getProperty("Script").getValue(cp));
+        boolean hasScriptSpecificUCDProperties =
+                scriptSpecificUCDProperties.containsKey(script)
+                        || (showDevProperties
+                                && scriptSpecificUCDProperties.containsKey(devScript));
+        boolean hasOtherScriptSpecificUCDData =
+                otherScriptSpecificUCDData.containsKey(script)
+                        || (showDevProperties && otherScriptSpecificUCDData.containsKey(devScript));
+        boolean hasScriptSpecificUCDData =
+                hasScriptSpecificUCDProperties || hasOtherScriptSpecificUCDData;
 
         Age_Values age = Age_Values.forName(getFactory().getProperty("Age").getValue(cp));
         VersionInfo minVersion =
@@ -1528,7 +1573,7 @@ public class UnicodeUtilities {
         out.append("<table class='propTable'>");
         showProperties(
                 ucdProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                (isUnihan ? "Non-Unihan " : "")
+                (hasScriptSpecificUCDData ? "Script-nonspecific " : "")
                         + "Normative, Informative, Contributory, and (Provisional) UCD properties for U+"
                         + hex,
                 cp,
@@ -1546,16 +1591,34 @@ public class UnicodeUtilities {
                 out);
         showProperties(
                 ucdNonProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                "Other " + (isUnihan ? "non-Unihan " : "") + "UCD data for U+" + hex,
+                "Other "
+                        + (hasScriptSpecificUCDData ? "script-nonspecific " : "")
+                        + "UCD data for U+"
+                        + hex,
                 cp,
                 minVersion,
                 maxVersion,
                 originalParameters,
                 out);
-        if (isUnihan) {
+        if (hasScriptSpecificUCDProperties) {
             showProperties(
-                    cjkProperties.stream().map(UcdProperty::toString).collect(Collectors.toList()),
-                    "Unihan Normative, Informative, and (Provisional) properties for U+" + hex,
+                    scriptSpecificUCDProperties.get(script).stream()
+                            .map(UcdProperty::toString)
+                            .collect(Collectors.toList()),
+                    "Script-specific Normative, Informative, and (Provisional) UCD properties for U+"
+                            + hex,
+                    cp,
+                    minVersion,
+                    maxVersion,
+                    originalParameters,
+                    out);
+        }
+        if (hasOtherScriptSpecificUCDData) {
+            showProperties(
+                    otherScriptSpecificUCDData.get(script).stream()
+                            .map(UcdProperty::toString)
+                            .collect(Collectors.toList()),
+                    "Other script-specific UCD data for U+" + hex,
                     cp,
                     minVersion,
                     maxVersion,
@@ -1610,7 +1673,7 @@ public class UnicodeUtilities {
     private static StringBuilder displayConfusables(int codepoint) {
         StringBuilder confusableString = new StringBuilder();
         Set<String> skip = new HashSet<String>();
-        String same = UTF16.valueOf(codepoint);
+        String same = Character.toString(codepoint);
         String nfd = Normalizer.normalize(same, Normalizer.NFD);
 
         skip.add(same);
@@ -1648,7 +1711,8 @@ public class UnicodeUtilities {
                 }
                 cp = nfd.codePointAt(i);
                 Confusables currentCombos =
-                        new Confusables(UTF16.valueOf(cp)).setNormalizationCheck(Normalizer.NFKC);
+                        new Confusables(Character.toString(cp))
+                                .setNormalizationCheck(Normalizer.NFKC);
                 combos.add(currentCombos);
                 confusableString.append("<div class='char'>");
                 for (String s : currentCombos) {
@@ -1721,7 +1785,7 @@ public class UnicodeUtilities {
                                     + Utility.hex(cp)
                                     + "'>"
                                     + "&nbsp;")
-                    .append(toHTML(UTF16.valueOf(cp)))
+                    .append(toHTML(Character.toString(cp)))
                     .append("&nbsp;</a>");
         }
         confusableString.append("</div>");
@@ -1736,6 +1800,8 @@ public class UnicodeUtilities {
             Appendable out)
             throws IOException {
         var indexedProperty = UcdProperty.forString(propName);
+        final var propertyReasons =
+                indexedProperty == null ? null : Ætiologer.getReasons().get(indexedProperty);
         final boolean provisional =
                 indexedProperty != null
                         && indexedProperty.getDerivedStatus() == DerivedPropertyStatus.Provisional;
@@ -1748,6 +1814,21 @@ public class UnicodeUtilities {
             ArrayList<String> values;
             boolean isDefault;
             int span;
+
+            List<String> getReasons() throws IOException {
+                if (propertyReasons == null) {
+                    return List.of();
+                }
+                final var versionReasons = propertyReasons.get(first);
+                if (versionReasons == null) {
+                    return List.of();
+                }
+                final var reasons = versionReasons.get(codePoint);
+                if (reasons == null) {
+                    return List.of();
+                }
+                return reasons;
+            }
         }
         final boolean isMultivalued = getFactory().getProperty(propName).isMultivalued();
         final boolean isStringValued =
@@ -1900,6 +1981,13 @@ public class UnicodeUtilities {
                                                         Collectors.joining("<wbr>|&#x2060;"))
                                                 + (isNew ? "</span>" : "")
                                         : "")
+                                + (assignment.getReasons().isEmpty()
+                                        ? ""
+                                        : ("<sup>{"
+                                                + assignment.getReasons().stream()
+                                                        .map(Ætiologer::linkifyReason)
+                                                        .collect(Collectors.joining(" "))
+                                                + "}</sup>"))
                                 + "</td>");
             }
             out.append("</tr>");

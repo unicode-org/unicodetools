@@ -12,9 +12,13 @@ Markus has been taking the incremental file changes, and the notes, into this re
 
 See the history of commits that changed decomps.txt and allkeys.txt.
 (We lost some of that history in the Unicode server crash of 2020.)
--   For UCA 15.1 see https://github.com/unicode-org/unicodetools/pull/403
--   For UCA 15 see https://github.com/unicode-org/unicodetools/pull/246
--   For UCA 14 see https://github.com/unicode-org/unicodetools/pull/71
+-   See the history of [c/uca/sifter/unidata.txt](https://github.com/unicode-org/unicodetools/commits/main/c/uca/sifter/unidata.txt) and similar files
+-   UCA 18: https://github.com/unicode-org/unicodetools/pull/1313
+-   UCA 17: https://github.com/unicode-org/unicodetools/pull/1112
+-   UCA 16: https://github.com/unicode-org/unicodetools/pull/571 & https://github.com/unicode-org/unicodetools/pull/796 etc.
+-   UCA 15.1: https://github.com/unicode-org/unicodetools/pull/403
+-   UCA 15: https://github.com/unicode-org/unicodetools/pull/246
+-   UCA 14: https://github.com/unicode-org/unicodetools/pull/71
 -   For the collection of notes for UCA 10 see ducet.md.
 
 ## Before generating

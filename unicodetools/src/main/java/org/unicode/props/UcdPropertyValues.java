@@ -70,6 +70,7 @@ public class UcdPropertyValues {
         V16_0("16.0"),
         V17_0("17.0"),
         V18_0("18.0"),
+        V19_0("19.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
 
@@ -207,6 +208,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bassa_Vah"),
         Batak("Batak"),
         Bengali("Bengali"),
+        Bengali_Supplement("Bengali_Sup"),
         Beria_Erfe("Beria_Erfe"),
         Bhaiksuki("Bhaiksuki"),
         Block_Elements("Block_Elements"),
@@ -225,7 +227,6 @@ public class UcdPropertyValues {
         Cherokee("Cherokee"),
         Cherokee_Supplement("Cherokee_Sup"),
         Chess_Symbols("Chess_Symbols"),
-        Chisoi("Chisoi"),
         Chorasmian("Chorasmian"),
         CJK_Unified_Ideographs("CJK"),
         CJK_Compatibility("CJK_Compat"),
@@ -390,6 +391,7 @@ public class UcdPropertyValues {
         Meroitic_Hieroglyphs("Meroitic_Hieroglyphs"),
         Miao("Miao"),
         Miscellaneous_Symbols_And_Arrows("Misc_Arrows"),
+        Miscellaneous_Symbols_And_Arrows_Extended("Misc_Arrows_Ext"),
         Miscellaneous_Mathematical_Symbols_A("Misc_Math_Symbols_A"),
         Miscellaneous_Mathematical_Symbols_B("Misc_Math_Symbols_B"),
         Miscellaneous_Symbols_And_Pictographs("Misc_Pictographs"),
@@ -746,6 +748,15 @@ public class UcdPropertyValues {
 
     // Case_Folding
     // CJK_Radical
+    // cjkUSource_Comments
+    // cjkUSource_FirstResidualStroke
+    // cjkUSource_Identifier
+    // cjkUSource_IDS
+    // cjkUSource_KangXi
+    // cjkUSource_RSUnicode
+    // cjkUSource_Source
+    // cjkUSource_Status
+    // cjkUSource_TotalStrokes
     // Confusable_MA
     // Confusable_ML
     // Confusable_SA
@@ -1742,6 +1753,8 @@ public class UcdPropertyValues {
     // kJa
     // kJapanese
     // kJapaneseKun
+    // kJapaneseNewVariant
+    // kJapaneseOldVariant
     // kJapaneseOn
     // kJHJ
     // kJinmeiyoKanji
@@ -1891,6 +1904,39 @@ public class UcdPropertyValues {
         }
     }
 
+    // Link_Bracket
+    public enum Link_Term_Values implements Named {
+        Include("Include"),
+        Hard("Hard"),
+        Soft("Soft"),
+        Close("Close"),
+        Open("Open");
+        private final PropertyNames<Link_Term_Values> names;
+
+        private Link_Term_Values(String shortName, String... otherNames) {
+            names =
+                    new PropertyNames<Link_Term_Values>(
+                            Link_Term_Values.class, this, shortName, otherNames);
+        }
+
+        @Override
+        public PropertyNames<Link_Term_Values> getNames() {
+            return names;
+        }
+
+        @Override
+        public String getShortName() {
+            return names.getShortName();
+        }
+
+        private static final NameMatcher<Link_Term_Values> NAME_MATCHER =
+                PropertyNames.getNameToEnums(Link_Term_Values.class);
+
+        public static Link_Term_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
+    }
+
     // Lowercase_Mapping
     public enum Math_Class_Values implements Named {
         None("None"),
@@ -1984,13 +2030,31 @@ public class UcdPropertyValues {
     // Math_Entity_Set
     // Name
     // Name_Alias
+    // Name_Alias_Abbreviation
+    // Name_Alias_Alternate
+    // Name_Alias_Control
+    // Name_Alias_Correction
+    // Name_Alias_Figment
     // Named_Sequences
     // Named_Sequences_Prov
     // Names_List_Alias
+    // Names_List_Alias_fr
+    // Names_List_Block_Header
+    // Names_List_Block_Header_fr
+    // Names_List_Block_Header_Notice
+    // Names_List_Block_Header_Notice_fr
     // Names_List_Comment
+    // Names_List_Comment_fr
     // Names_List_Cross_Ref
+    // Names_List_Cross_Ref_fr
+    // Names_List_Formal_Alias
+    // Names_List_Formal_Alias_fr
+    // Names_List_Name
+    // Names_List_Name_fr
     // Names_List_Subheader
+    // Names_List_Subheader_fr
     // Names_List_Subheader_Notice
+    // Names_List_Subheader_Notice_fr
     public enum NFC_Quick_Check_Values implements Named {
         Maybe("M"),
         No("N"),
@@ -2181,6 +2245,7 @@ public class UcdPropertyValues {
         }
     }
 
+    // Pretty_Block
     public enum RGI_Emoji_Qualification_Values implements Named {
         None("None"),
         Fully_Qualified("FQE"),
@@ -2239,7 +2304,6 @@ public class UcdPropertyValues {
         Carian("Cari"),
         Cham("Cham"),
         Cherokee("Cher"),
-        Chisoi("Chis"),
         Chorasmian("Chrs"),
         Coptic("Copt", "Qaac"),
         Cypro_Minoan("Cpmn"),

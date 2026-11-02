@@ -26,7 +26,7 @@ public class PropertyUtilities {
 
         @Override
         public String merge(String first, String second) {
-            return first + separator + second;
+            return first == null ? second : second == null ? first : first + separator + second;
         }
     }
 

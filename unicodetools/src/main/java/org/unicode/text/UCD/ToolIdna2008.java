@@ -30,7 +30,7 @@ public class ToolIdna2008 {
     //        UnicodeSet Unstable = new UnicodeSet();
     //        Normalizer toNfkc = Default.nfkc();
     //        for (int i = 0; i <= 0x10FFFF; ++i) {
-    //            String s = UTF16.valueOf(i);
+    //            String s = Character.toString(i);
     //            String nfkc = toNfkc.normalize(s);
     //            String cased = Default.ucd().getCase(s, UCD_Types.FULL, UCD_Types.FOLD);
     //            String full = toNfkc.normalize(cased);

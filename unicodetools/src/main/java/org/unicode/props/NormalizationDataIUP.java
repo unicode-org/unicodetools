@@ -93,14 +93,14 @@ public class NormalizationDataIUP implements NormalizationData {
                     //                        }
                     continue;
                 }
-                final int a = UTF16.charAt(s, 0);
+                final int a = s.codePointAt(0);
                 // if (ucd.getCombiningClass(a) != 0) {
                 if (ccc.get(a) != 0) {
                     continue;
                 }
                 isFirst.set(a);
 
-                final int b = UTF16.charAt(s, UTF16.getCharCount(a));
+                final int b = s.codePointAt(Character.charCount(a));
                 isSecond.set(b);
 
                 // have a recomposition, so set the bit
@@ -110,17 +110,10 @@ public class NormalizationDataIUP implements NormalizationData {
                 // ONLY if the component characters
                 // don't compatibility decompose
 
-                //                    if (ucd.getDecompositionType(a) <= UCD_Types.CANONICAL
-                //                            && ucd.getDecompositionType(b) <=
-                // UCD_Types.CANONICAL) {
-                Decomposition_Type_Values decompA = decompType.get(a);
-                if (decompA == Decomposition_Type_Values.None
-                        || decompA == Decomposition_Type_Values.Canonical) {
-                    Decomposition_Type_Values decompB = decompType.get(b);
-                    if (decompB == Decomposition_Type_Values.None
-                            || decompB == Decomposition_Type_Values.Canonical) {
-                        compatibilityRecompose.set(i);
-                    }
+                // if (ucd.getDecompositionType(a) <= UCD_Types.CANONICAL
+                //     && ucd.getDecompositionType(b) <= UCD_Types.CANONICAL) {
+                if (!isCompat(decompType.get(a)) && !isCompat(decompType.get(b))) {
+                    compatibilityRecompose.set(i);
                 }
 
                 final long key = (((long) a) << 32) | b;
@@ -201,11 +194,11 @@ public class NormalizationDataIUP implements NormalizationData {
         }
     }
 
-    public static boolean isCanonicalOrCompat(final Decomposition_Type_Values dt) {
+    private static boolean isCanonicalOrCompat(final Decomposition_Type_Values dt) {
         return dt != Decomposition_Type_Values.None;
     }
 
-    public static boolean isCompat(final Decomposition_Type_Values dt) {
+    private static boolean isCompat(final Decomposition_Type_Values dt) {
         return dt != Decomposition_Type_Values.None && dt != Decomposition_Type_Values.Canonical;
     }
 
@@ -213,7 +206,7 @@ public class NormalizationDataIUP implements NormalizationData {
      * @see org.unicode.text.UCD.NormalizationData#getRecursiveDecomposition(int, java.lang.StringBuffer, boolean)
      */
     @Override
-    public void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat) {
+    public void getRecursiveDecomposition(int cp, StringBuilder buffer, boolean compat) {
         // final byte dt = ucd.getDecompositionType(cp);
         final Decomposition_Type_Values dt = decompType.get(cp);
 
@@ -221,15 +214,15 @@ public class NormalizationDataIUP implements NormalizationData {
         // if (dt == UCD_Types.CANONICAL || dt > UCD_Types.CANONICAL && compat) {
         if (dt == Decomposition_Type_Values.Canonical || isCompat(dt) && compat) {
             final String s = decompMap.get(cp);
-            if (s.equals("<code point>") || s.equals(UTF16.valueOf(cp))) {
+            if (s.equals("<code point>") || s.equals(Character.toString(cp))) {
                 throw new IllegalArgumentException("decomp, but no map, " + Utility.hex(cp));
             }
-            for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(s, i);
+            for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+                cp = s.codePointAt(i);
                 getRecursiveDecomposition(cp, buffer, compat);
             }
         } else {
-            UTF16.append(buffer, cp);
+            buffer.appendCodePoint(cp);
         }
     }
 
@@ -254,7 +247,8 @@ public class NormalizationDataIUP implements NormalizationData {
      */
     @Override
     public boolean hasCompatDecomposition(int i) {
-        return isCanonicalOrCompat(decompType.get(i));
+        // TODO: Misnomer? Should be called hasDecomposition() or else check isCompat().
+        return isCanonicalOrCompat(decompType.get(i)); // dt != None
     }
 
     /* (non-Javadoc)
