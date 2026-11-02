@@ -24,6 +24,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.IntPredicate;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
@@ -54,9 +55,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
     static final boolean DEBUG = false;
 
-    private static boolean needAgeCache = true;
-
-    private static UCD[] ucdCache = new UCD[UCD_Types.LIMIT_AGE];
+    private UnicodeMap<String> ageMap;
 
     private static HashMap<String, ToolUnicodePropertySource> factoryCache =
             new HashMap<String, ToolUnicodePropertySource>();
@@ -77,6 +76,23 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         result = new ToolUnicodePropertySource(version);
         factoryCache.put(version, result);
         return result;
+    }
+
+    static UnicodeMap<String> deriveAge(
+            VersionInfo version, IntPredicate isAllocated, UnicodeProperty ageFromFile) {
+        UnicodeMap<String> result = new UnicodeMap<>();
+        String unassigned = UCD_Names.LONG_AGE[UCD_Types.UNKNOWN];
+        String currentAge = "V" + version.getMajor() + "_" + version.getMinor();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            // Noncharacters have an Age too, despite having General_Category=Cn.
+            if (!isAllocated.test(cp)) {
+                result.put(cp, unassigned);
+            } else {
+                String age = ageFromFile.getValue(cp);
+                result.put(cp, unassigned.equals(age) ? currentAge : age);
+            }
+        }
+        return result.freeze();
     }
 
     private ToolUnicodePropertySource(String version) {
@@ -1375,7 +1391,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .add(0xFF1B)
                             .remove(0x002E)
                             .remove(0x003A)
-                            .remove(0xFE13),
+                            .remove(0xFE13)
+                            .remove(0x00B7)
+                            .remove(0x0387),
                     "MidNum");
             /*
              * 066C ( ٬ ) ARABIC THOUSANDS SEPARATOR
@@ -1742,6 +1760,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iupCurrent.getProperty(UcdProperty.Indic_Positional_Category));
         add(iupCurrent.getProperty(UcdProperty.Indic_Syllabic_Category));
         add(iupCurrent.getProperty(UcdProperty.Equivalent_Unified_Ideograph));
+        add(iupCurrent.getProperty(UcdProperty.Pretty_Block));
     }
 
     private void addFakeProperty(
@@ -2249,35 +2268,15 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }
 
         public String getAge(int codePoint) {
-            if (needAgeCache) {
-                for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
-                    final String versionString = UCD_Types.AGE_VERSIONS[i];
-                    VersionInfo version = VersionInfo.getInstance(versionString);
-                    if (version.compareTo(ucd.getVersionInfo()) > 0) {
-                        break;
-                    }
-                    ucdCache[i] = UCD.make(versionString);
-                }
-                needAgeCache = false;
+            if (ageMap == null) {
+                ageMap =
+                        deriveAge(
+                                ucd.getVersionInfo(),
+                                ucd::isAllocated,
+                                IndexUnicodeProperties.make(ucd.getVersion())
+                                        .getProperty(UcdProperty.Age));
             }
-            for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
-                if (ucdCache[i] == null) {
-                    break;
-                }
-                if (ucdCache[i].isAllocated(codePoint)) {
-                    if (i == UCD_Types.AGE11 && !ucdCache[i + 1].isAllocated(codePoint)) {
-                        // Deallocations in Unicode 2.
-                        continue;
-                    }
-                    return UCD_Names.LONG_AGE[i];
-                } else if (i == UCD_Types.AGE11
-                        && ((codePoint >= 0xE000 && codePoint <= 0xF8FF)
-                                || (codePoint >= 0xF900 && codePoint <= 0xFA2D))) {
-                    // Private use and CJK compatibility ideographs, not overt in UnicodeData 1.1.5.
-                    return UCD_Names.LONG_AGE[i];
-                }
-            }
-            return UCD_Names.LONG_AGE[UCD_Types.UNKNOWN];
+            return ageMap.get(codePoint);
         }
 
         /*

@@ -343,6 +343,19 @@ In \p{dt=canonical}, bc * (take 1) * dm  = bc
 Let $BMExclusions := [ ≠ ∤ ∦ ≢ ≭ ⫝̸ ]
 In [\p{dt=canonical}-$BMExclusions], (delete-adjacent-duplicates) * Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
+# Precedent (UTC-175-C21; L2/23-079, item 4.1): The UTC will not add further
+# characters to the Unicode Standard with both (a) canonical decompositions,
+# and (b) Bidi_Paired_Bracket_Type ≠ None. Unicode will also not add further
+# characters where the canonical decompositions *contain* characters whose
+# Bidi_Paired_Bracket_Type ≠ None.
+# https://github.com/unicode-org/unicodetools/issues/453
+# The existing exceptions to both restrictions are U+2329 and U+232A.
+Let $decomposableBidiBrackets := [\u2329\u232A]
+[\p{dt=Canonical} & \p{Bidi_Paired_Bracket_Type≠None}] ⊆ $decomposableBidiBrackets
+# Checking every direct mapping also checks each step of recursive decomposition.
+In [\p{dt=Canonical} - $decomposableBidiBrackets],
+    (delete-adjacent-duplicates) * Bidi_Paired_Bracket_Type * Decomposition_Mapping = (constant None)
+
 # Additional BIDI invariant constants
 Let $AL_blocks := [
     \u0600-\u07BF
@@ -857,7 +870,10 @@ Let $OPInclusions := [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U0001328
 # 15.1.0: Action item UTC-176-A81: change [[:PCM:]-\u070F] lb=AL->NU
 # 16.0.0: UTC-180-A54: U+19DA from lb=SA to lb=NU.
 Let $NUInclusions := [\u066B\u066C\u19DA]
-Let $NUFormats := [[:PCM:]-[\u070F]]
+# PCM characters must be LB=NU unless explicitly excluded after review.
+# https://github.com/unicode-org/unicodetools/issues/507
+Let $NUFormats := [[:PCM:]-[\N{070F:SYRIAC ABBREVIATION MARK}]]
+$NUFormats ⊆ \p{LB=NU}
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions $NUFormats - \p{EA=F} - $BrahmicLineBreaking]
 
 # Digits are lb=AS in scripts with brahmic line breaking.
@@ -1136,8 +1152,8 @@ Let $HairComponents := [\U0001F9B0-\U0001F9B3]
 
 # TODO(egg): We could check that the variation selectors are used consistently, but this would
 # require UnicodeProperty to support strings properly.
-\p{emoji_variation_sequence=text style} ⊃ [{♈︎}]
-\p{emoji_variation_sequence=emoji style} ⊃ [{♈️}]
+\p{emoji_variation_sequence=text\ style} ⊃ [{♈︎}]
+\p{emoji_variation_sequence=emoji\ style} ⊃ [{♈️}]
 
 # The file emoji-test.txt states that
 # • The RGI set is covered by the listed fully-qualified emoji.
@@ -1493,7 +1509,7 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 
 # TODO(egg): We could check that the variation selectors are used consistently, but this would
 # require UnicodeProperty to support strings properly.
-\p{Standardized_Variant=rotated 90 degrees} ⊃ [{𓏲\uFE00}]
+\p{Standardized_Variant=rotated\ 90\ degrees} ⊃ [{𓏲\uFE00}]
 
 # InPC-InSC-gc invariants
 # See https://www.unicode.org/L2/L2023/23200-category-invariants.pdf.
@@ -1502,6 +1518,11 @@ $unikemetScope ⊃ \P{kEH_Core=None}
 [\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{gc=Mn}\p{gc=Lo}]
 \p{gc=Mn} ⊆ \P{InPC=/(Left|Right)/}
 [\p{gc=Lo}&\P{InPC=NA}&\P{InPC=/(Left|Right)/}] ⊆ [\p{InSC=Consonant_Preceding_Repha}\p{InSC=Consonant_Prefixed}]
+
+# Small kana and final Bopomofo letters should be vo=Tu (L2/25-035).
+# https://github.com/unicode-org/unicodetools/issues/1003
+\p{Name=/^(HIRAGANA|KATAKANA) LETTER SMALL /} ⊆ \p{Vertical_Orientation=Tu}
+\p{Name=/^BOPOMOFO FINAL LETTER /} ⊆ \p{Vertical_Orientation=Tu}
 
 # Script Extensions (mostly testing the proper handling of multivalued properties).
 \p{sc=Deva} ⊂ \p{scx=Deva}
@@ -1588,6 +1609,13 @@ OnPairsOf [$code_points - $noncharacter_charts - $uncharted_block_ends - $unchar
     EqualityOf Block ⇔ EqualityOf Names_List_Block_Header
 [$uncharted_block_ends $uncharted_pua_planes] ⊂ \p{Names_List_Block_Header=@none@}
 [$noncharacter_charts] = \p{Names_List_Block_Header=Unassigned}
+
+[0] ⊂ \p{Standardized_Variation_Base}
+[0] ⊂ \p{Emoji_Variation_Base}
+[🅾] ⊂ \p{Standardized_Variation_Base=No}
+[🅾] ⊂ \p{Emoji_Variation_Base}
+[∅] ⊂ \p{Standardized_Variation_Base}
+[∅] ⊂ \p{Emoji_Variation_Base=No}
 
 # Basic Propertywise tests.
 Ignoring Name:

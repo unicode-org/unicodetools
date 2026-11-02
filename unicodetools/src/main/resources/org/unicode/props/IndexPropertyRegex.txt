@@ -51,7 +51,7 @@ FC_NFKC_Closure ;             SINGLE_VALUED ;               $codePoints
 ISO_Comment ;                 SINGLE_VALUED ;               $name
 Jamo_Short_Name ;             SINGLE_VALUED ;               $shortName
 Lowercase_Mapping ;           SINGLE_VALUED ;               $codePoints
-Name ;                        SINGLE_VALUED ;               CJK UNIFIED IDEOGRAPH-#|CJK COMPATIBILITY IDEOGRAPH-#|EGYPTIAN HIEROGLYPH-#|TANGUT IDEOGRAPH-#|KHITAN SMALL SCRIPT CHARACTER-#|NUSHU CHARACTER-#|SEAL CHARACTER-#|JURCHEN CHARACTER-#|\$HANGUL_SYLLABLE\$|$name
+Name ;                        SINGLE_VALUED ;               CJK UNIFIED IDEOGRAPH-#|CJK COMPATIBILITY IDEOGRAPH-#|EGYPTIAN HIEROGLYPH-#|TANGUT IDEOGRAPH-#|KHITAN SMALL SCRIPT CHARACTER-#|NUSHU CHARACTER-#|SMALL SEAL CHARACTER-#|JURCHEN CHARACTER-#|\$HANGUL_SYLLABLE\$|$name
 Name_Alias ;                  MULTI_VALUED ;                $name
 NFKC_Casefold ;               SINGLE_VALUED ;               $codePoint0
 NFKC_Simple_Casefold ;        SINGLE_VALUED ;               $codePoint0
