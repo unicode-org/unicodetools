@@ -84,6 +84,14 @@ public class TestTestUnicodeInvariants {
     }
 
     @Test
+    void testNamesListInvariants() throws IOException {
+        int rc =
+                TestUnicodeInvariants.testInvariants(
+                        "NamesListInvariantTest.txt", "nameslist", true);
+        assertEquals(0, rc, "TestUnicodeInvariants.testInvariants(nameslist) failed");
+    }
+
+    @Test
     void testSecurityInvariants() throws IOException {
         int rc =
                 TestUnicodeInvariants.testInvariants("SecurityInvariantTest.txt", "security", true);

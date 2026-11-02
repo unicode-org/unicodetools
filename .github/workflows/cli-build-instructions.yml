@@ -195,7 +195,7 @@ jobs:
       - name: Run most tests
         run: |
           cd unicodetools/mine/src
-          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -Dtest=!TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DEMIT_GITHUB_ERRORS  -DENABLE_PROP_FILE_CACHE
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -Dtest=!TestTestUnicodeInvariants#testSecurityInvariants -Dtest=!TestTestUnicodeInvariants#testNamesListInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd)  -DEMIT_GITHUB_ERRORS  -DENABLE_PROP_FILE_CACHE
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -368,7 +368,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Out-of-source build.
+  # This does the setup needed for an out-of-source build, but only runs the
+  # security invariant tests.
+  # For a pull request that affects the repertoire, errors are turned into
+  # informative notices (we expect those to break the security invariants).
   security:
     name: Security data invariants
     runs-on: ubuntu-latest
@@ -439,6 +442,88 @@ jobs:
           else ERROR="::error"
           fi
           MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testSecurityInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd) -Dsurefire.failIfNoSpecifiedTests=false -DEMIT_GITHUB_ERRORS 2>&1 | sed "s/^::error/$ERROR/"
+          STATUS=${PIPESTATUS[0]}
+          if [[ ${REPERTOIRE_CHANGED:-0} -ne 0 ]]
+          then exit 0
+          else exit $STATUS
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # This does the setup needed for an out-of-source build, but only runs the
+  # names list invariant tests.
+  # For a pull request that affects the repertoire, errors are turned into
+  # informative notices (we expect those to break the names list invariants).
+  nameslist:
+    name: NamesList data invariants
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Unicode Tools
+        uses: actions/checkout@v3
+        with:
+          repository: unicode-org/unicodetools
+          path: unicodetools/mine/src
+      - name: Checkout base UnicodeData.txt
+        if: ${{ github.event_name == 'pull_request'}}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
+      - name: Compare repertoire
+        if: ${{ github.event_name == 'pull_request'}}
+        run: |
+          # Look for changes affecting the first two fields of UnicodeData.txt (code point and name).
+          sed 's/^\([^;]*;[^;]*\);.*$/\1/' unicodetools/mine/src/unicodetools/data/ucd/dev/UnicodeData.txt > merged-repertoire.txt
+          sed 's/^\([^;]*;[^;]*\);.*$/\1/' base/unicodetools/data/ucd/dev/UnicodeData.txt > base-repertoire.txt
+          set +e
+          diff base-repertoire.txt merged-repertoire.txt
+          echo "REPERTOIRE_CHANGED=$?" >> "$GITHUB_ENV"
+      - name: Get the CLDR_REF from pom.xml
+        id: cldr_ref
+        run: echo "CLDR_REF="$(mvn --file unicodetools/mine/src/pom.xml help:evaluate -Dexpression=cldr.version -q -DforceStdout | cut -d- -f3) >> $GITHUB_OUTPUT && cat ${GITHUB_OUTPUT}
+      - name: Verify CLDR checkout ref
+        run: echo CLDR_REF="${{ steps.cldr_ref.outputs.CLDR_REF }}" && [ "${{ steps.cldr_ref.outputs.CLDR_REF }}x" != "x" ] # fail if empty
+      - name: Cache CLDR repository
+        uses: actions/cache@v4
+        with:
+          path: cldr/mine/src
+          key: cldr-${{ steps.cldr_ref.outputs.CLDR_REF }}
+          restore-keys: |
+            cldr
+      - name: Check out CLDR
+        uses: actions/checkout@v3
+        with:
+          repository: unicode-org/cldr
+          path: cldr/mine/src
+          ref: main
+          fetch-depth: 0
+      - name: Switch CLDR to CLDR_REF
+        run: cd cldr/mine/src && git fetch && git checkout ${{ steps.cldr_ref.outputs.CLDR_REF }}
+      - name: Set up JDK 21
+        uses: actions/setup-java@v1
+        with:
+          java-version: 21
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Set up out-of-source output dir
+        run: |
+          mkdir -p unicodetools/mine/Generated/BIN
+
+      - name: Run invariant tests
+        run: |
+          cd unicodetools/mine/src
+          echo "REPERTOIRE_CHANGED=$REPERTOIRE_CHANGED"
+          if [[ ${REPERTOIRE_CHANGED:-0} -ne 0 ]]
+          then ERROR="::notice"
+          else ERROR="::error"
+          fi
+          MAVEN_OPTS="-ea" mvn -s .github/workflows/mvn-settings.xml test -am -pl unicodetools -Dtest=TestTestUnicodeInvariants#testNamesListInvariants -DCLDR_DIR=$(cd ../../../cldr/mine/src ; pwd)  -DUNICODETOOLS_GEN_DIR=$(cd ../Generated ; pwd)  -DUNICODETOOLS_REPO_DIR=$(pwd) -Dsurefire.failIfNoSpecifiedTests=false -DEMIT_GITHUB_ERRORS 2>&1 | sed "s/^::error/$ERROR/"
           STATUS=${PIPESTATUS[0]}
           if [[ ${REPERTOIRE_CHANGED:-0} -ne 0 ]]
           then exit 0
