@@ -687,6 +687,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         for (Normalizer nf : new Normalizer[] {nfd, nfc, nfkd, nfkc}) {
             add(
                     new UnicodeProperty.SimpleProperty() {
+                        {
+                            setUniformUnassigned(false);
+                        }
                         @Override
                         public String _getValue(int cp) {
                             return nf.normalize(cp);
