@@ -1,5 +1,9 @@
 # review.txt
+<<<<<<< HEAD:unicodetools/data/security/internal/review.txt
 # Date: 2026-08-06, 01:05:47 GMT
+=======
+# Date: 2026-05-19, 06:51:26 GMT
+>>>>>>> parent of 093848ed5 (Revert "Chisoi again (#1171)" (#1446)):unicodetools/data/security/dev/data/review.txt
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -25197,6 +25201,46 @@ FFEE          ; Restricted ; Not_XID           #      (￮)  HALFWIDTH WHITE CIR
 16D77         ; Restricted ; Exclusion         #      (𖵷)  KIRAT RAI DIGIT SEVEN
 16D78         ; Restricted ; Exclusion         #      (𖵸)  KIRAT RAI DIGIT EIGHT
 16D79         ; Restricted ; Exclusion         #      (𖵹)  KIRAT RAI DIGIT NINE
+16D80         ; Restricted ; Exclusion         #      (𖶀)  CHISOI LETTER A
+16D81         ; Restricted ; Exclusion         #      (𖶁)  CHISOI LETTER BA
+16D82         ; Restricted ; Exclusion         #      (𖶂)  CHISOI LETTER AAI
+16D83         ; Restricted ; Exclusion         #      (𖶃)  CHISOI LETTER AA
+16D84         ; Restricted ; Exclusion         #      (𖶄)  CHISOI LETTER GA
+16D85         ; Restricted ; Exclusion         #      (𖶅)  CHISOI LETTER TA
+16D86         ; Restricted ; Exclusion         #      (𖶆)  CHISOI LETTER E
+16D87         ; Restricted ; Exclusion         #      (𖶇)  CHISOI LETTER SA
+16D88         ; Restricted ; Exclusion         #      (𖶈)  CHISOI LETTER NA
+16D89         ; Restricted ; Exclusion         #      (𖶉)  CHISOI LETTER I
+16D8A         ; Restricted ; Exclusion         #      (𖶊)  CHISOI LETTER KA
+16D8B         ; Restricted ; Exclusion         #      (𖶋)  CHISOI LETTER RA
+16D8C         ; Restricted ; Exclusion         #      (𖶌)  CHISOI LETTER MA
+16D8D         ; Restricted ; Exclusion         #      (𖶍)  CHISOI LETTER HA
+16D8E         ; Restricted ; Exclusion         #      (𖶎)  CHISOI LETTER RRA
+16D8F         ; Restricted ; Exclusion         #      (𖶏)  CHISOI LETTER U
+16D90         ; Restricted ; Exclusion         #      (𖶐)  CHISOI LETTER DA
+16D91         ; Restricted ; Exclusion         #      (𖶑)  CHISOI LETTER LA
+16D92         ; Restricted ; Exclusion         #      (𖶒)  CHISOI LETTER O
+16D93         ; Restricted ; Exclusion         #      (𖶓)  CHISOI LETTER NYA
+16D94         ; Restricted ; Exclusion         #      (𖶔)  CHISOI LETTER NGA
+16D95         ; Restricted ; Exclusion         #      (𖶕)  CHISOI LETTER CA
+16D96         ; Restricted ; Exclusion         #      (𖶖)  CHISOI LETTER JA
+16D97         ; Restricted ; Exclusion         #      (𖶗)  CHISOI LETTER PA
+16D98         ; Restricted ; Exclusion         #      (𖶘)  CHISOI SIGN ANUSVARA
+16D99         ; Restricted ; Exclusion         #      (𖶙)  CHISOI LETTER YA
+16D9A         ; Restricted ; Exclusion         #      (𖶚)  CHISOI LETTER DDA
+16D9B         ; Restricted ; Exclusion         #      (𖶛)  CHISOI LETTER TTA
+16D9C         ; Restricted ; Exclusion         #      (𖶜)  CHISOI LETTER JARAHA
+16D9D         ; Restricted ; Exclusion         #      (𖶝)  CHISOI SIGN SISO
+16DA0         ; Restricted ; Exclusion         #      (𖶠)  CHISOI DIGIT ZERO
+16DA1         ; Restricted ; Exclusion         #      (𖶡)  CHISOI DIGIT ONE
+16DA2         ; Restricted ; Exclusion         #      (𖶢)  CHISOI DIGIT TWO
+16DA3         ; Restricted ; Exclusion         #      (𖶣)  CHISOI DIGIT THREE
+16DA4         ; Restricted ; Exclusion         #      (𖶤)  CHISOI DIGIT FOUR
+16DA5         ; Restricted ; Exclusion         #      (𖶥)  CHISOI DIGIT FIVE
+16DA6         ; Restricted ; Exclusion         #      (𖶦)  CHISOI DIGIT SIX
+16DA7         ; Restricted ; Exclusion         #      (𖶧)  CHISOI DIGIT SEVEN
+16DA8         ; Restricted ; Exclusion         #      (𖶨)  CHISOI DIGIT EIGHT
+16DA9         ; Restricted ; Exclusion         #      (𖶩)  CHISOI DIGIT NINE
 16E40         ; Restricted ; Exclusion         #      (𖹀)  MEDEFAIDRIN CAPITAL LETTER M
 16E41         ; Restricted ; Exclusion         #      (𖹁)  MEDEFAIDRIN CAPITAL LETTER S
 16E42         ; Restricted ; Exclusion         #      (𖹂)  MEDEFAIDRIN CAPITAL LETTER V
@@ -84128,7 +84172,7 @@ FFEE          ; Restricted ; Not_XID           #      (￮)  HALFWIDTH WHITE CIR
 3FC3F         ; Restricted ; Exclusion         #      (𿰿)  SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF  ; Restricted ; output-disallowed # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 172647
+# Total code points: 172687
 
 # Characters disallowed in IDNA
 # The IDNA spec doesn't allow any of these characters,

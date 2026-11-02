@@ -11407,6 +11407,46 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 16D77         ;  ; Exclusion #      (𖵷)  KIRAT RAI DIGIT SEVEN
 16D78         ;  ; Exclusion #      (𖵸)  KIRAT RAI DIGIT EIGHT
 16D79         ;  ; Exclusion #      (𖵹)  KIRAT RAI DIGIT NINE
+16D80         ;  ; Exclusion #      (𖶀)  CHISOI LETTER A
+16D81         ;  ; Exclusion #      (𖶁)  CHISOI LETTER BA
+16D82         ;  ; Exclusion #      (𖶂)  CHISOI LETTER AAI
+16D83         ;  ; Exclusion #      (𖶃)  CHISOI LETTER AA
+16D84         ;  ; Exclusion #      (𖶄)  CHISOI LETTER GA
+16D85         ;  ; Exclusion #      (𖶅)  CHISOI LETTER TA
+16D86         ;  ; Exclusion #      (𖶆)  CHISOI LETTER E
+16D87         ;  ; Exclusion #      (𖶇)  CHISOI LETTER SA
+16D88         ;  ; Exclusion #      (𖶈)  CHISOI LETTER NA
+16D89         ;  ; Exclusion #      (𖶉)  CHISOI LETTER I
+16D8A         ;  ; Exclusion #      (𖶊)  CHISOI LETTER KA
+16D8B         ;  ; Exclusion #      (𖶋)  CHISOI LETTER RA
+16D8C         ;  ; Exclusion #      (𖶌)  CHISOI LETTER MA
+16D8D         ;  ; Exclusion #      (𖶍)  CHISOI LETTER HA
+16D8E         ;  ; Exclusion #      (𖶎)  CHISOI LETTER RRA
+16D8F         ;  ; Exclusion #      (𖶏)  CHISOI LETTER U
+16D90         ;  ; Exclusion #      (𖶐)  CHISOI LETTER DA
+16D91         ;  ; Exclusion #      (𖶑)  CHISOI LETTER LA
+16D92         ;  ; Exclusion #      (𖶒)  CHISOI LETTER O
+16D93         ;  ; Exclusion #      (𖶓)  CHISOI LETTER NYA
+16D94         ;  ; Exclusion #      (𖶔)  CHISOI LETTER NGA
+16D95         ;  ; Exclusion #      (𖶕)  CHISOI LETTER CA
+16D96         ;  ; Exclusion #      (𖶖)  CHISOI LETTER JA
+16D97         ;  ; Exclusion #      (𖶗)  CHISOI LETTER PA
+16D98         ;  ; Exclusion #      (𖶘)  CHISOI SIGN ANUSVARA
+16D99         ;  ; Exclusion #      (𖶙)  CHISOI LETTER YA
+16D9A         ;  ; Exclusion #      (𖶚)  CHISOI LETTER DDA
+16D9B         ;  ; Exclusion #      (𖶛)  CHISOI LETTER TTA
+16D9C         ;  ; Exclusion #      (𖶜)  CHISOI LETTER JARAHA
+16D9D         ;  ; Exclusion #      (𖶝)  CHISOI SIGN SISO
+16DA0         ;  ; Exclusion #      (𖶠)  CHISOI DIGIT ZERO
+16DA1         ;  ; Exclusion #      (𖶡)  CHISOI DIGIT ONE
+16DA2         ;  ; Exclusion #      (𖶢)  CHISOI DIGIT TWO
+16DA3         ;  ; Exclusion #      (𖶣)  CHISOI DIGIT THREE
+16DA4         ;  ; Exclusion #      (𖶤)  CHISOI DIGIT FOUR
+16DA5         ;  ; Exclusion #      (𖶥)  CHISOI DIGIT FIVE
+16DA6         ;  ; Exclusion #      (𖶦)  CHISOI DIGIT SIX
+16DA7         ;  ; Exclusion #      (𖶧)  CHISOI DIGIT SEVEN
+16DA8         ;  ; Exclusion #      (𖶨)  CHISOI DIGIT EIGHT
+16DA9         ;  ; Exclusion #      (𖶩)  CHISOI DIGIT NINE
 16E40..16E5F  ;  ; Exclusion # [32] (𖹀..𖹟)  MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 16E60         ;  ; Exclusion #      (𖹠)  MEDEFAIDRIN SMALL LETTER M
 16E61         ;  ; Exclusion #      (𖹡)  MEDEFAIDRIN SMALL LETTER S
@@ -32343,7 +32383,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 3FC3E         ;  ; Exclusion #      (𿰾)  SMALL SEAL CHARACTER-3FC3E
 3FC3F         ;  ; Exclusion #      (𿰿)  SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 33248
+# Total code points: 33288
 
 0710..073F    ;  ; Limited_Use # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
 074D..074F    ;  ; Limited_Use #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
