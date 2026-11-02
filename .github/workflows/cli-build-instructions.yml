@@ -368,7 +368,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Out-of-source build.
+  # This does the setup needed for an out-of-source build, but only runs the
+  # security invariant tests.
+  # For a pull request that affects the repertoire, errors are turned into
+  # informative notices (we expect those to break the security invariants).
   security:
     name: Security data invariants
     runs-on: ubuntu-latest
@@ -447,7 +450,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Out-of-source build.
+  # This does the setup needed for an out-of-source build, but only runs the
+  # names list invariant tests.
+  # For a pull request that affects the repertoire, errors are turned into
+  # informative notices (we expect those to break the names list invariants).
   nameslist:
     name: NamesList data invariants
     runs-on: ubuntu-latest
