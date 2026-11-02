@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-11-02, 14:08:02 GMT 
+# Date: 2026-11-02, 14:10:40 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1722,7 +1722,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 12475..1247F  ; Include # 18.0 [11] (𒑵..𒑿)  CUNEIFORM NUMERIC SIGN EIGHT ASH TENU..CUNEIFORM NUMERIC SIGN ASH TIMES NINE DISH TENU
 12480..12543  ; Include # 8.0 [196] (𒒀..𒕃)  CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
 12550..12686  ; Include # 18.0 [311] (𒕐..𒚆)  CUNEIFORM NUMERIC SIGN ONE N01..CUNEIFORM NUMERIC SIGN ONE N36 FLAT
-12690..12BFF  ; Include # NA [1392] (𒚐..𒯿)  PROTO-CUNEIFORM SIGN A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
+12690..12BFF  ; Include # 19.0 [1392] (𒚐..𒯿)  PROTO-CUNEIFORM SIGN A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 12F90..12FF2  ; Include # 14.0 [99] (𒾐..𒿲)  CYPRO-MINOAN SIGN CM001..CYPRO-MINOAN SIGN CM302
 13000..1342E  ; Include # 5.2 [1071] (𓀀..𓐮)  EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYPH AA032
 1342F         ; Include # 15.0      (𓐯)  EGYPTIAN HIEROGLYPH V011D
