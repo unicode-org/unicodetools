@@ -10,8 +10,8 @@ Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping 
 
 Ignoring Block:
 Propertywise [
-  \x{1C8B}   \N{CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR}
-  \x{1D2B} ᴫ \N{CYRILLIC LETTER SMALL CAPITAL EL}
+  \N{1C8B:CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR}
+  \N{1D2B:ᴫ:CYRILLIC LETTER SMALL CAPITAL EL}
 ] AreAlike
 end Ignoring;
 
