@@ -1,5 +1,5 @@
-# StandardizedVariants-18.0.0.txt
-# Date: 2026-07-29 [KWW]
+# StandardizedVariants-19.0.0.txt
+# Date: 2026-11-03 [KWW]
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -97,6 +97,12 @@ FF10 FE00; short diagonal stroke form; # FULLWIDTH DIGIT ZERO
 22DC FE00; with horizontal equal; # EQUAL TO OR LESS-THAN
 22DD FE00; with horizontal equal; # EQUAL TO OR GREATER-THAN
 
+1DC09 FE00; horizontal strokes with wider space; # LEIBNIZIAN SYSTEM TWO PLUS OR PLUS-MINUS AMBIGUOUS SIGN
+1DC0A FE00; horizontal strokes with wide lower space; # LEIBNIZIAN SYSTEM TWO PLUS OR MINUS-PLUS AMBIGUOUS SIGN
+1DC0D FE00; horizontal strokes with wider spaces; # LEIBNIZIAN SYSTEM TWO NEGATED PLUS OR MINUS-PLUS AMBIGUOUS SIGN
+1DC12 FE00; horizontal strokes equally widely spaced; # LEIBNIZIAN SYSTEM TWO NEGATED PLUS OR MINUS-PLUS PARTIAL AMBIGUOUS SIGN
+1DC12 FE01; horizontal strokes equally narrowly spaced; # LEIBNIZIAN SYSTEM TWO NEGATED PLUS OR MINUS-PLUS PARTIAL AMBIGUOUS SIGN
+
 # Mathematical alphabet script variants
 
 1D49C FE00; chancery style; #  MATHEMATICAL SCRIPT CAPITAL A
@@ -153,6 +159,7 @@ FF10 FE00; short diagonal stroke form; # FULLWIDTH DIGIT ZERO
 1D4B4 FE01; roundhand style; #  MATHEMATICAL SCRIPT CAPITAL Y
 1D4B5 FE01; roundhand style; #  MATHEMATICAL SCRIPT CAPITAL Z
 
+1D4CD FE02; kurrent style; #  MATHEMATICAL SCRIPT SMALL X
 1D4CF FE02; kurrent style; #  MATHEMATICAL SCRIPT SMALL Z
 
 # East Asian punctuation positional and width variants
@@ -185,6 +192,9 @@ FF1B FE00; corner-justified form; # FULLWIDTH SEMICOLON
 FF1B FE01; centered form; # FULLWIDTH SEMICOLON
 FF1F FE00; corner-justified form; # FULLWIDTH QUESTION MARK
 FF1F FE01; centered form; # FULLWIDTH QUESTION MARK
+
+16FE6 FE00; corner-justified form; # DOUBLE IDEOGRAPHIC FULL STOP
+16FE6 FE01; centered form; # DOUBLE IDEOGRAPHIC FULL STOP
 
 # CJK strokes
 
