@@ -1,5 +1,5 @@
 # DerivedAge-19.0.0.txt
-# Date: 2026-11-04, 10:00:38 GMT
+# Date: 2026-11-04, 19:04:10 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2190,7 +2190,9 @@ AB6C..AB6D    ; 18.0 #   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER
 1187A..11883  ; 19.0 #  [10] SIRMAURI VOWEL SIGN E..SIRMAURI EKAM
 11886..1188F  ; 19.0 #  [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 12690..12BFF  ; 19.0 # [1392] PROTO-CUNEIFORM SIGN A..PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
+16D80..16D9D  ; 19.0 #  [30] CHISOI LETTER A..CHISOI SIGN SISO
+16DA0..16DA9  ; 19.0 #  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 
-# Total code points: 1447
+# Total code points: 1487
 
 # EOF
