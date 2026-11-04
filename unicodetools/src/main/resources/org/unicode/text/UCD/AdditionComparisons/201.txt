@@ -1,5 +1,5 @@
 # Cyrillic: 1C8B CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR
-# https://github.com/unicode-org/utc-release-management/issues/[RMG ISSUE NUMBER]
+# https://github.com/unicode-org/utc-release-management/issues/201
 
 # Names always differ.
 # Age always differs since these tests are comparing additions to pre-existing characters.
