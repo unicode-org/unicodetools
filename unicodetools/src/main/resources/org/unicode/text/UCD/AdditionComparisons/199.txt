@@ -9,8 +9,10 @@ Ignoring Name Age:
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
 
 Ignoring Block:
-Propertywise [ \N{LATIN SMALL LETTER W WITH PALATAL HOOK}
-              ᶀ\N{LATIN SMALL LETTER B WITH PALATAL HOOK}] AreAlike
+Propertywise [\N{1DF82:LATIN SMALL LETTER W WITH PALATAL HOOK}]
+          ⧴ [{w\N{COMBINING PALATALIZED HOOK BELOW}}]
+CorrespondTo [\N{1D80:ᶀ:LATIN SMALL LETTER B WITH PALATAL HOOK}]
+          ⧴ [{b\N{COMBINING PALATALIZED HOOK BELOW}}]
 end Ignoring;
 
 end Ignoring;
