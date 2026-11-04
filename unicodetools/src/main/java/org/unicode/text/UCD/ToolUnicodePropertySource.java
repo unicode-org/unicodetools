@@ -690,6 +690,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         {
                             setUniformUnassigned(false);
                         }
+
                         @Override
                         public String _getValue(int cp) {
                             return nf.normalize(cp);
