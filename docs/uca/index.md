@@ -12,9 +12,13 @@ Markus has been taking the incremental file changes, and the notes, into this re
 
 See the history of commits that changed decomps.txt and allkeys.txt.
 (We lost some of that history in the Unicode server crash of 2020.)
--   For UCA 15.1 see https://github.com/unicode-org/unicodetools/pull/403
--   For UCA 15 see https://github.com/unicode-org/unicodetools/pull/246
--   For UCA 14 see https://github.com/unicode-org/unicodetools/pull/71
+-   See the history of [c/uca/sifter/unidata.txt](https://github.com/unicode-org/unicodetools/commits/main/c/uca/sifter/unidata.txt) and similar files
+-   UCA 18: https://github.com/unicode-org/unicodetools/pull/1313
+-   UCA 17: https://github.com/unicode-org/unicodetools/pull/1112
+-   UCA 16: https://github.com/unicode-org/unicodetools/pull/571 & https://github.com/unicode-org/unicodetools/pull/796 etc.
+-   UCA 15.1: https://github.com/unicode-org/unicodetools/pull/403
+-   UCA 15: https://github.com/unicode-org/unicodetools/pull/246
+-   UCA 14: https://github.com/unicode-org/unicodetools/pull/71
 -   For the collection of notes for UCA 10 see ducet.md.
 
 ## Before generating
@@ -115,10 +119,19 @@ Judgment call. See Cherokee, Deseret, Osage, Vithkuqi for examples.
 
 After running the tool, diff the main mapping file and look for bad changes
 (for example, more bytes per weight for common characters).
+
+A good way for checking changes to both
+the sort order and the number of bytes in collation elements
+is to "blank" most of the non-zero weights in FractionalUCA.txt.
+There is a Python script for that (see below).
+Starting in 2025-may, the output of the Java tool directly includes
+FractionalUCA_blanked.txt which is nearly identical to running the Python script
+over FractionalUCA.txt.
+
 ```
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-14.0.txt
-~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/15.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-15.0.txt
-~/unitools/mine/src$ meld ../frac-14.0.txt ../frac-15.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ~/cldr/uni/src/common/uca/FractionalUCA.txt > ../frac-16.0.txt
+~/unitools/mine/src$ sed -r -f ~/cldr/uni/src/tools/scripts/uca/blankweights.sed ../Generated/UCA/17.0.0/CollationAuxiliary/FractionalUCA.txt > ../frac-17.0.txt
+~/unitools/mine/src$ meld ../frac-16.0.txt ../frac-17.0.txt
 ```
 
 CLDR root data files are checked into $CLDR_SRC/common/uca/

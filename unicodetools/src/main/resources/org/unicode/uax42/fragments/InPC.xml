@@ -4,6 +4,7 @@
     attribute InPC { "Bottom"
                    | "Bottom_And_Left"
                    | "Bottom_And_Right"
+                   | "Invisible"
                    | "Left"
                    | "Left_And_Right"
                    | "NA"

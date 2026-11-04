@@ -1,0 +1,37 @@
+# Symbol: Geometric Shapes Extended: 16 characters (1F7DB, 1F7F1..1F7FF)
+# https://github.com/unicode-org/utc-release-management/issues/204
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block Pattern_Syntax Math_Class Math_Class_Ex Math_Entity_Name Math_Entity_Set Math_Descriptive_Comments:
+
+Propertywise [\N{25B1:▱:WHITE PARALLELOGRAM}
+              \N{1F7DB:BULLET IN DOUBLE CIRCLE}
+              \N{1F7F1:CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE}
+              \N{1F7F2:DOUBLE CIRCLE WITH DOUBLE HORIZONTAL LINE}
+              \N{1F7F3:CIRCLED BOTTOM RIGHT OBLIQUE HALF BLACK CIRCLE}
+              \N{1F7F4:LEFT HALF WHITE CIRCLE}
+              \N{1F7F5:RIGHT HALF WHITE CIRCLE}
+              \N{1F7F6:TRANSPARENT CUBE}
+              \N{1F7F7:WHITE CUBE}
+              \N{1F7F8:HORIZONTAL DOUBLE WHITE SMALL SQUARE}
+              \N{1F7F9:VERTICAL DOUBLE WHITE SMALL SQUARE}
+              \N{1F7FA:WHITE SQUARE WITH BOTTOM HALF BISECTED}
+              \N{1F7FB:WHITE SQUARE WITH TOP HALF BISECTED}
+              \N{1F7FC:WHITE SQUARE WITH HORIZONTAL AND VERTICAL BISECTING LINES}
+              \N{1F7FD:LOWER LEFT FLATTENED RIGHT TRIANGLE}
+              \N{1F7FE:LOWER RIGHT FLATTENED RIGHT TRIANGLE}
+              \N{1F7FF:RHOMBUS}] AreAlike
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

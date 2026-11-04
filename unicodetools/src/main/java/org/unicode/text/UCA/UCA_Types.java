@@ -13,6 +13,7 @@ import java.util.BitSet;
 
 public interface UCA_Types {
     public static final char LEVEL_SEPARATOR = '\u0000';
+    public static final char MERGE_SEPARATOR = 1;
 
     static final int NEUTRAL_SECONDARY = 0x20;
     // http://www.unicode.org/reports/tr10/#Tertiary_Weight_Table
@@ -28,11 +29,10 @@ public interface UCA_Types {
     static final BitSet uppercaseTertiaries = BitSet.valueOf(new long[] {0x20065F00});
 
     /** Enum for alternate handling */
-    public static final byte SHIFTED = 0,
-            ZEROED = 1,
-            NON_IGNORABLE = 2,
-            SHIFTED_TRIMMED = 3,
-            LAST = 3;
+    public enum Alternate {
+        NON_IGNORABLE,
+        SHIFTED
+    }
 
     /** Used to terminate a list of CEs */
     public static final int TERMINATOR = 0xFFFFFFFF; // CE that marks end of string

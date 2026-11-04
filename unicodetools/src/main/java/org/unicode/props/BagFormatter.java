@@ -9,7 +9,6 @@ package org.unicode.props;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -23,7 +22,6 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.Visitor;
 import org.unicode.cldr.util.props.UnicodeLabel;
-import org.unicode.jsp.ICUPropertyFactory;
 
 public class BagFormatter {
     static final boolean DEBUG = false;
@@ -294,6 +292,15 @@ public class BagFormatter {
         return this;
     }
 
+    /**
+     * @param align Whether to align names in comments (default: true).
+     * @return this (for chaining)
+     */
+    public BagFormatter setAlignNames(boolean align) {
+        alignNames = align;
+        return this;
+    }
+
     public BagFormatter setUnicodeDataStyleRanges(boolean unicodeDataStyleRanges) {
         this.unicodeDataStyleRanges = unicodeDataStyleRanges;
         return this;
@@ -395,7 +402,7 @@ public class BagFormatter {
     }
 
     private UnicodeProperty.Factory getUnicodePropertyFactory() {
-        if (source == null) source = ICUPropertyFactory.make();
+        if (source == null) source = IndexUnicodeProperties.make();
         return source;
     }
 
@@ -415,11 +422,13 @@ public class BagFormatter {
 
     private int minSpacesBeforeSemicolon = 0;
     private int minSpacesAfterSemicolon = 1;
+    private boolean alignNames = true;
     private boolean mergeRanges = true;
     private boolean unicodeDataStyleRanges = false;
     private Transliterator showLiteral = null;
     private Transliterator fixName = null;
     private boolean showSetAlso = false;
+    private boolean showValueInComment = false;
 
     private RangeFinder rf = new RangeFinder();
 
@@ -555,7 +564,7 @@ public class BagFormatter {
             }
 
             if (showLiteral != null) {
-                tabber.add(4, Tabber.LEFT);
+                tabber.add(4 + (showValueInComment ? 6 : 0), Tabber.LEFT);
             }
             // myTabber.add(7,Tabber.LEFT);
 
@@ -716,8 +725,8 @@ public class BagFormatter {
                             + commentSeparator
                             + label
                             + count
-                            + insertLiteral(start, end)
-                            + getName("\t ", start, end);
+                            + insertLiteral(start, end, value)
+                            + getName(alignNames ? "\t " : " ", start, end);
             if (start != end && unicodeDataStyleRanges) {
                 if (rightHandSide.contains(RANGE_PLACEHOLDER)) {
                     toTable(hex(start, start) + rightHandSide.replace(RANGE_PLACEHOLDER, "First"));
@@ -735,31 +744,50 @@ public class BagFormatter {
                                 + commentSeparator
                                 + label
                                 + count
-                                + insertLiteral(start, end)
-                                + getName("\t ", start, end));
+                                + insertLiteral(start, end, value)
+                                + getName(alignNames ? "\t " : " ", start, end));
             }
         }
 
         private String insertLiteral(String thing) {
-            return (showLiteral == null ? "" : " \t(" + showLiteral.transliterate(thing) + ") ");
+            if (showLiteral == null) {
+                return "";
+            }
+            return " \t(" + showLiteral.transliterate(thing) + showValue(thing);
         }
 
-        private String insertLiteral(int start, int end) {
-            return (showLiteral == null
-                    ? ""
-                    : " \t("
-                            + showLiteral.transliterate(UTF16.valueOf(start))
-                            + ((start != end)
-                                    ? (".." + showLiteral.transliterate(UTF16.valueOf(end)))
-                                    : "")
-                            + ") ");
+        private String showValue(String source) {
+            if (!showValueInComment) {
+                return ") ";
+            }
+            String value = getValueSource().getValue(source.codePointAt(0), false);
+            return " ⇒ " + showLiteral.transliterate(value) + ") ";
         }
-        /*
-        private String insertLiteral(int cp) {
-            return (showLiteral == null ? ""
-                :  " \t(" + showLiteral.transliterate(UTF16.valueOf(cp)) + ") ");
+
+        private String showValue(int start, int end) {
+            if (!showValueInComment) {
+                return ") ";
+            }
+            String startValue = getValueSource().getValue(start, false);
+            String endValue = getValueSource().getValue(end, false);
+            return " ⇒ "
+                    + showLiteral.transliterate(startValue)
+                    + (startValue == endValue
+                            ? ")      "
+                            : ".." + showLiteral.transliterate(endValue) + ") ");
         }
-         */
+
+        private String insertLiteral(int start, int end, String value) {
+            if (showLiteral == null) {
+                return "";
+            }
+            return " \t("
+                    + showLiteral.transliterate(Character.toString(start))
+                    + (start == end
+                            ? ""
+                            : (".." + showLiteral.transliterate(Character.toString(end))))
+                    + showValue(start, end);
+        }
     }
 
     /**
@@ -941,6 +969,18 @@ public class BagFormatter {
 
     public BagFormatter setShowLiteral(Transliterator transliterator) {
         showLiteral = transliterator;
+        return this;
+    }
+
+    /*
+     * Only makes a difference when showLiteral is on AND the value is a string value
+     */
+    public boolean getShowDehexedValue() {
+        return showValueInComment;
+    }
+
+    public BagFormatter setShowDehexedValue(boolean showDehexedValue) {
+        this.showValueInComment = showDehexedValue;
         return this;
     }
 

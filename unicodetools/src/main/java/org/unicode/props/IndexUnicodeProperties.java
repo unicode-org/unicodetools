@@ -65,7 +65,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final boolean GZIP = true;
 
     static final boolean SIMPLE_COMPRESSION = true;
-    static final boolean FILE_CACHE = System.getProperty("DISABLE_PROP_FILE_CACHE") == null;
+    static final boolean FILE_CACHE = System.getProperty("ENABLE_PROP_FILE_CACHE") != null;
 
     /** Debugging */
     static final boolean SHOW_DEFAULTS = false;
@@ -80,9 +80,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final boolean SHOW_LOADED = false;
 
     public static final String FIELD_SEPARATOR = "; ";
-    private static final Relation<UcdProperty, String> DATA_LOADING_ERRORS =
-            Relation.of(
-                    new EnumMap<UcdProperty, Set<String>>(UcdProperty.class), LinkedHashSet.class);
+
+    private static final Map<VersionInfo, Relation<UcdProperty, String>> DATA_LOADING_ERRORS =
+            new ConcurrentHashMap<>();
 
     public enum DefaultValueType {
         LITERAL(null),
@@ -135,6 +135,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     // Remove these static warts once https://github.com/unicode-org/unicodetools/issues/716 is
     // fixed.
     private static boolean incrementalProperties = false;
+
+    public static synchronized boolean usingIncrementalProperties() {
+        return incrementalProperties;
+    }
 
     public static synchronized void useIncrementalProperties() {
         if (!incrementalProperties && !version2IndexUnicodeProperties.isEmpty()) {
@@ -467,7 +471,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             fullFilename = fileInfo.getFullFileName(ucdVersion);
             final String fileName = fileInfo.getFileName(ucdVersion);
 
-            if (FILE_CACHE) {
+            if (FILE_CACHE || incrementalProperties) {
                 // TODO(egg): When using cached property data, most defaults do not get
                 // loaded in PropertyParsingInfo, as that happens in parseSourceFile.
                 // Only the ones from the Extra files are loaded.
@@ -663,7 +667,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return Arrays.asList(UcdProperty.values());
     }
 
-    public static Relation<UcdProperty, String> getDataLoadingErrors() {
+    public static Relation<UcdProperty, String> getDataLoadingErrors(VersionInfo version) {
+        return DATA_LOADING_ERRORS.computeIfAbsent(
+                version,
+                v ->
+                        Relation.of(
+                                new EnumMap<UcdProperty, Set<String>>(UcdProperty.class),
+                                LinkedHashSet.class));
+    }
+
+    public static Map<VersionInfo, Relation<UcdProperty, String>> getDataLoadingErrors() {
         return DATA_LOADING_ERRORS;
     }
 
@@ -726,11 +739,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         @Override
         public boolean isTrivial() {
-            return _getRawUnicodeMap().isEmpty()
-                    || (!hasStrings()
-                            && _getRawUnicodeMap()
-                                    .keySet(_getRawUnicodeMap().getValue(0))
-                                    .equals(UnicodeSet.ALL_CODE_POINTS));
+            return !hasStrings() && _getRawUnicodeMap().getRangeCount() == 1;
         }
 
         @Override
@@ -813,6 +822,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            return _getRawUnicodeMap().get(string);
+        }
+
+        @Override
         public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
             if (baseVersionProperties == null) {
                 return super.getSet(matcher, result);
@@ -853,6 +867,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             } else {
                 return rawValue;
             }
+        }
+
+        public List<String> getApprovedNameAliases() {
+            var result = new ArrayList<String>();
+            result.add(prop.getShortName());
+            result.add(prop.getNames().getLongName());
+            result.addAll(prop.getNames().getOtherNames());
+            return result;
         }
 
         @Override
@@ -896,11 +918,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             return result;
         }
-        //        @Override
-        //        public boolean hasUniformUnassigned() {
-        //            //throw new UnsupportedOperationException();
-        //            return false;
-        //        }
+
+        @Override
+        public boolean hasUniformUnassigned() {
+            return false;
+        }
     }
 
     {

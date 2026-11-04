@@ -1,0 +1,1257 @@
+﻿# MathMap-9.txt 
+# Last revised 2007-05-07
+#
+# This is a mapping of characters to standard entity 
+# sets commonly used for SGML and MathML documents.
+#
+# Copyright (c) 1991-2007 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+#
+# While the contents of this file represent the best information
+# available to the authors and the Unicode Technical Committee as
+# of the date referenced above, it is likely that the information
+# in this file will change from time to time. Most importantly,
+# the mapping of characters to the ISO standard SGML entity sets
+# is under review by the relevant ISO committee and may therefore
+# change.
+#
+# This file is *NOT* formally part of the Unicode Character
+# Database at this time.
+#
+# The file consists of 4 fields. The number and type of fields in
+# this file may change in future versions.
+#
+# The character encoding of the file is UTF-8
+#
+# 0: code point or range
+#       The code point field is not unique - where ISO entity sets overlap
+#       the same code point may occur several times with different mappings
+# 1: entity name
+#       The existence of an entity name does not imply that an entity is
+#       defined in any of the entity sets, only that its name can be
+#       constructed by aanlogy to other names
+# 2: ISO entity set
+# 3: descriptive comments (of various types)
+#       The descriptive comments provide more information about a character,
+#       or its specific appearance. Some descriptions contain common macro 
+#       names (w/ slash) but in the majority of cases, the description is
+#       simply the description of the entity in the published entity set, if
+#       different from the formal Unicode character name. Minor differences
+#       in word order, punctuation and verb forms have been ignored, but not 
+#       systematic differences in terminology, such as filled vs. black.
+#       In principle this allows location of entities by their description.
+#
+# These fields are followed by # and the Unicode 'name' (or name range), in all
+# caps. Unicode 'names' and name ranges are provided for ease of reference only.
+# They are not normative and may not always match the official character names.
+#
+# Fields are delimited by ";". Spaces adjacent to the delimiter, or the "#" are
+# not significant. Future versions of this file may use different amounts of
+# whitespace.
+#
+# For more information see revision 9 or later of UTR#25
+# --------------------------------------
+# code point;entity name;entity set;note/description              # [UTF-8] CHARACTER NAME
+0021;	excl;	ISONUM;	**	# !	EXCLAMATION MARK
+0021;	fact;	**;	**	# !	EXCLAMATION MARK
+0023;	num;	ISONUM;	**	# #	NUMBER SIGN
+0024;	dollar;	ISONUM;	**	# $	DOLLAR SIGN
+0025;	percnt;	ISONUM;	**	# %	PERCENT SIGN
+0026;	amp;	ISONUM;	**	# &	AMPERSAND
+0028;	lpar;	ISONUM;	**	# (	LEFT PARENTHESIS
+0029;	rpar;	ISONUM;	**	# )	RIGHT PARENTHESIS
+002A;	ast;	ISONUM;	[high, not /ast]               	# *	ASTERISK
+002B;	plus;	**;	**	# +	PLUS SIGN
+002C;	comma;	ISONUM;	**	# ,	COMMA
+002E;	period;	ISONUM;	period                         	# .	FULL STOP
+002F;	sol;	ISONUM;	**	# /	SOLIDUS
+003A;	colon;	ISONUM;	**	# :	COLON
+003B;	semi;	ISONUM;	**	# ;	SEMICOLON
+003C;	lt;	ISONUM;	**	# <	LESS-THAN SIGN
+003D;	equals;	ISONUM;	**	# =	EQUALS SIGN
+003E;	gt;	ISONUM;	**	# >	GREATER-THAN SIGN
+003F;	quest;	ISONUM;	**	# ?	QUESTION MARK
+0040;	commat;	ISONUM;	**	# @	COMMERCIAL AT
+005B;	lsqb;	ISONUM;	**	# [	LEFT SQUARE BRACKET
+005C;	bsol;	ISONUM;	**	# \	REVERSE SOLIDUS
+005D;	rsqb;	ISONUM;	**	# ]	RIGHT SQUARE BRACKET
+007B;	lcub;	ISONUM;	**	# {	LEFT CURLY BRACKET
+007C;	verbar;	ISONUM;	**	# |	VERTICAL LINE
+007D;	rcub;	ISONUM;	**	# }	RIGHT CURLY BRACKET
+00A1;	iexcl;	ISONUM;	**	# ¡	INVERTED EXCLAMATION MARK
+00A2;	cent;	ISONUM;	**	# ¢	CENT SIGN
+00A3;	pound;	ISONUM;	**	# £	POUND SIGN
+00A4;	curren;	ISONUM;	**	# ¤	CURRENCY SIGN
+00A5;	yen;	ISONUM;	**	# ¥	YEN SIGN
+00A6;	brvbar;	ISONUM;	(vertical)                     	# ¦	BROKEN BAR
+00A7;	sect;	ISONUM;	**	# §	SECTION SIGN
+00AC;	not;	ISONUM;	/neg /lnot                     	# ¬	NOT SIGN
+00B0;	deg;	ISONUM;	**	# °	DEGREE SIGN
+00B1;	plusmn;	ISONUM;	**	# ±	PLUS-MINUS SIGN
+00B2;	sup2;	ISONUM;	**	# ²	SUPERSCRIPT TWO
+00B3;	sup3;	ISONUM;	**	# ³	SUPERSCRIPT THREE
+00B5;	micro;	ISONUM;	**	# µ	MICRO SIGN
+00B6;	para;	ISONUM;	(paragraph sign)               	# ¶	PILCROW SIGN
+00B7;	middot;	ISONUM;	/centerdot                     	# ·	MIDDLE DOT
+00B9;	sup1;	ISONUM;	**	# ¹	SUPERSCRIPT ONE
+00BC;	frac14;	ISONUM;	**	# ¼	VULGAR FRACTION ONE QUARTER
+00BD;	frac12;	ISONUM;	**	# ½	VULGAR FRACTION ONE HALF
+00BE;	frac34;	ISONUM;	**	# ¾	VULGAR FRACTION THREE QUARTERS
+00BF;	iquest;	ISONUM;	**	# ¿	INVERTED QUESTION MARK
+00D7;	times;	ISONUM;	**	# ×	MULTIPLICATION SIGN
+00F7;	divide;	ISONUM;	**	# ÷	DIVISION SIGN
+0300;	grave;	ISODIA;	**	# ̀	COMBINING GRAVE ACCENT
+0301;	acute;	ISODIA;	**	# ́	COMBINING ACUTE ACCENT
+0302;	circ;	ISODIA;	**	# ̂	COMBINING CIRCUMFLEX ACCENT
+0303;	tilde;	ISODIA;	**	# ̃	COMBINING TILDE
+0304;	macr;	ISODIA;	**	# ̄	COMBINING MACRON
+0306;	breve;	ISODIA;	**	# ̆	COMBINING BREVE
+0307;	dot;	ISODIA;	**	# ̇	COMBINING DOT ABOVE
+0308;	die;	ISODIA;	**	# ̈	COMBINING DIAERESIS
+0308;	Dot;	ISOTECH;	**	# ̈	COMBINING DIAERESIS
+030A;	ring;	ISODIA;	**	# ̊	COMBINING RING ABOVE
+030C;	caron;	ISODIA;	**	# ̌	COMBINING CARON
+0323;	udot;	**;	**	# ̣	COMBINING DOT BELOW
+032C;	ucaron;	**;	**	# ̬	COMBINING CARON BELOW
+032D;	ucirc;	**;	**	# ̭	COMBINING CIRCUMFLEX ACCENT BELOW
+032E;	ubreve;	**;	**	# ̮	COMBINING BREVE BELOW
+0330;	utilde;	**;	**	# ̰	COMBINING TILDE BELOW
+0333;	2lowbar;	**;	**	# ̳	COMBINING DOUBLE LOW LINE
+0391;	Agr;	ISOGRK1;	**	# Α	GREEK CAPITAL LETTER ALPHA
+0392;	Bgr;	ISOGRK1;	**	# Β	GREEK CAPITAL LETTER BETA
+0393;	Gamma;	ISOGRK3;	**	# Γ	GREEK CAPITAL LETTER GAMMA
+0394;	Delta;	ISOGRK3;	**	# Δ	GREEK CAPITAL LETTER DELTA
+0395;	Egr;	ISOGRK1;	**	# Ε	GREEK CAPITAL LETTER EPSILON
+0396;	Zgr;	ISOGRK1;	**	# Ζ	GREEK CAPITAL LETTER ZETA
+0397;	EEgr;	ISOGRK1;	**	# Η	GREEK CAPITAL LETTER ETA
+0398;	Theta;	ISOGRK3;	**	# Θ	GREEK CAPITAL LETTER THETA
+0399;	Igr;	ISOGRK1;	**	# Ι	GREEK CAPITAL LETTER IOTA
+039A;	Kgr;	ISOGRK1;	**	# Κ	GREEK CAPITAL LETTER KAPPA
+039B;	Lambda;	ISOGRK3;	**	# Λ	GREEK CAPITAL LETTER LAMDA
+039C;	Mgr;	ISOGRK1;	**	# Μ	GREEK CAPITAL LETTER MU
+039D;	Ngr;	ISOGRK1;	**	# Ν	GREEK CAPITAL LETTER NU
+039E;	Xi;	ISOGRK3;	**	# Ξ	GREEK CAPITAL LETTER XI
+039F;	Ogr;	ISOGRK1;	**	# Ο	GREEK CAPITAL LETTER OMICRON
+03A0;	Pi;	ISOGRK3;	**	# Π	GREEK CAPITAL LETTER PI
+03A1;	Rgr;	ISOGRK1;	**	# Ρ	GREEK CAPITAL LETTER RHO
+03A3;	Sigma;	ISOGRK3;	**	# Σ	GREEK CAPITAL LETTER SIGMA
+03A4;	Tgr;	ISOGRK1;	**	# Τ	GREEK CAPITAL LETTER TAU
+03A6;	Phi;	ISOGRK3;	**	# Φ	GREEK CAPITAL LETTER PHI
+03A7;	KHgr;	ISOGRK1;	**	# Χ	GREEK CAPITAL LETTER CHI
+03A8;	Psi;	ISOGRK3;	**	# Ψ	GREEK CAPITAL LETTER PSI
+03A9;	Omega;	ISOGRK3;	**	# Ω	GREEK CAPITAL LETTER OMEGA
+03B1;	alpha;	ISOGRK3;	**	# α	GREEK SMALL LETTER ALPHA
+03B2;	beta;	ISOGRK3;	**	# β	GREEK SMALL LETTER BETA
+03B3;	gamma;	ISOGRK3;	**	# γ	GREEK SMALL LETTER GAMMA
+03B4;	delta;	ISOGRK3;	**	# δ	GREEK SMALL LETTER DELTA
+03B5;	epsiv;	ISOGRK3;	rounded                        	# ε	GREEK SMALL LETTER EPSILON
+03B6;	zeta;	ISOGRK3;	**	# ζ	GREEK SMALL LETTER ZETA
+03B7;	eta;	ISOGRK3;	**	# η	GREEK SMALL LETTER ETA
+03B8;	theta;	ISOGRK3;	straight theta                 	# θ	GREEK SMALL LETTER THETA
+03B9;	iota;	ISOGRK3;	**	# ι	GREEK SMALL LETTER IOTA
+03BA;	kappa;	ISOGRK3;	**	# κ	GREEK SMALL LETTER KAPPA
+03BB;	lambda;	ISOGRK3;	**	# λ	GREEK SMALL LETTER LAMDA
+03BC;	mu;	ISOGRK3;	**	# μ	GREEK SMALL LETTER MU
+03BD;	nu;	ISOGRK3;	**	# ν	GREEK SMALL LETTER NU
+03BE;	xi;	ISOGRK3;	**	# ξ	GREEK SMALL LETTER XI
+03BF;	ogr;	ISOGRK1;	**	# ο	GREEK SMALL LETTER OMICRON
+03C0;	pi;	ISOGRK3;	**	# π	GREEK SMALL LETTER PI
+03C1;	rho;	ISOGRK3;	**	# ρ	GREEK SMALL LETTER RHO
+03C3;	sigma;	ISOGRK3;	**	# σ	GREEK SMALL LETTER SIGMA
+03C4;	tau;	ISOGRK3;	**	# τ	GREEK SMALL LETTER TAU
+03C5;	upsi;	ISOGRK3;	**	# υ	GREEK SMALL LETTER UPSILON
+03C6;	phi;	ISOGRK3;	/straightphi                   	# φ	GREEK SMALL LETTER PHI
+03C7;	chi;	ISOGRK3;	**	# χ	GREEK SMALL LETTER CHI
+03C8;	psi;	ISOGRK3;	**	# ψ	GREEK SMALL LETTER PSI
+03C9;	omega;	ISOGRK3;	**	# ω	GREEK SMALL LETTER OMEGA
+03D1;	thetav;	ISOGRK3;	/vartheta - curly or open small theta   	# ϑ	GREEK THETA SYMBOL
+03D2;	Upsi;	ISOGRK3;	**	# ϒ	GREEK UPSILON WITH HOOK SYMBOL
+03D5;	phiv;	ISOGRK3;	curly or open, small letter    	# ϕ	GREEK PHI SYMBOL
+03D6;	piv;	ISOGRK3;	rounded (pomega)               	# ϖ	GREEK PI SYMBOL
+03DB;	stigma;	**;	**	# ϛ	GREEK SMALL LETTER STIGMA
+03DC;	Gammad;	ISOGRK3;	capital                        	# Ϝ	GREEK LETTER DIGAMMA
+03DD;	gammad;	ISOGRK3;	old                            	# ϝ	GREEK SMALL LETTER DIGAMMA
+03E1;	sampi;	**;	**	# ϡ	GREEK SMALL LETTER SAMPI
+03F0;	kappav;	ISOGRK3;	rounded                        	# ϰ	GREEK KAPPA SYMBOL
+03F1;	rhov;	ISOGRK3;	rounded                        	# ϱ	GREEK RHO SYMBOL
+03F4;	Thetav;	**;	**	# ϴ	GREEK CAPITAL THETA SYMBOL
+03F5;	epsi;	ISOGRK3;	**	# ϵ	GREEK LUNATE EPSILON SYMBOL
+03F6;	bepsi;	ISOAMSR;	**	# ϶	GREEK REVERSED LUNATE EPSILON SYMBOL
+0429;	SHcy;	ISOCYR1;	**	# Щ	CYRILLIC CAPITAL LETTER SHCHA
+2002;	ensp;	ISOPUB;	(half an em)                   	#  	EN SPACE
+2003;	emsp;	ISOPUB;	**	#  	EM SPACE
+2010;	hyphen;	ISONUM;	(true graphic)                 	# ‐	HYPHEN
+2012;	dash;	ISOPUB;	**	# ‒	FIGURE DASH
+2013;	ndash;	ISOPUB;	**	# –	EN DASH
+2014;	mdash;	ISOPUB;	**	# —	EM DASH
+2016;	Verbar;	ISOTECH;	**	# ‖	DOUBLE VERTICAL LINE
+2020;	dagger;	ISOAMSB;	**	# †	DAGGER
+2020;	dagger;	ISOPUB;	**	# †	DAGGER
+2021;	Dagger;	ISOAMSB;	**	# ‡	DOUBLE DAGGER
+2021;	Dagger;	ISOPUB;	**	# ‡	DOUBLE DAGGER
+2022;	bull;	ISOPUB;	/bullet round bullet, filled   	# •	BULLET
+2026;	hellip;	ISOPUB;	**	# …	HORIZONTAL ELLIPSIS
+2032;	prime;	ISOTECH;	minute                         	# ′	PRIME
+2033;	Prime;	ISOTECH;	second                         	# ″	DOUBLE PRIME
+2034;	tprime;	ISOTECH;	**	# ‴	TRIPLE PRIME
+2035;	bprime;	ISOAMSO;	**	# ‵	REVERSED PRIME
+2036;	bPrime;	**;	**	# ‶	REVERSED DOUBLE PRIME
+2037;	btprime;	**;	**	# ‷	REVERSED TRIPLE PRIME
+204E;	lowast;	ISOTECH;	**	# ⁎	LOW ASTERISK
+204F;	bsemi;	ISOAMSO;	**	# ⁏	REVERSED SEMICOLON
+2050;	closur;	**;	**	# ⁐	CLOSE UP
+2051;	Ast;	**;	**	# ⁑	TWO ASTERISKS ALIGNED VERTICALLY
+2057;	qprime;	ISOTECH;	**	# ⁗	QUADRUPLE PRIME
+20DB;	tdot;	ISOTECH;	**	# ⃛	COMBINING THREE DOTS ABOVE
+20DC;	DotDot;	ISOTECH;	**	# ⃜	COMBINING FOUR DOTS ABOVE
+2102;	Copf;	ISOMOPF;	/Bbb C, open face C            	# ℂ	DOUBLE-STRUCK CAPITAL C
+210A;	gscr;	ISOMSCR;	/scr g                         	# ℊ	SCRIPT SMALL G
+210B;	Hscr;	ISOMSCR;	/scr H                         	# ℋ	SCRIPT CAPITAL H
+210C;	Hfr;	ISOMFRK;	/frak H                        	# ℌ	BLACK-LETTER CAPITAL H
+210D;	Hopf;	ISOMOPF;	/Bbb H                         	# ℍ	DOUBLE-STRUCK CAPITAL H
+210F;	plankv;	ISOAMSO;	/hslash - variant              	# ℏ	PLANCK CONSTANT OVER TWO PI
+2110;	Iscr;	ISOMSCR;	/scr I                         	# ℐ	SCRIPT CAPITAL I
+2111;	image;	ISOAMSO;	imaginary part                 	# ℑ	BLACK-LETTER CAPITAL I
+2112;	lagran;	ISOTECH;	Lagrangian                     	# ℒ	SCRIPT CAPITAL L
+2113;	ell;	ISOAMSO;	cursive small l                	# ℓ	SCRIPT SMALL L
+2115;	Nopf;	ISOMOPF;	/Bbb N, open face N            	# ℕ	DOUBLE-STRUCK CAPITAL N
+2118;	weierp;	ISOAMSO;	Weierstrass p (Unicode name is a misnomer)   	# ℘	SCRIPT CAPITAL P
+2119;	Popf;	ISOMOPF;	/Bbb P, open face P            	# ℙ	DOUBLE-STRUCK CAPITAL P
+211A;	Qopf;	ISOMOPF;	/Bbb Q, open face Q            	# ℚ	DOUBLE-STRUCK CAPITAL Q
+211B;	Rscr;	ISOMSCR;	/scr R                         	# ℛ	SCRIPT CAPITAL R
+211C;	real;	ISOAMSO;	**	# ℜ	BLACK-LETTER CAPITAL R
+211D;	Ropf;	ISOMOPF;	/Bbb R, open face R            	# ℝ	DOUBLE-STRUCK CAPITAL R
+2124;	Zopf;	ISOMOPF;	/Bbb Z, open face Z            	# ℤ	DOUBLE-STRUCK CAPITAL Z
+2126;	ohm;	ISONUM;	(deprecated in math, use greek letter)       	# Ω	OHM SIGN
+2127;	mho;	ISOAMSO;	conductance                    	# ℧	INVERTED OHM SIGN
+2128;	Zfr;	ISOMFRK;	/frak Z                        	# ℨ	BLACK-LETTER CAPITAL Z
+2129;	iiota;	ISOAMSO;	inverted iota                  	# ℩	TURNED GREEK SMALL LETTER IOTA
+212B;	angst;	ISOTECH;	Angstrom capital A, ring(deprecated in math) 	# Å	ANGSTROM SIGN
+212C;	bernou;	ISOTECH;	Bernoulli function             	# ℬ	SCRIPT CAPITAL B
+212D;	Cfr;	ISOMFRK;	**	# ℭ	BLACK-LETTER CAPITAL C
+212F;	escr;	ISOMSCR;	/scr e                         	# ℯ	SCRIPT SMALL E
+2130;	Escr;	ISOMSCR;	/scr E                         	# ℰ	SCRIPT CAPITAL E
+2131;	Fscr;	ISOMSCR;	/scr F                         	# ℱ	SCRIPT CAPITAL F
+2133;	phmmat;	ISOTECH;	physics M-matrix               	# ℳ	SCRIPT CAPITAL M
+2134;	order;	ISOTECH;	order of                       	# ℴ	SCRIPT SMALL O
+2135;	aleph;	ISOTECH;	aleph, Hebrew                  	# ℵ	ALEF SYMBOL
+2136;	beth;	ISOAMSO;	beth, Hebrew                   	# ℶ	BET SYMBOL
+2137;	gimel;	ISOAMSO;	gimel, Hebrew                  	# ℷ	GIMEL SYMBOL
+2138;	daleth;	ISOAMSO;	daleth, Hebrew                 	# ℸ	DALET SYMBOL
+213D;	opfgamma;	**;	**	# ℽ	DOUBLE-STRUCK SMALL GAMMA
+213E;	opfGam;	**;	**	# ℾ	DOUBLE-STRUCK CAPITAL GAMMA
+213F;	opfPi;	**;	**	# ℿ	DOUBLE-STRUCK CAPITAL PI
+2140;	opfsum;	**;	**	# ⅀	DOUBLE-STRUCK N-ARY SUMMATION
+2141;	Game;	**;	**	# ⅁	TURNED SANS-SERIF CAPITAL G
+214B;	turnamp;	**;	**	# ⅋	TURNED AMPERSAND
+2190;	larr;	ISONUM;	/leftarrow /gets               	# ←	LEFTWARDS ARROW
+2191;	uarr;	ISONUM;	**	# ↑	UPWARDS ARROW
+2192;	rarr;	ISONUM;	/rightarrow /to                	# →	RIGHTWARDS ARROW
+2193;	darr;	ISONUM;	**	# ↓	DOWNWARDS ARROW
+2194;	harr;	ISOAMSA;	left and right arrow           	# ↔	LEFT RIGHT ARROW
+2195;	varr;	ISOAMSA;	up and down arrow              	# ↕	UP DOWN ARROW
+2196;	nwarr;	ISOAMSA;	NW pointing arrow              	# ↖	NORTH WEST ARROW
+2197;	nearr;	ISOAMSA;	NE pointing arrow              	# ↗	NORTH EAST ARROW
+2198;	searr;	ISOAMSA;	SE pointing arrow              	# ↘	SOUTH EAST ARROW
+2199;	swarr;	ISOAMSA;	SW pointing arrow              	# ↙	SOUTH WEST ARROW
+219A;	nlarr;	ISOAMSA;	not left arrow                 	# ↚	LEFTWARDS ARROW WITH STROKE
+219B;	nrarr;	ISOAMSA;	not right arrow                	# ↛	RIGHTWARDS ARROW WITH STROKE
+219C;	larrw;	**;	left arrow-wavy                	# ↜	LEFTWARDS WAVE ARROW
+219D;	rarrw;	ISOAMSA;	right arrow-wavy               	# ↝	RIGHTWARDS WAVE ARROW
+219E;	Larr;	ISOAMSA;	**	# ↞	LEFTWARDS TWO HEADED ARROW
+219F;	Uarr;	ISOAMSA;	**	# ↟	UPWARDS TWO HEADED ARROW
+21A0;	Rarr;	ISOAMSA;	**	# ↠	RIGHTWARDS TWO HEADED ARROW
+21A1;	Darr;	ISOAMSA;	**	# ↡	DOWNWARDS TWO HEADED ARROW
+21A2;	larrtl;	ISOAMSA;	left arrow-tailed              	# ↢	LEFTWARDS ARROW WITH TAIL
+21A3;	rarrtl;	ISOAMSA;	right arrow-tailed             	# ↣	RIGHTWARDS ARROW WITH TAIL
+21A4;	mapstoleft;	**;	maps to, leftward              	# ↤	LEFTWARDS ARROW FROM BAR
+21A5;	mapstoup;	**;	maps to, upward                	# ↥	UPWARDS ARROW FROM BAR
+21A6;	map;	ISOAMSA;	maps to, rightward             	# ↦	RIGHTWARDS ARROW FROM BAR
+21A7;	mapstodown;	**;	maps to, downward              	# ↧	DOWNWARDS ARROW FROM BAR
+21A8;	varrb;	**;	up and down arrow, bar under   	# ↨	UP DOWN ARROW WITH BASE
+21A9;	larrhk;	ISOAMSA;	**	# ↩	LEFTWARDS ARROW WITH HOOK
+21AA;	rarrhk;	ISOAMSA;	**	# ↪	RIGHTWARDS ARROW WITH HOOK
+21AB;	larrlp;	ISOAMSA;	**	# ↫	LEFTWARDS ARROW WITH LOOP
+21AC;	rarrlp;	ISOAMSA;	**	# ↬	RIGHTWARDS ARROW WITH LOOP
+21AD;	harrw;	ISOAMSA;	left and right arr-wavy        	# ↭	LEFT RIGHT WAVE ARROW
+21AE;	nharr;	ISOAMSA;	not left and right arrow       	# ↮	LEFT RIGHT ARROW WITH STROKE
+21B0;	lsh;	ISOAMSA;	/Lsh                           	# ↰	UPWARDS ARROW WITH TIP LEFTWARDS
+21B1;	rsh;	ISOAMSA;	/Rsh                           	# ↱	UPWARDS ARROW WITH TIP RIGHTWARDS
+21B2;	ldsh;	ISOAMSA;	left down angled arrow         	# ↲	DOWNWARDS ARROW WITH TIP LEFTWARDS
+21B3;	rdsh;	ISOAMSA;	right down angled arrow        	# ↳	DOWNWARDS ARROW WITH TIP RIGHTWARDS
+21B6;	cularr;	ISOAMSA;	left curved arrow              	# ↶	ANTICLOCKWISE TOP SEMICIRCLE ARROW
+21B7;	curarr;	ISOAMSA;	right curved arrow             	# ↷	CLOCKWISE TOP SEMICIRCLE ARROW
+21BC;	lharu;	ISOAMSA;	left harpoon-up                	# ↼	LEFTWARDS HARPOON WITH BARB UPWARDS
+21BD;	lhard;	ISOAMSA;	left harpoon-down              	# ↽	LEFTWARDS HARPOON WITH BARB DOWNWARDS
+21BE;	uharr;	ISOAMSA;	/upharpoonright /restriction up harpoon-right       	# ↾	UPWARDS HARPOON WITH BARB RIGHTWARDS
+21BF;	uharl;	ISOAMSA;	up harpoon-left                	# ↿	UPWARDS HARPOON WITH BARB LEFTWARDS
+21C0;	rharu;	ISOAMSA;	right harpoon-up               	# ⇀	RIGHTWARDS HARPOON WITH BARB UPWARDS
+21C1;	rhard;	ISOAMSA;	right harpoon-down             	# ⇁	RIGHTWARDS HARPOON WITH BARB DOWNWARDS
+21C2;	dharr;	ISOAMSA;	down harpoon-right             	# ⇂	DOWNWARDS HARPOON WITH BARB RIGHTWARDS
+21C3;	dharl;	ISOAMSA;	down harpoon-left              	# ⇃	DOWNWARDS HARPOON WITH BARB LEFTWARDS
+21C4;	rlarr;	ISOAMSA;	right arrow over left arrow    	# ⇄	RIGHTWARDS ARROW OVER LEFTWARDS ARROW
+21C5;	udarr;	ISOAMSA;	up arrow, down arrow           	# ⇅	UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW
+21C6;	lrarr;	ISOAMSA;	left arrow over right arrow    	# ⇆	LEFTWARDS ARROW OVER RIGHTWARDS ARROW
+21C7;	llarr;	ISOAMSA;	two left arrows                	# ⇇	LEFTWARDS PAIRED ARROWS
+21C8;	uuarr;	ISOAMSA;	two up arrows                  	# ⇈	UPWARDS PAIRED ARROWS
+21C9;	rrarr;	ISOAMSA;	two right arrows               	# ⇉	RIGHTWARDS PAIRED ARROWS
+21CA;	ddarr;	ISOAMSA;	two down arrows                	# ⇊	DOWNWARDS PAIRED ARROWS
+21CB;	lrhar;	ISOAMSA;	left harpoon over right        	# ⇋	LEFTWARDS HARPOON OVER RIGHTWARDS HARPOON
+21CC;	rlhar;	ISOAMSA;	right harpoon over left        	# ⇌	RIGHTWARDS HARPOON OVER LEFTWARDS HARPOON
+21CD;	nlArr;	ISOAMSA;	not implied by                 	# ⇍	LEFTWARDS DOUBLE ARROW WITH STROKE
+21CE;	nhArr;	ISOAMSA;	not left and right double arrows       	# ⇎	LEFT RIGHT DOUBLE ARROW WITH STROKE
+21CF;	nrArr;	ISOAMSA;	not implies                    	# ⇏	RIGHTWARDS DOUBLE ARROW WITH STROKE
+21D0;	lArr;	ISOTECH;	is implied by                  	# ⇐	LEFTWARDS DOUBLE ARROW
+21D1;	uArr;	ISOAMSA;	up double arrow                	# ⇑	UPWARDS DOUBLE ARROW
+21D2;	rArr;	ISOTECH;	implies                        	# ⇒	RIGHTWARDS DOUBLE ARROW
+21D3;	dArr;	ISOAMSA;	down double arrow              	# ⇓	DOWNWARDS DOUBLE ARROW
+21D4;	hArr;	ISOAMSA;	left and right double arrow    	# ⇔	LEFT RIGHT DOUBLE ARROW
+21D5;	vArr;	ISOAMSA;	up and down double arrow       	# ⇕	UP DOWN DOUBLE ARROW
+21D6;	nwArr;	ISOAMSA;	NW pointing double arrow       	# ⇖	NORTH WEST DOUBLE ARROW
+21D7;	neArr;	ISOAMSA;	NE pointing double arrow       	# ⇗	NORTH EAST DOUBLE ARROW
+21D8;	seArr;	ISOAMSA;	SE pointing double arrow       	# ⇘	SOUTH EAST DOUBLE ARROW
+21D9;	swArr;	ISOAMSA;	SW pointing double arrow       	# ⇙	SOUTH WEST DOUBLE ARROW
+21DA;	lAarr;	ISOAMSA;	left triple arrow              	# ⇚	LEFTWARDS TRIPLE ARROW
+21DB;	rAarr;	ISOAMSA;	right triple arrow             	# ⇛	RIGHTWARDS TRIPLE ARROW
+21DC;	ziglarr;	**;	left zig-zag arrow             	# ⇜	LEFTWARDS SQUIGGLE ARROW
+21DD;	zigrarr;	ISOAMSA;	right zig-zag arrow            	# ⇝	RIGHTWARDS SQUIGGLE ARROW
+21E4;	larrb;	**;	**	# ⇤	LEFTWARDS ARROW TO BAR
+21E5;	rarrb;	**;	**	# ⇥	RIGHTWARDS ARROW TO BAR
+21F5;	duarr;	ISOAMSA;	**	# ⇵	DOWNWARDS ARROW LEFTWARDS OF UPWARDS ARROW
+21F6;	rarr3;	**;	**	# ⇶	THREE RIGHTWARDS ARROWS
+21F7;	nvlarr;	**;	**	# ⇷	LEFTWARDS ARROW WITH VERTICAL STROKE
+21F8;	nvrarr;	**;	**	# ⇸	RIGHTWARDS ARROW WITH VERTICAL STROKE
+21F9;	nvharr;	**;	**	# ⇹	LEFT RIGHT ARROW WITH VERTICAL STROKE
+21FD;	loarr;	ISOAMSA;	**	# ⇽	LEFTWARDS OPEN-HEADED ARROW
+21FE;	roarr;	ISOAMSA;	**	# ⇾	RIGHTWARDS OPEN-HEADED ARROW
+21FF;	hoarr;	ISOAMSA;	**	# ⇿	LEFT RIGHT OPEN-HEADED ARROW
+2200;	forall;	ISOTECH;	**	# ∀	FOR ALL
+2201;	comp;	ISOAMSO;	**	# ∁	COMPLEMENT
+2202;	part;	ISOTECH;	**	# ∂	PARTIAL DIFFERENTIAL
+2203;	exist;	ISOTECH;	at least one exists            	# ∃	THERE EXISTS
+2204;	nexist;	ISOAMSO;	negated exists                 	# ∄	THERE DOES NOT EXIST
+2205;	emptyv;	ISOAMSO;	circle, slash                  	# ∅	EMPTY SET
+2207;	nabla;	ISOTECH;	nabla, del, Hamilton operator  	# ∇	NABLA
+2208;	isinv;	ISOTECH;	set membership, variant        	# ∈	ELEMENT OF
+2209;	notin;	ISOTECH;	negated set membership         	# ∉	NOT AN ELEMENT OF
+220A;	isin;	ISOTECH;	set membership                 	# ∊	SMALL ELEMENT OF
+220B;	niv;	ISOTECH;	contains, variant              	# ∋	CONTAINS AS MEMBER
+220C;	notni;	ISOTECH;	negated contains, variant      	# ∌	DOES NOT CONTAIN AS MEMBER
+220D;	ni;	ISOTECH;	/ni /owns contains             	# ∍	SMALL CONTAINS AS MEMBER
+220E;	qed;	**;	**	# ∎	END OF PROOF
+220F;	prod;	ISOAMSO;	product operator               	# ∏	N-ARY PRODUCT
+2210;	coprod;	ISOAMSB;	coproduct operator             	# ∐	N-ARY COPRODUCT
+2211;	sum;	ISOAMSB;	summation operator             	# ∑	N-ARY SUMMATION
+2212;	minus;	ISOTECH;	**	# −	MINUS SIGN
+2213;	mnplus;	**;	**	# ∓	MINUS-OR-PLUS SIGN
+2214;	plusdo;	ISOAMSB;	plus sign, dot above           	# ∔	DOT PLUS
+2216;	ssetmn;	ISOAMSB;	small set minus (cf. reverse solidus)       	# ∖	SET MINUS
+2217;	midast;	ISOAMSB;	centered asterisk              	# ∗	ASTERISK OPERATOR
+2218;	compfn;	ISOTECH;	composite function (small circle)	# ∘	RING OPERATOR
+221A;	radic;	ISOTECH;	radical                        	# √	SQUARE ROOT
+221D;	prop;	ISOTECH;	**	# ∝	PROPORTIONAL TO
+221E;	infin;	ISOTECH;	**	# ∞	INFINITY
+221F;	angrt;	ISOTECH;	(90 degree)                    	# ∟	RIGHT ANGLE
+2220;	ang;	ISOAMSO;	**	# ∠	ANGLE
+2221;	angmsd;	ISOAMSO;	**	# ∡	MEASURED ANGLE
+2222;	angsph;	ISOTECH;	**	# ∢	SPHERICAL ANGLE
+2223;	mid;	ISOAMSR;	/mid                           	# ∣	DIVIDES
+2224;	nmid;	ISOAMSN;	negated mid                    	# ∤	DOES NOT DIVIDE
+2225;	par;	ISOTECH;	**	# ∥	PARALLEL TO
+2226;	npar;	ISOAMSN;	**	# ∦	NOT PARALLEL TO
+2227;	and;	ISOTECH;	/wedge /land                   	# ∧	LOGICAL AND
+2228;	or;	ISOTECH;	/vee /lor                      	# ∨	LOGICAL OR
+2229;	cap;	ISOTECH;	**	# ∩	INTERSECTION
+222A;	cup;	ISOTECH;	logical sum                    	# ∪	UNION
+222B;	int;	ISOTECH;	**	# ∫	INTEGRAL
+222C;	Int;	ISOTECH;	**	# ∬	DOUBLE INTEGRAL
+222D;	tint;	ISOTECH;	**	# ∭	TRIPLE INTEGRAL
+222E;	conint;	ISOTECH;	**	# ∮	CONTOUR INTEGRAL
+222F;	Conint;	ISOTECH;	double contour integral operator 	# ∯	SURFACE INTEGRAL
+2230;	Cconint;	ISOTECH;	triple contour integral operator 	# ∰	VOLUME INTEGRAL
+2231;	cwint;	ISOTECH;	**	# ∱	CLOCKWISE INTEGRAL
+2232;	cwconint;	ISOTECH;	**	# ∲	CLOCKWISE CONTOUR INTEGRAL
+2233;	awconint;	ISOTECH;	**	# ∳	ANTICLOCKWISE CONTOUR INTEGRAL
+2234;	there4;	ISOTECH;	**	# ∴	THEREFORE
+2235;	becaus;	ISOTECH;	**	# ∵	BECAUSE
+2236;	ratio;	ISOAMSR;	**	# ∶	RATIO
+2237;	Colon;	ISOAMSR;	two colons                     	# ∷	PROPORTION
+2238;	minusd;	ISOAMSB;	minus sign, dot above          	# ∸	DOT MINUS
+2239;	excess;	**;	excess (-:)                    	# ∹	EXCESS
+223A;	mDDot;	ISOAMSR;	minus with four dots, geometric properties       	# ∺	GEOMETRIC PROPORTION
+223B;	homtht;	ISOAMSR;	**	# ∻	HOMOTHETIC
+223C;	sim;	ISOTECH;	similar                        	# ∼	TILDE OPERATOR
+223D;	bsim;	ISOAMSR;	reverse similar                	# ∽	REVERSED TILDE
+223E;	ac;	ISOAMSB;	most positive                  	# ∾	INVERTED LAZY S
+2240;	wreath;	ISOAMSB;	**	# ≀	WREATH PRODUCT
+2241;	nsim;	ISOAMSO;	not similar                    	# ≁	NOT TILDE
+2242;	esim;	ISOAMSR;	equals, similar                	# ≂	MINUS TILDE
+2243;	sime;	ISOTECH;	similar, equals                	# ≃	ASYMPTOTICALLY EQUAL TO
+2244;	nsime;	ISOAMSN;	not similar, equals            	# ≄	NOT ASYMPTOTICALLY EQUAL TO
+2245;	cong;	ISOTECH;	congruent with                 	# ≅	APPROXIMATELY EQUAL TO
+2246;	simne;	ISOAMSN;	similar, not equals [vert only for 9573 entity]       	# ≆	APPROXIMATELY BUT NOT ACTUALLY EQUAL TO
+2247;	ncong;	ISOAMSN;	not congruent with             	# ≇	NEITHER APPROXIMATELY NOR ACTUALLY EQUAL TO
+2248;	ap;	ISOTECH;	approximate                    	# ≈	ALMOST EQUAL TO
+2249;	nap;	ISOAMSN;	not approximate                	# ≉	NOT ALMOST EQUAL TO
+224A;	ape;	ISOAMSR;	approximate, equals            	# ≊	ALMOST EQUAL OR EQUAL TO
+224B;	apid;	ISOAMSR;	approximately identical to     	# ≋	TRIPLE TILDE
+224C;	bcong;	ISOAMSR;	**	# ≌	ALL EQUAL TO
+224D;	asymp;	ISOAMSR;	asymptotically equal to        	# ≍	EQUIVALENT TO
+224E;	bump;	ISOAMSR;	bumpy equals                   	# ≎	GEOMETRICALLY EQUIVALENT TO
+224F;	bumpe;	ISOAMSR;	bumpy equals, equals           	# ≏	DIFFERENCE BETWEEN
+2250;	esdot;	ISOAMSR;	equals, single dot above       	# ≐	APPROACHES THE LIMIT
+2251;	eDot;	ISOAMSR;	/doteqdot /Doteq equals, even dots       	# ≑	GEOMETRICALLY EQUAL TO
+2252;	efDot;	ISOAMSR;	equals, falling dots           	# ≒	APPROXIMATELY EQUAL TO OR THE IMAGE OF
+2253;	erDot;	ISOAMSR;	equals, rising dots            	# ≓	IMAGE OF OR APPROXIMATELY EQUAL TO
+2254;	colone;	ISOAMSR;	**	# ≔	COLON EQUALS
+2255;	ecolon;	ISOAMSR;	**	# ≕	EQUALS COLON
+2256;	ecir;	ISOAMSR;	circle on equals sign          	# ≖	RING IN EQUAL TO
+2257;	cire;	ISOAMSR;	circle, equals                 	# ≗	RING EQUAL TO
+2258;	arceq;	**;	arc, equals                    	# ≘	CORRESPONDS TO
+2259;	wedgeq;	ISOTECH;	corresponds to (wedge, equals) 	# ≙	ESTIMATES
+225A;	veeeq;	ISOTECH;	logical or, equals             	# ≚	EQUIANGULAR TO
+225C;	trie;	ISOAMSR;	triangle, equals               	# ≜	DELTA EQUAL TO
+225D;	eqdef;	**;	**	# ≝	EQUAL TO BY DEFINITION
+225E;	measeq;	**;	(m over equals)                	# ≞	MEASURED BY
+225F;	equest;	ISOAMSR;	equal with questionmark        	# ≟	QUESTIONED EQUAL TO
+2260;	ne;	ISOTECH;	/ne /neq                       	# ≠	NOT EQUAL TO
+2261;	equiv;	ISOTECH;	**	# ≡	IDENTICAL TO
+2262;	nequiv;	ISOAMSN;	**	# ≢	NOT IDENTICAL TO
+2263;	Equiv;	**;	(4 lines)                      	# ≣	STRICTLY EQUIVALENT TO
+2264;	le;	ISOTECH;	/leq /le                       	# ≤	LESS-THAN OR EQUAL TO
+2265;	ge;	ISOTECH;	/geq /ge                       	# ≥	GREATER-THAN OR EQUAL TO
+2266;	lE;	ISOAMSR;	less, double equals            	# ≦	LESS-THAN OVER EQUAL TO
+2267;	gE;	ISOAMSR;	greater, double equals         	# ≧	GREATER-THAN OVER EQUAL TO
+2268;	lnE;	ISOAMSN;	less, not double equals        	# ≨	LESS-THAN BUT NOT EQUAL TO
+2269;	gnE;	ISOAMSN;	greater, not double equals     	# ≩	GREATER-THAN BUT NOT EQUAL TO
+226C;	twixt;	ISOAMSR;	**	# ≬	BETWEEN
+226D;	nasymp;	**;	not asymptotically equal to    	# ≭	NOT EQUIVALENT TO
+226E;	nlt;	ISOAMSN;	**	# ≮	NOT LESS-THAN
+226F;	ngt;	ISOAMSN;	**	# ≯	NOT GREATER-THAN
+2270;	nle;	ISOAMSN;	**	# ≰	NEITHER LESS-THAN NOR EQUAL TO
+2271;	nge;	ISOAMSN;	**	# ≱	NEITHER GREATER-THAN NOR EQUAL TO
+2272;	lsim;	ISOAMSR;	less, similar                  	# ≲	LESS-THAN OR EQUIVALENT TO
+2273;	gsim;	ISOAMSR;	greater, similar               	# ≳	GREATER-THAN OR EQUIVALENT TO
+2274;	nlsim;	ISOAMSN;	not less, similar              	# ≴	NEITHER LESS-THAN NOR EQUIVALENT TO
+2275;	ngsim;	ISOAMSN;	not greater, similar           	# ≵	NEITHER GREATER-THAN NOR EQUIVALENT TO
+2276;	lg;	ISOAMSR;	less, greater                  	# ≶	LESS-THAN OR GREATER-THAN
+2277;	gl;	ISOAMSR;	greater, less                  	# ≷	GREATER-THAN OR LESS-THAN
+2278;	ntlg;	ISOAMSN;	**	# ≸	NEITHER LESS-THAN NOR GREATER-THAN
+2279;	ntgl;	ISOAMSN;	**	# ≹	NEITHER GREATER-THAN NOR LESS-THAN
+227A;	pr;	ISOAMSR;	**	# ≺	PRECEDES
+227B;	sc;	ISOAMSR;	**	# ≻	SUCCEEDS
+227C;	prcue;	ISOAMSR;	precedes, curly equals         	# ≼	PRECEDES OR EQUAL TO
+227D;	sccue;	ISOAMSR;	succeeds, curly equals         	# ≽	SUCCEEDS OR EQUAL TO
+227E;	prsim;	ISOAMSR;	precedes, similar              	# ≾	PRECEDES OR EQUIVALENT TO
+227F;	scsim;	ISOAMSR;	succeeds, similar              	# ≿	SUCCEEDS OR EQUIVALENT TO
+2280;	npr;	ISOAMSN;	not precedes                   	# ⊀	DOES NOT PRECEDE
+2281;	nsc;	ISOAMSN;	not succeeds                   	# ⊁	DOES NOT SUCCEED
+2282;	sub;	ISOTECH;	subset or is implied by        	# ⊂	SUBSET OF
+2283;	sup;	ISOTECH;	superset or implies            	# ⊃	SUPERSET OF
+2284;	nsub;	ISOAMSN;	**	# ⊄	NOT A SUBSET OF
+2285;	nsup;	ISOAMSN;	**	# ⊅	NOT A SUPERSET OF
+2286;	sube;	ISOTECH;	subset, equals                 	# ⊆	SUBSET OF OR EQUAL TO
+2287;	supe;	ISOTECH;	superset, equals               	# ⊇	SUPERSET OF OR EQUAL TO
+2288;	nsube;	ISOAMSN;	not subset, equals             	# ⊈	NEITHER A SUBSET OF NOR EQUAL TO
+2289;	nsupe;	ISOAMSN;	not superset, equals           	# ⊉	NEITHER A SUPERSET OF NOR EQUAL TO
+228A;	subne;	ISOAMSN;	subset, not equals             	# ⊊	SUBSET OF WITH NOT EQUAL TO
+228B;	supne;	ISOAMSN;	superset, not equals           	# ⊋	SUPERSET OF WITH NOT EQUAL TO
+228D;	cupdot;	ISOAMSB;	union, with dot                	# ⊍	MULTISET MULTIPLICATION
+228E;	uplus;	ISOAMSB;	plus sign in union             	# ⊎	MULTISET UNION
+228F;	sqsub;	ISOAMSR;	square subset                  	# ⊏	SQUARE IMAGE OF
+2290;	sqsup;	ISOAMSR;	square superset                	# ⊐	SQUARE ORIGINAL OF
+2291;	sqsube;	ISOAMSR;	square subset, equals          	# ⊑	SQUARE IMAGE OF OR EQUAL TO
+2292;	sqsupe;	ISOAMSR;	square superset, equals        	# ⊒	SQUARE ORIGINAL OF OR EQUAL TO
+2293;	sqcap;	ISOAMSB;	square intersection            	# ⊓	SQUARE CAP
+2294;	sqcup;	ISOAMSB;	square union                   	# ⊔	SQUARE CUP
+2295;	oplus;	ISOAMSB;	plus sign in circle            	# ⊕	CIRCLED PLUS
+2296;	ominus;	ISOAMSB;	minus sign in circle           	# ⊖	CIRCLED MINUS
+2297;	otimes;	ISOAMSB;	multiply sign in circle        	# ⊗	CIRCLED TIMES
+2298;	osol;	ISOAMSB;	solidus in circle              	# ⊘	CIRCLED DIVISION SLASH
+2299;	odot;	ISOAMSB;	middle dot in circle           	# ⊙	CIRCLED DOT OPERATOR
+229A;	ocir;	ISOAMSB;	small circle in circle         	# ⊚	CIRCLED RING OPERATOR
+229B;	oast;	ISOAMSB;	asterisk in circle             	# ⊛	CIRCLED ASTERISK OPERATOR
+229C;	oeq;	**;	equal in circle                	# ⊜	CIRCLED EQUALS
+229D;	odash;	ISOAMSB;	hyphen in circle               	# ⊝	CIRCLED DASH
+229E;	plusb;	ISOAMSB;	plus sign in box               	# ⊞	SQUARED PLUS
+229F;	minusb;	ISOAMSB;	minus sign in box              	# ⊟	SQUARED MINUS
+22A0;	timesb;	ISOAMSB;	multiply sign in box           	# ⊠	SQUARED TIMES
+22A1;	sdotb;	ISOAMSB;	/dotsquare /boxdot small dot in box     	# ⊡	SQUARED DOT OPERATOR
+22A2;	vdash;	ISOAMSR;	vertical, dash                 	# ⊢	RIGHT TACK
+22A3;	dashv;	ISOAMSR;	dash, vertical                 	# ⊣	LEFT TACK
+22A4;	top;	ISOTECH;	top                            	# ⊤	DOWN TACK
+22A5;	bottom;	ISOTECH;	bottom                         	# ⊥	UP TACK
+22A7;	models;	ISOAMSR;	(vertical, short double dash)  	# ⊧	MODELS
+22A8;	vDash;	ISOAMSR;	vertical, double dash          	# ⊨	TRUE
+22A9;	Vdash;	ISOAMSR;	double vertical, dash          	# ⊩	FORCES
+22AA;	Vvdash;	ISOAMSR;	triple vertical, dash          	# ⊪	TRIPLE VERTICAL BAR RIGHT TURNSTILE
+22AB;	VDash;	ISOAMSR;	double vert, double dash       	# ⊫	DOUBLE VERTICAL BAR DOUBLE RIGHT TURNSTILE
+22AC;	nvdash;	ISOAMSN;	not vertical, dash             	# ⊬	DOES NOT PROVE
+22AD;	nvDash;	ISOAMSN;	not vertical, double dash      	# ⊭	NOT TRUE
+22AE;	nVdash;	ISOAMSN;	not double vertical, dash      	# ⊮	DOES NOT FORCE
+22AF;	nVDash;	ISOAMSN;	not double vert, double dash   	# ⊯	NEGATED DOUBLE VERTICAL BAR DOUBLE RIGHT TURNSTILE
+22B0;	prurel;	ISOAMSR;	element precedes under relation	# ⊰	PRECEDES UNDER RELATION
+22B1;	scurel;	**;	**	# ⊱	SUCCEEDS UNDER RELATION
+22B2;	vltri;	ISOAMSR;	left triangle, open, variant   	# ⊲	NORMAL SUBGROUP OF
+22B3;	vrtri;	ISOAMSR;	right triangle, open, variant  	# ⊳	CONTAINS AS NORMAL SUBGROUP
+22B4;	ltrie;	ISOAMSR;	left triangle, equals          	# ⊴	NORMAL SUBGROUP OF OR EQUAL TO
+22B5;	rtrie;	ISOAMSR;	right triangle, equals         	# ⊵	CONTAINS AS NORMAL SUBGROUP OR EQUAL TO
+22B6;	origof;	ISOAMSA;	**	# ⊶	ORIGINAL OF
+22B7;	imof;	ISOAMSA;	**	# ⊷	IMAGE OF
+22B8;	mumap;	ISOAMSA;	/multimap                      	# ⊸	MULTIMAP
+22B9;	hercon;	ISOAMSB;	**	# ⊹	HERMITIAN CONJUGATE MATRIX
+22BA;	intcal;	ISOAMSB;	intercal                       	# ⊺	INTERCALATE
+22BC;	barwed;	ISOAMSB;	bar, wedge (large wedge)       	# ⊼	NAND
+22BD;	**;	ISOAMSB;	bar, vee (large vee)           	# ⊽	NOR
+22BE;	angrtvb;	ISOAMSO;	right angle-measured [with arc]	# ⊾	RIGHT ANGLE WITH ARC
+22C0;	xwedge;	ISOAMSB;	logical or operator            	# ⋀	N-ARY LOGICAL AND
+22C1;	xvee;	ISOAMSB;	logical and operator           	# ⋁	N-ARY LOGICAL OR
+22C2;	xcap;	ISOAMSB;	intersection operator          	# ⋂	N-ARY INTERSECTION
+22C3;	xcup;	ISOAMSB;	union operator                 	# ⋃	N-ARY UNION
+22C4;	diam;	ISOAMSB;	white diamond                  	# ⋄	DIAMOND OPERATOR
+22C5;	sdot;	ISOAMSB;	small middle dot               	# ⋅	DOT OPERATOR
+22C6;	sstarf;	ISOAMSB;	small star, filled, low        	# ⋆	STAR OPERATOR
+22C7;	divonx;	ISOAMSB;	division on times              	# ⋇	DIVISION TIMES
+22C8;	bowtie;	ISOAMSR;	**	# ⋈	BOWTIE
+22C9;	ltimes;	ISOAMSB;	times sign, left closed        	# ⋉	LEFT NORMAL FACTOR SEMIDIRECT PRODUCT
+22CA;	rtimes;	ISOAMSB;	times sign, right closed       	# ⋊	RIGHT NORMAL FACTOR SEMIDIRECT PRODUCT
+22CB;	lthree;	ISOAMSB;	**	# ⋋	LEFT SEMIDIRECT PRODUCT
+22CC;	rthree;	ISOAMSB;	**	# ⋌	RIGHT SEMIDIRECT PRODUCT
+22CD;	bsime;	ISOAMSR;	reverse similar, equals        	# ⋍	REVERSED TILDE EQUALS
+22CE;	cuvee;	ISOAMSB;	**	# ⋎	CURLY LOGICAL OR
+22CF;	cuwed;	ISOAMSB;	**	# ⋏	CURLY LOGICAL AND
+22D0;	Sub;	ISOAMSR;	**	# ⋐	DOUBLE SUBSET
+22D1;	Sup;	ISOAMSR;	**	# ⋑	DOUBLE SUPERSET
+22D2;	Cap;	ISOAMSB;	/Cap /doublecap                	# ⋒	DOUBLE INTERSECTION
+22D3;	Cup;	ISOAMSB;	/Cup /doublecup                	# ⋓	DOUBLE UNION
+22D4;	fork;	ISOAMSR;	**	# ⋔	PITCHFORK
+22D5;	epar;	ISOTECH;	parallel, equal                	# ⋕	EQUAL AND PARALLEL TO
+22D6;	ltdot;	ISOAMSR;	**	# ⋖	LESS-THAN WITH DOT
+22D7;	gtdot;	ISOAMSR;	**	# ⋗	GREATER-THAN WITH DOT
+22D8;	Ll;	ISOAMSR;	/Ll /lll /llless triple less-than        	# ⋘	VERY MUCH LESS-THAN
+22D9;	Gg;	ISOAMSR;	/ggg /Gg /gggtr triple greater-than      	# ⋙	VERY MUCH GREATER-THAN
+22DA;	leg;	ISOAMSR;	less, equals, greater          	# ⋚	LESS-THAN EQUAL TO OR GREATER-THAN
+22DB;	gel;	ISOAMSR;	greater, equals, less          	# ⋛	GREATER-THAN EQUAL TO OR LESS-THAN
+22DC;	el;	ISOAMSR;	equal-or-less                  	# ⋜	EQUAL TO OR LESS-THAN
+22DD;	eg;	ISOAMSR;	equal-or-greater               	# ⋝	EQUAL TO OR GREATER-THAN
+22DE;	cuepr;	ISOAMSR;	curly equals, precedes         	# ⋞	EQUAL TO OR PRECEDES
+22DF;	cuesc;	ISOAMSR;	curly equals, succeeds         	# ⋟	EQUAL TO OR SUCCEEDS
+22E0;	nprcue;	ISOAMSN;	not precedes, curly equals     	# ⋠	DOES NOT PRECEDE OR EQUAL
+22E1;	nsccue;	ISOAMSN;	not succeeds, curly equals     	# ⋡	DOES NOT SUCCEED OR EQUAL
+22E2;	nsqsube;	ISOAMSN;	not, square subset, equals     	# ⋢	NOT SQUARE IMAGE OF OR EQUAL TO
+22E3;	nsqsupe;	ISOAMSN;	not, square superset, equals   	# ⋣	NOT SQUARE ORIGINAL OF OR EQUAL TO
+22E4;	sqsubne;	**;	square subset, not equals      	# ⋤	SQUARE IMAGE OF OR NOT EQUAL TO
+22E5;	sqsupne;	**;	square superset, not equals    	# ⋥	SQUARE ORIGINAL OF OR NOT EQUAL TO
+22E6;	lnsim;	ISOAMSN;	less, not similar              	# ⋦	LESS-THAN BUT NOT EQUIVALENT TO
+22E7;	gnsim;	ISOAMSN;	greater, not similar           	# ⋧	GREATER-THAN BUT NOT EQUIVALENT TO
+22E8;	prnsim;	ISOAMSN;	precedes, not similar          	# ⋨	PRECEDES BUT NOT EQUIVALENT TO
+22E9;	scnsim;	ISOAMSN;	succeeds, not similar          	# ⋩	SUCCEEDS BUT NOT EQUIVALENT TO
+22EA;	nltri;	ISOAMSN;	not left triangle              	# ⋪	NOT NORMAL SUBGROUP OF
+22EB;	nrtri;	ISOAMSN;	not right triangle             	# ⋫	DOES NOT CONTAIN AS NORMAL SUBGROUP
+22EC;	nltrie;	ISOAMSN;	not left triangle, equals      	# ⋬	NOT NORMAL SUBGROUP OF OR EQUAL TO
+22ED;	nrtrie;	ISOAMSN;	not right triangle, equ als    	# ⋭	DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL
+22EE;	vellip;	ISOPUB;	vertical ellipsis              	# ⋮	VERTICAL ELLIPSIS
+22EF;	ctdot;	ISOTECH;	three dots, centered           	# ⋯	MIDLINE HORIZONTAL ELLIPSIS
+22F0;	utdot;	ISOTECH;	three dots, ascending          	# ⋰	UP RIGHT DIAGONAL ELLIPSIS
+22F1;	dtdot;	ISOTECH;	three dots, descending         	# ⋱	DOWN RIGHT DIAGONAL ELLIPSIS
+22F2;	disin;	ISOTECH;	**	# ⋲	ELEMENT OF WITH LONG HORIZONTAL STROKE
+22F3;	isinsv;	ISOTECH;	**	# ⋳	ELEMENT OF WITH VERTICAL BAR AT END OF HORIZONTAL STROKE
+22F4;	isins;	ISOTECH;	**	# ⋴	SMALL ELEMENT OF WITH VERTICAL BAR AT END OF HORIZONTAL STROKE
+22F5;	isindot;	ISOTECH;	**	# ⋵	ELEMENT OF WITH DOT ABOVE
+22F6;	notinvc;	ISOTECH;	**	# ⋶	ELEMENT OF WITH OVERBAR
+22F7;	notinvb;	ISOTECH;	**	# ⋷	SMALL ELEMENT OF WITH OVERBAR
+22F8;	isinvb;	**;	**	# ⋸	ELEMENT OF WITH UNDERBAR
+22F9;	isinE;	ISOTECH;	**	# ⋹	ELEMENT OF WITH TWO HORIZONTAL STROKES
+22FA;	nisd;	ISOTECH;	**	# ⋺	CONTAINS WITH LONG HORIZONTAL STROKE
+22FB;	xnis;	ISOTECH;	**	# ⋻	CONTAINS WITH VERTICAL BAR AT END OF HORIZONTAL STROKE
+22FC;	nis;	ISOTECH;	**	# ⋼	SMALL CONTAINS WITH VERTICAL BAR AT END OF HORIZONTAL STROKE
+22FD;	notnivc;	ISOTECH;	**	# ⋽	CONTAINS WITH OVERBAR
+22FE;	notnivb;	ISOTECH;	**	# ⋾	SMALL CONTAINS WITH OVERBAR
+2300;	diameter;	**;	2205 diameter sign             	# ⌀	DIAMETER SIGN
+2305;	barwed;	ISOAMSB;	**	# ⌅	PROJECTIVE
+2306;	Barwed;	ISOAMSB;	**	# ⌆	PERSPECTIVE
+2308;	lceil;	ISOAMSC;	**	# ⌈	LEFT CEILING
+2309;	rceil;	ISOAMSC;	**	# ⌉	RIGHT CEILING
+230A;	lfloor;	ISOAMSC;	**	# ⌊	LEFT FLOOR
+230B;	rfloor;	ISOAMSC;	**	# ⌋	RIGHT FLOOR
+2310;	bnot;	ISOTECH;	**	# ⌐	REVERSED NOT SIGN
+231C;	ulcorn;	ISOAMSC;	**	# ⌜	TOP LEFT CORNER
+231D;	urcorn;	ISOAMSC;	**	# ⌝	TOP RIGHT CORNER
+231E;	dlcorn;	ISOAMSC;	**	# ⌞	BOTTOM LEFT CORNER
+231F;	drcorn;	ISOAMSC;	**	# ⌟	BOTTOM RIGHT CORNER
+2322;	frown;	ISOAMSR;	down curve                     	# ⌢	FROWN
+2323;	smile;	ISOAMSR;	up curve                       	# ⌣	SMILE
+2336;	topbot;	ISOTECH;	top and bottom                 	# ⌶	APL FUNCTIONAL SYMBOL I-BEAM
+233D;	ovbar;	ISOAMSB;	circle with vertical bar       	# ⌽	APL FUNCTIONAL SYMBOL CIRCLE STILE
+233F;	solbar;	ISOAMSN;	solidus, bar through           	# ⌿	APL FUNCTIONAL SYMBOL SLASH BAR
+2394;	hbenzen;	ISOCHEM;	horizontal benzene ring [hexagon flat open]       	# ⎔	SOFTWARE-FUNCTION SYMBOL
+23B0;	lmoust;	ISOAMSC;	**	# ⎰	UPPER LEFT OR LOWER RIGHT CURLY BRACKET SECTION
+23B1;	rmoust;	ISOAMSC;	**	# ⎱	UPPER RIGHT OR LOWER LEFT CURLY BRACKET SECTION
+23B4;	tbrk;	ISOAMSO;	**	# ⎴	TOP SQUARE BRACKET
+23B5;	bbrk;	ISOAMSO;	**	# ⎵	BOTTOM SQUARE BRACKET
+23B6;	bbrktbrk;	ISOAMSO;	**	# ⎶	BOTTOM SQUARE BRACKET OVER TOP SQUARE BRACKET
+23DC;	ovrpar;	**;	over parenthesis               	# ⏜	TOP PARENTHESIS
+23DD;	udrpar;	**;	under parenthesis              	# ⏝	BOTTOM PARENTHESIS
+23DE;	ovrcub;	**;	over brace                     	# ⏞	TOP CURLY BRACKET
+23DF;	udrcub;	**;	under brace                    	# ⏟	BOTTOM CURLY BRACKET
+23E2;	**;	ISOTECH;	**	# ⏢	WHITE TRAPEZIUM
+23E3;	**;	ISOCHEM;	**	# ⏣	BENZENE RING WITH CIRCLE
+23E4..23E7;	**;	ISOTECH;	**	# ⏤..⏧	STRAIGHTNESS..ELECTRICAL INTERSECTION
+24C8;	oS;	ISOAMSO;	capital S in circle            	# Ⓢ	CIRCLED LATIN CAPITAL LETTER S
+25A0;	squarf;	ISOPUB;	square, filled                 	# ■	BLACK SQUARE
+25A1;	square;	ISOPUB;	square, open                   	# □	WHITE SQUARE
+25AA;	squf;	ISOPUB;	? /blacksquare - sq bullet, filled       	# ▪	BLACK SMALL SQUARE
+25AE;	marker;	ISOPUB;	histogram marker               	# ▮	BLACK VERTICAL RECTANGLE
+25AF;	rect;	ISOPUB;	**	# ▯	WHITE VERTICAL RECTANGLE
+25B3;	xutri;	ISOAMSB;	big up triangle, open          	# △	WHITE UP-POINTING TRIANGLE
+25B4;	utrif;	ISOPUB;	up triangle, filled            	# ▴	BLACK UP-POINTING SMALL TRIANGLE
+25B5;	utri;	ISOPUB;	/triangle - up triangle, open  	# ▵	WHITE UP-POINTING SMALL TRIANGLE
+25B6;	vrtrif;	**;	(large) right triangle, filled 	# ▶	BLACK RIGHT-POINTING TRIANGLE
+25B7;	vrtri;	**;	(large) right triangle, open, Z notation range restriction       	# ▷	WHITE RIGHT-POINTING TRIANGLE
+25B8;	rtrif;	ISOPUB;	right triangle, filled         	# ▸	BLACK RIGHT-POINTING SMALL TRIANGLE
+25B9;	rtri;	ISOPUB;	right triangle, open           	# ▹	WHITE RIGHT-POINTING SMALL TRIANGLE
+25BD;	xdtri;	ISOAMSB;	big down triangle, open        	# ▽	WHITE DOWN-POINTING TRIANGLE
+25BE;	dtrif;	ISOPUB;	down triangle, filled          	# ▾	BLACK DOWN-POINTING SMALL TRIANGLE
+25BF;	dtri;	ISOPUB;	down triangle, open            	# ▿	WHITE DOWN-POINTING SMALL TRIANGLE
+25C0;	vltrif;	**;	(large) left triangle, filled  	# ◀	BLACK LEFT-POINTING TRIANGLE
+25C1;	vltri;	**;	(large) left triangle, open, Z notation domain restriction       	# ◁	WHITE LEFT-POINTING TRIANGLE
+25C2;	ltrif;	ISOPUB;	left triangle, filled          	# ◂	BLACK LEFT-POINTING SMALL TRIANGLE
+25C3;	ltri;	ISOPUB;	left triangle, open            	# ◃	WHITE LEFT-POINTING SMALL TRIANGLE
+25C6;	diamondf;	ISOPUB;	**	# ◆	BLACK DIAMOND
+25CA;	loz;	ISOPUB;	lozenge or total mark          	# ◊	LOZENGE
+25CB;	xcirc;	ISOAMSB;	large circle                   	# ○	WHITE CIRCLE
+25CF;	circlef;	ISOPUB;	circle, filled                 	# ●	BLACK CIRCLE
+25E2;	lrtrif;	**;	lower right triangle, filled   	# ◢	BLACK LOWER RIGHT TRIANGLE
+25E3;	lltrif;	**;	lower left triangle, filled    	# ◣	BLACK LOWER LEFT TRIANGLE
+25E4;	ultrif;	**;	upper left triangle, filled    	# ◤	BLACK UPPER LEFT TRIANGLE
+25E5;	urtrif;	**;	upper right triangle, filled   	# ◥	BLACK UPPER RIGHT TRIANGLE
+25EB;	midb;	**;	vertical bar in box            	# ◫	WHITE SQUARE WITH VERTICAL BISECTING LINE
+25EC;	tridot;	ISOAMSB;	triangle with centered dot     	# ◬	WHITE UP-POINTING TRIANGLE WITH DOT
+25F8;	ultri;	ISOAMSO;	**	# ◸	UPPER LEFT TRIANGLE
+25F9;	urtri;	ISOAMSO;	**	# ◹	UPPER RIGHT TRIANGLE
+25FA;	lltri;	ISOAMSO;	**	# ◺	LOWER LEFT TRIANGLE
+25FB;	xsqu;	**;	**	# ◻	WHITE MEDIUM SQUARE
+25FC;	xsquf;	**;	**	# ◼	BLACK MEDIUM SQUARE
+25FD;	vssqu;	**;	**	# ◽	WHITE MEDIUM SMALL SQUARE
+25FE;	vssquf;	**;	**	# ◾	BLACK MEDIUM SMALL SQUARE
+25FF;	lrtri;	ISOAMSO;	**	# ◿	LOWER RIGHT TRIANGLE
+2605;	starf;	ISOPUB;	star, filled                   	# ★	BLACK STAR
+2606;	star;	ISOPUB;	star, open                     	# ☆	WHITE STAR
+2612;	cross;	ISOPUB;	ballot cross                   	# ☒	BALLOT BOX WITH X
+2640;	female;	ISOPUB;	Venus                          	# ♀	FEMALE SIGN
+2642;	male;	ISOPUB;	Mars                           	# ♂	MALE SIGN
+2660;	spades;	ISOPUB;	spades suit symbol             	# ♠	BLACK SPADE SUIT
+2661;	hearts;	ISOPUB;	heart suit symbol              	# ♡	WHITE HEART SUIT
+2662;	diams;	ISOPUB;	diamond suit symbol            	# ♢	WHITE DIAMOND SUIT
+2663;	clubs;	ISOPUB;	club suit symbol               	# ♣	BLACK CLUB SUIT
+2664;	spadeso;	**;	spade, white (card suit)       	# ♤	WHITE SPADE SUIT
+2665;	heartsf;	**;	filled heart (card suit)       	# ♥	BLACK HEART SUIT
+2666;	diamsf;	**;	filled diamond (card suit)     	# ♦	BLACK DIAMOND SUIT
+2667;	clubso;	**;	club, white (card suit)        	# ♧	WHITE CLUB SUIT
+2669;	sung;	ISONUM;	music note (sung text sign)    	# ♩	QUARTER NOTE
+266D;	flat;	ISOPUB;	**	# ♭	MUSIC FLAT SIGN
+266E;	natur;	ISOPUB;	**	# ♮	MUSIC NATURAL SIGN
+266F;	sharp;	ISOPUB;	**	# ♯	MUSIC SHARP SIGN
+2713;	check;	ISOPUB;	tick                           	# ✓	CHECK MARK
+2720;	malt;	ISOPUB;	**	# ✠	MALTESE CROSS
+2736;	sext;	ISOPUB;	**	# ✶	SIX POINTED BLACK STAR
+2772;	lbbrk;	ISOTECH;	left broken bracket            	# ❲	LIGHT LEFT TORTOISE SHELL BRACKET ORNAMENT
+2773;	rbbrk;	ISOTECH;	right broken bracket           	# ❳	LIGHT RIGHT TORTOISE SHELL BRACKET ORNAMENT
+27C2;	perp;	ISOTECH;	perpendicular                  	# ⟂	PERPENDICULAR
+27C8;	bsolsub;	**;	**	# ⟈	REVERSE SOLIDUS PRECEDING SUBSET
+27C9;	subsol;	**;	**	# ⟉	SUPERSET PRECEDING SOLIDUS
+27D0;	diamdot;	**;	**	# ⟐	WHITE DIAMOND WITH CENTRED DOT
+27E6;	lobrk;	ISOTECH;	**	# ⟦	MATHEMATICAL LEFT WHITE SQUARE BRACKET
+27E7;	robrk;	ISOTECH;	**	# ⟧	MATHEMATICAL RIGHT WHITE SQUARE BRACKET
+27E8;	lang;	ISOTECH;	**	# ⟨	MATHEMATICAL LEFT ANGLE BRACKET
+27E9;	rang;	ISOTECH;	**	# ⟩	MATHEMATICAL RIGHT ANGLE BRACKET
+27EA;	Lang;	ISOTECH;	left angle bracket, double     	# ⟪	MATHEMATICAL LEFT DOUBLE ANGLE BRACKET
+27EB;	Rang;	ISOTECH;	right angle bracket, double    	# ⟫	MATHEMATICAL RIGHT DOUBLE ANGLE BRACKET
+27F5;	xlarr;	ISOAMSA;	**	# ⟵	LONG LEFTWARDS ARROW
+27F6;	xrarr;	ISOAMSA;	**	# ⟶	LONG RIGHTWARDS ARROW
+27F7;	xharr;	ISOAMSA;	**	# ⟷	LONG LEFT RIGHT ARROW
+27F8;	xlArr;	ISOAMSA;	**	# ⟸	LONG LEFTWARDS DOUBLE ARROW
+27F9;	xrArr;	ISOAMSA;	**	# ⟹	LONG RIGHTWARDS DOUBLE ARROW
+27FA;	xhArr;	ISOAMSA;	**	# ⟺	LONG LEFT RIGHT DOUBLE ARROW
+27FB;	xmapfrom;	**;	**	# ⟻	LONG LEFTWARDS ARROW FROM BAR
+27FC;	xmap;	ISOAMSA;	**	# ⟼	LONG RIGHTWARDS ARROW FROM BAR
+27FD;	xMapfrom;	**;	**	# ⟽	LONG LEFTWARDS DOUBLE ARROW FROM BAR
+27FE;	xMapto;	**;	**	# ⟾	LONG RIGHTWARDS DOUBLE ARROW FROM BAR
+27FF;	xzigrarr;	ISOAMSA;	**	# ⟿	LONG RIGHTWARDS SQUIGGLE ARROW
+2902;	nvlArr;	ISOAMSA;	**	# ⤂	LEFTWARDS DOUBLE ARROW WITH VERTICAL STROKE
+2903;	nvrArr;	ISOAMSA;	**	# ⤃	RIGHTWARDS DOUBLE ARROW WITH VERTICAL STROKE
+2904;	nvhArr;	ISOAMSA;	**	# ⤄	LEFT RIGHT DOUBLE ARROW WITH VERTICAL STROKE
+2905;	Map;	ISOAMSA;	**	# ⤅	RIGHTWARDS TWO-HEADED ARROW FROM BAR
+2906;	Mapfrom;	**;	**	# ⤆	LEFTWARDS DOUBLE ARROW FROM BAR
+2907;	Mapto;	**;	**	# ⤇	RIGHTWARDS DOUBLE ARROW FROM BAR
+2908;	darrln;	**;	**	# ⤈	DOWNWARDS ARROW WITH HORIZONTAL STROKE
+2909;	uarrln;	**;	**	# ⤉	UPWARDS ARROW WITH HORIZONTAL STROKE
+290A;	uAarr;	**;	**	# ⤊	UPWARDS TRIPLE ARROW
+290B;	dAarr;	**;	**	# ⤋	DOWNWARDS TRIPLE ARROW
+290C;	lbarr;	ISOAMSA;	**	# ⤌	LEFTWARDS DOUBLE DASH ARROW
+290D;	rbarr;	ISOAMSA;	**	# ⤍	RIGHTWARDS DOUBLE DASH ARROW
+290E;	lBarr;	ISOAMSA;	**	# ⤎	LEFTWARDS TRIPLE DASH ARROW
+290F;	rBarr;	ISOAMSA;	**	# ⤏	RIGHTWARDS TRIPLE DASH ARROW
+2910;	RBarr;	ISOAMSA;	**	# ⤐	RIGHTWARDS TWO-HEADED TRIPLE DASH ARROW
+2911;	DDotrahd;	ISOAMSA;	**	# ⤑	RIGHTWARDS ARROW WITH DOTTED STEM
+2912;	uarrb;	**;	**	# ⤒	UPWARDS ARROW TO BAR
+2913;	darrb;	**;	**	# ⤓	DOWNWARDS ARROW TO BAR
+2916;	Rarrtl;	ISOAMSA;	**	# ⤖	RIGHTWARDS TWO-HEADED ARROW WITH TAIL
+2919;	latail;	ISOAMSA;	**	# ⤙	LEFTWARDS ARROW-TAIL
+291A;	ratail;	ISOAMSA;	**	# ⤚	RIGHTWARDS ARROW-TAIL
+291B;	lAtail;	ISOAMSA;	**	# ⤛	LEFTWARDS DOUBLE ARROW-TAIL
+291C;	rAtail;	ISOAMSA;	**	# ⤜	RIGHTWARDS DOUBLE ARROW-TAIL
+291D;	larrfs;	ISOAMSA;	**	# ⤝	LEFTWARDS ARROW TO BLACK DIAMOND
+291E;	rarrfs;	ISOAMSA;	**	# ⤞	RIGHTWARDS ARROW TO BLACK DIAMOND
+291F;	larrbfs;	ISOAMSA;	**	# ⤟	LEFTWARDS ARROW FROM BAR TO BLACK DIAMOND
+2920;	rarrbfs;	ISOAMSA;	**	# ⤠	RIGHTWARDS ARROW FROM BAR TO BLACK DIAMOND
+2921;	nwsesarr;	**;	**	# ⤡	NORTH WEST AND SOUTH EAST ARROW
+2922;	neswsarr;	**;	**	# ⤢	NORTH EAST AND SOUTH WEST ARROW
+2923;	nwarhk;	ISOAMSA;	**	# ⤣	NORTH WEST ARROW WITH HOOK
+2924;	nearhk;	ISOAMSA;	**	# ⤤	NORTH EAST ARROW WITH HOOK
+2925;	searhk;	ISOAMSA;	**	# ⤥	SOUTH EAST ARROW WITH HOOK
+2926;	swarhk;	ISOAMSA;	**	# ⤦	SOUTH WEST ARROW WITH HOOK
+2927;	nwnear;	ISOAMSA;	**	# ⤧	NORTH WEST ARROW AND NORTH EAST ARROW
+2928;	nesear;	ISOAMSA;	**	# ⤨	NORTH EAST ARROW AND SOUTH EAST ARROW
+2929;	seswar;	ISOAMSA;	**	# ⤩	SOUTH EAST ARROW AND SOUTH WEST ARROW
+292A;	swnwar;	ISOAMSA;	**	# ⤪	SOUTH WEST ARROW AND NORTH WEST ARROW
+292B;	rdiofdi;	**;	**	# ⤫	RISING DIAGONAL CROSSING FALLING DIAGONAL
+292C;	fdiordi;	**;	**	# ⤬	FALLING DIAGONAL CROSSING RISING DIAGONAL
+292D;	seonearr;	**;	**	# ⤭	SOUTH EAST ARROW CROSSING NORTH EAST ARROW
+292E;	neosearr;	**;	**	# ⤮	NORTH EAST ARROW CROSSING SOUTH EAST ARROW
+292F;	fdonearr;	**;	**	# ⤯	FALLING DIAGONAL CROSSING NORTH EAST ARROW
+2930;	rdosearr;	**;	**	# ⤰	RISING DIAGONAL CROSSING SOUTH EAST ARROW
+2931;	neonwarr;	**;	**	# ⤱	NORTH EAST ARROW CROSSING NORTH WEST ARROW
+2932;	nwonearr;	**;	**	# ⤲	NORTH WEST ARROW CROSSING NORTH EAST ARROW
+2933;	rarrc;	ISOAMSA;	**	# ⤳	WAVE ARROW POINTING DIRECTLY RIGHT
+2936;	ldca;	ISOAMSA;	**	# ⤶	ARROW POINTING DOWNWARDS THEN CURVING LEFTWARDS
+2937;	rdca;	ISOAMSA;	**	# ⤷	ARROW POINTING DOWNWARDS THEN CURVING RIGHTWARDS
+2938;	cudarrl;	ISOAMSA;	**	# ⤸	RIGHT-SIDE ARC CLOCKWISE ARROW
+2939;	cudarrr;	ISOAMSA;	**	# ⤹	LEFT-SIDE ARC ANTICLOCKWISE ARROW
+293C;	curarrm;	ISOAMSA;	**	# ⤼	TOP ARC CLOCKWISE ARROW WITH MINUS
+293D;	cularrp;	ISOAMSA;	**	# ⤽	TOP ARC ANTICLOCKWISE ARROW WITH PLUS
+2940;	olarr;	ISOAMSA;	**	# ⥀	ANTICLOCKWISE CLOSED CIRCLE ARROW
+2941;	orarr;	ISOAMSA;	**	# ⥁	CLOCKWISE CLOSED CIRCLE ARROW
+2942;	arrlrsl;	**;	**	# ⥂	RIGHTWARDS ARROW ABOVE SHORT LEFTWARDS ARROW
+2943;	arrllsr;	**;	**	# ⥃	LEFTWARDS ARROW ABOVE SHORT RIGHTWARDS ARROW
+2944;	arrsrll;	**;	**	# ⥄	SHORT RIGHTWARDS ARROW ABOVE LEFTWARDS ARROW
+2945;	rarrpl;	ISOAMSA;	**	# ⥅	RIGHTWARDS ARROW WITH PLUS BELOW
+2946;	larrpl;	ISOAMSA;	**	# ⥆	LEFTWARDS ARROW WITH PLUS BELOW
+2947;	rarrx;	**;	**	# ⥇	RIGHTWARDS ARROW THROUGH X
+2948;	harrcir;	ISOAMSA;	**	# ⥈	LEFT RIGHT ARROW THROUGH SMALL CIRCLE
+2949;	Uarrocir;	ISOAMSA;	**	# ⥉	UPWARDS TWO-HEADED ARROW FROM SMALL CIRCLE
+294A;	lurdshar;	ISOAMSA;	**	# ⥊	LEFT BARB UP RIGHT BARB DOWN HARPOON
+294B;	ldrushar;	ISOAMSA;	**	# ⥋	LEFT BARB DOWN RIGHT BARB UP HARPOON
+294C;	urdlshar;	**;	**	# ⥌	UP BARB RIGHT DOWN BARB LEFT HARPOON
+294D;	uldrshar;	**;	**	# ⥍	UP BARB LEFT DOWN BARB RIGHT HARPOON
+294E;	lurushar;	**;	**	# ⥎	LEFT BARB UP RIGHT BARB UP HARPOON
+294F;	urdrshar;	**;	**	# ⥏	UP BARB RIGHT DOWN BARB RIGHT HARPOON
+2950;	ldrdshar;	**;	**	# ⥐	LEFT BARB DOWN RIGHT BARB DOWN HARPOON
+2951;	uldlshar;	**;	**	# ⥑	UP BARB LEFT DOWN BARB LEFT HARPOON
+2952;	luharb;	**;	**	# ⥒	LEFTWARDS HARPOON WITH BARB UP TO BAR
+2953;	ruharb;	**;	**	# ⥓	RIGHTWARDS HARPOON WITH BARB UP TO BAR
+2954;	urharb;	**;	**	# ⥔	UPWARDS HARPOON WITH BARB RIGHT TO BAR
+2955;	drharb;	**;	**	# ⥕	DOWNWARDS HARPOON WITH BARB RIGHT TO BAR
+2956;	ldharb;	**;	**	# ⥖	LEFTWARDS HARPOON WITH BARB DOWN TO BAR
+2957;	rdharb;	**;	**	# ⥗	RIGHTWARDS HARPOON WITH BARB DOWN TO BAR
+2958;	ulharb;	**;	**	# ⥘	UPWARDS HARPOON WITH BARB LEFT TO BAR
+2959;	dlharb;	**;	**	# ⥙	DOWNWARDS HARPOON WITH BARB LEFT TO BAR
+295A;	bluhar;	**;	**	# ⥚	LEFTWARDS HARPOON WITH BARB UP FROM BAR
+295B;	bruhar;	**;	**	# ⥛	RIGHTWARDS HARPOON WITH BARB UP FROM BAR
+295C;	burhar;	**;	**	# ⥜	UPWARDS HARPOON WITH BARB RIGHT FROM BAR
+295D;	bdrhar;	**;	**	# ⥝	DOWNWARDS HARPOON WITH BARB RIGHT FROM BAR
+295E;	bldhar;	**;	**	# ⥞	LEFTWARDS HARPOON WITH BARB DOWN FROM BAR
+295F;	brdhar;	**;	**	# ⥟	RIGHTWARDS HARPOON WITH BARB DOWN FROM BAR
+2960;	bulhar;	**;	**	# ⥠	UPWARDS HARPOON WITH BARB LEFT FROM BAR
+2961;	bdlhar;	**;	**	# ⥡	DOWNWARDS HARPOON WITH BARB LEFT FROM BAR
+2962;	lHar;	ISOAMSA;	**	# ⥢	LEFTWARDS HARPOON WITH BARB UP ABOVE LEFTWARDS HARPOON WITH BARB DOWN
+2963;	uHar;	ISOAMSA;	**	# ⥣	UPWARDS HARPOON WITH BARB LEFT BESIDE UPWARDS HARPOON WITH BARB RIGHT
+2964;	rHar;	ISOAMSA;	**	# ⥤	RIGHTWARDS HARPOON WITH BARB UP ABOVE RIGHTWARDS HARPOON WITH BARB DOWN
+2965;	dHar;	ISOAMSA;	**	# ⥥	DOWNWARDS HARPOON WITH BARB LEFT BESIDE DOWNWARDS HARPOON WITH BARB RIGHT
+2966;	luruhar;	ISOAMSA;	**	# ⥦	LEFTWARDS HARPOON WITH BARB UP ABOVE RIGHTWARDS HARPOON WITH BARB UP
+2967;	ldrdhar;	ISOAMSA;	**	# ⥧	LEFTWARDS HARPOON WITH BARB DOWN ABOVE RIGHTWARDS HARPOON WITH BARB DOWN
+2968;	ruluhar;	ISOAMSA;	**	# ⥨	RIGHTWARDS HARPOON WITH BARB UP ABOVE LEFTWARDS HARPOON WITH BARB UP
+2969;	rdldhar;	ISOAMSA;	**	# ⥩	RIGHTWARDS HARPOON WITH BARB DOWN ABOVE LEFTWARDS HARPOON WITH BARB DOWN
+296A;	lharul;	ISOAMSA;	**	# ⥪	LEFTWARDS HARPOON WITH BARB UP ABOVE LONG DASH
+296B;	llhard;	ISOAMSA;	**	# ⥫	LEFTWARDS HARPOON WITH BARB DOWN BELOW LONG DASH
+296C;	rharul;	ISOAMSA;	**	# ⥬	RIGHTWARDS HARPOON WITH BARB UP ABOVE LONG DASH
+296D;	lrhard;	ISOAMSA;	**	# ⥭	RIGHTWARDS HARPOON WITH BARB DOWN BELOW LONG DASH
+296E;	udhar;	ISOAMSA;	**	# ⥮	UPWARDS HARPOON WITH BARB LEFT BESIDE DOWNWARDS HARPOON WITH BARB RIGHT
+296F;	duhar;	ISOAMSA;	**	# ⥯	DOWNWARDS HARPOON WITH BARB LEFT BESIDE UPWARDS HARPOON WITH BARB RIGHT
+2970;	rimply;	**;	**	# ⥰	RIGHT DOUBLE ARROW WITH ROUNDED HEAD
+2971;	erarr;	ISOAMSA;	**	# ⥱	EQUALS SIGN ABOVE RIGHTWARDS ARROW
+2972;	simrarr;	ISOAMSA;	**	# ⥲	TILDE OPERATOR ABOVE RIGHTWARDS ARROW
+2973;	larrsim;	ISOAMSA;	**	# ⥳	LEFTWARDS ARROW ABOVE TILDE OPERATOR
+2974;	rarrsim;	ISOAMSA;	**	# ⥴	RIGHTWARDS ARROW ABOVE TILDE OPERATOR
+2975;	rarrap;	ISOAMSA;	**	# ⥵	RIGHTWARDS ARROW ABOVE ALMOST EQUAL TO
+2976;	ltlarr;	ISOAMSR;	**	# ⥶	LESS-THAN ABOVE LEFTWARDS ARROW
+2978;	gtrarr;	ISOAMSR;	**	# ⥸	GREATER-THAN ABOVE RIGHTWARDS ARROW
+2979;	subrarr;	ISOAMSR;	**	# ⥹	SUBSET ABOVE RIGHTWARDS ARROW
+297B;	suplarr;	ISOAMSR;	**	# ⥻	SUPERSET ABOVE LEFTWARDS ARROW
+297C;	lfisht;	ISOAMSA;	**	# ⥼	LEFT FISH TAIL
+297D;	rfisht;	ISOAMSA;	**	# ⥽	RIGHT FISH TAIL
+297E;	ufisht;	ISOAMSA;	**	# ⥾	UP FISH TAIL
+297F;	dfisht;	ISOAMSA;	**	# ⥿	DOWN FISH TAIL
+2980;	tverbar;	**;	**	# ⦀	TRIPLE VERTICAL BAR DELIMITER
+2981;	scirclef;	**;	**	# ⦁	Z NOTATION SPOT
+2983;	locub;	**;	**	# ⦃	LEFT WHITE CURLY BRACKET
+2984;	rocub;	**;	**	# ⦄	RIGHT WHITE CURLY BRACKET
+2985;	lopar;	ISOTECH;	**	# ⦅	LEFT WHITE PARENTHESIS
+2986;	ropar;	ISOTECH;	**	# ⦆	RIGHT WHITE PARENTHESIS
+298B;	lbrke;	ISOAMSC;	**	# ⦋	LEFT SQUARE BRACKET WITH UNDERBAR
+298C;	rbrke;	ISOAMSC;	**	# ⦌	RIGHT SQUARE BRACKET WITH UNDERBAR
+298D;	lbrkslu;	ISOAMSC;	**	# ⦍	LEFT SQUARE BRACKET WITH TICK IN TOP CORNER
+298E;	rbrksld;	ISOAMSC;	**	# ⦎	RIGHT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+298F;	lbrksld;	ISOAMSC;	**	# ⦏	LEFT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+2990;	rbrkslu;	ISOAMSC;	**	# ⦐	RIGHT SQUARE BRACKET WITH TICK IN TOP CORNER
+2991;	langd;	ISOAMSC;	**	# ⦑	LEFT ANGLE BRACKET WITH DOT
+2992;	rangd;	ISOAMSC;	**	# ⦒	RIGHT ANGLE BRACKET WITH DOT
+2993;	lparlt;	ISOAMSC;	**	# ⦓	LEFT ARC LESS-THAN BRACKET
+2994;	rpargt;	ISOAMSC;	**	# ⦔	RIGHT ARC GREATER-THAN BRACKET
+2995;	gtlPar;	ISOAMSC;	**	# ⦕	DOUBLE LEFT ARC GREATER-THAN BRACKET
+2996;	ltrPar;	ISOAMSC;	**	# ⦖	DOUBLE RIGHT ARC LESS-THAN BRACKET
+2999;	vellip4;	**;	**	# ⦙	DOTTED FENCE
+299A;	vzigzag;	ISOAMSO;	**	# ⦚	VERTICAL ZIGZAG LINE
+299C;	vangrt;	ISOTECH;	**	# ⦜	RIGHT ANGLE VARIANT WITH SQUARE
+299D;	angrtvbd;	ISOAMSO;	**	# ⦝	MEASURED RIGHT ANGLE WITH DOT
+299E;	angles;	**;	**	# ⦞	ANGLE WITH S INSIDE
+299F;	angdnr;	**;	**	# ⦟	ACUTE ANGLE
+29A0;	gtlpar;	**;	**	# ⦠	SPHERICAL ANGLE OPENING LEFT
+29A2;	angdnl;	**;	**	# ⦢	TURNED ANGLE
+29A3;	angupl;	**;	**	# ⦣	REVERSED ANGLE
+29A4;	ange;	ISOAMSO;	**	# ⦤	ANGLE WITH UNDERBAR
+29A5;	range;	ISOAMSO;	**	# ⦥	REVERSED ANGLE WITH UNDERBAR
+29A6;	dwangle;	ISOTECH;	**	# ⦦	OBLIQUE ANGLE OPENING UP
+29A7;	uwangle;	ISOTECH;	**	# ⦧	OBLIQUE ANGLE OPENING DOWN
+29A8;	angmsdaa;	ISOAMSO;	**	# ⦨	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING UP AND RIGHT
+29A9;	angmsdab;	ISOAMSO;	**	# ⦩	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING UP AND LEFT
+29AA;	angmsdac;	ISOAMSO;	**	# ⦪	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING DOWN AND RIGHT
+29AB;	angmsdad;	ISOAMSO;	**	# ⦫	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING DOWN AND LEFT
+29AC;	angmsdae;	ISOAMSO;	**	# ⦬	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING RIGHT AND UP
+29AD;	angmsdaf;	ISOAMSO;	**	# ⦭	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING LEFT AND UP
+29AE;	angmsdag;	ISOAMSO;	**	# ⦮	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING RIGHT AND DOWN
+29AF;	angmsdah;	ISOAMSO;	**	# ⦯	MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING LEFT AND DOWN
+29B0;	bemptyv;	ISOAMSO;	**	# ⦰	REVERSED EMPTY SET
+29B1;	demptyv;	ISOAMSO;	**	# ⦱	EMPTY SET WITH OVERBAR
+29B2;	cemptyv;	ISOAMSO;	**	# ⦲	EMPTY SET WITH SMALL CIRCLE ABOVE
+29B3;	raemptyv;	ISOAMSO;	**	# ⦳	EMPTY SET WITH RIGHT ARROW ABOVE
+29B4;	laemptyv;	ISOAMSO;	**	# ⦴	EMPTY SET WITH LEFT ARROW ABOVE
+29B5;	ohbar;	ISOAMSB;	**	# ⦵	CIRCLE WITH HORIZONTAL BAR
+29B6;	omid;	ISOAMSB;	**	# ⦶	CIRCLED VERTICAL BAR
+29B7;	opar;	ISOAMSB;	**	# ⦷	CIRCLED PARALLEL
+29B8;	obsol;	**;	**	# ⦸	CIRCLED REVERSE SOLIDUS
+29B9;	operp;	ISOAMSB;	**	# ⦹	CIRCLED PERPENDICULAR
+29BB;	olcross;	ISOTECH;	**	# ⦻	CIRCLE WITH SUPERIMPOSED X
+29BC;	odsold;	ISOAMSB;	**	# ⦼	CIRCLED ANTICLOCKWISE-ROTATED DIVISION SIGN
+29BD;	oxuarr;	**;	**	# ⦽	UP ARROW THROUGH CIRCLE
+29BE;	olcir;	ISOAMSB;	**	# ⦾	CIRCLED WHITE BULLET
+29BF;	ofcir;	ISOAMSB;	**	# ⦿	CIRCLED BULLET
+29C0;	olt;	ISOAMSB;	**	# ⧀	CIRCLED LESS-THAN
+29C1;	ogt;	ISOAMSB;	**	# ⧁	CIRCLED GREATER-THAN
+29C2;	cirscir;	ISOAMSO;	**	# ⧂	CIRCLE WITH SMALL CIRCLE TO THE RIGHT
+29C3;	cirE;	ISOAMSO;	**	# ⧃	CIRCLE WITH TWO HORIZONTAL STROKES TO THE RIGHT
+29C4;	solb;	ISOAMSB;	**	# ⧄	SQUARED RISING DIAGONAL SLASH
+29C5;	bsolb;	ISOAMSB;	**	# ⧅	SQUARED FALLING DIAGONAL SLASH
+29C6;	astb;	**;	**	# ⧆	SQUARED ASTERISK
+29C7;	cirb;	**;	**	# ⧇	SQUARED SMALL CIRCLE
+29C8;	squb;	**;	**	# ⧈	SQUARED SQUARE
+29C9;	boxbox;	ISOAMSO;	**	# ⧉	TWO JOINED SQUARES
+29CA;	tridoto;	**;	**	# ⧊	TRIANGLE WITH DOT ABOVE
+29CB;	tribar;	**;	**	# ⧋	TRIANGLE WITH UNDERBAR
+29CC;	triS;	**;	**	# ⧌	S IN TRIANGLE
+29CD;	trisb;	ISOAMSB;	**	# ⧍	TRIANGLE WITH SERIFS AT BOTTOM
+29CE;	rtriltri;	ISOAMSR;	**	# ⧎	RIGHT TRIANGLE ABOVE LEFT TRIANGLE
+29CF;	ltrivb;	**;	**	# ⧏	LEFT TRIANGLE BESIDE VERTICAL BAR
+29D0;	vbrtri;	**;	**	# ⧐	VERTICAL BAR BESIDE RIGHT TRIANGLE
+29D1;	lfbowtie;	**;	**	# ⧑	BOWTIE WITH LEFT HALF BLACK
+29D2;	rfbowtie;	**;	**	# ⧒	BOWTIE WITH RIGHT HALF BLACK
+29D3;	fbowtie;	**;	**	# ⧓	BLACK BOWTIE
+29D4;	lftimes;	**;	**	# ⧔	TIMES WITH LEFT HALF BLACK
+29D5;	rftimes;	**;	**	# ⧕	TIMES WITH RIGHT HALF BLACK
+29D6;	hrglass;	**;	**	# ⧖	WHITE HOURGLASS
+29D7;	fhrglass;	**;	**	# ⧗	BLACK HOURGLASS
+29DC;	iinfin;	ISOTECH;	**	# ⧜	INCOMPLETE INFINITY
+29DD;	infintie;	ISOTECH;	**	# ⧝	TIE OVER INFINITY
+29DE;	nvinfin;	ISOTECH;	**	# ⧞	INFINITY NEGATED WITH VERTICAL BAR
+29DF;	dumap;	**;	**	# ⧟	DOUBLE-ENDED MULTIMAP
+29E0;	dalembrt;	**;	**	# ⧠	SQUARE WITH CONTOURED OUTLINE
+29E1;	lrtrieq;	**;	**	# ⧡	INCREASES AS
+29E2;	shuffle;	**;	**	# ⧢	SHUFFLE PRODUCT
+29E3;	eparsl;	ISOTECH;	**	# ⧣	EQUALS SIGN AND SLANTED PARALLEL
+29E4;	smeparsl;	ISOTECH;	**	# ⧤	EQUALS SIGN AND SLANTED PARALLEL WITH TILDE ABOVE
+29E5;	eqvparsl;	ISOTECH;	**	# ⧥	IDENTICAL TO AND SLANTED PARALLEL
+29E7;	thermod;	**;	**	# ⧧	THERMODYNAMIC
+29E8;	dtrilf;	**;	**	# ⧨	DOWN-POINTING TRIANGLE WITH LEFT HALF BLACK
+29E9;	dtrirf;	**;	**	# ⧩	DOWN-POINTING TRIANGLE WITH RIGHT HALF BLACK
+29EA;	diamdarr;	**;	**	# ⧪	BLACK DIAMOND WITH DOWN ARROW
+29EB;	lozf;	ISOPUB;	**	# ⧫	BLACK LOZENGE
+29EC;	cirdarr;	**;	**	# ⧬	WHITE CIRCLE WITH DOWN ARROW
+29ED;	cirfdarr;	**;	**	# ⧭	BLACK CIRCLE WITH DOWN ARROW
+29EE;	squerr;	**;	**	# ⧮	ERROR-BARRED WHITE SQUARE
+29EF;	squferr;	**;	**	# ⧯	ERROR-BARRED BLACK SQUARE
+29F0;	diamerr;	**;	**	# ⧰	ERROR-BARRED WHITE DIAMOND
+29F1;	diamerrf;	**;	**	# ⧱	ERROR-BARRED BLACK DIAMOND
+29F2;	cirerr;	**;	**	# ⧲	ERROR-BARRED WHITE CIRCLE
+29F3;	cirferr;	**;	**	# ⧳	ERROR-BARRED BLACK CIRCLE
+29F6;	dsol;	ISOTECH;	**	# ⧶	SOLIDUS WITH OVERBAR
+29F7;	rsolbar;	**;	**	# ⧷	REVERSE SOLIDUS WITH HORIZONTAL STROKE
+29F8;	xsol;	**;	**	# ⧸	BIG SOLIDUS
+29F9;	xbsol;	**;	**	# ⧹	BIG REVERSE SOLIDUS
+2A00;	xodot;	ISOAMSB;	**	# ⨀	N-ARY CIRCLED DOT OPERATOR
+2A01;	xoplus;	ISOAMSB;	**	# ⨁	N-ARY CIRCLED PLUS OPERATOR
+2A02;	xotime;	ISOAMSB;	**	# ⨂	N-ARY CIRCLED TIMES OPERATOR
+2A03;	xcupdot;	**;	**	# ⨃	N-ARY UNION OPERATOR WITH DOT
+2A04;	xuplus;	ISOAMSB;	**	# ⨄	N-ARY UNION OPERATOR WITH PLUS
+2A05;	xsqcap;	ISOAMSB;	**	# ⨅	N-ARY SQUARE INTERSECTION OPERATOR
+2A06;	xsqcup;	ISOAMSB;	**	# ⨆	N-ARY SQUARE UNION OPERATOR
+2A07;	xandand;	**;	**	# ⨇	TWO LOGICAL AND OPERATOR
+2A08;	xoror;	**;	**	# ⨈	TWO LOGICAL OR OPERATOR
+2A09;	xtimes;	**;	**	# ⨉	N-ARY TIMES OPERATOR
+2A0B;	sumint;	**;	**	# ⨋	SUMMATION WITH INTEGRAL
+2A0C;	qint;	ISOTECH;	**	# ⨌	QUADRUPLE INTEGRAL OPERATOR
+2A0D;	fpartint;	ISOTECH;	**	# ⨍	FINITE PART INTEGRAL
+2A0E;	Barint;	**;	**	# ⨎	INTEGRAL WITH DOUBLE STROKE
+2A0F;	slint;	**;	**	# ⨏	INTEGRAL AVERAGE WITH SLASH
+2A10;	cirfnint;	ISOTECH;	**	# ⨐	CIRCULATION FUNCTION
+2A11;	awint;	ISOTECH;	**	# ⨑	ANTICLOCKWISE INTEGRATION
+2A12;	rppolint;	ISOTECH;	**	# ⨒	LINE INTEGRATION WITH RECTANGULAR PATH AROUND POLE
+2A13;	scpolint;	ISOTECH;	**	# ⨓	LINE INTEGRATION WITH SEMICIRCULAR PATH AROUND POLE
+2A14;	npolint;	ISOTECH;	**	# ⨔	LINE INTEGRATION NOT INCLUDING THE POLE
+2A15;	pointint;	ISOTECH;	**	# ⨕	INTEGRAL AROUND A POINT OPERATOR
+2A16;	quatint;	ISOTECH;	**	# ⨖	QUATERNION INTEGRAL OPERATOR
+2A17;	intlarhk;	ISOTECH;	**	# ⨗	INTEGRAL WITH LEFTWARDS ARROW WITH HOOK
+2A18;	timeint;	**;	**	# ⨘	INTEGRAL WITH TIMES SIGN
+2A19;	capint;	**;	**	# ⨙	INTEGRAL WITH INTERSECTION
+2A1A;	cupint;	**;	**	# ⨚	INTEGRAL WITH UNION
+2A1B;	upint;	**;	**	# ⨛	INTEGRAL WITH OVERBAR
+2A1C;	lowint;	**;	**	# ⨜	INTEGRAL WITH UNDERBAR
+2A1D;	Join;	**;	**	# ⨝	JOIN
+2A1E;	xltri;	**;	**	# ⨞	LARGE LEFT TRIANGLE OPERATOR
+2A22;	pluscir;	ISOAMSB;	**	# ⨢	PLUS SIGN WITH SMALL CIRCLE ABOVE
+2A23;	plusacir;	ISOAMSB;	**	# ⨣	PLUS SIGN WITH CIRCUMFLEX ACCENT ABOVE
+2A24;	simplus;	ISOAMSB;	**	# ⨤	PLUS SIGN WITH TILDE ABOVE
+2A25;	plusdu;	ISOAMSB;	**	# ⨥	PLUS SIGN WITH DOT BELOW
+2A26;	plussim;	ISOAMSB;	**	# ⨦	PLUS SIGN WITH TILDE BELOW
+2A27;	plustwo;	ISOAMSB;	**	# ⨧	PLUS SIGN WITH SUBSCRIPT TWO
+2A28;	plustrif;	**;	**	# ⨨	PLUS SIGN WITH BLACK TRIANGLE
+2A29;	mcomma;	ISOAMSR;	**	# ⨩	MINUS SIGN WITH COMMA ABOVE
+2A2A;	minusdu;	ISOAMSB;	**	# ⨪	MINUS SIGN WITH DOT BELOW
+2A2D;	loplus;	ISOAMSB;	**	# ⨭	PLUS SIGN IN LEFT HALF CIRCLE
+2A2E;	roplus;	ISOAMSB;	**	# ⨮	PLUS SIGN IN RIGHT HALF CIRCLE
+2A2F;	htimes;	**;	**	# ⨯	VECTOR OR CROSS PRODUCT
+2A30;	timesd;	ISOAMSB;	**	# ⨰	MULTIPLICATION SIGN WITH DOT ABOVE
+2A31;	timesbar;	ISOAMSB;	**	# ⨱	MULTIPLICATION SIGN WITH UNDERBAR
+2A32;	btimes;	**;	**	# ⨲	SEMIDIRECT PRODUCT WITH BOTTOM CLOSED
+2A33;	smashp;	ISOAMSB;	**	# ⨳	SMASH PRODUCT
+2A34;	lotimes;	ISOAMSB;	**	# ⨴	MULTIPLICATION SIGN IN LEFT HALF CIRCLE
+2A35;	rotimes;	ISOAMSB;	**	# ⨵	MULTIPLICATION SIGN IN RIGHT HALF CIRCLE
+2A36;	otimesas;	ISOAMSB;	**	# ⨶	CIRCLED MULTIPLICATION SIGN WITH CIRCUMFLEX ACCENT
+2A37;	Otimes;	ISOAMSB;	**	# ⨷	MULTIPLICATION SIGN IN DOUBLE CIRCLE
+2A38;	odiv;	ISOAMSB;	**	# ⨸	CIRCLED DIVISION SIGN
+2A39;	triplus;	ISOAMSB;	**	# ⨹	PLUS SIGN IN TRIANGLE
+2A3A;	triminus;	ISOAMSB;	**	# ⨺	MINUS SIGN IN TRIANGLE
+2A3B;	tritime;	ISOAMSB;	**	# ⨻	MULTIPLICATION SIGN IN TRIANGLE
+2A3C;	iprod;	ISOAMSB;	**	# ⨼	INTERIOR PRODUCT
+2A3D;	iprodr;	ISOAMSB;	**	# ⨽	RIGHTHAND INTERIOR PRODUCT
+2A3F;	amalg;	ISOAMSB;	**	# ⨿	AMALGAMATION OR COPRODUCT
+2A40;	capdot;	ISOAMSB;	**	# ⩀	INTERSECTION WITH DOT
+2A42;	ncup;	ISOAMSB;	**	# ⩂	UNION WITH OVERBAR
+2A43;	ncap;	ISOAMSB;	**	# ⩃	INTERSECTION WITH OVERBAR
+2A44;	capand;	ISOAMSB;	**	# ⩄	INTERSECTION WITH LOGICAL AND
+2A45;	cupor;	ISOAMSB;	**	# ⩅	UNION WITH LOGICAL OR
+2A46;	cupcap;	ISOAMSB;	**	# ⩆	UNION ABOVE INTERSECTION
+2A47;	capcup;	ISOAMSB;	**	# ⩇	INTERSECTION ABOVE UNION
+2A48;	cupbrcap;	ISOAMSB;	**	# ⩈	UNION ABOVE BAR ABOVE INTERSECTION
+2A49;	capbrcup;	ISOAMSB;	**	# ⩉	INTERSECTION ABOVE BAR ABOVE UNION
+2A4A;	cupcup;	ISOAMSB;	**	# ⩊	UNION BESIDE AND JOINED WITH UNION
+2A4B;	capcap;	ISOAMSB;	**	# ⩋	INTERSECTION BESIDE AND JOINED WITH INTERSECTION
+2A4C;	ccups;	ISOAMSB;	**	# ⩌	CLOSED UNION WITH SERIFS
+2A4D;	ccaps;	ISOAMSB;	**	# ⩍	CLOSED INTERSECTION WITH SERIFS
+2A50;	ccupssm;	ISOAMSB;	**	# ⩐	CLOSED UNION WITH SERIFS AND SMASH PRODUCT
+2A51;	anddot;	**;	**	# ⩑	LOGICAL AND WITH DOT ABOVE
+2A52;	ordot;	**;	**	# ⩒	LOGICAL OR WITH DOT ABOVE
+2A53;	And;	ISOTECH;	**	# ⩓	DOUBLE LOGICAL AND
+2A54;	Or;	ISOTECH;	**	# ⩔	DOUBLE LOGICAL OR
+2A55;	andand;	ISOTECH;	**	# ⩕	TWO INTERSECTING LOGICAL AND
+2A56;	oror;	ISOTECH;	**	# ⩖	TWO INTERSECTING LOGICAL OR
+2A57;	orslope;	ISOTECH;	**	# ⩗	SLOPING LARGE OR
+2A58;	andslope;	ISOTECH;	**	# ⩘	SLOPING LARGE AND
+2A5A;	andv;	ISOTECH;	**	# ⩚	LOGICAL AND WITH MIDDLE STEM
+2A5B;	orv;	ISOTECH;	**	# ⩛	LOGICAL OR WITH MIDDLE STEM
+2A5C;	andd;	ISOTECH;	**	# ⩜	LOGICAL AND WITH HORIZONTAL DASH
+2A5D;	ord;	ISOTECH;	**	# ⩝	LOGICAL OR WITH HORIZONTAL DASH
+2A5F;	wedbar;	ISOAMSB;	**	# ⩟	LOGICAL AND WITH UNDERBAR
+2A60;	wedBar;	**;	**	# ⩠	LOGICAL AND WITH DOUBLE UNDERBAR
+2A61;	veebar;	ISOAMSB;	**	# ⩡	SMALL VEE WITH UNDERBAR
+2A62;	Barvee;	**;	**	# ⩢	LOGICAL OR WITH DOUBLE OVERBAR
+2A63;	veeBar;	**;	**	# ⩣	LOGICAL OR WITH DOUBLE UNDERBAR
+2A66;	sdote;	ISOAMSR;	**	# ⩦	EQUALS SIGN WITH DOT BELOW
+2A6A;	simdot;	ISOTECH;	**	# ⩪	TILDE OPERATOR WITH DOT ABOVE
+2A6D;	congdot;	ISOAMSR;	**	# ⩭	CONGRUENT WITH DOT ABOVE
+2A6E;	easter;	ISOAMSR;	**	# ⩮	EQUALS WITH ASTERISK
+2A6F;	apacir;	ISOTECH;	**	# ⩯	ALMOST EQUAL TO WITH CIRCUMFLEX ACCENT
+2A70;	apE;	ISOAMSR;	**	# ⩰	APPROXIMATELY EQUAL OR EQUAL TO
+2A71;	eplus;	ISOAMSB;	**	# ⩱	EQUALS SIGN ABOVE PLUS SIGN
+2A72;	pluse;	ISOAMSB;	**	# ⩲	PLUS SIGN ABOVE EQUALS SIGN
+2A73;	Esim;	ISOAMSR;	**	# ⩳	EQUALS SIGN ABOVE TILDE OPERATOR
+2A74;	Colone;	ISOAMSR;	**	# ⩴	DOUBLE COLON EQUAL
+2A75;	eqeq;	**;	**	# ⩵	TWO CONSECUTIVE EQUALS SIGNS
+2A77;	eDDot;	ISOAMSR;	**	# ⩷	EQUALS SIGN WITH TWO DOTS ABOVE AND TWO DOTS BELOW
+2A78;	equivDD;	ISOAMSR;	**	# ⩸	EQUIVALENT WITH FOUR DOTS ABOVE
+2A79;	ltcir;	ISOAMSR;	**	# ⩹	LESS-THAN WITH CIRCLE INSIDE
+2A7A;	gtcir;	ISOAMSR;	**	# ⩺	GREATER-THAN WITH CIRCLE INSIDE
+2A7B;	ltquest;	ISOAMSR;	**	# ⩻	LESS-THAN WITH QUESTION MARK ABOVE
+2A7C;	gtquest;	ISOAMSR;	**	# ⩼	GREATER-THAN WITH QUESTION MARK ABOVE
+2A7D;	les;	ISOAMSR;	**	# ⩽	LESS-THAN OR SLANTED EQUAL TO
+2A7E;	ges;	ISOAMSR;	**	# ⩾	GREATER-THAN OR SLANTED EQUAL TO
+2A7F;	lesdot;	ISOAMSR;	**	# ⩿	LESS-THAN OR SLANTED EQUAL TO WITH DOT INSIDE
+2A80;	gesdot;	ISOAMSR;	**	# ⪀	GREATER-THAN OR SLANTED EQUAL TO WITH DOT INSIDE
+2A81;	lesdoto;	ISOAMSR;	**	# ⪁	LESS-THAN OR SLANTED EQUAL TO WITH DOT ABOVE
+2A82;	gesdoto;	ISOAMSR;	**	# ⪂	GREATER-THAN OR SLANTED EQUAL TO WITH DOT ABOVE
+2A83;	lesdotor;	ISOAMSR;	**	# ⪃	LESS-THAN OR SLANTED EQUAL TO WITH DOT ABOVE RIGHT
+2A84;	gesdotol;	ISOAMSR;	**	# ⪄	GREATER-THAN OR SLANTED EQUAL TO WITH DOT ABOVE LEFT
+2A85;	lap;	ISOAMSR;	**	# ⪅	LESS-THAN OR APPROXIMATE
+2A86;	gap;	ISOAMSR;	**	# ⪆	GREATER-THAN OR APPROXIMATE
+2A87;	lne;	ISOAMSN;	**	# ⪇	LESS-THAN AND SINGLE-LINE NOT EQUAL TO
+2A88;	gne;	ISOAMSN;	**	# ⪈	GREATER-THAN AND SINGLE-LINE NOT EQUAL TO
+2A89;	lnap;	ISOAMSN;	**	# ⪉	LESS-THAN AND NOT APPROXIMATE
+2A8A;	gnap;	ISOAMSN;	**	# ⪊	GREATER-THAN AND NOT APPROXIMATE
+2A8B;	lEg;	ISOAMSR;	**	# ⪋	LESS-THAN ABOVE DOUBLE-LINE EQUAL ABOVE GREATER-THAN
+2A8C;	gEl;	ISOAMSR;	**	# ⪌	GREATER-THAN ABOVE DOUBLE-LINE EQUAL ABOVE LESS-THAN
+2A8D;	lsime;	ISOAMSR;	**	# ⪍	LESS-THAN ABOVE SIMILAR OR EQUAL
+2A8E;	gsime;	ISOAMSR;	**	# ⪎	GREATER-THAN ABOVE SIMILAR OR EQUAL
+2A8F;	lsimg;	ISOAMSR;	**	# ⪏	LESS-THAN ABOVE SIMILAR ABOVE GREATER-THAN
+2A90;	gsiml;	ISOAMSR;	**	# ⪐	GREATER-THAN ABOVE SIMILAR ABOVE LESS-THAN
+2A91;	lgE;	ISOAMSR;	**	# ⪑	LESS-THAN ABOVE GREATER-THAN ABOVE DOUBLE-LINE EQUAL
+2A92;	glE;	ISOAMSR;	**	# ⪒	GREATER-THAN ABOVE LESS-THAN ABOVE DOUBLE-LINE EQUAL
+2A93;	lesges;	ISOAMSR;	**	# ⪓	LESS-THAN ABOVE SLANTED EQUAL ABOVE GREATER-THAN ABOVE SLANTED EQUAL
+2A94;	gesles;	ISOAMSR;	**	# ⪔	GREATER-THAN ABOVE SLANTED EQUAL ABOVE LESS-THAN ABOVE SLANTED EQUAL
+2A95;	els;	ISOAMSR;	**	# ⪕	SLANTED EQUAL TO OR LESS-THAN
+2A96;	egs;	ISOAMSR;	**	# ⪖	SLANTED EQUAL TO OR GREATER-THAN
+2A97;	elsdot;	ISOAMSR;	**	# ⪗	SLANTED EQUAL TO OR LESS-THAN WITH DOT INSIDE
+2A98;	egsdot;	ISOAMSR;	**	# ⪘	SLANTED EQUAL TO OR GREATER-THAN WITH DOT INSIDE
+
+2A9D;	siml;	ISOAMSR;	**	# ⪝	SIMILAR OR LESS-THAN
+2A9E;	simg;	ISOAMSR;	**	# ⪞	SIMILAR OR GREATER-THAN
+2A9F;	simlE;	ISOAMSR;	**	# ⪟	SIMILAR ABOVE LESS-THAN ABOVE EQUALS SIGN
+2AA0;	simgE;	ISOAMSR;	**	# ⪠	SIMILAR ABOVE GREATER-THAN ABOVE EQUALS SIGN
+2AA1;	Lt;	ISOAMSR;	**	# ⪡	DOUBLE NESTED LESS-THAN
+2AA2;	Gt;	ISOAMSR;	**	# ⪢	DOUBLE NESTED GREATER-THAN
+2AA3;	Ltbar;	**;	**	# ⪣	DOUBLE NESTED LESS-THAN WITH UNDERBAR
+2AA4;	glj;	ISOAMSR;	**	# ⪤	GREATER-THAN OVERLAPPING LESS-THAN
+2AA5;	gla;	ISOAMSR;	**	# ⪥	GREATER-THAN BESIDE LESS-THAN
+2AA6;	ltcc;	ISOAMSR;	**	# ⪦	LESS-THAN CLOSED BY CURVE
+2AA7;	gtcc;	ISOAMSR;	**	# ⪧	GREATER-THAN CLOSED BY CURVE
+2AA8;	lescc;	ISOAMSR;	**	# ⪨	LESS-THAN CLOSED BY CURVE ABOVE SLANTED EQUAL
+2AA9;	gescc;	ISOAMSR;	**	# ⪩	GREATER-THAN CLOSED BY CURVE ABOVE SLANTED EQUAL
+2AAA;	smt;	ISOAMSR;	**	# ⪪	SMALLER THAN
+2AAB;	lat;	ISOAMSR;	**	# ⪫	LARGER THAN
+2AAC;	smte;	ISOAMSR;	**	# ⪬	SMALLER THAN OR EQUAL TO
+2AAD;	late;	ISOAMSR;	**	# ⪭	LARGER THAN OR EQUAL TO
+2AAE;	bumpE;	ISOAMSR;	**	# ⪮	EQUALS SIGN WITH BUMPY ABOVE
+2AAF;	pre;	ISOAMSR;	**	# ⪯	PRECEDES ABOVE SINGLE-LINE EQUALS SIGN
+2AB0;	sce;	ISOAMSR;	**	# ⪰	SUCCEEDS ABOVE SINGLE-LINE EQUALS SIGN
+2AB3;	prE;	ISOAMSR;	**	# ⪳	PRECEDES ABOVE EQUALS SIGN
+2AB4;	scE;	ISOAMSR;	**	# ⪴	SUCCEEDS ABOVE EQUALS SIGN
+2AB5;	prnE;	ISOAMSN;	**	# ⪵	PRECEDES ABOVE NOT EQUAL TO
+2AB6;	scnE;	ISOAMSN;	**	# ⪶	SUCCEEDS ABOVE NOT EQUAL TO
+2AB7;	prap;	ISOAMSR;	**	# ⪷	PRECEDES ABOVE ALMOST EQUAL TO
+2AB8;	scap;	ISOAMSR;	**	# ⪸	SUCCEEDS ABOVE ALMOST EQUAL TO
+2AB9;	prnap;	ISOAMSN;	**	# ⪹	PRECEDES ABOVE NOT ALMOST EQUAL TO
+2ABA;	scnap;	ISOAMSN;	**	# ⪺	SUCCEEDS ABOVE NOT ALMOST EQUAL TO
+2ABB;	Pr;	ISOAMSR;	**	# ⪻	DOUBLE PRECEDES
+2ABC;	Sc;	ISOAMSR;	**	# ⪼	DOUBLE SUCCEEDS
+2ABD;	subdot;	ISOAMSB;	**	# ⪽	SUBSET WITH DOT
+2ABE;	supdot;	ISOAMSB;	**	# ⪾	SUPERSET WITH DOT
+2ABF;	subplus;	ISOAMSR;	**	# ⪿	SUBSET WITH PLUS SIGN BELOW
+2AC0;	supplus;	ISOAMSR;	**	# ⫀	SUPERSET WITH PLUS SIGN BELOW
+2AC1;	submult;	ISOAMSR;	**	# ⫁	SUBSET WITH MULTIPLICATION SIGN BELOW
+2AC2;	supmult;	ISOAMSR;	**	# ⫂	SUPERSET WITH MULTIPLICATION SIGN BELOW
+2AC3;	subedot;	ISOAMSR;	**	# ⫃	SUBSET OF OR EQUAL TO WITH DOT ABOVE
+2AC4;	supedot;	ISOAMSR;	**	# ⫄	SUPERSET OF OR EQUAL TO WITH DOT ABOVE
+2AC5;	subE;	ISOAMSR;	**	# ⫅	SUBSET OF ABOVE EQUALS SIGN
+2AC6;	supE;	ISOAMSR;	**	# ⫆	SUPERSET OF ABOVE EQUALS SIGN
+2AC7;	subsim;	ISOAMSR;	**	# ⫇	SUBSET OF ABOVE TILDE OPERATOR
+2AC8;	supsim;	ISOAMSR;	**	# ⫈	SUPERSET OF ABOVE TILDE OPERATOR
+2ACB;	subnE;	ISOAMSN;	**	# ⫋	SUBSET OF ABOVE NOT EQUAL TO
+2ACC;	supnE;	ISOAMSN;	**	# ⫌	SUPERSET OF ABOVE NOT EQUAL TO
+2ACF;	csub;	ISOAMSR;	**	# ⫏	CLOSED SUBSET
+2AD0;	csup;	ISOAMSR;	**	# ⫐	CLOSED SUPERSET
+2AD1;	csube;	ISOAMSR;	**	# ⫑	CLOSED SUBSET OR EQUAL TO
+2AD2;	csupe;	ISOAMSR;	**	# ⫒	CLOSED SUPERSET OR EQUAL TO
+2AD3;	subsup;	ISOAMRR;	**	# ⫓	SUBSET ABOVE SUPERSET
+2AD4;	supsub;	ISOAMSR;	**	# ⫔	SUPERSET ABOVE SUBSET
+2AD5;	subsub;	ISOAMSR;	**	# ⫕	SUBSET ABOVE SUBSET
+2AD6;	supsup;	ISOAMSR;	**	# ⫖	SUPERSET ABOVE SUPERSET
+2AD7;	suphsub;	ISOAMSR;	**	# ⫗	SUPERSET BESIDE SUBSET
+2AD8;	supdsub;	ISOAMSR;	**	# ⫘	SUPERSET BESIDE AND JOINED BY DASH WITH SUBSET
+2AD9;	forkv;	ISOAMSR;	**	# ⫙	ELEMENT OF OPENING DOWNWARDS
+2ADA;	topfork;	ISOAMSR;	**	# ⫚	PITCHFORK WITH TEE TOP
+2ADB;	mlcp;	ISOAMSR;	**	# ⫛	TRANSVERSAL INTERSECTION
+2AE2;	vDdash;	**;	**	# ⫢	VERTICAL BAR TRIPLE RIGHT TURNSTILE
+2AE3;	dashV;	**;	**	# ⫣	DOUBLE VERTICAL BAR LEFT TURNSTILE
+2AE4;	Dashv;	ISOAMSR;	**	# ⫤	VERTICAL BAR DOUBLE LEFT TURNSTILE
+2AE6;	Vdashl;	ISOAMSR;	**	# ⫦	LONG DASH FROM LEFT MEMBER OF DOUBLE VERTICAL
+2AE7;	Barv;	ISOAMSR;	**	# ⫧	SHORT DOWN TACK WITH OVERBAR
+2AE8;	vBar;	ISOAMSR;	**	# ⫨	SHORT UP TACK WITH UNDERBAR
+2AE9;	vBarv;	ISOAMSR;	**	# ⫩	SHORT UP TACK ABOVE SHORT DOWN TACK
+2AEA;	barV;	**;	**	# ⫪	DOUBLE DOWN TACK
+2AEB;	Vbar;	ISOAMSR;	**	# ⫫	DOUBLE UP TACK
+2AEC;	Not;	ISOTECH;	**	# ⫬	DOUBLE STROKE NOT SIGN
+2AED;	bNot;	ISOTECH;	**	# ⫭	REVERSED DOUBLE STROKE NOT SIGN
+2AEE;	rnmid;	ISOAMSN;	**	# ⫮	DOES NOT DIVIDE WITH REVERSED NEGATION SLASH
+2AEF;	cirmid;	ISOAMSA;	**	# ⫯	VERTICAL LINE WITH CIRCLE ABOVE
+2AF0;	midcir;	ISOAMSA;	**	# ⫰	VERTICAL LINE WITH CIRCLE BELOW
+2AF1;	topcir;	ISOTECH;	**	# ⫱	DOWN TACK WITH CIRCLE BELOW
+2AF2;	nhpar;	ISOTECH;	**	# ⫲	PARALLEL WITH HORIZONTAL STROKE
+2AF3;	parsim;	ISOAMSN;	**	# ⫳	PARALLEL WITH TILDE OPERATOR
+2AF4;	vert3;	**;	**	# ⫴	TRIPLE VERTICAL BAR BINARY RELATION
+2AF6;	vellipv;	**;	**	# ⫶	TRIPLE COLON OPERATOR
+2AFD;	parsl;	ISOTECH;	**	# ⫽	DOUBLE SOLIDUS OPERATOR
+2B12;	squarft?;	**;	**	# ⬒	SQUARE WITH TOP HALF BLACK
+2B13;	squarfb?;	**;	**	# ⬓	SQUARE WITH BOTTOM HALF BLACK
+2B14;	squarftr;	ISOPUB;	**	# ⬔	SQUARE WITH UPPER RIGHT DIAGONAL HALF BLACK
+2B15;	squarfbl;	ISOPUB;	**	# ⬕	SQUARE WITH LOWER LEFT DIAGONAL HALF BLACK
+2B16;	diamonfl;	ISOPUB;	**	# ⬖	DIAMOND WITH LEFT HALF BLACK
+2B17;	diamonfr;	ISOPUB;	**	# ⬗	DIAMOND WITH RIGHT HALF BLACK
+2B18;	diamonft;	ISOPUB;	**	# ⬘	DIAMOND WITH TOP HALF BLACK
+2B19;	diamonfb;	ISOPUB;	**	# ⬙	DIAMOND WITH BOTTOM HALF BLACK
+2B21;	benzen;	ISOCHEM;	**	# ⬡	WHITE HEXAGON
+1D49C;	Ascr;	ISOMSCR;	**	# 𝒜	MATHEMATICAL SCRIPT CAPITAL A
+1D49E;	Cscr;	ISOMSCR;	**	# 𝒞	MATHEMATICAL SCRIPT CAPITAL C
+1D49F;	Dscr;	ISOMSCR;	**	# 𝒟	MATHEMATICAL SCRIPT CAPITAL D
+1D4A2;	Gscr;	ISOMSCR;	**	# 𝒢	MATHEMATICAL SCRIPT CAPITAL G
+1D4A5;	Jscr;	ISOMSCR;	**	# 𝒥	MATHEMATICAL SCRIPT CAPITAL J
+1D4A6;	Kscr;	ISOMSCR;	**	# 𝒦	MATHEMATICAL SCRIPT CAPITAL K
+1D4A9;	Nscr;	ISOMSCR;	**	# 𝒩	MATHEMATICAL SCRIPT CAPITAL N
+1D4AA;	Oscr;	ISOMSCR;	**	# 𝒪	MATHEMATICAL SCRIPT CAPITAL O
+1D4AB;	Pscr;	ISOMSCR;	**	# 𝒫	MATHEMATICAL SCRIPT CAPITAL P
+1D4AC;	Qscr;	ISOMSCR;	**	# 𝒬	MATHEMATICAL SCRIPT CAPITAL Q
+1D4AE;	Sscr;	ISOMSCR;	**	# 𝒮	MATHEMATICAL SCRIPT CAPITAL S
+1D4AF;	Tscr;	ISOMSCR;	**	# 𝒯	MATHEMATICAL SCRIPT CAPITAL T
+1D4B0;	Uscr;	ISOMSCR;	**	# 𝒰	MATHEMATICAL SCRIPT CAPITAL U
+1D4B1;	Vscr;	ISOMSCR;	**	# 𝒱	MATHEMATICAL SCRIPT CAPITAL V
+1D4B2;	Wscr;	ISOMSCR;	**	# 𝒲	MATHEMATICAL SCRIPT CAPITAL W
+1D4B3;	Xscr;	ISOMSCR;	**	# 𝒳	MATHEMATICAL SCRIPT CAPITAL X
+1D4B4;	Yscr;	ISOMSCR;	**	# 𝒴	MATHEMATICAL SCRIPT CAPITAL Y
+1D4B5;	Zscr;	ISOMSCR;	**	# 𝒵	MATHEMATICAL SCRIPT CAPITAL Z
+1D4B6;	ascr;	ISOMSCR;	**	# 𝒶	MATHEMATICAL SCRIPT SMALL A
+1D4B7;	bscr;	ISOMSCR;	**	# 𝒷	MATHEMATICAL SCRIPT SMALL B
+1D4B8;	cscr;	ISOMSCR;	**	# 𝒸	MATHEMATICAL SCRIPT SMALL C
+1D4B9;	dscr;	ISOMSCR;	**	# 𝒹	MATHEMATICAL SCRIPT SMALL D
+1D4BB;	fscr;	ISOMSCR;	**	# 𝒻	MATHEMATICAL SCRIPT SMALL F
+1D4BD;	hscr;	ISOMSCR;	**	# 𝒽	MATHEMATICAL SCRIPT SMALL H
+1D4BE;	iscr;	ISOMSCR;	**	# 𝒾	MATHEMATICAL SCRIPT SMALL I
+1D4BF;	jscr;	ISOMSCR;	**	# 𝒿	MATHEMATICAL SCRIPT SMALL J
+1D4C0;	kscr;	ISOMSCR;	**	# 𝓀	MATHEMATICAL SCRIPT SMALL K
+1D4C1;	lscr;	ISOMSCR;	**	# 𝓁	MATHEMATICAL SCRIPT SMALL L
+1D4C2;	mscr;	ISOMSCR;	**	# 𝓂	MATHEMATICAL SCRIPT SMALL M
+1D4C3;	nscr;	ISOMSCR;	**	# 𝓃	MATHEMATICAL SCRIPT SMALL N
+1D4C5;	pscr;	ISOMSCR;	**	# 𝓅	MATHEMATICAL SCRIPT SMALL P
+1D4C6;	qscr;	ISOMSCR;	**	# 𝓆	MATHEMATICAL SCRIPT SMALL Q
+1D4C7;	rscr;	ISOMSCR;	**	# 𝓇	MATHEMATICAL SCRIPT SMALL R
+1D4C8;	sscr;	ISOMSCR;	**	# 𝓈	MATHEMATICAL SCRIPT SMALL S
+1D4C9;	tscr;	ISOMSCR;	**	# 𝓉	MATHEMATICAL SCRIPT SMALL T
+1D4CA;	uscr;	ISOMSCR;	**	# 𝓊	MATHEMATICAL SCRIPT SMALL U
+1D4CB;	vscr;	ISOMSCR;	**	# 𝓋	MATHEMATICAL SCRIPT SMALL V
+1D4CC;	wscr;	ISOMSCR;	**	# 𝓌	MATHEMATICAL SCRIPT SMALL W
+1D4CD;	xscr;	ISOMSCR;	**	# 𝓍	MATHEMATICAL SCRIPT SMALL X
+1D4CE;	yscr;	ISOMSCR;	**	# 𝓎	MATHEMATICAL SCRIPT SMALL Y
+1D4CF;	zscr;	ISOMSCR;	**	# 𝓏	MATHEMATICAL SCRIPT SMALL Z
+1D504;	Afr;	ISOMFRK;	**	# 𝔄	MATHEMATICAL FRAKTUR CAPITAL A
+1D505;	Bfr;	ISOMFRK;	**	# 𝔅	MATHEMATICAL FRAKTUR CAPITAL B
+1D507;	Dfr;	ISOMFRK;	**	# 𝔇	MATHEMATICAL FRAKTUR CAPITAL D
+1D508;	Efr;	ISOMFRK;	**	# 𝔈	MATHEMATICAL FRAKTUR CAPITAL E
+1D509;	Ffr;	ISOMFRK;	**	# 𝔉	MATHEMATICAL FRAKTUR CAPITAL F
+1D50A;	Gfr;	ISOMFRK;	**	# 𝔊	MATHEMATICAL FRAKTUR CAPITAL G
+1D50D;	Jfr;	ISOMFRK;	**	# 𝔍	MATHEMATICAL FRAKTUR CAPITAL J
+1D50E;	Kfr;	ISOMFRK;	**	# 𝔎	MATHEMATICAL FRAKTUR CAPITAL K
+1D50F;	Lfr;	ISOMFRK;	**	# 𝔏	MATHEMATICAL FRAKTUR CAPITAL L
+1D510;	Mfr;	ISOMFRK;	**	# 𝔐	MATHEMATICAL FRAKTUR CAPITAL M
+1D511;	Nfr;	ISOMFRK;	**	# 𝔑	MATHEMATICAL FRAKTUR CAPITAL N
+1D512;	Ofr;	ISOMFRK;	**	# 𝔒	MATHEMATICAL FRAKTUR CAPITAL O
+1D513;	Pfr;	ISOMFRK;	**	# 𝔓	MATHEMATICAL FRAKTUR CAPITAL P
+1D514;	Qfr;	ISOMFRK;	**	# 𝔔	MATHEMATICAL FRAKTUR CAPITAL Q
+1D516;	Sfr;	ISOMFRK;	**	# 𝔖	MATHEMATICAL FRAKTUR CAPITAL S
+1D517;	Tfr;	ISOMFRK;	**	# 𝔗	MATHEMATICAL FRAKTUR CAPITAL T
+1D518;	Ufr;	ISOMFRK;	**	# 𝔘	MATHEMATICAL FRAKTUR CAPITAL U
+1D519;	Vfr;	ISOMFRK;	**	# 𝔙	MATHEMATICAL FRAKTUR CAPITAL V
+1D51A;	Wfr;	ISOMFRK;	**	# 𝔚	MATHEMATICAL FRAKTUR CAPITAL W
+1D51B;	Xfr;	ISOMFRK;	**	# 𝔛	MATHEMATICAL FRAKTUR CAPITAL X
+1D51C;	Yfr;	ISOMFRK;	**	# 𝔜	MATHEMATICAL FRAKTUR CAPITAL Y
+1D51E;	afr;	ISOMFRK;	**	# 𝔞	MATHEMATICAL FRAKTUR SMALL A
+1D51F;	bfr;	ISOMFRK;	**	# 𝔟	MATHEMATICAL FRAKTUR SMALL B
+1D520;	cfr;	ISOMFRK;	**	# 𝔠	MATHEMATICAL FRAKTUR SMALL C
+1D521;	dfr;	ISOMFRK;	**	# 𝔡	MATHEMATICAL FRAKTUR SMALL D
+1D522;	efr;	ISOMFRK;	**	# 𝔢	MATHEMATICAL FRAKTUR SMALL E
+1D523;	ffr;	ISOMFRK;	**	# 𝔣	MATHEMATICAL FRAKTUR SMALL F
+1D524;	gfr;	ISOMFRK;	**	# 𝔤	MATHEMATICAL FRAKTUR SMALL G
+1D525;	hfr;	ISOMFRK;	**	# 𝔥	MATHEMATICAL FRAKTUR SMALL H
+1D526;	ifr;	ISOMFRK;	**	# 𝔦	MATHEMATICAL FRAKTUR SMALL I
+1D527;	jfr;	ISOMFRK;	**	# 𝔧	MATHEMATICAL FRAKTUR SMALL J
+1D528;	kfr;	ISOMFRK;	**	# 𝔨	MATHEMATICAL FRAKTUR SMALL K
+1D529;	lfr;	ISOMFRK;	**	# 𝔩	MATHEMATICAL FRAKTUR SMALL L
+1D52A;	mfr;	ISOMFRK;	**	# 𝔪	MATHEMATICAL FRAKTUR SMALL M
+1D52B;	nfr;	ISOMFRK;	**	# 𝔫	MATHEMATICAL FRAKTUR SMALL N
+1D52C;	ofr;	ISOMFRK;	**	# 𝔬	MATHEMATICAL FRAKTUR SMALL O
+1D52D;	pfr;	ISOMFRK;	**	# 𝔭	MATHEMATICAL FRAKTUR SMALL P
+1D52E;	qfr;	ISOMFRK;	**	# 𝔮	MATHEMATICAL FRAKTUR SMALL Q
+1D52F;	rfr;	ISOMFRK;	**	# 𝔯	MATHEMATICAL FRAKTUR SMALL R
+1D530;	sfr;	ISOMFRK;	**	# 𝔰	MATHEMATICAL FRAKTUR SMALL S
+1D531;	tfr;	ISOMFRK;	**	# 𝔱	MATHEMATICAL FRAKTUR SMALL T
+1D532;	ufr;	ISOMFRK;	**	# 𝔲	MATHEMATICAL FRAKTUR SMALL U
+1D533;	vfr;	ISOMFRK;	**	# 𝔳	MATHEMATICAL FRAKTUR SMALL V
+1D534;	wfr;	ISOMFRK;	**	# 𝔴	MATHEMATICAL FRAKTUR SMALL W
+1D535;	xfr;	ISOMFRK;	**	# 𝔵	MATHEMATICAL FRAKTUR SMALL X
+1D536;	yfr;	ISOMFRK;	**	# 𝔶	MATHEMATICAL FRAKTUR SMALL Y
+1D537;	zfr;	ISOMFRK;	**	# 𝔷	MATHEMATICAL FRAKTUR SMALL Z
+1D538;	Aopf;	ISOMOPF;	**	# 𝔸	MATHEMATICAL DOUBLE-STRUCK CAPITAL A
+1D539;	Bopf;	ISOMOPF;	**	# 𝔹	MATHEMATICAL DOUBLE-STRUCK CAPITAL B
+1D53B;	Dopf;	ISOMOPF;	**	# 𝔻	MATHEMATICAL DOUBLE-STRUCK CAPITAL D
+1D53C;	Eopf;	ISOMOPF;	**	# 𝔼	MATHEMATICAL DOUBLE-STRUCK CAPITAL E
+1D53D;	Fopf;	ISOMOPF;	**	# 𝔽	MATHEMATICAL DOUBLE-STRUCK CAPITAL F
+1D53E;	Gopf;	ISOMOPF;	**	# 𝔾	MATHEMATICAL DOUBLE-STRUCK CAPITAL G
+1D540;	Iopf;	ISOMOPF;	**	# 𝕀	MATHEMATICAL DOUBLE-STRUCK CAPITAL I
+1D541;	Jopf;	ISOMOPF;	**	# 𝕁	MATHEMATICAL DOUBLE-STRUCK CAPITAL J
+1D542;	Kopf;	ISOMOPF;	**	# 𝕂	MATHEMATICAL DOUBLE-STRUCK CAPITAL K
+1D543;	Lopf;	ISOMOPF;	**	# 𝕃	MATHEMATICAL DOUBLE-STRUCK CAPITAL L
+1D544;	Mopf;	ISOMOPF;	**	# 𝕄	MATHEMATICAL DOUBLE-STRUCK CAPITAL M
+1D546;	Oopf;	ISOMOPF;	**	# 𝕆	MATHEMATICAL DOUBLE-STRUCK CAPITAL O
+1D54A;	Sopf;	ISOMOPF;	**	# 𝕊	MATHEMATICAL DOUBLE-STRUCK CAPITAL S
+1D54B;	Topf;	ISOMOPF;	**	# 𝕋	MATHEMATICAL DOUBLE-STRUCK CAPITAL T
+1D54C;	Uopf;	ISOMOPF;	**	# 𝕌	MATHEMATICAL DOUBLE-STRUCK CAPITAL U
+1D54D;	Vopf;	ISOMOPF;	**	# 𝕍	MATHEMATICAL DOUBLE-STRUCK CAPITAL V
+1D54E;	Wopf;	ISOMOPF;	**	# 𝕎	MATHEMATICAL DOUBLE-STRUCK CAPITAL W
+1D54F;	Xopf;	ISOMOPF;	**	# 𝕏	MATHEMATICAL DOUBLE-STRUCK CAPITAL X
+1D550;	Yopf;	ISOMOPF;	**	# 𝕐	MATHEMATICAL DOUBLE-STRUCK CAPITAL Y
+1D552;	aopf;	**;	**	# 𝕒	MATHEMATICAL DOUBLE-STRUCK SMALL A
+1D553;	bopf;	**;	**	# 𝕓	MATHEMATICAL DOUBLE-STRUCK SMALL B
+1D554;	copf;	**;	**	# 𝕔	MATHEMATICAL DOUBLE-STRUCK SMALL C
+1D555;	dopf;	**;	**	# 𝕕	MATHEMATICAL DOUBLE-STRUCK SMALL D
+1D556;	eopf;	**;	**	# 𝕖	MATHEMATICAL DOUBLE-STRUCK SMALL E
+1D557;	fopf;	**;	**	# 𝕗	MATHEMATICAL DOUBLE-STRUCK SMALL F
+1D558;	gopf;	**;	**	# 𝕘	MATHEMATICAL DOUBLE-STRUCK SMALL G
+1D559;	hopf;	**;	**	# 𝕙	MATHEMATICAL DOUBLE-STRUCK SMALL H
+1D55A;	iopf;	**;	**	# 𝕚	MATHEMATICAL DOUBLE-STRUCK SMALL I
+1D55B;	jopf;	**;	**	# 𝕛	MATHEMATICAL DOUBLE-STRUCK SMALL J
+1D55C;	kopf;	**;	**	# 𝕜	MATHEMATICAL DOUBLE-STRUCK SMALL K
+1D55D;	lopf;	**;	**	# 𝕝	MATHEMATICAL DOUBLE-STRUCK SMALL L
+1D55E;	mopf;	**;	**	# 𝕞	MATHEMATICAL DOUBLE-STRUCK SMALL M
+1D55F;	nopf;	**;	**	# 𝕟	MATHEMATICAL DOUBLE-STRUCK SMALL N
+1D560;	oopf;	**;	**	# 𝕠	MATHEMATICAL DOUBLE-STRUCK SMALL O
+1D561;	popf;	**;	**	# 𝕡	MATHEMATICAL DOUBLE-STRUCK SMALL P
+1D562;	qopf;	**;	**	# 𝕢	MATHEMATICAL DOUBLE-STRUCK SMALL Q
+1D563;	ropf;	**;	**	# 𝕣	MATHEMATICAL DOUBLE-STRUCK SMALL R
+1D564;	sopf;	**;	**	# 𝕤	MATHEMATICAL DOUBLE-STRUCK SMALL S
+1D565;	topf;	**;	**	# 𝕥	MATHEMATICAL DOUBLE-STRUCK SMALL T
+1D566;	uopf;	**;	**	# 𝕦	MATHEMATICAL DOUBLE-STRUCK SMALL U
+1D567;	vopf;	**;	**	# 𝕧	MATHEMATICAL DOUBLE-STRUCK SMALL V
+1D568;	wopf;	**;	**	# 𝕨	MATHEMATICAL DOUBLE-STRUCK SMALL W
+1D569;	xopf;	**;	**	# 𝕩	MATHEMATICAL DOUBLE-STRUCK SMALL X
+1D56A;	yopf;	**;	**	# 𝕪	MATHEMATICAL DOUBLE-STRUCK SMALL Y
+1D56B;	zopf;	**;	**	# 𝕫	MATHEMATICAL DOUBLE-STRUCK SMALL Z
+1D6A4;	imath;	ISOAMSO;	**	# 𝚤	MATHEMATICAL ITALIC SMALL DOTLESS I
+1D6A5;	jmath;	ISOAMSO;	**	# 𝚥	MATHEMATICAL ITALIC SMALL DOTLESS J
+1D7CA;	b.Gammad;	ISOGRK4;	**	# 𝟊	MATHEMATICAL BOLD CAPITAL DIGAMMA
+1D7CB;	b.gammad;	ISOGRK4;	**	# 𝟋	MATHEMATICAL BOLD SMALL DIGAMMA
+# EOF

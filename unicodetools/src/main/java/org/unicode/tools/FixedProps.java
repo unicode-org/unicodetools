@@ -3,7 +3,6 @@ package org.unicode.tools;
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.io.IOException;
@@ -34,6 +33,7 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.Normalizer.NormalizationForm;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeSetParser;
 import org.unicode.text.utility.Utility;
@@ -64,7 +64,7 @@ public class FixedProps {
     static final ScriptInfo IDENTIFIER_INFO = new ScriptInfo(Settings.latestVersion);
 
     public static final class FixedNfkd {
-        private static final Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
+        private static final Normalizer nfkd = new Normalizer(NormalizationForm.NFKD, VERSION);
         private static final UnicodeMap<String> fixNfkd = new UnicodeMap<>();
         private static final UnicodeMap<Decomposition_Type_Values> fixDt = new UnicodeMap<>();
         private static final UnicodeSet changes = new UnicodeSet();
@@ -200,7 +200,7 @@ public class FixedProps {
                     new UnicodeSet(scx.getSet(SINGLETON_COMMON))
                             .addAll(scx.getSet(SINGLETON_INHERITED))
                             .freeze();
-            Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
+            Normalizer nfkd = new Normalizer(NormalizationForm.NFKD, VERSION);
             EnumSet<General_Category_Values> temp = EnumSet.noneOf(General_Category_Values.class);
 
             for (String s : inheritedAndCommon) {
@@ -333,9 +333,9 @@ public class FixedProps {
         switch (s) {
             case Japanese:
                 return "Punc";
-                //        case Korean: return "Zmth";
-                //        case Han_with_Bopomofo: return "Zsye";
-                //        case Katakana_Or_Hiragana: return "Zsym";
+            //        case Korean: return "Zmth";
+            //        case Han_with_Bopomofo: return "Zsye";
+            //        case Katakana_Or_Hiragana: return "Zsym";
             default:
                 return s.getShortName();
         }
@@ -345,9 +345,9 @@ public class FixedProps {
         switch (s) {
             case Japanese:
                 return "Punctuation";
-                //        case Korean: return "Math Symbol";
-                //        case Han_with_Bopomofo: return "Emoji";
-                //        case Katakana_Or_Hiragana: return "Other Symbol";
+            //        case Korean: return "Math Symbol";
+            //        case Han_with_Bopomofo: return "Emoji";
+            //        case Katakana_Or_Hiragana: return "Other Symbol";
             default:
                 return s.toString();
         }
@@ -367,7 +367,7 @@ public class FixedProps {
     public static void main(String[] args) throws IOException {
         System.out.println("\n# Fixed Nfkd.\n");
         {
-            final Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
+            final Normalizer nfkd = new Normalizer(NormalizationForm.NFKD, VERSION);
             UnicodeMap<String> diff = new UnicodeMap<>();
             UnicodeMap<String> literalDiff = new UnicodeMap<>();
             UnicodeMap<String> temp = new UnicodeMap<String>();
@@ -636,7 +636,7 @@ public class FixedProps {
                                         + " ;\t"
                                         + value
                                         + "\t # ("
-                                        + UTF16.valueOf(range.codepoint)
+                                        + Character.toString(range.codepoint)
                                         + ") "
                                         + name.get(range.codepoint)));
             } else {
@@ -649,9 +649,9 @@ public class FixedProps {
                                         + " ;\t"
                                         + value
                                         + "\t # ("
-                                        + UTF16.valueOf(range.codepoint)
+                                        + Character.toString(range.codepoint)
                                         + ".."
-                                        + UTF16.valueOf(range.codepointEnd)
+                                        + Character.toString(range.codepointEnd)
                                         + ") "
                                         + name.get(range.codepoint)
                                         + ".."

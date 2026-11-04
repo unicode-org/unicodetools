@@ -36,24 +36,23 @@ public class CheckGCB {
                     Line_Break_Values.Complex_Context, Word_Break_Values.Regional_Indicator);
 
     public static void main(String[] args) {
-        final Segmenter gcb =
-                Segmenter.make(IUP, "GraphemeClusterBreak", Segmenter.Target.FOR_UCD).make();
+        final Segmenter gcb = Segmenter.make(IUP.getUcdVersion(), "GraphemeClusterBreak").make();
         final UnicodeMap<UcdPropertyValues.Grapheme_Cluster_Break_Values> gcbProps =
                 IUP.loadEnum(UcdProperty.Grapheme_Cluster_Break);
 
-        final Segmenter wb = Segmenter.make(IUP, "WordBreak", Segmenter.Target.FOR_UCD).make();
+        final Segmenter wb = Segmenter.make(IUP.getUcdVersion(), "WordBreak").make();
         final UnicodeMap<UcdPropertyValues.Word_Break_Values> wbProps =
                 IUP.loadEnum(UcdProperty.Word_Break);
 
         check2("GCB", gcb, gcbProps, "WB", wb, wbProps, 3, false);
 
-        final Segmenter sb = Segmenter.make(IUP, "SentenceBreak", Segmenter.Target.FOR_UCD).make();
+        final Segmenter sb = Segmenter.make(IUP.getUcdVersion(), "SentenceBreak").make();
         final UnicodeMap<UcdPropertyValues.Sentence_Break_Values> sbProps =
                 IUP.loadEnum(UcdProperty.Sentence_Break);
 
         check2("GCB", gcb, gcbProps, "SB", sb, sbProps, 3, false);
 
-        final Segmenter lb = Segmenter.make(IUP, "LineBreak", Segmenter.Target.FOR_UCD).make();
+        final Segmenter lb = Segmenter.make(IUP.getUcdVersion(), "LineBreak").make();
         final UnicodeMap<UcdPropertyValues.Line_Break_Values> lbProps =
                 IUP.loadEnum(UcdProperty.Line_Break);
 
