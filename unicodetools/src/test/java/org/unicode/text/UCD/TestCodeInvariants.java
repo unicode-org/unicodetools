@@ -103,10 +103,10 @@ public class TestCodeInvariants {
         assertEquals(0, defaultIdentifiers.cloneAsThawed().removeAll(immutableIdentifiers).size());
         assertEquals(4, defaultIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size());
         assertEquals(
-                809_619, immutableIdentifiers.cloneAsThawed().removeAll(defaultIdentifiers).size());
+                808_227, immutableIdentifiers.cloneAsThawed().removeAll(defaultIdentifiers).size());
         // By the stability policy, this number cannot change.
         assertEquals(259, immutableIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size());
-        assertEquals(809_556, xmlNameChar.cloneAsThawed().removeAll(defaultIdentifiers).size());
+        assertEquals(808_164, xmlNameChar.cloneAsThawed().removeAll(defaultIdentifiers).size());
         // By the stability policy, this number cannot change.
         assertEquals(192, xmlNameChar.cloneAsThawed().removeAll(immutableIdentifiers).size());
     }
