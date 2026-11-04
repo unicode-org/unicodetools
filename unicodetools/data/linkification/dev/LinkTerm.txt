@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-11-04, 22:00:55 GMT 
+# Date: 2026-11-04, 22:53:49 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -919,6 +919,7 @@ FF62          ; Open    # 1.1       (｢)  HALFWIDTH LEFT CORNER BRACKET
 1C4D..1C7D    ; Include # 5.1  [49] (ᱍ..ᱽ)  LEPCHA LETTER TTA..OL CHIKI AHAD
 1C80..1C88    ; Include # 9.0   [9] (ᲀ..ᲈ)  CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
 1C89..1C8A    ; Include # 16.0  [2] (Ᲊ..ᲊ)  CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
+1C8B          ; Include # 19.0      (᲋)  CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR
 1C90..1CBA    ; Include # 11.0 [43] (Ა..Ჺ)  GEORGIAN MTAVRULI CAPITAL LETTER AN..GEORGIAN MTAVRULI CAPITAL LETTER AIN
 1CBD..1CBF    ; Include # 11.0  [3] (Ჽ..Ჿ)  GEORGIAN MTAVRULI CAPITAL LETTER AEN..GEORGIAN MTAVRULI CAPITAL LETTER LABIAL SIGN
 1CC0..1CC7    ; Include # 6.1   [8] (᳀..᳇)  SUNDANESE PUNCTUATION BINDU SURYA..SUNDANESE PUNCTUATION BINDU BA SATANGA
@@ -2214,5 +2215,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 173760
+# Total code points: 173761
 

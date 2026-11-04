@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-19.0.0.txt
-# Date: 2026-11-04, 21:58:49 GMT
+# Date: 2026-11-04, 22:47:48 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -231,7 +231,7 @@
 1BF4..1BFB    ; Cn #   [8] <reserved-1BF4>..<reserved-1BFB>
 1C38..1C3A    ; Cn #   [3] <reserved-1C38>..<reserved-1C3A>
 1C4A..1C4C    ; Cn #   [3] <reserved-1C4A>..<reserved-1C4C>
-1C8B..1C8F    ; Cn #   [5] <reserved-1C8B>..<reserved-1C8F>
+1C8C..1C8F    ; Cn #   [4] <reserved-1C8C>..<reserved-1C8F>
 1CBB..1CBC    ; Cn #   [2] <reserved-1CBB>..<reserved-1CBC>
 1CC8..1CCF    ; Cn #   [8] <reserved-1CC8>..<reserved-1CCF>
 1CFB..1CFF    ; Cn #   [5] <reserved-1CFB>..<reserved-1CFF>
@@ -759,7 +759,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 800275
+# Total code points: 800274
 
 # ================================================
 
@@ -1719,7 +1719,7 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 10FD..10FF    ; Ll #   [3] GEORGIAN LETTER AEN..GEORGIAN LETTER LABIAL SIGN
 13F8..13FD    ; Ll #   [6] CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1C80..1C88    ; Ll #   [9] CYRILLIC SMALL LETTER ROUNDED VE..CYRILLIC SMALL LETTER UNBLENDED UK
-1C8A          ; Ll #       CYRILLIC SMALL LETTER TJE
+1C8A..1C8B    ; Ll #   [2] CYRILLIC SMALL LETTER TJE..CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR
 1D00..1D2B    ; Ll #  [44] LATIN LETTER SMALL CAPITAL A..CYRILLIC LETTER SMALL CAPITAL EL
 1D6B..1D77    ; Ll #  [13] LATIN SMALL LETTER UE..LATIN SMALL LETTER TURNED G
 1D79..1D9A    ; Ll #  [34] LATIN SMALL LETTER INSULAR G..LATIN SMALL LETTER EZH WITH RETROFLEX HOOK
@@ -2127,7 +2127,7 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF90..1DF96  ; Ll #   [7] LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2367
+# Total code points: 2368
 
 # ================================================
 
