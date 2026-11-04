@@ -272,6 +272,7 @@ FFF0..FFFF; Specials
 116D0..116FF; Myanmar Extended-C
 11700..1174F; Ahom
 11800..1184F; Dogra
+11850..1188F; Sirmauri
 118A0..118FF; Warang Citi
 11900..1195F; Dives Akuru
 119A0..119FF; Nandinagari
@@ -296,6 +297,7 @@ FFF0..FFFF; Specials
 12400..1247F; Cuneiform Numbers and Punctuation
 12480..1254F; Early Dynastic Cuneiform
 12550..1268F; Archaic Cuneiform Numerals
+12690..12BFF; Proto-Cuneiform
 12F90..12FFF; Cypro-Minoan
 13000..1342F; Egyptian Hieroglyphs
 13430..1345F; Egyptian Hieroglyph Format Controls
