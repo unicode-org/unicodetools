@@ -10,7 +10,6 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.CurrencyMetaInfo;
 import com.ibm.icu.text.CurrencyMetaInfo.CurrencyFilter;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.Output;
@@ -94,7 +93,7 @@ public class GenerateLabels {
                         continue;
                     }
                     for (String label : lastLabel.value) {
-                        characterToRelation.put(label, UTF16.valueOf(cp));
+                        characterToRelation.put(label, Character.toString(cp));
                     }
                     missingPunctuation.remove(cp);
                     missingSymbols.remove(cp);

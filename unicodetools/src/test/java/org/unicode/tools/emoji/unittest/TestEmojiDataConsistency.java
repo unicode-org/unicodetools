@@ -2,7 +2,6 @@ package org.unicode.tools.emoji.unittest;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ICUException;
@@ -21,13 +20,13 @@ import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Tabber;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiDataSourceCombined;
 import org.unicode.tools.emoji.GenerateEmojiData;
-import org.unicode.tools.emoji.TempPrintWriter;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
 public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
@@ -111,8 +110,9 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
         String newVersion = newVersionInfo.getVersionString(2, 2);
         UnicodeMap<String> empty = new UnicodeMap<String>().freeze();
 
-        try (TempPrintWriter out =
-                new TempPrintWriter(GenerateEmojiData.getOutputDir(), "internal/emoji-diff.txt")) {
+        try (DiffingPrintWriter out =
+                new DiffingPrintWriter(
+                        GenerateEmojiData.getOutputDir(), "internal/emoji-diff.txt")) {
             Set<String> props = new LinkedHashSet<>(oldProps.keySet());
             props.addAll(newProps.keySet());
             for (String prop : props) {
@@ -210,7 +210,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
     #       non-fully-qualified — see “Emoji Implementation Notes” in UTS #51
          */
 
-    private void logOrError(int logOrError, TempPrintWriter out, String message) {
+    private void logOrError(int logOrError, DiffingPrintWriter out, String message) {
         msg(message, logOrError, true, true);
         out.println(message);
     }
@@ -225,7 +225,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
 
     private void inFirstButNotSecond(
             boolean writeToConsole,
-            TempPrintWriter out,
+            DiffingPrintWriter out,
             String version,
             UnicodeSet oldSet,
             UnicodeSet newSet,
@@ -260,7 +260,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
                                         + "; \t"
                                         + prop
                                         + "\t# "
-                                        + UTF16.valueOf(it.codepoint)
+                                        + Character.toString(it.codepoint)
                                         + "    "
                                         + getName(it.codepoint)));
             } else {
@@ -274,9 +274,9 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
                                         + "; \t"
                                         + prop
                                         + "\t# "
-                                        + UTF16.valueOf(it.codepoint)
+                                        + Character.toString(it.codepoint)
                                         + ".."
-                                        + UTF16.valueOf(it.codepointEnd)
+                                        + Character.toString(it.codepointEnd)
                                         + " "
                                         + getName(it.codepoint)
                                         + ".."
@@ -301,7 +301,7 @@ public class TestEmojiDataConsistency extends TestFmwkMinusMinus {
         }
     }
 
-    private void printlnAndLog(boolean writeToConsole, TempPrintWriter out, String message) {
+    private void printlnAndLog(boolean writeToConsole, DiffingPrintWriter out, String message) {
         if (writeToConsole) {
             System.out.println(message);
         }

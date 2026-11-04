@@ -11,7 +11,6 @@ import com.ibm.icu.text.RawCollationKey;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.LocaleData;
@@ -86,8 +85,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
 
         add(new IDNA2003());
-        add(new UTS46());
-        add(new IDNA2008());
         add(new IDNA2008c());
         // add(new Usage());
         add(new HanType());
@@ -163,17 +160,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                         .setMain("isNFM", "isNFM", UnicodeProperty.BINARY, "1.1"));
 
         add(
-                new CodepointTransformProperty(
-                                new Transform<Integer, String>() {
-                                    @Override
-                                    public String transform(Integer source) {
-                                        return UnicodeUtilities.getSubheader().getSubheader(source);
-                                    }
-                                },
-                                false)
-                        .setMain("subhead", "subhead", UnicodeProperty.STRING, "1.1"));
-
-        add(
                 new UnicodeSetProperty()
                         .set("[:^nfcqc=n:]")
                         .setMain("isNFC", "isNFC", UnicodeProperty.BINARY, "1.1"));
@@ -207,37 +193,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         addExamplarProperty(LocaleData.ES_STANDARD, "exem", "exemplar");
         addExamplarProperty(LocaleData.ES_AUXILIARY, "exema", "exemplar_aux");
         addExamplarProperty(LocaleData.ES_PUNCTUATION, "exemp", "exemplar_punct");
-
-        UnicodeSet Basic_Emoji =
-                getProperty("Basic_Emoji").getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet Emoji_Keycap_Sequence =
-                getProperty("RGI_Emoji_Keycap_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Modifier_Sequence =
-                getProperty("RGI_Emoji_Modifier_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Tag_Sequence =
-                getProperty("RGI_Emoji_Tag_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Flag_Sequence =
-                getProperty("RGI_Emoji_Flag_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji_Zwj_Sequence =
-                getProperty("RGI_Emoji_Zwj_Sequence")
-                        .getSet("Yes", null); // TODO: was .getTrueSet();
-        UnicodeSet RGI_Emoji =
-                new UnicodeSet()
-                        .add(Basic_Emoji)
-                        .add(Emoji_Keycap_Sequence)
-                        .add(RGI_Emoji_Modifier_Sequence)
-                        .add(RGI_Emoji_Flag_Sequence)
-                        .add(RGI_Emoji_Tag_Sequence)
-                        .add(RGI_Emoji_Zwj_Sequence)
-                        .freeze();
-        add(
-                new UnicodeSetProperty()
-                        .set(RGI_Emoji)
-                        .setMain("RGI_Emoji", "RGI_Emoji", UnicodeProperty.BINARY, "13.0"));
     }
 
     private void addExamplarProperty(
@@ -310,7 +265,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(
                 new UnicodeProperty.UnicodeMapProperty()
                         .set(unicodeMap)
-                        .setMain(propertyName, propertyAbbreviation, UnicodeProperty.STRING, "1.1")
+                        .setMain(propertyName, propertyAbbreviation, UnicodeProperty.MISC, "1.1")
                         .addValueAliases(locales, AliasAddAction.ADD_MAIN_ALIAS)
                         .setMultivalued(true));
     }
@@ -468,6 +423,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         protected List _getValueAliases(String valueAlias, List result) {
             addUnique("<string>", result);
             return result;
@@ -511,6 +471,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
 
         @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         protected String _getVersion() {
             return VersionInfo.ICU_VERSION.toString();
         }
@@ -542,17 +507,6 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         @Override
         protected String _getValue(int codepoint) {
             return Uts46.SINGLETON.getType(codepoint).toString();
-        }
-    }
-
-    private static class IDNA2008 extends XEnumUnicodeProperty {
-        public IDNA2008() {
-            super("idna2008", Idna2008.Idna2008Type.values());
-        }
-
-        @Override
-        protected String _getValue(int codepoint) {
-            return Idna2008.getTypeMapping().get(codepoint).toString();
         }
     }
 
@@ -597,7 +551,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         @Override
         protected String _getValue(int codepoint) {
-            return transform.transform(UTF16.valueOf(codepoint));
+            return transform.transform(Character.toString(codepoint));
         }
     }
 
@@ -695,6 +649,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         @Override
         protected String _getValue(int codepoint) {
             return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            return YESNO_ARRAY[unicodeSet.contains(string) ? 0 : 1];
         }
 
         @Override

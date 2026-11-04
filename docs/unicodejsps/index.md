@@ -29,12 +29,12 @@ If you already have `UnicodeJsps` in eclipse, it might be better to remove it fr
 ### Command Line
 
 ```shell
-mvn -DCLDR_DIR=/path/to/cldr -DUNICODETOOLS_REPO_DIR=/path/to/unicodetools org.eclipse.jetty:jetty-maven-plugin:run
+mvn -DCLDR_DIR=/path/to/cldr -DUNICODETOOLS_REPO_DIR=/path/to/unicodetools -DUNICODETOOLS_GEN_DIR=../Generated org.eclipse.jetty:jetty-maven-plugin:run
 ```
 
 If port 8080 is in use, another port can be specified with `-Djetty.port=⟨port number⟩`.
 
-The following system properties described in [Building Unicode Tools](../build.md#java-system-properties-used-in-unicode-tools) must be set in order for the JSPs to function properly: `CLDR_DIR`, `UNICODETOOLS_REPO_DIR`; this can be done with `-DCLDR_DIR=⟨some path⟩ -DUNICODETOOLS_REPO_DIR=.`.
+The following system properties described in [Building Unicode Tools](../build.md#java-system-properties-used-in-unicode-tools) must be set in order for the JSPs to function properly: `CLDR_DIR`, `UNICODETOOLS_REPO_DIR`; this can be done with `-DCLDR_DIR=⟨some path⟩ -DUNICODETOOLS_REPO_DIR=. -DUNICODETOOLS_GEN_DIR=../Generated`.
 
 You can now connect to <http://127.0.0.1:8080> as suggested from the command line.
 Use Control-C to stop the server.
@@ -220,10 +220,10 @@ Unicode Tools.
     1.  Repeat step §4.2 above, but choose the service **unicode-jsps** instead
         of **unicode-jsps-staging**.
 7.  Check
-    1.  Go to <http://unicode.org/cldr/utility/> to check that that works, using
+    1.  Go to <https://util.unicode.org/UnicodeJsps/> to check that that works, using
         the same steps as #3, that is:
     2.  To check new characters (for example):
-        <http://unicode.org/cldr/utility/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
+        <https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=\p{age=8.0}-\p{age=7.0}>
     3.  Check at the bottom for the right Unicode and ICU versions.
     4.  Click once on each top link to do simple sanity check.
 8.  Revert?

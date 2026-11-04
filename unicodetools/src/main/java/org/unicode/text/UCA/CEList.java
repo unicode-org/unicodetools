@@ -302,18 +302,30 @@ public final class CEList implements java.lang.Comparable<CEList> {
         return (byte) t;
     }
 
+    enum WeightStyle {
+        DEFAULT,
+        NO_SPACES,
+        BLANKED
+    }
+
     @Override
     public String toString() {
+        return toString(WeightStyle.DEFAULT);
+    }
+
+    String toString(WeightStyle option) {
         if (isEmpty()) {
             return toString(0);
         }
 
         final StringBuilder result = new StringBuilder();
         for (int i = startOffset; i < endOffset; ++i) {
-            if (i != startOffset) {
+            if (i != startOffset && option == WeightStyle.DEFAULT) {
                 result.append(' ');
             }
-            result.append(toString(contents[i]));
+            int ce = contents[i];
+            String s = option == WeightStyle.BLANKED ? toBlankedString(ce) : toString(ce);
+            result.append(s);
         }
         return result.toString();
     }
@@ -355,45 +367,21 @@ public final class CEList implements java.lang.Comparable<CEList> {
                 + Utility.hex(getSecondary(ce))
                 + "."
                 + Utility.hex(getTertiary(ce))
-                + "]"
-        // + "(" + NAME3[getTertiary(ce)] + ")"
-        ;
+                + "]";
     }
 
-    static final String[] NAME3 = {
-        "IGNORE", // 0
-        "BLK", // Unused?
-        "MIN",
-        "WIDE",
-        "COMPAT",
-        "FONT",
-        "CIRCLE",
-        "RES-2",
-        "CAP",
-        "WIDECAP",
-        "COMPATCAP",
-        "FONTCAP",
-        "CIRCLECAP",
-        "HIRA-SMALL",
-        "HIRA",
-        "SMALL",
-        "SMALL-NARROW",
-        "KATA",
-        "NARROW",
-        "CIRCLE-KATA",
-        "SUP-MNN",
-        "SUB-MNS",
-        "VERT", // Missing??
-        "AINI",
-        "AMED",
-        "AFIN",
-        "AISO",
-        "NOBREAK", // Missing?
-        "SQUARED",
-        "SQUAREDCAP",
-        "FRACTION",
-        "MAX"
-    };
+    static String toBlankedString(int ce) {
+        char p = getPrimary(ce);
+        char s = getSecondary(ce);
+        // Tertiary allkeys weights are fixed; do not blank them.
+        return "["
+                + (p == 0 ? "0000" : "pppp")
+                + "."
+                + (s == 0 ? "0000" : "ssss")
+                + "."
+                + Utility.hex(getTertiary(ce))
+                + "]";
+    }
 
     public boolean containsZero() {
         for (int i = startOffset; i < endOffset; ++i) {

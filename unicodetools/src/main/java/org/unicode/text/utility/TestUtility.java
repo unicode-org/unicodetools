@@ -11,7 +11,6 @@ package org.unicode.text.utility;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMapIterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.ByteArrayInputStream;
@@ -34,7 +33,6 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import org.unicode.cldr.util.Counter;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
@@ -78,7 +76,7 @@ public class TestUtility {
         // if (true) return;
         // UnicodeLabel ul;
 
-        final ICUPropertyFactory p = ICUPropertyFactory.make();
+        final var p = IndexUnicodeProperties.make();
         total = 0;
         final BreakIterator bk = BreakIterator.getWordInstance(Locale.ENGLISH);
         final Matcher nameMatch = Pattern.compile("Name").matcher("");
@@ -174,7 +172,7 @@ public class TestUtility {
         if (i <= 0xFFFF) {
             return false;
         }
-        return i == UTF16.charAt(value, 0);
+        return i == value.codePointAt(0);
     }
 
     /** */
@@ -326,7 +324,7 @@ public class TestUtility {
     /** */
     private static void testStreamCompressor() throws IOException {
         final Object[] tests = {
-            UTF16.valueOf(0x10FFFF),
+            Character.toString(0x10FFFF),
             "\u1234",
             "abc",
             new Long(-3),
@@ -510,6 +508,11 @@ public class TestUtility {
                 make();
             }
             return (String) map.getValue(codepoint);
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
         }
 
         /** */

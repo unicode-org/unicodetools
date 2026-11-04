@@ -1,0 +1,14 @@
+<!ELEMENT mathchars (char+)>
+<!ATTLIST mathchars
+        unicode CDATA #REQUIRED
+        tr25 CDATA #REQUIRED>
+
+<!ELEMENT char EMPTY>
+<!ATTLIST char
+    cp CDATA #REQUIRED
+    mathclass CDATA #IMPLIED
+    note CDATA #IMPLIED
+    deprecated CDATA #IMPLIED
+    unassigned CDATA #IMPLIED
+    equivalent CDATA #IMPLIED
+>

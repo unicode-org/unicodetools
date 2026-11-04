@@ -40,7 +40,10 @@
 #
 # The combination of property value and property name is, however, unique.
 #
-# For more information, see UAX #44, Unicode Character Database, and
-# UTS #18, Unicode Regular Expressions.
+# For more information, see:
+# - UAX #44, Unicode Character Database;
+# - UAX #38, Unicode Han Database (Unihan);
+# - UAX #57, Unicode Egyptian Hieroglyph Database (Unikemet);
+# - UTS #18, Unicode Regular Expressions.
 # ================================================
 

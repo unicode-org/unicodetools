@@ -7,7 +7,8 @@
 # - The term 'assigned' means that a previously reserved code point was assigned
 #   to be a character (graphic, format, control, or private-use);
 #   a noncharacter code point; or a surrogate code point.
-#   For more information, see The Unicode Standard Section 2.4
+#   For more information, see the
+#   "General Structure" / "Code Points and Characters" section of the core specification.
 #
 # - Versions are only tracked from 1.1 onwards, since version 1.0
 #   predated changes required by the ISO 10646 merger.

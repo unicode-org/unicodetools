@@ -1,6 +1,7 @@
 package org.unicode.propstest;
 
 import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.ArrayList;
@@ -24,6 +25,9 @@ import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
 
 public class CompareVersionedProps {
+    private static IndexUnicodeProperties IUP = IndexUnicodeProperties.make();
+
+    private static final boolean NO_EMOJI = true;
 
     //    public static String TEST1 = Utility.fromHex("1F9D1 1F3FD 200D 1F3EB");
     //    public static String TEST2 = Utility.fromHex("1F9D1 1F3FE 200D 1F3EB");
@@ -54,7 +58,7 @@ public class CompareVersionedProps {
             }
         }
 
-        EmojiOrder order = EmojiOrder.of(Emoji.VERSION_BETA);
+        EmojiOrder order = NO_EMOJI ? null : EmojiOrder.of(Emoji.VERSION_BETA);
 
         if (propFilter == null || versionToIups.size() < 2) {
             throw new IllegalArgumentException(
@@ -111,7 +115,12 @@ public class CompareVersionedProps {
 
             // show differences
             System.out.println(prop + "\tDifferences:\t" + allDiffs.size());
-            Set<String> sorted = allDiffs.addAllTo(new TreeSet<>(order.codepointCompare));
+            Set<String> sorted =
+                    allDiffs.addAllTo(
+                            new TreeSet<>(
+                                    NO_EMOJI
+                                            ? new UTF16.StringComparator(true, false, 0)
+                                            : order.codepointCompare));
             PropertyType type = prop.getType();
             ValueCardinality cardinality = prop.getCardinality();
             //            if (cardinality == ValueCardinality.Unordered) {
@@ -142,7 +151,7 @@ public class CompareVersionedProps {
             String item,
             String value) {
         String prefix = version.equals(mostRecent) ? "➕" : "➖";
-        String reduced = EmojiData.removeEmojiVariants(item);
+        String reduced = NO_EMOJI ? null : EmojiData.removeEmojiVariants(item);
         if (type == PropertyType.Binary) {
             if (value.contentEquals("Yes")) {
                 System.out.println(
@@ -150,17 +159,19 @@ public class CompareVersionedProps {
                                 + "\t"
                                 + Utility.hex(item)
                                 + " ;\t"
-                                + "vendor_"
-                                + Utility.hex(reduced, "_").toLowerCase(Locale.ROOT)
-                                + ".png"
-                                + " ;\t"
+                                + (NO_EMOJI
+                                        ? ""
+                                        : "vendor_"
+                                                + Utility.hex(reduced, "_").toLowerCase(Locale.ROOT)
+                                                + ".png"
+                                                + " ;\t")
                                 + prop
                                 + "\t# "
                                 + version.getVersionString(2, 2)
                                 + " "
                                 + item
                                 + " "
-                                + EmojiData.EMOJI_DATA_BETA.getName(item));
+                                + getName(item));
             }
         } else {
             System.out.println(
@@ -176,8 +187,12 @@ public class CompareVersionedProps {
                             + " "
                             + item
                             + " "
-                            + EmojiData.EMOJI_DATA_BETA.getName(item));
+                            + getName(item));
         }
         return prefix;
+    }
+
+    private static String getName(String item) {
+        return NO_EMOJI ? IUP.getName(item, ", ") : EmojiData.EMOJI_DATA_BETA.getName(item);
     }
 }

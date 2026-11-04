@@ -1,6 +1,6 @@
-# IndicSyllabicCategory-17.0.0.txt
-# Date: 2025-01-27, 18:09:16 GMT
-# © 2025 Unicode®, Inc.
+# IndicSyllabicCategory-18.0.0.txt
+# Date: 2026-07-03, 09:55:51 GMT
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
@@ -129,6 +129,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 1163D         ; Bindu # Mn       MODI SIGN ANUSVARA
 116AB         ; Bindu # Mn       TAKRI SIGN ANUSVARA
 11837         ; Bindu # Mn       DOGRA SIGN ANUSVARA
+1187E         ; Bindu # Mn       SIRMAURI SIGN ANUSVARA
 1193B..1193C  ; Bindu # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 119DE         ; Bindu # Mc       NANDINAGARI SIGN ANUSVARA
 11A35..11A38  ; Bindu # Mn   [4] ZANABAZAR SQUARE SIGN CANDRABINDU..ZANABAZAR SQUARE SIGN ANUSVARA
@@ -137,10 +138,10 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11CB5..11CB6  ; Bindu # Mn   [2] MARCHEN SIGN ANUSVARA..MARCHEN SIGN CANDRABINDU
 11D40         ; Bindu # Mn       MASARAM GONDI SIGN ANUSVARA
 11D95         ; Bindu # Mn       GUNJALA GONDI SIGN ANUSVARA
+11DF0         ; Bindu # Mn       BENGALI SIGN COMBINING ANUSVARA ABOVE
 11F00..11F01  ; Bindu # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
 1612D         ; Bindu # Mn       GURUNG KHEMA SIGN ANUSVARA
 16D40..16D41  ; Bindu # Lm   [2] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN TONPI
-16D98         ; Bindu # Mn       CHISOI SIGN ANUSVARA
 
 # ================================================
 
@@ -182,6 +183,7 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 1163E         ; Visarga # Mc       MODI SIGN VISARGA
 116AC         ; Visarga # Mc       TAKRI SIGN VISARGA
 11838         ; Visarga # Mc       DOGRA SIGN VISARGA
+1187F         ; Visarga # Mc       SIRMAURI SIGN VISARGA
 119DF         ; Visarga # Mc       NANDINAGARI SIGN VISARGA
 11A39         ; Visarga # Mc       ZANABAZAR SQUARE SIGN VISARGA
 11A97         ; Visarga # Mc       SOYOMBO SIGN VISARGA
@@ -256,6 +258,7 @@ A9B3          ; Nukta # Mn       JAVANESE SIGN CECAK TELU
 115C0         ; Nukta # Mn       SIDDHAM SIGN NUKTA
 116B7         ; Nukta # Mn       TAKRI SIGN NUKTA
 1183A         ; Nukta # Mn       DOGRA SIGN NUKTA
+11881         ; Nukta # Mn       SIRMAURI SIGN NUKTA
 11943         ; Nukta # Mn       DIVES AKURU SIGN NUKTA
 11D42         ; Nukta # Mn       MASARAM GONDI SIGN NUKTA
 11F5A         ; Nukta # Mn       KAWI SIGN NUKTA
@@ -333,13 +336,13 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 113CE         ; Pure_Killer # Mn       TULU-TIGALARI SIGN VIRAMA
 113CF         ; Pure_Killer # Mc       TULU-TIGALARI SIGN LOOPED VIRAMA
 1172B         ; Pure_Killer # Mn       AHOM SIGN KILLER
+11880         ; Pure_Killer # Mn       SIRMAURI SIGN HALANTA
 1193D         ; Pure_Killer # Mc       DIVES AKURU SIGN HALANTA
 11A34         ; Pure_Killer # Mn       ZANABAZAR SQUARE SIGN VIRAMA
 11D44         ; Pure_Killer # Mn       MASARAM GONDI SIGN HALANTA
 11F41         ; Pure_Killer # Mc       KAWI SIGN KILLER
 1612F         ; Pure_Killer # Mn       GURUNG KHEMA SIGN THOLHOMA
 16D6B..16D6C  ; Pure_Killer # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
-16D9D         ; Pure_Killer # Mn       CHISOI SIGN SISO
 
 # ================================================
 
@@ -469,12 +472,11 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11600..1160D  ; Vowel_Independent # Lo  [14] MODI LETTER A..MODI LETTER AU
 11680..11689  ; Vowel_Independent # Lo  [10] TAKRI LETTER A..TAKRI LETTER AU
 11800..11809  ; Vowel_Independent # Lo  [10] DOGRA LETTER A..DOGRA LETTER AU
+11850..11853  ; Vowel_Independent # Lo   [4] SIRMAURI LETTER A..SIRMAURI LETTER E
 11900..11906  ; Vowel_Independent # Lo   [7] DIVES AKURU LETTER A..DIVES AKURU LETTER E
 11909         ; Vowel_Independent # Lo       DIVES AKURU LETTER O
 119A0..119A7  ; Vowel_Independent # Lo   [8] NANDINAGARI LETTER A..NANDINAGARI LETTER VOCALIC RR
 119AA..119AD  ; Vowel_Independent # Lo   [4] NANDINAGARI LETTER E..NANDINAGARI LETTER AU
-11A00         ; Vowel_Independent # Lo       ZANABAZAR SQUARE LETTER A
-11A50         ; Vowel_Independent # Lo       SOYOMBO LETTER A
 11C00..11C08  ; Vowel_Independent # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C0D  ; Vowel_Independent # Lo   [4] BHAIKSUKI LETTER E..BHAIKSUKI LETTER AU
 11D00..11D06  ; Vowel_Independent # Lo   [7] MASARAM GONDI LETTER A..MASARAM GONDI LETTER E
@@ -484,7 +486,6 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 11D67..11D68  ; Vowel_Independent # Lo   [2] GUNJALA GONDI LETTER EE..GUNJALA GONDI LETTER AI
 11D6A..11D6B  ; Vowel_Independent # Lo   [2] GUNJALA GONDI LETTER OO..GUNJALA GONDI LETTER AU
 11F04..11F10  ; Vowel_Independent # Lo  [13] KAWI LETTER A..KAWI LETTER O
-16100         ; Vowel_Independent # Lo       GURUNG KHEMA LETTER A
 
 # ================================================
 
@@ -720,6 +721,11 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11727..1172A  ; Vowel_Dependent # Mn   [4] AHOM VOWEL SIGN AW..AHOM VOWEL SIGN AM
 1182C..1182E  ; Vowel_Dependent # Mc   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
 1182F..11836  ; Vowel_Dependent # Mn   [8] DOGRA VOWEL SIGN U..DOGRA VOWEL SIGN AU
+11875         ; Vowel_Dependent # Mc       SIRMAURI VOWEL SIGN AA
+11877         ; Vowel_Dependent # Mc       SIRMAURI VOWEL SIGN II
+11878         ; Vowel_Dependent # Mn       SIRMAURI VOWEL SIGN U
+1187A..1187B  ; Vowel_Dependent # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
+1187C..1187D  ; Vowel_Dependent # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 11930..11935  ; Vowel_Dependent # Mc   [6] DIVES AKURU VOWEL SIGN AA..DIVES AKURU VOWEL SIGN E
 11937..11938  ; Vowel_Dependent # Mc   [2] DIVES AKURU VOWEL SIGN AI..DIVES AKURU VOWEL SIGN O
 119D1..119D3  ; Vowel_Dependent # Mc   [3] NANDINAGARI VOWEL SIGN AA..NANDINAGARI VOWEL SIGN II
@@ -775,12 +781,6 @@ A866          ; Vowel # Lo       PHAGS-PA LETTER EE
 A922..A925    ; Vowel # Lo   [4] KAYAH LI LETTER A..KAYAH LI LETTER OO
 A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 11150..11154  ; Vowel # Lo   [5] MAHAJANI LETTER A..MAHAJANI LETTER O
-16D80         ; Vowel # Lo       CHISOI LETTER A
-16D82..16D83  ; Vowel # Lo   [2] CHISOI LETTER AI..CHISOI LETTER AA
-16D86         ; Vowel # Lo       CHISOI LETTER E
-16D89         ; Vowel # Lo       CHISOI LETTER I
-16D8F         ; Vowel # Lo       CHISOI LETTER U
-16D92         ; Vowel # Lo       CHISOI LETTER O
 
 # ================================================
 
@@ -791,6 +791,8 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 # Indic script layout (NBSP and dotted circle), as well as a few script-
 # specific vowel-holder characters which are not technically
 # consonants, but serve instead as bases for placement of vowel marks.
+# Vowel carriers that are null consonants instead have the
+# Indic_Syllabic_Category Consonant.
 
 # [Not derivable]
 
@@ -801,7 +803,6 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 0A72..0A73    ; Consonant_Placeholder # Lo   [2] GURMUKHI IRI..GURMUKHI URA
 104B          ; Consonant_Placeholder # Po       MYANMAR SIGN SECTION
 104E          ; Consonant_Placeholder # Po       MYANMAR SYMBOL AFOREMENTIONED
-1900          ; Consonant_Placeholder # Lo       LIMBU VOWEL-CARRIER LETTER
 1CFA          ; Consonant_Placeholder # Lo       VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA
 2010..2014    ; Consonant_Placeholder # Pd   [5] HYPHEN..EM DASH
 25CC          ; Consonant_Placeholder # So       DOTTED CIRCLE
@@ -814,7 +815,14 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 
 # Indic_Syllabic_Category=Consonant
 
-# Consonant (ordinary abugida consonants, with inherent vowels)
+# Consonant
+# This includes ordinary abugida consonants with inherent vowels.
+# In scripts that do not have distinct independent vowel characters, but instead
+# form independent vowels by adding dependent vowels to a vowel carrier which
+# otherwise represents the inherent vowel, that vowel carrier has the
+# Indic_Syllabic_Category Consonant, as a null consonant. Such vowel carriers
+# can often also be analyzed as glottal stops with inherent vowels.
+# An example is U+0F68 TIBETAN LETTER A.
 
 # [Not derivable]
 
@@ -828,7 +836,6 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 09DC..09DD    ; Consonant # Lo   [2] BENGALI LETTER RRA..BENGALI LETTER RHA
 09DF          ; Consonant # Lo       BENGALI LETTER YYA
 09F0..09F1    ; Consonant # Lo   [2] BENGALI LETTER RA WITH MIDDLE DIAGONAL..BENGALI LETTER RA WITH LOWER DIAGONAL
-09FF          ; Consonant # Lo       BENGALI LETTER SANSKRIT BA
 0A15..0A28    ; Consonant # Lo  [20] GURMUKHI LETTER KA..GURMUKHI LETTER NA
 0A2A..0A30    ; Consonant # Lo   [7] GURMUKHI LETTER PA..GURMUKHI LETTER RA
 0A32..0A33    ; Consonant # Lo   [2] GURMUKHI LETTER LA..GURMUKHI LETTER LLA
@@ -893,7 +900,7 @@ AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MY
 1763..176C    ; Consonant # Lo  [10] TAGBANWA LETTER KA..TAGBANWA LETTER YA
 176E..1770    ; Consonant # Lo   [3] TAGBANWA LETTER LA..TAGBANWA LETTER SA
 1780..17A2    ; Consonant # Lo  [35] KHMER LETTER KA..KHMER LETTER QA
-1901..191E    ; Consonant # Lo  [30] LIMBU LETTER KA..LIMBU LETTER TRA
+1900..191E    ; Consonant # Lo  [31] LIMBU VOWEL-CARRIER LETTER..LIMBU LETTER TRA
 1950..1962    ; Consonant # Lo  [19] TAI LE LETTER KA..TAI LE LETTER NA
 1980..19AB    ; Consonant # Lo  [44] NEW TAI LUE LETTER HIGH QA..NEW TAI LUE LETTER LOW SUA
 1A00..1A16    ; Consonant # Lo  [23] BUGINESE LETTER KA..BUGINESE LETTER HA
@@ -966,27 +973,28 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11700..1171A  ; Consonant # Lo  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
 11740..11746  ; Consonant # Lo   [7] AHOM LETTER CA..AHOM LETTER LLA
 1180A..1182B  ; Consonant # Lo  [34] DOGRA LETTER KA..DOGRA LETTER RRA
+11854..11857  ; Consonant # Lo   [4] SIRMAURI LETTER KA..SIRMAURI LETTER GHA
+11859..1185C  ; Consonant # Lo   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
+1185E..1186F  ; Consonant # Lo  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
+11873..11874  ; Consonant # Lo   [2] SIRMAURI LETTER SA..SIRMAURI LETTER HA
 1190C..11913  ; Consonant # Lo   [8] DIVES AKURU LETTER KA..DIVES AKURU LETTER JA
 11915..11916  ; Consonant # Lo   [2] DIVES AKURU LETTER NYA..DIVES AKURU LETTER TTA
 11918..1192F  ; Consonant # Lo  [24] DIVES AKURU LETTER DDA..DIVES AKURU LETTER ZA
 119AE..119D0  ; Consonant # Lo  [35] NANDINAGARI LETTER KA..NANDINAGARI LETTER RRA
+11A00         ; Consonant # Lo       ZANABAZAR SQUARE LETTER A
 11A0B..11A32  ; Consonant # Lo  [40] ZANABAZAR SQUARE LETTER KA..ZANABAZAR SQUARE LETTER KSSA
+11A50         ; Consonant # Lo       SOYOMBO LETTER A
 11A5C..11A83  ; Consonant # Lo  [40] SOYOMBO LETTER KA..SOYOMBO LETTER KSSA
+11B0A         ; Consonant # Lo       DEVANAGARI LETTER ALTERNATE DDDA
 11C0E..11C2E  ; Consonant # Lo  [33] BHAIKSUKI LETTER KA..BHAIKSUKI LETTER HA
 11C72..11C8F  ; Consonant # Lo  [30] MARCHEN LETTER KA..MARCHEN LETTER A
 11D0C..11D30  ; Consonant # Lo  [37] MASARAM GONDI LETTER KA..MASARAM GONDI LETTER TRA
 11D6C..11D89  ; Consonant # Lo  [30] GUNJALA GONDI LETTER YA..GUNJALA GONDI LETTER SA
+11DF1         ; Consonant # Lo       BENGALI LETTER ALTERNATE BARGIYA BA
 11EE0..11EF1  ; Consonant # Lo  [18] MAKASAR LETTER KA..MAKASAR LETTER A
 11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
-16101..1611D  ; Consonant # Lo  [29] GURUNG KHEMA LETTER KA..GURUNG KHEMA LETTER SA
+16100..1611D  ; Consonant # Lo  [30] GURUNG KHEMA LETTER A..GURUNG KHEMA LETTER SA
 16D43..16D62  ; Consonant # Lo  [32] KIRAT RAI LETTER A..KIRAT RAI LETTER HA
-16D81         ; Consonant # Lo       CHISOI LETTER BA
-16D84..16D85  ; Consonant # Lo   [2] CHISOI LETTER GA..CHISOI LETTER TA
-16D87..16D88  ; Consonant # Lo   [2] CHISOI LETTER SA..CHISOI LETTER NA
-16D8A..16D8E  ; Consonant # Lo   [5] CHISOI LETTER KA..CHISOI LETTER RRA
-16D90..16D91  ; Consonant # Lo   [2] CHISOI LETTER DA..CHISOI LETTER LA
-16D93..16D97  ; Consonant # Lo   [5] CHISOI LETTER NYA..CHISOI LETTER PA
-16D99..16D9C  ; Consonant # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
 
 # ================================================
 
@@ -1007,8 +1015,8 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_With_Stacker
 
-# Consonants that may make stacked ligatures with the next consonant
-# without the use of a virama
+# Consonants that may cause conjunct formation or consonant stacking with the
+# next consonant, without the use of a stacker
 
 # [Not derivable]
 
@@ -1016,32 +1024,36 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 1CF5..1CF6    ; Consonant_With_Stacker # Lo   [2] VEDIC SIGN JIHVAMULIYA..VEDIC SIGN UPADHMANIYA
 11003..11004  ; Consonant_With_Stacker # Lo   [2] BRAHMI SIGN JIHVAMULIYA..BRAHMI SIGN UPADHMANIYA
 11460..11461  ; Consonant_With_Stacker # Lo   [2] NEWA SIGN JIHVAMULIYA..NEWA SIGN UPADHMANIYA
+11A3A         ; Consonant_With_Stacker # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
 
 # ================================================
 
 # Indic_Syllabic_Category=Consonant_Prefixed
 
-# Cluster-initial consonants
+# Other consonants that behave like a Consonant_Preceding_Repha
 
 # [Not derivable]
 
 111C2..111C3  ; Consonant_Prefixed # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
 1193F         ; Consonant_Prefixed # Lo       DIVES AKURU PREFIXED NASAL SIGN
-11A3A         ; Consonant_Prefixed # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
-11A84..11A89  ; Consonant_Prefixed # Lo   [6] SOYOMBO SIGN JIHVAMULIYA..SOYOMBO CLUSTER-INITIAL LETTER SA
+11A84..11A85  ; Consonant_Prefixed # Lo   [2] SOYOMBO SIGN JIHVAMULIYA..SOYOMBO SIGN UPADHMANIYA
+11A87..11A89  ; Consonant_Prefixed # Lo   [3] SOYOMBO CLUSTER-INITIAL LETTER LA..SOYOMBO CLUSTER-INITIAL LETTER SA
 
 # ================================================
 
 # Indic_Syllabic_Category=Consonant_Preceding_Repha
 
-# Repha Form of RA (reanalyzed in some scripts), when preceding the main
-# consonant.
+# Cluster-initial "r" consonants in the form of a dependent sign (also known as
+# "repha") that precede the base character in the encoding order, but are
+# reordered in text rendering to be somewhere after the base. Reanalyzed in
+# some orthographies to be a final consonant.
 
 # [Not derivable]
 
 0D4E          ; Consonant_Preceding_Repha # Lo       MALAYALAM LETTER DOT REPH
 113D1         ; Consonant_Preceding_Repha # Lo       TULU-TIGALARI REPHA
 11941         ; Consonant_Preceding_Repha # Lo       DIVES AKURU INITIAL RA
+11A86         ; Consonant_Preceding_Repha # Lo       SOYOMBO CLUSTER-INITIAL LETTER RA
 11D46         ; Consonant_Preceding_Repha # Lo       MASARAM GONDI REPHA
 11F02         ; Consonant_Preceding_Repha # Lo       KAWI SIGN REPHA
 
@@ -1049,8 +1061,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Initial_Postfixed
 
-# Consonants that succeed the main consonant in character sequences, but are
-# pronounced before it.
+# Other consonants that behave like a Consonant_Succeeding_Repha
 
 # [Not derivable]
 
@@ -1060,7 +1071,9 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # Indic_Syllabic_Category=Consonant_Succeeding_Repha
 
-# Repha Form of RA (reanalyzed in some scripts), when succeeding the main
+# Cluster-initial "r" consonants that behave like a Consonant_Preceding_Repha
+# but succeed the base character in the encoding order, and are thus not
+# reordered in text rendering. Reanalyzed in some orthographies to be a final
 # consonant.
 
 # [Not derivable]
@@ -1115,6 +1128,7 @@ AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONA
 1171D         ; Consonant_Medial # Mn       AHOM CONSONANT SIGN MEDIAL LA
 1171E         ; Consonant_Medial # Mc       AHOM CONSONANT SIGN MEDIAL RA
 1171F         ; Consonant_Medial # Mn       AHOM CONSONANT SIGN MEDIAL LIGATING RA
+11882         ; Consonant_Medial # Mn       SIRMAURI CONSONANT SIGN MEDIAL RA
 11940         ; Consonant_Medial # Mc       DIVES AKURU MEDIAL YA
 11942         ; Consonant_Medial # Mc       DIVES AKURU MEDIAL RA
 11A3B..11A3E  ; Consonant_Medial # Mn   [4] ZANABAZAR SQUARE CLUSTER-FINAL LETTER YA..ZANABAZAR SQUARE CLUSTER-FINAL LETTER VA
@@ -1393,6 +1407,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 116D0..116E3  ; Number # Nd  [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
 11730..11739  ; Number # Nd  [10] AHOM DIGIT ZERO..AHOM DIGIT NINE
 1173A..1173B  ; Number # No   [2] AHOM NUMBER TEN..AHOM NUMBER TWENTY
+11886..1188F  ; Number # Nd  [10] SIRMAURI DIGIT ZERO..SIRMAURI DIGIT NINE
 11950..11959  ; Number # Nd  [10] DIVES AKURU DIGIT ZERO..DIVES AKURU DIGIT NINE
 11C50..11C59  ; Number # Nd  [10] BHAIKSUKI DIGIT ZERO..BHAIKSUKI DIGIT NINE
 11C5A..11C6C  ; Number # No  [19] BHAIKSUKI NUMBER ONE..BHAIKSUKI HUNDREDS UNIT MARK
@@ -1401,7 +1416,6 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 11F50..11F59  ; Number # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
 16130..16139  ; Number # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 16D70..16D79  ; Number # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
-16DA0..16DA9  ; Number # Nd  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 
 # ================================================
 

@@ -3,10 +3,6 @@ package org.unicode.tools;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
-// import com.ibm.icu.text.CollationElementIterator;
-// import com.ibm.icu.text.Collator;
-// import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.IOException;
@@ -67,10 +63,13 @@ public class CollatorEquivalencesNew {
         // System.out.println(remapped.toPattern(false));
     }
 
-    private static final org.unicode.text.UCA.UCA uca_raw =
-            org.unicode.text.UCA.UCA.buildDucetCollator();
-    private static final org.unicode.text.UCA.UCA uca_level2Only =
-            org.unicode.text.UCA.UCA.buildDucetCollator();
+    private static final org.unicode.text.UCA.UCA uca_raw = UCA.getDucetCollator();
+
+    /**
+     * This collator is modified (set to secondary strength), so do not use UCA.getDucetCollator()
+     * which wants to be a singleton.
+     */
+    private static final org.unicode.text.UCA.UCA uca_level2Only = UCA.buildDucetCollator();
 
     static {
         uca_level2Only.setStrength(2);
@@ -230,7 +229,7 @@ public class CollatorEquivalencesNew {
             if (CN_CS_CO.contains(i)) {
                 continue;
             }
-            String s = UTF16.valueOf(i);
+            String s = Character.toString(i);
             equiv.put(MyCollator.getSortKey(s), s);
             String t = nfkccf.normalize(s);
             equiv.put(MyCollator.getSortKey(t), t);

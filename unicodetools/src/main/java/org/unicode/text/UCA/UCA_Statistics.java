@@ -83,6 +83,10 @@ public class UCA_Statistics {
             return guts.nextSetBit(i);
         }
 
+        public int previousSetBit(int i) {
+            return guts.previousSetBit(i);
+        }
+
         public int size() {
             return guts.size();
         }

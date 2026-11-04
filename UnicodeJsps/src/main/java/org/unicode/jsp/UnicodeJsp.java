@@ -6,19 +6,22 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
+import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.owasp.encoder.Encode;
 import org.unicode.cldr.util.BNF;
 import org.unicode.cldr.util.Quoter;
 import org.unicode.idna.Idna2003;
@@ -56,7 +59,7 @@ public class UnicodeJsp {
                             .replaceAll("\r?\n", "<br>");
             return result;
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            return "Error: " + UnicodeUtilities.toHTML(String.valueOf(e.getMessage()));
         }
     }
 
@@ -69,8 +72,11 @@ public class UnicodeJsp {
      * @return
      */
     public static String getBnf(String regexSource, int count, int maxRepeat) {
-        // String regex = new UnicodeRegex().compileBnf(rules);
-        String regex = regexSource.replace("(?:", "(").replace("(?i)", "");
+        String regex =
+                UnicodeSetUtilities.getUnicodeRegex()
+                        .transform(regexSource)
+                        .replace("(?:", "(")
+                        .replace("(?i)", "");
 
         BNF bnf = new BNF(new Random(), new Quoter.RuleQuoter());
         if (maxRepeat > 20) {
@@ -102,7 +108,8 @@ public class UnicodeJsp {
         while (decimalEscapes.find(start)) {
             int radix = 10;
             int code = Integer.parseInt(decimalEscapes.group(2), radix);
-            result2.append(text.substring(start, decimalEscapes.start()) + UTF16.valueOf(code));
+            result2.append(
+                    text.substring(start, decimalEscapes.start()) + Character.toString(code));
             start = decimalEscapes.end();
         }
         result2.append(text.substring(start));
@@ -131,8 +138,16 @@ public class UnicodeJsp {
 
     public static void showProperties(
             int cp, String history, boolean showDevProperties, Appendable out) throws IOException {
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
-        UnicodeUtilities.showProperties(cp, history, showDevProperties, out);
+        List<String> originalParameters = new ArrayList<>();
+        if (!history.isEmpty()) {
+            originalParameters.add("history=" + history);
+        }
+        if (showDevProperties) {
+            originalParameters.add("showDevProperties=1");
+        }
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
+        UnicodeUtilities.showProperties(cp, history, showDevProperties, originalParameters, out);
     }
 
     static String defaultIdnaInput =
@@ -183,7 +198,10 @@ public class UnicodeJsp {
             a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA));
             a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
         } catch (Exception e) {
-            a_out = e.getMessage();
+            a_out = Encode.forHtmlContent(Objects.toString(e.getMessage(), "error"));
+            for (Throwable cause = e; cause != null; cause = cause.getCause()) {
+                cause.printStackTrace();
+            }
         }
         return a_out;
     }
@@ -198,10 +216,19 @@ public class UnicodeJsp {
             boolean collate,
             Appendable out)
             throws IOException {
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
+        List<String> originalParameters =
+                showDevProperties ? List.of("showDevProperties=1") : List.of();
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
         CodePointShower codePointShower =
                 new CodePointShower(
-                        grouping, info, showDevProperties, abbreviate, ucdFormat, collate);
+                        grouping,
+                        info,
+                        showDevProperties,
+                        abbreviate,
+                        ucdFormat,
+                        collate,
+                        originalParameters);
         UnicodeUtilities.showSetMain(a, showDevProperties, codePointShower, out);
     }
 
@@ -235,13 +262,13 @@ public class UnicodeJsp {
         // of hexadecimal character escape and numeric literal syntaxes.
         Matcher matcher =
                 Pattern.compile(
-                                "(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H)?([0-9a-f'_]+)[\\};#]?",
+                                "(?:U\\+|\\\\[ux]\\{?|&#x|0x|16#|&H|u(?:ni)?)?([0-9a-f'_]+)[\\};#]?",
                                 Pattern.CASE_INSENSITIVE)
                         .matcher(trimmed);
         String digits = matcher.matches() ? matcher.group(1).replaceAll("['_]", "") : null;
         if (digits != null && digits.length() > 1) {
             try {
-                text = UTF16.valueOf(Integer.parseInt(digits, 16));
+                text = Character.toString(Integer.parseInt(digits, 16));
             } catch (Exception e) {
             }
         }
@@ -413,33 +440,48 @@ public class UnicodeJsp {
     }
 
     public static String getIdentifier(String script, boolean showDevProperties) {
-        showDevProperties = Settings.latestVersionPhase == ReleasePhase.BETA || showDevProperties;
-        return UnicodeUtilities.getIdentifier(script, showDevProperties);
+        List<String> originalParameters =
+                showDevProperties ? List.of("showDevProperties=1") : List.of();
+        showDevProperties =
+                Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0 || showDevProperties;
+        return UnicodeUtilities.getIdentifier(script, showDevProperties, originalParameters);
     }
 
+    static Manifest MANIFEST;
+
     static final String VERSIONS =
-            "Version 3.9; "
-                    + "ICU version: "
+            "ICU version: "
                     + VersionInfo.ICU_VERSION.getVersionString(2, 2)
                     + "; "
-                    + "Unicode/Emoji version: "
+                    + "base Unicode/Emoji version: "
                     + Settings.lastVersion
                     + "; "
                     + (Settings.latestVersionPhase == ReleasePhase.BETA
-                            ? "Unicodeβ version: " + Settings.latestVersion + "; "
-                            : "");
+                            ? "Unicode β version: " + Settings.latestVersion + "; "
+                            : Settings.latestVersionPhase == ReleasePhase.GAMMA
+                                    ? "Unicode latest version: " + Settings.latestVersion + "; "
+                                    : "");
 
     public static String getVersions() {
-        return VERSIONS;
+        return "unicodetools "
+                + Objects.requireNonNullElse(
+                                MANIFEST.getMainAttributes().getValue("UnicodeTools-Git-Commit"),
+                                "???????")
+                        .substring(0, 7)
+                + " built on "
+                + (MANIFEST.getMainAttributes().getValue("Build-Time"))
+                + "; "
+                + VERSIONS;
     }
 
     static final String SUBHEAD =
-            Settings.latestVersionPhase == ReleasePhase.BETA
+            Settings.latestVersionPhase.compareTo(ReleasePhase.BETA) >= 0
                     ? "<p style='border: 1pt solid red;'>Unmarked properties are from Unicode V"
                             + Settings.lastVersion
-                            + "; the beta properties are from Unicode V"
+                            + "; changes in Unicode V"
                             + Settings.latestVersion
-                            + "β. "
+                            + Settings.latestVersionPhase
+                            + " are highlighted. "
                             + "For more information, see <a target='help' href='https://unicode-org.github.io/unicodetools/help/changes'>Unicode Utilities Beta</a>.</p>"
                     : "";
 

@@ -231,7 +231,7 @@ public class ScriptTester2 {
             }
         }
         for (Entry<String, Integer> entry : multipleToSingleConfusable.entrySet()) {
-            // System.out.println(entry.getKey() + "\t" + UTF16.valueOf(entry.getValue()));
+            // System.out.println(entry.getKey() + "\t" + Character.toString(entry.getValue()));
             // check for overlaps
             String source = entry.getKey();
             String partial = source;

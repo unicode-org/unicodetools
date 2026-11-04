@@ -3747,7 +3747,7 @@
 9280	ngân
 9283	súng
 9285	đồng
-928A	nhong
+928A	tuất
 9291	ten
 9299	khoá
 92B7	tiu
@@ -6094,7 +6094,6 @@ FA24	gặp
 241EA	chín
 241EE	bép
 241F2	nhúm
-241F3	nhũn
 2421C	cháy
 2421D	nghẹ
 2421E	lùi
