@@ -153,6 +153,7 @@ FF10 FE00; short diagonal stroke form; # FULLWIDTH DIGIT ZERO
 1D4B4 FE01; roundhand style; #  MATHEMATICAL SCRIPT CAPITAL Y
 1D4B5 FE01; roundhand style; #  MATHEMATICAL SCRIPT CAPITAL Z
 
+1D4CD FE02; kurrent style; #  MATHEMATICAL SCRIPT SMALL X
 1D4CF FE02; kurrent style; #  MATHEMATICAL SCRIPT SMALL Z
 
 # East Asian punctuation positional and width variants
