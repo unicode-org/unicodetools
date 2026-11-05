@@ -11,7 +11,7 @@ Ignoring Name Age:
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
-Ignoring Block Pattern_Syntax:
+Ignoring Block Pattern_Syntax Standardized_Variation_Base:
 
 Propertywise [
     \x{1DC00}-\x{1DC35}
