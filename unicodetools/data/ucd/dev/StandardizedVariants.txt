@@ -97,6 +97,12 @@ FF10 FE00; short diagonal stroke form; # FULLWIDTH DIGIT ZERO
 22DC FE00; with horizontal equal; # EQUAL TO OR LESS-THAN
 22DD FE00; with horizontal equal; # EQUAL TO OR GREATER-THAN
 
+1DC09 FE00; horizontal strokes with wider space; # LEIBNIZIAN SYSTEM TWO PLUS OR PLUS-MINUS AMBIGUOUS SIGN
+1DC0A FE00; horizontal strokes with wide lower space; # LEIBNIZIAN SYSTEM TWO PLUS OR MINUS-PLUS AMBIGUOUS SIGN
+1DC0D FE00; horizontal strokes with wider spaces; # LEIBNIZIAN SYSTEM TWO NEGATED PLUS OR MINUS-PLUS AMBIGUOUS SIGN
+1DC12 FE00; horizontal strokes equally widely spaced; # LEIBNIZIAN SYSTEM TWO NEGATED PLUS OR MINUS-PLUS PARTIAL AMBIGUOUS SIGN
+1DC12 FE01; horizontal strokes equally narrowly spaced; # LEIBNIZIAN SYSTEM TWO NEGATED PLUS OR MINUS-PLUS PARTIAL AMBIGUOUS SIGN
+
 # Mathematical alphabet script variants
 
 1D49C FE00; chancery style; #  MATHEMATICAL SCRIPT CAPITAL A
