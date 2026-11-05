@@ -1,5 +1,5 @@
 # DerivedCoreProperties-19.0.0.txt
-# Date: 2026-11-05, 16:27:15 GMT
+# Date: 2026-11-05, 16:59:49 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -4935,6 +4935,7 @@ FF41..FF5A    ; Changes_When_Uppercased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 118C0..118DF  ; Changes_When_Uppercased # L&  [32] WARANG CITI SMALL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 16E60..16E7F  ; Changes_When_Uppercased # L&  [32] MEDEFAIDRIN SMALL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16EBB..16ED3  ; Changes_When_Uppercased # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
+1DB1E         ; Changes_When_Uppercased # L&       GREEK OMICRON UPSILON SYMBOL
 1DF41         ; Changes_When_Uppercased # L&       LATIN SMALL LETTER BARRED A
 1DF49         ; Changes_When_Uppercased # L&       LATIN SMALL LETTER BARRED K
 1DF4B         ; Changes_When_Uppercased # L&       LATIN SMALL LETTER BARRED M
@@ -4954,7 +4955,7 @@ FF41..FF5A    ; Changes_When_Uppercased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 1DF95         ; Changes_When_Uppercased # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E922..1E943  ; Changes_When_Uppercased # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 1601
+# Total code points: 1602
 
 # ================================================
 
@@ -5598,6 +5599,7 @@ FF41..FF5A    ; Changes_When_Titlecased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 118C0..118DF  ; Changes_When_Titlecased # L&  [32] WARANG CITI SMALL LETTER NGAA..WARANG CITI SMALL LETTER VIYO
 16E60..16E7F  ; Changes_When_Titlecased # L&  [32] MEDEFAIDRIN SMALL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16EBB..16ED3  ; Changes_When_Titlecased # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
+1DB1E         ; Changes_When_Titlecased # L&       GREEK OMICRON UPSILON SYMBOL
 1DF41         ; Changes_When_Titlecased # L&       LATIN SMALL LETTER BARRED A
 1DF49         ; Changes_When_Titlecased # L&       LATIN SMALL LETTER BARRED K
 1DF4B         ; Changes_When_Titlecased # L&       LATIN SMALL LETTER BARRED M
@@ -5617,7 +5619,7 @@ FF41..FF5A    ; Changes_When_Titlecased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 1DF95         ; Changes_When_Titlecased # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E922..1E943  ; Changes_When_Titlecased # L&  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 1528
+# Total code points: 1529
 
 # ================================================
 
@@ -6258,6 +6260,7 @@ FF21..FF3A    ; Changes_When_Casefolded # L&  [26] FULLWIDTH LATIN CAPITAL LETTE
 118A0..118BF  ; Changes_When_Casefolded # L&  [32] WARANG CITI CAPITAL LETTER NGAA..WARANG CITI CAPITAL LETTER VIYO
 16E40..16E5F  ; Changes_When_Casefolded # L&  [32] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN CAPITAL LETTER Y
 16EA0..16EB8  ; Changes_When_Casefolded # L&  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
+1DB1E         ; Changes_When_Casefolded # L&       GREEK OMICRON UPSILON SYMBOL
 1DF40         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER BARRED A
 1DF48         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER BARRED K
 1DF4A         ; Changes_When_Casefolded # L&       LATIN CAPITAL LETTER BARRED M
@@ -6277,7 +6280,7 @@ FF21..FF3A    ; Changes_When_Casefolded # L&  [26] FULLWIDTH LATIN CAPITAL LETTE
 1DF95         ; Changes_When_Casefolded # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E900..1E921  ; Changes_When_Casefolded # L&  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1582
+# Total code points: 1583
 
 # ================================================
 
@@ -6421,6 +6424,7 @@ FF41..FF5A    ; Changes_When_Casemapped # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 16E40..16E7F  ; Changes_When_Casemapped # L&  [64] MEDEFAIDRIN CAPITAL LETTER M..MEDEFAIDRIN SMALL LETTER Y
 16EA0..16EB8  ; Changes_When_Casemapped # L&  [25] BERIA ERFE CAPITAL LETTER ARKAB..BERIA ERFE CAPITAL LETTER AY
 16EBB..16ED3  ; Changes_When_Casemapped # L&  [25] BERIA ERFE SMALL LETTER ARKAB..BERIA ERFE SMALL LETTER AY
+1DB1E         ; Changes_When_Casemapped # L&       GREEK OMICRON UPSILON SYMBOL
 1DF40..1DF41  ; Changes_When_Casemapped # L&   [2] LATIN CAPITAL LETTER BARRED A..LATIN SMALL LETTER BARRED A
 1DF48..1DF4B  ; Changes_When_Casemapped # L&   [4] LATIN CAPITAL LETTER BARRED K..LATIN SMALL LETTER BARRED M
 1DF4D..1DF4E  ; Changes_When_Casemapped # L&   [2] LATIN CAPITAL LETTER BARRED N..LATIN SMALL LETTER BARRED N
@@ -6430,7 +6434,7 @@ FF41..FF5A    ; Changes_When_Casemapped # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 1DF95         ; Changes_When_Casemapped # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
 1E900..1E943  ; Changes_When_Casemapped # L&  [68] ADLAM CAPITAL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 3078
+# Total code points: 3079
 
 # ================================================
 

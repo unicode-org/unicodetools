@@ -14,16 +14,35 @@ Ignoring Block:
 Ignoring Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex Math_Descriptive_Comments:
 
 Ignoring Pattern_Syntax:
-Propertywise [\x{1DB1D}-\x{1DB21} \N{ALPHA X SYMBOL}-\N{OMICRON UPSILON SYMBOL}]
+Propertywise [\N{1DB1D:ALPHA X SYMBOL}
+              \N{1DB1F:DOUBLE SMALL SIGMA SYMBOL}
+              \N{1DB20:FUNCTIO DIFFERENTIATA SYMBOL}
+              \N{1DB21:DOUBLE X SYMBOL}]
 CorrespondTo [\x{222B} ∫ \N{INTEGRAL}]
     UpTo: East_Asian_Width (Neutral    vs Ambiguous),
           Line_Break       (Alphabetic vs Ambiguous),
           Bidi_Mirrored    (No         vs Yes)
 end Ignoring;
 
-Propertywise [\x{1DB1D}-\x{1DB21} \N{ALPHA X SYMBOL}-\N{OMICRON UPSILON SYMBOL}
-              \x{2141} ⅁ \N{TURNED SANS-SERIF CAPITAL G}]
+Propertywise [\N{1DB1D:ALPHA X SYMBOL}
+              \N{1DB1F:DOUBLE SMALL SIGMA SYMBOL}
+              \N{1DB20:FUNCTIO DIFFERENTIATA SYMBOL}
+              \N{1DB21:DOUBLE X SYMBOL}
+              \N{2141:⅁:TURNED SANS-SERIF CAPITAL G}]
 AreAlike
+
+Ignoring Simple_Case_Folding Simple_Titlecase_Mapping Simple_Uppercase_Mapping
+         Unicode_1_Name
+         Expands_On_NFKC Expands_On_NFKD:
+Propertywise [\N{1DB1E:GREEK OMICRON UPSILON SYMBOL}]
+            ⧴ [{ου}]
+            ⧴ [{Ου}]
+            ⧴ [{ΟΥ}]
+CorrespondTo [\N{03D6:ϖ:GREEK PI SYMBOL}]
+            ⧴ [{π}]
+            ⧴ [{Π}]
+            ⧴ [{Π}]
+end Ignoring;
 
 end Ignoring;
 end Ignoring;
