@@ -1132,7 +1132,7 @@ public class GenerateEmoji {
     // // "U+" + Utility.hex(emoji,"&U+")
     // // + "\t" + emoji
     // // + "\t" + getName(emoji)
-    // // + "\thttp://unicode.org/Public/emoji/1.0/full-emoji-list.html#"
+    // // + "\thttps://www.unicode.org/Public/emoji/1.0/full-emoji-list.html#"
     // // + Utility.hex(emoji,"_")
     // // );
     // // }
@@ -1343,13 +1343,14 @@ public class GenerateEmoji {
     private static void showNames(PrintWriter out, Set<String> minimal, boolean abbreviate) {
         UnicodeSet us = new UnicodeSet().addAll(minimal);
         for (EntryRange r : us.ranges()) {
-            out.print(getCodeAndName2(UTF16.valueOf(r.codepoint), false));
+            out.print(getCodeAndName2(Character.toString(r.codepoint), false));
             if (r.codepoint != r.codepointEnd) {
                 if (abbreviate) {
-                    out.print("<br>\n…" + getCodeAndName2(UTF16.valueOf(r.codepointEnd), false));
+                    out.print(
+                            "<br>\n…" + getCodeAndName2(Character.toString(r.codepointEnd), false));
                 } else {
                     for (int cp = r.codepoint + 1; cp <= r.codepointEnd; ++cp) {
-                        out.print("<br>\n" + getCodeAndName2(UTF16.valueOf(cp), false));
+                        out.print("<br>\n" + getCodeAndName2(Character.toString(cp), false));
                     }
                 }
             }
@@ -1527,7 +1528,7 @@ public class GenerateEmoji {
                             + "In the CLDR collation rules, the emoji modifiers cause a secondary difference. See also the machine-readable file "
                             + "<a target='text' href='emoji-ordering.txt'>emoji-ordering.txt</a>. "
                             + "To make suggestions for improvements, please file a "
-                            + getCldrTicket("collation", "Emoji ordering suggestions")
+                            + CLDR_TICKET_LINK
                             + ".</p>\n",
                     Emoji.DATA_DIR_PRODUCTION,
                     Emoji.TR51_HTML);
@@ -1538,7 +1539,7 @@ public class GenerateEmoji {
                             + "# Copyright © 1991-"
                             + Default.getYear()
                             + " Unicode, Inc.\n"
-                            + "# CLDR data files are interpreted according to the LDML specification (https://unicode.org/reports/tr35/)\n"
+                            + "# CLDR data files are interpreted according to the LDML specification (https://www.unicode.org/reports/tr35/)\n"
                             + "# For terms of use and license, see https://www.unicode.org/terms_of_use.html\n"
                             + "#\n"
                             + "# This file provides information for mapping character labels to sets of characters.\n"
@@ -2151,7 +2152,7 @@ public class GenerateEmoji {
             // continue;
             // }
             // //if (Emoji.EMOJI_CHARS.contains(item)) {
-            // String s2 = UTF16.valueOf(item);
+            // String s2 = Character.toString(item);
             // out.println(getBestImage(s2, true, ""));
             // // if (name.length() != 0) {
             // // name.append();
@@ -2451,7 +2452,7 @@ public class GenerateEmoji {
                             + "It does not include the annotations or short names that are algorithmically generated for sequences, such as flags. "
                             + "To make suggestions for improvements, "
                             + "please file a "
-                            + getCldrTicket("annotations", "Emoji annotation suggestions")
+                            + CLDR_TICKET_LINK
                             + ".</p>\n",
                     Emoji.DATA_DIR_PRODUCTION,
                     Emoji.TR51_HTML);
@@ -2963,9 +2964,11 @@ public class GenerateEmoji {
     private static final String CLDR_DATA_LINK =
             "<a target='cldr' href='https://cldr.unicode.org/#TOC-What-is-CLDR-'>Unicode CLDR data</a>";
     private static final String CLDR_ANNOTATIONS_LINK =
-            "<a target='cldr_annotations' href='https://unicode.org/cldr/charts/"
+            "<a target='cldr_annotations' href='https://www.unicode.org/cldr/charts/"
                     + (Emoji.IS_BETA ? "dev" : "latest")
                     + "/annotations/index.html'>Unicode CLDR Annotations</a>";
+    private static final String CLDR_TICKET_LINK =
+            "<a target='cldr-ticket' href='https://cldr.unicode.org/requesting_changes'>CLDR ticket</a>";
 
     enum Form {
         noImages(
@@ -3607,7 +3610,7 @@ public class GenerateEmoji {
     // Set<String> result = new LinkedHashSet<>();
     // for (int cp : CharSequences.codePoints(string)) {
     // if (cp != 0x200D && cp != 0xFE0F) {
-    // result.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(UTF16.valueOf(cp)));
+    // result.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(Character.toString(cp)));
     // }
     // }
     // return result;
@@ -4285,7 +4288,7 @@ public class GenerateEmoji {
                                 + "<li>🕴 → levitating business person</li>"
                                 + "</ul></b></p>\n"
                                 */
-                                + "<p><a target='feedback' href='https://unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, "
+                                + "<p><a target='feedback' href='https://www.unicode.org/reporting.html'>Feedback</a> on the CLDR Short Name, "
                                 + "Keywords, ordering, and category is welcome.</p>"
                         : "";
         String topHeader =
@@ -4728,7 +4731,7 @@ public class GenerateEmoji {
             }
             String name;
             if (Emoji.TAG_BASE + ' ' <= cp && cp < Emoji.TAG_TERM_CHAR) {
-                name = "tag_" + UTF16.valueOf(cp - Emoji.TAG_BASE);
+                name = "tag_" + Character.toString(cp - Emoji.TAG_BASE);
             } else if (cp == Emoji.TAG_TERM_CHAR) {
                 name = "tag_term";
             } else {
@@ -4769,19 +4772,5 @@ public class GenerateEmoji {
             }
         }
         return color;
-    }
-
-    private static String getCldrTicket(String component, String summary) {
-        return "<a target='cldr-ticket' href='https://unicode.org/cldr/trac/newticket"
-                + "?component="
-                + fixUrl(component)
-                + "&amp;summary="
-                + fixUrl(summary)
-                + "'>CLDR ticket</a>";
-    }
-
-    private static String fixUrl(String summary) {
-        return summary.replace(' ', '+'); // TODO make more robust with %
-        // encoding
     }
 }

@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import java.util.List;
@@ -71,7 +70,7 @@ public class IdsFileData {
             int cjkRad = Integer.parseInt(parts.get(0), 16);
             final String radString = parts.get(1);
             int radNumber = Integer.parseInt(radString);
-            radToCjkRad.put(radNumber, UTF16.valueOf(cjkRad));
+            radToCjkRad.put(radNumber, Character.toString(cjkRad));
         }
         radToCjkRad.freeze();
         cjkRadToRad.addAllInverted(radToCjkRad);

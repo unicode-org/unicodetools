@@ -1,6 +1,5 @@
 package org.unicode.text.tools;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import java.io.File;
@@ -211,11 +210,11 @@ public class RenameFiles {
                         //                    }
                         //                    // 1F469 1F3FB 200D 1F9B1 = woman, light skin, zwj
                         // curly
-                        //                    oldHex = UTF16.valueOf(first) + oldHex +
-                        // UTF16.valueOf(0x200d) + UTF16.valueOf(last);
+                        //                    oldHex = Character.toString(first) + oldHex +
+                        // Character.toString(0x200d) + Character.toString(last);
                         //                }
                         if (HEX_ADDITION != 0) {
-                            oldHex = UTF16.valueOf(HEX_ADDITION + oldHex.codePointAt(0));
+                            oldHex = Character.toString(HEX_ADDITION + oldHex.codePointAt(0));
                         }
                     }
             }

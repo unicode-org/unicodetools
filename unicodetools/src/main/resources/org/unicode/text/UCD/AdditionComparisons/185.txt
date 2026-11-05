@@ -1,0 +1,65 @@
+# Misc Musical Symbols (1D262..1D27F)
+# https://github.com/unicode-org/utc-release-management/issues/185
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Propertywise [
+    # The system divider is sui generis, but still propertywise like all the others.
+    \x{1D263}   \N{MUSICAL SYMBOL SYSTEM DIVIDER}
+    # Barline.
+    \x{1D101} 𝄁 \N{MUSICAL SYMBOL DOUBLE BARLINE}
+    \x{1D262}   \N{MUSICAL SYMBOL HEAVY DOUBLE BARLINE}
+    # Niente dynamics.
+    \x{1D18F} 𝆏 \N{MUSICAL SYMBOL PIANO}
+    \x{1D264}   \N{MUSICAL SYMBOL NIENTE}
+    \x{1D192} 𝆒 \N{MUSICAL SYMBOL CRESCENDO}
+    \x{1D265}   \N{MUSICAL SYMBOL CRESCENDO WITH RING}
+    \x{1D266}   \N{MUSICAL SYMBOL DECRESCENDO WITH RING}
+    # Noteheads.
+    \x{1D146} 𝅆 \N{MUSICAL SYMBOL SQUARE NOTEHEAD WHITE}
+    \x{1D267}   \N{MUSICAL SYMBOL DIAMOND NOTEHEAD WHOLE}
+    \x{1D268}   \N{MUSICAL SYMBOL DIAMOND NOTEHEAD WHITE}
+    \x{1D269}   \N{MUSICAL SYMBOL DIAMOND NOTEHEAD BLACK}
+    \x{1D26A}   \N{MUSICAL SYMBOL DIAMOND NOTEHEAD HALF FILLED}
+    # Holds and pauses.
+    \x{1D110} 𝄐 \N{MUSICAL SYMBOL FERMATA}
+    \x{1D26B}   \N{MUSICAL SYMBOL TRIANGULAR FERMATA}
+    \x{1D26C}   \N{MUSICAL SYMBOL DOUBLE TRIANGULAR FERMATA}
+    \x{1D26D}   \N{MUSICAL SYMBOL SQUARE FERMATA}
+    \x{1D26E}   \N{MUSICAL SYMBOL DOUBLE SQUARE FERMATA}
+    \x{1D26F}   \N{MUSICAL SYMBOL HENZE LONG FERMATA}
+    \x{1D270}   \N{MUSICAL SYMBOL HENZE SHORT FERMATA}
+    \x{1D271}   \N{MUSICAL SYMBOL CURLEW}
+    \x{1D272}   \N{MUSICAL SYMBOL SALZEDO BREATH MARK}
+    # Organ pedal markings.
+    \x{1D1AF} 𝆯 \N{MUSICAL SYMBOL PEDAL UP MARK}
+    \x{1D273}   \N{MUSICAL SYMBOL ORGAN PEDAL HEEL}
+    \x{1D274}   \N{MUSICAL SYMBOL ORGAN PEDAL TOE}
+    # Clefs.
+    \x{1D120} 𝄠 \N{MUSICAL SYMBOL G CLEF OTTAVA BASSA}
+    \x{1D275}   \N{MUSICAL SYMBOL G CLEF OPTIONALLY OTTAVA BASSA}
+    \x{1D276}   \N{MUSICAL SYMBOL DOUBLE G CLEF}
+    \x{1D277}   \N{MUSICAL SYMBOL G CLEF OTTAVA BASSA WITH C CLEF}
+    \x{1D278}   \N{MUSICAL SYMBOL C CLEF OTTAVA BASSA}
+    \x{1D279}   \N{MUSICAL SYMBOL G CLEF QUINDICESIMA ALTA}
+    \x{1D27A}   \N{MUSICAL SYMBOL G CLEF QUINDICESIMA BASSA}
+    \x{1D27B}   \N{MUSICAL SYMBOL F CLEF QUINDICESIMA ALTA}
+    \x{1D27C}   \N{MUSICAL SYMBOL F CLEF QUINDICESIMA BASSA}
+    \x{1D27D}   \N{MUSICAL SYMBOL C CLEF QUINDICESIMA BASSA}
+    \x{1D27E}   \N{MUSICAL SYMBOL TABLATURE CLEF}
+    # Arpeggio.
+    \x{1D183} 𝆃 \N{MUSICAL SYMBOL ARPEGGIATO UP}
+    \x{1D27F}   \N{MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

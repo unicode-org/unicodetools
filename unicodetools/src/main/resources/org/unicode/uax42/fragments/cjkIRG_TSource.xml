@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ucdxml:block xmlns:ucdxml="http://unicode.org/ns/2001/ucdxml" title="cjkIRG_TSource attribute" id='schema.properties'>
-  code-point-attributes &amp;= attribute cjkIRG_TSource
- { xsd:string { pattern="T([1-7A-F]|1[1-3])-[0-9A-F]{4}
-| TU-[023][0-9A-F]{4}" } }?
-</ucdxml:block>

@@ -34,7 +34,7 @@ public class RebuildPropertyCache {
                             + filesToDelete.size()
                             + " existing files in "
                             + directoriesToDelete.size()
-                            + " existiing directories under "
+                            + " existing directories under "
                             + Settings.Output.BIN_DIR);
             for (final var f : filesToDelete) {
                 if (!f.delete()) {

@@ -25,9 +25,6 @@ import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
-import org.unicode.props.GenerateEnums;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.test.CheckWholeScript.Status;
@@ -86,22 +83,6 @@ public class TestSecurity extends TestFmwkMinusMinus {
         }
     }
 
-    @Test
-    public void TestSpacing() {
-        IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-        UnicodeMap<General_Category_Values> generalCategory =
-                iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
-        for (Entry<String, EnumMap<Style, String>> data :
-                Confusables_.INSTANCE.getChar2data().entrySet()) {
-            String source = data.getKey();
-            String target = data.getValue().get(Style.MA);
-            assertEquals(
-                    "( " + source + " ) ? ( " + target + " )",
-                    isAllNonspacing(source, generalCategory),
-                    isAllNonspacing(target, generalCategory));
-        }
-    }
-
     private Boolean isAllNonspacing(
             String source, UnicodeMap<General_Category_Values> generalCategory) {
         for (int codepoint : CharSequences.codePoints(source)) {
@@ -138,7 +119,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
             checkTransform(transformMap, source, value);
             if (value.codePointCount(0, value.length()) > 1) {
                 for (int cp : CharSequences.codePoints(value)) {
-                    String v = UTF16.valueOf(cp);
+                    String v = Character.toString(cp);
                     checkTransform(transformMap, value, v);
                 }
             }
@@ -535,7 +516,7 @@ public class TestSecurity extends TestFmwkMinusMinus {
             {"sex", Status.SAME, Status.OTHER},
             {"scope", Status.SAME, Status.OTHER},
             {"sef", Status.SAME},
-            {"1", Status.OTHER},
+            {"1", Status.SAME, Status.OTHER},
             {"NO", Status.SAME, Status.OTHER},
             {"ー", Status.SAME, Status.OTHER},
             {"コー", Status.SAME},

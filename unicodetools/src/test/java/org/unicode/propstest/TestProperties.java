@@ -1,5 +1,7 @@
 package org.unicode.propstest;
 
+import static org.unicode.propstest.TestProperties.ArabicPatternLocation.*;
+
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.EntryRange;
@@ -20,6 +22,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.unicode.cldr.draft.FileUtilities;
@@ -38,9 +42,11 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
 
@@ -309,7 +315,7 @@ public class TestProperties extends TestFmwkMinusMinus {
             if (!dt.getValue(codepoint).equals("Canonical")) {
                 continue;
             }
-            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirst = UTF16Plus.codePointSubstringAt(dm.getValue(codepoint), 0);
             String decompositionFirstNFCQC = nfcqc.getValue(decompositionFirst);
             if (!decompositionFirstNFCQC.equals("Yes")) {
                 errln(
@@ -328,7 +334,7 @@ public class TestProperties extends TestFmwkMinusMinus {
         UnicodeMap<String> nfkcqc = iup.load(UcdProperty.NFKC_Quick_Check);
         UnicodeMap<String> dm = iup.load(UcdProperty.Decomposition_Mapping);
         for (String codepoint : nfkcqc.getSet("Yes")) {
-            String decompositionFirst = Character.toString(dm.getValue(codepoint).codePointAt(0));
+            String decompositionFirst = UTF16Plus.codePointSubstringAt(dm.getValue(codepoint), 0);
             String decompositionFirstNFKCQC = nfkcqc.getValue(decompositionFirst);
             if (!decompositionFirstNFKCQC.equals("Yes")) {
                 errln(
@@ -342,12 +348,352 @@ public class TestProperties extends TestFmwkMinusMinus {
         }
     }
 
+    enum ArabicPatternLocation {
+        BELOW,
+        WITHIN,
+        ABOVE
+    }
+
+    @Test
+    void TestArabicShapingSchematicNames() {
+        // Check that the grammar from L2/11-092 and the associated rules apply to the schematic
+        // names of Arabic joining characters.
+        // The grammar is regular, but since we need to check some semantics and we want decent
+        // error messages, we parse various bits by hand. This might want a separate lexer
+        // eventually, but it is just about manageable for now…
+        final UnicodeProperty script = iup.getProperty(UcdProperty.Script);
+        final UnicodeProperty jg = iup.getProperty(UcdProperty.Joining_Group);
+        final UnicodeProperty schematicName =
+                iup.getProperty(UcdProperty.Arabic_Shaping_Schematic_Name);
+        final UnicodeSet grammarScope =
+                script.getSet("Arabic").removeAll(jg.getSet("No_Joining_Group"));
+
+        class Dots {
+            Dots(int count, ArabicPatternLocation location) {
+                this.count = count;
+                this.location = location;
+            }
+
+            int count;
+            ArabicPatternLocation location;
+        }
+        final Map<UcdPropertyValues.Joining_Group_Values, Dots> dottedGroups =
+                Map.of(
+                        UcdPropertyValues.Joining_Group_Values.Beh, new Dots(1, BELOW),
+                        UcdPropertyValues.Joining_Group_Values.Feh, new Dots(1, ABOVE),
+                        UcdPropertyValues.Joining_Group_Values.Noon, new Dots(1, ABOVE),
+                        UcdPropertyValues.Joining_Group_Values.Qaf, new Dots(2, ABOVE),
+                        UcdPropertyValues.Joining_Group_Values.Rohingya_Yeh, new Dots(2, BELOW),
+                        UcdPropertyValues.Joining_Group_Values.Teh_Marbuta, new Dots(2, ABOVE),
+                        UcdPropertyValues.Joining_Group_Values.Teh_Marbuta_Goal, new Dots(2, ABOVE),
+                        UcdPropertyValues.Joining_Group_Values.Yeh, new Dots(2, BELOW),
+                        // New dotted groups not in L2/11-092:
+                        UcdPropertyValues.Joining_Group_Values.Crown_Beh, new Dots(1, BELOW),
+                        UcdPropertyValues.Joining_Group_Values.Crown_Feh, new Dots(1, ABOVE));
+        final Pattern prefix = Pattern.compile("HIGH HAMZA (?<remainder>.*)");
+        final Pattern suffixPart = Pattern.compile(" WITH (?<remainder>.*)");
+        final Pattern patternLocation =
+                Pattern.compile(
+                        " (?<location>"
+                                + Arrays.stream(ArabicPatternLocation.values())
+                                        .map(ArabicPatternLocation::toString)
+                                        .collect(Collectors.joining("|"))
+                                + ")\\b(?<remainder>.*)");
+        final Pattern patternUnit =
+                Pattern.compile(
+                        "("
+                                // We split the unqualified dots to check for non-minimal
+                                // representations, e.g., DOTLESS BEH WITH DOT BELOW.
+                                + "(?<dots>(?<plainDots>DOT"
+                                + "|2 DOTS"
+                                + "|3 DOTS"
+                                + "|4 DOTS)"
+                                + "|VERTICAL 2 DOTS"
+                                + "|(INVERTED|HORIZONTAL) 3 DOTS"
+                                // DIAMOND 4 DOTS not in L2/11-092:
+                                + "|DIAMOND 4 DOTS)"
+                                // ELONGATED not in L2/11-092:
+                                + "|(WAVY |ELONGATED )?HAMZA"
+                                + "|ALEF|DAMMA|MADDA|TAH|WASLA"
+                                + "|(INVERTED )?V"
+                                + "|DIGIT (TWO|THREE|FOUR)"
+                                + "|(ATTACHED |SEPARATE )RING"
+                                // Not in L2/11-092:
+                                + "|COMMA|MEEM|TEH|NOON"
+                                + "|ATTACHED ROUND DOT"
+                                + "|STROKE"
+                                + ")\\b(?<remainder>.*)");
+        // The laterally-located-pattern-unit is a post L2/11-092 innovation.
+        // These pattern-units do not take a location (ABOVE, BELOW, or WITHIN).
+        // They occur before any other suffix-unit.
+        // All but two of them include a lateral (LEFT or RIGHT) location in their name,
+        // the exceptions being ATTACHED FATHA and ATTACHED KASRA.  The RIGHT ones come before the
+        // LEFT ones.
+        final Pattern laterallyLocatedPatternUnit =
+                Pattern.compile(
+                        "("
+                                + "(?<right>ATTACHED TOP RIGHT FATHA"
+                                + "|RIGHT MIDDLE STROKE"
+                                + "|(ATTACHED )?BOTTOM RIGHT KASRA"
+                                + "|(ATTACHED )?RIGHT ROUND DOT"
+                                + "|(ATTACHED )?RIGHT HAMZA"
+                                + ")"
+                                + "|(?<left>ATTACHED LEFT HAMZA"
+                                + "|LEFT MIDDLE STROKE"
+                                + "|LEFT RING"
+                                + "|ATTACHED LEFT ROUND DOT"
+                                + ")"
+                                + "|ATTACHED( FATHA| KASRA))\\b(?<remainder>.*)");
+        final Pattern nonPatternSuffixUnit =
+                Pattern.compile("(?:(?<bar>(DOUBLE )?BAR)|(?<loop>LOOP))\\b(?<remainder>.*)");
+        final Pattern coordinator = Pattern.compile(" AND (?<remainder>.*)");
+        codePoints:
+        for (final int codePoint : grammarScope.codePoints()) {
+            final String joiningGroup = jg.getValue(codePoint).toUpperCase().replace('_', ' ');
+            final var implicitDots =
+                    dottedGroups.get(UcdPropertyValues.Joining_Group_Values.forName(joiningGroup));
+            String skeletonPattern =
+                    joiningGroup.equals("GAF")
+                            ? "KEHEH|GAF"
+                            : implicitDots != null
+                                    ? "(?<dotless>DOTLESS )?" + joiningGroup
+                                    : joiningGroup;
+            String remainder = schematicName.getValue(codePoint);
+            var matcher = prefix.matcher(remainder);
+            if (matcher.matches()) {
+                remainder = matcher.group("remainder");
+            }
+            matcher =
+                    Pattern.compile("(" + skeletonPattern + ")\\b(?<remainder>.*)")
+                            .matcher(remainder);
+            if (!matcher.matches()) {
+                errln(
+                        "Schematic name of U+"
+                                + Utility.hex(codePoint)
+                                + ": Expected "
+                                + skeletonPattern
+                                + " based on Joining_Group "
+                                + joiningGroup
+                                + ", got "
+                                + remainder);
+                continue codePoints;
+            }
+            final boolean dotless = implicitDots != null && matcher.group("dotless") != null;
+            remainder = matcher.group("remainder");
+            if (remainder.isEmpty()) {
+                continue codePoints;
+            }
+            matcher = suffixPart.matcher(remainder);
+            if (!matcher.matches()) {
+                errln(
+                        "Schematic name of U+"
+                                + Utility.hex(codePoint)
+                                + ": Expected "
+                                + suffixPart
+                                + ", got "
+                                + remainder);
+                continue codePoints;
+            }
+            remainder = matcher.group("remainder");
+            ArabicPatternLocation lastLocation = null;
+            boolean seenBar = false;
+            boolean seenLoop = false;
+            boolean seenLeft = false;
+            for (; ; ) {
+                matcher = nonPatternSuffixUnit.matcher(remainder);
+                if (matcher.matches()) {
+                    final boolean isBar = matcher.group("bar") != null;
+                    final boolean isLoop = matcher.group("loop") != null;
+                    if (seenBar && isBar) {
+                        errln(
+                                "Schematic name of U+"
+                                        + Utility.hex(codePoint)
+                                        + ": got multiple BARs");
+                    }
+                    if (seenLoop && isLoop) {
+                        errln(
+                                "Schematic name of U+"
+                                        + Utility.hex(codePoint)
+                                        + ": got multiple LOOPs");
+                    }
+                    if (seenLoop && isBar) {
+                        errln(
+                                "Schematic name of U+"
+                                        + Utility.hex(codePoint)
+                                        + ": Expected "
+                                        + matcher.group("bar")
+                                        + " to occur before LOOP");
+                    }
+                    seenBar |= isBar;
+                    seenLoop |= isLoop;
+                    remainder = matcher.group("remainder");
+                } else {
+                    matcher = laterallyLocatedPatternUnit.matcher(remainder);
+                    if (matcher.matches()) {
+                        final boolean isLeft = matcher.group("left") != null;
+                        final boolean isRight = matcher.group("right") != null;
+                        if (lastLocation != null) {
+                            errln(
+                                    "Schematic name of U+"
+                                            + Utility.hex(codePoint)
+                                            + ": Expected "
+                                            + remainder
+                                            + " to occur before suffix-units "
+                                            + lastLocation);
+                        }
+                        if (seenLoop || seenBar) {
+                            errln(
+                                    "Schematic name of U+"
+                                            + Utility.hex(codePoint)
+                                            + ": Expected "
+                                            + remainder
+                                            + " to occur before LOOP or BAR");
+                        }
+                        if (isRight && seenLeft) {
+                            errln(
+                                    "Schematic name of U+"
+                                            + Utility.hex(codePoint)
+                                            + ": Expected "
+                                            + remainder
+                                            + " to occur before LEFT suffix-units");
+                        }
+                        seenLeft |= isLeft;
+                        remainder = matcher.group("remainder");
+                    } else {
+                        // We must have a pattern.
+                        String fromStartOfPattern = remainder;
+                        boolean anyDots = false;
+                        Integer plainDots = null;
+                        patternUnits:
+                        for (; ; ) {
+                            matcher = patternUnit.matcher(remainder);
+                            if (!matcher.matches()) {
+                                errln(
+                                        "Schematic name of U+"
+                                                + Utility.hex(codePoint)
+                                                + ": Expected pattern-unit, got "
+                                                + remainder);
+                                continue codePoints;
+                            }
+                            if (seenLoop || seenBar) {
+                                errln(
+                                        "Schematic name of U+"
+                                                + Utility.hex(codePoint)
+                                                + ": Expected "
+                                                + remainder
+                                                + " to occur before any LOOP or BAR");
+                            }
+                            anyDots |= matcher.group("dots") != null;
+                            if (matcher.group("plainDots") != null) {
+                                if (plainDots != null) {
+                                    errln(
+                                            "Schematic name of U+"
+                                                    + Utility.hex(codePoint)
+                                                    + ": Multiple plain dots in "
+                                                    + fromStartOfPattern);
+                                }
+                                plainDots =
+                                        matcher.group("plainDots").equals("DOT")
+                                                ? 1
+                                                : Integer.parseInt(
+                                                        matcher.group("plainDots").split(" ")[0]);
+                            }
+                            remainder = matcher.group("remainder");
+                            matcher = coordinator.matcher(remainder);
+                            if (matcher.matches()) {
+                                remainder = matcher.group("remainder");
+                                continue patternUnits; // Expect another pattern-unit.
+                            }
+                            matcher = patternLocation.matcher(remainder);
+                            if (matcher.matches()) {
+                                final var location =
+                                        ArabicPatternLocation.valueOf(matcher.group("location"));
+                                if (lastLocation != null) {
+                                    if (location.compareTo(lastLocation) < 0) {
+                                        errln(
+                                                "Schematic name of U+"
+                                                        + Utility.hex(codePoint)
+                                                        + ": Expected suffix-unit "
+                                                        + matcher.group(1)
+                                                        + " to occur before suffix-unit "
+                                                        + lastLocation);
+                                    }
+                                    if (location.compareTo(lastLocation) == 0) {
+                                        errln(
+                                                "Schematic name of U+"
+                                                        + Utility.hex(codePoint)
+                                                        + ": Multiple suffix-units "
+                                                        + lastLocation);
+                                    }
+                                }
+                                if (implicitDots != null
+                                        && implicitDots.location.equals(location)) {
+                                    // This would catch BEH WITH 2 DOTS BELOW AND DOT ABOVE.
+                                    if (anyDots && !dotless) {
+                                        errln(
+                                                "Schematic name of U+"
+                                                        + Utility.hex(codePoint)
+                                                        + ": "
+                                                        + joiningGroup
+                                                        + " with dots "
+                                                        + location
+                                                        + " should be DOTLESS");
+                                    }
+                                    // This would catch DOTLESS BEH WITH DOT BELOW AND 3 DOTS
+                                    // ABOVE, given as an example in L2/11-092.
+                                    if (plainDots != null && plainDots == implicitDots.count) {
+                                        errln(
+                                                "Schematic name of U+"
+                                                        + Utility.hex(codePoint)
+                                                        + ": DOTLESS "
+                                                        + joiningGroup
+                                                        + " with "
+                                                        + plainDots
+                                                        + " dots "
+                                                        + location
+                                                        + " should be plain "
+                                                        + joiningGroup);
+                                    }
+                                }
+                                lastLocation = location;
+                                remainder = matcher.group("remainder");
+                                // End of the suffix-unit.
+                                break patternUnits;
+                            } else {
+                                errln(
+                                        "Schematic name of U+"
+                                                + Utility.hex(codePoint)
+                                                + ": Expected location for pattern "
+                                                + fromStartOfPattern);
+                            }
+                        }
+                    }
+                }
+                if (remainder.isEmpty()) {
+                    break;
+                } else {
+                    matcher = coordinator.matcher(remainder);
+                    if (!matcher.matches()) {
+                        errln(
+                                "Schematic name of U+"
+                                        + Utility.hex(codePoint)
+                                        + ": Expected AND, got "
+                                        + remainder);
+                        continue codePoints;
+                    }
+                    remainder = matcher.group("remainder");
+                }
+            }
+        }
+    }
+
     @Test
     public void TestScripts() {
 
         logln("New chars: " + newChars.size());
         {
-            LinkedHashSet values = new LinkedHashSet(Arrays.asList(Script_Values.values()));
+            LinkedHashSet<Script_Values> values =
+                    new LinkedHashSet(Arrays.asList(Script_Values.values()));
             values.remove(Script_Values.Unknown);
             values.remove(Script_Values.Katakana_Or_Hiragana);
             listValues(
@@ -361,7 +707,7 @@ public class TestProperties extends TestFmwkMinusMinus {
                     });
         }
         {
-            LinkedHashSet values =
+            LinkedHashSet<General_Category_Values> values =
                     new LinkedHashSet(Arrays.asList(General_Category_Values.values()));
             listValues(
                     UcdProperty.General_Category,
@@ -372,6 +718,35 @@ public class TestProperties extends TestFmwkMinusMinus {
                             return source.getShortName();
                         }
                     });
+        }
+        // TODO(egg): Is the stuff above a test, or just another tool that screams into the void?
+
+        for (final var iup :
+                new IndexUnicodeProperties[] {
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_5_0),
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_4_1),
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_4_0_1),
+                    IndexUnicodeProperties.make(VersionInfo.UNICODE_4_0)
+                }) {
+            // Unassigned code points were made Unknown by 106-C17 for Unicode Version 5.0.
+            // The default for unlisted code points changed from Common to Unknown in that version.
+            // Assigned Common code points were explicitly listed since 4.0.1, but were missing in
+            // 4.0.0, so we need a versioned @missing in ExtraPropertyValueAliases to interpret the
+            // older files correctly.
+            final var scriptValue2072 =
+                    Script_Values.forName(iup.getProperty(UcdProperty.Script).getValue(0x2072));
+            assertEquals(
+                    "Script of U+2072 in " + iup.getUcdVersion(),
+                    iup.getUcdVersion() == VersionInfo.UNICODE_5_0
+                            ? Script_Values.Unknown
+                            : Script_Values.Common,
+                    scriptValue2072);
+            final var scriptValueEmDash =
+                    Script_Values.forName(iup.getProperty(UcdProperty.Script).getValue('—'));
+            assertEquals(
+                    "Script of EM DASH in " + iup.getUcdVersion(),
+                    Script_Values.Common,
+                    scriptValueEmDash);
         }
     }
 
@@ -654,6 +1029,29 @@ public class TestProperties extends TestFmwkMinusMinus {
             //            logln(age + ", nt-gc:N" + diff);
             diff = new UnicodeSet(gcNum).removeAll(ntNum);
             logln(age + ", gc:N-nt" + diff);
+        }
+    }
+
+    @Test
+    public void TestVowelCarrierInSc() {
+        // If a script has a single independent vowel character which is the inherent vowel, with
+        // all other independent vowels formed by sticking dependent vowels on it, that independent
+        // vowel is treated as a (null) consonant.
+        // See L2/24-203 and 181-C44.
+        final var inSC = iup.getProperty(UcdProperty.Indic_Syllabic_Category);
+        final var inSCVowelIndependent =
+                inSC.getSet(UcdPropertyValues.Indic_Syllabic_Category_Values.Vowel_Independent);
+        final var sc = iup.getProperty(UcdProperty.Script);
+        for (final var script : UcdPropertyValues.Script_Values.values()) {
+            final var independentVowels = sc.getSet(script).retainAll(inSCVowelIndependent);
+            assertNotEquals(
+                    "The set "
+                            + independentVowels
+                            + " of independent vowels in "
+                            + script
+                            + " must not have size 1, see L2/24-203",
+                    independentVowels.size(),
+                    1);
         }
     }
 }

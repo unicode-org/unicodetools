@@ -87,3 +87,6 @@ rules.mk
 .DS_Store
 /output
 /cldr
+
+# Files created as part of the JSPs build.
+UnicodeJsps/src/main/webapp/LastResort-Regular.ttf

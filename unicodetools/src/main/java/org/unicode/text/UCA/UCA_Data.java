@@ -219,7 +219,7 @@ public class UCA_Data {
      * <p>If there is no mapping for any character or substring at i, then the index is unchanged
      * and null is returned.
      */
-    public CEList fetchCEs(StringBuffer buffer, int[] index) {
+    public CEList fetchCEs(StringBuilder buffer, int[] index) {
         final int i = index[0];
         // Lookup for the first character at i.
         int j = buffer.offsetByCodePoints(i, 1);

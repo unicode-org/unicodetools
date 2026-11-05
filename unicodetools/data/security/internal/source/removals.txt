@@ -1,0 +1,1290 @@
+﻿# New Source file for idnchars/confusables
+
+# High-Level exclusions
+[:^xid-continue:]; not-xid
+
+# Do read https://github.com/unicode-org/unicodetools/blob/main/docs/security/id_type.md
+
+035C..0362 ; technical # subhead=Double diacritics
+
+0343  ; technical # UCA [.0000.0022.0002.0343] # COMBINING GREEK KORONIS; QQC
+0486  ; technical # UCA [.0000.0022.0002.0486] # COMBINING CYRILLIC PSILI PNEUMATA; QQC
+2CF1  ; technical # UCA [.0000.0022.0002.2CF1] # COPTIC COMBINING SPIRITUS LENIS; QQC
+
+030E  ; technical # UCA [.0000.005F.0002.030E] # COMBINING DOUBLE VERTICAL LINE ABOVE; QQC
+0312  ; technical # UCA [.0000.005F.0002.0312] # COMBINING TURNED COMMA ABOVE; QQC
+0315  ; technical # UCA [.0000.005F.0002.0315] # COMBINING COMMA ABOVE RIGHT; QQC
+031A  ; technical # UCA [.0000.005F.0002.031A] # COMBINING LEFT ANGLE ABOVE; QQC
+033D  ; technical # UCA [.0000.005F.0002.033D] # COMBINING X ABOVE; QQC
+033E  ; technical # UCA [.0000.005F.0002.033E] # COMBINING VERTICAL TILDE; QQC
+033F  ; technical # UCA [.0000.005F.0002.033F] # COMBINING DOUBLE OVERLINE; QQC
+0346..034E  ; technical # UCA [.0000.005F.0002.0346] # ...
+0350..0357  ; technical # UCA [.0000.005F.0002.0350] # ...
+035B  ; technical # UCA [.0000.005F.0002.035B] # COMBINING ZIGZAG ABOVE; QQC
+035D  ; technical # UCA [.0000.005F.0002.035D] # COMBINING DOUBLE BREVE; QQC
+035E  ; technical # UCA [.0000.005F.0002.035E] # COMBINING DOUBLE MACRON; QQC
+0484  ; technical # UCA [.0000.005F.0002.0484] # COMBINING CYRILLIC PALATALIZATION; QQC
+0487  ; technical # UCA [.0000.005F.0002.0487] # COMBINING CYRILLIC POKRYTIE; QQC
+0741  ; technical # UCA [.0000.005F.0002.0741] # SYRIAC QUSHSHAYA; QQC
+0745  ; technical # UCA [.0000.005F.0002.0745] # SYRIAC THREE DOTS ABOVE; QQC
+17CB  ; technical # UCA [.0000.005F.0002.17CB] # KHMER SIGN BANTOC; QQC
+17CC  ; technical # UCA [.0000.005F.0002.17CC] # KHMER SIGN ROBAT; QQC
+17CD  ; technical # UCA [.0000.005F.0002.17CD] # KHMER SIGN TOANDAKHIAT; QQC
+17CE  ; technical # UCA [.0000.005F.0002.17CE] # KHMER SIGN KAKABAT; QQC
+17CF  ; technical # UCA [.0000.005F.0002.17CF] # KHMER SIGN AHSDA; QQC
+17D0  ; technical # UCA [.0000.005F.0002.17D0] # KHMER SIGN SAMYOK SANNYA; QQC
+17D1  ; technical # UCA [.0000.005F.0002.17D1] # KHMER SIGN VIRIAM; QQC
+17DD  ; technical # UCA [.0000.005F.0002.17DD] # KHMER SIGN ATTHACAN; QQC
+1DC0  ; technical # UCA [.0000.005F.0002.1DC0] # COMBINING DOTTED GRAVE ACCENT; QQC
+1DC1  ; technical # UCA [.0000.005F.0002.1DC1] # COMBINING DOTTED ACUTE ACCENT; QQC
+1DC3  ; technical # UCA [.0000.005F.0002.1DC3] # COMBINING SUSPENSION MARK; QQC
+1DC4  ; technical # UCA [.0000.005F.0002.1DC4] # COMBINING MACRON-ACUTE; QQC
+1DC5  ; technical # UCA [.0000.005F.0002.1DC5] # COMBINING GRAVE-MACRON; QQC
+1DC6  ; technical # UCA [.0000.005F.0002.1DC6] # COMBINING MACRON-GRAVE; QQC
+1DC7  ; technical # UCA [.0000.005F.0002.1DC7] # COMBINING ACUTE-MACRON; QQC
+1DC8  ; technical # UCA [.0000.005F.0002.1DC8] # COMBINING GRAVE-ACUTE-GRAVE; QQC
+1DC9  ; technical # UCA [.0000.005F.0002.1DC9] # COMBINING ACUTE-GRAVE-ACUTE; QQC
+1DCB  ; technical # UCA [.0000.005F.0002.1DCB] # COMBINING BREVE-MACRON; QQC
+1DCC  ; technical # UCA [.0000.005F.0002.1DCC] # COMBINING MACRON-BREVE; QQC
+
+0485  ; technical # UCA [.0000.002A.0002.0485] # COMBINING CYRILLIC DASIA PNEUMATA; QQC
+2CF0  ; technical # UCA [.0000.002A.0002.2CF0] # COPTIC COMBINING SPIRITUS ASPER; QQC
+
+0341  ; technical # UCA [.0000.0032.0002.0341] # COMBINING ACUTE TONE MARK; QQC
+0954  ; technical # UCA [.0000.0032.0002.0954] # DEVANAGARI ACUTE ACCENT; QQC
+
+0340  ; technical # UCA [.0000.0035.0002.0340] # COMBINING GRAVE TONE MARK; QQC
+0953  ; technical # UCA [.0000.0035.0002.0953] # DEVANAGARI GRAVE ACCENT; QQC
+
+0317  ; technical # UCA [.0000.0060.0002.0317] # COMBINING ACUTE ACCENT BELOW; QQC
+0318  ; technical # UCA [.0000.0060.0002.0318] # COMBINING LEFT TACK BELOW; QQC
+0319  ; technical # UCA [.0000.0060.0002.0319] # COMBINING RIGHT TACK BELOW; QQC
+031C  ; technical # UCA [.0000.0060.0002.031C] # COMBINING LEFT HALF RING BELOW; QQC
+031D  ; technical # UCA [.0000.0060.0002.031D] # COMBINING UP TACK BELOW; QQC
+031E  ; technical # UCA [.0000.0060.0002.031E] # COMBINING DOWN TACK BELOW; QQC
+031F  ; technical # UCA [.0000.0060.0002.031F] # COMBINING PLUS SIGN BELOW; QQC
+0320  ; technical # UCA [.0000.0060.0002.0320] # COMBINING MINUS SIGN BELOW; QQC
+0329  ; technical # UCA [.0000.0060.0002.0329] # COMBINING VERTICAL LINE BELOW; QQC
+032A  ; technical # UCA [.0000.0060.0002.032A] # COMBINING BRIDGE BELOW; QQC
+032B  ; technical # UCA [.0000.0060.0002.032B] # COMBINING INVERTED DOUBLE ARCH BELOW; QQC
+032C  ; technical # UCA [.0000.0060.0002.032C] # COMBINING CARON BELOW; QQC
+032F  ; technical # UCA [.0000.0060.0002.032F] # COMBINING INVERTED BREVE BELOW; QQC
+0333  ; technical # UCA [.0000.0060.0002.0333] # COMBINING DOUBLE LOW LINE; QQC
+033A  ; technical # UCA [.0000.0060.0002.033A] # COMBINING INVERTED BRIDGE BELOW; QQC
+033B  ; technical # UCA [.0000.0060.0002.033B] # COMBINING SQUARE BELOW; QQC
+033C  ; technical # UCA [.0000.0060.0002.033C] # COMBINING SEAGULL BELOW; QQC
+0347  ; technical # UCA [.0000.0060.0002.0347] # COMBINING EQUALS SIGN BELOW; QQC
+0348  ; technical # UCA [.0000.0060.0002.0348] # COMBINING DOUBLE VERTICAL LINE BELOW; QQC
+0349  ; technical # UCA [.0000.0060.0002.0349] # COMBINING LEFT ANGLE BELOW; QQC
+034D  ; technical # UCA [.0000.0060.0002.034D] # COMBINING LEFT RIGHT ARROW BELOW; QQC
+034E  ; technical # UCA [.0000.0060.0002.034E] # COMBINING UPWARDS ARROW BELOW; QQC
+0353  ; technical # UCA [.0000.0060.0002.0353] # COMBINING X BELOW; QQC
+0354  ; technical # UCA [.0000.0060.0002.0354] # COMBINING LEFT ARROWHEAD BELOW; QQC
+0355  ; technical # UCA [.0000.0060.0002.0355] # COMBINING RIGHT ARROWHEAD BELOW; QQC
+0356  ; technical # UCA [.0000.0060.0002.0356] # COMBINING RIGHT ARROWHEAD AND UP ARROWHEAD BELOW; QQC
+0359  ; technical # UCA [.0000.0060.0002.0359] # COMBINING ASTERISK BELOW; QQC
+035A  ; technical # UCA [.0000.0060.0002.035A] # COMBINING DOUBLE RING BELOW; QQC
+035C  ; technical # UCA [.0000.0060.0002.035C] # COMBINING DOUBLE BREVE BELOW; QQC
+035F  ; technical # UCA [.0000.0060.0002.035F] # COMBINING DOUBLE MACRON BELOW; QQC
+0362  ; technical # UCA [.0000.0060.0002.0362] # COMBINING DOUBLE RIGHTWARDS ARROW BELOW; QQC
+0742  ; technical # UCA [.0000.0060.0002.0742] # SYRIAC RUKKAKHA; QQC
+0746  ; technical # UCA [.0000.0060.0002.0746] # SYRIAC THREE DOTS BELOW; QQC
+1DC2  ; technical # UCA [.0000.0060.0002.1DC2] # COMBINING SNAKE BELOW; QQC
+1DCF  ; technical # UCA [.0000.0060.0002.1DCF] # COMBINING ZIGZAG BELOW; QQC
+1DD0  ; technical # UCA [.0000.0060.0002.1DD0] # COMBINING IS BELOW; QQC
+1DFD  ; technical # UCA [.0000.0060.0002.1DFD] # COMBINING ALMOST EQUAL TO BELOW; QQC
+1DFF  ; technical # UCA [.0000.0060.0002.1DFF] # COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW; QQC
+20EC  ; technical # UCA [.0000.0060.0002.20EC] # COMBINING RIGHTWARDS HARPOON WITH BARB DOWNWARDS; QQC
+20ED  ; technical # UCA [.0000.0060.0002.20ED] # COMBINING LEFTWARDS HARPOON WITH BARB DOWNWARDS; QQC
+20EE  ; technical # UCA [.0000.0060.0002.20EE] # COMBINING LEFT ARROW BELOW; QQC
+20EF  ; technical # UCA [.0000.0060.0002.20EF] # COMBINING RIGHT ARROW BELOW; QQC
+10A0D ; exclusion # UCA [.0000.0060.0002.10A0D] # KHAROSHTHI SIGN DOUBLE RING BELOW; QQC
+
+0337  ; technical # UCA [.0000.0061.0002.0337] # COMBINING SHORT SOLIDUS OVERLAY; QQC
+20D8  ; technical # UCA [.0000.0061.0002.20D8] # COMBINING RING OVERLAY; QQC
+20D9  ; technical # UCA [.0000.0061.0002.20D9] # COMBINING CLOCKWISE RING OVERLAY; QQC
+20DA  ; technical # UCA [.0000.0061.0002.20DA] # COMBINING ANTICLOCKWISE RING OVERLAY; QQC
+20E5  ; technical # UCA [.0000.0061.0002.20E5] # COMBINING REVERSE SOLIDUS OVERLAY; QQC
+20EA  ; technical # UCA [.0000.0061.0002.20EA] # COMBINING LEFTWARDS ARROW OVERLAY; QQC
+20EB  ; technical # UCA [.0000.0061.0002.20EB] # COMBINING LONG DOUBLE SOLIDUS OVERLAY; QQC
+
+20DE  ; technical # UCA [.0000.0062.0002.20DE] # COMBINING ENCLOSING SQUARE; QQC
+20DF  ; technical # UCA [.0000.0062.0002.20DF] # COMBINING ENCLOSING DIAMOND; QQC
+20E0  ; technical # UCA [.0000.0062.0002.20E0] # COMBINING ENCLOSING CIRCLE BACKSLASH; QQC
+20E2  ; technical # UCA [.0000.0062.0002.20E2] # COMBINING ENCLOSING SCREEN; QQC
+20E3  ; technical # UCA [.0000.0062.0002.20E3] # COMBINING ENCLOSING KEYCAP; QQC
+20E4  ; technical # UCA [.0000.0062.0002.20E4] # COMBINING ENCLOSING UPWARD POINTING TRIANGLE; QQC
+
+# Remove blocks of Latin, until such time as the usage can be verified
+
+#Latin Extended B - Non-European and historic Latin: 51
+0181 ; uncommon-use # ( Ɓ ) LATIN CAPITAL LETTER B WITH HOOK
+0182 ; uncommon-use # ( Ƃ ) LATIN CAPITAL LETTER B WITH TOPBAR
+0183 ; uncommon-use # ( ƃ ) LATIN SMALL LETTER B WITH TOPBAR
+0184 ; uncommon-use # ( Ƅ ) LATIN CAPITAL LETTER TONE SIX
+0185 ; uncommon-use # ( ƅ ) LATIN SMALL LETTER TONE SIX
+0186 ; uncommon-use # ( Ɔ ) LATIN CAPITAL LETTER OPEN O
+0187 ; uncommon-use # ( Ƈ ) LATIN CAPITAL LETTER C WITH HOOK
+0188 ; uncommon-use # ( ƈ ) LATIN SMALL LETTER C WITH HOOK
+0189 ; uncommon-use # ( Ɖ ) LATIN CAPITAL LETTER AFRICAN D
+018A ; uncommon-use # ( Ɗ ) LATIN CAPITAL LETTER D WITH HOOK
+018B ; uncommon-use # ( Ƌ ) LATIN CAPITAL LETTER D WITH TOPBAR
+018C ; uncommon-use # ( ƌ ) LATIN SMALL LETTER D WITH TOPBAR
+018E ; uncommon-use # ( Ǝ ) LATIN CAPITAL LETTER REVERSED E
+#cldr	018F ; uncommon-use # ( Ə ) LATIN CAPITAL LETTER SCHWA
+0190 ; uncommon-use # ( Ɛ ) LATIN CAPITAL LETTER OPEN E
+0191 ; uncommon-use # ( Ƒ ) LATIN CAPITAL LETTER F WITH HOOK
+0192 ; uncommon-use # ( ƒ ) LATIN SMALL LETTER F WITH HOOK
+0193 ; uncommon-use # ( Ɠ ) LATIN CAPITAL LETTER G WITH HOOK
+0194 ; uncommon-use # ( Ɣ ) LATIN CAPITAL LETTER GAMMA
+0195 ; uncommon-use # ( ƕ ) LATIN SMALL LETTER HV
+0196 ; uncommon-use # ( Ɩ ) LATIN CAPITAL LETTER IOTA
+0197 ; uncommon-use # ( Ɨ ) LATIN CAPITAL LETTER I WITH STROKE
+0198 ; uncommon-use # ( Ƙ ) LATIN CAPITAL LETTER K WITH HOOK
+0199 ; uncommon-use # ( ƙ ) LATIN SMALL LETTER K WITH HOOK
+019A ; uncommon-use # ( ƚ ) LATIN SMALL LETTER L WITH BAR
+019B ; uncommon-use # ( ƛ ) LATIN SMALL LETTER LAMBDA WITH STROKE
+019C ; uncommon-use # ( Ɯ ) LATIN CAPITAL LETTER TURNED M
+019D ; uncommon-use # ( Ɲ ) LATIN CAPITAL LETTER N WITH LEFT HOOK
+019E ; uncommon-use # ( ƞ ) LATIN SMALL LETTER N WITH LONG RIGHT LEG
+019F ; uncommon-use # ( Ɵ ) LATIN CAPITAL LETTER O WITH MIDDLE TILDE
+01A2 ; uncommon-use # ( Ƣ ) LATIN CAPITAL LETTER OI
+01A3 ; uncommon-use # ( ƣ ) LATIN SMALL LETTER OI
+01A4 ; uncommon-use # ( Ƥ ) LATIN CAPITAL LETTER P WITH HOOK
+01A5 ; uncommon-use # ( ƥ ) LATIN SMALL LETTER P WITH HOOK
+01A6 ; uncommon-use # ( Ʀ ) LATIN LETTER YR
+01A7 ; uncommon-use # ( Ƨ ) LATIN CAPITAL LETTER TONE TWO
+01A8 ; uncommon-use # ( ƨ ) LATIN SMALL LETTER TONE TWO
+01A9 ; uncommon-use # ( Ʃ ) LATIN CAPITAL LETTER ESH
+01AC ; uncommon-use # ( Ƭ ) LATIN CAPITAL LETTER T WITH HOOK
+01AD ; uncommon-use # ( ƭ ) LATIN SMALL LETTER T WITH HOOK
+01AE ; uncommon-use # ( Ʈ ) LATIN CAPITAL LETTER T WITH RETROFLEX HOOK
+01B1 ; uncommon-use # ( Ʊ ) LATIN CAPITAL LETTER UPSILON
+01B2 ; uncommon-use # ( Ʋ ) LATIN CAPITAL LETTER V WITH HOOK
+01B3 ; uncommon-use # ( Ƴ ) LATIN CAPITAL LETTER Y WITH HOOK
+01B4 ; uncommon-use # ( ƴ ) LATIN SMALL LETTER Y WITH HOOK
+01B5 ; uncommon-use # ( Ƶ ) LATIN CAPITAL LETTER Z WITH STROKE
+01B6 ; uncommon-use # ( ƶ ) LATIN SMALL LETTER Z WITH STROKE
+01B7 ; uncommon-use # ( Ʒ ) LATIN CAPITAL LETTER EZH
+01B8 ; uncommon-use # ( Ƹ ) LATIN CAPITAL LETTER EZH REVERSED
+01BC ; uncommon-use # ( Ƽ ) LATIN CAPITAL LETTER TONE FIVE
+01BD ; uncommon-use # ( ƽ ) LATIN SMALL LETTER TONE FIVE
+
+# Latin Extended B - Phonetic and historic letters: 5
+01DD ; uncommon-use # ( ǝ ) LATIN SMALL LETTER TURNED E
+01E4 ; uncommon-use # ( Ǥ ) LATIN CAPITAL LETTER G WITH STROKE
+01E5 ; uncommon-use # ( ǥ ) LATIN SMALL LETTER G WITH STROKE
+
+
+# Latin Extended B - Miscellaneous additions: 31
+0220 ; uncommon-use # ( Ƞ ) LATIN CAPITAL LETTER N WITH LONG RIGHT LEG
+0221 ; uncommon-use # ( ȡ ) LATIN SMALL LETTER D WITH CURL
+0222 ; uncommon-use # ( Ȣ ) LATIN CAPITAL LETTER OU
+0223 ; uncommon-use # ( ȣ ) LATIN SMALL LETTER OU
+0224 ; uncommon-use # ( Ȥ ) LATIN CAPITAL LETTER Z WITH HOOK
+0225 ; uncommon-use # ( ȥ ) LATIN SMALL LETTER Z WITH HOOK
+0237 ; uncommon-use # ( ȷ ) LATIN SMALL LETTER DOTLESS J
+0238 ; uncommon-use # ( ȸ ) LATIN SMALL LETTER DB DIGRAPH
+0239 ; uncommon-use # ( ȹ ) LATIN SMALL LETTER QP DIGRAPH
+023A ; uncommon-use # ( Ⱥ ) LATIN CAPITAL LETTER A WITH STROKE
+023B ; uncommon-use # ( Ȼ ) LATIN CAPITAL LETTER C WITH STROKE
+023C ; uncommon-use # ( ȼ ) LATIN SMALL LETTER C WITH STROKE
+023D ; uncommon-use # ( Ƚ ) LATIN CAPITAL LETTER L WITH BAR
+023E ; uncommon-use # ( Ⱦ ) LATIN CAPITAL LETTER T WITH DIAGONAL STROKE
+023F ; uncommon-use # ( ȿ ) LATIN SMALL LETTER S WITH SWASH TAIL
+0240 ; uncommon-use # ( ɀ ) LATIN SMALL LETTER Z WITH SWASH TAIL
+0241 ; uncommon-use # ( Ɂ ) LATIN CAPITAL LETTER GLOTTAL STOP
+0242 ; uncommon-use # ( ɂ ) LATIN SMALL LETTER GLOTTAL STOP
+0243 ; uncommon-use # ( Ƀ ) LATIN CAPITAL LETTER B WITH STROKE
+0244 ; uncommon-use # ( Ʉ ) LATIN CAPITAL LETTER U BAR
+0245 ; uncommon-use # ( Ʌ ) LATIN CAPITAL LETTER TURNED V
+0246 ; uncommon-use # ( Ɇ ) LATIN CAPITAL LETTER E WITH STROKE
+0247 ; uncommon-use # ( ɇ ) LATIN SMALL LETTER E WITH STROKE
+0248 ; uncommon-use # ( Ɉ ) LATIN CAPITAL LETTER J WITH STROKE
+0249 ; uncommon-use # ( ɉ ) LATIN SMALL LETTER J WITH STROKE
+024A ; uncommon-use # ( Ɋ ) LATIN CAPITAL LETTER SMALL Q WITH HOOK TAIL
+024B ; uncommon-use # ( ɋ ) LATIN SMALL LETTER Q WITH HOOK TAIL
+024C ; uncommon-use # ( Ɍ ) LATIN CAPITAL LETTER R WITH STROKE
+024D ; uncommon-use # ( ɍ ) LATIN SMALL LETTER R WITH STROKE
+024E ; uncommon-use # ( Ɏ ) LATIN CAPITAL LETTER Y WITH STROKE
+024F ; uncommon-use # ( ɏ ) LATIN SMALL LETTER Y WITH STROKE
+
+# A few lines above, U+023A LATIN CAPITAL LETTER A WITH STROKE
+# and U+0246, U+0247 are set to uncommon-use,
+# and elsewhere U+2C65 is set to technical.
+# These are used in Mazahua.
+# For consistency, change the following which are also used in Mazahua:
+# [172-A62] ... Change the Identifier_Type of
+# U+A7B8 [LATIN CAPITAL LETTER U WITH STROKE] and
+# U+A7B9 [LATIN SMALL LETTER U WITH STROKE] to Uncommon_Use
+# (and thus their Identifier_Status to Restricted), for Unicode Version 15.0.
+A7B8..A7B9 ; uncommon-use
+
+# IPA Extensions - IPA extensions: 20
+0253 ; technical # ( ɓ ) LATIN SMALL LETTER B WITH HOOK
+0254 ; technical # ( ɔ ) LATIN SMALL LETTER OPEN O
+0256 ; technical # ( ɖ ) LATIN SMALL LETTER D WITH TAIL
+0257 ; technical # ( ɗ ) LATIN SMALL LETTER D WITH HOOK
+#cldr	0259 ; technical # ( ə ) LATIN SMALL LETTER SCHWA
+025B ; technical # ( ɛ ) LATIN SMALL LETTER OPEN E
+0260 ; technical # LATIN SMALL LETTER G WITH HOOK
+0263 ; technical # ( ɣ ) LATIN SMALL LETTER GAMMA
+0268 ; technical # ( ɨ ) LATIN SMALL LETTER I WITH STROKE
+0269 ; technical # ( ɩ ) LATIN SMALL LETTER IOTA
+026F ; technical # ( ɯ ) LATIN SMALL LETTER TURNED M
+0272 ; technical # ( ɲ ) LATIN SMALL LETTER N WITH LEFT HOOK
+0275 ; technical # ( ɵ ) LATIN SMALL LETTER BARRED O
+0280 ; technical # ( ʀ ) LATIN LETTER SMALL CAPITAL R
+0283 ; technical # ( ʃ ) LATIN SMALL LETTER ESH
+0288 ; technical # ( ʈ ) LATIN SMALL LETTER T WITH RETROFLEX HOOK
+028A ; technical # ( ʊ ) LATIN SMALL LETTER UPSILON
+028B ; technical # ( ʋ ) LATIN SMALL LETTER V WITH HOOK
+0292 ; technical # ( ʒ ) LATIN SMALL LETTER EZH
+0294 ; technical # ( ʔ ) LATIN LETTER GLOTTAL STOP
+
+# Latin Extended C - Additions for Uighur: 6
+2C67 ; technical # ( Ⱨ ) LATIN CAPITAL LETTER H WITH DESCENDER
+2C68 ; uncommon-use # ( ⱨ ) LATIN SMALL LETTER H WITH DESCENDER
+2C69 ; uncommon-use # ( Ⱪ ) LATIN CAPITAL LETTER K WITH DESCENDER
+2C6A ; uncommon-use # ( ⱪ ) LATIN SMALL LETTER K WITH DESCENDER
+2C6B ; uncommon-use # ( Ⱬ ) LATIN CAPITAL LETTER Z WITH DESCENDER
+2C6C ; uncommon-use # ( ⱬ ) LATIN SMALL LETTER Z WITH DESCENDER
+
+# Latin Extended C - Miscellaneous additions: 8
+2C6D..2C74 ; historic # ( Ɑ ) LATIN CAPITAL LETTER ALPHA .. ( ⱴ ) LATIN SMALL LETTER V WITH CURL
+
+# Latin Extended C - Additions for Shona: 2
+2C7E..2C7F; historic # ( Ȿ ) LATIN CAPITAL LETTER S WITH SWASH TAIL .. ( Ɀ ) LATIN CAPITAL LETTER Z WITH SWASH TAIL
+
+# Latin Extended D - Medievalist additions: 72
+A730..A778; historic # ( ꜰ ) LATIN LETTER SMALL CAPITAL F .. ( ꝸ ) LATIN SMALL LETTER UM
+
+# Phonetic Extensions
+[:block=Phonetic Extensions:] ; technical #...
+[:block=Phonetic Extensions Supplement:] ; technical #...
+
+# 164-A046 Change the Identifier_Type of Ainu Katakana characters 31F0..31FF from Technical to Obsolete, in IdentifierType.txt.
+[:block=Katakana Phonetic Extensions:] ; Obsolete # 31F0..31FF 3.2 [16] KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
+
+#Phonetic Extensions - Latin superscript modifier letters: 3
+
+1D2F ; technical # ( ᴯ ) MODIFIER LETTER CAPITAL BARRED B
+1D3B ; technical # ( ᴻ ) MODIFIER LETTER CAPITAL REVERSED N
+1D4E ; technical # ( ᵎ ) MODIFIER LETTER SMALL TURNED I
+
+#Phonetic Extensions - Latin letter: 1
+1D6B ; technical # ( ᵫ ) LATIN SMALL LETTER UE
+
+#Phonetic Extensions - Latin letters with middle tilde: 11
+1D6C..1D76 ; technical # ( ᵬ ) LATIN SMALL LETTER B WITH MIDDLE TILDE .. ( ᵶ ) LATIN SMALL LETTER Z WITH MIDDLE TILDE
+
+#Phonetic Extensions - Other phonetic symbols: 7
+1D79..1D7F ; technical # ( ᵹ ) LATIN SMALL LETTER INSULAR G .. ( ᵿ ) LATIN SMALL LETTER UPSILON WITH STROKE
+
+#Phonetic Extensions Supplement - Latin letters with palatal hook: 15
+1D80..1D8E ; technical # ( ᶀ ) LATIN SMALL LETTER B WITH PALATAL HOOK .. ( ᶎ ) LATIN SMALL LETTER Z WITH PALATAL HOOK
+
+#Phonetic Extensions Supplement - Latin letters with retroflex hook: 12
+1D8F..1D9A ; technical # ( ᶏ ) LATIN SMALL LETTER A WITH RETROFLEX HOOK .. ( ᶚ ) LATIN SMALL LETTER EZH WITH RETROFLEX HOOK
+
+# Latin Extended C - Orthographic Latin additions: 7
+2C60..2C66 ; technical # ( Ⱡ ) LATIN CAPITAL LETTER L WITH DOUBLE BAR .. ( ⱦ ) LATIN SMALL LETTER T WITH DIAGONAL STROKE
+
+# Number Forms - Lowercase Claudian letter: 1
+2184 ; historic # ( ↄ ) LATIN SMALL LETTER REVERSED C
+
+# Number Forms - Archaic Roman numerals: 4
+2185..2188 ; historic # ( ↅ ) ROMAN NUMERAL SIX LATE FORM .. ( ↈ ) ROMAN NUMERAL ONE HUNDRED THOUSAND
+
+# Latin Extended D - Orthographic letters for glottals: 2
+A78B..A78C ; uncommon-use # ( Ꞌ ) LATIN CAPITAL LETTER SALTILLO .. ( ꞌ ) LATIN SMALL LETTER SALTILLO
+
+# Individual characters, disposition typically based on comments in the Unicode names list.
+
+#Combining Diacritical Marks - Medieval superscript letter diacritics: 13
+0363..036F ; historic # ( ͣ ) COMBINING LATIN SMALL LETTER A ( ͯ ) COMBINING LATIN SMALL LETTER X
+
+#Combining Diacritical Marks Supplement - Medievalist additions: 3
+1DCE ; historic #  ( ᷎ ) COMBINING OGONEK ABOVE
+1DD1 ; historic #  ( ᷑ ) COMBINING UR ABOVE
+1DD2 ; historic #  ( ᷒ ) COMBINING US ABOVE
+
+#Combining Diacritical Marks Supplement - Medieval superscript letter diacritics: 20
+1DD3..1DE6 ; historic #  ( ᷓ ) COMBINING LATIN SMALL LETTER FLATTENED OPEN A ABOVE ..  ( ᷦ ) COMBINING LATIN SMALL LETTER Z
+
+# Greek And Coptic - Archaic letters: 6
+0370 ; historic # ( Ͱ ) GREEK CAPITAL LETTER HETA
+0371 ; historic # ( ͱ ) GREEK SMALL LETTER HETA
+0372 ; historic # ( Ͳ ) GREEK CAPITAL LETTER ARCHAIC SAMPI
+0373 ; historic # ( ͳ ) GREEK SMALL LETTER ARCHAIC SAMPI
+0376 ; historic # ( Ͷ ) GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
+0377 ; historic # ( ͷ ) GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
+
+# Devanagari - Archaic dependent vowel sign: 1
+094E ; historic # ( ॎ ) DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
+
+# Cyrillic - Historic letters: 32
+0460..0481 ; historic #( Ѡ ) CYRILLIC CAPITAL LETTER OMEGA ..  ( ҁ ) CYRILLIC SMALL LETTER KOPPA
+
+# Telugu - Historic phonetic variants: 2
+0C58 ; historic #( ౘ ) TELUGU LETTER TSA
+0C59 ; historic #( ౙ ) TELUGU LETTER DZA
+
+# Devanagari - Vedic tone marks: 2
+
+0951  ; historic # ( ॑ ) DEVANAGARI STRESS SIGN UDATTA
+0952  ; historic # ( ॒ ) DEVANAGARI STRESS SIGN ANUDATTA
+
+[:block=Vedic Extensions:] ; historic
+[:blk=Devanagari Extended:] ; historic
+
+#0138; historic # symbol (phonetic)
+0180 018D 01AA..01AB 01BA..01BB 01BE; technical # symbol (phonetic)
+01C0..01C3; technical # symbol (phonetic)
+0250..0252  0255  0258  025A  025C..25F  0261..0262  0264..0267  026A..026E  0270..0271  0273..274  0276..027F  0281..0282  0284..0287  0289  028D..0291  0293  0295..02A2; technical # symbol (phonetic)
+02A3..02AB; technical #  symbol (Latin digraph)
+02AC          ; technical # symbol (phonetic) #      (ʬ)  LATIN LETTER BILABIAL PERCUSSIVE
+02AD          ; technical # symbol (phonetic) #      (ʭ)  LATIN LETTER BIDENTAL PERCUSSIVE
+
+# A few lines above, U+026A LATIN LETTER SMALL CAPITAL I is set to technical.
+# [172-A61] ... Change the Identifier_Type of U+A7AE [LATIN CAPITAL LETTER SMALL CAPITAL I] to Technical
+# (and thus its Identifier_Status to Restricted), for Unicode Version 15.0. See L2/22-124 item UCD7.
+A7AE; technical
+
+03F3; technical # presentation form
+0483..0486; historic
+1100..11FF; historic # (used for ancient Hangul)
+[[:sc=hangul:]-[[:Hangul_Syllable_Type=LV:][:Hangul_Syllable_Type=LVT:]]]; historic # only allow modern syllables
+1681..169A; historic # 1
+16A0..16EA; historic # 1
+17A3..17A4  17A8; obsolete
+2800..28FF; technical # Braille patterns
+10300..1031E; historic # 1
+10330..1034A; historic # 1
+10400..10425  10428..1044D; historic # 1
+
+
+021C; historic
+021D; historic
+
+02B9..02C1    ; technical # symbol (phonetic) #  [9] (ʹ..ˁ)  MODIFIER LETTER PRIME..MODIFIER LETTER REVERSED GLOTTAL STOP
+02C6..02D1    ; technical # symbol (phonetic) # [12] (ˆ..ˑ)  MODIFIER LETTER CIRCUMFLEX ACCENT..MODIFIER LETTER HALF 
+02EE          ; technical # symbol (phonetic) #      (ˮ)  MODIFIER LETTER DOUBLE APOSTROPHE
+03D7          ; technical #      (ϗ)  GREEK KAI SYMBOL
+03CF          ; technical #      ( Ϗ ) GREEK CAPITAL KAI SYMBOL
+#0559..055A    ; not part of identifers #  [2] (ՙ..՚)  ARMENIAN MODIFIER LETTER LEFT HALF RING..ARMENIAN APOSTROPHE
+#058A          ; not part of identifers #      (֊)  ARMENIAN HYPHEN
+#05F3..05F4    ; not part of identifers #  [2] (׳..״)  HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM
+0640          ; obsolete # presentation form #      (ـ)  ARABIC TATWEEL
+#2010          ; not in modern use #      (‐)  HYPHEN
+2027          ; technical #      (‧)  HYPHENATION POINT
+203F..2040    ; technical #  [2] (‿..⁀)  UNDERTIE..CHARACTER TIE
+20D0..20DC    ; technical # [13] (⃐..⃜)  COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
+20E1          ; technical #      (⃡)  COMBINING LEFT RIGHT ARROW ABOVE
+20E5..20EA    ; technical #  [6] (⃥..⃪)  COMBINING REVERSE SOLIDUS OVERLAY..COMBINING LEFTWARDS ARROW OVERLAY
+2118          ; technical # symbol (math) #      (℘)  SCRIPT CAPITAL P
+212E          ; technical #      (℮)  ESTIMATED SYMBOL
+2180..2183    ; technical # presentation form #  [4] (ↀ..Ↄ)  ROMAN NUMERAL ONE THOUSAND C D..ROMAN NUMERAL REVERSED ONE 
+3021..302F    ; technical # [15] (〡..〯)  HANGZHOU NUMERAL ONE..HANGUL DOUBLE DOT TONE MARK
+3031..3035    ; technical # presentation form #  [5] (〱..〵)  VERTICAL KANA REPEAT MARK..VERTICAL KANA REPEAT MARK LOWER HALF
+303B..303C    ; technical # presentation form #  [2] (〻..〼)  VERTICAL IDEOGRAPHIC ITERATION MARK..MASU MARK
+30A0          ; technical #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
+FE20..FE23    ; technical # presentation form #  [4] (︠..︣)  COMBINING LIGATURE LEFT HALF..COMBINING DOUBLE TILDE RIGHT HALF
+FE73          ; technical # presentation form #      (ﹳ)  ARABIC TAIL FRAGMENT
+
+ 01BF          ; historic #      (ƿ)  LATIN LETTER WYNN
+
+# 04C0; case exception (withheld until case pair added)
+17D3; obsolete
+1D165..1D1AD; technical # (musical)
+
+# [:script=Syriac:]
+[\u0740-\u074A]; technical
+
+
+03D0..03D1 ; historic    #  [2] (ϐ..ϑ)  GREEK BETA SYMBOL..GREEK THETA SYMBOL
+03D5..03D6 ; historic   #  [2] (ϕ..ϖ)  GREEK PHI SYMBOL..GREEK PI SYMBOL
+03D8          ; historic #      (Ϙ)  GREEK LETTER ARCHAIC KOPPA
+03DA          ; historic #      (Ϛ)  GREEK LETTER STIGMA
+03DC          ; historic #      (Ϝ)  GREEK LETTER DIGAMMA
+03DE          ; historic #      (Ϟ)  GREEK LETTER KOPPA
+03E0          ; historic #      (Ϡ)  GREEK LETTER SAMPI
+
+0343          ; historic #      (̓)  COMBINING GREEK KORONIS
+
+018D; obsolete # LTN SML LTR TURNED DELTA
+029E; obsolete
+# 019E; obsolete # LTN SML LTR N W/ LONG RIGHT LEG
+01AA; obsolete # LTN LTR REVERSED ESH LOOP
+01AB; obsolete # LTN SML LTR T W/ PALATAL HOOK
+01B9..01BB; obsolete # LTN SML LTR EZH 
+01BE; obsolete # LTN LTR INVERTED GLOTTAL STOP W/ STROKE
+025F; technical # LTN SML LTR DOTLESS J W/ STROKE (“gy” in Hungarian/voiced palatal stop/form of j)
+03D8..03E1; historic # GREEK LETTERS
+03F7..03F8; historic # (Bactrian) # GREEK LTR SHO
+03FA..03FB; historic # GREEK LTR SAN (SML and capital)
+066E..066F; historic # ARABIC LTR DOTLESS BEH & QAF
+10F1..10F6; historic # GEORGIAN LETTERS
+2127; historic  # unit of conductance # INVERTED OHM SIGN, turned Greek CPTL LTR omega
+3165..318E; historic # HANGUL
+
+
+#0269; obsolete # obsoleted by IPA in 1989 LTN SML LTR IOTA (preferred use is 026A)
+0277; obsolete # obsoleted by IPA in 1989 LTN SML LTR CLOSED OMEGA (preferred use is 028A)
+027C; obsolete # obsoleted by IPA in 1989 LTN SML LTR R W/ LONG LEG (in current use in Gaelic types, phonetic rep for Czech)
+068E; historic # (Sindhi) # ARABIC LTR DUL (older shape)
+0CDE; historic # KANNADA LTR FA (name is a mistake for LLLA)
+17A8; historic # ligature for the sequence 17A7 1780 # KHMER INDEPENDENT VOWEL QUK (use of the sequence is now preferred)
+17D1; obsolete # KHMER SIGN VIRIAM 
+17DD; obsolete # KHMER SIGN ATTHACAN
+
+0344; obsolete # COMBINING GREEK DIALYTIKA TONOS (0308 0301)
+0F73; obsolete # TIBETAN VOWEL SIGN II (0F71 0F72)
+0F75; obsolete # TIBETAN VOWEL SIGN UU (0F71 0F74)
+0F77; obsolete # TIBETAN VOWEL SIGN VOCALIC RR (0FB2 0F81)
+0F79; obsolete # TIBETAN VOWEL SIGN VOCALIC LL (0FB3 0F81)
+0F81; obsolete # TIBETAN VOWEL SIGN REVERSED II (0F71 0F80)
+17A3..17A4; obsolete # KHMER INDEPENDENT VOWEL QAQ & QAA
+#17B4..17B5; use in other contexts obsolete # KHMER VOWEL INHERENT AQ & AA
+17D3; obsolete # KHMER SIGN BATHAMASAT (Only for phonetic transcription)
+17D8; obsolete # KHMER SIGN BEYYAL (17D4 179B 17D4)
+2329; obsolete # LEFT-POINTING ANGLE BRACKET (3008)
+232A; obsolete # RIGHT-POINTING ANGLE BRACKET
+0340; obsolete # COMBINING GRAVE TONE MARK (Vietnamese)
+0341; obsolete # COMBINING ACUTE TONE MARK (Vietnamese)
+206A..206F; obsolete # INHIBIT/ACTIVATE SYMMETRIC SWAPPING, ARABIC SHAPING, ETC.
+
+01BF; historic # LATIN LETTER WYNN
+301E; obsolete # mistaken analogue to 201D; 301F preferred # DOUBLE PRIME QUOTATION MARK
+
+#0196          ; case exception (variant of removed character) #      (Ɩ)  LATIN CAPITAL LETTER IOTA
+#01B8          ; case exception (variant of removed character) #      (Ƹ)  LATIN CAPITAL LETTER EZH REVERSED
+#0220          ; case exception (variant of removed character)  #      (Ƞ)  LATIN CAPITAL LETTER N WITH LONG RIGHT LEG
+
+1D400..1D7FF  ; technical # symbol (math)
+1D000..1D1DD  ; technical # symbol (musical)
+1D242..1D244; technical # symbol (musical)
+FB00..FB1D    ; technical # presentation form
+FB1F..FEFC    ; technical # presentation form
+2460..24FF          ; technical # presentation form
+3251..33FF          ; technical # presentation form
+4DC0..4DFF    ; technical
+1D300..1D356  ; technical
+10140..10174; historic
+03F9; historic
+# technical # symbol (musical)..1DBF; obsolete ; non-IPA phonetics
+
+05C6; historic # HEBREW PUNCTUATION NUN HAFUKHA
+1DC0..1DC3; historic
+A700..A707; historic
+A708..A716; technical # (phonetic)
+2E00..2E0D; technical # (editorial)
+
+#10A0..10C5 2D00..2D2F; liturgical script (Asomtavruli, Nuskhuri)
+
+
+# [[:Extender=True:]&[:Joining_Type=Join_Causing:]] ; exclusion # UAX31 T4
+# [:Default_Ignorable_Code_Point:] ; exclusion # UAX31 T4
+# [:block=Combining_Diacritical_Marks_for_Symbols:] ; exclusion # UAX31 T4
+# [:block=Musical_Symbols:] ; exclusion # UAX31 T4
+# [:block=Ancient_Greek_Musical_Notation:] ; exclusion # UAX31 T4
+# [:block=Phaistos_Disc:] ; exclusion # UAX31 T4
+
+[\u1E9C-\u1EFF\u1E9F] ; technical # medievalist
+2132 ; historic # ( Ⅎ ) TURNED CAPITAL F
+214E ; historic # ( ⅎ ) TURNED SMALL F
+2C75 ; historic # ( Ⱶ ) LATIN CAPITAL LETTER HALF H
+2C76 ; historic # ( ⱶ ) LATIN SMALL LETTER HALF H
+01F6 ; historic # ( Ƕ ) LATIN CAPITAL LETTER HWAIR
+01F7 ; historic # ( Ƿ ) LATIN CAPITAL LETTER WYNN
+
+0289 ; uncommon-use # ( ʉ ) LATIN SMALL LETTER U BAR
+
+2C77..2C7B ; technical # ( ⱷ ) LATIN SMALL LETTER TAILLESS PHI
+A722..A725 ; technical # ( ꜥ ) LATIN SMALL LETTER EGYPTOLOGICAL AIN
+A726..A72F ; technical # ( ꜯ ) LATIN SMALL LETTER CUATRILLO WITH COMMA
+
+A779..A787 ; historic # ( ꞇ ) LATIN SMALL LETTER INSULAR T
+A7FB..A7FF ; historic # ( ꟿ ) LATIN EPIGRAPHIC LETTER ARCHAIC M
+1D77 ; technical # ( ᵷ ) LATIN SMALL LETTER TURNED G
+02AE..02AF; technical # ( ʯ ) LATIN SMALL LETTER TURNED H WITH FISHHOOK AND TAIL
+0234..0236; technical # ( ȶ ) LATIN SMALL LETTER T WITH CURL
+
+A670  ; historic  # [.0000.0000.0000.A670] # COMBINING CYRILLIC TEN MILLIONS SIGN
+A671  ; historic  # [.0000.0000.0000.A671] # COMBINING CYRILLIC HUNDRED MILLIONS SIGN
+A672  ; historic  # [.0000.0000.0000.A672] # COMBINING CYRILLIC THOUSAND MILLIONS SIGN
+A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
+
+[\u0488\u0489\uA670-\uA672\u0487 \u2E2E \u2CFA \u2CFB \u2CF9 \u2E30 \u2E31 \u2056 \u2058-\u205E \u2E2A-\u2E2D \u2CFC \u2E02-\u2E05 \u2E09 \u2E0A \u2E0C \u2E0D \u2E00 \u2E01 \u2E06-\u2E08 \u2E0B \u2E0E-\u2E16 \u0482 \u214F \u2180-\u2183 \uA727\uA726 \uA729\uA728 \uA770 \uA72B\uA72A \uA72D\uA72C \uA72F\uA72E \uA723\uA722 \uA725\uA724 \u2CB7\u2CB6 \u2CB9\u2CB8 \u2CBB\u2CBA \u2CBD\u2CBC \u2CBF\u2CBE \u2CC1\u2CC0 \u2CC3\u2CC2 \u2CC5\u2CC4 \u2CC7\u2CC6 \u2CC9\u2CC8 \u2CCB\u2CCA \u2CCD\u2CCC \u2CCF\u2CCE \u2CD1\u2CD0 \u2CD3\u2CD2 \u2CD5\u2CD4 \u2CD7\u2CD6 \u2CD9\u2CD8 \u2CDB\u2CDA \u2CDD\u2CDC \u2CB3\u2CB2 \u2CB5\u2CB4 \u2CDF\u2CDE \u2CE1\u2CE0 \u2CE3\u2CE2 \uA681\uA680 \uA663\uA662 \uA685\uA684 \uA641\uA640 \uA643\uA642 \uA645\uA644 \uA689\uA688 \uA683\uA682 \uA647\uA646 \uA649\uA648 \uA665\uA664 \uA667\uA666 \uA669\uA66B\uA66D\uA66E\uA668\uA66A\uA66C \uA68D\uA68C \uA68B\uA68A \uA64B\uA64A \uA695\uA694 \uA64D\uA64C \uA68F\uA68E \uA691\uA690 \uA693\uA692 \uA687\uA686 \uA697\uA696 \uA64F\uA64E \u2E2F \uA651\uA650 \uA653\uA652 \uA655\uA654 \uA657\uA656 \uA659\uA658 \uA65B\uA65A \uA65D\uA65C \uA65F\uA65E \u2D00\u10A0 \u2D01\u10A1 \u2D02\u10A2 \u2D03\u10A3 \u2D04\u10A4 \u2D05\u10A5 \u2D06\u10A6 \u2D21\u10C1 \u2D07\u10A7 \u2D08\u10A8 \u2D09\u10A9 \u2D0A\u10AA \u2D0B\u10AB \u2D0C\u10AC \u2D22\u10C2 \u2D0D\u10AD \u2D0E\u10AE \u2D0F\u10AF \u2D10\u10B0 \u2D11\u10B1 \u2D12\u10B2 \u2D23\u10C3 \u2D13\u10B3 \u2D14\u10B4 \u2D15\u10B5 \u2D16\u10B6 \u2D17\u10B7 \u2D18\u10B8 \u2D19\u10B9 \u2D1A\u10BA \u2D1B\u10BB \u2D1C\u10BC \u2D1D\u10BD \u2D1E\u10BE \u2D24\u10C4 \u2D1F\u10BF \u2D20\u10C0 \u2D25\u10C5 \u07E8-\u07EA \uA610 \uA611 \uA62A \uA612 \uA62B] ; historic # from Ken's Typography
+
+
+# need better usage information on the following
+# 0289 ; recommended ( ʉ ) LATIN SMALL LETTER U BAR
+# 0192 ; recommended ( ƒ ) LATIN SMALL LETTER F WITH HOOK
+# 0199 ; recommended ( ƙ ) LATIN SMALL LETTER K WITH HOOK
+# 01B4 ; recommended ( ƴ ) LATIN SMALL LETTER Y WITH HOOK
+
+# 0253 ; recommended ( ɓ ) LATIN SMALL LETTER B WITH HOOK
+# 0254 ; recommended ( ɔ ) LATIN SMALL LETTER OPEN O
+# 0256 ; recommended ( ɖ ) LATIN SMALL LETTER D WITH TAIL
+# 0257 ; recommended ( ɗ ) LATIN SMALL LETTER D WITH HOOK
+# 0259 ; recommended ( ə ) LATIN SMALL LETTER SCHWA
+# 025B ; recommended ( ɛ ) LATIN SMALL LETTER OPEN E
+# 0263 ; recommended ( ɣ ) LATIN SMALL LETTER GAMMA
+# 0268 ; recommended ( ɨ ) LATIN SMALL LETTER I WITH STROKE
+# 0272 ; recommended ( ɲ ) LATIN SMALL LETTER N WITH LEFT HOOK
+# 028B ; recommended ( ʋ ) LATIN SMALL LETTER V WITH HOOK
+
+# comparison to IDNA2008
+1369..1371 ; obsolete # ( ፩ ) ETHIOPIC DIGIT ONE..U+1371 ( ፱ ) ETHIOPIC DIGIT NINE
+2054 ; uncommon-use # ( ⁔ ) INVERTED UNDERTIE
+
+2DE0..2DFF ; historic # Old Church Slavonic combining letters
+[:ccc=Double_Above:] ; technical # specialized use
+[:ccc=Double_Below:] ; technical # specialized use
+[:Block=Combining Diacritical Marks Supplement:] ; technical # specialized use, eg ( ᷊ ) COMBINING LATIN SMALL LETTER R BELOW
+
+0F18..0F19 ; technical # Tibetan — Astrological signs items
+
+#### CLDR - Remove non-spacing marks that do not occur in values of CLDR locales where we have reasonable data (confirmed or contributed; the value or toNFKD(value))
+
+[\u0332\u030D\uA67C\uA67D\u0316\u0336\u0305\u0321\u0322\u0334\u0358\uA66F\u0900 \u0955 \u0A51 \u0A75 \u0B44 \u0B62 \u0B63 \u0C62 \u0C63 \u0D44 \u0D62 \u0D63 \u18A9] ; uncommon-use
+# derived from \p{mn}&\p{idr=recommended}-XXX-\p{Script=Ethiopic}-\p{Script=Lao}-\p{Script=Myanmar}-\p{Script=Tibetan}-\p{Script=Arabic}
+# where XXX is from TestPathsModule/GatherValueCharacters
+
+#specialized use
+[:Block=Combining Half Marks:] ; technical
+302A..302F; technical # CJK diacritics
+
+0D8F ; technical # Sinhala letter iluyanna (ඏ) - not used in Sinhala
+0D90 ; technical # Sinhala letter iluuyanna (ඐ) - not used in Sinhala
+0DDF ; technical # Sinhala vowel sign gayanukitta (ෟ) - not used in Sinhala
+0DF3 ; technical # Sinhala vowel sign diga gayanukitta (ෳ) - not used in Sinhala
+0DA6 ; technical # Sinhala letter sanyaka jayanna (ඦ) - not used in Sinhala
+
+###### BE CAREFUL OF THE FOLLOWING ORDER
+# High-Level exclusions are in code, since we want them to be singletons
+# [:^xid-continue:]; not-xid
+
+# [:deprecated:] ; obsolete
+# [:nfkcqc=n:] ; not-NFKC
+# [[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]] ; not-chars
+# [:default_ignorable_code_point:]; default-ignorable
+
+[\u0D8F \u0D90 \u0DA6 \u0DDF \u0DF3] ; uncommon-use # gihan@uom.lk
+0F39  ; uncommon-use #  chris.fynn@gmail.com
+
+2E32 ; historic # 122A022
+2E35 ; historic # 122A022
+2E39 ; historic # 122A022
+
+# Updated to UAX31, Tables 3/3a/3b, Optional Characters for Start/Medial/Continue
+
+0027 ; inclusion # (') APOSTROPHE
+002D ; inclusion # (-) HYPHEN-MINUS
+002E ; inclusion # (.) FULL STOP
+003A ; inclusion # (:) COLON
+00B7 ; inclusion # (·) MIDDLE DOT
+058A ; inclusion # (֊) ARMENIAN HYPHEN
+05F3 ; inclusion # (׳) HEBREW PUNCTUATION GERESH
+05F4 ; inclusion # (״) HEBREW PUNCTUATION GERSHAYIM
+0F0B ; inclusion # ( ་ ) TIBETAN MARK INTERSYLLABIC TSHEG
+
+# UTC AI 171-A128: ... remove the Joiner_Control characters ZWJ and ZWNJ from Identifier_Type=Inclusion and Identifier_Status=Allowed.
+# Without an override, they get Identifier_Type=Default_Ignorable
+# 200C ; inclusion # () ZERO WIDTH NON-JOINER*
+# 200D ; inclusion # () ZERO WIDTH JOINER*
+
+2010 ; inclusion # (‐) HYPHEN
+2019 ; inclusion # (’) RIGHT SINGLE QUOTATION MARK
+2027 ; inclusion # (‧) HYPHENATION POINT
+30A0 ; inclusion # (=) KATAKANA-HIRAGANA DOUBLE HYPHEN
+30FB ; inclusion # ( ・ ) KATAKANA MIDDLE DOT
+
+
+06FD; inclusion     # ARABIC SIGN SINDHI AMPERSAND
+06FE; inclusion     # ARABIC SIGN SINDHI POSTPOSITION MEN
+
+[\u037F \u052A-\u052D \u08AD-\u08B1 \u0978 \u0980 \u0C00 \u0C34 \u0C81 \u0D01 \u1AB0-\u1ABD \uA698-\uA69B \uA794-\uA79F \uA7AB-\uA7AD \uA7B0 \uA7B1 \uA7F7 \uA9E0-\uA9E6 \uAB30-\uAB5A \uAB64 \uAB65 \U000102E0] ; historic
+
+
+16A40..16A5E ; uncommon-use
+16A60..16A69 ; uncommon-use
+
+03F3 ; historic
+037F ; historic
+
+[:deprecated:] ; deprecated
+
+# CLDR data
+
+[Ạ-ỹ] ; allowed ; override # vietnamese
+[ẞ] ; allowed ; override # German
+
+# Other overrides
+
+1EBF ; recommended; override # LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
+0259 ; recommended; override # LATIN SMALL LETTER SCHWA
+
+# 8.0.0
+# Deva
+A8FC; uncommon-use # DEVANAGARI SIGN SIDDHAM
+A8FD; uncommon-use # DEVANAGARI JAIN OM
+# Arab
+08B3; uncommon-use # ARABIC LETTER AIN WITH THREE DOTS BELOW
+08B4; uncommon-use # ARABIC LETTER KAF WITH DOT BELOW
+08E3; uncommon-use # ARABIC TURNED DAMMA BELOW
+# Mlym
+0D5F; obsolete # MALAYALAM LETTER ARCHAIC II
+# Cyrl
+A69E; uncommon-use # COMBINING CYRILLIC LETTER EF
+FE2E; uncommon-use # COMBINING CYRILLIC TITLO LEFT HALF
+FE2F; uncommon-use # COMBINING CYRILLIC TITLO RIGHT HALF
+# Zyyy
+218A; uncommon-use # TURNED DIGIT TWO
+218B; uncommon-use # TURNED DIGIT THREE
+2BEC; uncommon-use # LEFTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+2BED; uncommon-use # UPWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+2BEE; uncommon-use # RIGHTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+2BEF; uncommon-use # DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+1D1DE; uncommon-use # MUSICAL SYMBOL KIEVAN C CLEF
+1D1DF; uncommon-use # MUSICAL SYMBOL KIEVAN END OF PIECE
+1D1E0; uncommon-use # MUSICAL SYMBOL KIEVAN FINAL NOTE
+1D1E1; uncommon-use # MUSICAL SYMBOL KIEVAN RECITATIVE MARK
+1D1E2; uncommon-use # MUSICAL SYMBOL KIEVAN WHOLE NOTE
+1D1E3; uncommon-use # MUSICAL SYMBOL KIEVAN HALF NOTE
+1D1E4; uncommon-use # MUSICAL SYMBOL KIEVAN QUARTER NOTE STEM DOWN
+1D1E5; uncommon-use # MUSICAL SYMBOL KIEVAN QUARTER NOTE STEM UP
+1D1E6; uncommon-use # MUSICAL SYMBOL KIEVAN EIGHTH NOTE STEM DOWN
+1D1E7; uncommon-use # MUSICAL SYMBOL KIEVAN EIGHTH NOTE STEM UP
+1D1E8; uncommon-use # MUSICAL SYMBOL KIEVAN FLAT SIGN
+1F54F; uncommon-use # BOWL OF HYGIEIA
+# Hani
+#[\u9FCD-\u9FD5\U0002B820-\U0002CEA1]; uncommon-use
+# Latn
+A78F; uncommon-use # LATIN LETTER SINOLOGICAL DOT
+A7B2; uncommon-use # LATIN CAPITAL LETTER J WITH CROSSED-TAIL
+A7B3; uncommon-use # LATIN CAPITAL LETTER CHI
+A7B4; uncommon-use # LATIN CAPITAL LETTER BETA
+A7B5; uncommon-use # LATIN SMALL LETTER BETA
+A7B6; uncommon-use # LATIN CAPITAL LETTER OMEGA
+A7B7; uncommon-use # LATIN SMALL LETTER OMEGA
+AB60; uncommon-use # LATIN SMALL LETTER SAKHA YAT
+AB61; uncommon-use # LATIN SMALL LETTER IOTIFIED E
+AB62; uncommon-use # LATIN SMALL LETTER OPEN OE
+AB63; uncommon-use # LATIN SMALL LETTER UO
+# Gujr
+0AF9; uncommon-use # GUJARATI LETTER ZHA
+# Telu
+0C5A; uncommon-use # TELUGU LETTER RRRA
+
+1B001	 ; obsolete	 # ( 𛀁 ) [Lo, Hiragana] HIRAGANA LETTER ARCHAIC YE
+1B000	 ; obsolete	 # ( 𛀀 ) [Lo, Katakana] KATAKANA LETTER ARCHAIC E
+
+16FE3 ; obsolete
+
+1B002..1B11E; obsolete # 157a019
+
+# 13.0
+# was Exclusion
+[\p{Extender=True}&\p{Joining_Type=Join_Causing}] ; obsolete
+\p{block=Combining_Diacritical_Marks_for_Symbols} ; technical
+\p{block=Musical_Symbols} ; technical
+\p{block=Ancient_Greek_Musical_Notation} ; obsolete
+\p{block=Phaistos_Disc} ; obsolete
+
+# 14.0
+\p{block=Znamenny_Musical_Notation} ; technical
+
+10780         ; Uncommon_Use # 14.0       MODIFIER LETTER SMALL CAPITAL AA
+1AC1..1ACE    ; Uncommon_Use # 14.0  [14] COMBINING LEFT PARENTHESIS ABOVE LEFT..COMBINING LATIN SMALL LETTER INSULAR T
+
+# Kana tone notations for Minnan
+1AFF0..1AFF3  ; Uncommon_Use # 14.0   [4] KATAKANA LETTER MINNAN TONE-2..KATAKANA LETTER MINNAN TONE-5
+1AFF5..1AFFB  ; Uncommon_Use # 14.0   [7] KATAKANA LETTER MINNAN TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-5
+1AFFD..1AFFE  ; Uncommon_Use # 14.0   [2] KATAKANA LETTER MINNAN NASALIZED TONE-7..KATAKANA LETTER MINNAN NASALIZED TONE-8
+
+# 165-A047 In security/.../IdentifierType.txt, for U+1B6B..U+1B73 add Identifier_Type=Technical
+# as proposed in L2/20-240 item F6, unless other UTC action items about Identifier_Type classifications contradict this.
+1B6B..1B73    ; Limited_Use Technical # 5.0    [9] BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
+
+# Question: should be default for anything new; add exceptions otherwise
+# \p{Age=13} ; uncommon_use
+
+# For Unicode 16, the following characters would become Recommended without these overrides.
+# They are all used in languages with EGIDS level 5 or higher.
+# 1C89..1C8A       [2] CYRILLIC CAPITAL LETTER TJE..CYRILLIC SMALL LETTER TJE
+# A7CB..A7CD       [3] LATIN CAPITAL LETTER RAMS HORN..LATIN SMALL LETTER S WITH DIAGONAL STROKE
+# A7DA..A7DC       [3] LATIN CAPITAL LETTER LAMBDA..LATIN CAPITAL LETTER LAMBDA WITH STROKE
+# 10EC2..10EC4     [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+# 116D0..116E3    [20] MYANMAR PAO DIGIT ZERO..MYANMAR EASTERN PWO KAREN DIGIT NINE
+[\u1C89-\u1C8A \uA7CB-\uA7CD \uA7DA-\uA7DC \U00010EC2-\U00010EC4 \U000116D0-\U000116E3] ; uncommon_use
+
+# 19-329 Section 4
+0192	;	uncommon_use
+0199	;	uncommon_use
+01B4	;	uncommon_use
+01DD	;	uncommon_use
+024D	;	uncommon_use
+0253..0254	;	uncommon_use
+0256..0257	;	uncommon_use
+025B	;	uncommon_use
+0263	;	uncommon_use
+0268..0269	;	uncommon_use
+0272	;	uncommon_use
+0289	;	uncommon_use Technical
+0292	;	uncommon_use
+068E	;	Obsolete
+# 168-A11 Change U+17CB, U+17CC, U+17CD, U+17D0 to Identifier_Type=Recommended
+17CB..17CD	;	Recommended
+17D0	;	Recommended
+
+# Corbett Thu May 9 14:28:21 CDT 2019, etc.
+
+0560 ; Technical # ARMENIAN SMALL LETTER TURNED AYB
+0588 ; Technical # ARMENIAN SMALL LETTER YI WITH STROKE
+A78E ; Technical # LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
+A7AF ; Technical # LATIN LETTER SMALL CAPITAL Q
+A7BA ; Technical # LATIN CAPITAL LETTER GLOTTAL A
+A7BB ; Technical # LATIN SMALL LETTER GLOTTAL A
+A7BC ; Technical # LATIN CAPITAL LETTER GLOTTAL I
+A7BD ; Technical # LATIN SMALL LETTER GLOTTAL I
+A7BE ; Technical # LATIN CAPITAL LETTER GLOTTAL U
+A7BF ; Technical # LATIN SMALL LETTER GLOTTAL U
+A7FA ; Technical # LATIN LETTER SMALL CAPITAL TURNED M
+
+0500..050F ; Obsolete # like the other Komi letters 052A..052D
+09FC ; Obsolete # like the other Vedic anusvaras
+0D3B..0D3C ; Obsolete # old Malayalam viramas
+1C80..1C88 ; Obsolete # Church Slavonic glyph variants
+312E ; Obsolete # BOPOMOFO LETTER O WITH DOT ABOVE, replaced by 311C BOPOMOFO LETTER E
+A660..A661 ; Obsolete # CYRILLIC CAPITAL/SMALL LETTER REVERSED TSE
+A674..A67B ; Obsolete # like the other combining Cyrillic letters
+A69E..A69F ; Obsolete # like the other combining Cyrillic letters
+A790..A791 ; Obsolete # LATIN CAPITAL/SMALL LETTER N WITH DESCENDER
+A7A0..A7A9 ; Obsolete # obsolete Latvian letters
+
+\p{block=Coptic_Epact_Numbers}; Obsolete
+1B002..1B11E; Obsolete # HIRAGANA LETTER ARCHAIC...
+
+# TODO Verify which Exclusion scripts are Obsolete
+
+# Corbett
+1B002..1B11E; Obsolete # hentaigana
+
+# Unicode 13 L2/20-052 Corbett & Pournader
+0D04; Technical Obsolete
+0D81; Technical
+1ABF; Technical
+1AC0; Technical
+A7F5; Obsolete
+A7F6; Obsolete
+AB68; Technical
+
+# Unicode 16
+# UTC-179-C39: Change the Identifier_Type of A9CF to Limited_Use Uncommon_Use, removing Exclusion.
+# (A code fix removed Exclusion from Limited_Use characters, but adding Uncommon_Use needs an override.)
+A9CF; Limited_Use Uncommon_Use
+
+# Unicode 17
+09FF; Technical # L2/22-268R
+0B53..0B54; Uncommon_Use # L2/24-106R
+0C5C; Obsolete # L2/22-006
+0CDC; Obsolete # L2/22-006
+1ACF..1ADD; Technical # L2/24-105, L2/23-188, L2/23-208, L2/23-206
+1AE0..1AEA; Technical # L2/24-080
+A7CE..A7CF; Uncommon_Use # L2/23-219
+A7D2; Obsolete # L2/23-135
+A7D4; Obsolete # L2/23-135
+10EC5; Technical # L2/22-281R
+10EC6; Technical # L2/23-121
+10EC7; Uncommon_Use # L2/24-055
+10EFB; Technical # L2/22-281R
+16FF2..16FF6; Technical # L2/23-284, L2/24-071R3
+
+# The following new Unified_Ideograph characters are subsumed by
+# the later section for UTC-182-A56
+# which makes all Unified_Ideograph characters Uncommon_Use,
+# except for an explicit list of Recommended ones.
+# 2B73A..2B73E; Uncommon_Use # L2/25-031
+# \p{block=CJK_Unified_Ideographs_Extension_J}; Uncommon_Use # L2/25-031
+
+# Unicode 17
+# UTC-183-C33: Change Identifier_Type for 40 characters listed in L2/25-032R to Recommended.
+0181; Recommended
+0186; Recommended
+0189..018A; Recommended
+018E; Recommended
+0190..0192; Recommended
+0194; Recommended
+0196..0199; Recommended
+019D; Recommended
+01B2..01B4; Recommended
+01B7; Recommended
+01DD; Recommended
+0244; Recommended
+024C..024D; Recommended
+0253..0254; Recommended
+0256..0257; Recommended
+025B; Recommended
+0263; Recommended
+0268..0269; Recommended
+0272; Recommended
+0289; Recommended
+028B; Recommended
+0292; Recommended
+068E; Recommended
+0DA6; Recommended
+17CB..17CD; Recommended
+17D0; Recommended
+
+# Unicode 17
+# UTC-183-C34: Change Identifier_Type of 392 characters marked Proposed:Uncommon_Use,
+# Proposed:Technical or Proposed:Obsolete in document L2/25-034R4 to Uncommon_Use,
+# Technical, or Obsolete, respectively
+0671; Technical
+0690; Obsolete
+090C; Obsolete
+0C8C; Obsolete
+0CB1; Obsolete
+0D9E; Obsolete
+0114..0115; Uncommon_Use
+012C..012D; Uncommon_Use
+014E..014F; Uncommon_Use
+0156..0157; Uncommon_Use
+0162..0163; Uncommon_Use
+01D5..01DC; Uncommon_Use
+01DE..01E3; Uncommon_Use
+01EA..01ED; Uncommon_Use
+01F0; Uncommon_Use
+01F4..01F5; Uncommon_Use
+01FA..01FF; Uncommon_Use
+021E..021F; Uncommon_Use
+0226..0233; Uncommon_Use
+0400; Uncommon_Use
+040D; Uncommon_Use
+0450; Uncommon_Use
+045D; Uncommon_Use
+04C1..04C2; Uncommon_Use
+04CB..04CC; Uncommon_Use
+04DA..04DB; Uncommon_Use
+04EA..04ED; Uncommon_Use
+05B4; Uncommon_Use
+05F0..05F2; Uncommon_Use
+069B..069E; Uncommon_Use
+06A1; Uncommon_Use
+06A3; Uncommon_Use
+06B2; Uncommon_Use
+06B4; Uncommon_Use
+06B8..06B9; Uncommon_Use
+06BF; Uncommon_Use
+06FA..06FC; Uncommon_Use
+0750; Uncommon_Use
+0753..0755; Uncommon_Use
+0757..075F; Uncommon_Use
+0761; Uncommon_Use
+0764..0765; Uncommon_Use
+0769; Uncommon_Use
+076B..076D; Uncommon_Use
+0772..077D; Uncommon_Use
+08A1; Uncommon_Use
+08AA..08AC; Uncommon_Use
+0904; Uncommon_Use
+0929; Uncommon_Use
+0934; Uncommon_Use
+0944; Uncommon_Use
+0979..097A; Uncommon_Use
+098C; Uncommon_Use
+09D7; Uncommon_Use
+0A03; Uncommon_Use
+0A66..0A6F; Uncommon_Use
+0A72..0A73; Uncommon_Use
+0A81; Uncommon_Use
+0B0C; Uncommon_Use
+0B35; Uncommon_Use
+0B57; Uncommon_Use
+0B66..0B6F; Uncommon_Use
+0BD7; Uncommon_Use
+0BE6..0BEF; Uncommon_Use
+0C0C; Uncommon_Use
+0C31; Uncommon_Use
+0C55..0C56; Uncommon_Use
+0C66..0C6F; Uncommon_Use
+0CBC; Uncommon_Use
+0CC4; Uncommon_Use
+0CD5..0CD6; Uncommon_Use
+0D0C; Uncommon_Use
+0D29; Uncommon_Use
+0D66..0D6F; Uncommon_Use
+0D8E; Uncommon_Use
+0DE6..0DEF; Uncommon_Use
+0E4E; Uncommon_Use
+0EDE..0EDF; Uncommon_Use
+108B..108D; Uncommon_Use
+1090..1099; Uncommon_Use
+10F7..10F8; Uncommon_Use
+1207; Uncommon_Use
+1287; Uncommon_Use
+12AF; Uncommon_Use
+12F8..12FF; Uncommon_Use
+130F; Uncommon_Use
+131F; Uncommon_Use
+1347; Uncommon_Use
+135A; Uncommon_Use
+135D..135F; Uncommon_Use
+179D..179E; Uncommon_Use
+17A9; Uncommon_Use
+17D7; Uncommon_Use
+1E02..1E0B; Uncommon_Use
+1E0E..1E11; Uncommon_Use
+1E14..1E17; Uncommon_Use
+1E1C..1E1F; Uncommon_Use
+1E22..1E23; Uncommon_Use
+1E26..1E29; Uncommon_Use
+1E2E..1E35; Uncommon_Use
+1E38..1E3B; Uncommon_Use
+1E40..1E41; Uncommon_Use
+1E4C..1E59; Uncommon_Use
+1E5C..1E61; Uncommon_Use
+1E64..1E6B; Uncommon_Use
+1E6E..1E6F; Uncommon_Use
+1E78..1E8B; Uncommon_Use
+1E8E..1E91; Uncommon_Use
+1E94..1E99; Uncommon_Use
+2D80..2D96; Uncommon_Use
+A7B9; Uncommon_Use
+AB01..AB06; Uncommon_Use
+AB09..AB0E; Uncommon_Use
+
+# Unicode 17
+# UTC-183-C35: Change Identifier_Type of 753 characters from document L2/25-033R4 
+# to their proposed new values.
+02BB..02BC; Inclusion
+0200..0217; Technical
+02EC; Technical
+030F..0311; Technical
+0313..0314; Technical
+0324..0325; Technical
+032D..032E; Technical
+0330; Technical
+0335; Technical
+0338..0339; Technical
+0342; Technical
+0375; Technical; override
+03FC; Technical Obsolete
+0559; Technical
+0653; Technical Uncommon_Use
+06E5..06E6; Technical
+0870..0887; Technical
+0888; Technical; override
+0950; Technical
+097D; Technical
+0A74; Technical
+0AD0; Technical
+0B82; Technical
+0BD0; Technical
+0EAF; Technical
+0F00; Technical
+0F35; Technical
+0F37; Technical
+0F3E..0F3F; Technical
+0FC6; Technical Uncommon_Use
+10F9..10FA; Technical Uncommon_Use
+1E00..1E01; Technical
+1E18..1E1B; Technical
+1E2A..1E2D; Technical
+1E72..1E77; Technical
+1FB0..1FB1; Technical Obsolete
+2D27; Technical
+2D2D; Technical
+A717..A71F; Technical
+A788; Technical
+A7C5..A7C6; Technical
+1DF00..1DF1E; Technical
+1DF25..1DF2A; Technical
+0138; Obsolete
+0345; Obsolete
+037B..037D; Obsolete
+03FD..03FF; Obsolete
+049C..049D; Obsolete
+04A6..04A7; Obsolete
+04B8..04B9; Obsolete
+0514..0523; Obsolete
+0526..0529; Obsolete
+052E..052F; Obsolete
+063B..063C; Obsolete
+063E..063F; Obsolete
+06AC; Obsolete
+077E..077F; Obsolete
+088E; Obsolete
+08B5; Obsolete
+093D; Obsolete
+0960..0963; Obsolete
+0971; Obsolete
+09BD; Obsolete
+09E0..09E3; Obsolete
+0ABD; Obsolete
+0AE0..0AE3; Obsolete
+0B3D; Obsolete
+0B60..0B61; Obsolete
+0C3D; Obsolete
+0C60..0C61; Obsolete
+0CBD; Obsolete
+0CE0..0CE3; Obsolete
+0CF1..0CF2; Obsolete
+0D3A; Obsolete
+0D3D; Obsolete
+0D4C; Obsolete
+0D4E; Obsolete
+0D60..0D61; Obsolete
+0F6A; Obsolete Uncommon_Use
+0F82..0F83; Obsolete Uncommon_Use
+0F86..0F8F; Obsolete
+1050..1059; Obsolete Uncommon_Use
+17DC; Obsolete
+1F00..1F15; Obsolete
+1F18..1F1D; Obsolete
+1F20..1F45; Obsolete
+1F48..1F4D; Obsolete
+1F50..1F57; Obsolete
+1F59; Obsolete
+1F5B; Obsolete
+1F5D; Obsolete
+1F5F..1F70; Obsolete
+1F72; Obsolete
+1F74; Obsolete
+1F76; Obsolete
+1F78; Obsolete
+1F7A; Obsolete
+1F7C; Obsolete
+1F80..1F9F; Obsolete
+1FB6..1FBA; Obsolete
+1FBC; Obsolete
+1FC2..1FC4; Obsolete
+1FC6..1FC8; Obsolete
+1FCA; Obsolete
+1FCC; Obsolete
+1FD0..1FD2; Obsolete
+1FD6..1FDB; Obsolete; override
+1FE0..1FE2; Obsolete
+1FE4..1FEB; Obsolete; override
+1FF2..1FF4; Obsolete
+1FF6..1FF8; Obsolete
+1FFA; Obsolete
+1FFC; Obsolete
+A67F; Obsolete
+A7C0..A7C1; Obsolete
+A7C4; Obsolete
+A7C7..A7CA; Obsolete
+A7D0..A7D1; Obsolete
+A7D3; Obsolete
+A7D5..A7D9; Obsolete
+1B11F..1B122; Obsolete
+1B132; Obsolete
+1B150..1B152; Obsolete
+1B155; Obsolete
+1B164..1B167; Obsolete
+1E08F; Obsolete
+048A..048F; Uncommon_Use
+04C3..04CA; Uncommon_Use
+04CD..04CE; Uncommon_Use
+04F6..04F7; Uncommon_Use
+04FA..04FF; Uncommon_Use
+0510..0513; Uncommon_Use
+05EF; Uncommon_Use
+0889..088D; Uncommon_Use
+08B2; Uncommon_Use
+08B6..08BA; Uncommon_Use
+08C3..08C6; Uncommon_Use
+08C8; Uncommon_Use
+09FE; Uncommon_Use
+0A01; Uncommon_Use
+0AFA..0AFF; Uncommon_Use
+0B55; Uncommon_Use
+0C01; Uncommon_Use
+0C04; Uncommon_Use
+0C3C; Uncommon_Use
+0C5D; Uncommon_Use
+0C80; Uncommon_Use
+0CDD; Uncommon_Use
+0CF3; Uncommon_Use
+0D00; Uncommon_Use
+0D54..0D56; Uncommon_Use
+0E86; Uncommon_Use
+0E89; Uncommon_Use
+0E8C; Uncommon_Use
+0E8E..0E93; Uncommon_Use
+0E98; Uncommon_Use
+0EA0; Uncommon_Use
+0EA8..0EA9; Uncommon_Use
+0EAC; Uncommon_Use
+0EBA; Uncommon_Use
+0ECE; Uncommon_Use
+0F6B..0F6C; Uncommon_Use
+0FAE..0FB0; Uncommon_Use
+1065..1074; Uncommon_Use
+108E; Uncommon_Use
+109A..109D; Uncommon_Use
+10FD..10FF; Uncommon_Use
+1380..138F; Uncommon_Use
+2DA0..2DA6; Uncommon_Use
+2DA8..2DAE; Uncommon_Use
+2DB0..2DB6; Uncommon_Use
+2DB8..2DBE; Uncommon_Use
+2DC0..2DC6; Uncommon_Use
+2DC8..2DCE; Uncommon_Use
+2DD0..2DD6; Uncommon_Use
+2DD8..2DDE; Uncommon_Use
+3099..309A; Uncommon_Use
+A792..A793; Uncommon_Use
+A7C2..A7C3; Uncommon_Use
+A9E7..A9FE; Uncommon_Use
+AA60..AA76; Uncommon_Use
+AA7A; Uncommon_Use
+AA7C..AA7F; Uncommon_Use
+AB11..AB16; Uncommon_Use
+AB20..AB26; Uncommon_Use
+AB28..AB2E; Uncommon_Use
+AB66..AB67; Uncommon_Use
+1133B; Uncommon_Use
+
+# Unicode 17.0
+# UTC-183-A79 Update Identifier_Status and Identifier_Type properties according to
+# the change of status of Bopomofo to “Limited Use”
+\p{Script=Bopomofo}; Limited_Use
+
+# Unicode 17.0
+# UTC-182-A56 ... assign Identifier_Type values to Unified_Ideograph characters according to
+# whether they are in common use.
+# Keep exactly those Unified_Ideograph characters as Identifier_Type=Recommended
+# which are documented in RZ-LGR-5 and listed in L2/25-031.
+# For all other Unified_Ideograph characters set Identifier_Type=Uncommon_Use.
+# See L2/25-006 item 4.1.
+[:Unified_Ideograph:]; Uncommon_Use
+[㑇㑳㓤㕷㖞㖡㖭㖿㗎㗳㗾㘎㘚㤘㥠㥮㧏㧐㧛㧟㧸㧾㨘㩒㩜㩧㩳㬹㭎㮣㱮㳠㷧㷫㹴㻐䁖䁥䁪䂻䃟䄷䅟䌷䎬䎱䏓䏝䑃䓖䓪䘆䙌䙡䜣䜩䝼䞍䟴䢂䥇䥺䥽䦂䦃䦅䦆䦛䦟䦶䦷䨒䪸䱷䱽䲁䲅䲝-䲣䴓-䴙䶮]; Recommended
+[一-丑专-丨个-乧乩-乸乺-井亗-亢交-亻亽-介仍-仦仨-价任份仿-伆伈-伕众-伧伩-估伲-伴伶伸-伿佁-佃佅-佰佲-例侍侏-価侣-侼侾-俅俇俉-俋俍-信俣-俻俾-倏]; Recommended
+[們-倳倵-倷倹-值倾-偁偃-偑偓-偗偙-偻偽-傀傂-傒傔-傖傘-傞傢-傸傺-僂僄-僗僙-僞僠僣-僪僬-僳僵僶僸-儚儜-儧儩優儬-允元-光克-兎児-兒兔-兗兙-兟兡-兣]; Recommended
+[入-共关-兽兿-冂内-再冏-冠冢冤-冬冮-冷冹冻-凁凃-凑凔-凞几-凫凭凯-凱凳-剒剔-剥剧-剸剺-劄劆-劍劏-勃勅-勇勉-勋勍勏勐勒勓動-勠勢-勤勦-勭勯-匂包-北匙匚]; Recommended
+[匜匝匟-匦匨匪-匱匳匴匷-十千-博卜卞-卩卫卬卮-卿厁-厠厢-厩厬-厮厰-厹去-叄叆-収叐-叜叟-另叨-叾吁-吙君-吡吣-呋呍-呜呞-周呪-咉咋-咴咶-哵哷-唔唖唗唚-商]; Recommended
+[啈-啟啡-啹啻-嗟嗡-嗷嗹-嘉嘌-嘟嘡-嘪嘬-嘶嘸-嘻嘽-噃噅-噊噌-噐噒-噕噗-噞噠噢-噴噶-噼噾-嚇嚉嚊嚌-嚕嚗-嚝嚟-嚹嚻-囎囐-囘囚-囥囧-囵囷囹固国-圄圆-圐]; Recommended
+[園-圖團-圠圢圣圥-圼圾-坂坄-均坉-坔块坙-坢坤-坷坹-垀垂-垆垈-垕垗-垧垩-埉埋-埐埒-埚埜-堖堙-塏塑-塕塗-塟塡-塥塨-塶塸-墔墖-墩墫-墵墷-墿壁壂壅-壌壎壏]; Recommended
+[壑-壠壢-壥壧-壴壶-夀夂-处夆备変-夐夒夔-夢夤-夲头夵夷-奘奚奜-妶妸-姦姨-娣娥娧-娫娭-娯娱-婓婕-婘婚-婮婰婲-媆媈-媌媎-媪媬-嫒嫔-嫮嫱-嬉嬋嬌嬎-嬸嬺-孅]; Recommended
+[孇-孎子孑孓-孟孢-孮孰-學孺-孽孿-宅宇-宏宑-宨宪-宱害-家宸-宻宽-寇寉-寙寛-寿封-尚尜-尢尤尥尧尨尪-尵尷-屙屛-岄岆-岳岵-岸岺-峔峖-峜峞-峴島-崪崬-崮]; Recommended
+[崰-崺崼-嵒嵔-嵖嵘-嵟嵡-嶂嶄-嶕嶗-嶢嶥-嶪嶬-嶲嶴-嶸嶺-巃巅-巖巘巙巛川-巵巷-帑帓-幇幉-幐幒-庑库-庹庻-庿廁-廪廬-廸建-弍式-强弼弾-徎徐-徙徛-徢徥-徯]; Recommended
+[徱-忁心-忍忏-忚応-忡忣-快忭-忻忽-怢怤-恕恗-恠恢-恰恲恳恵-悐悒悔-悤悦-惑惓-惕惗-惝惟-惤惦-惼惾-愁愃-愆愈-愐愒-愝感-愰愲愴愶愷愺-慟慡-慺慼-慾憀-憅]; Recommended
+[憇-憖憘-憛憝-憸憺憼-懒懔懖-懫懭懮懰-戄戆-戴戶-戸戺-扖托-抌抎-抜択-拝拟-择拫-按挋-挖挘-挰挲-挶挸-捚捜-掊掌-排掔-提插-携搽-摈摊-摙摛-摽摿-撅撇-撠]; Recommended
+[撢-撮撰-撵撷-擇擉-擔擖-擭擯-擴擶-擸擺-攁攃-攉攋-攞攠-攧攩-政敁敃-教敛-敞敠-敼敾-斉斋-料斛-斴斶-施斿-旇旊-旐旒-旗旙-旛旝-旣日-早旫-旸旺-旽旿-昖]; Recommended
+[昘-昫昭-昶昹-晇晉-晌晎-晟晡晢晤-暑暓-暛暝暟-暫暮-曏曑曒曔-曖曘-曞曠-曮曰-朁會-朆月-朘朚-朣朥-木未-杦杨-枇枉-枕林-枼枾柀-柔柖柘-柸柺-栀栂-栔栖-栦]; Recommended
+[栨-栯栱-桗桙桛-桝桟-桹桻-梔梖-梘梚-梤梦-梷梹-棂棄-棘棚-棡棣棤棦-椈椊-椽椿-楌楎-榞榠榡榣-榿槁-槐槓槔様-樂樄-樛樝-樣樥-樶樸-橉橋-橛橝-橭橯橱-檅]; Recommended
+[檇-檉檋-檎檐-檘檚-檜檞-檰檲-檽檿櫁-櫃櫅-櫈櫊-櫗櫙-櫨櫪-欍欏-欚欜-欭欯-欴欶-欿歁-歖歙-歜歞-歧歩-歫歭歯歰歲-歴歶-歼歾-殷殹-毨毪-毰毲毳毵-毹毻-氉]; Recommended
+[氋-氛氝-氬氮-氻氽-汄汆-汫汭汯-沟没-泗泙-泳泵-洁洃-洛洝-洣津-浰浲-涀涂-涕涗-涯液-涵涷-淽渀渃-清渇-渑渓-渗渙-温渫-湋湍-湫湭-湺湾-溊溌-溔準-滚]; Recommended
+[滜-滢滤-漃漅-漊漌-潁潃-潇潉潋-潸潺-澗澙澛-澞澠-澶澸-濄濆-濏濑濒濔-濴濶-濼濾-瀏瀑瀒瀔-灆灈-灊灌灍灏-灱灴-灺灼-炀炂-炌炎-炖炘-炚炜-炩炫-炱炳-炵]; Recommended
+[炷-烔烖-烽烿-焇焉-焣焥-焲焵-煖煘-煪煬煮-熌熎-熕熗-熥熧-熪熬-熵熷-燋燍-燒燔-燲燴-燹燻-爊爌-爐爒-爔爖爘-爟爡-爣爦-爮爰-爳爵-牄牆-牍牏牑-牔牖-犪]; Recommended
+[犬-犽犿-猁猃-猏猑-猧猩-獒獔-玛玝-珀珂-珲珴-珺珼-琗琙-琸琺-琽琿-瑆瑈瑊-瑗瑙-瑺瑼-璃璅-璕璗-璜璞-瓆瓈瓊瓋瓍-瓪瓬-生甡-畀畂-畑畓畔畖-畝畟畠畢-異]; Recommended
+[畲-畺畼-疄疆-疨疪-疶疸-痛痝-痭痯-瘫瘭-癃癆-癐癒-癔癖-癲癴-皌皎-皠皣皤皦皧皩-皲皴皵皷-盀盂-益盌-盘盚-盪盬-盿省眃-眍眏-眠眢-眪眬-眾着睁睃-督睥-瞕]; Recommended
+[瞗-瞣瞥-瞽瞿矀矂-矑矓-矜矞-矣知矧-石矶-砣砥-砵砷-硁硃-硅硇-硊硌-硵硷-碇碉-磁磃-磆磈-磑磓-磯磱-磷磹-磿礁-礇礉-礌礎-礔礖-礞礡-礱礳-礵礷-祘祚-祫祭]; Recommended
+[祯-祴祷-禅禈-禝禟-禨禪-离禽-秃秅秆秈-秋种-秓秕秖秘-稀稂-稆稈稊-稫稭-稷稹稻-穣穥-穩穫-穮穰-突窃-窙窜-窸窺窾-竁竃-竅竇-竨竪-竴競-竻竽-笆笈-笞笠-符]; Recommended
+[笨笪-筁筃-筒答-箢箤箦-箯箱箳-篹篻-簚簜-簭簰-籑籓籔籖-籜籞-籵籷-粆粈-粒粔-粙粛-粫粭-糒糔-糙糜-糠糢糤糧-系糽糾紀-索紤-紩紫紬紮-絇絉-経絎-絙絛-絣]; Recommended
+[絥-絷絹-綁綃-綔綖綗継-綣綥-綧綩-緌緎-緒緔-緤緦-緪緬-緼縀-縗縙-繚繜-繣繥-纜纞-缺缽-罀罂-罅罇-罘罚-羃羅-羏羑-羖羘羚-羳羵-翕翗-翜翞-翣翥-耉耋-耮]; Recommended
+[耰-耻耽-耿聁-聥聧-肇肉-肍肏-肓肕-肥肩-育肴-肸肺-胞胠-脂脅-脳脶-膃膅-膏膑-膕膗-臊臌-臣臥-臮臱-舒舔-舣舥-艀艂-艤艦-芋芍-花芳-苡苣-苻苽-茉茋-茏]; Recommended
+[茑-茯茱-荔荖-莽莿-菥菧-菬菮-萓萕萘-萞萠-著葙-蒂蒄-蒔蒖-蒶蒸-蓂蓄-蓬蓮-蔄蔆-蔏蔑-蔱蔴-蕋蕍-蕏蕑-蕾薀-薒薔-薱薳-薺薼-藋藍-藭藯-藲藴-藻藽-蘂蘄-蘌]; Recommended
+[蘏蘑-蘔蘖-蘜蘞-蘶蘸-虖虘-虴虶-蚈蚊-蚑蚓-蚟蚡-蚥蚧-蛔蛖-蛟蛡-蛦蛨-蛼蛾-蜜蜞-蜮蜰-蜼蜾-蝄蝆-蝰蝲-融螏-螘螚-蟙蟛-蟯蟱-蠆蠈-蠑蠓-蠬蠮-蠹蠻-衆衈-街]; Recommended
+[衙-衛衝衞衠-衹衻-裥裧裨裪-裬裮-褂褄-褎褐-褣褥-襤襦-襴襶-襼襾-覌覎規覑-覓覕-覘覚-覯覱-観覵-覺覽-觭觯-觴觶-觸觺-觼觾-訄訇-訓訕-記訚-訟訢-訪訬-証]; Recommended
+[訾-詊詌-詣詥-詷詹-詼詾-誇誉-語誠-誮誰-誶誸-諏諑-諫諭-謨謪-謱謳-謷謹-謾譀-譠譣-譨譪-譴譶-譻譽-讀讂-讆讈-讌讎讐-讚讜-谷谹-谿豁-豃豅-豐豔-豗豙-豳]; Recommended
+[豵-豾貀-貂貄-貆貈-貊貌-貚貜-貥貧-賊賌-賕賗賙-賨質-賶賸-贀贂-贐贓-赻赽-趥趧-趿跁-跤跦-踀踂-踊踌-踱踳-蹅蹇-蹎蹐-蹭蹯-蹴蹶蹸蹺-躚躜-躡躣-躲躴躵]; Recommended
+[躸-軀軂軃軅-軘軚-軯軱-輎輐-輬輮-輹輻-轀轂-辜辞-辣辥-農辴-迂迄-迉迋-迦迨-逩逫逭-逶逸-逿遁-遅遇-邪邬-郋郎-郑郓-郵郷-鄉鄋-鄻鄾-酘酚-酺酼-醔醖醗]; Recommended
+[醙-醨醪-醾釀-釃釅-釟釡-釮釰-鈒鈔-鈞鈠鈡鈣-鉂鉄-鉨鉫-銀銂銃銅-銝銟-銼銾-鋓鋕-鋚鋜-鋡鋣-錛錝-錯録-鍡鍣-鍧鍩鍪鍬-鍮鍰-鍲鍴-鍷鍹-鍾鎀鎂-鎊鎌-鎛鎝-鎟]; Recommended
+[鎡-鎪鎬-鎺鎼-鏟鏡-鏲鏴-鐁鐃-鐖鐘-鐛鐝鐠-鐣鐥-鑂鑄-鑍鑏-鑫鑭-鑺鑼-長镺-镽长-閄閆-閖閘-閲閵-閷閹-闀闂-闘闚-關闞-阤阧阨阪-阽阿-陕陘-陸険陼-陾隀]; Recommended
+[隃-隋隍-隕隗-隙際障隞隠-險隬-隮隰-隴隶-難雥雨-電雽-霓霕霖霘霙霜-露霵霶霸-霿靂-靌靎-靖靘-面靤-靴靶-鞆鞈鞊-鞚鞜-鞨鞪-鞯鞲-鞴鞶-鞽鞿韁-韑韓-韻韽-頞]; Recommended
+[頠-頤頦-頩頫-頲頴-頹頻-頽頿-顁顃-顆顈-顕顗-顥顧顩-颶颸-飉飋-飣飥-飫飭-飰飲-飷飹飺飼-餘餚-餺餼-饃饅-饙饛饜饞-馾駀-駟駡-駥駧-駪駬-駴駶-騏騑-騖]; Recommended
+[騙-騺騼-驐驒-驗驙-驜驞-驢驤-骨骪-骼骾-髇髉-髖高-髟髡-髣髥-髧髪-髯髱-髿鬁鬃-鬈鬊-鬓鬕-鬚鬜-鬳鬵-鬼鬾鬿魁-魏魑-魖魘-魡魣-魱魳-鮈鮊鮋鮍-鮘鮚-鯁]; Recommended
+[鯃-鯵鯷-鯿鰂鰄-鱁鱃-鱎鱐鱒-鱠鱢鱣鱥-鱺鱼-鴋鴎-鴐鴒-鴦鴨-鴴鴶-鴻鴽-鵬鵮-鶔鶖-鶭鶯-鶼鶾鶿鷁-鷩鷫-鷻鷽-鸍鸏-鸕鸗-鸛鸝-鹺鹼-麎麑-麗麙-麝麟-麡麣-麪]; Recommended
+[麭-麰麲-黫黭-黰黲-鼂鼄-鼐鼒鼓鼕-鼥鼧-齄齆-齒齔-齬齮-龠龢龤龥𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪]; Recommended
+[𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𢴈𢵌𢵧𢺳𣲷𤓓𤶸𤷪𥄫𦉘𦟌𦧲𦧺𧨾𨅝𨈇𨋢𨳊𨳍𨳒𩶘]; Recommended
+
+# Unicode 17.0
+# UTC-184-A72 ... Change the Identifier_Type of U+08C9 ARABIC SMALL FARSI YEH from Recommended to Technical, and of 
+# U+16FF0 and U+16FF1 VIETNAMESE ALTERNATE READING MARK CA and NHAY from Recommended to Obsolete.
+08C9; Technical
+16FF0..16FF1; Obsolete
+
+# Unicode 18.0
+208F ; Technical
+05C8..05C9 ; Technical
+0B53..0B54 ; Uncommon_Use
+1ADE..1ADF ; Technical
+1AEC..1AF0 ; Technical
+A7DD ; Technical Obsolete
+A7E2 ; Obsolete
+AB6C..AB6D ; Technical
+10EC9..10ECF ; Technical
+10ED9..10EEE ; Obsolete
+10EF0..10EF8 ; Technical
+10EF9 ; Obsolete
+11B0A ; Recommended
+11DF0 ; Obsolete
+11DF1 ; Technical
+1B127..1B128 ; Obsolete
+1B168 ; Technical
+1D250..1D252 ; Technical
+1D25B..1D25C ; Technical
+1D25F ; Technical
+1D280..1D281 ; Technical
+1DF1F..1DF24 ; Technical
+1DF2B..1DF59 ; Technical
+1DF5A..1DF66 ; Uncommon_Use
+1DF67 ; Technical
+1DF68..1DF81 ; Technical Obsolete
+1DF90..1DF94 ; Technical Obsolete
+1DF96 ; Technical Obsolete
+2B81E ; Uncommon_Use
+
+# UTC-187-A144: Change Identifier_Type for U+028C LATIN SMALL LETTER TURNED V from Technical to Technical Uncommon_Use.
+028C ; Technical Uncommon_Use
+
+# UTC-187-A039: add Obsolete to the Identifier_Type for U+1BAE SUNDANESE LETTER KHA and U+1BAF SUNDANESE LETTER SYA, 
+# as well as for other historic Sundanese characters, for Unicode Version 18.0. [Ref: 5.2 in L2/26-100]
+# Other characters identified by Roozbeh Pournader from L2/09-251R:
+# 1BAB # virama, 1BAC # pasangan/subjoined ma, 1BAD # pasangan/subjoined wa,
+# 1BBA # avagraha/gemination mark, 1BBB # reu, 1BBC # leu, 1BBD # bha/archaic i, 1BBE # final k, 1BBF # final m
+1BAE..1BAF ; Obsolete
+1BAB..1BAD ; Obsolete
+1BBA..1BBF ; Obsolete
+
+# Cleanup of Hebrew and Arabic combining marks (PAG ref #555)
+# Hebrew
+0591..05AF; Technical # cantillation marks
+05B0..05BD; Uncommon_Use # points
+05BF; Technical Uncommon_Use # rafe
+05C1..05C2; Uncommon_Use # shin and sin dots
+05C4..05C5; Technical # puncta extraordinaria
+05C7; Technical # qamats qatan
+05C8..05C9; Technical # sheva na mudgash and dagesh hazaq mudgash
+FB1E; Uncommon_Use # Judeo-Spanish varika
+# Arabic
+0610..0614; Uncommon_Use # combining honorifics
+0615; Technical # quranic mark
+0616; Obsolete # used in early Persian
+0617..061A; Technical # quranic marks
+0656..065B; Uncommon_Use # various marks
+065C; Uncommon_Use Technical # used both in African languages and as quranic mark
+065D..065F; Uncommon_Use # various marks
+06D6..06DC; Technical # quranic marks
+06DF..06E4; Technical # quranic marks
+06E7..06E8; Technical # quranic marks
+06EA..06ED; Technical # quranic marks
+0897; Uncommon_Use # pepet
+0898..089F; Technical # quranic marks
+08CA..08E1; Technical # quranic marks
+08E3..08EF; Uncommon_Use # various marks
+08F0..08F3; Technical # quranic marks
+08F4..08F7; Uncommon_Use # various marks
+08F8; Uncommon_Use Technical # used both in African languages and as quranic mark
+08F9..08FA; Uncommon_Use # various marks
+08FB; Uncommon_Use Technical # used both in African languages and as quranic mark
+08FC..08FF; Uncommon_Use # various marks
+10ECB..10ECF; Technical # quranic marks
+10EF0..10EF8; Technical # quranic marks
+10EF9; Obsolete # combining crown
+10EFA; Obsolete # used in Old Sindhi
+10EFB..10EFF; Technical # quranic marks

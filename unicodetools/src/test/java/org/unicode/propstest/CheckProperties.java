@@ -6,8 +6,8 @@ import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.UnicodeMap.EntryRange;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.io.DataOutput;
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +28,6 @@ import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.With;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
-import org.unicode.jsp.ICUPropertyFactory;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.PropertyNames.NameMatcher;
@@ -48,16 +47,12 @@ public class CheckProperties {
 
     private static final int DEBUG_CODE_POINT = 0x0600;
 
-    private static final boolean LATEST_ICU = true;
-
     static LinkedHashSet<String> PROPNAMEDIFFERENCES = new LinkedHashSet<String>();
     static LinkedHashSet<String> SKIPPING = new LinkedHashSet<String>();
-    static LinkedHashSet<String> NOT_IN_ICU = new LinkedHashSet<String>();
 
     enum Action {
         SHOW,
         COMPARE,
-        ICU,
         EMPTY,
         INFO,
         SPACES,
@@ -221,16 +216,6 @@ public class CheckProperties {
                         showSummary(summary);
                     }
                     break;
-                case ICU:
-                    {
-                        out.println("Property\tICU-Value\tDirect-Value\tChars-Affected");
-                        final Set<String> summary = new LinkedHashSet();
-                        for (final UcdProperty prop : values) {
-                            compareICU(prop, LATEST_ICU ? latest : last, summary);
-                        }
-                        showSummary(summary);
-                    }
-                    break;
                 case DEFAULTS:
                     for (final UcdProperty prop : values) {
                         showDefaults(prop);
@@ -309,21 +294,27 @@ public class CheckProperties {
 
         showInfo("No Differences", SKIPPING, out);
         showInfo("Property Enum Canonical Form wrong", PROPNAMEDIFFERENCES, outLog);
-        showInfo("Not In ICU", NOT_IN_ICU, outLog);
         showInfo("Cache File Sizes", latest.getCacheFileSize().entrySet(), outLog);
 
-        final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors =
-                IndexUnicodeProperties.getDataLoadingErrors().keyValuesSet();
-        if (dataLoadingErrors.size() != 0) {
-            outLog.println("Data loading errors: " + dataLoadingErrors.size());
-            for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
-                outLog.println("\t" + s.getKey());
-                int max = 100;
-                for (final String value : s.getValue()) {
-                    outLog.println("\t\t" + value);
-                    if (--max < 0) {
-                        outLog.println("…");
-                        break;
+        for (final Entry<VersionInfo, Relation<UcdProperty, String>> versionEntry :
+                IndexUnicodeProperties.getDataLoadingErrors().entrySet()) {
+            final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors =
+                    versionEntry.getValue().keyValuesSet();
+            if (!dataLoadingErrors.isEmpty()) {
+                outLog.println(
+                        "Data loading errors for "
+                                + versionEntry.getKey()
+                                + ": "
+                                + dataLoadingErrors.size());
+                for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
+                    outLog.println("\t" + s.getKey());
+                    int max = 100;
+                    for (final String value : s.getValue()) {
+                        outLog.println("\t\t" + value);
+                        if (--max < 0) {
+                            outLog.println("…");
+                            break;
+                        }
                     }
                 }
             }
@@ -563,39 +554,6 @@ public class CheckProperties {
         //        }
     }
 
-    private static void compareICU(
-            UcdProperty prop, IndexUnicodeProperties direct, Set<String> summary) {
-        PropertyNames<UcdProperty> names = prop.getNames();
-        if (VERBOSE) {
-            System.out.println(prop);
-        }
-        if (prop == UcdProperty.Unicode_1_Name) {
-            NOT_IN_ICU.add(prop.toString());
-            return;
-        }
-
-        final ICUPropertyFactory propFactory = ICUPropertyFactory.make();
-        final UnicodeProperty icuProp = propFactory.getProperty(prop.toString());
-        if (icuProp == null) {
-            NOT_IN_ICU.add(prop.toString());
-            return;
-        }
-        final UnicodeMap<String> icuMap = icuProp.getUnicodeMap();
-        if (prop == UcdProperty.Numeric_Value) {
-            icuMap.setMissing("NaN");
-        }
-
-        final UnicodeMap<String> directMap = direct.load(prop);
-        showChanges(
-                prop,
-                new UnicodeSet("[^[:cn:][:co:][:cs:]]"),
-                null,
-                icuMap,
-                direct,
-                directMap,
-                summary);
-    }
-
     private static void addAll(UnicodeSet toSet, UnicodeSet set) {
         if (set.contains('\u5427')) {
             final int y = 3;
@@ -787,7 +745,7 @@ public class CheckProperties {
             } else {
                 result.append(" ");
             }
-            final String string = UTF16.valueOf(cp);
+            final String string = Character.toString(cp);
             String name = latest.getResolvedValue(UcdProperty.Name, string);
             if (name == null) {
                 name = latest.getResolvedValue(UcdProperty.Name_Alias, string);
@@ -858,6 +816,9 @@ public class CheckProperties {
         }
         // Unicode 15.1+: A character may have multiple Unihan numeric values.
         int pos = a.indexOf(' ');
+        if (pos < 0) {
+            pos = a.indexOf('|');
+        }
         if (pos >= 0) {
             a = a.substring(0, pos);
         }

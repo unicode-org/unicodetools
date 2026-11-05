@@ -3,7 +3,6 @@ package org.unicode.tools;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.VersionInfo;
@@ -164,13 +163,13 @@ public class AacOrder {
                 separator = ",";
                 out.println(
                         "\n// ("
-                                + UTF16.valueOf(entry.codepoint)
+                                + Character.toString(entry.codepoint)
                                 + ") "
                                 + getName(entry.codepoint)
                                 + (entry.codepointEnd == entry.codepoint
                                         ? ""
                                         : "\t..\t("
-                                                + UTF16.valueOf(entry.codepointEnd)
+                                                + Character.toString(entry.codepointEnd)
                                                 + ") "
                                                 + getName(entry.codepointEnd)));
                 out.print(
@@ -199,7 +198,7 @@ public class AacOrder {
 
     private static String getName(int codepoint) {
         try {
-            return getName(UTF16.valueOf(codepoint));
+            return getName(Character.toString(codepoint));
         } catch (Exception e) {
             return UCharacter.getExtendedName(codepoint);
         }
@@ -253,7 +252,7 @@ public class AacOrder {
         private String getName(int s) {
             String name = null;
             try {
-                name = EMOJI_DATA.getName(UTF16.valueOf(s));
+                name = EMOJI_DATA.getName(Character.toString(s));
             } catch (Exception e) {
             }
             return name != null ? name : UCharacter.getName(s);

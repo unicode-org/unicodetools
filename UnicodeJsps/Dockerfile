@@ -3,7 +3,8 @@ FROM alpine as cbuild
 WORKDIR /build
 RUN apk add --update wget make gcc musl-dev
 ARG CPATH=https://www.unicode.org/Public/PROGRAMS/BidiReferenceC/
-ARG CVERSION=15.1.0
+# FIX_FOR_NEW_VERSION
+ARG CVERSION=17.0.0
 RUN wget -np -nv --reject-regex='.*\.(lib|exe)$' --cut-dirs=4 -nH -r ${CPATH}${CVERSION}/
 RUN cd source && gcc -I ../include/ -static -Os -o3 -o bidiref1 bidiref1.c brutils.c brtest.c brtable.c brrule.c
 RUN ls -lh /build/source/bidiref1 && (/build/source/bidiref1 || true)
@@ -12,7 +13,7 @@ ADD ./target/cldr-unicodetools.tgz /build/data/
 ADD ./target/generated.tgz /build/data/
 # move this into place (including unicodetools/unicodetools)
 RUN rm -rf /build/data/cldr/.git  # unneeded
-FROM jetty:9-jre11-alpine-eclipse-temurin AS run
+FROM jetty:11-jre21-alpine-eclipse-temurin AS run
 ADD port-entrypoint.sh /port-entrypoint.sh
 ADD ./jetty.d/ROOT /var/lib/jetty/webapps/ROOT/
 ENTRYPOINT [ "/port-entrypoint.sh" ]

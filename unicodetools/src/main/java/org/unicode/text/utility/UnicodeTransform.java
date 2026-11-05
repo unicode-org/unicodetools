@@ -7,7 +7,6 @@
 package org.unicode.text.utility;
 
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 
 /**
  * Simple wrapping for normalizer that allows for both the standard ICU normalizer, and one built
@@ -49,11 +48,11 @@ public abstract class UnicodeTransform implements Transform<String, String> {
 
     /** Can be overridden for performance. */
     public String transform(int source) {
-        return transform(UTF16.valueOf(source));
+        return transform(Character.toString(source));
     }
 
     /** Can be overridden for performance. */
     public boolean isTransformed(int source) {
-        return isTransformed(UTF16.valueOf(source));
+        return isTransformed(Character.toString(source));
     }
 }
