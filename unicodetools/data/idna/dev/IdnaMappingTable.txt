@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-11-05, 16:27:28 GMT
+# Date: 2026-11-05, 16:30:12 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -8010,7 +8010,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 1DAB0..1DAFF  ; disallowed                 # NA   <reserved-1DAB0>..<reserved-1DAFF>
 1DB00..1DB1C  ; valid      ;      ; NV8    # 18.0 LEIBNIZIAN EQUALS SIGN..FACIT SYMBOL
 1DB1D         ; valid      ;      ; NV8    # 19.0 ALPHA X SYMBOL
-1DB1E         ; valid                      # 19.0 GREEK OMICRON UPSILON SYMBOL
+1DB1E         ; mapped     ; 03BF 03C5     # 19.0 GREEK OMICRON UPSILON SYMBOL
 1DB1F..1DB21  ; valid      ;      ; NV8    # 19.0 DOUBLE SMALL SIGMA SYMBOL..DOUBLE X SYMBOL
 1DB22..1DEFF  ; disallowed                 # NA   <reserved-1DB22>..<reserved-1DEFF>
 1DF00..1DF1E  ; valid                      # 14.0 LATIN SMALL LETTER FENG DIGRAPH WITH TRILL..LATIN SMALL LETTER S WITH CURL
