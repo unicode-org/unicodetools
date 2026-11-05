@@ -1,5 +1,5 @@
-# DerivedNumericValues-18.0.0.txt
-# Date: 2026-06-29, 15:25:04 GMT
+# DerivedNumericValues-19.0.0.txt
+# Date: 2026-11-04, 10:00:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -104,6 +104,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 116D0         ; 0.0 ; ; 0 # Nd       MYANMAR PAO DIGIT ZERO
 116DA         ; 0.0 ; ; 0 # Nd       MYANMAR EASTERN PWO KAREN DIGIT ZERO
 11730         ; 0.0 ; ; 0 # Nd       AHOM DIGIT ZERO
+11886         ; 0.0 ; ; 0 # Nd       SIRMAURI DIGIT ZERO
 118E0         ; 0.0 ; ; 0 # Nd       WARANG CITI DIGIT ZERO
 11950         ; 0.0 ; ; 0 # Nd       DIVES AKURU DIGIT ZERO
 11BF0         ; 0.0 ; ; 0 # Nd       SUNUWAR DIGIT ZERO
@@ -135,7 +136,7 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 1F10B..1F10C  ; 0.0 ; ; 0 # No   [2] DINGBAT CIRCLED SANS-SERIF DIGIT ZERO..DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 1FBF0         ; 0.0 ; ; 0 # Nd       SEGMENTED DIGIT ZERO
 
-# Total code points: 97
+# Total code points: 98
 
 # ================================================
 
@@ -530,6 +531,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 116D1         ; 1.0 ; ; 1 # Nd       MYANMAR PAO DIGIT ONE
 116DB         ; 1.0 ; ; 1 # Nd       MYANMAR EASTERN PWO KAREN DIGIT ONE
 11731         ; 1.0 ; ; 1 # Nd       AHOM DIGIT ONE
+11887         ; 1.0 ; ; 1 # Nd       SIRMAURI DIGIT ONE
 118E1         ; 1.0 ; ; 1 # Nd       WARANG CITI DIGIT ONE
 11951         ; 1.0 ; ; 1 # Nd       DIVES AKURU DIGIT ONE
 11BF1         ; 1.0 ; ; 1 # Nd       SUNUWAR DIGIT ONE
@@ -597,6 +599,9 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1267B         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N19 FLAT
 12684         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N46 FLAT
 12686         ; 1.0 ; ; 1 # Nl       CUNEIFORM NUMERIC SIGN ONE N36 FLAT
+12BEC         ; 1.0 ; ; 1 # Nl       PROTO-CUNEIFORM NUMERIC SIGN ONE N57
+12BF6         ; 1.0 ; ; 1 # Nl       PROTO-CUNEIFORM NUMERIC SIGN ONE N58
+12BFF         ; 1.0 ; ; 1 # Nl       PROTO-CUNEIFORM NUMERIC SIGN ONE N58 TENU
 16131         ; 1.0 ; ; 1 # Nd       GURUNG KHEMA DIGIT ONE
 16A61         ; 1.0 ; ; 1 # Nd       MRO DIGIT ONE
 16AC1         ; 1.0 ; ; 1 # Nd       TANGSA DIGIT ONE
@@ -630,7 +635,7 @@ FF11          ; 1.0 ; ; 1 # Nd       FULLWIDTH DIGIT ONE
 1FBF1         ; 1.0 ; ; 1 # Nd       SEGMENTED DIGIT ONE
 2092A         ; 1.0 ; ; 1 # Lo       CJK UNIFIED IDEOGRAPH-2092A
 
-# Total code points: 238
+# Total code points: 242
 
 # ================================================
 
@@ -743,6 +748,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 116D2         ; 2.0 ; ; 2 # Nd       MYANMAR PAO DIGIT TWO
 116DC         ; 2.0 ; ; 2 # Nd       MYANMAR EASTERN PWO KAREN DIGIT TWO
 11732         ; 2.0 ; ; 2 # Nd       AHOM DIGIT TWO
+11888         ; 2.0 ; ; 2 # Nd       SIRMAURI DIGIT TWO
 118E2         ; 2.0 ; ; 2 # Nd       WARANG CITI DIGIT TWO
 11952         ; 2.0 ; ; 2 # Nd       DIVES AKURU DIGIT TWO
 11BF2         ; 2.0 ; ; 2 # Nd       SUNUWAR DIGIT TWO
@@ -812,6 +818,9 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 12677         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N04 FLAT
 1267C         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N19 FLAT
 12685         ; 2.0 ; ; 2 # Nl       CUNEIFORM NUMERIC SIGN TWO N46 FLAT
+12BE8         ; 2.0 ; ; 2 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWO LAGAB-A
+12BED         ; 2.0 ; ; 2 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWO N57
+12BF7         ; 2.0 ; ; 2 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWO N58
 16132         ; 2.0 ; ; 2 # Nd       GURUNG KHEMA DIGIT TWO
 16A62         ; 2.0 ; ; 2 # Nd       MRO DIGIT TWO
 16AC2         ; 2.0 ; ; 2 # Nd       TANGSA DIGIT TWO
@@ -845,7 +854,7 @@ FF12          ; 2.0 ; ; 2 # Nd       FULLWIDTH DIGIT TWO
 1FBF2         ; 2.0 ; ; 2 # Nd       SEGMENTED DIGIT TWO
 22390         ; 2.0 ; ; 2 # Lo       CJK UNIFIED IDEOGRAPH-22390
 
-# Total code points: 206
+# Total code points: 210
 
 # ================================================
 
@@ -948,6 +957,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 116D3         ; 3.0 ; ; 3 # Nd       MYANMAR PAO DIGIT THREE
 116DD         ; 3.0 ; ; 3 # Nd       MYANMAR EASTERN PWO KAREN DIGIT THREE
 11733         ; 3.0 ; ; 3 # Nd       AHOM DIGIT THREE
+11889         ; 3.0 ; ; 3 # Nd       SIRMAURI DIGIT THREE
 118E3         ; 3.0 ; ; 3 # Nd       WARANG CITI DIGIT THREE
 11953         ; 3.0 ; ; 3 # Nd       DIVES AKURU DIGIT THREE
 11BF3         ; 3.0 ; ; 3 # Nd       SUNUWAR DIGIT THREE
@@ -1009,6 +1019,9 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 1266E         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N51 FLAT
 12678         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N04 FLAT
 1267D         ; 3.0 ; ; 3 # Nl       CUNEIFORM NUMERIC SIGN THREE N19 FLAT
+12BE9         ; 3.0 ; ; 3 # Nl       PROTO-CUNEIFORM NUMERIC SIGN THREE LAGAB-A
+12BEE         ; 3.0 ; ; 3 # Nl       PROTO-CUNEIFORM NUMERIC SIGN THREE N57
+12BF8         ; 3.0 ; ; 3 # Nl       PROTO-CUNEIFORM NUMERIC SIGN THREE N58
 16133         ; 3.0 ; ; 3 # Nd       GURUNG KHEMA DIGIT THREE
 16A63         ; 3.0 ; ; 3 # Nd       MRO DIGIT THREE
 16AC3         ; 3.0 ; ; 3 # Nd       TANGSA DIGIT THREE
@@ -1043,7 +1056,7 @@ FF13          ; 3.0 ; ; 3 # Nd       FULLWIDTH DIGIT THREE
 22998         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-22998
 23B1B         ; 3.0 ; ; 3 # Lo       CJK UNIFIED IDEOGRAPH-23B1B
 
-# Total code points: 194
+# Total code points: 198
 
 # ================================================
 
@@ -1140,6 +1153,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 116D4         ; 4.0 ; ; 4 # Nd       MYANMAR PAO DIGIT FOUR
 116DE         ; 4.0 ; ; 4 # Nd       MYANMAR EASTERN PWO KAREN DIGIT FOUR
 11734         ; 4.0 ; ; 4 # Nd       AHOM DIGIT FOUR
+1188A         ; 4.0 ; ; 4 # Nd       SIRMAURI DIGIT FOUR
 118E4         ; 4.0 ; ; 4 # Nd       WARANG CITI DIGIT FOUR
 11954         ; 4.0 ; ; 4 # Nd       DIVES AKURU DIGIT FOUR
 11BF4         ; 4.0 ; ; 4 # Nd       SUNUWAR DIGIT FOUR
@@ -1199,6 +1213,9 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 1266F         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N51 FLAT
 12679         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N04 FLAT
 1267E         ; 4.0 ; ; 4 # Nl       CUNEIFORM NUMERIC SIGN FOUR N19 FLAT
+12BEA         ; 4.0 ; ; 4 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FOUR LAGAB-A
+12BEF         ; 4.0 ; ; 4 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FOUR N57
+12BF9         ; 4.0 ; ; 4 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FOUR N58
 16134         ; 4.0 ; ; 4 # Nd       GURUNG KHEMA DIGIT FOUR
 16A64         ; 4.0 ; ; 4 # Nd       MRO DIGIT FOUR
 16AC4         ; 4.0 ; ; 4 # Nd       TANGSA DIGIT FOUR
@@ -1231,7 +1248,7 @@ FF14          ; 4.0 ; ; 4 # Nd       FULLWIDTH DIGIT FOUR
 200E2         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-200E2
 2626D         ; 4.0 ; ; 4 # Lo       CJK UNIFIED IDEOGRAPH-2626D
 
-# Total code points: 182
+# Total code points: 186
 
 # ================================================
 
@@ -1332,6 +1349,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 116D5         ; 5.0 ; ; 5 # Nd       MYANMAR PAO DIGIT FIVE
 116DF         ; 5.0 ; ; 5 # Nd       MYANMAR EASTERN PWO KAREN DIGIT FIVE
 11735         ; 5.0 ; ; 5 # Nd       AHOM DIGIT FIVE
+1188B         ; 5.0 ; ; 5 # Nd       SIRMAURI DIGIT FIVE
 118E5         ; 5.0 ; ; 5 # Nd       WARANG CITI DIGIT FIVE
 11955         ; 5.0 ; ; 5 # Nd       DIVES AKURU DIGIT FIVE
 11BF5         ; 5.0 ; ; 5 # Nd       SUNUWAR DIGIT FIVE
@@ -1383,6 +1401,8 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 12670         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N51 FLAT
 1267A         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N04 FLAT
 1267F         ; 5.0 ; ; 5 # Nl       CUNEIFORM NUMERIC SIGN FIVE N19 FLAT
+12BF0         ; 5.0 ; ; 5 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FIVE N57
+12BFA         ; 5.0 ; ; 5 # Nl       PROTO-CUNEIFORM NUMERIC SIGN FIVE N58
 16135         ; 5.0 ; ; 5 # Nd       GURUNG KHEMA DIGIT FIVE
 16A65         ; 5.0 ; ; 5 # Nd       MRO DIGIT FIVE
 16AC5         ; 5.0 ; ; 5 # Nd       TANGSA DIGIT FIVE
@@ -1414,7 +1434,7 @@ FF15          ; 5.0 ; ; 5 # Nd       FULLWIDTH DIGIT FIVE
 1FBF5         ; 5.0 ; ; 5 # Nd       SEGMENTED DIGIT FIVE
 20121         ; 5.0 ; ; 5 # Lo       CJK UNIFIED IDEOGRAPH-20121
 
-# Total code points: 173
+# Total code points: 176
 
 # ================================================
 
@@ -1505,6 +1525,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 116D6         ; 6.0 ; ; 6 # Nd       MYANMAR PAO DIGIT SIX
 116E0         ; 6.0 ; ; 6 # Nd       MYANMAR EASTERN PWO KAREN DIGIT SIX
 11736         ; 6.0 ; ; 6 # Nd       AHOM DIGIT SIX
+1188C         ; 6.0 ; ; 6 # Nd       SIRMAURI DIGIT SIX
 118E6         ; 6.0 ; ; 6 # Nd       WARANG CITI DIGIT SIX
 11956         ; 6.0 ; ; 6 # Nd       DIVES AKURU DIGIT SIX
 11BF6         ; 6.0 ; ; 6 # Nd       SUNUWAR DIGIT SIX
@@ -1541,6 +1562,8 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 12664         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N34 FLAT
 12671         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N51 FLAT
 12680         ; 6.0 ; ; 6 # Nl       CUNEIFORM NUMERIC SIGN SIX N19 FLAT
+12BEB         ; 6.0 ; ; 6 # Nl       PROTO-CUNEIFORM NUMERIC SIGN SIX LAGAB-A
+12BF1         ; 6.0 ; ; 6 # Nl       PROTO-CUNEIFORM NUMERIC SIGN SIX N57
 16136         ; 6.0 ; ; 6 # Nd       GURUNG KHEMA DIGIT SIX
 16A66         ; 6.0 ; ; 6 # Nd       MRO DIGIT SIX
 16AC6         ; 6.0 ; ; 6 # Nd       TANGSA DIGIT SIX
@@ -1570,7 +1593,7 @@ FF16          ; 6.0 ; ; 6 # Nd       FULLWIDTH DIGIT SIX
 1FBF6         ; 6.0 ; ; 6 # Nd       SEGMENTED DIGIT SIX
 20AEA         ; 6.0 ; ; 6 # Lo       CJK UNIFIED IDEOGRAPH-20AEA
 
-# Total code points: 145
+# Total code points: 148
 
 # ================================================
 
@@ -1660,6 +1683,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 116D7         ; 7.0 ; ; 7 # Nd       MYANMAR PAO DIGIT SEVEN
 116E1         ; 7.0 ; ; 7 # Nd       MYANMAR EASTERN PWO KAREN DIGIT SEVEN
 11737         ; 7.0 ; ; 7 # Nd       AHOM DIGIT SEVEN
+1188D         ; 7.0 ; ; 7 # Nd       SIRMAURI DIGIT SEVEN
 118E7         ; 7.0 ; ; 7 # Nd       WARANG CITI DIGIT SEVEN
 11957         ; 7.0 ; ; 7 # Nd       DIVES AKURU DIGIT SEVEN
 11BF7         ; 7.0 ; ; 7 # Nd       SUNUWAR DIGIT SEVEN
@@ -1696,6 +1720,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 12665         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N34 FLAT
 12672         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N51 FLAT
 12681         ; 7.0 ; ; 7 # Nl       CUNEIFORM NUMERIC SIGN SEVEN N19 FLAT
+12BF2         ; 7.0 ; ; 7 # Nl       PROTO-CUNEIFORM NUMERIC SIGN SEVEN N57
 16137         ; 7.0 ; ; 7 # Nd       GURUNG KHEMA DIGIT SEVEN
 16A67         ; 7.0 ; ; 7 # Nd       MRO DIGIT SEVEN
 16AC7         ; 7.0 ; ; 7 # Nd       TANGSA DIGIT SEVEN
@@ -1725,7 +1750,7 @@ FF17          ; 7.0 ; ; 7 # Nd       FULLWIDTH DIGIT SEVEN
 1FBF7         ; 7.0 ; ; 7 # Nd       SEGMENTED DIGIT SEVEN
 20001         ; 7.0 ; ; 7 # Lo       CJK UNIFIED IDEOGRAPH-20001
 
-# Total code points: 146
+# Total code points: 148
 
 # ================================================
 
@@ -1812,6 +1837,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 116D8         ; 8.0 ; ; 8 # Nd       MYANMAR PAO DIGIT EIGHT
 116E2         ; 8.0 ; ; 8 # Nd       MYANMAR EASTERN PWO KAREN DIGIT EIGHT
 11738         ; 8.0 ; ; 8 # Nd       AHOM DIGIT EIGHT
+1188E         ; 8.0 ; ; 8 # Nd       SIRMAURI DIGIT EIGHT
 118E8         ; 8.0 ; ; 8 # Nd       WARANG CITI DIGIT EIGHT
 11958         ; 8.0 ; ; 8 # Nd       DIVES AKURU DIGIT EIGHT
 11BF8         ; 8.0 ; ; 8 # Nd       SUNUWAR DIGIT EIGHT
@@ -1848,6 +1874,8 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 12666         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N34 FLAT
 12673         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N51 FLAT
 12682         ; 8.0 ; ; 8 # Nl       CUNEIFORM NUMERIC SIGN EIGHT N19 FLAT
+12BF3         ; 8.0 ; ; 8 # Nl       PROTO-CUNEIFORM NUMERIC SIGN EIGHT N57
+12BFB         ; 8.0 ; ; 8 # Nl       PROTO-CUNEIFORM NUMERIC SIGN EIGHT N58
 16138         ; 8.0 ; ; 8 # Nd       GURUNG KHEMA DIGIT EIGHT
 16A68         ; 8.0 ; ; 8 # Nd       MRO DIGIT EIGHT
 16AC8         ; 8.0 ; ; 8 # Nd       TANGSA DIGIT EIGHT
@@ -1876,7 +1904,7 @@ FF18          ; 8.0 ; ; 8 # Nd       FULLWIDTH DIGIT EIGHT
 1F109         ; 8.0 ; ; 8 # No       DIGIT EIGHT COMMA
 1FBF8         ; 8.0 ; ; 8 # Nd       SEGMENTED DIGIT EIGHT
 
-# Total code points: 141
+# Total code points: 144
 
 # ================================================
 
@@ -1966,6 +1994,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 116D9         ; 9.0 ; ; 9 # Nd       MYANMAR PAO DIGIT NINE
 116E3         ; 9.0 ; ; 9 # Nd       MYANMAR EASTERN PWO KAREN DIGIT NINE
 11739         ; 9.0 ; ; 9 # Nd       AHOM DIGIT NINE
+1188F         ; 9.0 ; ; 9 # Nd       SIRMAURI DIGIT NINE
 118E9         ; 9.0 ; ; 9 # Nd       WARANG CITI DIGIT NINE
 11959         ; 9.0 ; ; 9 # Nd       DIVES AKURU DIGIT NINE
 11BF9         ; 9.0 ; ; 9 # Nd       SUNUWAR DIGIT NINE
@@ -2002,6 +2031,8 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 12667         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N34 FLAT
 12674         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N51 FLAT
 12683         ; 9.0 ; ; 9 # Nl       CUNEIFORM NUMERIC SIGN NINE N19 FLAT
+12BF4         ; 9.0 ; ; 9 # Nl       PROTO-CUNEIFORM NUMERIC SIGN NINE N57
+12BFC         ; 9.0 ; ; 9 # Nl       PROTO-CUNEIFORM NUMERIC SIGN NINE N58
 16139         ; 9.0 ; ; 9 # Nd       GURUNG KHEMA DIGIT NINE
 16A69         ; 9.0 ; ; 9 # Nd       MRO DIGIT NINE
 16AC9         ; 9.0 ; ; 9 # Nd       TANGSA DIGIT NINE
@@ -2031,7 +2062,7 @@ FF19          ; 9.0 ; ; 9 # Nd       FULLWIDTH DIGIT NINE
 1FBF9         ; 9.0 ; ; 9 # Nd       SEGMENTED DIGIT NINE
 2F890         ; 9.0 ; ; 9 # Lo       CJK COMPATIBILITY IDEOGRAPH-2F890
 
-# Total code points: 147
+# Total code points: 150
 
 # ================================================
 
@@ -2086,6 +2117,8 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 1173A         ; 10.0 ; ; 10 # No       AHOM NUMBER TEN
 118EA         ; 10.0 ; ; 10 # No       WARANG CITI NUMBER TEN
 11C63         ; 10.0 ; ; 10 # No       BHAIKSUKI NUMBER TEN
+12BF5         ; 10.0 ; ; 10 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TEN N57
+12BFD         ; 10.0 ; ; 10 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TEN N58
 16B5B         ; 10.0 ; ; 10 # No       PAHAWH HMONG NUMBER TENS
 16E8A         ; 10.0 ; ; 10 # No       MEDEFAIDRIN NUMBER TEN
 1D2CA         ; 10.0 ; ; 10 # No       KAKTOVIK NUMERAL TEN
@@ -2095,7 +2128,7 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 1ED0A         ; 10.0 ; ; 10 # No       OTTOMAN SIYAQ NUMBER TEN
 1ED37         ; 10.0 ; ; 10 # No       OTTOMAN SIYAQ ALTERNATE NUMBER TEN
 
-# Total code points: 63
+# Total code points: 65
 
 # ================================================
 
@@ -2119,11 +2152,12 @@ F9FD          ; 10.0 ; ; 10 # Lo       CJK COMPATIBILITY IDEOGRAPH-F9FD
 247F          ; 12.0 ; ; 12 # No       PARENTHESIZED NUMBER TWELVE
 2493          ; 12.0 ; ; 12 # No       NUMBER TWELVE FULL STOP
 24EC          ; 12.0 ; ; 12 # No       NEGATIVE CIRCLED NUMBER TWELVE
+12BFE         ; 12.0 ; ; 12 # Nl       PROTO-CUNEIFORM NUMERIC SIGN TWELVE N58
 16E8C         ; 12.0 ; ; 12 # No       MEDEFAIDRIN NUMBER TWELVE
 1D2CC         ; 12.0 ; ; 12 # No       KAKTOVIK NUMERAL TWELVE
 1D2EC         ; 12.0 ; ; 12 # No       MAYAN NUMERAL TWELVE
 
-# Total code points: 9
+# Total code points: 10
 
 # ================================================
 
