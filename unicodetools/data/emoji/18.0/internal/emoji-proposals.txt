@@ -1,0 +1,2032 @@
+# Mapping from emoji to proposals.
+# Format: 
+#     <emoji> ; <property> # <comments> 
+# To reduce the number of lines, the strings are transformed to skeletons:
+#  • gender signs to 'woman'
+#  • skin tone to 'dark'
+#  • emoji presentation characters removed
+# (No proposal splits two strings with the same skeleton.)
+# Mapping from emoji to proposals.
+# Format: 
+#     <emoji> ; <property> # <comments> 
+# To reduce the number of lines, the strings are transformed to skeletons:
+#  • gender signs to 'woman' (♀)
+#  • skin tone to 'dark' (🏿)
+#  • emoji presentation characters removed
+# (This is safe, because no proposal splits two strings with the same skeleton.)
+# Feedback, especially on MISSING ones (at the end), is welcome.
+
+
+# L2/16-127R2
+1F6F7; L2/16-127R2 # 2017 (🛷) sled
+1F94C; L2/16-127R2 # 2017 (🥌) curling stone
+
+# L2/16-206R
+1F6F8; L2/16-206R # 2017 (🛸) flying saucer
+
+# L2/16-308
+1F91F; L2/16-308 # 2017 (🤟) love-you gesture
+1F932; L2/16-308 # 2017 (🤲) palms up together
+1F91F 1F3FF; L2/16-308 # 2017 (🤟🏿) love-you gesture: dark skin tone
+1F932 1F3FF; L2/16-308 # 2017 (🤲🏿) palms up together: dark skin tone
+
+# L2/16-313
+1F929..1F92F; L2/16-313 # 2017..2017 (🤩..🤯) star-struck..exploding head
+1F9D0; L2/16-313 # 2017 (🧐) face with monocle
+
+# L2/16-280, L2/16-282R
+1F931; L2/16-280, L2/16-282R # 2017 (🤱) breast-feeding
+1F931 1F3FF; L2/16-280, L2/16-282R # 2017 (🤱🏿) breast-feeding: dark skin tone
+
+# L2/16-316
+1F963..1F964; L2/16-316 # 2017..2017 (🥣..🥤) bowl with spoon..cup with straw
+1F966; L2/16-316 # 2017 (🥦) broccoli
+1F968..1F969; L2/16-316 # 2017..2017 (🥨..🥩) pretzel..cut of meat
+1F96B; L2/16-316 # 2017 (🥫) canned food
+
+# L2/16-316, L2/16-273
+1F965; L2/16-316, L2/16-273 # 2017 (🥥) coconut
+
+# L2/16-316, L2/16-272
+1F967; L2/16-316, L2/16-272 # 2017 (🥧) pie
+
+# L2/16-295R
+1F992..1F994; L2/16-295R # 2017..2017 (🦒..🦔) giraffe..hedgehog
+
+# L2/16-295R, L2/16-072, L2/16-103, L2/16-289
+1F995; L2/16-295R, L2/16-072, L2/16-103, L2/16-289 # 2017 (🦕) sauropod
+
+# L2/16-300
+1F997; L2/16-300 # 2017 (🦗) cricket
+
+# L2/16-317
+1F9D1..1F9D3; L2/16-317 # 2017..2017 (🧑..🧓) person..older person
+1F9D1 1F3FF; L2/16-317 # 2017 (🧑🏿) person: dark skin tone
+1F9D2 1F3FF; L2/16-317 # 2017 (🧒🏿) child: dark skin tone
+1F9D3 1F3FF; L2/16-317 # 2017 (🧓🏿) older person: dark skin tone
+
+# L2/16-197
+1F9D6; L2/16-197 # 2017 (🧖) person in steamy room
+1F9D6 200D 2640; L2/16-197 # 2017 (🧖‍♀️) woman in steamy room
+1F9D6 1F3FF; L2/16-197 # 2017 (🧖🏿) person in steamy room: dark skin tone
+1F9D6 1F3FF 200D 2640; L2/16-197 # 2017 (🧖🏿‍♀️) woman in steamy room: dark skin tone
+
+# L2/16-247
+1F9D7; L2/16-247 # 2017 (🧗) person climbing
+1F9D7 200D 2640; L2/16-247 # 2017 (🧗‍♀️) woman climbing
+1F9D7 1F3FF; L2/16-247 # 2017 (🧗🏿) person climbing: dark skin tone
+1F9D7 1F3FF 200D 2640; L2/16-247 # 2017 (🧗🏿‍♀️) woman climbing: dark skin tone
+
+# L2/16-279
+1F9D8; L2/16-279 # 2017 (🧘) person in lotus position
+1F9D8 200D 2640; L2/16-279 # 2017 (🧘‍♀️) woman in lotus position
+1F9D8 1F3FF; L2/16-279 # 2017 (🧘🏿) person in lotus position: dark skin tone
+1F9D8 1F3FF 200D 2640; L2/16-279 # 2017 (🧘🏿‍♀️) woman in lotus position: dark skin tone
+
+# L2/16-304
+1F9DA..1F9DB; L2/16-304 # 2017..2017 (🧚..🧛) fairy..vampire
+1F9DD..1F9DF; L2/16-304 # 2017..2017 (🧝..🧟) elf..zombie
+1F9D9 200D 2640; L2/16-304 # 2017 (🧙‍♀️) woman mage
+1F9D9 1F3FF 200D 2640; L2/16-304 # 2017 (🧙🏿‍♀️) woman mage: dark skin tone
+1F9DA 200D 2640; L2/16-304 # 2017 (🧚‍♀️) woman fairy
+1F9DA 1F3FF; L2/16-304 # 2017 (🧚🏿) fairy: dark skin tone
+1F9DA 1F3FF 200D 2640; L2/16-304 # 2017 (🧚🏿‍♀️) woman fairy: dark skin tone
+1F9DB 200D 2640; L2/16-304 # 2017 (🧛‍♀️) woman vampire
+1F9DB 1F3FF; L2/16-304 # 2017 (🧛🏿) vampire: dark skin tone
+1F9DB 1F3FF 200D 2640; L2/16-304 # 2017 (🧛🏿‍♀️) woman vampire: dark skin tone
+1F9DC 200D 2640; L2/16-304 # 2017 (🧜‍♀️) mermaid
+1F9DC 1F3FF 200D 2640; L2/16-304 # 2017 (🧜🏿‍♀️) mermaid: dark skin tone
+1F9DD 200D 2640; L2/16-304 # 2017 (🧝‍♀️) woman elf
+1F9DD 1F3FF; L2/16-304 # 2017 (🧝🏿) elf: dark skin tone
+1F9DD 1F3FF 200D 2640; L2/16-304 # 2017 (🧝🏿‍♀️) woman elf: dark skin tone
+1F9DE 200D 2640; L2/16-304 # 2017 (🧞‍♀️) woman genie
+1F9DF 200D 2640; L2/16-304 # 2017 (🧟‍♀️) woman zombie
+
+# L2/16-304, L2/16-274
+1F9DC; L2/16-304, L2/16-274 # 2017 (🧜) merperson
+1F9DC 1F3FF; L2/16-304, L2/16-274 # 2017 (🧜🏿) merperson: dark skin tone
+
+# L2/16-299
+1F9E0; L2/16-299 # 2017 (🧠) brain
+
+# L2/16-124
+1F9E1; L2/16-124 # 2017 (🧡) orange heart
+
+# L2/16-357, L2/14-174
+1F9E2; L2/16-357, L2/14-174 # 2017 (🧢) billed cap
+
+# L2/16-362
+1F9E3..1F9E5; L2/16-362 # 2017..2017 (🧣..🧥) scarf..coat
+
+# L2/16-240
+1F9E6; L2/16-240 # 2017 (🧦) socks
+
+# L2/15-325
+1F928; L2/15-325 # 2017 (🤨) face with raised eyebrow
+
+# L2/16-024
+1F95F; L2/16-024 # 2017 (🥟) dumpling
+
+# L2/16-025
+1F960; L2/16-025 # 2017 (🥠) fortune cookie
+
+# L2/16-023
+1F962; L2/16-023 # 2017 (🥢) chopsticks
+
+# L2/18-018
+265F; L2/18-018 # 2018 (♟️) chess pawn
+
+# L2/17-343
+267E; L2/17-343 # 2018 (♾️) infinity
+
+# L2/17-277, L2/16-378
+1F6F9; L2/17-277, L2/16-378 # 2018 (🛹) skateboard
+
+# L2/17-277, L2/16-382
+1F94D; L2/17-277, L2/16-382 # 2018 (🥍) lacrosse
+
+# L2/17-277, L2/17-184
+1F94E; L2/17-277, L2/17-184 # 2018 (🥎) softball
+
+# L2/17-277, L2/17-257
+1F94F; L2/17-277, L2/17-257 # 2018 (🥏) flying disc
+
+# L2/17-265
+1F96C; L2/17-265 # 2018 (🥬) leafy green
+
+# L2/17-203, L2/17-211
+1F96D; L2/17-203, L2/17-211 # 2018 (🥭) mango
+
+# L2/17-024
+1F96E; L2/17-024 # 2018 (🥮) moon cake
+
+# L2/17-261
+1F96F; L2/17-261 # 2018 (🥯) bagel
+
+# L2/17-244
+1F970; L2/17-244 # 2018 (🥰) smiling face with hearts
+1F973..1F976; L2/17-244 # 2018..2018 (🥳..🥶) partying face..cold face
+1F97A; L2/17-244 # 2018 (🥺) pleading face
+1F9B8..1F9B9; L2/17-244 # 2018..2018 (🦸..🦹) superhero..supervillain
+1F9B8 200D 2640; L2/17-244 # 2018 (🦸‍♀️) woman superhero
+1F9B8 1F3FF; L2/17-244 # 2018 (🦸🏿) superhero: dark skin tone
+1F9B8 1F3FF 200D 2640; L2/17-244 # 2018 (🦸🏿‍♀️) woman superhero: dark skin tone
+1F9B9 200D 2640; L2/17-244 # 2018 (🦹‍♀️) woman supervillain
+1F9B9 1F3FF; L2/17-244 # 2018 (🦹🏿) supervillain: dark skin tone
+1F9B9 1F3FF 200D 2640; L2/17-244 # 2018 (🦹🏿‍♀️) woman supervillain: dark skin tone
+
+# L2/14-174
+1F32D..1F32F; L2/14-174 # 2015..2015 (🌭..🌯) hot dog..burrito
+1F37E..1F37F; L2/14-174 # 2015..2015 (🍾..🍿) bottle with popping cork..popcorn
+1F3CF..1F3D3; L2/14-174 # 2015..2015 (🏏..🏓) cricket game..ping pong
+1F3F8..1F3FA; L2/14-174 # 2015..2015 (🏸..🏺) badminton..amphora
+1F54B..1F54E; L2/14-174 # 2015..2015 (🕋..🕎) kaaba..menorah
+1F643..1F644; L2/14-174 # 2015..2015 (🙃..🙄) upside-down face..face with rolling eyes
+1F910..1F918; L2/14-174 # 2015..2015 (🤐..🤘) zipper-mouth face..sign of the horns
+1F939; L2/14-174 # 2016 (🤹) person juggling
+1F956..1F957; L2/14-174 # 2016..2016 (🥖..🥗) baguette bread..green salad
+1F980..1F984; L2/14-174 # 2015..2015 (🦀..🦄) crab..unicorn
+1F98B; L2/14-174 # 2016 (🦋) butterfly
+1F98D..1F98E; L2/14-174 # 2016..2016 (🦍..🦎) gorilla..lizard
+1F9C0; L2/14-174 # 2015 (🧀) cheese wedge
+
+# L2/17-113
+1F97C..1F97D; L2/17-113 # 2018..2018 (🥼..🥽) lab coat..goggles
+1F9A0; L2/17-113 # 2018 (🦠) microbe
+1F9EA..1F9EF; L2/17-113 # 2018..2018 (🧪..🧯) test tube..fire extinguisher
+
+# L2/17-271
+1F97E; L2/17-271 # 2018 (🥾) hiking boot
+
+# L2/17-274
+1F97F; L2/17-274 # 2018 (🥿) flat shoe
+
+# L2/17-264
+1F998; L2/17-264 # 2018 (🦘) kangaroo
+
+# L2/17-266
+1F999; L2/17-266 # 2018 (🦙) llama
+
+# L2/17-270
+1F99A; L2/17-270 # 2018 (🦚) peacock
+
+# L2/17-263
+1F99B; L2/17-263 # 2018 (🦛) hippopotamus
+
+# L2/17-280, L2/17-281
+1F99C; L2/17-280, L2/17-281 # 2018 (🦜) parrot
+
+# L2/17-278
+1F99D; L2/17-278 # 2018 (🦝) raccoon
+
+# L2/17-267, L2/17-217, L2/14-174
+1F99E; L2/17-267, L2/17-217, L2/14-174 # 2018 (🦞) lobster
+
+# L2/17-268, L2/17-295
+1F99F; L2/17-268, L2/17-295 # 2018 (🦟) mosquito
+
+# L2/17-404
+1F9A1; L2/17-404 # 2018 (🦡) badger
+
+# L2/17-403
+1F9A2; L2/17-403 # 2018 (🦢) swan
+
+# L2/17-259, L2/17-246
+1F9B4; L2/17-259, L2/17-246 # 2018 (🦴) bone
+
+# L2/17-259, L2/14-174
+1F9B5; L2/17-259, L2/14-174 # 2018 (🦵) leg
+1F9B5 1F3FF; L2/17-259, L2/14-174 # 2018 (🦵🏿) leg: dark skin tone
+
+# L2/17-259
+1F9B6..1F9B7; L2/17-259 # 2018..2018 (🦶..🦷) foot..tooth
+1F9B6 1F3FF; L2/17-259 # 2018 (🦶🏿) foot: dark skin tone
+
+# L2/17-262, L2/14-174
+1F9C1; L2/17-262, L2/14-174 # 2018 (🧁) cupcake
+
+# L2/17-272, L2/16-191
+1F9C2; L2/17-272, L2/16-191 # 2018 (🧂) salt
+
+# L2/17-023
+1F9E7; L2/17-023 # 2018 (🧧) red envelope
+
+# L2/17-025
+1F9E8; L2/17-025 # 2018 (🧨) firecracker
+
+# L2/17-198
+1F9E9; L2/17-198 # 2018 (🧩) puzzle piece
+
+# L2/17-202
+1F9F0; L2/17-202 # 2018 (🧰) toolbox
+
+# L2/17-172
+1F9F1; L2/17-172 # 2018 (🧱) brick
+
+# L2/17-185
+1F9F2; L2/17-185 # 2018 (🧲) magnet
+
+# L2/17-205
+1F9F3; L2/17-205 # 2018 (🧳) luggage
+
+# L2/17-212
+1F9F4; L2/17-212 # 2018 (🧴) lotion bottle
+
+# L2/17-249
+1F9F5..1F9F7; L2/17-249 # 2018..2018 (🧵..🧷) thread..safety pin
+
+# L2/17-273
+1F9F8; L2/17-273 # 2018 (🧸) teddy bear
+
+# L2/17-260
+1F9F9..1F9FD; L2/17-260 # 2018..2018 (🧹..🧽) broom..sponge
+
+# L2/17-208
+1F9FE; L2/17-208 # 2018 (🧾) receipt
+
+# L2/17-058
+1F9FF; L2/17-058 # 2018 (🧿) nazar amulet
+
+# L2/07-257, L2/09-026
+00A9; L2/07-257, L2/09-026 # 2010 (©️) copyright
+00AE; L2/07-257, L2/09-026 # 2010 (®️) registered
+203C; L2/07-257, L2/09-026 # 2010 (‼️) double exclamation mark
+2049; L2/07-257, L2/09-026 # 2010 (⁉️) exclamation question mark
+2122; L2/07-257, L2/09-026 # 2010 (™️) trade mark
+2139; L2/07-257, L2/09-026 # 2010 (ℹ️) information
+2196..2199; L2/07-257, L2/09-026 # 2010..2010 (↖️..↙️) up-left arrow..down-left arrow
+21A9..21AA; L2/07-257, L2/09-026 # 2010..2010 (↩️..↪️) right arrow curving left..left arrow curving right
+231A..231B; L2/07-257, L2/09-026 # 2010..2010 (⌚..⌛) watch..hourglass done
+23E9..23EC; L2/07-257, L2/09-026 # 2010..2010 (⏩..⏬) fast-forward button..fast down button
+23F0; L2/07-257, L2/09-026 # 2010 (⏰) alarm clock
+23F3; L2/07-257, L2/09-026 # 2010 (⏳) hourglass not done
+24C2; L2/07-257, L2/09-026 # 2010 (Ⓜ️) circled M
+25AA..25AB; L2/07-257, L2/09-026 # 2010..2010 (▪️..▫️) black small square..white small square
+25B6; L2/07-257, L2/09-026 # 2010 (▶️) play button
+25C0; L2/07-257, L2/09-026 # 2010 (◀️) reverse button
+25FB..25FE; L2/07-257, L2/09-026 # 2010..2010 (◻️..◾) white medium square..black medium-small square
+2600..2601; L2/07-257, L2/09-026 # 2010..2010 (☀️..☁️) sun..cloud
+2611; L2/07-257, L2/09-026 # 2010 (☑️) check box with check
+2614..2615; L2/07-257, L2/09-026 # 2010..2010 (☔..☕) umbrella with rain drops..hot beverage
+261D; L2/07-257, L2/09-026 # 2010 (☝️) index pointing up
+263A; L2/07-257, L2/09-026 # 2010 (☺️) smiling face
+2648..2653; L2/07-257, L2/09-026 # 2010..2010 (♈..♓) Aries..Pisces
+2668; L2/07-257, L2/09-026 # 2010 (♨️) hot springs
+267B; L2/07-257, L2/09-026 # 2010 (♻️) recycling symbol
+267F; L2/07-257, L2/09-026 # 2010 (♿) wheelchair symbol
+2693; L2/07-257, L2/09-026 # 2010 (⚓) anchor
+26A0..26A1; L2/07-257, L2/09-026 # 2010..2010 (⚠️..⚡) warning..high voltage
+26AA..26AB; L2/07-257, L2/09-026 # 2010..2010 (⚪..⚫) white circle..black circle
+26BD..26BE; L2/07-257, L2/09-026 # 2010..2010 (⚽..⚾) soccer ball..baseball
+26C4..26C5; L2/07-257, L2/09-026 # 2010..2010 (⛄..⛅) snowman without snow..sun behind cloud
+26CE; L2/07-257, L2/09-026 # 2010 (⛎) Ophiuchus
+26D4; L2/07-257, L2/09-026 # 2010 (⛔) no entry
+26EA; L2/07-257, L2/09-026 # 2010 (⛪) church
+26F2..26F3; L2/07-257, L2/09-026 # 2010..2010 (⛲..⛳) fountain..flag in hole
+26F5; L2/07-257, L2/09-026 # 2010 (⛵) sailboat
+26FA; L2/07-257, L2/09-026 # 2010 (⛺) tent
+26FD; L2/07-257, L2/09-026 # 2010 (⛽) fuel pump
+2705; L2/07-257, L2/09-026 # 2010 (✅) check mark button
+270A..270B; L2/07-257, L2/09-026 # 2010..2010 (✊..✋) raised fist..raised hand
+2728; L2/07-257, L2/09-026 # 2010 (✨) sparkles
+274C; L2/07-257, L2/09-026 # 2010 (❌) cross mark
+274E; L2/07-257, L2/09-026 # 2010 (❎) cross mark button
+2753..2755; L2/07-257, L2/09-026 # 2010..2010 (❓..❕) red question mark..white exclamation mark
+2757; L2/07-257, L2/09-026 # 2010 (❗) red exclamation mark
+2795..2797; L2/07-257, L2/09-026 # 2010..2010 (➕..➗) plus..divide
+27B0; L2/07-257, L2/09-026 # 2010 (➰) curly loop
+27BF; L2/07-257, L2/09-026 # 2015 (➿) double curly loop
+2934..2935; L2/07-257, L2/09-026 # 2010..2010 (⤴️..⤵️) right arrow curving up..right arrow curving down
+2B05..2B07; L2/07-257, L2/09-026 # 2010..2010 (⬅️..⬇️) left arrow..down arrow
+2B1B..2B1C; L2/07-257, L2/09-026 # 2010..2010 (⬛..⬜) black large square..white large square
+2B50; L2/07-257, L2/09-026 # 2010 (⭐) star
+2B55; L2/07-257, L2/09-026 # 2010 (⭕) hollow red circle
+3030; L2/07-257, L2/09-026 # 2010 (〰️) wavy dash
+303D; L2/07-257, L2/09-026 # 2010 (〽️) part alternation mark
+3297; L2/07-257, L2/09-026 # 2010 (㊗️) Japanese “congratulations” button
+3299; L2/07-257, L2/09-026 # 2010 (㊙️) Japanese “secret” button
+1F004; L2/07-257, L2/09-026 # 2010 (🀄) mahjong red dragon
+1F0CF; L2/07-257, L2/09-026 # 2010 (🃏) joker
+1F170..1F171; L2/07-257, L2/09-026 # 2010..2010 (🅰️..🅱️) A button (blood type)..B button (blood type)
+1F17E..1F17F; L2/07-257, L2/09-026 # 2010..2010 (🅾️..🅿️) O button (blood type)..P button
+1F18E; L2/07-257, L2/09-026 # 2010 (🆎) AB button (blood type)
+1F191..1F19A; L2/07-257, L2/09-026 # 2010..2010 (🆑..🆚) CL button..VS button
+1F201..1F202; L2/07-257, L2/09-026 # 2010..2010 (🈁..🈂️) Japanese “here” button..Japanese “service charge” button
+1F21A; L2/07-257, L2/09-026 # 2010 (🈚) Japanese “free of charge” button
+1F22F; L2/07-257, L2/09-026 # 2010 (🈯) Japanese “reserved” button
+1F232..1F23A; L2/07-257, L2/09-026 # 2010..2010 (🈲..🈺) Japanese “prohibited” button..Japanese “open for business” button
+1F250..1F251; L2/07-257, L2/09-026 # 2010..2010 (🉐..🉑) Japanese “bargain” button..Japanese “acceptable” button
+1F300..1F30C; L2/07-257, L2/09-026 # 2010..2010 (🌀..🌌) cyclone..milky way
+1F30F; L2/07-257, L2/09-026 # 2010 (🌏) globe showing Asia-Australia
+1F311; L2/07-257, L2/09-026 # 2010 (🌑) new moon
+1F313..1F315; L2/07-257, L2/09-026 # 2010..2010 (🌓..🌕) first quarter moon..full moon
+1F319; L2/07-257, L2/09-026 # 2010 (🌙) crescent moon
+1F31B; L2/07-257, L2/09-026 # 2010 (🌛) first quarter moon face
+1F31F..1F320; L2/07-257, L2/09-026 # 2010..2010 (🌟..🌠) glowing star..shooting star
+1F330..1F331; L2/07-257, L2/09-026 # 2010..2010 (🌰..🌱) chestnut..seedling
+1F334..1F335; L2/07-257, L2/09-026 # 2010..2010 (🌴..🌵) palm tree..cactus
+1F337..1F34A; L2/07-257, L2/09-026 # 2010..2010 (🌷..🍊) tulip..tangerine
+1F34C..1F34F; L2/07-257, L2/09-026 # 2010..2010 (🍌..🍏) banana..green apple
+1F351..1F37B; L2/07-257, L2/09-026 # 2010..2010 (🍑..🍻) peach..clinking beer mugs
+1F380..1F393; L2/07-257, L2/09-026 # 2010..2010 (🎀..🎓) ribbon..graduation cap
+1F3A0..1F3C4; L2/07-257, L2/09-026 # 2010..2010 (🎠..🏄) carousel horse..person surfing
+1F3C6..1F3C8; L2/07-257, L2/09-026 # 2010..2010 (🏆..🏈) trophy..american football
+1F3CA; L2/07-257, L2/09-026 # 2010 (🏊) person swimming
+1F3E0..1F3E3; L2/07-257, L2/09-026 # 2010..2010 (🏠..🏣) house..Japanese post office
+1F3E5..1F3F0; L2/07-257, L2/09-026 # 2010..2010 (🏥..🏰) hospital..castle
+1F40C..1F40E; L2/07-257, L2/09-026 # 2010..2010 (🐌..🐎) snail..horse
+1F411..1F412; L2/07-257, L2/09-026 # 2010..2010 (🐑..🐒) ewe..monkey
+1F414; L2/07-257, L2/09-026 # 2010 (🐔) chicken
+1F417..1F429; L2/07-257, L2/09-026 # 2010..2010 (🐗..🐩) boar..poodle
+1F42B..1F43E; L2/07-257, L2/09-026 # 2010..2010 (🐫..🐾) two-hump camel..paw prints
+1F440; L2/07-257, L2/09-026 # 2010 (👀) eyes
+1F442..1F464; L2/07-257, L2/09-026 # 2010..2010 (👂..👤) ear..bust in silhouette
+1F466..1F46B; L2/07-257, L2/09-026 # 2010..2010 (👦..👫) boy..woman and man holding hands
+1F46E..1F4AC; L2/07-257, L2/09-026 # 2010..2010 (👮..💬) police officer..speech balloon
+1F4AE..1F4B5; L2/07-257, L2/09-026 # 2010..2010 (💮..💵) white flower..dollar banknote
+1F4B8..1F4EB; L2/07-257, L2/09-026 # 2010..2010 (💸..📫) money with wings..closed mailbox with raised flag
+1F4EE; L2/07-257, L2/09-026 # 2010 (📮) postbox
+1F4F0..1F4F4; L2/07-257, L2/09-026 # 2010..2010 (📰..📴) newspaper..mobile phone off
+1F4F6..1F4F7; L2/07-257, L2/09-026 # 2010..2010 (📶..📷) antenna bars..camera
+1F4F9..1F4FC; L2/07-257, L2/09-026 # 2010..2010 (📹..📼) video camera..videocassette
+1F503; L2/07-257, L2/09-026 # 2010 (🔃) clockwise vertical arrows
+1F50A..1F514; L2/07-257, L2/09-026 # 2010..2010 (🔊..🔔) speaker high volume..bell
+1F516..1F52B; L2/07-257, L2/09-026 # 2010..2010 (🔖..🔫) bookmark..water pistol
+1F52E..1F53D; L2/07-257, L2/09-026 # 2010..2010 (🔮..🔽) crystal ball..downwards button
+1F550..1F55B; L2/07-257, L2/09-026 # 2010..2010 (🕐..🕛) one o’clock..twelve o’clock
+1F5FB..1F5FF; L2/07-257, L2/09-026 # 2010..2010 (🗻..🗿) mount fuji..moai
+1F601..1F606; L2/07-257, L2/09-026 # 2010..2010 (😁..😆) beaming face with smiling eyes..grinning squinting face
+1F609..1F60D; L2/07-257, L2/09-026 # 2010..2010 (😉..😍) winking face..smiling face with heart-eyes
+1F60F; L2/07-257, L2/09-026 # 2010 (😏) smirking face
+1F612..1F614; L2/07-257, L2/09-026 # 2010..2010 (😒..😔) unamused face..pensive face
+1F616; L2/07-257, L2/09-026 # 2010 (😖) confounded face
+1F618; L2/07-257, L2/09-026 # 2010 (😘) face blowing a kiss
+1F61A; L2/07-257, L2/09-026 # 2010 (😚) kissing face with closed eyes
+1F61C..1F61E; L2/07-257, L2/09-026 # 2010..2010 (😜..😞) winking face with tongue..disappointed face
+1F620..1F625; L2/07-257, L2/09-026 # 2010..2010 (😠..😥) angry face..sad but relieved face
+1F628..1F62B; L2/07-257, L2/09-026 # 2010..2010 (😨..😫) fearful face..tired face
+1F62D; L2/07-257, L2/09-026 # 2010 (😭) loudly crying face
+1F630..1F633; L2/07-257, L2/09-026 # 2010..2010 (😰..😳) anxious face with sweat..flushed face
+1F635; L2/07-257, L2/09-026 # 2010 (😵) face with crossed-out eyes
+1F637..1F640; L2/07-257, L2/09-026 # 2010..2010 (😷..🙀) face with medical mask..weary cat
+1F645..1F64F; L2/07-257, L2/09-026 # 2010..2010 (🙅..🙏) person gesturing NO..folded hands
+1F680; L2/07-257, L2/09-026 # 2010 (🚀) rocket
+1F683..1F685; L2/07-257, L2/09-026 # 2010..2010 (🚃..🚅) railway car..bullet train
+1F687; L2/07-257, L2/09-026 # 2010 (🚇) metro
+1F689; L2/07-257, L2/09-026 # 2010 (🚉) station
+1F68C; L2/07-257, L2/09-026 # 2010 (🚌) bus
+1F68F; L2/07-257, L2/09-026 # 2010 (🚏) bus stop
+1F691..1F693; L2/07-257, L2/09-026 # 2010..2010 (🚑..🚓) ambulance..police car
+1F695; L2/07-257, L2/09-026 # 2010 (🚕) taxi
+1F697; L2/07-257, L2/09-026 # 2010 (🚗) automobile
+1F699..1F69A; L2/07-257, L2/09-026 # 2010..2010 (🚙..🚚) sport utility vehicle..delivery truck
+1F6A2; L2/07-257, L2/09-026 # 2010 (🚢) ship
+1F6A4..1F6A5; L2/07-257, L2/09-026 # 2010..2010 (🚤..🚥) speedboat..horizontal traffic light
+1F6A7..1F6AD; L2/07-257, L2/09-026 # 2010..2010 (🚧..🚭) construction..no smoking
+1F6B2; L2/07-257, L2/09-026 # 2010 (🚲) bicycle
+1F6B6; L2/07-257, L2/09-026 # 2010 (🚶) person walking
+1F6B9..1F6BE; L2/07-257, L2/09-026 # 2010..2010 (🚹..🚾) men’s room..water closet
+1F6C0; L2/07-257, L2/09-026 # 2010 (🛀) person taking bath
+0023 20E3; L2/07-257, L2/09-026 # 2010 (#️⃣) keycap: #
+0030 20E3; L2/07-257, L2/09-026 # 2010 (0️⃣) keycap: 0
+0031 20E3; L2/07-257, L2/09-026 # 2010 (1️⃣) keycap: 1
+0032 20E3; L2/07-257, L2/09-026 # 2010 (2️⃣) keycap: 2
+0033 20E3; L2/07-257, L2/09-026 # 2010 (3️⃣) keycap: 3
+0034 20E3; L2/07-257, L2/09-026 # 2010 (4️⃣) keycap: 4
+0035 20E3; L2/07-257, L2/09-026 # 2010 (5️⃣) keycap: 5
+0036 20E3; L2/07-257, L2/09-026 # 2010 (6️⃣) keycap: 6
+0037 20E3; L2/07-257, L2/09-026 # 2010 (7️⃣) keycap: 7
+0038 20E3; L2/07-257, L2/09-026 # 2010 (8️⃣) keycap: 8
+0039 20E3; L2/07-257, L2/09-026 # 2010 (9️⃣) keycap: 9
+1F1E8 1F1F3; L2/07-257, L2/09-026 # 2010 (🇨🇳) flag: China
+1F1E9 1F1EA; L2/07-257, L2/09-026 # 2010 (🇩🇪) flag: Germany
+1F1EA 1F1F8; L2/07-257, L2/09-026 # 2010 (🇪🇸) flag: Spain
+1F1EB 1F1F7; L2/07-257, L2/09-026 # 2010 (🇫🇷) flag: France
+1F1EC 1F1E7; L2/07-257, L2/09-026 # 2010 (🇬🇧) flag: United Kingdom
+1F1EE 1F1F9; L2/07-257, L2/09-026 # 2010 (🇮🇹) flag: Italy
+1F1EF 1F1F5; L2/07-257, L2/09-026 # 2010 (🇯🇵) flag: Japan
+1F1F0 1F1F7; L2/07-257, L2/09-026 # 2010 (🇰🇷) flag: South Korea
+1F1F7 1F1FA; L2/07-257, L2/09-026 # 2010 (🇷🇺) flag: Russia
+1F1FA 1F1F8; L2/07-257, L2/09-026 # 2010 (🇺🇸) flag: United States
+
+# L2/13-207, L2/14-093
+2194..2195; L2/13-207, L2/14-093 # 2010..2010 (↔️..↕️) left-right arrow..up-down arrow
+2328; L2/13-207, L2/14-093 # 2015 (⌨️) keyboard
+260E; L2/13-207, L2/14-093 # 2010 (☎️) telephone
+2660; L2/13-207, L2/14-093 # 2010 (♠️) spade suit
+2663; L2/13-207, L2/14-093 # 2010 (♣️) club suit
+2665..2666; L2/13-207, L2/14-093 # 2010..2010 (♥️..♦️) heart suit..diamond suit
+2702; L2/13-207, L2/14-093 # 2010 (✂️) scissors
+2708..2709; L2/13-207, L2/14-093 # 2010..2010 (✈️..✉️) airplane..envelope
+270C..270D; L2/13-207, L2/14-093 # 2010..2014 (✌️..✍️) victory hand..writing hand
+270F; L2/13-207, L2/14-093 # 2010 (✏️) pencil
+2712; L2/13-207, L2/14-093 # 2010 (✒️) black nib
+2714; L2/13-207, L2/14-093 # 2010 (✔️) check mark
+2716; L2/13-207, L2/14-093 # 2010 (✖️) multiply
+2733..2734; L2/13-207, L2/14-093 # 2010..2010 (✳️..✴️) eight-spoked asterisk..eight-pointed star
+2744; L2/13-207, L2/14-093 # 2010 (❄️) snowflake
+2747; L2/13-207, L2/14-093 # 2010 (❇️) sparkle
+2763..2764; L2/13-207, L2/14-093 # 2015..2010 (❣️..❤️) heart exclamation..red heart
+27A1; L2/13-207, L2/14-093 # 2010 (➡️) right arrow
+
+# L2/11-052
+23ED..23EE; L2/11-052 # 2014..2014 (⏭️..⏮️) next track button..last track button
+23F8..23FA; L2/11-052 # 2014..2014 (⏸️..⏺️) pause button..record button
+262A; L2/11-052 # 2014 (☪️) star and crescent
+262F; L2/11-052 # 2014 (☯️) yin yang
+2638..2639; L2/11-052 # 2014..2014 (☸️..☹️) wheel of dharma..frowning face
+26F7; L2/11-052 # 2014 (⛷️) skier
+271D; L2/11-052 # 2014 (✝️) latin cross
+2721; L2/11-052 # 2014 (✡️) star of David
+1F30D..1F30E; L2/11-052 # 2014..2014 (🌍..🌎) globe showing Europe-Africa..globe showing Americas
+1F31C; L2/11-052 # 2014 (🌜) last quarter moon face
+1F321; L2/11-052 # 2014 (🌡️) thermometer
+1F324..1F32C; L2/11-052 # 2014..2014 (🌤️..🌬️) sun behind small cloud..wind face
+1F336; L2/11-052 # 2014 (🌶️) hot pepper
+1F37D; L2/11-052 # 2014 (🍽️) fork and knife with plate
+1F396..1F397; L2/11-052 # 2014..2014 (🎖️..🎗️) military medal..reminder ribbon
+1F399..1F39B; L2/11-052 # 2014..2014 (🎙️..🎛️) studio microphone..control knobs
+1F39E..1F39F; L2/11-052 # 2014..2014 (🎞️..🎟️) film frames..admission tickets
+1F3CB..1F3CE; L2/11-052 # 2014..2014 (🏋️..🏎️) person lifting weights..racing car
+1F3D4..1F3DF; L2/11-052 # 2014..2014 (🏔️..🏟️) snow-capped mountain..stadium
+1F3F3; L2/11-052 # 2014 (🏳️) white flag
+1F3F5; L2/11-052 # 2014 (🏵️) rosette
+1F3F7; L2/11-052 # 2014 (🏷️) label
+1F408; L2/11-052 # 2014 (🐈) cat
+1F415; L2/11-052 # 2014 (🐕) dog
+1F441; L2/11-052 # 2014 (👁️) eye
+1F4EC..1F4ED; L2/11-052 # 2014..2014 (📬..📭) open mailbox with raised flag..open mailbox with lowered flag
+1F4FD; L2/11-052 # 2014 (📽️) film projector
+1F508; L2/11-052 # 2014 (🔈) speaker low volume
+1F549..1F54A; L2/11-052 # 2014..2014 (🕉️..🕊️) om..dove
+1F55C..1F567; L2/11-052 # 2014..2014 (🕜..🕧) one-thirty..twelve-thirty
+1F56F..1F570; L2/11-052 # 2014..2014 (🕯️..🕰️) candle..mantelpiece clock
+1F573..1F579; L2/11-052 # 2014..2014 (🕳️..🕹️) hole..joystick
+1F587; L2/11-052 # 2014 (🖇️) linked paperclips
+1F58A..1F58D; L2/11-052 # 2014..2014 (🖊️..🖍️) pen..crayon
+1F590; L2/11-052 # 2014 (🖐️) hand with fingers splayed
+1F5A5; L2/11-052 # 2014 (🖥️) desktop computer
+1F5A8; L2/11-052 # 2014 (🖨️) printer
+1F5B1..1F5B2; L2/11-052 # 2014..2014 (🖱️..🖲️) computer mouse..trackball
+1F5BC; L2/11-052 # 2014 (🖼️) framed picture
+1F5C2..1F5C4; L2/11-052 # 2014..2014 (🗂️..🗄️) card index dividers..file cabinet
+1F5D1..1F5D3; L2/11-052 # 2014..2014 (🗑️..🗓️) wastebasket..spiral calendar
+1F5DC..1F5DE; L2/11-052 # 2014..2014 (🗜️..🗞️) clamp..rolled-up newspaper
+1F5E1; L2/11-052 # 2014 (🗡️) dagger
+1F5E3; L2/11-052 # 2014 (🗣️) speaking head
+1F5E8; L2/11-052 # 2015 (🗨️) left speech bubble
+1F5EF; L2/11-052 # 2014 (🗯️) right anger bubble
+1F5F3; L2/11-052 # 2014 (🗳️) ballot box with ballot
+1F5FA; L2/11-052 # 2014 (🗺️) world map
+1F610; L2/11-052 # 2014 (😐) neutral face
+1F68D; L2/11-052 # 2014 (🚍) oncoming bus
+1F694; L2/11-052 # 2014 (🚔) oncoming police car
+1F698; L2/11-052 # 2014 (🚘) oncoming automobile
+1F6CB; L2/11-052 # 2014 (🛋️) couch and lamp
+1F6CD..1F6CF; L2/11-052 # 2014..2014 (🛍️..🛏️) shopping bags..bed
+1F6E0..1F6E5; L2/11-052 # 2014..2014 (🛠️..🛥️) hammer and wrench..motor boat
+1F6E9; L2/11-052 # 2014 (🛩️) small airplane
+1F6F0; L2/11-052 # 2014 (🛰️) satellite
+1F6F3; L2/11-052 # 2014 (🛳️) passenger ship
+
+# L2/07-259
+2602..2603; L2/07-259 # 2014..2014 (☂️..☃️) umbrella..snowman
+26C8; L2/07-259 # 2014 (⛈️) cloud with lightning and rain
+26CF; L2/07-259 # 2014 (⛏️) pick
+26D1; L2/07-259 # 2014 (⛑️) rescue worker’s helmet
+26D3; L2/07-259 # 2014 (⛓️) chains
+26E9; L2/07-259 # 2014 (⛩️) shinto shrine
+26F0..26F1; L2/07-259 # 2014..2014 (⛰️..⛱️) mountain..umbrella on ground
+26F4; L2/07-259 # 2014 (⛴️) ferry
+26F8..26F9; L2/07-259 # 2014..2014 (⛸️..⛹️) ice skate..person bouncing ball
+
+# L2/16-160
+2640; L2/16-160 # 2016 (♀️) female sign
+2642; L2/16-160 # 2016 (♂️) male sign
+2695; L2/16-160 # 2016 (⚕️) medical symbol
+1F468 200D 2695; L2/16-160 # 2016 (👨‍⚕️) man health worker
+1F468 200D 2696; L2/16-160 # 2016 (👨‍⚖️) man judge
+1F468 200D 2708; L2/16-160 # 2016 (👨‍✈️) man pilot
+1F468 200D 1F33E; L2/16-160 # 2016 (👨‍🌾) man farmer
+1F468 200D 1F373; L2/16-160 # 2016 (👨‍🍳) man cook
+1F468 200D 1F393; L2/16-160 # 2016 (👨‍🎓) man student
+1F468 200D 1F3A4; L2/16-160 # 2016 (👨‍🎤) man singer
+1F468 200D 1F3A8; L2/16-160 # 2016 (👨‍🎨) man artist
+1F468 200D 1F3EB; L2/16-160 # 2016 (👨‍🏫) man teacher
+1F468 200D 1F3ED; L2/16-160 # 2016 (👨‍🏭) man factory worker
+1F468 200D 1F4BB; L2/16-160 # 2016 (👨‍💻) man technologist
+1F468 200D 1F4BC; L2/16-160 # 2016 (👨‍💼) man office worker
+1F468 200D 1F527; L2/16-160 # 2016 (👨‍🔧) man mechanic
+1F468 200D 1F52C; L2/16-160 # 2016 (👨‍🔬) man scientist
+1F468 200D 1F680; L2/16-160 # 2016 (👨‍🚀) man astronaut
+1F468 200D 1F692; L2/16-160 # 2016 (👨‍🚒) man firefighter
+1F468 1F3FF 200D 2695; L2/16-160 # 2016 (👨🏿‍⚕️) man health worker: dark skin tone
+1F468 1F3FF 200D 2696; L2/16-160 # 2016 (👨🏿‍⚖️) man judge: dark skin tone
+1F468 1F3FF 200D 2708; L2/16-160 # 2016 (👨🏿‍✈️) man pilot: dark skin tone
+1F468 1F3FF 200D 1F33E; L2/16-160 # 2016 (👨🏿‍🌾) man farmer: dark skin tone
+1F468 1F3FF 200D 1F373; L2/16-160 # 2016 (👨🏿‍🍳) man cook: dark skin tone
+1F468 1F3FF 200D 1F393; L2/16-160 # 2016 (👨🏿‍🎓) man student: dark skin tone
+1F468 1F3FF 200D 1F3A4; L2/16-160 # 2016 (👨🏿‍🎤) man singer: dark skin tone
+1F468 1F3FF 200D 1F3A8; L2/16-160 # 2016 (👨🏿‍🎨) man artist: dark skin tone
+1F468 1F3FF 200D 1F3EB; L2/16-160 # 2016 (👨🏿‍🏫) man teacher: dark skin tone
+1F468 1F3FF 200D 1F3ED; L2/16-160 # 2016 (👨🏿‍🏭) man factory worker: dark skin tone
+1F468 1F3FF 200D 1F4BB; L2/16-160 # 2016 (👨🏿‍💻) man technologist: dark skin tone
+1F468 1F3FF 200D 1F4BC; L2/16-160 # 2016 (👨🏿‍💼) man office worker: dark skin tone
+1F468 1F3FF 200D 1F527; L2/16-160 # 2016 (👨🏿‍🔧) man mechanic: dark skin tone
+1F468 1F3FF 200D 1F52C; L2/16-160 # 2016 (👨🏿‍🔬) man scientist: dark skin tone
+1F468 1F3FF 200D 1F680; L2/16-160 # 2016 (👨🏿‍🚀) man astronaut: dark skin tone
+1F468 1F3FF 200D 1F692; L2/16-160 # 2016 (👨🏿‍🚒) man firefighter: dark skin tone
+1F469 200D 2695; L2/16-160 # 2016 (👩‍⚕️) woman health worker
+1F469 200D 2696; L2/16-160 # 2016 (👩‍⚖️) woman judge
+1F469 200D 2708; L2/16-160 # 2016 (👩‍✈️) woman pilot
+1F469 200D 1F33E; L2/16-160 # 2016 (👩‍🌾) woman farmer
+1F469 200D 1F373; L2/16-160 # 2016 (👩‍🍳) woman cook
+1F469 200D 1F393; L2/16-160 # 2016 (👩‍🎓) woman student
+1F469 200D 1F3A4; L2/16-160 # 2016 (👩‍🎤) woman singer
+1F469 200D 1F3A8; L2/16-160 # 2016 (👩‍🎨) woman artist
+1F469 200D 1F3EB; L2/16-160 # 2016 (👩‍🏫) woman teacher
+1F469 200D 1F3ED; L2/16-160 # 2016 (👩‍🏭) woman factory worker
+1F469 200D 1F4BB; L2/16-160 # 2016 (👩‍💻) woman technologist
+1F469 200D 1F4BC; L2/16-160 # 2016 (👩‍💼) woman office worker
+1F469 200D 1F527; L2/16-160 # 2016 (👩‍🔧) woman mechanic
+1F469 200D 1F52C; L2/16-160 # 2016 (👩‍🔬) woman scientist
+1F469 200D 1F680; L2/16-160 # 2016 (👩‍🚀) woman astronaut
+1F469 200D 1F692; L2/16-160 # 2016 (👩‍🚒) woman firefighter
+1F469 1F3FF 200D 2695; L2/16-160 # 2016 (👩🏿‍⚕️) woman health worker: dark skin tone
+1F469 1F3FF 200D 2696; L2/16-160 # 2016 (👩🏿‍⚖️) woman judge: dark skin tone
+1F469 1F3FF 200D 2708; L2/16-160 # 2016 (👩🏿‍✈️) woman pilot: dark skin tone
+1F469 1F3FF 200D 1F33E; L2/16-160 # 2016 (👩🏿‍🌾) woman farmer: dark skin tone
+1F469 1F3FF 200D 1F373; L2/16-160 # 2016 (👩🏿‍🍳) woman cook: dark skin tone
+1F469 1F3FF 200D 1F393; L2/16-160 # 2016 (👩🏿‍🎓) woman student: dark skin tone
+1F469 1F3FF 200D 1F3A4; L2/16-160 # 2016 (👩🏿‍🎤) woman singer: dark skin tone
+1F469 1F3FF 200D 1F3A8; L2/16-160 # 2016 (👩🏿‍🎨) woman artist: dark skin tone
+1F469 1F3FF 200D 1F3EB; L2/16-160 # 2016 (👩🏿‍🏫) woman teacher: dark skin tone
+1F469 1F3FF 200D 1F3ED; L2/16-160 # 2016 (👩🏿‍🏭) woman factory worker: dark skin tone
+1F469 1F3FF 200D 1F4BB; L2/16-160 # 2016 (👩🏿‍💻) woman technologist: dark skin tone
+1F469 1F3FF 200D 1F4BC; L2/16-160 # 2016 (👩🏿‍💼) woman office worker: dark skin tone
+1F469 1F3FF 200D 1F527; L2/16-160 # 2016 (👩🏿‍🔧) woman mechanic: dark skin tone
+1F469 1F3FF 200D 1F52C; L2/16-160 # 2016 (👩🏿‍🔬) woman scientist: dark skin tone
+1F469 1F3FF 200D 1F680; L2/16-160 # 2016 (👩🏿‍🚀) woman astronaut: dark skin tone
+1F469 1F3FF 200D 1F692; L2/16-160 # 2016 (👩🏿‍🚒) woman firefighter: dark skin tone
+
+# L2/17-298
+1F6D5; L2/17-298 # 2019 (🛕) hindu temple
+
+# L2/18-086
+1F6FA; L2/18-086 # 2019 (🛺) auto rickshaw
+
+# L2/18-141
+1F7E0..1F7EB; L2/18-141 # 2019..2019 (🟠..🟫) orange circle..brown square
+1F90D..1F90E; L2/18-141 # 2019..2019 (🤍..🤎) white heart..brown heart
+
+# L2/18-166
+1FA71..1FA73; L2/18-166 # 2019..2019 (🩱..🩳) one-piece swimsuit..shorts
+
+# L2/18-144
+1F97B; L2/18-144 # 2019 (🥻) sari
+
+# L2/18-139
+1F90F; L2/18-139 # 2019 (🤏) pinching hand
+1F90F 1F3FF; L2/18-139 # 2019 (🤏🏿) pinching hand: dark skin tone
+
+# L2/17-381
+1F93F; L2/17-381 # 2019 (🤿) diving mask
+
+# L2/17-432
+1F971; L2/17-432 # 2019 (🥱) yawning face
+
+# L2/18-074
+1F9A5; L2/18-074 # 2019 (🦥) sloth
+
+# L2/18-093
+1F9A6; L2/18-093 # 2019 (🦦) otter
+
+# L2/18-137
+1F9A7; L2/18-137 # 2019 (🦧) orangutan
+
+# L2/18-098
+1F9A9; L2/18-098 # 2019 (🦩) flamingo
+
+# L2/18-123
+1F9AA; L2/18-123 # 2019 (🦪) oyster
+
+# L2/18-080
+1F9AE..1F9AF; L2/18-080 # 2019..2019 (🦮..🦯) guide dog..white cane
+1F9BA..1F9BF; L2/18-080 # 2019..2019 (🦺..🦿) safety vest..mechanical leg
+1F9BB 1F3FF; L2/18-080 # 2019 (🦻🏿) ear with hearing aid: dark skin tone
+
+# L2/18-130
+1F9C3; L2/18-130 # 2019 (🧃) beverage box
+
+# L2/18-076
+1F9C4; L2/18-076 # 2019 (🧄) garlic
+
+# L2/18-077
+1F9C5; L2/18-077 # 2019 (🧅) onion
+
+# L2/18-125
+1F9C6; L2/18-125 # 2019 (🧆) falafel
+
+# L2/18-087
+1F9C7; L2/18-087 # 2019 (🧇) waffle
+
+# L2/18-112
+1F9C8; L2/18-112 # 2019 (🧈) butter
+
+# L2/18-122
+1F9C9; L2/18-122 # 2019 (🧉) mate
+
+# L2/18-111
+1F9CA; L2/18-111 # 2019 (🧊) ice
+
+# L2/18-091
+1F9CD..1F9CE; L2/18-091 # 2019..2019 (🧍..🧎) person standing..person kneeling
+1FA91; L2/18-091 # 2019 (🪑) chair
+1F9CD 200D 2640; L2/18-091 # 2019 (🧍‍♀️) woman standing
+1F9CD 1F3FF; L2/18-091 # 2019 (🧍🏿) person standing: dark skin tone
+1F9CD 1F3FF 200D 2640; L2/18-091 # 2019 (🧍🏿‍♀️) woman standing: dark skin tone
+1F9CE 200D 2640; L2/18-091 # 2019 (🧎‍♀️) woman kneeling
+1F9CE 1F3FF; L2/18-091 # 2019 (🧎🏿) person kneeling: dark skin tone
+1F9CE 1F3FF 200D 2640; L2/18-091 # 2019 (🧎🏿‍♀️) woman kneeling: dark skin tone
+
+# L2/18-229
+1F9CF; L2/18-229 # 2019 (🧏) deaf person
+1F9CF 200D 2640; L2/18-229 # 2019 (🧏‍♀️) deaf woman
+1F9CF 1F3FF; L2/18-229 # 2019 (🧏🏿) deaf person: dark skin tone
+1F9CF 1F3FF 200D 2640; L2/18-229 # 2019 (🧏🏿‍♀️) deaf woman: dark skin tone
+
+# L2/18-113
+1FA70; L2/18-113 # 2019 (🩰) ballet shoes
+
+# L2/18-092
+1FA78; L2/18-092 # 2019 (🩸) drop of blood
+
+# L2/18-146
+1FA79; L2/18-146 # 2019 (🩹) adhesive bandage
+
+# L2/18-140
+1FA7A; L2/18-140 # 2019 (🩺) stethoscope
+
+# L2/18-129
+1FA80; L2/18-129 # 2019 (🪀) yo-yo
+
+# L2/18-135
+1FA81; L2/18-135 # 2019 (🪁) kite
+
+# L2/18-003
+1FA82; L2/18-003 # 2019 (🪂) parachute
+
+# L2/18-127
+1FA90; L2/18-127 # 2019 (🪐) ringed planet
+
+# L2/17-431
+1FA92; L2/17-431 # 2019 (🪒) razor
+
+# L2/18-002
+1FA93; L2/18-002 # 2019 (🪓) axe
+
+# L2/17-356, L2/18-029, L2/18-033
+1FA94; L2/17-356, L2/18-029, L2/18-033 # 2019 (🪔) diya lamp
+
+# L2/18-124
+1FA95; L2/18-124 # 2019 (🪕) banjo
+
+# L2/14-173, L2/14-154
+1F3FB..1F3FF; L2/14-173, L2/14-154 # 2015..2015 (🏻..🏿) light skin tone..dark skin tone
+
+# L2/13-207
+2604; L2/13-207 # 2015 (☄️) comet
+2618; L2/13-207 # 2015 (☘️) shamrock
+2620; L2/13-207 # 2015 (☠️) skull and crossbones
+2622..2623; L2/13-207 # 2015..2015 (☢️..☣️) radioactive..biohazard
+262E; L2/13-207 # 2015 (☮️) peace symbol
+2692; L2/13-207 # 2015 (⚒️) hammer and pick
+2694; L2/13-207 # 2015 (⚔️) crossed swords
+2696..2697; L2/13-207 # 2015..2015 (⚖️..⚗️) balance scale..alembic
+2699; L2/13-207 # 2015 (⚙️) gear
+269B..269C; L2/13-207 # 2015..2015 (⚛️..⚜️) atom symbol..fleur-de-lis
+26B0..26B1; L2/13-207 # 2015..2015 (⚰️..⚱️) coffin..funeral urn
+
+# L2/14-235
+2626; L2/14-235 # 2015 (☦️) orthodox cross
+1F4FF; L2/14-235 # 2015 (📿) prayer beads
+1F6D0; L2/14-235 # 2015 (🛐) place of worship
+
+# L2/08-246
+23CF; L2/08-246 # 2015 (⏏️) eject button
+
+# L2/09-114
+23EF; L2/09-114 # 2015 (⏯️) play or pause button
+23F1..23F2; L2/09-114 # 2015..2015 (⏱️..⏲️) stopwatch..timer clock
+1F312; L2/09-114 # 2015 (🌒) waxing crescent moon
+1F316..1F318; L2/09-114 # 2015..2015 (🌖..🌘) waning gibbous moon..waning crescent moon
+1F31A; L2/09-114 # 2015 (🌚) new moon face
+1F31D..1F31E; L2/09-114 # 2015..2015 (🌝..🌞) full moon face..sun with face
+1F332..1F333; L2/09-114 # 2015..2015 (🌲..🌳) evergreen tree..deciduous tree
+1F34B; L2/09-114 # 2015 (🍋) lemon
+1F350; L2/09-114 # 2015 (🍐) pear
+1F37C; L2/09-114 # 2015 (🍼) baby bottle
+1F3C9; L2/09-114 # 2015 (🏉) rugby football
+1F3E4; L2/09-114 # 2015 (🏤) post office
+1F400; L2/09-114 # 2015 (🐀) rat
+1F402..1F404; L2/09-114 # 2015..2015 (🐂..🐄) ox..cow
+1F40A; L2/09-114 # 2015 (🐊) crocodile
+1F410; L2/09-114 # 2015 (🐐) goat
+1F413; L2/09-114 # 2015 (🐓) rooster
+1F416; L2/09-114 # 2015 (🐖) pig
+1F465; L2/09-114 # 2015 (👥) busts in silhouette
+1F4AD; L2/09-114 # 2015 (💭) thought balloon
+1F4B6..1F4B7; L2/09-114 # 2015..2015 (💶..💷) euro banknote..pound banknote
+1F4EF; L2/09-114 # 2015 (📯) postal horn
+1F4F5; L2/09-114 # 2015 (📵) no mobile phones
+1F500..1F502; L2/09-114 # 2015..2015 (🔀..🔂) shuffle tracks button..repeat single button
+1F505..1F507; L2/09-114 # 2015..2015 (🔅..🔇) dim button..muted speaker
+1F509; L2/09-114 # 2015 (🔉) speaker medium volume
+1F515; L2/09-114 # 2015 (🔕) bell with slash
+1F52C..1F52D; L2/09-114 # 2015..2015 (🔬..🔭) microscope..telescope
+1F607..1F608; L2/09-114 # 2015..2015 (😇..😈) smiling face with halo..smiling face with horns
+1F60E; L2/09-114 # 2015 (😎) smiling face with sunglasses
+1F681..1F682; L2/09-114 # 2015..2015 (🚁..🚂) helicopter..locomotive
+1F686; L2/09-114 # 2015 (🚆) train
+1F688; L2/09-114 # 2015 (🚈) light rail
+1F68A..1F68B; L2/09-114 # 2015..2015 (🚊..🚋) tram..tram car
+1F68E; L2/09-114 # 2015 (🚎) trolleybus
+1F690; L2/09-114 # 2015 (🚐) minibus
+1F696; L2/09-114 # 2015 (🚖) oncoming taxi
+1F69B..1F6A1; L2/09-114 # 2015..2015 (🚛..🚡) articulated lorry..aerial tramway
+1F6A3; L2/09-114 # 2015 (🚣) person rowing boat
+1F6A6; L2/09-114 # 2015 (🚦) vertical traffic light
+1F6AE..1F6B1; L2/09-114 # 2015..2015 (🚮..🚱) litter in bin sign..non-potable water
+1F6B3..1F6B5; L2/09-114 # 2015..2015 (🚳..🚵) no bicycles..person mountain biking
+1F6B7..1F6B8; L2/09-114 # 2015..2015 (🚷..🚸) no pedestrians..children crossing
+1F6BF; L2/09-114 # 2015 (🚿) shower
+1F6C2..1F6C5; L2/09-114 # 2015..2015 (🛂..🛅) passport control..left luggage
+
+# L2/10-025, L2/09-336
+1F636; L2/10-025, L2/09-336 # 2015 (😶) face without mouth
+
+# L2/09-336
+1F310; L2/09-336 # 2015 (🌐) globe with meridians
+1F46C..1F46D; L2/09-336 # 2015..2015 (👬..👭) men holding hands..women holding hands
+1F6C1; L2/09-336 # 2015 (🛁) bathtub
+
+# L2/09-153
+1F401; L2/09-153 # 2015 (🐁) mouse
+1F405..1F407; L2/09-153 # 2015..2015 (🐅..🐇) tiger..rabbit
+1F409; L2/09-153 # 2015 (🐉) dragon
+1F40B; L2/09-153 # 2015 (🐋) whale
+1F40F; L2/09-153 # 2015 (🐏) ram
+
+# L2/09-336, L2/09-114
+1F42A; L2/09-336, L2/09-114 # 2015 (🐪) camel
+
+# L2/10-025
+1F504; L2/10-025 # 2015 (🔄) counterclockwise arrows button
+
+# L2/10-142
+1F600; L2/10-142 # 2015 (😀) grinning face
+1F611; L2/10-142 # 2015 (😑) expressionless face
+1F615; L2/10-142 # 2015 (😕) confused face
+1F617; L2/10-142 # 2015 (😗) kissing face
+1F619; L2/10-142 # 2015 (😙) kissing face with smiling eyes
+1F61B; L2/10-142 # 2015 (😛) face with tongue
+1F61F; L2/10-142 # 2015 (😟) worried face
+1F626..1F627; L2/10-142 # 2015..2015 (😦..😧) frowning face with open mouth..anguished face
+1F62C; L2/10-142 # 2015 (😬) grimacing face
+1F62E..1F62F; L2/10-142 # 2015..2015 (😮..😯) face with open mouth..hushed face
+1F634; L2/10-142 # 2015 (😴) sleeping face
+
+# L2/11-037
+1F641..1F642; L2/11-037 # 2015..2015 (🙁..🙂) slightly frowning face..slightly smiling face
+
+# L2/12-275
+1F595..1F596; L2/12-275 # 2015..2015 (🖕..🖖) middle finger..vulcan salute
+
+# L2/11-149
+1F6CC; L2/11-149 # 2015 (🛌) person in bed
+
+# L2/13-150
+1F4F8; L2/13-150 # 2015 (📸) camera with flash
+1F6EB..1F6EC; L2/13-150 # 2015..2015 (🛫..🛬) airplane departure..airplane arrival
+
+# L2/11-196
+1F3C5; L2/11-196 # 2015 (🏅) sports medal
+
+# L2/12-128
+1F3F4; L2/12-128 # 2015 (🏴) black flag
+
+# L2/15-054
+1F57A; L2/15-054 # 2016 (🕺) man dancing
+1F5A4; L2/15-054 # 2016 (🖤) black heart
+1F6F5; L2/15-054 # 2016 (🛵) motor scooter
+1F919..1F91D; L2/15-054 # 2016..2016 (🤙..🤝) call me hand..handshake
+1F920..1F926; L2/15-054 # 2016..2016 (🤠..🤦) cowboy hat face..person facepalming
+1F934; L2/15-054 # 2016 (🤴) prince
+1F936; L2/15-054 # 2016 (🤶) Mrs. Claus
+1F940; L2/15-054 # 2016 (🥀) wilted flower
+1F942; L2/15-054 # 2016 (🥂) clinking glasses
+1F953..1F955; L2/15-054 # 2016..2016 (🥓..🥕) bacon..carrot
+1F57A 1F3FF; L2/15-054 # 2016 (🕺🏿) man dancing: dark skin tone
+1F919 1F3FF; L2/15-054 # 2016 (🤙🏿) call me hand: dark skin tone
+1F91A 1F3FF; L2/15-054 # 2016 (🤚🏿) raised back of hand: dark skin tone
+1F91B 1F3FF; L2/15-054 # 2016 (🤛🏿) left-facing fist: dark skin tone
+1F91C 1F3FF; L2/15-054 # 2016 (🤜🏿) right-facing fist: dark skin tone
+1F91E 1F3FF; L2/15-054 # 2016 (🤞🏿) crossed fingers: dark skin tone
+1F926 1F3FF; L2/15-054 # 2016 (🤦🏿) person facepalming: dark skin tone
+1F933 1F3FF; L2/15-054 # 2016 (🤳🏿) selfie: dark skin tone
+1F934 1F3FF; L2/15-054 # 2016 (🤴🏿) prince: dark skin tone
+1F936 1F3FF; L2/15-054 # 2016 (🤶🏿) Mrs. Claus: dark skin tone
+1F938 1F3FF; L2/15-054 # 2016 (🤸🏿) person cartwheeling: dark skin tone
+1F939 1F3FF; L2/15-054 # 2016 (🤹🏿) person juggling: dark skin tone
+1F93D 1F3FF; L2/15-054 # 2016 (🤽🏿) person playing water polo: dark skin tone
+1F93E 1F3FF; L2/15-054 # 2016 (🤾🏿) person playing handball: dark skin tone
+
+# L2/15-195
+1F6D2; L2/15-195 # 2016 (🛒) shopping cart
+1F927; L2/15-195 # 2016 (🤧) sneezing face
+1F941; L2/15-195 # 2016 (🥁) drum
+1F943..1F944; L2/15-195 # 2016..2016 (🥃..🥄) tumbler glass..spoon
+1F958..1F959; L2/15-195 # 2016..2016 (🥘..🥙) shallow pan of food..stuffed flatbread
+1F98C; L2/15-195 # 2016 (🦌) deer
+1F98F; L2/15-195 # 2016 (🦏) rhinoceros
+
+# L2/15-054, L2/14-174
+1F6D1; L2/15-054, L2/14-174 # 2016 (🛑) stop sign
+1F6F4; L2/15-054, L2/14-174 # 2016 (🛴) kick scooter
+1F91E; L2/15-054, L2/14-174 # 2016 (🤞) crossed fingers
+1F930; L2/15-054, L2/14-174 # 2016 (🤰) pregnant woman
+1F933; L2/15-054, L2/14-174 # 2016 (🤳) selfie
+1F935; L2/15-054, L2/14-174 # 2016 (🤵) person in tuxedo
+1F937; L2/15-054, L2/14-174 # 2016 (🤷) person shrugging
+1F950..1F952; L2/15-054, L2/14-174 # 2016..2016 (🥐..🥒) croissant..cucumber
+1F985..1F98A; L2/15-054, L2/14-174 # 2016..2016 (🦅..🦊) eagle..fox
+1F930 1F3FF; L2/15-054, L2/14-174 # 2016 (🤰🏿) pregnant woman: dark skin tone
+1F935 1F3FF; L2/15-054, L2/14-174 # 2016 (🤵🏿) person in tuxedo: dark skin tone
+1F937 1F3FF; L2/15-054, L2/14-174 # 2016 (🤷🏿) person shrugging: dark skin tone
+
+# L2/15-196
+1F6F6; L2/15-196 # 2016 (🛶) canoe
+1F938; L2/15-196 # 2016 (🤸) person cartwheeling
+1F93A; L2/15-196 # 2016 (🤺) person fencing
+1F93C..1F93E; L2/15-196 # 2016..2016 (🤼..🤾) people wrestling..person playing handball
+1F945; L2/15-196 # 2016 (🥅) goal net
+1F947..1F94B; L2/15-196 # 2016..2016 (🥇..🥋) 1st place medal..martial arts uniform
+
+# L2/15-267
+1F95C..1F95E; L2/15-267 # 2016..2016 (🥜..🥞) peanuts..pancakes
+1F990..1F991; L2/15-267 # 2016..2016 (🦐..🦑) shrimp..squid
+
+# L2/14-174, L2/15-267
+1F95A..1F95B; L2/14-174, L2/15-267 # 2016..2016 (🥚..🥛) egg..glass of milk
+
+# L2/16-316, L2/14-174
+1F96A; L2/16-316, L2/14-174 # 2017 (🥪) sandwich
+
+# L2/16-295R, L2/16-072, L2/16-103, L2/14-174
+1F996; L2/16-295R, L2/16-072, L2/16-103, L2/14-174 # 2017 (🦖) T-Rex
+
+# L2/16-260, L2/14-174
+1F9D4; L2/16-260, L2/14-174 # 2017 (🧔) person: beard
+
+# L2/16-284, L2/14-174
+1F9D5; L2/16-284, L2/14-174 # 2017 (🧕) woman with headscarf
+
+# L2/16-304, L2/14-174
+1F9D9; L2/16-304, L2/14-174 # 2017 (🧙) mage
+1F9D9 1F3FF; L2/16-304, L2/14-174 # 2017 (🧙🏿) mage: dark skin tone
+
+# L2/16-026, L2/14-174
+1F961; L2/16-026, L2/14-174 # 2017 (🥡) takeout box
+
+# L2/11-052, L2/14-174
+1F43F; L2/11-052, L2/14-174 # 2014 (🐿️) chipmunk
+
+# L2/18-128, L2/14-174
+1F9A8; L2/18-128, L2/14-174 # 2019 (🦨) skunk
+
+# L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008
+1F9B0..1F9B3; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018..2018 (🦰..🦳) red hair..white hair
+1F468 200D 1F9B0; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👨‍🦰) man: red hair
+1F468 200D 1F9B1; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👨‍🦱) man: curly hair
+1F468 200D 1F9B2; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👨‍🦲) man: bald
+1F468 200D 1F9B3; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👨‍🦳) man: white hair
+1F469 200D 1F9B0; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👩‍🦰) woman: red hair
+1F469 200D 1F9B1; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👩‍🦱) woman: curly hair
+1F469 200D 1F9B2; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👩‍🦲) woman: bald
+1F469 200D 1F9B3; L2/17-082, L2/17-011, L2/16-147, L2/16-130, L2/16-008 # 2018 (👩‍🦳) woman: white hair
+
+# L2/19-102
+1F6D6; L2/19-102 # 2020 (🛖) hut
+
+# L2/18-329
+1F6D7; L2/18-329 # 2020 (🛗) elevator
+
+# L2/18-260
+1F6FB; L2/18-260 # 2020 (🛻) pickup truck
+
+# L2/19-151
+1F6FC; L2/19-151 # 2020 (🛼) roller skate
+
+# L2/19-159
+1F90C; L2/19-159 # 2020 (🤌) pinched fingers
+1F90C 1F3FF; L2/19-159 # 2020 (🤌🏿) pinched fingers: dark skin tone
+
+# L2/19-147
+1F972; L2/19-147 # 2020 (🥲) smiling face with tear
+
+# L2/18-197, L2/19-395
+1F977; L2/18-197, L2/19-395 # 2020 (🥷) ninja
+1F977 1F3FF; L2/18-197, L2/19-395 # 2020 (🥷🏿) ninja: dark skin tone
+
+# L2/18-311
+1F978; L2/18-311 # 2020 (🥸) disguised face
+
+# L2/17-420
+1F9A3; L2/17-420 # 2020 (🦣) mammoth
+
+# L2/17-441
+1F9A4; L2/17-441 # 2020 (🦤) dodo
+
+# L2/19-110
+1F9AB; L2/19-110 # 2020 (🦫) beaver
+
+# L2/19-187
+1F9AC; L2/19-187 # 2020 (🦬) bison
+
+# L2/19-155
+1F9AD; L2/19-155 # 2020 (🦭) seal
+
+# L2/18-341
+1F9CB; L2/18-341 # 2020 (🧋) bubble tea
+
+# L2/19-104
+1FA74; L2/19-104 # 2020 (🩴) thong sandal
+
+# L2/18-331
+1FA83; L2/18-331 # 2020 (🪃) boomerang
+
+# L2/18-218
+1FA84; L2/18-218 # 2020 (🪄) magic wand
+
+# L2/19-062
+1FA85; L2/19-062 # 2020 (🪅) piñata
+
+# L2/19-096
+1FA86; L2/19-096 # 2020 (🪆) nesting dolls
+
+# L2/18-199
+1FA96; L2/18-199 # 2020 (🪖) military helmet
+
+# L2/19-087
+1FA97; L2/19-087 # 2020 (🪗) accordion
+
+# L2/19-090
+1FA98; L2/19-090 # 2020 (🪘) long drum
+
+# L2/18-310, L2/17-229
+1FA99; L2/18-310, L2/17-229 # 2020 (🪙) coin
+
+# L2/18-178
+1FA9A; L2/18-178 # 2020 (🪚) carpentry saw
+
+# L2/18-179
+1FA9B; L2/18-179 # 2020 (🪛) screwdriver
+
+# L2/18-320
+1FA9C; L2/18-320 # 2020 (🪜) ladder
+
+# L2/18-327
+1FA9D; L2/18-327 # 2020 (🪝) hook
+
+# L2/19-098
+1FA9E; L2/19-098 # 2020 (🪞) mirror
+
+# L2/19-108
+1FA9F; L2/19-108 # 2020 (🪟) window
+
+# L2/19-158
+1FAA0; L2/19-158 # 2020 (🪠) plunger
+
+# L2/19-088
+1FAA1; L2/19-088 # 2020 (🪡) sewing needle
+
+# L2/19-152
+1FAA2; L2/19-152 # 2020 (🪢) knot
+
+# L2/19-105
+1FAA3; L2/19-105 # 2020 (🪣) bucket
+
+# L2/19-144
+1FAA4; L2/19-144 # 2020 (🪤) mouse trap
+
+# L2/19-153
+1FAA5; L2/19-153 # 2020 (🪥) toothbrush
+
+# L2/18-266, L2/17-387
+1FAA6; L2/18-266, L2/17-387 # 2020 (🪦) headstone
+
+# L2/19-061
+1FAA7; L2/19-061 # 2020 (🪧) placard
+
+# L2/19-145
+1FAA8; L2/19-145 # 2020 (🪨) rock
+
+# L2/18-317
+1FAB0; L2/18-317 # 2020 (🪰) fly
+
+# L2/18-343
+1FAB1; L2/18-343 # 2020 (🪱) worm
+
+# L2/19-148
+1FAB2; L2/19-148 # 2020 (🪲) beetle
+
+# L2/19-095
+1FAB3; L2/19-095 # 2020 (🪳) cockroach
+
+# L2/18-261
+1FAB4; L2/18-261 # 2020 (🪴) potted plant
+
+# L2/19-097
+1FAB5; L2/19-097 # 2020 (🪵) wood
+
+# L2/18-200
+1FAB6; L2/18-200 # 2020 (🪶) feather
+
+# L2/19-150
+1FAC0; L2/19-150 # 2020 (🫀) anatomical heart
+
+# L2/19-149
+1FAC1; L2/19-149 # 2020 (🫁) lungs
+
+# L2/19-109
+1FAC2; L2/19-109 # 2020 (🫂) people hugging
+
+# L2/19-157
+1FAD0; L2/19-157 # 2020 (🫐) blueberries
+
+# L2/18-277
+1FAD1; L2/18-277 # 2020 (🫑) bell pepper
+
+# L2/19-146
+1FAD2; L2/19-146 # 2020 (🫒) olive
+
+# L2/19-156
+1FAD3; L2/19-156 # 2020 (🫓) flatbread
+
+# L2/19-154
+1FAD4; L2/19-154 # 2020 (🫔) tamale
+
+# L2/18-328
+1FAD5; L2/18-328 # 2020 (🫕) fondue
+
+# L2/19-103
+1FAD6; L2/19-103 # 2020 (🫖) teapot
+
+# L2/19-265, L2/19-370
+1FAF1..1FAF2; L2/19-265, L2/19-370 # 2021..2021 (🫱..🫲) rightwards hand..leftwards hand
+1F91D 1F3FF; L2/19-265, L2/19-370 # 2021 (🤝🏿) handshake: dark skin tone
+1FAF1 1F3FF; L2/19-265, L2/19-370 # 2021 (🫱🏿) rightwards hand: dark skin tone
+1FAF2 1F3FF; L2/19-265, L2/19-370 # 2021 (🫲🏿) leftwards hand: dark skin tone
+
+# L2/20-215
+1F6DD; L2/20-215 # 2021 (🛝) playground slide
+
+# L2/20-216
+1F6DE; L2/20-216 # 2021 (🛞) wheel
+
+# L2/20-224
+1F6DF; L2/20-224 # 2021 (🛟) ring buoy
+
+# L2/20-225
+1F7F0; L2/20-225 # 2021 (🟰) heavy equals sign
+
+# L2/20-064
+1F979; L2/20-064 # 2021 (🥹) face holding back tears
+
+# L2/19-232, L2/19-399
+1F9CC; L2/19-232, L2/19-399 # 2021 (🧌) troll
+
+# L2/20-214
+1FA7B; L2/20-214 # 2021 (🩻) x-ray
+
+# L2/19-379
+1FA7C; L2/19-379 # 2021 (🩼) crutch
+
+# L2/19-310
+1FAA9; L2/19-310 # 2021 (🪩) mirror ball
+
+# L2/20-221
+1FAAA; L2/20-221 # 2021 (🪪) identification card
+
+# L2/19-316
+1FAAB; L2/19-316 # 2021 (🪫) low battery
+
+# L2/20-218
+1FAAC; L2/20-218 # 2021 (🪬) hamsa
+
+# L2/19-371
+1FAB7; L2/19-371 # 2021 (🪷) lotus
+
+# L2/20-220
+1FAB8; L2/20-220 # 2021 (🪸) coral
+
+# L2/20-217
+1FAB9..1FABA; L2/20-217 # 2021..2021 (🪹..🪺) empty nest..nest with eggs
+
+# L2/20-190
+1FAC3..1FAC4; L2/20-190 # 2021..2021 (🫃..🫄) pregnant man..pregnant person
+1FAC3 1F3FF; L2/20-190 # 2021 (🫃🏿) pregnant man: dark skin tone
+1FAC4 1F3FF; L2/20-190 # 2021 (🫄🏿) pregnant person: dark skin tone
+
+# L2/20-189
+1FAC5; L2/20-189 # 2021 (🫅) person with crown
+1FAC5 1F3FF; L2/20-189 # 2021 (🫅🏿) person with crown: dark skin tone
+
+# L2/20-065
+1FAD7; L2/20-065 # 2021 (🫗) pouring liquid
+
+# L2/20-226
+1FAD8; L2/20-226 # 2021 (🫘) beans
+
+# L2/20-222
+1FAD9; L2/20-222 # 2021 (🫙) jar
+
+# L2/20-072
+1FAE0; L2/20-072 # 2021 (🫠) melting face
+
+# L2/19-396, L2/19-400
+1FAE1; L2/19-396, L2/19-400 # 2021 (🫡) saluting face
+
+# L2/19-304
+1FAE2; L2/19-304 # 2021 (🫢) face with open eyes and hand over mouth
+
+# L2/19-378
+1FAE3; L2/19-378 # 2021 (🫣) face with peeking eye
+
+# L2/20-219
+1FAE4; L2/20-219 # 2021 (🫤) face with diagonal mouth
+
+# L2/20-223
+1FAE5; L2/20-223 # 2021 (🫥) dotted line face
+
+# L2/19-219
+1FAE6; L2/19-219 # 2021 (🫦) biting lip
+
+# L2/19-311
+1FAE7; L2/19-311 # 2021 (🫧) bubbles
+
+# L2/19-327
+1FAF0; L2/19-327 # 2021 (🫰) hand with index finger and thumb crossed
+1FAF0 1F3FF; L2/19-327 # 2021 (🫰🏿) hand with index finger and thumb crossed: dark skin tone
+
+# L2/20-213
+1FAF3..1FAF4; L2/20-213 # 2021..2021 (🫳..🫴) palm down hand..palm up hand
+1FAF3 1F3FF; L2/20-213 # 2021 (🫳🏿) palm down hand: dark skin tone
+1FAF4 1F3FF; L2/20-213 # 2021 (🫴🏿) palm up hand: dark skin tone
+
+# L2/20-212
+1FAF5; L2/20-212 # 2021 (🫵) index pointing at the viewer
+1FAF5 1F3FF; L2/20-212 # 2021 (🫵🏿) index pointing at the viewer: dark skin tone
+
+# L2/20-211
+1FAF6; L2/20-211 # 2021 (🫶) heart hands
+1FAF6 1F3FF; L2/20-211 # 2021 (🫶🏿) heart hands: dark skin tone
+
+# L2/21-191
+1F6DC; L2/21-191 # 2022 (🛜) wireless
+
+# L2/21-202, L2/21-075
+1FA75; L2/21-202, L2/21-075 # 2022 (🩵) light blue heart
+
+# L2/21-201, L2/21-075
+1FA76; L2/21-201, L2/21-075 # 2022 (🩶) grey heart
+
+# L2/21-203, L2/21-075
+1FA77; L2/21-203, L2/21-075 # 2022 (🩷) pink heart
+
+# L2/21-194
+1FA87; L2/21-194 # 2022 (🪇) maracas
+
+# L2/21-193
+1FA88; L2/21-193 # 2022 (🪈) flute
+
+# L2/21-192
+1FAAD; L2/21-192 # 2022 (🪭) folding hand fan
+
+# L2/21-218
+1FAAE; L2/21-218 # 2022 (🪮) hair pick
+
+# L2/21-223
+1FAAF; L2/21-223 # 2022 (🪯) khanda
+
+# L2/21-215
+1FABB; L2/21-215 # 2022 (🪻) hyacinth
+
+# L2/21-217
+1FABC; L2/21-217 # 2022 (🪼) jellyfish
+
+# L2/21-198
+1FABD; L2/21-198 # 2022 (🪽) wing
+
+# L2/21-219
+1FABF; L2/21-219 # 2022 (🪿) goose
+
+# L2/21-197
+1FACE; L2/21-197 # 2022 (🫎) moose
+
+# L2/21-196
+1FACF; L2/21-196 # 2022 (🫏) donkey
+
+# L2/21-200
+1FADA; L2/21-200 # 2022 (🫚) ginger root
+
+# L2/21-199
+1FADB; L2/21-199 # 2022 (🫛) pea pod
+
+# L2/21-214
+1FAE8; L2/21-214 # 2022 (🫨) shaking face
+
+# L2/21-216
+1FAF7..1FAF8; L2/21-216 # 2022..2022 (🫷..🫸) leftwards pushing hand..rightwards pushing hand
+1FAF7 1F3FF; L2/21-216 # 2022 (🫷🏿) leftwards pushing hand: dark skin tone
+1FAF8 1F3FF; L2/21-216 # 2022 (🫸🏿) rightwards pushing hand: dark skin tone
+
+# L2/23-256
+1FA89; L2/23-256 # 2024 (🪉) harp
+
+# L2/23-259
+1FA8F; L2/23-259 # 2024 (🪏) shovel
+
+# L2/23-255
+1FABE; L2/23-255 # 2024 (🪾) leafless tree
+
+# L2/23-258
+1FAC6; L2/23-258 # 2024 (🫆) fingerprint
+
+# L2/23-257
+1FADC; L2/23-257 # 2024 (🫜) root vegetable
+
+# L2/23-261
+1FADF; L2/23-261 # 2024 (🫟) splatter
+
+# L2/23-260
+1FAE9; L2/23-260 # 2024 (🫩) face with bags under eyes
+
+# L2/24-257
+1F6D8; L2/24-257 # 2025 (🛘) landslide
+
+# L2/24-256
+1FA8A; L2/24-256 # 2025 (🪊) trombone
+
+# L2/24-255
+1FA8E; L2/24-255 # 2025 (🪎) treasure chest
+
+# L2/24-251
+1FAC8; L2/24-251 # 2025 (🫈) hairy creature
+
+# L2/24-249
+1FACD; L2/24-249 # 2025 (🫍) orca
+
+# L2/24-250
+1FAEA; L2/24-250 # 2025 (🫪) distorted face
+
+# L2/24-254
+1FAEF; L2/24-254 # 2025 (🫯) fight cloud
+
+# L2/19-080, L2/19-193
+26A7; L2/19-080, L2/19-193 # 2020 (⚧️) transgender symbol
+1F3F3 200D 26A7; L2/19-080, L2/19-193 # 2020 (🏳️‍⚧️) transgender flag
+
+# L2/25-256
+1F6D9; L2/25-256 # 2026 (🛙) lighthouse
+
+# L2/25-257
+1FA8B; L2/25-257 # 2026 (🪋) meteor
+
+# L2/25-255
+1FA8C; L2/25-255 # 2026 (🪌) eraser
+
+# L2/25-258
+1FA8D; L2/25-258 # 2026 (🪍) net with handle
+
+# L2/25-254
+1FACC; L2/25-254 # 2026 (🫌) monarch butterfly
+
+# L2/25-253
+1FADD; L2/25-253 # 2026 (🫝) pickle
+
+# L2/26-048
+1FAEB; L2/26-048 # 2026 (🫫) cracking face
+
+# L2/25-252
+1FAF9..1FAFA; L2/25-252 # 2026..2026 (🫹..🫺) leftwards thumb sign..rightwards thumb sign
+1FAF9 1F3FF; L2/25-252 # 2026 (🫹🏿) leftwards thumb sign: dark skin tone
+1FAFA 1F3FF; L2/25-252 # 2026 (🫺🏿) rightwards thumb sign: dark skin tone
+
+# L2/14-173
+261D 1F3FF; L2/14-173 # 2015 (☝🏿) index pointing up: dark skin tone
+26F9 1F3FF; L2/14-173 # 2015 (⛹🏿) person bouncing ball: dark skin tone
+270A 1F3FF; L2/14-173 # 2015 (✊🏿) raised fist: dark skin tone
+270B 1F3FF; L2/14-173 # 2015 (✋🏿) raised hand: dark skin tone
+270C 1F3FF; L2/14-173 # 2015 (✌🏿) victory hand: dark skin tone
+270D 1F3FF; L2/14-173 # 2015 (✍🏿) writing hand: dark skin tone
+1F385 1F3FF; L2/14-173 # 2015 (🎅🏿) Santa Claus: dark skin tone
+1F3C2 1F3FF; L2/14-173 # 2015 (🏂🏿) snowboarder: dark skin tone
+1F3C3 1F3FF; L2/14-173 # 2015 (🏃🏿) person running: dark skin tone
+1F3C4 1F3FF; L2/14-173 # 2015 (🏄🏿) person surfing: dark skin tone
+1F3CA 1F3FF; L2/14-173 # 2015 (🏊🏿) person swimming: dark skin tone
+1F3CB 1F3FF; L2/14-173 # 2015 (🏋🏿) person lifting weights: dark skin tone
+1F3CC 1F3FF; L2/14-173 # 2016 (🏌🏿) person golfing: dark skin tone
+1F442 1F3FF; L2/14-173 # 2015 (👂🏿) ear: dark skin tone
+1F443 1F3FF; L2/14-173 # 2015 (👃🏿) nose: dark skin tone
+1F446 1F3FF; L2/14-173 # 2015 (👆🏿) backhand index pointing up: dark skin tone
+1F447 1F3FF; L2/14-173 # 2015 (👇🏿) backhand index pointing down: dark skin tone
+1F448 1F3FF; L2/14-173 # 2015 (👈🏿) backhand index pointing left: dark skin tone
+1F449 1F3FF; L2/14-173 # 2015 (👉🏿) backhand index pointing right: dark skin tone
+1F44A 1F3FF; L2/14-173 # 2015 (👊🏿) oncoming fist: dark skin tone
+1F44B 1F3FF; L2/14-173 # 2015 (👋🏿) waving hand: dark skin tone
+1F44C 1F3FF; L2/14-173 # 2015 (👌🏿) OK hand: dark skin tone
+1F44D 1F3FF; L2/14-173 # 2015 (👍🏿) thumbs up: dark skin tone
+1F44E 1F3FF; L2/14-173 # 2015 (👎🏿) thumbs down: dark skin tone
+1F44F 1F3FF; L2/14-173 # 2015 (👏🏿) clapping hands: dark skin tone
+1F450 1F3FF; L2/14-173 # 2015 (👐🏿) open hands: dark skin tone
+1F466 1F3FF; L2/14-173 # 2015 (👦🏿) boy: dark skin tone
+1F467 1F3FF; L2/14-173 # 2015 (👧🏿) girl: dark skin tone
+1F468 1F3FF; L2/14-173 # 2015 (👨🏿) man: dark skin tone
+1F469 1F3FF; L2/14-173 # 2015 (👩🏿) woman: dark skin tone
+1F46E 1F3FF; L2/14-173 # 2015 (👮🏿) police officer: dark skin tone
+1F470 1F3FF; L2/14-173 # 2015 (👰🏿) person with veil: dark skin tone
+1F471 1F3FF; L2/14-173 # 2015 (👱🏿) person: dark skin tone, blond hair
+1F472 1F3FF; L2/14-173 # 2015 (👲🏿) person with skullcap: dark skin tone
+1F473 1F3FF; L2/14-173 # 2015 (👳🏿) person wearing turban: dark skin tone
+1F474 1F3FF; L2/14-173 # 2015 (👴🏿) old man: dark skin tone
+1F475 1F3FF; L2/14-173 # 2015 (👵🏿) old woman: dark skin tone
+1F476 1F3FF; L2/14-173 # 2015 (👶🏿) baby: dark skin tone
+1F477 1F3FF; L2/14-173 # 2015 (👷🏿) construction worker: dark skin tone
+1F478 1F3FF; L2/14-173 # 2015 (👸🏿) princess: dark skin tone
+1F47C 1F3FF; L2/14-173 # 2015 (👼🏿) baby angel: dark skin tone
+1F481 1F3FF; L2/14-173 # 2015 (💁🏿) person tipping hand: dark skin tone
+1F482 1F3FF; L2/14-173 # 2015 (💂🏿) guard: dark skin tone
+1F483 1F3FF; L2/14-173 # 2015 (💃🏿) woman dancing: dark skin tone
+1F485 1F3FF; L2/14-173 # 2015 (💅🏿) nail polish: dark skin tone
+1F486 1F3FF; L2/14-173 # 2015 (💆🏿) person getting massage: dark skin tone
+1F487 1F3FF; L2/14-173 # 2015 (💇🏿) person getting haircut: dark skin tone
+1F4AA 1F3FF; L2/14-173 # 2015 (💪🏿) flexed biceps: dark skin tone
+1F574 1F3FF; L2/14-173 # 2016 (🕴🏿) person in suit levitating: dark skin tone
+1F575 1F3FF; L2/14-173 # 2015 (🕵🏿) detective: dark skin tone
+1F590 1F3FF; L2/14-173 # 2015 (🖐🏿) hand with fingers splayed: dark skin tone
+1F595 1F3FF; L2/14-173 # 2015 (🖕🏿) middle finger: dark skin tone
+1F596 1F3FF; L2/14-173 # 2015 (🖖🏿) vulcan salute: dark skin tone
+1F645 1F3FF; L2/14-173 # 2015 (🙅🏿) person gesturing NO: dark skin tone
+1F646 1F3FF; L2/14-173 # 2015 (🙆🏿) person gesturing OK: dark skin tone
+1F647 1F3FF; L2/14-173 # 2015 (🙇🏿) person bowing: dark skin tone
+1F64B 1F3FF; L2/14-173 # 2015 (🙋🏿) person raising hand: dark skin tone
+1F64C 1F3FF; L2/14-173 # 2015 (🙌🏿) raising hands: dark skin tone
+1F64D 1F3FF; L2/14-173 # 2015 (🙍🏿) person frowning: dark skin tone
+1F64E 1F3FF; L2/14-173 # 2015 (🙎🏿) person pouting: dark skin tone
+1F64F 1F3FF; L2/14-173 # 2015 (🙏🏿) folded hands: dark skin tone
+1F6A3 1F3FF; L2/14-173 # 2015 (🚣🏿) person rowing boat: dark skin tone
+1F6B4 1F3FF; L2/14-173 # 2015 (🚴🏿) person biking: dark skin tone
+1F6B5 1F3FF; L2/14-173 # 2015 (🚵🏿) person mountain biking: dark skin tone
+1F6B6 1F3FF; L2/14-173 # 2015 (🚶🏿) person walking: dark skin tone
+1F6C0 1F3FF; L2/14-173 # 2015 (🛀🏿) person taking bath: dark skin tone
+1F918 1F3FF; L2/14-173 # 2015 (🤘🏿) sign of the horns: dark skin tone
+
+# L2/23-036
+26D3 200D 1F4A5; L2/23-036 # 2023 (⛓️‍💥) broken chain
+
+# L2/16-181, L2/16-182, L2/16-160
+26F9 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (⛹️‍♀️) woman bouncing ball
+26F9 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (⛹🏿‍♀️) woman bouncing ball: dark skin tone
+1F3C3 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏃‍♀️) woman running
+1F3C3 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏃🏿‍♀️) woman running: dark skin tone
+1F3C4 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏄‍♀️) woman surfing
+1F3C4 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏄🏿‍♀️) woman surfing: dark skin tone
+1F3CA 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏊‍♀️) woman swimming
+1F3CA 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏊🏿‍♀️) woman swimming: dark skin tone
+1F3CB 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏋️‍♀️) woman lifting weights
+1F3CB 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏋🏿‍♀️) woman lifting weights: dark skin tone
+1F3CC 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏌️‍♀️) woman golfing
+1F3CC 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🏌🏿‍♀️) woman golfing: dark skin tone
+1F46E 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👮‍♀️) woman police officer
+1F46E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👮🏿‍♀️) woman police officer: dark skin tone
+1F46F 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👯‍♀️) women with bunny ears
+1F471 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👱‍♀️) woman: blond hair
+1F471 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👱🏿‍♀️) woman: dark skin tone, blond hair
+1F473 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👳‍♀️) woman wearing turban
+1F473 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👳🏿‍♀️) woman wearing turban: dark skin tone
+1F477 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👷‍♀️) woman construction worker
+1F477 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (👷🏿‍♀️) woman construction worker: dark skin tone
+1F481 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💁‍♀️) woman tipping hand
+1F481 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💁🏿‍♀️) woman tipping hand: dark skin tone
+1F482 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💂‍♀️) woman guard
+1F482 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💂🏿‍♀️) woman guard: dark skin tone
+1F486 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💆‍♀️) woman getting massage
+1F486 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💆🏿‍♀️) woman getting massage: dark skin tone
+1F487 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💇‍♀️) woman getting haircut
+1F487 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (💇🏿‍♀️) woman getting haircut: dark skin tone
+1F575 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🕵️‍♀️) woman detective
+1F575 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🕵🏿‍♀️) woman detective: dark skin tone
+1F645 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙅‍♀️) woman gesturing NO
+1F645 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙅🏿‍♀️) woman gesturing NO: dark skin tone
+1F646 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙆‍♀️) woman gesturing OK
+1F646 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙆🏿‍♀️) woman gesturing OK: dark skin tone
+1F647 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙇‍♀️) woman bowing
+1F647 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙇🏿‍♀️) woman bowing: dark skin tone
+1F64B 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙋‍♀️) woman raising hand
+1F64B 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙋🏿‍♀️) woman raising hand: dark skin tone
+1F64D 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙍‍♀️) woman frowning
+1F64D 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙍🏿‍♀️) woman frowning: dark skin tone
+1F64E 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙎‍♀️) woman pouting
+1F64E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🙎🏿‍♀️) woman pouting: dark skin tone
+1F6A3 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚣‍♀️) woman rowing boat
+1F6A3 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚣🏿‍♀️) woman rowing boat: dark skin tone
+1F6B4 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚴‍♀️) woman biking
+1F6B4 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚴🏿‍♀️) woman biking: dark skin tone
+1F6B5 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚵‍♀️) woman mountain biking
+1F6B5 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚵🏿‍♀️) woman mountain biking: dark skin tone
+1F6B6 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚶‍♀️) woman walking
+1F6B6 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🚶🏿‍♀️) woman walking: dark skin tone
+1F926 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤦‍♀️) woman facepalming
+1F926 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤦🏿‍♀️) woman facepalming: dark skin tone
+1F938 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤸‍♀️) woman cartwheeling
+1F938 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤸🏿‍♀️) woman cartwheeling: dark skin tone
+1F939 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤹‍♀️) woman juggling
+1F939 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤹🏿‍♀️) woman juggling: dark skin tone
+1F93C 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤼‍♀️) women wrestling
+1F93D 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤽‍♀️) woman playing water polo
+1F93D 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤽🏿‍♀️) woman playing water polo: dark skin tone
+1F93E 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤾‍♀️) woman playing handball
+1F93E 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/16-160 # 2016 (🤾🏿‍♀️) woman playing handball: dark skin tone
+
+# L2/20-128
+2764 200D 1F525; L2/20-128 # 2020 (❤️‍🔥) heart on fire
+
+# L2/19-380
+2764 200D 1FA79; L2/19-380 # 2020 (❤️‍🩹) mending heart
+
+# L2/09-379
+1F1E6 1F1E8; L2/09-379 # 2015 (🇦🇨) flag: Ascension Island
+1F1E6 1F1E9; L2/09-379 # 2015 (🇦🇩) flag: Andorra
+1F1E6 1F1EA; L2/09-379 # 2015 (🇦🇪) flag: United Arab Emirates
+1F1E6 1F1EB; L2/09-379 # 2015 (🇦🇫) flag: Afghanistan
+1F1E6 1F1EC; L2/09-379 # 2015 (🇦🇬) flag: Antigua & Barbuda
+1F1E6 1F1EE; L2/09-379 # 2015 (🇦🇮) flag: Anguilla
+1F1E6 1F1F1; L2/09-379 # 2015 (🇦🇱) flag: Albania
+1F1E6 1F1F2; L2/09-379 # 2015 (🇦🇲) flag: Armenia
+1F1E6 1F1F4; L2/09-379 # 2015 (🇦🇴) flag: Angola
+1F1E6 1F1F6; L2/09-379 # 2015 (🇦🇶) flag: Antarctica
+1F1E6 1F1F7; L2/09-379 # 2015 (🇦🇷) flag: Argentina
+1F1E6 1F1F8; L2/09-379 # 2015 (🇦🇸) flag: American Samoa
+1F1E6 1F1F9; L2/09-379 # 2015 (🇦🇹) flag: Austria
+1F1E6 1F1FA; L2/09-379 # 2015 (🇦🇺) flag: Australia
+1F1E6 1F1FC; L2/09-379 # 2015 (🇦🇼) flag: Aruba
+1F1E6 1F1FD; L2/09-379 # 2015 (🇦🇽) flag: Åland Islands
+1F1E6 1F1FF; L2/09-379 # 2015 (🇦🇿) flag: Azerbaijan
+1F1E7 1F1E6; L2/09-379 # 2015 (🇧🇦) flag: Bosnia & Herzegovina
+1F1E7 1F1E7; L2/09-379 # 2015 (🇧🇧) flag: Barbados
+1F1E7 1F1E9; L2/09-379 # 2015 (🇧🇩) flag: Bangladesh
+1F1E7 1F1EA; L2/09-379 # 2015 (🇧🇪) flag: Belgium
+1F1E7 1F1EB; L2/09-379 # 2015 (🇧🇫) flag: Burkina Faso
+1F1E7 1F1EC; L2/09-379 # 2015 (🇧🇬) flag: Bulgaria
+1F1E7 1F1ED; L2/09-379 # 2015 (🇧🇭) flag: Bahrain
+1F1E7 1F1EE; L2/09-379 # 2015 (🇧🇮) flag: Burundi
+1F1E7 1F1EF; L2/09-379 # 2015 (🇧🇯) flag: Benin
+1F1E7 1F1F1; L2/09-379 # 2015 (🇧🇱) flag: St. Barthélemy
+1F1E7 1F1F2; L2/09-379 # 2015 (🇧🇲) flag: Bermuda
+1F1E7 1F1F3; L2/09-379 # 2015 (🇧🇳) flag: Brunei
+1F1E7 1F1F4; L2/09-379 # 2015 (🇧🇴) flag: Bolivia
+1F1E7 1F1F6; L2/09-379 # 2015 (🇧🇶) flag: Caribbean Netherlands
+1F1E7 1F1F7; L2/09-379 # 2015 (🇧🇷) flag: Brazil
+1F1E7 1F1F8; L2/09-379 # 2015 (🇧🇸) flag: Bahamas
+1F1E7 1F1F9; L2/09-379 # 2015 (🇧🇹) flag: Bhutan
+1F1E7 1F1FB; L2/09-379 # 2015 (🇧🇻) flag: Bouvet Island
+1F1E7 1F1FC; L2/09-379 # 2015 (🇧🇼) flag: Botswana
+1F1E7 1F1FE; L2/09-379 # 2015 (🇧🇾) flag: Belarus
+1F1E7 1F1FF; L2/09-379 # 2015 (🇧🇿) flag: Belize
+1F1E8 1F1E6; L2/09-379 # 2015 (🇨🇦) flag: Canada
+1F1E8 1F1E8; L2/09-379 # 2015 (🇨🇨) flag: Cocos (Keeling) Islands
+1F1E8 1F1E9; L2/09-379 # 2015 (🇨🇩) flag: Congo - Kinshasa
+1F1E8 1F1EB; L2/09-379 # 2015 (🇨🇫) flag: Central African Republic
+1F1E8 1F1EC; L2/09-379 # 2015 (🇨🇬) flag: Congo - Brazzaville
+1F1E8 1F1ED; L2/09-379 # 2015 (🇨🇭) flag: Switzerland
+1F1E8 1F1EE; L2/09-379 # 2015 (🇨🇮) flag: Côte d’Ivoire
+1F1E8 1F1F0; L2/09-379 # 2015 (🇨🇰) flag: Cook Islands
+1F1E8 1F1F1; L2/09-379 # 2015 (🇨🇱) flag: Chile
+1F1E8 1F1F2; L2/09-379 # 2015 (🇨🇲) flag: Cameroon
+1F1E8 1F1F4; L2/09-379 # 2015 (🇨🇴) flag: Colombia
+1F1E8 1F1F5; L2/09-379 # 2015 (🇨🇵) flag: Clipperton Island
+1F1E8 1F1F7; L2/09-379 # 2015 (🇨🇷) flag: Costa Rica
+1F1E8 1F1FA; L2/09-379 # 2015 (🇨🇺) flag: Cuba
+1F1E8 1F1FB; L2/09-379 # 2015 (🇨🇻) flag: Cape Verde
+1F1E8 1F1FC; L2/09-379 # 2015 (🇨🇼) flag: Curaçao
+1F1E8 1F1FD; L2/09-379 # 2015 (🇨🇽) flag: Christmas Island
+1F1E8 1F1FE; L2/09-379 # 2015 (🇨🇾) flag: Cyprus
+1F1E8 1F1FF; L2/09-379 # 2015 (🇨🇿) flag: Czechia
+1F1E9 1F1EC; L2/09-379 # 2015 (🇩🇬) flag: Diego Garcia
+1F1E9 1F1EF; L2/09-379 # 2015 (🇩🇯) flag: Djibouti
+1F1E9 1F1F0; L2/09-379 # 2015 (🇩🇰) flag: Denmark
+1F1E9 1F1F2; L2/09-379 # 2015 (🇩🇲) flag: Dominica
+1F1E9 1F1F4; L2/09-379 # 2015 (🇩🇴) flag: Dominican Republic
+1F1E9 1F1FF; L2/09-379 # 2015 (🇩🇿) flag: Algeria
+1F1EA 1F1E6; L2/09-379 # 2015 (🇪🇦) flag: Ceuta & Melilla
+1F1EA 1F1E8; L2/09-379 # 2015 (🇪🇨) flag: Ecuador
+1F1EA 1F1EA; L2/09-379 # 2015 (🇪🇪) flag: Estonia
+1F1EA 1F1EC; L2/09-379 # 2015 (🇪🇬) flag: Egypt
+1F1EA 1F1ED; L2/09-379 # 2015 (🇪🇭) flag: Western Sahara
+1F1EA 1F1F7; L2/09-379 # 2015 (🇪🇷) flag: Eritrea
+1F1EA 1F1F9; L2/09-379 # 2015 (🇪🇹) flag: Ethiopia
+1F1EA 1F1FA; L2/09-379 # 2015 (🇪🇺) flag: European Union
+1F1EB 1F1EE; L2/09-379 # 2015 (🇫🇮) flag: Finland
+1F1EB 1F1EF; L2/09-379 # 2015 (🇫🇯) flag: Fiji
+1F1EB 1F1F0; L2/09-379 # 2015 (🇫🇰) flag: Falkland Islands
+1F1EB 1F1F2; L2/09-379 # 2015 (🇫🇲) flag: Micronesia
+1F1EB 1F1F4; L2/09-379 # 2015 (🇫🇴) flag: Faroe Islands
+1F1EC 1F1E6; L2/09-379 # 2015 (🇬🇦) flag: Gabon
+1F1EC 1F1E9; L2/09-379 # 2015 (🇬🇩) flag: Grenada
+1F1EC 1F1EA; L2/09-379 # 2015 (🇬🇪) flag: Georgia
+1F1EC 1F1EB; L2/09-379 # 2015 (🇬🇫) flag: French Guiana
+1F1EC 1F1EC; L2/09-379 # 2015 (🇬🇬) flag: Guernsey
+1F1EC 1F1ED; L2/09-379 # 2015 (🇬🇭) flag: Ghana
+1F1EC 1F1EE; L2/09-379 # 2015 (🇬🇮) flag: Gibraltar
+1F1EC 1F1F1; L2/09-379 # 2015 (🇬🇱) flag: Greenland
+1F1EC 1F1F2; L2/09-379 # 2015 (🇬🇲) flag: Gambia
+1F1EC 1F1F3; L2/09-379 # 2015 (🇬🇳) flag: Guinea
+1F1EC 1F1F5; L2/09-379 # 2015 (🇬🇵) flag: Guadeloupe
+1F1EC 1F1F6; L2/09-379 # 2015 (🇬🇶) flag: Equatorial Guinea
+1F1EC 1F1F7; L2/09-379 # 2015 (🇬🇷) flag: Greece
+1F1EC 1F1F8; L2/09-379 # 2015 (🇬🇸) flag: South Georgia & South Sandwich Islands
+1F1EC 1F1F9; L2/09-379 # 2015 (🇬🇹) flag: Guatemala
+1F1EC 1F1FA; L2/09-379 # 2015 (🇬🇺) flag: Guam
+1F1EC 1F1FC; L2/09-379 # 2015 (🇬🇼) flag: Guinea-Bissau
+1F1EC 1F1FE; L2/09-379 # 2015 (🇬🇾) flag: Guyana
+1F1ED 1F1F0; L2/09-379 # 2015 (🇭🇰) flag: Hong Kong SAR China
+1F1ED 1F1F2; L2/09-379 # 2015 (🇭🇲) flag: Heard Island & McDonald Islands
+1F1ED 1F1F3; L2/09-379 # 2015 (🇭🇳) flag: Honduras
+1F1ED 1F1F7; L2/09-379 # 2015 (🇭🇷) flag: Croatia
+1F1ED 1F1F9; L2/09-379 # 2015 (🇭🇹) flag: Haiti
+1F1ED 1F1FA; L2/09-379 # 2015 (🇭🇺) flag: Hungary
+1F1EE 1F1E8; L2/09-379 # 2015 (🇮🇨) flag: Canary Islands
+1F1EE 1F1E9; L2/09-379 # 2015 (🇮🇩) flag: Indonesia
+1F1EE 1F1EA; L2/09-379 # 2015 (🇮🇪) flag: Ireland
+1F1EE 1F1F1; L2/09-379 # 2015 (🇮🇱) flag: Israel
+1F1EE 1F1F2; L2/09-379 # 2015 (🇮🇲) flag: Isle of Man
+1F1EE 1F1F3; L2/09-379 # 2015 (🇮🇳) flag: India
+1F1EE 1F1F4; L2/09-379 # 2015 (🇮🇴) flag: British Indian Ocean Territory
+1F1EE 1F1F6; L2/09-379 # 2015 (🇮🇶) flag: Iraq
+1F1EE 1F1F7; L2/09-379 # 2015 (🇮🇷) flag: Iran
+1F1EE 1F1F8; L2/09-379 # 2015 (🇮🇸) flag: Iceland
+1F1EF 1F1EA; L2/09-379 # 2015 (🇯🇪) flag: Jersey
+1F1EF 1F1F2; L2/09-379 # 2015 (🇯🇲) flag: Jamaica
+1F1EF 1F1F4; L2/09-379 # 2015 (🇯🇴) flag: Jordan
+1F1F0 1F1EA; L2/09-379 # 2015 (🇰🇪) flag: Kenya
+1F1F0 1F1EC; L2/09-379 # 2015 (🇰🇬) flag: Kyrgyzstan
+1F1F0 1F1ED; L2/09-379 # 2015 (🇰🇭) flag: Cambodia
+1F1F0 1F1EE; L2/09-379 # 2015 (🇰🇮) flag: Kiribati
+1F1F0 1F1F2; L2/09-379 # 2015 (🇰🇲) flag: Comoros
+1F1F0 1F1F3; L2/09-379 # 2015 (🇰🇳) flag: St. Kitts & Nevis
+1F1F0 1F1F5; L2/09-379 # 2015 (🇰🇵) flag: North Korea
+1F1F0 1F1FC; L2/09-379 # 2015 (🇰🇼) flag: Kuwait
+1F1F0 1F1FE; L2/09-379 # 2015 (🇰🇾) flag: Cayman Islands
+1F1F0 1F1FF; L2/09-379 # 2015 (🇰🇿) flag: Kazakhstan
+1F1F1 1F1E6; L2/09-379 # 2015 (🇱🇦) flag: Laos
+1F1F1 1F1E7; L2/09-379 # 2015 (🇱🇧) flag: Lebanon
+1F1F1 1F1E8; L2/09-379 # 2015 (🇱🇨) flag: St. Lucia
+1F1F1 1F1EE; L2/09-379 # 2015 (🇱🇮) flag: Liechtenstein
+1F1F1 1F1F0; L2/09-379 # 2015 (🇱🇰) flag: Sri Lanka
+1F1F1 1F1F7; L2/09-379 # 2015 (🇱🇷) flag: Liberia
+1F1F1 1F1F8; L2/09-379 # 2015 (🇱🇸) flag: Lesotho
+1F1F1 1F1F9; L2/09-379 # 2015 (🇱🇹) flag: Lithuania
+1F1F1 1F1FA; L2/09-379 # 2015 (🇱🇺) flag: Luxembourg
+1F1F1 1F1FB; L2/09-379 # 2015 (🇱🇻) flag: Latvia
+1F1F1 1F1FE; L2/09-379 # 2015 (🇱🇾) flag: Libya
+1F1F2 1F1E6; L2/09-379 # 2015 (🇲🇦) flag: Morocco
+1F1F2 1F1E8; L2/09-379 # 2015 (🇲🇨) flag: Monaco
+1F1F2 1F1E9; L2/09-379 # 2015 (🇲🇩) flag: Moldova
+1F1F2 1F1EA; L2/09-379 # 2015 (🇲🇪) flag: Montenegro
+1F1F2 1F1EB; L2/09-379 # 2015 (🇲🇫) flag: St. Martin
+1F1F2 1F1EC; L2/09-379 # 2015 (🇲🇬) flag: Madagascar
+1F1F2 1F1ED; L2/09-379 # 2015 (🇲🇭) flag: Marshall Islands
+1F1F2 1F1F0; L2/09-379 # 2015 (🇲🇰) flag: North Macedonia
+1F1F2 1F1F1; L2/09-379 # 2015 (🇲🇱) flag: Mali
+1F1F2 1F1F2; L2/09-379 # 2015 (🇲🇲) flag: Myanmar (Burma)
+1F1F2 1F1F3; L2/09-379 # 2015 (🇲🇳) flag: Mongolia
+1F1F2 1F1F4; L2/09-379 # 2015 (🇲🇴) flag: Macao SAR China
+1F1F2 1F1F5; L2/09-379 # 2015 (🇲🇵) flag: Northern Mariana Islands
+1F1F2 1F1F6; L2/09-379 # 2015 (🇲🇶) flag: Martinique
+1F1F2 1F1F7; L2/09-379 # 2015 (🇲🇷) flag: Mauritania
+1F1F2 1F1F8; L2/09-379 # 2015 (🇲🇸) flag: Montserrat
+1F1F2 1F1F9; L2/09-379 # 2015 (🇲🇹) flag: Malta
+1F1F2 1F1FA; L2/09-379 # 2015 (🇲🇺) flag: Mauritius
+1F1F2 1F1FB; L2/09-379 # 2015 (🇲🇻) flag: Maldives
+1F1F2 1F1FC; L2/09-379 # 2015 (🇲🇼) flag: Malawi
+1F1F2 1F1FD; L2/09-379 # 2015 (🇲🇽) flag: Mexico
+1F1F2 1F1FE; L2/09-379 # 2015 (🇲🇾) flag: Malaysia
+1F1F2 1F1FF; L2/09-379 # 2015 (🇲🇿) flag: Mozambique
+1F1F3 1F1E6; L2/09-379 # 2015 (🇳🇦) flag: Namibia
+1F1F3 1F1E8; L2/09-379 # 2015 (🇳🇨) flag: New Caledonia
+1F1F3 1F1EA; L2/09-379 # 2015 (🇳🇪) flag: Niger
+1F1F3 1F1EB; L2/09-379 # 2015 (🇳🇫) flag: Norfolk Island
+1F1F3 1F1EC; L2/09-379 # 2015 (🇳🇬) flag: Nigeria
+1F1F3 1F1EE; L2/09-379 # 2015 (🇳🇮) flag: Nicaragua
+1F1F3 1F1F1; L2/09-379 # 2015 (🇳🇱) flag: Netherlands
+1F1F3 1F1F4; L2/09-379 # 2015 (🇳🇴) flag: Norway
+1F1F3 1F1F5; L2/09-379 # 2015 (🇳🇵) flag: Nepal
+1F1F3 1F1F7; L2/09-379 # 2015 (🇳🇷) flag: Nauru
+1F1F3 1F1FA; L2/09-379 # 2015 (🇳🇺) flag: Niue
+1F1F3 1F1FF; L2/09-379 # 2015 (🇳🇿) flag: New Zealand
+1F1F4 1F1F2; L2/09-379 # 2015 (🇴🇲) flag: Oman
+1F1F5 1F1E6; L2/09-379 # 2015 (🇵🇦) flag: Panama
+1F1F5 1F1EA; L2/09-379 # 2015 (🇵🇪) flag: Peru
+1F1F5 1F1EB; L2/09-379 # 2015 (🇵🇫) flag: French Polynesia
+1F1F5 1F1EC; L2/09-379 # 2015 (🇵🇬) flag: Papua New Guinea
+1F1F5 1F1ED; L2/09-379 # 2015 (🇵🇭) flag: Philippines
+1F1F5 1F1F0; L2/09-379 # 2015 (🇵🇰) flag: Pakistan
+1F1F5 1F1F1; L2/09-379 # 2015 (🇵🇱) flag: Poland
+1F1F5 1F1F2; L2/09-379 # 2015 (🇵🇲) flag: St. Pierre & Miquelon
+1F1F5 1F1F3; L2/09-379 # 2015 (🇵🇳) flag: Pitcairn Islands
+1F1F5 1F1F7; L2/09-379 # 2015 (🇵🇷) flag: Puerto Rico
+1F1F5 1F1F8; L2/09-379 # 2015 (🇵🇸) flag: Palestinian Territories
+1F1F5 1F1F9; L2/09-379 # 2015 (🇵🇹) flag: Portugal
+1F1F5 1F1FC; L2/09-379 # 2015 (🇵🇼) flag: Palau
+1F1F5 1F1FE; L2/09-379 # 2015 (🇵🇾) flag: Paraguay
+1F1F6 1F1E6; L2/09-379 # 2015 (🇶🇦) flag: Qatar
+1F1F7 1F1EA; L2/09-379 # 2015 (🇷🇪) flag: Réunion
+1F1F7 1F1F4; L2/09-379 # 2015 (🇷🇴) flag: Romania
+1F1F7 1F1F8; L2/09-379 # 2015 (🇷🇸) flag: Serbia
+1F1F7 1F1FC; L2/09-379 # 2015 (🇷🇼) flag: Rwanda
+1F1F8 1F1E6; L2/09-379 # 2015 (🇸🇦) flag: Saudi Arabia
+1F1F8 1F1E7; L2/09-379 # 2015 (🇸🇧) flag: Solomon Islands
+1F1F8 1F1E8; L2/09-379 # 2015 (🇸🇨) flag: Seychelles
+1F1F8 1F1E9; L2/09-379 # 2015 (🇸🇩) flag: Sudan
+1F1F8 1F1EA; L2/09-379 # 2015 (🇸🇪) flag: Sweden
+1F1F8 1F1EC; L2/09-379 # 2015 (🇸🇬) flag: Singapore
+1F1F8 1F1ED; L2/09-379 # 2015 (🇸🇭) flag: St. Helena, Ascension & Tristan da Cunha
+1F1F8 1F1EE; L2/09-379 # 2015 (🇸🇮) flag: Slovenia
+1F1F8 1F1EF; L2/09-379 # 2015 (🇸🇯) flag: Svalbard & Jan Mayen
+1F1F8 1F1F0; L2/09-379 # 2015 (🇸🇰) flag: Slovakia
+1F1F8 1F1F1; L2/09-379 # 2015 (🇸🇱) flag: Sierra Leone
+1F1F8 1F1F2; L2/09-379 # 2015 (🇸🇲) flag: San Marino
+1F1F8 1F1F3; L2/09-379 # 2015 (🇸🇳) flag: Senegal
+1F1F8 1F1F4; L2/09-379 # 2015 (🇸🇴) flag: Somalia
+1F1F8 1F1F7; L2/09-379 # 2015 (🇸🇷) flag: Suriname
+1F1F8 1F1F8; L2/09-379 # 2015 (🇸🇸) flag: South Sudan
+1F1F8 1F1F9; L2/09-379 # 2015 (🇸🇹) flag: São Tomé & Príncipe
+1F1F8 1F1FB; L2/09-379 # 2015 (🇸🇻) flag: El Salvador
+1F1F8 1F1FD; L2/09-379 # 2015 (🇸🇽) flag: Sint Maarten
+1F1F8 1F1FE; L2/09-379 # 2015 (🇸🇾) flag: Syria
+1F1F8 1F1FF; L2/09-379 # 2015 (🇸🇿) flag: Eswatini
+1F1F9 1F1E6; L2/09-379 # 2015 (🇹🇦) flag: Tristan da Cunha
+1F1F9 1F1E8; L2/09-379 # 2015 (🇹🇨) flag: Turks & Caicos Islands
+1F1F9 1F1E9; L2/09-379 # 2015 (🇹🇩) flag: Chad
+1F1F9 1F1EB; L2/09-379 # 2015 (🇹🇫) flag: French Southern and Antarctic Lands
+1F1F9 1F1EC; L2/09-379 # 2015 (🇹🇬) flag: Togo
+1F1F9 1F1ED; L2/09-379 # 2015 (🇹🇭) flag: Thailand
+1F1F9 1F1EF; L2/09-379 # 2015 (🇹🇯) flag: Tajikistan
+1F1F9 1F1F0; L2/09-379 # 2015 (🇹🇰) flag: Tokelau
+1F1F9 1F1F1; L2/09-379 # 2015 (🇹🇱) flag: Timor-Leste
+1F1F9 1F1F2; L2/09-379 # 2015 (🇹🇲) flag: Turkmenistan
+1F1F9 1F1F3; L2/09-379 # 2015 (🇹🇳) flag: Tunisia
+1F1F9 1F1F4; L2/09-379 # 2015 (🇹🇴) flag: Tonga
+1F1F9 1F1F7; L2/09-379 # 2015 (🇹🇷) flag: Türkiye
+1F1F9 1F1F9; L2/09-379 # 2015 (🇹🇹) flag: Trinidad & Tobago
+1F1F9 1F1FB; L2/09-379 # 2015 (🇹🇻) flag: Tuvalu
+1F1F9 1F1FC; L2/09-379 # 2015 (🇹🇼) flag: Taiwan
+1F1F9 1F1FF; L2/09-379 # 2015 (🇹🇿) flag: Tanzania
+1F1FA 1F1E6; L2/09-379 # 2015 (🇺🇦) flag: Ukraine
+1F1FA 1F1EC; L2/09-379 # 2015 (🇺🇬) flag: Uganda
+1F1FA 1F1F2; L2/09-379 # 2015 (🇺🇲) flag: U.S. Outlying Islands
+1F1FA 1F1F3; L2/09-379 # 2016 (🇺🇳) flag: United Nations
+1F1FA 1F1FE; L2/09-379 # 2015 (🇺🇾) flag: Uruguay
+1F1FA 1F1FF; L2/09-379 # 2015 (🇺🇿) flag: Uzbekistan
+1F1FB 1F1E6; L2/09-379 # 2015 (🇻🇦) flag: Vatican City
+1F1FB 1F1E8; L2/09-379 # 2015 (🇻🇨) flag: St. Vincent & Grenadines
+1F1FB 1F1EA; L2/09-379 # 2015 (🇻🇪) flag: Venezuela
+1F1FB 1F1EC; L2/09-379 # 2015 (🇻🇬) flag: British Virgin Islands
+1F1FB 1F1EE; L2/09-379 # 2015 (🇻🇮) flag: U.S. Virgin Islands
+1F1FB 1F1F3; L2/09-379 # 2015 (🇻🇳) flag: Vietnam
+1F1FB 1F1FA; L2/09-379 # 2015 (🇻🇺) flag: Vanuatu
+1F1FC 1F1EB; L2/09-379 # 2015 (🇼🇫) flag: Wallis & Futuna
+1F1FC 1F1F8; L2/09-379 # 2015 (🇼🇸) flag: Samoa
+1F1FD 1F1F0; L2/09-379 # 2015 (🇽🇰) flag: Kosovo
+1F1FE 1F1EA; L2/09-379 # 2015 (🇾🇪) flag: Yemen
+1F1FE 1F1F9; L2/09-379 # 2015 (🇾🇹) flag: Mayotte
+1F1FF 1F1E6; L2/09-379 # 2015 (🇿🇦) flag: South Africa
+1F1FF 1F1F2; L2/09-379 # 2015 (🇿🇲) flag: Zambia
+1F1FF 1F1FC; L2/09-379 # 2015 (🇿🇼) flag: Zimbabwe
+
+# L2/23-032
+1F344 200D 1F7EB; L2/23-032 # 2023 (🍄‍🟫) brown mushroom
+
+# L2/23-031
+1F34B 200D 1F7E9; L2/23-031 # 2023 (🍋‍🟩) lime
+
+# L2/23-030
+1F3C3 200D 2640 200D 27A1; L2/23-030 # 2023 (🏃‍♀️‍➡️) woman running facing right
+1F3C3 200D 27A1; L2/23-030 # 2023 (🏃‍➡️) person running facing right
+1F3C3 1F3FF 200D 2640 200D 27A1; L2/23-030 # 2023 (🏃🏿‍♀️‍➡️) woman running facing right: dark skin tone
+1F3C3 1F3FF 200D 27A1; L2/23-030 # 2023 (🏃🏿‍➡️) person running facing right: dark skin tone
+1F469 200D 1F9AF 200D 27A1; L2/23-030 # 2023 (👩‍🦯‍➡️) woman with white cane facing right
+1F469 200D 1F9BC 200D 27A1; L2/23-030 # 2023 (👩‍🦼‍➡️) woman in motorized wheelchair facing right
+1F469 200D 1F9BD 200D 27A1; L2/23-030 # 2023 (👩‍🦽‍➡️) woman in manual wheelchair facing right
+1F469 1F3FF 200D 1F9AF 200D 27A1; L2/23-030 # 2023 (👩🏿‍🦯‍➡️) woman with white cane facing right: dark skin tone
+1F469 1F3FF 200D 1F9BC 200D 27A1; L2/23-030 # 2023 (👩🏿‍🦼‍➡️) woman in motorized wheelchair facing right: dark skin tone
+1F469 1F3FF 200D 1F9BD 200D 27A1; L2/23-030 # 2023 (👩🏿‍🦽‍➡️) woman in manual wheelchair facing right: dark skin tone
+1F6B6 200D 2640 200D 27A1; L2/23-030 # 2023 (🚶‍♀️‍➡️) woman walking facing right
+1F6B6 200D 27A1; L2/23-030 # 2023 (🚶‍➡️) person walking facing right
+1F6B6 1F3FF 200D 2640 200D 27A1; L2/23-030 # 2023 (🚶🏿‍♀️‍➡️) woman walking facing right: dark skin tone
+1F6B6 1F3FF 200D 27A1; L2/23-030 # 2023 (🚶🏿‍➡️) person walking facing right: dark skin tone
+1F9CE 200D 2640 200D 27A1; L2/23-030 # 2023 (🧎‍♀️‍➡️) woman kneeling facing right
+1F9CE 200D 27A1; L2/23-030 # 2023 (🧎‍➡️) person kneeling facing right
+1F9CE 1F3FF 200D 2640 200D 27A1; L2/23-030 # 2023 (🧎🏿‍♀️‍➡️) woman kneeling facing right: dark skin tone
+1F9CE 1F3FF 200D 27A1; L2/23-030 # 2023 (🧎🏿‍➡️) person kneeling facing right: dark skin tone
+1F9D1 200D 1F9AF 200D 27A1; L2/23-030 # 2023 (🧑‍🦯‍➡️) person with white cane facing right
+1F9D1 200D 1F9BC 200D 27A1; L2/23-030 # 2023 (🧑‍🦼‍➡️) person in motorized wheelchair facing right
+1F9D1 200D 1F9BD 200D 27A1; L2/23-030 # 2023 (🧑‍🦽‍➡️) person in manual wheelchair facing right
+1F9D1 1F3FF 200D 1F9AF 200D 27A1; L2/23-030 # 2023 (🧑🏿‍🦯‍➡️) person with white cane facing right: dark skin tone
+1F9D1 1F3FF 200D 1F9BC 200D 27A1; L2/23-030 # 2023 (🧑🏿‍🦼‍➡️) person in motorized wheelchair facing right: dark skin tone
+1F9D1 1F3FF 200D 1F9BD 200D 27A1; L2/23-030 # 2023 (🧑🏿‍🦽‍➡️) person in manual wheelchair facing right: dark skin tone
+
+# L2/16-228
+1F3C7 1F3FF; L2/16-228 # 2015 (🏇🏿) horse racing: dark skin tone
+1F6CC 1F3FF; L2/16-228 # 2016 (🛌🏿) person in bed: dark skin tone
+
+# L2/16-183
+1F3F3 200D 1F308; L2/16-183 # 2016 (🏳️‍🌈) rainbow flag
+
+# L2/18-059
+1F3F4 200D 2620; L2/18-059 # 2018 (🏴‍☠️) pirate flag
+
+# L2/16-180, L2/16-184
+1F3F4 E0067 E0062 E0065 E006E E0067 E007F; L2/16-180, L2/16-184 # 2017 (🏴󠁧󠁢󠁥󠁮󠁧󠁿) flag: England
+1F3F4 E0067 E0062 E0073 E0063 E0074 E007F; L2/16-180, L2/16-184 # 2017 (🏴󠁧󠁢󠁳󠁣󠁴󠁿) flag: Scotland
+1F3F4 E0067 E0062 E0077 E006C E0073 E007F; L2/16-180, L2/16-184 # 2017 (🏴󠁧󠁢󠁷󠁬󠁳󠁿) flag: Wales
+
+# L2/19-277
+1F408 200D 2B1B; L2/19-277 # 2020 (🐈‍⬛) black cat
+
+# L2/18-256
+1F415 200D 1F9BA; L2/18-256 # 2019 (🐕‍🦺) service dog
+
+# L2/19-307
+1F426 200D 2B1B; L2/19-307 # 2022 (🐦‍⬛) black bird
+
+# L2/23-033
+1F426 200D 1F525; L2/23-033 # 2023 (🐦‍🔥) phoenix
+
+# L2/19-296
+1F43B 200D 2744; L2/19-296 # 2020 (🐻‍❄️) polar bear
+
+# L2/15-029
+1F468 200D 2764 200D 1F468; L2/15-029 # 2015 (👨‍❤️‍👨) couple with heart: man, man
+1F468 200D 2764 200D 1F48B 200D 1F468; L2/15-029 # 2015 (👨‍❤️‍💋‍👨) kiss: man, man
+1F468 200D 1F466; L2/15-029 # 2016 (👨‍👦) family: man, boy
+1F468 200D 1F466 200D 1F466; L2/15-029 # 2016 (👨‍👦‍👦) family: man, boy, boy
+1F468 200D 1F467; L2/15-029 # 2016 (👨‍👧) family: man, girl
+1F468 200D 1F467 200D 1F466; L2/15-029 # 2016 (👨‍👧‍👦) family: man, girl, boy
+1F468 200D 1F467 200D 1F467; L2/15-029 # 2016 (👨‍👧‍👧) family: man, girl, girl
+1F468 200D 1F468 200D 1F466; L2/15-029 # 2015 (👨‍👨‍👦) family: man, man, boy
+1F468 200D 1F468 200D 1F466 200D 1F466; L2/15-029 # 2015 (👨‍👨‍👦‍👦) family: man, man, boy, boy
+1F468 200D 1F468 200D 1F467; L2/15-029 # 2015 (👨‍👨‍👧) family: man, man, girl
+1F468 200D 1F468 200D 1F467 200D 1F466; L2/15-029 # 2015 (👨‍👨‍👧‍👦) family: man, man, girl, boy
+1F468 200D 1F468 200D 1F467 200D 1F467; L2/15-029 # 2015 (👨‍👨‍👧‍👧) family: man, man, girl, girl
+1F468 200D 1F469 200D 1F466; L2/15-029 # 2015 (👨‍👩‍👦) family: man, woman, boy
+1F468 200D 1F469 200D 1F466 200D 1F466; L2/15-029 # 2015 (👨‍👩‍👦‍👦) family: man, woman, boy, boy
+1F468 200D 1F469 200D 1F467; L2/15-029 # 2015 (👨‍👩‍👧) family: man, woman, girl
+1F468 200D 1F469 200D 1F467 200D 1F466; L2/15-029 # 2015 (👨‍👩‍👧‍👦) family: man, woman, girl, boy
+1F468 200D 1F469 200D 1F467 200D 1F467; L2/15-029 # 2015 (👨‍👩‍👧‍👧) family: man, woman, girl, girl
+1F469 200D 2764 200D 1F468; L2/15-029 # 2015 (👩‍❤️‍👨) couple with heart: woman, man
+1F469 200D 2764 200D 1F469; L2/15-029 # 2015 (👩‍❤️‍👩) couple with heart: woman, woman
+1F469 200D 2764 200D 1F48B 200D 1F468; L2/15-029 # 2015 (👩‍❤️‍💋‍👨) kiss: woman, man
+1F469 200D 2764 200D 1F48B 200D 1F469; L2/15-029 # 2015 (👩‍❤️‍💋‍👩) kiss: woman, woman
+1F469 200D 1F466; L2/15-029 # 2016 (👩‍👦) family: woman, boy
+1F469 200D 1F466 200D 1F466; L2/15-029 # 2016 (👩‍👦‍👦) family: woman, boy, boy
+1F469 200D 1F467; L2/15-029 # 2016 (👩‍👧) family: woman, girl
+1F469 200D 1F467 200D 1F466; L2/15-029 # 2016 (👩‍👧‍👦) family: woman, girl, boy
+1F469 200D 1F467 200D 1F467; L2/15-029 # 2016 (👩‍👧‍👧) family: woman, girl, girl
+1F469 200D 1F469 200D 1F466; L2/15-029 # 2015 (👩‍👩‍👦) family: woman, woman, boy
+1F469 200D 1F469 200D 1F466 200D 1F466; L2/15-029 # 2015 (👩‍👩‍👦‍👦) family: woman, woman, boy, boy
+1F469 200D 1F469 200D 1F467; L2/15-029 # 2015 (👩‍👩‍👧) family: woman, woman, girl
+1F469 200D 1F469 200D 1F467 200D 1F466; L2/15-029 # 2015 (👩‍👩‍👧‍👦) family: woman, woman, girl, boy
+1F469 200D 1F469 200D 1F467 200D 1F467; L2/15-029 # 2015 (👩‍👩‍👧‍👧) family: woman, woman, girl, girl
+
+# L2/19-336
+1F468 200D 1F37C; L2/19-336 # 2020 (👨‍🍼) man feeding baby
+1F468 1F3FF 200D 1F37C; L2/19-336 # 2020 (👨🏿‍🍼) man feeding baby: dark skin tone
+1F469 200D 1F37C; L2/19-336 # 2020 (👩‍🍼) woman feeding baby
+1F469 1F3FF 200D 1F37C; L2/19-336 # 2020 (👩🏿‍🍼) woman feeding baby: dark skin tone
+1F9D1 200D 1F37C; L2/19-336 # 2020 (🧑‍🍼) person feeding baby
+1F9D1 1F3FF 200D 1F37C; L2/19-336 # 2020 (🧑🏿‍🍼) person feeding baby: dark skin tone
+
+# L2/18-306, L2/18-307
+1F468 200D 1F9AF; L2/18-306, L2/18-307 # 2019 (👨‍🦯) man with white cane
+1F468 200D 1F9BC; L2/18-306, L2/18-307 # 2019 (👨‍🦼) man in motorized wheelchair
+1F468 200D 1F9BD; L2/18-306, L2/18-307 # 2019 (👨‍🦽) man in manual wheelchair
+1F468 1F3FF 200D 1F9AF; L2/18-306, L2/18-307 # 2019 (👨🏿‍🦯) man with white cane: dark skin tone
+1F468 1F3FF 200D 1F9BC; L2/18-306, L2/18-307 # 2019 (👨🏿‍🦼) man in motorized wheelchair: dark skin tone
+1F468 1F3FF 200D 1F9BD; L2/18-306, L2/18-307 # 2019 (👨🏿‍🦽) man in manual wheelchair: dark skin tone
+1F469 200D 1F9AF; L2/18-306, L2/18-307 # 2019 (👩‍🦯) woman with white cane
+1F469 200D 1F9BC; L2/18-306, L2/18-307 # 2019 (👩‍🦼) woman in motorized wheelchair
+1F469 200D 1F9BD; L2/18-306, L2/18-307 # 2019 (👩‍🦽) woman in manual wheelchair
+1F469 1F3FF 200D 1F9AF; L2/18-306, L2/18-307 # 2019 (👩🏿‍🦯) woman with white cane: dark skin tone
+1F469 1F3FF 200D 1F9BC; L2/18-306, L2/18-307 # 2019 (👩🏿‍🦼) woman in motorized wheelchair: dark skin tone
+1F469 1F3FF 200D 1F9BD; L2/18-306, L2/18-307 # 2019 (👩🏿‍🦽) woman in manual wheelchair: dark skin tone
+
+# L2/20-133
+1F468 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133 # 2020 (👨🏿‍❤️‍👨🏿) couple with heart: man, man, dark skin tone
+1F468 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133 # 2020 (👨🏿‍❤️‍💋‍👨🏿) kiss: man, man, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F468 1F3FF; L2/20-133 # 2020 (👩🏿‍❤️‍👨🏿) couple with heart: woman, man, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F469 1F3FF; L2/20-133 # 2020 (👩🏿‍❤️‍👩🏿) couple with heart: woman, woman, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F48B 200D 1F468 1F3FF; L2/20-133 # 2020 (👩🏿‍❤️‍💋‍👨🏿) kiss: woman, man, dark skin tone
+1F469 1F3FF 200D 2764 200D 1F48B 200D 1F469 1F3FF; L2/20-133 # 2020 (👩🏿‍❤️‍💋‍👩🏿) kiss: woman, woman, dark skin tone
+1F48F 1F3FF; L2/20-133 # 2020 (💏🏿) kiss: dark skin tone
+1F491 1F3FF; L2/20-133 # 2020 (💑🏿) couple with heart: dark skin tone
+1F9D4 200D 2640; L2/20-133 # 2020 (🧔‍♀️) woman: beard
+1F9D4 1F3FF 200D 2640; L2/20-133 # 2020 (🧔🏿‍♀️) woman: dark skin tone, beard
+
+# L2/17-082, L2/17-011, L2/16-147, L2/16-008
+1F468 1F3FF 200D 1F9B0; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👨🏿‍🦰) man: dark skin tone, red hair
+1F468 1F3FF 200D 1F9B1; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👨🏿‍🦱) man: dark skin tone, curly hair
+1F468 1F3FF 200D 1F9B2; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👨🏿‍🦲) man: dark skin tone, bald
+1F468 1F3FF 200D 1F9B3; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👨🏿‍🦳) man: dark skin tone, white hair
+1F469 1F3FF 200D 1F9B0; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👩🏿‍🦰) woman: dark skin tone, red hair
+1F469 1F3FF 200D 1F9B1; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👩🏿‍🦱) woman: dark skin tone, curly hair
+1F469 1F3FF 200D 1F9B2; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👩🏿‍🦲) woman: dark skin tone, bald
+1F469 1F3FF 200D 1F9B3; L2/17-082, L2/17-011, L2/16-147, L2/16-008 # 2018 (👩🏿‍🦳) woman: dark skin tone, white hair
+
+# L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340
+1F46B 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340 # 2019 (👫🏿) woman and man holding hands: dark skin tone
+1F46C 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340 # 2019 (👬🏿) men holding hands: dark skin tone
+1F46D 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340 # 2019 (👭🏿) women holding hands: dark skin tone
+1F9D1 200D 1F91D 200D 1F9D1; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340 # 2019 (🧑‍🤝‍🧑) people holding hands
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FF; L2/19-275, L2/18-223, L2/18-228, L2/19-021, L2/18-340 # 2019 (🧑🏿‍🤝‍🧑🏿) people holding hands: dark skin tone
+
+# L2/24-252
+1F46F 1F3FF; L2/24-252 # 2025 (👯🏿) people with bunny ears: dark skin tone
+1F46F 1F3FF 200D 2640; L2/24-252 # 2025 (👯🏿‍♀️) women with bunny ears: dark skin tone
+1F93C 1F3FF; L2/24-252 # 2025 (🤼🏿) people wrestling: dark skin tone
+1F93C 1F3FF 200D 2640; L2/24-252 # 2025 (🤼🏿‍♀️) women wrestling: dark skin tone
+
+# L2/19-231, L2/17-071
+1F470 200D 2640; L2/19-231, L2/17-071 # 2020 (👰‍♀️) woman with veil
+1F470 1F3FF 200D 2640; L2/19-231, L2/17-071 # 2020 (👰🏿‍♀️) woman with veil: dark skin tone
+1F935 200D 2640; L2/19-231, L2/17-071 # 2020 (🤵‍♀️) woman in tuxedo
+1F935 1F3FF 200D 2640; L2/19-231, L2/17-071 # 2020 (🤵🏿‍♀️) woman in tuxedo: dark skin tone
+
+# L2/20-066
+1F62E 200D 1F4A8; L2/20-066 # 2020 (😮‍💨) face exhaling
+
+# L2/20-131
+1F635 200D 1F4AB; L2/20-131 # 2020 (😵‍💫) face with spiral eyes
+
+# L2/19-390, L2/20-130
+1F636 200D 1F32B; L2/19-390, L2/20-130 # 2020 (😶‍🌫️) face in clouds
+
+# L2/23-034
+1F642 200D 2194; L2/23-034 # 2023 (🙂‍↔️) head shaking horizontally
+
+# L2/23-035
+1F642 200D 2195; L2/23-035 # 2023 (🙂‍↕️) head shaking vertically
+
+# L2/16-181, L2/16-182, L2/14-174, L2/16-160
+1F937 200D 2640; L2/16-181, L2/16-182, L2/14-174, L2/16-160 # 2016 (🤷‍♀️) woman shrugging
+1F937 1F3FF 200D 2640; L2/16-181, L2/16-182, L2/14-174, L2/16-160 # 2016 (🤷🏿‍♀️) woman shrugging: dark skin tone
+
+# L2/19-189
+1F9D1 200D 2695; L2/19-189 # 2019 (🧑‍⚕️) health worker
+1F9D1 200D 2696; L2/19-189 # 2019 (🧑‍⚖️) judge
+1F9D1 200D 2708; L2/19-189 # 2019 (🧑‍✈️) pilot
+1F9D1 200D 1F33E; L2/19-189 # 2019 (🧑‍🌾) farmer
+1F9D1 200D 1F373; L2/19-189 # 2019 (🧑‍🍳) cook
+1F9D1 200D 1F393; L2/19-189 # 2019 (🧑‍🎓) student
+1F9D1 200D 1F3A4; L2/19-189 # 2019 (🧑‍🎤) singer
+1F9D1 200D 1F3A8; L2/19-189 # 2019 (🧑‍🎨) artist
+1F9D1 200D 1F3EB; L2/19-189 # 2019 (🧑‍🏫) teacher
+1F9D1 200D 1F3ED; L2/19-189 # 2019 (🧑‍🏭) factory worker
+1F9D1 200D 1F4BB; L2/19-189 # 2019 (🧑‍💻) technologist
+1F9D1 200D 1F4BC; L2/19-189 # 2019 (🧑‍💼) office worker
+1F9D1 200D 1F527; L2/19-189 # 2019 (🧑‍🔧) mechanic
+1F9D1 200D 1F52C; L2/19-189 # 2019 (🧑‍🔬) scientist
+1F9D1 200D 1F680; L2/19-189 # 2019 (🧑‍🚀) astronaut
+1F9D1 200D 1F692; L2/19-189 # 2019 (🧑‍🚒) firefighter
+1F9D1 200D 1F9AF; L2/19-189 # 2019 (🧑‍🦯) person with white cane
+1F9D1 200D 1F9B0; L2/19-189 # 2019 (🧑‍🦰) person: red hair
+1F9D1 200D 1F9B1; L2/19-189 # 2019 (🧑‍🦱) person: curly hair
+1F9D1 200D 1F9B2; L2/19-189 # 2019 (🧑‍🦲) person: bald
+1F9D1 200D 1F9B3; L2/19-189 # 2019 (🧑‍🦳) person: white hair
+1F9D1 200D 1F9BC; L2/19-189 # 2019 (🧑‍🦼) person in motorized wheelchair
+1F9D1 200D 1F9BD; L2/19-189 # 2019 (🧑‍🦽) person in manual wheelchair
+1F9D1 1F3FF 200D 2695; L2/19-189 # 2019 (🧑🏿‍⚕️) health worker: dark skin tone
+1F9D1 1F3FF 200D 2696; L2/19-189 # 2019 (🧑🏿‍⚖️) judge: dark skin tone
+1F9D1 1F3FF 200D 2708; L2/19-189 # 2019 (🧑🏿‍✈️) pilot: dark skin tone
+1F9D1 1F3FF 200D 1F33E; L2/19-189 # 2019 (🧑🏿‍🌾) farmer: dark skin tone
+1F9D1 1F3FF 200D 1F373; L2/19-189 # 2019 (🧑🏿‍🍳) cook: dark skin tone
+1F9D1 1F3FF 200D 1F393; L2/19-189 # 2019 (🧑🏿‍🎓) student: dark skin tone
+1F9D1 1F3FF 200D 1F3A4; L2/19-189 # 2019 (🧑🏿‍🎤) singer: dark skin tone
+1F9D1 1F3FF 200D 1F3A8; L2/19-189 # 2019 (🧑🏿‍🎨) artist: dark skin tone
+1F9D1 1F3FF 200D 1F3EB; L2/19-189 # 2019 (🧑🏿‍🏫) teacher: dark skin tone
+1F9D1 1F3FF 200D 1F3ED; L2/19-189 # 2019 (🧑🏿‍🏭) factory worker: dark skin tone
+1F9D1 1F3FF 200D 1F4BB; L2/19-189 # 2019 (🧑🏿‍💻) technologist: dark skin tone
+1F9D1 1F3FF 200D 1F4BC; L2/19-189 # 2019 (🧑🏿‍💼) office worker: dark skin tone
+1F9D1 1F3FF 200D 1F527; L2/19-189 # 2019 (🧑🏿‍🔧) mechanic: dark skin tone
+1F9D1 1F3FF 200D 1F52C; L2/19-189 # 2019 (🧑🏿‍🔬) scientist: dark skin tone
+1F9D1 1F3FF 200D 1F680; L2/19-189 # 2019 (🧑🏿‍🚀) astronaut: dark skin tone
+1F9D1 1F3FF 200D 1F692; L2/19-189 # 2019 (🧑🏿‍🚒) firefighter: dark skin tone
+1F9D1 1F3FF 200D 1F9AF; L2/19-189 # 2019 (🧑🏿‍🦯) person with white cane: dark skin tone
+1F9D1 1F3FF 200D 1F9B0; L2/19-189 # 2019 (🧑🏿‍🦰) person: dark skin tone, red hair
+1F9D1 1F3FF 200D 1F9B1; L2/19-189 # 2019 (🧑🏿‍🦱) person: dark skin tone, curly hair
+1F9D1 1F3FF 200D 1F9B2; L2/19-189 # 2019 (🧑🏿‍🦲) person: dark skin tone, bald
+1F9D1 1F3FF 200D 1F9B3; L2/19-189 # 2019 (🧑🏿‍🦳) person: dark skin tone, white hair
+1F9D1 1F3FF 200D 1F9BC; L2/19-189 # 2019 (🧑🏿‍🦼) person in motorized wheelchair: dark skin tone
+1F9D1 1F3FF 200D 1F9BD; L2/19-189 # 2019 (🧑🏿‍🦽) person in manual wheelchair: dark skin tone
+
+# L2/19-231
+1F9D1 200D 1F384; L2/19-231 # 2020 (🧑‍🎄) Mx Claus
+1F9D1 1F3FF 200D 1F384; L2/19-231 # 2020 (🧑🏿‍🎄) Mx Claus: dark skin tone
+
+# L2/23-029
+1F9D1 200D 1F9D1 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧑‍🧒) family: adult, adult, child
+1F9D1 200D 1F9D1 200D 1F9D2 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧑‍🧒‍🧒) family: adult, adult, child, child
+1F9D1 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧒) family: adult, child
+1F9D1 200D 1F9D2 200D 1F9D2; L2/23-029 # 2023 (🧑‍🧒‍🧒) family: adult, child, child
+
+# L2/24-226
+1F9D1 200D 1FA70; L2/24-226 # 2025 (🧑‍🩰) ballet dancer
+1F9D1 1F3FF 200D 1FA70; L2/24-226 # 2025 (🧑🏿‍🩰) ballet dancer: dark skin tone
+
+# L2/16-260
+1F9D4 1F3FF; L2/16-260 # 2017 (🧔🏿) person: dark skin tone, beard
+
+# L2/16-284
+1F9D5 1F3FF; L2/16-284 # 2017 (🧕🏿) woman with headscarf: dark skin tone
+
+# MISSING-2015
+1F441 FE0F 200D 1F5E8 FE0F; MISSING # 2015 (👁️‍🗨️) eye in speech bubble
+002A FE0F 20E3; MISSING # 2015 (*️⃣) keycap: *
+
+# MISSING-2023
+1F468 200D 1F9AF 200D 27A1 FE0F; MISSING # 2023 (👨‍🦯‍➡️) man with white cane facing right
+1F468 1F3FB 200D 1F9AF 200D 27A1 FE0F; MISSING # 2023 (👨🏻‍🦯‍➡️) man with white cane facing right: light skin tone
+1F468 1F3FC 200D 1F9AF 200D 27A1 FE0F; MISSING # 2023 (👨🏼‍🦯‍➡️) man with white cane facing right: medium-light skin tone
+1F468 1F3FD 200D 1F9AF 200D 27A1 FE0F; MISSING # 2023 (👨🏽‍🦯‍➡️) man with white cane facing right: medium skin tone
+1F468 1F3FE 200D 1F9AF 200D 27A1 FE0F; MISSING # 2023 (👨🏾‍🦯‍➡️) man with white cane facing right: medium-dark skin tone
+1F468 1F3FF 200D 1F9AF 200D 27A1 FE0F; MISSING # 2023 (👨🏿‍🦯‍➡️) man with white cane facing right: dark skin tone
+1F468 200D 1F9BC 200D 27A1 FE0F; MISSING # 2023 (👨‍🦼‍➡️) man in motorized wheelchair facing right
+1F468 1F3FB 200D 1F9BC 200D 27A1 FE0F; MISSING # 2023 (👨🏻‍🦼‍➡️) man in motorized wheelchair facing right: light skin tone
+1F468 1F3FC 200D 1F9BC 200D 27A1 FE0F; MISSING # 2023 (👨🏼‍🦼‍➡️) man in motorized wheelchair facing right: medium-light skin tone
+1F468 1F3FD 200D 1F9BC 200D 27A1 FE0F; MISSING # 2023 (👨🏽‍🦼‍➡️) man in motorized wheelchair facing right: medium skin tone
+1F468 1F3FE 200D 1F9BC 200D 27A1 FE0F; MISSING # 2023 (👨🏾‍🦼‍➡️) man in motorized wheelchair facing right: medium-dark skin tone
+1F468 1F3FF 200D 1F9BC 200D 27A1 FE0F; MISSING # 2023 (👨🏿‍🦼‍➡️) man in motorized wheelchair facing right: dark skin tone
+1F468 200D 1F9BD 200D 27A1 FE0F; MISSING # 2023 (👨‍🦽‍➡️) man in manual wheelchair facing right
+1F468 1F3FB 200D 1F9BD 200D 27A1 FE0F; MISSING # 2023 (👨🏻‍🦽‍➡️) man in manual wheelchair facing right: light skin tone
+1F468 1F3FC 200D 1F9BD 200D 27A1 FE0F; MISSING # 2023 (👨🏼‍🦽‍➡️) man in manual wheelchair facing right: medium-light skin tone
+1F468 1F3FD 200D 1F9BD 200D 27A1 FE0F; MISSING # 2023 (👨🏽‍🦽‍➡️) man in manual wheelchair facing right: medium skin tone
+1F468 1F3FE 200D 1F9BD 200D 27A1 FE0F; MISSING # 2023 (👨🏾‍🦽‍➡️) man in manual wheelchair facing right: medium-dark skin tone
+1F468 1F3FF 200D 1F9BD 200D 27A1 FE0F; MISSING # 2023 (👨🏿‍🦽‍➡️) man in manual wheelchair facing right: dark skin tone
+
+# MISSING-2024
+1F1E8 1F1F6; MISSING # 2024 (🇨🇶) flag: Sark
+
+#EOF
+
+#EOF

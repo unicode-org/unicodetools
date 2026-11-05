@@ -70,6 +70,7 @@ public class UcdPropertyValues {
         V16_0("16.0"),
         V17_0("17.0"),
         V18_0("18.0"),
+        V19_0("19.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
 
@@ -447,6 +448,7 @@ public class UcdPropertyValues {
         Phonetic_Extensions("Phonetic_Ext"),
         Phonetic_Extensions_Supplement("Phonetic_Ext_Sup"),
         Playing_Cards("Playing_Cards"),
+        Proto_Cuneiform("Proto_Cuneiform"),
         Psalter_Pahlavi("Psalter_Pahlavi"),
         Private_Use_Area("PUA", "Private_Use"),
         General_Punctuation("Punctuation"),
@@ -464,6 +466,7 @@ public class UcdPropertyValues {
         Sidetic("Sidetic"),
         Sinhala("Sinhala"),
         Sinhala_Archaic_Numbers("Sinhala_Archaic_Numbers"),
+        Sirmauri("Sirmauri"),
         Small_Form_Variants("Small_Forms"),
         Small_Kana_Extension("Small_Kana_Ext"),
         Sogdian("Sogdian"),
@@ -2402,6 +2405,7 @@ public class UcdPropertyValues {
         Phoenician("Phnx"),
         Miao("Plrd"),
         Inscriptional_Parthian("Prti"),
+        Sirmauri("Qaba"),
         Rejang("Rjng"),
         Hanifi_Rohingya("Rohg"),
         Runic("Runr"),

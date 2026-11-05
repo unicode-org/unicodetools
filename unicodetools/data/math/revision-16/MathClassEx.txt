@@ -1,8 +1,8 @@
 # File: MathClassEx.txt
-# Revision: 16.0
-# Date: 2025-07-01
+# Revision: 16
+# Date: 2026-09-17
 #
-# © 2025 Unicode®, Inc.
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr25/
@@ -22,8 +22,8 @@
 #
 # The character encoding of this plain-text file is UTF-8.
 #
-# The data consists of 8 fields. The number and type of fields may change
-# in future versions of this file.
+# The data consists of 5 fields, optionally followed by a comment.
+# The number and type of fields may change in future versions of this file.
 #
 # 1: code point or range
 #
@@ -50,9 +50,12 @@
 # also useful in determining extra spacing around the operators as discussed
 # in UTR #25.
 #
-# 3: entity name
+# 3: entity names
+# Whitespace separated list of names.
 #
 # 4: entity set
+# This is HTML-MathML or empty, other legacy sets of entity names are
+# no longer listed in this file.
 #
 # 5: descriptive comments (of various types)
 # The descriptive comments provide more information about a character,
@@ -64,7 +67,8 @@
 # systematic differences in terminology, such as filled vs. black.
 # In principle this allows location of entities by their description.
 #
-# 6: Comment with Unicode General Category, character (UTf-8)
+# Comment:
+#    with Unicode General Category, character (UTF-8)
 #    and Unicode character name or names
 #    Character names are provided for ease of reference only.
 #
@@ -979,7 +983,6 @@
 2606;B;star;HTML-MathML;star, open # So (☆) WHITE STAR
 2609;N;;; # So (☉) SUN
 260C;N;;; # So (☌) CONJUNCTION
-2612;N;;; # So (☒) BALLOT BOX WITH X
 263D;N;;; # So (☽) FIRST QUARTER MOON
 263E;N;;; # So (☾) LAST QUARTER MOON
 263F;N;;; # So (☿) MERCURY
@@ -1729,6 +1732,9 @@ FFE9;X;;;("wide" compatibility variants of arrows) # Sm (￩) HALFWIDTH LEFTWARD
 FFEA;X;;;("wide" compatibility variants of arrows) # Sm (￪) HALFWIDTH UPWARDS ARROW
 FFEB;X;;;("wide" compatibility variants of arrows) # Sm (￫) HALFWIDTH RIGHTWARDS ARROW
 FFEC;X;;;("wide" compatibility variants of arrows) # Sm (￬) HALFWIDTH DOWNWARDS ARROW
+10D8E;B;;; # Sm (𐶎) GARAY PLUS SIGN
+10D8F;B;;; # Sm (𐶏) GARAY MINUS SIGN
+1CEF0;N;;; # Sm (𜻰) MEDIUM SMALL WHITE CIRCLE WITH HORIZONTAL BAR
 1D400;A;;; # Lu (𝐀) MATHEMATICAL BOLD CAPITAL A
 1D401;A;;; # Lu (𝐁) MATHEMATICAL BOLD CAPITAL B
 1D402;A;;; # Lu (𝐂) MATHEMATICAL BOLD CAPITAL C
@@ -2901,5 +2907,15 @@ FFEC;X;;;("wide" compatibility variants of arrows) # Sm (￬) HALFWIDTH DOWNWARD
 1F79D;N;;; # So (🞝) BLACK TINY LOZENGE
 1F79E;N;;; # So (🞞) BLACK VERY SMALL LOZENGE
 1F79F;N;;; # So (🞟) BLACK MEDIUM SMALL LOZENGE
+1F8D0;R;;; # Sm (🣐) LONG RIGHTWARDS ARROW OVER LONG LEFTWARDS ARROW
+1F8D1;R;;; # Sm (🣑) LONG RIGHTWARDS HARPOON OVER LONG LEFTWARDS HARPOON
+1F8D2;R;;; # Sm (🣒) LONG RIGHTWARDS HARPOON ABOVE SHORT LEFTWARDS HARPOON
+1F8D3;R;;; # Sm (🣓) SHORT RIGHTWARDS HARPOON ABOVE LONG LEFTWARDS HARPOON
+1F8D4;R;;; # Sm (🣔) LONG LEFTWARDS HARPOON ABOVE SHORT RIGHTWARDS HARPOON
+1F8D5;R;;; # Sm (🣕) SHORT LEFTWARDS HARPOON ABOVE LONG RIGHTWARDS HARPOON
+1F8D6;R;;; # Sm (🣖) LONG RIGHTWARDS ARROW THROUGH X
+1F8D7;R;;; # Sm (🣗) LONG RIGHTWARDS ARROW WITH DOUBLE SLASH
+1F8D8;R;;; # Sm (🣘) LONG LEFT RIGHT ARROW WITH DEPENDENT LOBE
+
 
 # EOF

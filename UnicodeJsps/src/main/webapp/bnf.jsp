@@ -17,7 +17,7 @@
         if (test == null) {
           test = "The 35 quick brown fox jumped over 1.234 lazy dogs: 1:234.";
         }
-        String testPattern = test;
+        String testPattern = Encode.forHtmlContent(test);
 
         String bnf = utfParameters.getParameter("a");
         if (bnf == null) {
@@ -29,14 +29,15 @@
         String fixedbnf;
         String random = "<i>Error In Pattern</i>";
         try {
-            fixedbnf = new org.unicode.jsp.UnicodeRegex().compileBnf(bnf);
-            String fixedbnf2 = org.unicode.jsp.UnicodeRegex.fix(fixedbnf);
+            UnicodeRegex unicodeRegex = UnicodeSetUtilities.getUnicodeRegex();
+            fixedbnf = unicodeRegex.compileBnf(bnf);
+            String fixedbnf2 = unicodeRegex.transform(fixedbnf);
             String fixedbnfNoPercent = fixedbnf2.replaceAll("[0-9]+%", "");
             testPattern = UnicodeJsp.showRegexFind(fixedbnfNoPercent, test);
             try {
                 random = UnicodeJsp.getBnf(fixedbnf, 100, 10);
             } catch (Exception e) {
-                random = e.getMessage();
+                random = Encode.forHtmlContent(java.util.Objects.toString(e.getMessage(), "error"));
             }
         } catch (Exception e) {
             fixedbnf = e.getMessage();
@@ -67,7 +68,7 @@
   <p><%=Encode.forHtmlContent(fixedbnf)%></p>
   <hr>
   <h2>Underlined Find Values</h2>
-  <p><%=Encode.forHtmlContent(testPattern)%></p>
+  <p><%=testPattern%></p>
   <hr>
   <h2>Random Generation</h2>
   <%=random%>
