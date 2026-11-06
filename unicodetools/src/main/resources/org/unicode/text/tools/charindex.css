@@ -33,6 +33,12 @@ td.entry-text {
   max-width: calc(var(--body-width) - var(--range-width));
   vertical-align: top;
 }
+td.entry-text a {
+  color: black;
+}
+td.entry-text a :hover {
+  text-decoration: underline;
+}
 td.ranges {
   width: var(--range-width);
   max-width: var(--range-width);

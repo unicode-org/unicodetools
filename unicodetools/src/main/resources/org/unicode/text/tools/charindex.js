@@ -363,11 +363,18 @@ function shouldPermute(/**@type {string}*/snippet, /**@type {number}*/pivot) {
 }
 
 window.onload = function () {
-  document.getElementById("info").innerHTML = "";
-  let params = (new URL(document.location)).searchParams;
-  if (params.has("q")) {
-    let query = params.get("q");
-    document.querySelector('input[name="q"]').value = query;
-    updateResults({target: {value: query}});
-  }
+  allTheStringsReady.then(_ => {
+    document.getElementById("info").innerHTML = "";
+    let params = (new URL(document.location)).searchParams;
+    let input = document.querySelector('input[name="q"]');
+    if (input.value) {
+      // This can happen when we get back to the index (e.g., type something,
+      // click on a names list link, press the back key).
+      updateResults({target: input});
+    } else if (params.has("q")) {
+      let query = params.get("q");
+      input.value = query;
+      updateResults({target: input});
+    }
+  });
 };

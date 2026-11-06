@@ -79,6 +79,7 @@ public class Indexer {
         private final UnicodeProperty CJK_RADICAL;
         private final UnicodeProperty GENERAL_CATEGORY;
         private final UnicodeSet NONCHARACTERS;
+        private final UnicodeSet HTML_NAMES_LIST_SCOPE;
 
         private final Map<String, UnicodeSet> blockSet = new HashMap<>();
         private final Map<String, String> prettifyBlock = new HashMap<>();
@@ -130,6 +131,7 @@ public class Indexer {
             CJK_RADICAL = IUP.getProperty(UcdProperty.CJK_Radical);
             GENERAL_CATEGORY = IUP.getProperty(UcdProperty.General_Category);
             NONCHARACTERS = IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
+            HTML_NAMES_LIST_SCOPE = SUBHEADER.getSet(UnicodeProperty.NULL_MATCHER).complement();
             for (String block : BLOCK.getAvailableValues()) {
                 blockSet.put(block, BLOCK.getSet(block));
                 if (Block_Values.forName(block) != Block_Values.No_Block
@@ -738,6 +740,7 @@ public class Indexer {
         private static class IndexSubEntry {
             String block;
             String subheader;
+            String namesListLink;
             String chartLink;
             String ranges;
             String characters;
@@ -759,13 +762,25 @@ public class Indexer {
             public String toHTML(String entryText) {
                 StringBuilder result = new StringBuilder();
                 result.append("<td class=entry-text>");
+                if (namesListLink != null && !entryText.isEmpty()) {
+                    result.append("<a href='" + namesListLink + "'>");
+                }
                 result.append(entryText);
+                if (namesListLink != null && !entryText.isEmpty()) {
+                    result.append("</a>");
+                }
                 result.append("<span class=location>");
+                if (namesListLink != null && entryText.isEmpty()) {
+                    result.append("<a href='" + namesListLink + "'>");
+                }
                 if (subheader != null) {
                     result.append(toHTML.transform(subheader) + ". ");
                 }
                 if (block != null) {
                     result.append("In " + block + ": ");
+                }
+                if (namesListLink != null && entryText.isEmpty()) {
+                    result.append("</a>");
                 }
                 result.append("</span>");
                 result.append("</td><td class='ranges");
@@ -811,6 +826,8 @@ public class Indexer {
                     if (showSubheader) {
                         currentSubEntry.subheader = SUBHEADER.getValue(range.codepoint);
                     }
+                    currentSubEntry.namesListLink =
+                            getNamesListLink(new UnicodeSet(range.codepoint, range.codepoint));
                     currentSubEntry.chartLink =
                             getChartLink(new UnicodeSet(range.codepoint, range.codepoint));
                     currentSubEntry.ranges = Utility.hex(range.codepoint);
@@ -850,6 +867,7 @@ public class Indexer {
                         if (showSubheader) {
                             currentSubEntry.subheader = SUBHEADER.getValue(range.codepoint);
                         }
+                        currentSubEntry.namesListLink = getNamesListLink(subrange);
                         currentSubEntry.chartLink = getChartLink(subrange);
                         currentSubEntry.ranges =
                                 Utility.hex(subrange.getRangeStart(0))
@@ -906,6 +924,48 @@ public class Indexer {
                 }
             }
             return result;
+        }
+
+        /**
+         * Returns a link to the HTML names list
+         * (https://www.unicode.org/Public/latest/charts/nameslist/) for code points in {@code set}
+         * if they appear in that names list; null otherwise.
+         */
+        private String getNamesListLink(UnicodeSet set) {
+            int chartStart;
+            final UnicodeSet namesListCharacters =
+                    set.cloneAsThawed().retainAll(HTML_NAMES_LIST_SCOPE);
+            if (namesListCharacters.isEmpty()) {
+                return null;
+            }
+            final int cp = namesListCharacters.charAt(0);
+            var blockValue = UcdPropertyValues.Block_Values.forName(BLOCK.getValue(cp));
+            if (NONCHARACTERS.contains(cp)
+                    && (blockValue == Block_Values.No_Block
+                            || blockValue == Block_Values.Supplementary_Private_Use_Area_A
+                            || blockValue == Block_Values.Supplementary_Private_Use_Area_B)) {
+                chartStart = cp & 0xFF_FF80;
+            } else {
+                if (blockValue == Block_Values.High_Private_Use_Surrogates) {
+                    blockValue = Block_Values.High_Surrogates;
+                }
+                final var currentBlock = blockSet.get(blockValue.toString());
+                chartStart = currentBlock.getRangeStart(0);
+            }
+            switch (phase) {
+                // TODO(egg): Check where those live in 19.0α and β.
+                case ALPHA:
+                case BETA:
+                    return "https://www.unicode.org/Public/draft/charts/nameslist/"
+                            + Utility.hex(chartStart).toLowerCase(Locale.ROOT)
+                            + "#"
+                            + Utility.hex(cp).toLowerCase(Locale.ROOT);
+                default:
+                    return "https://www.unicode.org/Public/latest/charts/nameslist/"
+                            + Utility.hex(chartStart).toLowerCase(Locale.ROOT)
+                            + "#"
+                            + Utility.hex(cp).toLowerCase(Locale.ROOT);
+            }
         }
 
         private String getChartLink(UnicodeSet set) {
