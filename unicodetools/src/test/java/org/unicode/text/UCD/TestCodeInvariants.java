@@ -29,6 +29,7 @@ import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class TestCodeInvariants {
@@ -124,6 +125,73 @@ public class TestCodeInvariants {
             assertEquals(0x0, range.getRangeStart(0) % 16, "Block start must end in 0: " + block);
             assertEquals(0xF, range.getRangeEnd(0) % 16, "Block end must end in F: " + block);
         }
+    }
+
+    @Test
+    void testCasePairStability() {
+        // https://www.unicode.org/policies/stability_policy.html#Case_Pair
+        // Also test the simple counterpart per UTC-174-A11; see
+        // https://www.unicode.org/L2/L2023/23005.htm#174-A11 and
+        // https://github.com/unicode-org/unicodetools/issues/386.
+        IndexUnicodeProperties previous = IndexUnicodeProperties.make(Settings.lastVersion);
+        UnicodeSet oldAssigned =
+                previous.getProperty(UcdProperty.General_Category)
+                        .getSet("Cn")
+                        .complement()
+                        .freeze();
+        checkCasePairStability(
+                previous,
+                oldAssigned,
+                UcdProperty.Lowercase_Mapping,
+                UcdProperty.Uppercase_Mapping);
+        checkCasePairStability(
+                previous,
+                oldAssigned,
+                UcdProperty.Simple_Lowercase_Mapping,
+                UcdProperty.Simple_Uppercase_Mapping);
+    }
+
+    private static void checkCasePairStability(
+            IndexUnicodeProperties previous,
+            UnicodeSet oldAssigned,
+            UcdProperty lowercaseProperty,
+            UcdProperty uppercaseProperty) {
+        UnicodeProperty oldLowercase = previous.getProperty(lowercaseProperty);
+        UnicodeProperty oldUppercase = previous.getProperty(uppercaseProperty);
+        UnicodeProperty lowercase = IUP.getProperty(lowercaseProperty);
+        UnicodeProperty uppercase = IUP.getProperty(uppercaseProperty);
+        for (String source : oldAssigned) {
+            // Comparing the other member of the case pair (or null) catches lost, gained, and
+            // changed pairs.
+            assertEquals(
+                    casePairTarget(source, oldLowercase, oldUppercase, oldAssigned),
+                    casePairTarget(source, lowercase, uppercase, oldAssigned),
+                    () ->
+                            lowercaseProperty
+                                    + " / "
+                                    + uppercaseProperty
+                                    + " case pair changed for U+"
+                                    + Utility.hex(source));
+        }
+    }
+
+    private static String casePairTarget(
+            String source,
+            UnicodeProperty lowercase,
+            UnicodeProperty uppercase,
+            UnicodeSet oldAssigned) {
+        String target = lowercase.getValue(source.codePointAt(0));
+        // Both members of the case pair must be distinct, single characters assigned in the old
+        // version.
+        // Pairs involving newly encoded characters are allowed.
+        if (target == null
+                || source.equals(target)
+                || target.codePointCount(0, target.length()) != 1
+                || !oldAssigned.contains(target)
+                || !source.equals(uppercase.getValue(target.codePointAt(0)))) {
+            return null;
+        }
+        return target;
     }
 
     @Test
