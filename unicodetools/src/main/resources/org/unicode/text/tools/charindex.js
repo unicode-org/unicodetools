@@ -369,7 +369,7 @@ window.onload = function () {
     let input = document.querySelector('input[name="q"]');
     if (input.value) {
       // This can happen when we get back to the index (e.g., type something,
-      // click on a names list link, press the back key).
+      // click on a names list link, press the back button).
       updateResults({target: input});
     } else if (params.has("q")) {
       let query = params.get("q");

@@ -8,6 +8,7 @@ import com.ibm.icu.segmenter.Segmenter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
@@ -19,6 +20,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -803,6 +805,43 @@ public class Indexer {
             }
         }
 
+        // ICU reuses an EntryRange instance when iterating over ranges.
+        // That does not work when we need to reorder the ranges.
+        private static final class Range {
+            Range(EntryRange r) {
+                codepoint = r.codepoint;
+                codepointEnd = r.codepointEnd;
+            }
+
+            int codepoint;
+            int codepointEnd;
+        }
+
+        // Sorts ranges in code point order, except that ranges that start in CJK blocks are ordered
+        // at the end according to https://www.unicode.org/reports/tr38#SortingAlgorithm:
+        // URO first, then extensions, then components (since 19.0), then compatibility.
+        private Iterable<Range> sortCJKByLeadBlock(Iterable<EntryRange> ranges) {
+            final List<Range> sorted = new ArrayList<>();
+            for (final var range : ranges) {
+                sorted.add(new Range(range));
+            }
+            Collections.sort(
+                    sorted,
+                    Comparator.<Range, Integer>comparing(
+                                    range ->
+                                            K_RS_UNICODE.getValue(range.codepoint) == null
+                                                    ? range.codepoint
+                                                    : Integer.MAX_VALUE)
+                            .thenComparing(
+                                    range ->
+                                            BLOCK.getValue(range.codepoint)
+                                                    .contains("Compatibility"))
+                            .thenComparing(
+                                    range -> BLOCK.getValue(range.codepoint).contains("Components"))
+                            .thenComparing(range -> BLOCK.getValue(range.codepoint)));
+            return sorted;
+        }
+
         private List<IndexSubEntry> subEntries(
                 boolean showBlock, boolean showSubheader, boolean showName, UnicodeSet characters) {
             List<IndexSubEntry> result = new ArrayList<>();
@@ -815,7 +854,7 @@ public class Indexer {
                 result.add(new IndexSubEntry());
             }
             IndexSubEntry previousSubEntryWithLocation = null;
-            for (var range : characters.ranges()) {
+            for (var range : sortCJKByLeadBlock(characters.ranges())) {
                 if (range.codepointEnd == range.codepoint) {
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
