@@ -302,7 +302,7 @@ public class UnicodeJsp {
                     confusables.setNormalizationCheck(Normalizer.NFC);
                     break;
                 case 2: // IDNA2008
-                    confusables.setAllowedCharacters(Idna2008.SINGLETON.validSet_transitional);
+                    confusables.setAllowedCharacters(Idna2008.getInstance().validSet_transitional);
                     confusables.setNormalizationCheck(Normalizer.NFC);
                     break;
                 case 3: // UTS46/39

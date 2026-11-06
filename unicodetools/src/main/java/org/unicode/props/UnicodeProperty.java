@@ -40,10 +40,19 @@ import org.unicode.text.utility.UTF16Plus;
 
 public abstract class UnicodeProperty extends UnicodeLabel {
 
-    public static final UnicodeSet NONCHARACTERS =
-            new UnicodeSet("[:noncharactercodepoint:]").freeze();
-    public static final UnicodeSet PRIVATE_USE = new UnicodeSet("[:gc=privateuse:]").freeze();
-    public static final UnicodeSet SURROGATE = new UnicodeSet("[:gc=surrogate:]").freeze();
+    // These ranges are fixed; initializing this class must not query ICU's Unicode properties.
+    public static final UnicodeSet NONCHARACTERS = makeNoncharacters();
+    public static final UnicodeSet PRIVATE_USE =
+            new UnicodeSet(0xE000, 0xF8FF).add(0xF0000, 0xFFFFD).add(0x100000, 0x10FFFD).freeze();
+    public static final UnicodeSet SURROGATE = new UnicodeSet(0xD800, 0xDFFF).freeze();
+
+    private static UnicodeSet makeNoncharacters() {
+        UnicodeSet result = new UnicodeSet(0xFDD0, 0xFDEF);
+        for (int plane = 0; plane <= 16; ++plane) {
+            result.add((plane << 16) | 0xFFFE, (plane << 16) | 0xFFFF);
+        }
+        return result.freeze();
+    }
 
     public static final UnicodeSet HIGH_SURROGATES = new UnicodeSet("[\\uD800-\\uDB7F]").freeze();
     public static final int SAMPLE_HIGH_SURROGATE = HIGH_SURROGATES.charAt(0);
