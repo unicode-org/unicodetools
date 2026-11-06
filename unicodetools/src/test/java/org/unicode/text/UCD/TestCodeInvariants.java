@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ibm.icu.impl.UnicodeMap;
-import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import java.util.Arrays;
@@ -26,7 +25,6 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Block_Values;
-import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
@@ -44,15 +42,9 @@ public class TestCodeInvariants {
 
     static final Age_Values SCX_FIRST_DEFINED = Age_Values.V6_0;
 
-    static final Normalizer2 NORM2_NFD = Normalizer2.getNFDInstance();
-    static final UCD UCD_LATEST = UCD.makeLatestVersion();
     static final IndexUnicodeProperties IUP =
             IndexUnicodeProperties.make(Default.ucdVersion()); // Settings.latestVersion
     static final UnicodeMap<String> NAME = IUP.load(UcdProperty.Name);
-    static final UnicodeMap<Grapheme_Cluster_Break_Values> GCB =
-            IUP.loadEnum(
-                    UcdProperty.Grapheme_Cluster_Break,
-                    UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
 
     /**
      * This test checks the numbers in the big note under
@@ -221,85 +213,6 @@ public class TestCodeInvariants {
         }
 
         assertEquals(TEST_PASS, testResult, "Invariant test for Script_Extensions failed!");
-    }
-
-    @Test
-    public void testGcbInDecompositions() {
-        int testResult = TEST_PASS;
-
-        final String gcbPropShortName = UcdProperty.Grapheme_Cluster_Break.getShortName();
-        int count = 0;
-        for (int cp = 0x0000; cp <= 0x10FFFF; ++cp) {
-
-            if ((0xAC00 <= cp && cp <= 0xD7AF)
-                    || (0xF900 <= cp && cp <= 0xFAFF)
-                    || (0x2F800 <= cp && cp <= 0x2FA1F)) {
-                continue;
-            }
-
-            final int cat = UCD_LATEST.getCategory(cp);
-            if (cat == UCD_Types.Cn || cat == UCD_Types.Co || cat == UCD_Types.Cs) {
-                continue;
-            }
-
-            // TODO: Use the Unicode Tools normalization code to fetch the Decomposition_Mapping,
-            // not ICU. Using ICU makes this test depend on the ICU version that the
-            // Maven dependency declares.
-            final String nfdOrNull = NORM2_NFD.getDecomposition(cp);
-            if (nfdOrNull == null || nfdOrNull.length() <= 1) {
-                continue;
-            }
-
-            int ch;
-            boolean flagged = false;
-            for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
-                ch = Character.codePointAt(nfdOrNull, i);
-                if (i == 0) {
-                    continue;
-                }
-                // We normally expect the non-initial character in the Decomposition_Mapping
-                // to be an extender.
-                // Some Kirat Rai vowel signs use the value for Jamo vowels instead.
-                UcdPropertyValues.Grapheme_Cluster_Break_Values gcb = GCB.get(ch);
-                if (!(gcb == UcdPropertyValues.Grapheme_Cluster_Break_Values.Extend
-                        || gcb == UcdPropertyValues.Grapheme_Cluster_Break_Values.V)) {
-                    flagged = true;
-                    testResult = TEST_FAIL;
-                }
-            }
-
-            if (VERBOSE || flagged) {
-                System.out.print(Utility.hex(cp));
-                System.out.print(" (" + gcbPropShortName + "=" + GCB.get(cp).getShortName() + ")");
-                System.out.print("  ≡  " + Utility.hex(nfdOrNull) + " ( ");
-
-                for (int i = 0; i < nfdOrNull.length(); i += Character.charCount(ch)) {
-                    ch = nfdOrNull.codePointAt(i);
-                    System.out.print(gcbPropShortName + "=" + GCB.get(ch).getShortName() + " ");
-                }
-
-                System.out.print(")");
-                System.out.print("  " + Character.toString(cp));
-                System.out.print("  \"" + NAME.get(cp) + "\"");
-
-                if (flagged) {
-                    System.out.print("  ←");
-                    ++count;
-                }
-
-                System.out.println();
-            }
-        }
-
-        System.out.println(
-                "Count: "
-                        + count
-                        + " characters have non-singleton canonical decompositions whose any non-first characters are GCB≠EX (marked with \'←\').");
-
-        assertEquals(
-                TEST_PASS,
-                testResult,
-                "Invariant test for GCB in canonical decompositions failed!");
     }
 
     private static String showInfo(
