@@ -179,6 +179,7 @@ Latin_Ext_D	;	Latin_Extended_D
 Latin_Ext_E	;	Latin_Extended_E
 Latin_Ext_F	;	Latin_Extended_F
 Latin_Ext_G	;	Latin_Extended_G
+Leibnizian_Ambiguous_Signs	;	Leibnizian_Ambiguous_Signs
 Lepcha	;	Lepcha
 Letterlike_Symbols	;	Letterlike_Symbols
 Limbu	;	Limbu
@@ -266,6 +267,7 @@ Phonetic_Ext	;	Phonetic_Extensions
 Phonetic_Ext_Sup	;	Phonetic_Extensions_Supplement
 Playing_Cards	;	Playing_Cards
 PUA	;	Private_Use_Area
+Proto_Cuneiform	;	Proto_Cuneiform
 Psalter_Pahlavi	;	Psalter_Pahlavi
 Rejang	;	Rejang
 Rumi	;	Rumi_Numeral_Symbols
@@ -286,6 +288,7 @@ Small_Kana_Ext	;	Small_Kana_Extension
 Sogdian	;	Sogdian
 Sora_Sompeng	;	Sora_Sompeng
 Modifier_Letters	;	Spacing_Modifier_Letters
+Sirmauri	;	Sirmauri
 Soyombo	;	Soyombo
 Specials	;	Specials
 Sundanese	;	Sundanese

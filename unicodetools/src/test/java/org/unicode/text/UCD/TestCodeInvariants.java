@@ -54,6 +54,63 @@ public class TestCodeInvariants {
                     UcdProperty.Grapheme_Cluster_Break,
                     UcdPropertyValues.Grapheme_Cluster_Break_Values.class);
 
+    /**
+     * This test checks the numbers in the big note under
+     * https://www.unicode.org/reports/tr31/#R2-2. When the test fails, the expectations should be
+     * updated to make it pass, and the table in UAX #31 should be updated. The name of the test
+     * refers to an early name for XML 1.1 in 2001, see
+     * https://www.w3.org/TR/2001/WD-xml11-20011213/, https://www.w3.org/TR/xml-blueberry-req/, and
+     * the properties@ thread dated 2026-08-31 titled Blueberry. The identifier definition from XML
+     * 1.1 was incorporated into XML 1.0 (Fifth Edition) in 2008.
+     */
+    @Test
+    void compareBlueberry() {
+        // The following two lines are verbatim from https://www.w3.org/TR/xml/#sec-common-syn,
+        // except for some line wrapping.
+        final String nameStartCharEBNF =
+                """
+                  ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D]
+                | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF]
+                | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
+                """;
+        final String nameCharEBNF =
+                """
+                NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
+                """;
+
+        final var xmlNameChar =
+                new UnicodeSet(
+                                "["
+                                        + nameCharEBNF
+                                                .replaceAll("NameStartChar", nameStartCharEBNF)
+                                                .replaceAll("\"(.)\"", "{$1}")
+                                                .replaceAll("\\|", "")
+                                                .replaceAll("#x([0-9A-F]+)", "\\\\x{$1}")
+                                        + "]")
+                        .freeze();
+        final var defaultIdentifiers =
+                new UnicodeSet("[:XID_Continue:]", null, VersionedSymbolTable.forDevelopment())
+                        .freeze();
+        // See https://www.unicode.org/reports/tr31/#R2-1.
+        final var immutableIdentifiers =
+                new UnicodeSet(
+                                "[^[:Pattern_White_Space:][:Pattern_Syntax:][:Private_Use:][:Surrogate:][:Control:][:Noncharacter_Code_Point:]]",
+                                null,
+                                VersionedSymbolTable.forDevelopment())
+                        .freeze();
+
+        // By the stability policy, this number cannot change.
+        assertEquals(0, defaultIdentifiers.cloneAsThawed().removeAll(immutableIdentifiers).size());
+        assertEquals(4, defaultIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size());
+        assertEquals(
+                809_619, immutableIdentifiers.cloneAsThawed().removeAll(defaultIdentifiers).size());
+        // By the stability policy, this number cannot change.
+        assertEquals(259, immutableIdentifiers.cloneAsThawed().removeAll(xmlNameChar).size());
+        assertEquals(809_556, xmlNameChar.cloneAsThawed().removeAll(defaultIdentifiers).size());
+        // By the stability policy, this number cannot change.
+        assertEquals(192, xmlNameChar.cloneAsThawed().removeAll(immutableIdentifiers).size());
+    }
+
     @Test
     void testBlockRanges() {
         // https://github.com/unicode-org/unicodetools/issues/987

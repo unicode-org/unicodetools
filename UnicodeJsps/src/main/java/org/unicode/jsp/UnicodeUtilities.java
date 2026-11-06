@@ -425,6 +425,15 @@ public class UnicodeUtilities {
             if (specialSet.size() != 0) {
                 items.put(specials, specialSet);
             }
+            // Reuse resolved properties for every code point in this set.
+            UnicodeProperty blockProperty = getFactory().getProperty("Block");
+            UnicodeProperty subheadProperty = getFactory().getProperty("Names_List_Subheader");
+            UnicodeProperty devBlockProperty =
+                    showDevProperties ? getFactory().getProperty("Udev:Block") : null;
+            UnicodeProperty devSubheadProperty =
+                    showDevProperties
+                            ? getFactory().getProperty("Udev:Names_List_Subheader")
+                            : null;
             for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next(); ) {
                 int s = it.codepoint;
                 if (s == UnicodeSetIterator.IS_STRING) {
@@ -434,8 +443,10 @@ public class UnicodeUtilities {
                     set.add(it.string);
                 } else {
                     String devBlock =
-                            getFactory().getProperty("Udev:Block").getValue(s).replace('_', ' ');
-                    String block = getFactory().getProperty("Block").getValue(s).replace('_', ' ');
+                            showDevProperties
+                                    ? devBlockProperty.getValue(s).replace('_', ' ')
+                                    : null;
+                    String block = blockProperty.getValue(s).replace('_', ' ');
                     String newBlock =
                             showDevProperties && !devBlock.equals(block)
                                     ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
@@ -451,9 +462,8 @@ public class UnicodeUtilities {
                                             + "}'>"
                                             + block
                                             + "</a>";
-                    String devSubhead =
-                            getFactory().getProperty("Udev:Names_List_Subheader").getValue(s);
-                    String subhead = getFactory().getProperty("Names_List_Subheader").getValue(s);
+                    String devSubhead = showDevProperties ? devSubheadProperty.getValue(s) : null;
+                    String subhead = subheadProperty.getValue(s);
                     String newSubhead =
                             showDevProperties && devSubhead != null && !devSubhead.equals(subhead)
                                     ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"

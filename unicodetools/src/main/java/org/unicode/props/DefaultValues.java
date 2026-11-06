@@ -21,13 +21,13 @@ public final class DefaultValues {
     private static class BuilderBase {
         int compositeVersion;
         IndexUnicodeProperties props;
-        UnicodeMap<Block_Values> blocks;
+        UnicodeProperty blocks;
 
         BuilderBase(VersionInfo version) {
             compositeVersion =
                     (version.getMajor() << 16) | (version.getMinor() << 8) | version.getMilli();
             props = IndexUnicodeProperties.make(version);
-            blocks = props.loadEnum(UcdProperty.Block);
+            blocks = props.getProperty(UcdProperty.Block);
         }
     }
 
@@ -53,7 +53,7 @@ public final class DefaultValues {
         protected void addBlockValueIfAtLeast(
                 UnicodeMap<T> map, Block_Values blockValue, int minVersion, T value) {
             if (compositeVersion >= minVersion) {
-                UnicodeSet block = blocks.keySet(blockValue);
+                UnicodeSet block = blocks.getSet(blockValue);
                 map.putAll(block, value);
             }
         }

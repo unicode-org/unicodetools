@@ -72,8 +72,11 @@ public class UnicodeJsp {
      * @return
      */
     public static String getBnf(String regexSource, int count, int maxRepeat) {
-        // String regex = new UnicodeRegex().compileBnf(rules);
-        String regex = regexSource.replace("(?:", "(").replace("(?i)", "");
+        String regex =
+                UnicodeSetUtilities.getUnicodeRegex()
+                        .transform(regexSource)
+                        .replace("(?:", "(")
+                        .replace("(?i)", "");
 
         BNF bnf = new BNF(new Random(), new Quoter.RuleQuoter());
         if (maxRepeat > 20) {

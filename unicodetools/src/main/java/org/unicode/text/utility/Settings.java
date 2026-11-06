@@ -21,6 +21,7 @@ public class Settings {
     // and sometimes Utility.fixFileName() which normalizes paths via java.io.File?
     // Are they equivalent for our purposes?
 
+    // FIX_FOR_NEW_VERSION (4×).
     // The version of the /dev directories.
     public static final String latestVersion = "19.0.0";
     public static final ReleasePhase latestVersionPhase = ReleasePhase.DEV;

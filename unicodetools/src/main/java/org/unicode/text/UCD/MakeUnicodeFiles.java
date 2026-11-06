@@ -44,6 +44,7 @@ import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.idna.GenerateIdna;
 import org.unicode.idna.GenerateIdnaTest;
+import org.unicode.idna.Idna2008;
 import org.unicode.props.BagFormatter;
 import org.unicode.props.DefaultValues;
 import org.unicode.props.IndexUnicodeProperties;
@@ -400,6 +401,7 @@ public class MakeUnicodeFiles {
                     if (line == null) {
                         break;
                     }
+                    line = line.split("⍝", 2)[0];
                     line = line.trim();
                     if (line.length() == 0) {
                         if (comments.length() != 0) {
@@ -651,6 +653,9 @@ public class MakeUnicodeFiles {
                     break;
                 case "IdnaTestV2":
                     GenerateIdnaTest.main(new String[0]);
+                    break;
+                case "Idna2008":
+                    Idna2008.generateIdna2008();
                     break;
                 default:
                     generatePropertyFile(filename);

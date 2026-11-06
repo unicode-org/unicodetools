@@ -29,8 +29,9 @@
         String fixedbnf;
         String random = "<i>Error In Pattern</i>";
         try {
-            fixedbnf = new org.unicode.jsp.UnicodeRegex().compileBnf(bnf);
-            String fixedbnf2 = org.unicode.jsp.UnicodeRegex.fix(fixedbnf);
+            UnicodeRegex unicodeRegex = UnicodeSetUtilities.getUnicodeRegex();
+            fixedbnf = unicodeRegex.compileBnf(bnf);
+            String fixedbnf2 = unicodeRegex.transform(fixedbnf);
             String fixedbnfNoPercent = fixedbnf2.replaceAll("[0-9]+%", "");
             testPattern = UnicodeJsp.showRegexFind(fixedbnfNoPercent, test);
             try {

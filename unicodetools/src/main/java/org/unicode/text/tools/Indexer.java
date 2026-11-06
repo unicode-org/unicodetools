@@ -820,7 +820,7 @@ public class Indexer {
                         currentSubEntry.characters = Character.toString(range.codepoint);
                     }
                     if (range.codepoint == BOOP || range.codepoint == DOOD) {
-                        currentSubEntry.chartLink = "https://unicode.org/charts/PDF/UBOOP.pdf";
+                        currentSubEntry.chartLink = "https://www.unicode.org/charts/PDF/UBOOP.pdf";
                         currentSubEntry.ranges = range.codepoint == BOOP ? "BOOP" : "DOOD";
                     }
                     if (previousSubEntryWithLocation != null
@@ -941,7 +941,7 @@ public class Indexer {
                                 + Utility.hex(chartStart)
                                 + ".pdf";
                     } else {
-                        return "https://unicode.org/charts/PDF/U"
+                        return "https://www.unicode.org/charts/PDF/U"
                                 + Utility.hex(chartStart)
                                 + ".pdf";
                     }
@@ -950,7 +950,9 @@ public class Indexer {
                             + Utility.hex(chartStart)
                             + ".pdf";
                 default:
-                    return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
+                    return "https://www.unicode.org/charts/PDF/U"
+                            + Utility.hex(chartStart)
+                            + ".pdf";
             }
         }
     }

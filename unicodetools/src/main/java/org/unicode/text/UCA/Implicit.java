@@ -7,6 +7,8 @@ import java.util.List;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 /**
@@ -109,9 +111,14 @@ public class Implicit {
         }
     }
 
+    record DeclaredRange(int start, int end) {}
+
     private final UnicodeSet unassignedSet;
     final UnicodeSet unifiedIdeographSet;
     List<Range> ranges = new ArrayList<Range>();
+
+    /** Unmerged @implicitweights ranges, including unassigned code points. */
+    final List<DeclaredRange> declaredRanges = new ArrayList<>();
 
     Implicit(VersionInfo version) {
         final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
@@ -148,6 +155,7 @@ public class Implicit {
      * same lead primary, then this range is merged into the existing one.
      */
     void addRange(Range r) {
+        declaredRanges.add(new DeclaredRange(r.startCP, r.endCP));
         for (Range old : ranges) {
             if (old.leadPrimary == r.leadPrimary) {
                 old.mergeFrom(r);

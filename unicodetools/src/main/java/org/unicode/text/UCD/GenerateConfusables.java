@@ -57,6 +57,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCD.Normalizer.NormalizationForm;
+import org.unicode.text.utility.DiffingPrintWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeTransform;
@@ -78,8 +79,8 @@ public class GenerateConfusables {
     private static final String REVISION = Settings.latestVersion;
     static final String VERSION_PROP_VALUE = REVISION; // "V7_0";
 
-    static final String reformatedInternal =
-            Settings.UnicodeTools.getDataPathString("security", REVISION) + "/data/";
+    // Internal inputs and review files are shared across Unicode versions.
+    static final String reformatedInternal = Settings.UnicodeTools.DATA_DIR + "security/internal/";
     public static final String GEN_SECURITY_DIR =
             Settings.Output.GEN_DIR + "security/" + REVISION + "/";
 
@@ -1540,7 +1541,21 @@ public class GenerateConfusables {
     }
 
     static PrintWriter openAndWriteHeader(String dir, String filename) throws IOException {
-        final PrintWriter out = FileUtilities.openUTF8Writer(dir, filename);
+        final PrintWriter out;
+        if (Settings.BUILD_FOR_COMPARE) {
+            out = FileUtilities.openUTF8Writer(dir, filename);
+        } else {
+            // Published files can also match the checked-in data in a clean output directory.
+            // Internal files are written into the source tree and match the existing output.
+            out =
+                    new DiffingPrintWriter(
+                                    new File(dir, filename),
+                                    Settings.UnicodeTools.getDataPath("security", REVISION)
+                                            .resolve(filename)
+                                            .toFile())
+                            .skipCopyright()
+                            .toPrintWriter();
+        }
         out.println(
                 Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));
         return out;

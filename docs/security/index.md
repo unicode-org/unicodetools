@@ -2,6 +2,10 @@
 
 ## Modifying
 
+Internal inputs and generated review files are in
+`unicodetools/data/security/internal/`, shared across Unicode versions.
+Paths starting with `source/` below are relative to that directory.
+
 To add or fix xidmodifications, look at source/removals.txt.
 
 **For Identifier_Type values for new characters** see
@@ -64,9 +68,9 @@ The version/revision strings are shared with other tools; no need to set them se
 Run GenerateConfusables -c -b to generate the files. They will appear in two places.
 
 *   *for posting, after review*:
-    *    {Generated}/security/11.0.0/*
+    *    `{Generated}/security/<version>/*`
 *   reformatted source, log
-    *   $UNICODETOOLS_DIR/data/security/11.0.0/* *including log.txt*
+    *   `$UNICODETOOLS_DIR/data/security/internal/*` *including log.txt*
 
 The TestSecurity.java test is part of the unit test suite, run by a github CI.
 It verifies that the confusable mappings are idempotent.
@@ -102,7 +106,7 @@ Markus 2020-feb-07 for Unicode 13.0:
 
 You may see Identifier_Type=Recommended for characters/scripts/blocks that should not be recommended.
 For example, the initial generation for Unicode 14 "recommended" Znamenny combining marks.
-Add these to unicodetools/data/security/dev/data/source/removals.txt.
+Add these to unicodetools/data/security/internal/source/removals.txt.
 You can use block properties like
 ```
 \p{block=Znamenny_Musical_Notation} ; technical
@@ -169,7 +173,7 @@ the hex is useful. For example, if you see the line:
 ←       (‎ ? ‎) 0DEE     SINHALA LITH DIGIT EIGHT
 ```
 
-Then do a regex search in /data/source on `[ර?]|ODBB|ODEE`
+Then do a regex search in `unicodetools/data/security/internal/source/` on `[ර?]|ODBB|ODEE`
 
 Some problems can arise when the NFKC form is very different, like for:
 ```
