@@ -958,6 +958,7 @@ public class Indexer {
     }
 
     public static final void main(String[] args) throws IOException {
+        final var argSet = Set.of(args);
         final var main =
                 new VersionedIndexer(
                         Settings.LAST_VERSION_INFO,
@@ -966,16 +967,41 @@ public class Indexer {
                         "https://www.unicode.org/charts",
                         "charindex.html",
                         /* language= */ null);
-        final var draft =
-                new VersionedIndexer(
-                        Settings.LATEST_VERSION_INFO,
-                        Settings.latestVersionPhase,
-                        Settings.LAST_VERSION_INFO,
-                        Settings.latestVersionPhase == ReleasePhase.GAMMA
-                                ? "https://www.unicode.org/charts"
-                                : "https://www.unicode.org/Public/draft/charts",
-                        "charindex-draft.html",
-                        /* language= */ null);
+        final boolean noDraft = argSet.contains("--noDraft");
+        final boolean noFrench = argSet.contains("--noFrench");
+        final String errorInDraft =
+                "Error while constructing the "
+                        + Settings.LATEST_VERSION_INFO
+                        + Settings.latestVersionPhase
+                        + " index; if this version is not yet ready for indexing, e.g., if the"
+                        + " names list is outdated, regenerate the index for "
+                        + Settings.LAST_VERSION_INFO
+                        + " with --noDraft";
+        final String errorInFrench =
+                "Erreur lors de la construction de l’index français pour "
+                        + Settings.LAST_VERSION_INFO
+                        + " ; si cette version n’est pas encore prête à être indexée, par"
+                        + " example, si la liste des noms en français n’est pas encore"
+                        + " disponible, générez seulement l’index anglais avec l’option"
+                        + " --noFrench";
+        final VersionedIndexer draft;
+        try {
+            draft =
+                    noDraft
+                            ? null
+                            : new VersionedIndexer(
+                                    Settings.LATEST_VERSION_INFO,
+                                    Settings.latestVersionPhase,
+                                    Settings.LAST_VERSION_INFO,
+                                    Settings.latestVersionPhase == ReleasePhase.GAMMA
+                                            ? "https://www.unicode.org/charts"
+                                            : "https://www.unicode.org/Public/draft/charts",
+                                    "charindex-draft.html",
+                                    /* language= */ null);
+        } catch (Exception e) {
+            System.err.println(errorInDraft);
+            throw e;
+        }
         // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version), but
         // not if it is γ (i.e., do not link to a file that looks release-final but isn’t).
         main.generateIndex(
@@ -983,19 +1009,36 @@ public class Indexer {
                                 && Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
                         ? draft
                         : null);
-        // Link from the draft to the earlier version unless the draft is release-final (γ).
-        draft.generateIndex(
-                /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
-                        ? main
-                        : null);
-        final var fr =
-                new VersionedIndexer(
-                        Settings.LAST_VERSION_INFO,
-                        ReleasePhase.GAMMA,
-                        Settings.LAST2_VERSION_INFO,
-                        "https://www.unicode.org/charts/fr",
-                        "fr/charindex.html",
-                        "fr");
-        fr.generateIndex(/* linkedVersion= */ null);
+        if (draft != null) {
+            try {
+                // Link from the draft to the earlier version unless the draft is release-final (γ).
+                draft.generateIndex(
+                        /* linkedVersion= */ Settings.latestVersionPhase.compareTo(
+                                                ReleasePhase.GAMMA)
+                                        < 0
+                                ? main
+                                : null);
+            } catch (Exception e) {
+                System.err.println(errorInDraft);
+                throw e;
+            }
+        }
+        if (noFrench) {
+            return;
+        }
+        try {
+            final var fr =
+                    new VersionedIndexer(
+                            Settings.LAST_VERSION_INFO,
+                            ReleasePhase.GAMMA,
+                            Settings.LAST2_VERSION_INFO,
+                            "https://www.unicode.org/charts/fr",
+                            "fr/charindex.html",
+                            "fr");
+            fr.generateIndex(/* linkedVersion= */ null);
+        } catch (Exception e) {
+            System.err.println(errorInFrench);
+            throw e;
+        }
     }
 }
