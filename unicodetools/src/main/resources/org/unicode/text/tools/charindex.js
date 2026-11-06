@@ -363,6 +363,7 @@ function shouldPermute(/**@type {string}*/snippet, /**@type {number}*/pivot) {
 }
 
 window.onload = function () {
+  document.getElementById("info").innerHTML = "";
   let params = (new URL(document.location)).searchParams;
   if (params.has("q")) {
     let query = params.get("q");
