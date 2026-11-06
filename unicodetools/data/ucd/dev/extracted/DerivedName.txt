@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-05, 15:56:31 GMT
+# Date: 2026-11-05, 23:52:06 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -43829,6 +43829,11 @@ FFFD          ; REPLACEMENT CHARACTER
 1DB1A         ; LEIBNIZIAN SIMILARITY-2
 1DB1B         ; LEIBNIZIAN DISSIMILARITY
 1DB1C         ; FACIT SYMBOL
+1DB1D         ; ALPHA X SYMBOL
+1DB1E         ; GREEK OMICRON UPSILON SYMBOL
+1DB1F         ; DOUBLE SMALL SIGMA SYMBOL
+1DB20         ; FUNCTIO DIFFERENTIATA SYMBOL
+1DB21         ; DOUBLE X SYMBOL
 1DC00         ; LEIBNIZIAN SYSTEM ONE AND TWO PLUS-MINUS AMBIGUOUS SIGN
 1DC01         ; LEIBNIZIAN SYSTEM ONE MINUS-PLUS AMBIGUOUS SIGN
 1DC02         ; LEIBNIZIAN SYSTEM ONE PLUS OR PLUS-MINUS AMBIGUOUS SIGN
@@ -48087,6 +48092,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174313
+# Total code points: 174318
 
 # EOF
