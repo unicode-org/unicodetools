@@ -12,6 +12,7 @@ package org.unicode.text.UCD;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParsePosition;
@@ -30,6 +31,9 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.Sampler;
+import org.unicode.text.UCD.GenerateBreakTest.XGenerateBreakTest;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -76,10 +80,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
         System.out.println(
                 "Remember to add length marks (half & full) and other punctuation for sentence, with FF61");
         UCD ucd = Default.ucd();
-        new GenerateGraphemeBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
-        new GenerateWordBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
-        new GenerateLineBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
-        new GenerateSentenceBreakTest(ucd, Segmenter.Target.FOR_UCD).run();
+        new GenerateGraphemeBreakTest(ucd).run();
+        new GenerateWordBreakTest(ucd).run();
+        new GenerateLineBreakTest(ucd).run();
+        new GenerateSentenceBreakTest(ucd).run();
     }
 
     GenerateBreakTest(UCD ucd, Segmenter seg) {
@@ -127,9 +131,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
             UnifiedProperty.make(CATEGORY), UnifiedProperty.make(LINE_BREAK)
         };
         final GenerateBreakTest[] tests = {
-            new GenerateGraphemeBreakTest(ucd, Segmenter.Target.FOR_UCD),
-            new GenerateWordBreakTest(ucd, Segmenter.Target.FOR_UCD),
-            new GenerateLineBreakTest(ucd, Segmenter.Target.FOR_UCD),
+            new GenerateGraphemeBreakTest(ucd),
+            new GenerateWordBreakTest(ucd),
+            new GenerateLineBreakTest(ucd),
         };
         tests[0].isBreak("\u0300\u0903", 1);
         final Normalizer nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
@@ -310,13 +314,9 @@ public abstract class GenerateBreakTest implements UCD_Types {
         // printLine(out, samples[LB_ZW], "", samples[LB_CL]);
         // printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-        boolean forCLDR = seg.target == Segmenter.Target.FOR_CLDR;
-        String path = "UCD/" + ucd.getVersion() + '/' + (forCLDR ? "cldr/" : "auxiliary/");
+        String path = "UCD/" + ucd.getVersion() + "/auxiliary/";
         String extraPath = "UCD/" + ucd.getVersion() + "/extra/";
         String outFilename = fileName + "BreakTest";
-        if (forCLDR) {
-            outFilename = outFilename + "-cldr";
-        }
         final UnicodeDataFile fc =
                 UnicodeDataFile.openHTMLAndWriteHeader(path, outFilename)
                         .setSkipCopyright(Settings.SKIP_COPYRIGHT);
@@ -1188,19 +1188,15 @@ public abstract class GenerateBreakTest implements UCD_Types {
 
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
 
-        public GenerateGraphemeBreakTest(UCD ucd, Segmenter.Target target) {
+        public GenerateGraphemeBreakTest(UCD ucd) {
             super(
                     ucd,
                     Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()),
-                            "GraphemeClusterBreak",
-                            target),
+                            VersionInfo.getInstance(ucd.getVersion()), "GraphemeClusterBreak"),
                     "aa",
                     "Grapheme",
                     new String[] {unicodePropertySource.getSet("GC=Cn").iterator().next()},
                     new String[] {});
-
-            System.out.println("Target: " + seg.target);
 
             Sampler GCB = new Sampler("GCB");
             this.extraSingleSamples.addAll(
@@ -1292,6 +1288,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
                             "ᳶপ",
                             "ᳵ\u200Cক",
                             "ᳶ\u200Cপ",
+                            // Malayalam YA, ZWNJ, VIRAMA, YA, from
+                            // https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/#G706410.
+                            // Until Unicode Version 18.0, this broke after the virama, as യ‌്÷യ.
+                            "യ‌്യ",
                             // Zanabazar square example from L2/14-024, p. 15.
                             // The cluster-initial RA 𑨺 was InSC=Consonant_Prefixed in 10.0..16.0,
                             // and thus gcb=Prepend.  It was made InSC=Consonant_With_Stacker and
@@ -1304,11 +1304,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     static class GenerateLineBreakTest extends XGenerateBreakTest {
-        public GenerateLineBreakTest(UCD ucd, Segmenter.Target target) {
+        public GenerateLineBreakTest(UCD ucd) {
             super(
                     ucd,
-                    Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()), "LineBreak", target),
+                    Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "LineBreak"),
                     "aa",
                     "Line",
                     // extraSamples
@@ -1656,6 +1655,17 @@ public abstract class GenerateBreakTest implements UCD_Types {
                         // first pair to the second.  This was incorrectly segmented by ICU for many
                         // years.
                         "🇿\u200D🇿\u200D🇿🇿",
+                        // U+00B7, see 188-C24
+                        // Example from https://github.com/unicode-org/icu4x/issues/7500.
+                        "诗经\u00B7秦风\u30FB蒹葭",
+                        // Two examples mentioned in
+                        // https://www.unicode.org/L2/L2026/26154-utc188-properties-recs.pdf
+                        // Section 7.1.
+                        "Paral·lel",
+                        "(4·)$",
+                        // Both canonically equivalent ways of writing the άνω τελεία.
+                        "τὸν δ' ἠμείβετ' ἔπειτα θεὰ γλαυκῶπις Ἀθήνη\u00B7 «ὦ πάτερ ἡμέτερε Κρονίδη",
+                        "τὸν δ' ἠμείβετ' ἔπειτα θεὰ γλαυκῶπις Ἀθήνη\u0387 «ὦ πάτερ ἡμέτερε Κρονίδη",
                     });
 
             // Additions for Unicode 14 LB30b   [\p{Extended_Pictographic}&\p{Cn}] × EM
@@ -1686,22 +1696,13 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     static class GenerateSentenceBreakTest extends XGenerateBreakTest {
-        public GenerateSentenceBreakTest(UCD ucd, Segmenter.Target target) {
-            super(
-                    ucd,
-                    makeSegmenter(ucd, target),
-                    "aa",
-                    "Sentence",
-                    new String[] {},
-                    getExtraSamples(ucd, target));
+        public GenerateSentenceBreakTest(UCD ucd) {
+            super(ucd, makeSegmenter(ucd), "aa", "Sentence", new String[] {}, getExtraSamples(ucd));
         }
 
-        private static Builder makeSegmenter(UCD ucd, Segmenter.Target target) {
+        private static Builder makeSegmenter(UCD ucd) {
             final Builder result =
-                    Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()),
-                            "SentenceBreak",
-                            target);
+                    Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "SentenceBreak");
             final Segmenter segmenter = result.make();
             final boolean failure = segmenter.breaksAt("etc.)\u2019 \u2018(the", 7);
             if (failure) {
@@ -1710,8 +1711,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
             return result;
         }
 
-        static String[] getExtraSamples(UCD ucd, Segmenter.Target target) {
-            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd, target);
+        static String[] getExtraSamples(UCD ucd) {
+            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd);
             String[] extraSingleSamples =
                     new String[] {
                         "(\"Go.\") (He did.)",
@@ -1757,11 +1758,10 @@ public abstract class GenerateBreakTest implements UCD_Types {
     }
 
     static class GenerateWordBreakTest extends XGenerateBreakTest {
-        public GenerateWordBreakTest(UCD ucd, Segmenter.Target target) {
+        public GenerateWordBreakTest(UCD ucd) {
             super(
                     ucd,
-                    Segmenter.make(
-                            ToolUnicodePropertySource.make(ucd.getVersion()), "WordBreak", target),
+                    Segmenter.make(VersionInfo.getInstance(ucd.getVersion()), "WordBreak"),
                     "aa",
                     "Word",
                     new String[] {
@@ -1852,8 +1852,8 @@ public abstract class GenerateBreakTest implements UCD_Types {
             }
         }
 
-        static String[] getExtraSamples(UCD ucd, Segmenter.Target target) {
-            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd, target);
+        static String[] getExtraSamples(UCD ucd) {
+            final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(ucd);
             final String[] temp = {
                 "can't",
                 "can\u2019t",
