@@ -10,6 +10,8 @@ Ignoring Name Age:
 # normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
+Ignoring /UCA_.*/:  # TODO(egg): Refine these comparisons.
+
 Propertywise [
     \x{2E60}   \N{WIGGLY EXCLAMATION MARK}
     \x{2E61}   \N{INVERTED WIGGLY EXCLAMATION MARK}
@@ -84,6 +86,8 @@ Propertywise [
     \x{1DF81}  \N{LATIN CAPITAL LETTER E WITH BENT TOPBAR}
     \x{A7FB} ꟻ \N{LATIN EPIGRAPHIC LETTER REVERSED F}
 ] AreAlike
+end Ignoring;
+
 end Ignoring;
 
 end Ignoring;

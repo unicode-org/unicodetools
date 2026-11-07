@@ -166,7 +166,9 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Names_List_Subheader,
                         UcdProperty.Names_List_Subheader_Notice,
                         UcdProperty.Names_List_Block_Header,
-                        UcdProperty.Names_List_Block_Header_Notice));
+                        UcdProperty.Names_List_Block_Header_Notice,
+                        UcdProperty.UCA_Next_Shifted,
+                        UcdProperty.UCA_Next_Non_Ignorable));
         exceptions.putAll(
                 General_Category_Values.Private_Use,
                 Arrays.asList(
@@ -174,7 +176,9 @@ public class TestInvariants extends TestFmwkMinusMinus {
                         UcdProperty.Block,
                         UcdProperty.Pretty_Block,
                         UcdProperty.Names_List_Block_Header,
-                        UcdProperty.Names_List_Block_Header_Notice));
+                        UcdProperty.Names_List_Block_Header_Notice,
+                        UcdProperty.UCA_Next_Shifted,
+                        UcdProperty.UCA_Next_Non_Ignorable));
         exceptions.putAll(
                 General_Category_Values.Surrogate,
                 Arrays.asList(
