@@ -7,8 +7,6 @@ import java.util.List;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 /**
