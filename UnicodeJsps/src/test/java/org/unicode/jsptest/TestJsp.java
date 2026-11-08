@@ -1,6 +1,7 @@
 package org.unicode.jsptest;
 
 import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -15,7 +16,8 @@ import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -39,7 +41,6 @@ import org.unicode.idna.Idna2008;
 import org.unicode.idna.Uts46;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeJsp;
-import org.unicode.jsp.UnicodeRegex;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.UtfParameters;
@@ -911,7 +912,8 @@ public class TestJsp extends TestFmwkMinusMinus {
 
     @Test
     public void TestRegex() {
-        final String fix = UnicodeRegex.fix("ab[[:Block=ASCII:]&[:Ll:]]*c");
+        final String fix =
+                UnicodeSetUtilities.getUnicodeRegex().transform("ab[[:Block=ASCII:]&[:Ll:]]*c");
         assertEquals("", "ab[a-z]*c", fix);
         assertEquals(
                 "",
@@ -1017,7 +1019,7 @@ public class TestJsp extends TestFmwkMinusMinus {
 
     @Test
     public void TestBnf() {
-        UnicodeRegex regex = new UnicodeRegex();
+        UnicodeRegex regex = UnicodeSetUtilities.getUnicodeRegex();
         final String[][] tests = {
             {"c = a* wq;\n" + "a = xyz;\n" + "b = a{2} c;\n"},
             {"c = a* b;\n" + "a = xyz;\n" + "b = a{2} c;\n", "Exception"},
@@ -1042,7 +1044,7 @@ public class TestJsp extends TestFmwkMinusMinus {
             try {
                 String result;
                 if (test.endsWith(".txt")) {
-                    List<String> lines = UnicodeRegex.loadFile(test, new ArrayList<String>());
+                    List<String> lines = Files.readAllLines(Path.of(test));
                     result = regex.compileBnf(lines);
                 } else {
                     result = regex.compileBnf(test);
@@ -1109,8 +1111,9 @@ public class TestJsp extends TestFmwkMinusMinus {
                         + "digits = [:Pd:]+;\n"
                         + "separator = [[:WB=MB:][:WB=MN:]];\n"
                         + "$alpha = [:alphabetic:];";
-        String fixedbnf = new UnicodeRegex().compileBnf(bnf);
-        String fixedbnf2 = UnicodeRegex.fix(fixedbnf);
+        UnicodeRegex regex = UnicodeSetUtilities.getUnicodeRegex();
+        String fixedbnf = regex.compileBnf(bnf);
+        String fixedbnf2 = regex.transform(fixedbnf);
         // String fixedbnfNoPercent = fixedbnf2.replaceAll("[0-9]+%", "");
         String random = UnicodeJsp.getBnf(fixedbnf2, 100, 10);
         // assertContains(random, "\\U0002A089");
