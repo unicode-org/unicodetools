@@ -17,7 +17,7 @@
         if (test == null) {
           test = "The 35 quick brown fox jumped over 1.234 lazy dogs: 1:234.";
         }
-        String testPattern = test;
+        String testPattern = Encode.forHtmlContent(test);
 
         String regex = utfParameters.getParameter("a");
         if (regex == null) {
@@ -26,8 +26,8 @@
 
         String fixedRegex;
         try {
-            fixedRegex = org.unicode.jsp.UnicodeRegex.fix(regex);
-            org.unicode.jsp.UnicodeRegex.compile(regex); // just to get the error message
+            fixedRegex = UnicodeSetUtilities.getUnicodeRegex().transform(regex);
+            Pattern.compile(fixedRegex); // just to get the error message
             testPattern = UnicodeJsp.showRegexFind(fixedRegex, test);
         } catch (Exception e) {
             fixedRegex = e.getMessage();
