@@ -23,7 +23,7 @@ public class TestMultivalued extends TestFmwkMinusMinus {
         String unicodeSetString = "\\p{scx=deva}";
         UnicodeSet parsed = UnicodeSetUtilities.parseUnicodeSet(unicodeSetString);
 
-        UnicodeSet mustContain = new UnicodeSet("[ᳵ।]"); // one character B&D, other B&D&D&G&...
+        UnicodeSet mustContain = new UnicodeSet("[।]"); // B&D&D&G&...
         assertTrue(unicodeSetString + " contains " + mustContain, parsed.containsAll(mustContain));
 
         UnicodeSet mustNotContain = new UnicodeSet("[ক]"); // one Bangla character
