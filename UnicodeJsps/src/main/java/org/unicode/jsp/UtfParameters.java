@@ -34,6 +34,12 @@ public class UtfParameters implements Iterable<String> {
         map = Collections.unmodifiableMap(map);
     }
 
+    /** Accept form parameters already decoded by the servlet container. */
+    public UtfParameters(Map<String, String[]> parameters) {
+        parameters.forEach((key, values) -> map.put(key, values[0]));
+        map = Collections.unmodifiableMap(map);
+    }
+
     public String getParameter(String key) {
         return map.get(key);
     }
