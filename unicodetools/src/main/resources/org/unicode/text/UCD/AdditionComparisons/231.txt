@@ -1,0 +1,22 @@
+# Symbol: Jurchen Small Script characters (18CD6 .. 18CDA)
+# https://github.com/unicode-org/utc-release-management/issues/231
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [\x{18CD5} \N{KHITAN SMALL SCRIPT CHARACTER-18CD5}
+              \x{18CD6} \N{KHITAN SMALL SCRIPT CHARACTER-18CD6}
+              \x{18CD7} \N{KHITAN SMALL SCRIPT CHARACTER-18CD7}
+              \x{18CD8} \N{KHITAN SMALL SCRIPT CHARACTER-18CD8}
+              \x{18CD9} \N{KHITAN SMALL SCRIPT CHARACTER-18CD9}
+              \x{18CDA} \N{KHITAN SMALL SCRIPT CHARACTER-18CDA}] AreAlike
+
+end Ignoring;
+
+end Ignoring;

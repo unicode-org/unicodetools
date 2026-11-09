@@ -8,7 +8,6 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import java.io.BufferedReader;
@@ -23,7 +22,8 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.PatternCache;
-import org.unicode.jsp.ICUPropertyFactory;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Utility;
 
@@ -226,8 +226,8 @@ public class FrequencyData2 {
                     norm = UCharacter.foldCase(norm, true);
                     norm = Normalizer.normalize(norm, compose);
                     int cp;
-                    for (int j = 0; j < norm.length(); j += UTF16.getCharCount(cp)) {
-                        cp = UTF16.charAt(norm, j);
+                    for (int j = 0; j < norm.length(); j += Character.charCount(cp)) {
+                        cp = norm.codePointAt(j);
                         counter.add(cp, frequency);
                     }
                 }
@@ -370,7 +370,7 @@ public class FrequencyData2 {
                 System.out.print(", ");
             }
             final int codePointAtRank = relative.getCodePointAtRank(i);
-            System.out.print(fixOutput.transform(UTF16.valueOf(codePointAtRank)));
+            System.out.print(fixOutput.transform(Character.toString(codePointAtRank)));
         }
         if (relative.getRankCount() > maxCount) {
             System.out.print(", ...");
@@ -426,7 +426,7 @@ public class FrequencyData2 {
 
         data.showData2(
                 "Age",
-                ICUPropertyFactory.make().getProperty("age"),
+                IndexUnicodeProperties.make().getProperty(UcdProperty.Age),
                 new UnicodeSet("[[:cn:][:co:]]"),
                 true);
         data.showData("Script/Cat", UCharacter.getPropertyEnum("script"), NO_SCRIPT);

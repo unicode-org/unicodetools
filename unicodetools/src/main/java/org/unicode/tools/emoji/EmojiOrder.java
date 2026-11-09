@@ -379,7 +379,7 @@ public class EmojiOrder {
                 if (sorted.contains(string)) {
                     continue;
                 }
-                if (string.contains(UTF16.valueOf(0x1F90C))) {
+                if (string.contains(Character.toString(0x1F90C))) {
                     int debug = 0;
                 }
                 { // just for formatting
@@ -795,7 +795,7 @@ public class EmojiOrder {
             String handshake =
                     compositeBase ? EmojiData.COUPLES_TO_HANDSHAKE_VERSION.get(base) : base;
             int firstCp = handshake.codePointAt(0);
-            String lead = UTF16.valueOf(firstCp);
+            String lead = Character.toString(firstCp);
             String trail = handshake.substring(Character.charCount(firstCp));
             for (String skin : EmojiData.MODIFIERS) {
                 String combo = lead + skin + trail;

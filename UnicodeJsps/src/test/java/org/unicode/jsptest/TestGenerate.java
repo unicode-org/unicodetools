@@ -1,6 +1,5 @@
 package org.unicode.jsptest;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
@@ -8,13 +7,13 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.TreeSet;
+import org.unicode.cldr.icu.dev.test.TestFmwk;
 import org.unicode.cldr.util.props.BagFormatter;
 import org.unicode.cldr.util.props.UnicodeLabel;
 import org.unicode.idna.Idna;
@@ -76,7 +75,7 @@ public class TestGenerate extends TestFmwk {
         // hex_results.putAll(new UnicodeSet("[:cn:]"), "disallowed");
         // hex_results.putAll(new UnicodeSet("[:noncharactercodepoint:]"), "disallowed");
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            String s = UTF16.valueOf(cp);
+            String s = Character.toString(cp);
             String nfc = toNfc(s);
             String nfkc = Normalizer.normalize(s, Normalizer.NFKC);
             String uts46 = Uts46.SINGLETON.transform(s);

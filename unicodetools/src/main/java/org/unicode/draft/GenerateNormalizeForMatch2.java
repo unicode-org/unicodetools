@@ -14,7 +14,6 @@ import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.VersionInfo;
@@ -34,6 +33,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import org.unicode.cldr.util.PatternCache;
+import org.unicode.text.utility.UTF16Plus;
 
 @Deprecated
 public class GenerateNormalizeForMatch2 {
@@ -281,7 +281,7 @@ public class GenerateNormalizeForMatch2 {
                             + countStr
                             + " ; # "
                             + showChanged(
-                                    UTF16.valueOf(cp),
+                                    Character.toString(cp),
                                     oldMapped,
                                     newMapped,
                                     Form.codeStringAndName);
@@ -387,8 +387,8 @@ public class GenerateNormalizeForMatch2 {
         StringBuilder result = new StringBuilder();
         boolean changed = false;
         int cp;
-        for (int i = 0; i < target.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(target, i);
+        for (int i = 0; i < target.length(); i += Character.charCount(cp)) {
+            cp = target.codePointAt(i);
             String remapped = (String) mappings.getValue(cp);
             if (remapped != null) {
                 result.append(remapped);
@@ -425,7 +425,7 @@ public class GenerateNormalizeForMatch2 {
      * @return
      */
     private static String getRemapped(int codepoint, String special) {
-        String other = UTF16.valueOf(codepoint);
+        String other = Character.toString(codepoint);
         if (codepoint == DEBUG_CODE_POINT) {
             System.out.println("?debug?");
         }
@@ -542,8 +542,8 @@ public class GenerateNormalizeForMatch2 {
     private static VersionInfo getNewest(String string) {
         int cp;
         VersionInfo oldest = null;
-        for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
-            cp = UTF16.charAt(string, i);
+        for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
+            cp = string.codePointAt(i);
             VersionInfo age = UCharacter.getAge(cp);
             if (oldest == null || oldest.compareTo(age) < 0) {
                 oldest = age;
@@ -620,8 +620,8 @@ public class GenerateNormalizeForMatch2 {
         UnicodeSet source = new UnicodeSet();
         if (UnicodeSet.resemblesPattern(sourcePiece, 0)) {
             source.applyPattern(sourcePiece);
-        } else if (UTF16.countCodePoint(sourcePiece) == 1) {
-            source.add(UTF16.charAt(sourcePiece, 0));
+        } else if (UTF16Plus.isSingleCodePoint(sourcePiece)) {
+            source.add(sourcePiece.codePointAt(0));
         } else {
             String[] starts = sourcePiece.split("\\s*-\\s*");
             int start = Integer.parseInt(starts[0], 16);
@@ -802,7 +802,7 @@ public class GenerateNormalizeForMatch2 {
         StringBuilder result = new StringBuilder();
         String[] pieces = spaceDelimitedHex.split("\\s+");
         for (String piece : pieces) {
-            result.append(UTF16.valueOf(Integer.parseInt(piece, 16)));
+            result.append(Character.toString(Integer.parseInt(piece, 16)));
         }
         return result.toString();
     }
@@ -815,9 +815,9 @@ public class GenerateNormalizeForMatch2 {
      */
     private static String jimName(String other) {
         String otherName =
-                UTF16.countCodePoint(other) != 1
+                !UTF16Plus.isSingleCodePoint(other)
                         ? null
-                        : (String) JIM_NAMES.getValue(UTF16.charAt(other, 0));
+                        : (String) JIM_NAMES.getValue(other.codePointAt(0));
         if (otherName == null) {
             otherName = UCharacter.getName(other, " + ");
         }
@@ -834,9 +834,9 @@ public class GenerateNormalizeForMatch2 {
     public static String hex(String s, String separator) {
         StringBuffer result = new StringBuffer();
         int cp = 0;
-        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             if (i != 0) result.append(separator);
-            cp = UTF16.charAt(s, i);
+            cp = s.codePointAt(i);
             result.append(com.ibm.icu.impl.Utility.hex(cp, 4));
         }
         return result.toString();

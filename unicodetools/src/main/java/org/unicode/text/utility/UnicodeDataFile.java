@@ -98,7 +98,7 @@ public class UnicodeDataFile {
         }
         out.close();
         if (!Settings.BUILD_FOR_COMPARE) {
-            Utility.renameIdentical(
+            Utility.deleteIdentical(
                     mostRecent, Utility.getOutputName(newFile), null, skipCopyright);
         }
     }

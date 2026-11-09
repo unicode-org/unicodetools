@@ -31,6 +31,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -317,7 +318,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (i != 0) {
                 result.append(separator);
             }
-            ch = UTF16.charAt(s, i);
+            ch = s.codePointAt(i);
             result.append(hex(ch, places));
         }
         return result.toString();
@@ -419,7 +420,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static int codePointFromHex(String p) {
         final String temp = Utility.fromHex(p);
-        if (UTF16.countCodePoint(temp) != 1) {
+        if (!UTF16Plus.isSingleCodePoint(temp)) {
             throw new ChainException("String is not single (UTF32) character: " + p, null);
         }
         return temp.codePointAt(0);
@@ -490,7 +491,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                 "bad hex value: ‘{0}’ at position {1} in \"{2}\"",
                                 new Object[] {String.valueOf(ch), new Integer(i), p});
                     }
-                    // fall through!!
+                // fall through!!
                 case 'U':
                 case 'u':
                 case '+': // for the U+ case
@@ -740,9 +741,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             case '"':
                 return "&quot;";
 
-                // fix controls, since XML can't handle
+            // fix controls, since XML can't handle
 
-                // also do this for 09, 0A, and 0D, so we can see them.
+            // also do this for 09, 0A, and 0D, so we can see them.
             case 0x00:
             case 0x01:
             case 0x02:
@@ -777,19 +778,19 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             case 0x1F:
             case 0x7F:
 
-                // fix noncharacters, since XML can't handle
+            // fix noncharacters, since XML can't handle
             case 0xFFFE:
             case 0xFFFF:
                 return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 
         // fix surrogates, since XML can't handle
-        if (UTF32.isSurrogate(c)) {
+        if (UTF16.isSurrogate(c)) {
             return HTML ? '#' + hex(c, 4) : "<codepoint hex=\"" + hex(c, 1) + "\"/>";
         }
 
         if (c <= 0x7E) {
-            return UTF32.valueOf32(c);
+            return Character.toString(c);
         }
 
         // fix supplementaries & high characters, because of IE bug
@@ -807,7 +808,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
         final StringBuffer result = new StringBuffer();
         for (int i = 0; i < source.length(); ++i) {
-            final int c = UTF16.charAt(source, i);
+            final int c = source.codePointAt(i);
             if (Character.isSupplementaryCodePoint(c)) {
                 ++i;
             }
@@ -892,6 +893,8 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
 
     public static final String[] searchPath = {
         // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "19.0.0",
+        "18.0.0",
         "17.0.0",
         "16.0.0",
         "15.1.0",
@@ -927,7 +930,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         "2.1.5",
         "2.1.2",
         "2.0.0",
-        "1.1.0",
+        "1.1.0", // Really 1.1.5.
+        "1.0.1", // Reconstructed.
+        "1.0.0", // Reconstructed.
     };
 
     public static final List<VersionInfo> UNICODE_VERSIONS =
@@ -1287,11 +1292,12 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             + lines[1].substring(diff)
                             + "'");
         }
-        new File(newFile).renameTo(oldFile2);
+        Files.move(Path.of(newFile), Path.of(oldFile), StandardCopyOption.REPLACE_EXISTING);
         return true;
     }
 
-    public static boolean renameIdentical(
+    /** Deletes file2 and the optional batch file if file2 matches file1. */
+    public static boolean deleteIdentical(
             String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
         if (file1 == null) {
             System.out.println("Null file");
@@ -1300,9 +1306,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         final String lines[] = new String[2];
         final boolean identical = filesAreIdentical(file1, file2, skipCopyright, lines);
         if (identical) {
-            renameIdentical(file2);
+            deleteIdentical(file2);
             if (batFile != null) {
-                renameIdentical(batFile);
+                deleteIdentical(batFile);
             }
             return true;
         } else {
@@ -1365,18 +1371,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         }
     }
 
-    static void renameIdentical(String file2) {
-        final File foo = new File(file2);
-        File newName = new File(foo.getParent(), "ZZZ-UNCHANGED-" + foo.getName());
-        if (newName.exists()) {
-            newName.delete();
-        }
-        System.out.println("IDENTICAL TO PREVIOUS, RENAMING : " + foo);
-        System.out.println("TO : " + newName);
-        final boolean renameResult = foo.renameTo(newName);
-        if (!renameResult) {
-            System.out.println("Couldn't rename!");
-        }
+    static void deleteIdentical(String file2) throws IOException {
+        System.out.println("IDENTICAL TO PREVIOUS, DELETING : " + file2);
+        Files.delete(Path.of(file2));
     }
 
     static String getLineWithoutFluff(BufferedReader br1, boolean first, boolean skipCopyright)
@@ -1399,7 +1396,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             if (line1.startsWith("# Date")) {
                 continue;
             }
-            if (skipCopyright && line1.startsWith("# Copyright")) {
+            if (skipCopyright && (line1.startsWith("# Copyright") || line1.startsWith("# ©"))) {
                 continue;
             }
             if (line1.startsWith("<p><b>Date:</b>")) {
@@ -1504,13 +1501,35 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                         return null;
                     }
                 }
-                Path path = Settings.UnicodeTools.getDataPath(base, element);
-                if (path != null) {
-                    var filePath = path.resolve(parts[2] + fileType);
-                    if (filePath.toFile().exists()) {
-                        result = filePath.toString();
+                if (base.equals("math")) {
+                    final String revision = getMathRevision(currentVersion);
+                    if (element == null) {
+                        return null;
                     }
-                    break;
+                    element = "revision-" + revision;
+                    if (currentVersion.compareTo(UTR25_REVISION_16) < 0) {
+                        parts[2] = parts[2] + "-" + revision;
+                    }
+                }
+                if (parts[2].equals("Idna2008")
+                        && currentVersion.compareTo(VersionInfo.UNICODE_16_0) <= 0) {
+                    Path path = Settings.UnicodeTools.getDataPath(base, "idna2008derived");
+                    if (path != null) {
+                        var filePath = path.resolve(parts[2] + "-" + element + fileType);
+                        if (filePath.toFile().exists()) {
+                            result = filePath.toString();
+                        }
+                        break;
+                    }
+                } else {
+                    Path path = Settings.UnicodeTools.getDataPath(base, element);
+                    if (path != null) {
+                        var filePath = path.resolve(parts[2] + fileType);
+                        if (filePath.toFile().exists()) {
+                            result = filePath.toString();
+                        }
+                        break;
+                    }
                 }
                 continue;
             }
@@ -1546,11 +1565,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                             + fileType
                             + "'");
         }
-        if ((versionString.startsWith("2.") || versionString.startsWith("3.0"))
-                && filename.startsWith("Prop")) {
-            // Ignore the property dumps for now, as we do not have parsing logic for them.
-            return null;
-        }
         return result;
     }
 
@@ -1570,6 +1584,43 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                 break;
         }
         return null;
+    }
+
+    // This will may turn out to be 17, but for now set it to Latest (currently 18) so that it
+    // doesn’t show up as published in the online tools.
+    public static final VersionInfo UTR25_REVISION_16 = Settings.LATEST_VERSION_INFO;
+
+    // UTR #25 is not synchronized, but its releases correspond to the preceding
+    // version of Unicode (or, in the case of revision 12, to the following
+    // day’s version of Unicode).
+    private static String getMathRevision(VersionInfo versionInfo) {
+        VersionInfo[] mathToSubsequentUnicodeVersion = {
+            /*  0 ∄ */ null,
+            /*  1 (Proposed Draft) */ null,
+            /*  2 (Proposed Draft) */ null,
+            /*  3 (Proposed Draft) */ null,
+            /*  4 (Proposed Draft) */ null,
+            /*  5 (Draft) */ null,
+            /*  6, 2003-08-31 */ VersionInfo.UNICODE_4_0, // First printing, August 2003
+            /*  7 (Proposed Update) */ null,
+            /*  8 (Proposed Update) */ null,
+            /*  9, 2007-05-07 */ VersionInfo.UNICODE_5_0, // 2006 July 14
+            /* 10 (Proposed Update) */ null,
+            /* 11, 2008-08-14 */ VersionInfo.UNICODE_5_1, // 2008 April 4
+            /* 12, 2010-10-10 */ VersionInfo.UNICODE_6_0, // 2010 October 11
+            /* 13, 2012-04-02 */ VersionInfo.UNICODE_6_1, // 2012 January 31
+            /* 14, 2015-07-31 */ VersionInfo.UNICODE_7_0, // 2014 June 16
+            /* 15, 2017-05-30 */ VersionInfo.UNICODE_9_0, // 2016 June 21
+            /* 16, WIP        */ UTR25_REVISION_16,
+        };
+        String result = null;
+        for (int i = 0; i < mathToSubsequentUnicodeVersion.length; ++i) {
+            if (mathToSubsequentUnicodeVersion[i] != null
+                    && mathToSubsequentUnicodeVersion[i].compareTo(versionInfo) <= 0) {
+                result = Integer.toString(i);
+            }
+        }
+        return result;
     }
 
     public static Set<String> getDirectoryContentsLastFirst(File directory) {
@@ -1831,7 +1882,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                         + "\t# "
                                         + (useHTML ? "(" + getUnicodeImage(cp) + ") " : "")
                                         + (withChar && (cp >= 0x20)
-                                                ? "(" + UTF16.valueOf(cp) + ") "
+                                                ? "(" + Character.toString(cp) + ") "
                                                 : "")
                                         + (names != null ? names.getValue(cp) + " " : "")
                                         + ucd.getName(cp)
@@ -1849,9 +1900,9 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                                     + "\t# "
                                     + (withChar && (start >= 0x20)
                                             ? " ("
-                                                    + UTF16.valueOf(start)
+                                                    + Character.toString(start)
                                                     + ((start != end)
-                                                            ? (".." + UTF16.valueOf(end))
+                                                            ? (".." + Character.toString(end))
                                                             : "")
                                                     + ") "
                                             : "")

@@ -19,29 +19,6 @@ import org.unicode.text.utility.Utility;
 
 public final class UCD_Names implements UCD_Types {
 
-    public static String[][] NON_ENUMERATED_NAMES = {
-        {"na", "Name"},
-        {"dm", "Decomposition_Mapping"},
-        {"nv", "Numeric_Value"},
-        {"bmg", "Bidi_Mirroring_Glyph"},
-        {"lc", "Lowercase_Mapping"},
-        {"uc", "Uppercase_Mapping"},
-        {"tc", "Titlecase_Mapping"},
-        {"cf", "Case_Folding"},
-        {"slc", "Simple_Lowercase_Mapping"},
-        {"suc", "Simple_Uppercase_Mapping"},
-        {"stc", "Simple_Titlecase_Mapping"},
-        {"sfc", "Simple_Case_Folding"},
-        {"scc", "Special_Case_Condition"},
-        {"blk", "Block"},
-        {"na1", "Unicode_1_Name"},
-        {"isc", "ISO_Comment"},
-        {"age", "Age"},
-        {"bpb", "Bidi_Paired_Bracket"},
-        {"bpt", "Bidi_Paired_Bracket_Type"},
-        {"vo", "Vertical_Orientation"},
-    };
-
     static final String[] UNIFIED_PROPERTIES = {
         "GeneralCategory",
         "CanonicalCombiningClass",
@@ -154,9 +131,6 @@ public final class UCD_Names implements UCD_Types {
         "ID_Compat_Math_Continue",
         "MCM",
     };
-
-    public static final int BINARY_UNIFIED_IDEOGRAPH =
-            Utility.lookup("Unified_Ideograph", BP, true);
 
     static final String[] DeletedProperties = {
         "Private_Use",
@@ -425,15 +399,22 @@ public final class UCD_Names implements UCD_Types {
         "Sunuwar",
         "Todhri",
         "Tulu_Tigalari",
-        // Unicode 17
+        // Unicode 17^H^H^H 18^H^H^H 19…
         "Chisoi",
+        // Unicode 17
         "Sidetic",
         "Tai_Yo",
         "Tolong_Siki",
         "Beria_Erfe",
-        // Provisionally assigned
+        // Unicode 18
         "Jurchen",
         "Proto_Cuneiform",
+        "Seal",
+        // A future version of Unicode
+        "Sirmauri",
+        "Leke",
+        "Mwangwego",
+        "Shaaldaa",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -626,21 +607,28 @@ public final class UCD_Names implements UCD_Types {
         "Sunu",
         "Todr",
         "Tutg",
-        // Unicode 17
+        // Unicode > 18
         "Chis",
+        // Unicode 17
         "Sidt",
         "Tayo",
         "Tols",
         "Berf", // Beria Erfe
-        // Provisionally assigned
+        // Unicode 18
         "Jurc",
         "Pcun",
+        "Seal",
+        // A future version of Unicode
+        "Qaba", // "Sirmauri",
+        "Leke", // "Leke",
+        "Qabc", // "Mwangwego",
+        "Qabd", // "Shaaldaa",
     };
 
     static final String[] SHORT_AGE = {
         "NA", "1.1", "2.0", "2.1", "3.0", "3.1", "3.2", "4.0", "4.1", "5.0", "5.1", "5.2", "6.0",
         "6.1", "6.2", "6.3", "7.0", "8.0", "9.0", "10.0", "11.0", "12.0", "12.1", "13.0", "14.0",
-        "15.0", "15.1", "16.0", "17.0",
+        "15.0", "15.1", "16.0", "17.0", "18.0", "19.0",
         // FIX_FOR_NEW_VERSION
     };
 
@@ -674,6 +662,8 @@ public final class UCD_Names implements UCD_Types {
         "V15_1",
         "V16_0",
         "V17_0",
+        "V18_0",
+        "V19_0",
         // FIX_FOR_NEW_VERSION
     };
 
@@ -917,12 +907,12 @@ public final class UCD_Names implements UCD_Types {
                     case 202:
                         s = style < LONG ? "ATB" : "AttachedBelow";
                         break;
-                        /*
-                           case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
-                           case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
-                           case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
-                           case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
-                        */
+                    /*
+                       case 204: s = style < LONG ? "ATBR" :  "AttachedBelowRight"; break;
+                       case 208: s = style < LONG ? "ATL" :  "AttachedLeft"; break;
+                       case 210: s = style < LONG ? "ATR" :  "AttachedRight"; break;
+                       case 212: s = style < LONG ? "ATAL" :  "AttachedAboveLeft"; break;
+                    */
                     case 214:
                         s = style < LONG ? "ATA" : "AttachedAbove";
                         break;
@@ -1220,8 +1210,19 @@ public final class UCD_Names implements UCD_Types {
         "VERTICAL_TAIL",
         // Unicode 16
         "KASHMIRI_YEH",
-        // Unicode n > 16
+        // Unicode 17
         "THIN_NOON",
+        // Unicode 18
+        "CROWN_BEH",
+        "CROWN_HAH",
+        "CROWN_SEEN",
+        "CROWN_SAD",
+        "CROWN_TAH",
+        "CROWN_AIN",
+        "CROWN_FEH",
+        "CROWN_KAF",
+        "CROWN_MEEM",
+        "CROWN_HEH",
     };
 
     static {
@@ -1231,12 +1232,6 @@ public final class UCD_Names implements UCD_Types {
     static void fixArray(String[] array) {
         for (int i = 0; i < array.length; ++i) {
             array[i] = Utility.getUnskeleton(array[i].toLowerCase(Locale.ENGLISH), true);
-        }
-    }
-
-    static void titlecase(String[] array) {
-        for (int i = 0; i < array.length; ++i) {
-            array[i] = array[1].substring(0, 1).toUpperCase() + array[i].substring(1);
         }
     }
 
@@ -1377,8 +1372,6 @@ public final class UCD_Names implements UCD_Types {
         "H", // U+11C2; H; HANGUL JONGSEONG HIEUH
     };
 
-    static final String[] NF_NAME = {"NFD", "NFC", "NFKD", "NFKC"};
-
     static final String[][] NAME_ABBREVIATIONS = {
         {"CJK UNIFIED IDEOGRAPH-", "CJK-"},
         {"CJK COMPATIBILITY IDEOGRAPH-", "CJKC-"},
@@ -1422,17 +1415,6 @@ public final class UCD_Names implements UCD_Types {
         {"SMALL", "C."},
         {"COMBINING", "Cm."},
         {"HANGUL", "H."},
-    };
-
-    static final String[][] PROP_TYPE_NAMES = {
-        {"Numeric", "AA"},
-        {"String", "AB"},
-        {"Miscellaneous", "AC"},
-        {"Catalog", "AD"},
-        {"Enumerated", "AE"},
-        {"Binary", "ZX"},
-        {"Flattened Binary", "ZY"},
-        {"Unknown", "ZZ"}
     };
 
     public static final String[] Bidi_Paired_Bracket_Type = {"None", "Open", "Close"};

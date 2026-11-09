@@ -11,14 +11,14 @@ package org.unicode.text.UCD;
 
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Freezable;
 import java.util.BitSet;
 import java.util.HashMap;
-import org.unicode.cldr.util.Pair;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.NormalizationDataIUP;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 /**
@@ -31,27 +31,19 @@ import org.unicode.text.utility.Utility;
  *
  * @author Mark Davis
  */
-public final class Normalizer implements Transform<String, String>, UCD_Types {
-    public static final String copyright =
-            "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
-
+public final class Normalizer implements Transform<String, String>, Freezable<Normalizer> {
     public enum NormalizationForm {
         NFD,
         NFC,
         NFKD,
         NFKC;
-        final boolean isCompat;
-        final boolean isCompose;
-        final int index;
+
+        private final boolean isCompat;
+        private final boolean isCompose;
 
         NormalizationForm() {
             isCompat = name().contains("K");
             isCompose = name().contains("C");
-            index = ordinal();
-        }
-
-        static NormalizationForm fromOrdinal(int index) {
-            return values()[index];
         }
     }
 
@@ -59,42 +51,111 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
     public static boolean SHOW_PROGRESS = false;
 
-    private NormalizationForm format;
+    private final NormalizationForm form;
+    private boolean frozen = false;
 
-    private final String name;
+    public Normalizer(NormalizationForm form) {
+        this(form, IndexUnicodeProperties.make());
+    }
 
-    /** Create a normalizer for a given form. */
-    public Normalizer(byte form, String unicodeVersion) {
-        this.form = form;
-        this.format = null;
-        this.name = UCD_Names.NF_NAME[form];
-        composition = (form & NF_COMPOSITION_MASK) != 0;
-        compatibility = (form & NF_COMPATIBILITY_MASK) != 0;
-        data = getData(unicodeVersion);
+    public Normalizer(NormalizationForm form, String unicodeVersion) {
+        this(
+                form,
+                unicodeVersion.isEmpty() || unicodeVersion.equals(Settings.latestVersion)
+                        ? IndexUnicodeProperties.make()
+                        : IndexUnicodeProperties.make(unicodeVersion));
     }
 
     public Normalizer(NormalizationForm form, IndexUnicodeProperties factory) {
-        this.form = -1;
-        this.format = form;
-        this.name = form.name();
+        this.form = form;
         composition = form.isCompose;
         compatibility = form.isCompat;
         data = getData(factory);
     }
 
-    /** Create a normalizer for a given form. */
-    // public Normalizer(byte form) {
-    //    this(form,"");
-    // }
+    private static final class NFD {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFD).freeze();
+    }
 
-    /** Return string name */
-    public static String getName(byte form) {
-        return UCD_Names.NF_NAME[form];
+    /** Immutable/frozen NFD Normalizer for the latest version. */
+    public static Normalizer getNfdInstance() {
+        return NFD.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfdInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfdInstance()
+                : new Normalizer(NormalizationForm.NFD, version);
+    }
+
+    private static final class NFC {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFC).freeze();
+    }
+
+    /** Immutable/frozen NFC Normalizer for the latest version. */
+    public static Normalizer getNfcInstance() {
+        return NFC.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfcInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfcInstance()
+                : new Normalizer(NormalizationForm.NFC, version);
+    }
+
+    private static final class NFKD {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFKD).freeze();
+    }
+
+    /** Immutable/frozen NFKD Normalizer for the latest version. */
+    public static Normalizer getNfkdInstance() {
+        return NFKD.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfkdInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfkdInstance()
+                : new Normalizer(NormalizationForm.NFKD, version);
+    }
+
+    private static final class NFKC {
+        private static final Normalizer INSTANCE = new Normalizer(NormalizationForm.NFKC).freeze();
+    }
+
+    /** Immutable/frozen NFKC Normalizer for the latest version. */
+    public static Normalizer getNfkcInstance() {
+        return NFKC.INSTANCE;
+    }
+
+    public static Normalizer getOrMakeNfkcInstance(String version) {
+        return version.equals(Settings.latestVersion)
+                ? getNfkcInstance()
+                : new Normalizer(NormalizationForm.NFKC, version);
+    }
+
+    @Override
+    public boolean isFrozen() {
+        return frozen;
+    }
+
+    @Override
+    public Normalizer freeze() {
+        frozen = true;
+        return this;
+    }
+
+    @Override
+    public Normalizer cloneAsThawed() {
+        throw new UnsupportedOperationException();
+    }
+
+    public NormalizationForm getForm() {
+        return form;
     }
 
     /** Return string name */
     public String getName() {
-        return name;
+        return form.name();
     }
 
     /** Return string name */
@@ -118,7 +179,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      * @param source the original text, unnormalized
      * @param target the resulting normalized text
      */
-    public StringBuffer normalize(CharSequence source, StringBuffer target) {
+    public StringBuilder normalize(CharSequence source, StringBuilder target) {
 
         // First decompose the source into target,
         // then compose if the form requires.
@@ -132,18 +193,12 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         return target;
     }
 
-    /**
-     * Normalizes text according to the chosen form, replacing contents of the target buffer.
-     *
-     * @param source the original text, unnormalized
-     * @param target the resulting normalized text
-     */
     public boolean isFCD(String source) {
         if (source.length() == 0) {
             return true;
         }
-        final StringBuffer noReorder = new StringBuffer();
-        final StringBuffer reorder = new StringBuffer();
+        final StringBuilder noReorder = new StringBuilder();
+        final StringBuilder reorder = new StringBuilder();
 
         internalDecompose(source, noReorder, false, false);
         internalDecompose(source, reorder, true, false);
@@ -158,28 +213,29 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      * @return target the resulting normalized text
      */
     public String normalize(CharSequence source) {
-        return normalize(source, new StringBuffer()).toString();
+        return normalize(source, new StringBuilder()).toString();
     }
 
     /**
-     * Normalizes text according to the chosen form
+     * Normalizes cp according to the chosen form.
      *
-     * @param newLocaleID the original text, unnormalized
+     * @param cp the original character
      * @return target the resulting normalized text
      */
     public String normalize(int cp) {
-        return normalize(UTF16.valueOf(cp));
+        return normalize(Character.toString(cp));
     }
 
     /**
-     * private StringBuffer hasDecompositionBuffer = new StringBuffer();
+     * private StringBuilder hasDecompositionBuffer = new StringBuilder();
      *
      * <p>public boolean hasDecomposition(int cp) { hasDecompositionBuffer.setLength(0);
-     * normalize(UTF16.valueOf(cp), hasDecompositionBuffer); if (hasDecompositionBuffer.length() !=
-     * 1) return true; return cp != hasDecompositionBuffer.charAt(0); }
+     * normalize(Character.toString(cp), hasDecompositionBuffer); if
+     * (hasDecompositionBuffer.length() != 1) return true; return cp !=
+     * hasDecompositionBuffer.charAt(0); }
      */
 
-    /**
+    /*
      * Does a quick check to see if the string is in the current form. Checks canonical order and
      * isAllowed().
      *
@@ -252,15 +308,10 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         return !data.normalizationDiffers(ch, composition, compatibility);
     }
 
-    /**
-     * Utility: Checks whether there is a recursive decomposition of a character from the Unicode
-     * Character Database. It is compatibility or canonical according to the particular normalizer.
-     *
-     * @param ch the source character
-     */
     public boolean isNormalized(CharSequence s) {
         if (Character.codePointCount(s, 0, s.length()) == 1) {
-            return !data.normalizationDiffers(UTF16.charAt(s, 0), composition, compatibility);
+            return !data.normalizationDiffers(
+                    Character.codePointAt(s, 0), composition, compatibility);
         }
         return s.equals(normalize(s)); // TODO: OPTIMIZE LATER
     }
@@ -268,12 +319,10 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     /**
      * Utility: Gets recursive decomposition of a character from the Unicode Character Database.
      *
-     * @param compatibility If false selects the recursive canonical decomposition, otherwise
-     *     selects the recursive compatibility AND canonical decomposition.
      * @param ch the source character
      * @param buffer buffer to be filled with the decomposition
      */
-    public void getRecursiveDecomposition(char ch, StringBuffer buffer) {
+    public void getRecursiveDecomposition(char ch, StringBuilder buffer) {
         data.getRecursiveDecomposition(ch, buffer, compatibility);
     }
 
@@ -291,7 +340,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         if (!composition) {
             return false;
         }
-        var buffer = new StringBuffer();
+        var buffer = new StringBuilder();
         data.getRecursiveDecomposition(cp, buffer, compatibility);
         return data.isTrailing(buffer.codePointAt(0));
     }
@@ -308,9 +357,6 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     //                  PRIVATES
     // ======================================
 
-    /** The current form. */
-    private final byte form;
-
     private final boolean composition;
     private final boolean compatibility;
     private UnicodeMap substituteMapping;
@@ -318,19 +364,16 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     /**
      * Decomposes text, either canonical or compatibility, replacing contents of the target buffer.
      *
-     * @param form the normalization form. If NF_COMPATIBILITY_MASK bit is on in this byte, then
-     *     selects the recursive compatibility decomposition, otherwise selects the recursive
-     *     canonical decomposition.
      * @param source the original text, unnormalized
      * @param target the resulting normalized text
      */
     private void internalDecompose(
-            CharSequence source, StringBuffer target, boolean reorder, boolean compat) {
-        final StringBuffer buffer = new StringBuffer();
+            CharSequence source, StringBuilder target, boolean reorder, boolean compat) {
+        final StringBuilder buffer = new StringBuilder();
         int ch32;
-        for (int i = 0; i < source.length(); i += UTF16.getCharCount(ch32)) {
+        for (int i = 0; i < source.length(); i += Character.charCount(ch32)) {
             buffer.setLength(0);
-            ch32 = UTF16.charAt(source, i);
+            ch32 = Character.codePointAt(source, i);
             final String sub =
                     substituteMapping == null ? null : (String) substituteMapping.getValue(ch32);
             if (sub != null) {
@@ -344,24 +387,37 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             // no decomposition mapping)
 
             int ch;
-            for (int j = 0; j < buffer.length(); j += UTF16.getCharCount(ch)) {
-                ch = UTF16.charAt(buffer, j);
+            for (int j = 0; j < buffer.length(); j += Character.charCount(ch)) {
+                ch = buffer.codePointAt(j);
                 final int chClass = data.getCanonicalClass(ch);
                 int k = target.length(); // insertion point
                 if (chClass != 0 && reorder) {
-
                     // bubble-sort combining marks as necessary
-
                     int ch2;
-                    for (; k > 0; k -= UTF16.getCharCount(ch2)) {
-                        ch2 = UTF16.charAt(target, k - 1);
+                    for (; k > 0; k -= Character.charCount(ch2)) {
+                        ch2 = target.codePointBefore(k);
                         if (data.getCanonicalClass(ch2) <= chClass) {
                             break;
                         }
                     }
                 }
-                target.insert(k, UTF16.valueOf(ch));
+                UTF16Plus.insertCodePoint(target, k, ch);
             }
+        }
+    }
+
+    private static void setCodePointAt(StringBuilder sb, int offset, int c) {
+        char oldUnit = sb.charAt(offset);
+        if (!Character.isSurrogate(oldUnit) && Character.isBmpCodePoint(c)) {
+            sb.setCharAt(offset, (char) c);
+        } else {
+            assert !(offset > 0
+                            && Character.isLowSurrogate(oldUnit)
+                            && Character.isHighSurrogate(sb.charAt(offset - 1)))
+                    : "setCodePointAt(offset not at code point boundary)";
+            int oldC = sb.codePointAt(offset);
+            int oldLength = Character.charCount(oldC);
+            sb.replace(offset, offset + oldLength, Character.toString(c));
         }
     }
 
@@ -371,10 +427,10 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      *
      * @param target input: decomposed text. output: the resulting normalized text.
      */
-    private void internalCompose(StringBuffer target) {
+    private void internalCompose(StringBuilder target) {
         int starterPos = 0;
-        int starterCh = UTF16.charAt(target, 0);
-        int compPos = UTF16.getCharCount(starterCh); // length of last composition
+        int starterCh = target.codePointAt(0);
+        int compPos = Character.charCount(starterCh); // length of last composition
         int lastClass = data.getCanonicalClass(starterCh);
         if (lastClass != 0) {
             lastClass = 256; // fix for strings staring with a combining mark
@@ -386,8 +442,8 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
         int ch;
         for (int decompPos = compPos;
                 decompPos < target.length();
-                decompPos += UTF16.getCharCount(ch)) {
-            ch = UTF16.charAt(target, decompPos);
+                decompPos += Character.charCount(ch)) {
+            ch = target.codePointAt(decompPos);
             if (SHOW_PROGRESS) {
                 System.out.println(
                         Utility.hex(target)
@@ -402,7 +458,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             final int composite = data.getPairwiseComposition(starterCh, ch);
             if (composite != NormalizationData.NOT_COMPOSITE
                     && (lastClass < chClass || lastClass == 0)) {
-                UTF16.setCharAt(target, starterPos, composite);
+                setCodePointAt(target, starterPos, composite);
                 // we know that we will only be replacing non-supplementaries by non-supplementaries
                 // so we don't have to adjust the decompPos
                 starterCh = composite;
@@ -412,7 +468,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                     starterCh = ch;
                 }
                 lastClass = chClass;
-                UTF16.setCharAt(target, compPos, ch);
+                setCodePointAt(target, compPos, ch);
                 if (target.length() != oldLen) { // MAY HAVE TO ADJUST!
                     if (SHOW_ADJUSTING) {
                         System.out.println("ADJUSTING: " + Utility.hex(target));
@@ -420,7 +476,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
                     decompPos += target.length() - oldLen;
                     oldLen = target.length();
                 }
-                compPos += UTF16.getCharCount(ch);
+                compPos += Character.charCount(ch);
             }
         }
         target.setLength(compPos);
@@ -432,34 +488,12 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
      */
     private final NormalizationData data;
 
-    enum Source {
-        old,
-        factory
-    }
-
     // TODO should replace this by thread-safe cache, but to minimize change, leaving as is for
     // TUP/IUP transition
-    // Change cache to store both types of Normalizers, for now.
-
-    private static HashMap<Pair<Source, String>, NormalizationData> versionCache = new HashMap<>();
-
-    private static NormalizationData getData(String version) {
-        if (version.length() == 0) {
-            version = Settings.latestVersion;
-        }
-
-        final Pair<Source, String> key = Pair.of(Source.old, version);
-        NormalizationData result = versionCache.get(key);
-        if (result == null) {
-            result = new NormalizationDataStandard(version);
-            versionCache.put(key, result);
-        }
-        return result;
-    }
+    private static HashMap<String, NormalizationData> versionCache = new HashMap<>();
 
     private static NormalizationData getData(IndexUnicodeProperties factory) {
-        final Pair<Source, String> key =
-                Pair.of(Source.factory, factory.getUcdVersion().getVersionString(2, 2));
+        final String key = factory.getUcdVersion().getVersionString(2, 2);
         NormalizationData result = versionCache.get(key);
         if (result == null) {
             result = new NormalizationDataIUP(factory);
@@ -473,14 +507,19 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
     }
 
     public Normalizer setSubstituteMapping(UnicodeMap substituteMapping) {
+        if (isFrozen()) {
+            throw new UnsupportedOperationException("frozen Normalizer");
+        }
         this.substituteMapping = substituteMapping;
         return this;
     }
 
     static UnicodeMap spacingMap;
-    ;
 
     public void setSpacingSubstitute() {
+        if (isFrozen()) {
+            throw new UnsupportedOperationException("frozen Normalizer");
+        }
         if (spacingMap == null) {
             makeSpacingMap();
         }
@@ -489,7 +528,7 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
 
     private void makeSpacingMap() {
         spacingMap = new UnicodeMap();
-        final StringBuffer b = new StringBuffer();
+        final StringBuilder b = new StringBuilder();
         main:
         for (int i = 0; i <= 0x10FFFF; ++i) {
             final boolean compat = data.hasCompatDecomposition(i);
@@ -498,22 +537,23 @@ public final class Normalizer implements Transform<String, String>, UCD_Types {
             }
             b.setLength(0);
             data.getRecursiveDecomposition(i, b, true);
-            if (b.length() == 1) {
+            if (UTF16Plus.isSingleCodePoint(b)) {
                 continue;
             }
-            final char firstChar = b.charAt(0);
+            final int firstChar = b.codePointAt(0);
             if (firstChar != 0x20 && firstChar != '\u0640') {
                 continue;
             }
             // if rest are just Mn or Me marks, then add to substitute mapping
             int cp;
-            for (int j = 1; j < b.length(); j += UTF16.getCharCount(cp)) {
-                cp = UTF16.charAt(b, j);
+            int j = Character.charCount(firstChar);
+            for (; j < b.length(); j += Character.charCount(cp)) {
+                cp = b.codePointAt(j);
                 if (data.isNonSpacing(cp)) {
                     continue main;
                 }
             }
-            spacingMap.put(i, UTF16.valueOf(i));
+            spacingMap.put(i, Character.toString(i));
         }
         final String[][] specials = {
             {"[\\u0384\\u1FFD]", "\u00B4"},

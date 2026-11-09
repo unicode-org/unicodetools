@@ -7,7 +7,6 @@ import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -25,7 +24,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Pattern;
+import java.util.function.IntPredicate;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Binary;
@@ -56,9 +55,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
     static final boolean DEBUG = false;
 
-    private static boolean needAgeCache = true;
-
-    private static UCD[] ucdCache = new UCD[UCD_Types.LIMIT_AGE];
+    private UnicodeMap<String> ageMap;
 
     private static HashMap<String, ToolUnicodePropertySource> factoryCache =
             new HashMap<String, ToolUnicodePropertySource>();
@@ -81,6 +78,23 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         return result;
     }
 
+    static UnicodeMap<String> deriveAge(
+            VersionInfo version, IntPredicate isAllocated, UnicodeProperty ageFromFile) {
+        UnicodeMap<String> result = new UnicodeMap<>();
+        String unassigned = UCD_Names.LONG_AGE[UCD_Types.UNKNOWN];
+        String currentAge = "V" + version.getMajor() + "_" + version.getMinor();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+            // Noncharacters have an Age too, despite having General_Category=Cn.
+            if (!isAllocated.test(cp)) {
+                result.put(cp, unassigned);
+            } else {
+                String age = ageFromFile.getValue(cp);
+                result.put(cp, unassigned.equals(age) ? currentAge : age);
+            }
+        }
+        return result.freeze();
+    }
+
     private ToolUnicodePropertySource(String version) {
         // make sure we have enough unassigned characters
         ucd = UCD.make(version);
@@ -93,10 +107,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeProperty.contractUNASSIGNED(unassigned);
         final IndexUnicodeProperties iupCurrent = IndexUnicodeProperties.make(ucd.getVersion());
 
-        nfc = new Normalizer(UCD_Types.NFC, ucd.getVersion());
-        nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
-        nfkc = new Normalizer(UCD_Types.NFKC, ucd.getVersion());
-        nfkd = new Normalizer(UCD_Types.NFKD, ucd.getVersion());
+        nfc = Normalizer.getOrMakeNfcInstance(ucd.getVersion());
+        nfd = Normalizer.getOrMakeNfdInstance(ucd.getVersion());
+        nfkc = Normalizer.getOrMakeNfkcInstance(ucd.getVersion());
+        nfkd = Normalizer.getOrMakeNfkdInstance(ucd.getVersion());
 
         // emoji support
 
@@ -309,6 +323,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 "cjkIRG_VSource",
                 "cjkIRG_VSource",
                 "kIRG_VSource");
+        add(iup.getProperty("kMandarin"));
+        add(iup.getProperty("kTotalStrokes"));
+        add(iup.getProperty("kUnihanCore2020"));
+        add(iup.getProperty("kTGT_MergedSrc"));
+        add(iup.getProperty("kNSHU_DubenSrc"));
         add(iup.getProperty("kEH_Cat"));
         add(iup.getProperty("kEH_Desc"));
         add(iup.getProperty("kEH_HG"));
@@ -316,6 +335,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iup.getProperty("kEH_JSesh"));
         add(iup.getProperty("kEH_NoMirror"));
         add(iup.getProperty("kEH_NoRotate"));
+        add(iup.getProperty("kJURC_Src"));
+        add(iup.getProperty("kSEAL_THXSrc"));
+        add(iup.getProperty("kSEAL_CCZSrc"));
+        add(iup.getProperty("kSEAL_DYCSrc"));
+        add(iup.getProperty("kSEAL_QJZSrc"));
         add(iup.getProperty("Emoji"));
         add(iup.getProperty("Emoji_Presentation"));
         add(iup.getProperty("Emoji_Modifier"));
@@ -537,7 +561,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 new UnicodeProperty.SimpleProperty() {
                     @Override
                     public String _getValue(int codepoint) {
-                        return UTF16.valueOf(ucd.getBidi_Paired_Bracket(codepoint));
+                        return Character.toString(ucd.getBidi_Paired_Bracket(codepoint));
                     }
                 }.setValues("<string>")
                         .setMain(
@@ -663,6 +687,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         for (Normalizer nf : new Normalizer[] {nfd, nfc, nfkd, nfkc}) {
             add(
                     new UnicodeProperty.SimpleProperty() {
+                        {
+                            setUniformUnassigned(false);
+                        }
+
                         @Override
                         public String _getValue(int cp) {
                             return nf.normalize(cp);
@@ -1173,33 +1201,33 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             //            unicodeMap.setErrorOnReset(true);
 
             // Indic_Conjunct_Break. The definition depends on GCB derived just above.
-            final UnicodeProperty script = getProperty("Script");
+            final UnicodeProperty scriptExtensions = iup.getProperty("Script_Extensions");
             final UnicodeProperty gcb = getProperty("Grapheme_Cluster_Break");
             final UnicodeSet viramaScripts =
                     new UnicodeSet()
-                            .addAll(script.getSet("Bali"))
-                            .addAll(script.getSet("Beng"))
-                            .addAll(script.getSet("Deva"))
-                            .addAll(script.getSet("Gujr"))
-                            .addAll(script.getSet("Java"))
-                            .addAll(script.getSet("Mlym"))
-                            .addAll(script.getSet("Orya"))
-                            .addAll(script.getSet("Telu"))
+                            .addAll(scriptExtensions.getSet("Bali"))
+                            .addAll(scriptExtensions.getSet("Beng"))
+                            .addAll(scriptExtensions.getSet("Deva"))
+                            .addAll(scriptExtensions.getSet("Gujr"))
+                            .addAll(scriptExtensions.getSet("Java"))
+                            .addAll(scriptExtensions.getSet("Mlym"))
+                            .addAll(scriptExtensions.getSet("Orya"))
+                            .addAll(scriptExtensions.getSet("Telu"))
                             .freeze();
             final UnicodeSet invisibleStackerScripts =
                     new UnicodeSet()
-                            .addAll(script.getSet("Cakm"))
-                            .addAll(script.getSet("Diak"))
-                            .addAll(script.getSet("Kawi"))
-                            .addAll(script.getSet("Khar"))
-                            .addAll(script.getSet("Khmr"))
-                            .addAll(script.getSet("Lana"))
-                            .addAll(script.getSet("Mtei"))
-                            .addAll(script.getSet("Mymr"))
-                            .addAll(script.getSet("Soyo"))
-                            .addAll(script.getSet("Sund"))
-                            .addAll(script.getSet("Tutg"))
-                            .addAll(script.getSet("Zanb"))
+                            .addAll(scriptExtensions.getSet("Cakm"))
+                            .addAll(scriptExtensions.getSet("Diak"))
+                            .addAll(scriptExtensions.getSet("Kawi"))
+                            .addAll(scriptExtensions.getSet("Khar"))
+                            .addAll(scriptExtensions.getSet("Khmr"))
+                            .addAll(scriptExtensions.getSet("Lana"))
+                            .addAll(scriptExtensions.getSet("Mtei"))
+                            .addAll(scriptExtensions.getSet("Mymr"))
+                            .addAll(scriptExtensions.getSet("Soyo"))
+                            .addAll(scriptExtensions.getSet("Sund"))
+                            .addAll(scriptExtensions.getSet("Tutg"))
+                            .addAll(scriptExtensions.getSet("Zanb"))
                             .freeze();
             final UnicodeSet conjunctLinkingScripts =
                     viramaScripts.cloneAsThawed().addAll(invisibleStackerScripts).freeze();
@@ -1211,7 +1239,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                             .addAll(
                                                     isc.getSet(
                                                             Indic_Syllabic_Category_Values
-                                                                    .Invisible_Stacker)));
+                                                                    .Invisible_Stacker))
+                                            .addAll(
+                                                    isc.getSet(
+                                                            Indic_Syllabic_Category_Values
+                                                                    .Consonant_With_Stacker)));
             final UnicodeSet incbConsonant =
                     conjunctLinkingScripts
                             .cloneAsThawed()
@@ -1288,7 +1320,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .remove(0x200D)
                             .remove(0x200B)
                             .removeAll(tags)
-                            // 174-CXX.
+                            // 175-C24.
                             .removeAll(gcb.getSet("Prepend")),
                     "Format");
             unicodeMap.putAll(
@@ -1321,8 +1353,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             // Armenian punctuation marks that occur within words; see
                             // http://www.unicode.org/L2/L2018/18115.htm#155-C3
                             .addAll(new UnicodeSet("[\\u055B\\u055C\\u055E]"))
-                            // 174-CXX.
-                            .add(0x070F),
+                            // 175-C24.
+                            .add(0x070F)
+                            // https://github.com/unicode-org/properties/issues/400.
+                            .add(0x00B8),
                     "ALetter");
             unicodeMap.putAll(
                     new UnicodeSet("[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),
@@ -1361,7 +1395,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .add(0xFF1B)
                             .remove(0x002E)
                             .remove(0x003A)
-                            .remove(0xFE13),
+                            .remove(0xFE13)
+                            .remove(0x00B7)
+                            .remove(0x0387),
                     "MidNum");
             /*
              * 066C ( ٬ ) ARABIC THOUSANDS SEPARATOR
@@ -1728,6 +1764,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(iupCurrent.getProperty(UcdProperty.Indic_Positional_Category));
         add(iupCurrent.getProperty(UcdProperty.Indic_Syllabic_Category));
         add(iupCurrent.getProperty(UcdProperty.Equivalent_Unified_Ideograph));
+        add(iupCurrent.getProperty(UcdProperty.Pretty_Block));
     }
 
     private void addFakeProperty(
@@ -1816,6 +1853,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 return UCD_Names.NO;
             }
             return result;
+        }
+
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
         }
 
         @Override
@@ -2141,7 +2183,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                                 throw new IllegalArgumentException("Internal Error: " + prop);
                         }
                     } catch (final ArrayIndexOutOfBoundsException e) {
-                        continue;
+                        // continue;
                     }
                 }
             }
@@ -2224,27 +2266,21 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     "Failed to find " + up.getName() + " value for " + Utility.hex(codepoint));
         }
 
+        @Override
+        protected String _getValue(String string) {
+            throw new UnsupportedOperationException();
+        }
+
         public String getAge(int codePoint) {
-            if (needAgeCache) {
-                for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
-                    final String versionString = UCD_Types.AGE_VERSIONS[i];
-                    VersionInfo version = VersionInfo.getInstance(versionString);
-                    if (version.compareTo(ucd.getVersionInfo()) > 0) {
-                        break;
-                    }
-                    ucdCache[i] = UCD.make(versionString);
-                }
-                needAgeCache = false;
+            if (ageMap == null) {
+                ageMap =
+                        deriveAge(
+                                ucd.getVersionInfo(),
+                                ucd::isAllocated,
+                                IndexUnicodeProperties.make(ucd.getVersion())
+                                        .getProperty(UcdProperty.Age));
             }
-            for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
-                if (ucdCache[i] == null) {
-                    break;
-                }
-                if (ucdCache[i].isAllocated(codePoint)) {
-                    return UCD_Names.LONG_AGE[i];
-                }
-            }
-            return UCD_Names.LONG_AGE[UCD_Types.UNKNOWN];
+            return ageMap.get(codePoint);
         }
 
         /*
@@ -2308,7 +2344,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
 
     public static boolean equals(int codepoint, String string) {
-        return UTF16.valueOf(codepoint).equals(string);
+        return Character.toString(codepoint).equals(string);
     }
 
     static List<String> lookup(
@@ -2363,7 +2399,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             DELETED,
             ILLEGAL,
             REMAPPED
-        };
+        }
 
         private final UCD ucdIdna = UCD.makeLatestVersion();
         private final StringPrep namePrep;
@@ -2383,7 +2419,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             if (cp == '-') {
                 return IdnaType.OK;
             }
-            final String source = UTF16.valueOf(cp);
+            final String source = Character.toString(cp);
             try {
                 String result = namePrep.prepare(source, IDNA.DEFAULT);
                 if (!source.equals(result)) {
@@ -2397,19 +2433,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
             return IdnaType.OK;
         }
-    }
-
-    static final Pattern WELL_FORMED_LANGUAGE_TAG = Pattern.compile("..."); // ...
-
-    // is
-    // ugly
-    // mess
-    // that
-    // someone
-    // supplies
-
-    static boolean isWellFormedLanguageTag(String tag) {
-        return WELL_FORMED_LANGUAGE_TAG.matcher(tag).matches();
     }
 
     public static final Relation<String, String> YNTF =

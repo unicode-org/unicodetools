@@ -1,0 +1,22 @@
+# Latin: Initial Teaching Alphabet
+# https://github.com/unicode-org/utc-release-management/issues/177
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Propertywise [
+    \x{1D6B} ᵫ \N{LATIN SMALL LETTER UE}
+    \x{1DF5A}-\x{1DF66} \N{LATIN SMALL LETTER HALF A}-\N{LATIN SMALL LETTER REVERSED Z}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

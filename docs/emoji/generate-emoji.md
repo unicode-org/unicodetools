@@ -10,8 +10,11 @@ and update to current status from the UTC.
 
 *   Status=Final Candidate, Draft Candidate, or Provisional Candidate
     *   It affects all following characters.
-    *   So when as set moves from Provisional to Draft, the Status needs to be
+    *   So when a set moves from Provisional to Draft, the Status needs to be
         changed.
+    *   Originally the process assumed the possibility of multiple sets of candidates
+        but Provisional is no longer used and only a single set is assumed to be active,
+        progressing from Draft to Final.
 *   Quarter, Proposal, and After are **prefix**, and affect *all* characters up
     to when changed.
 *   Then comes the code point
@@ -21,8 +24,8 @@ and update to current status from the UTC.
         *   The 2digits are assigned sequentially, but ordering doesn't matter
     *   Draft codes are regular Unicode codes (assigned by UTC)
     *   The code is used to fetch the image from:
-        *   {workspace}/unicode-draft/reports/tr51/images/proposed/
-        *   like: proposed_101956.png
+        *   {workspace}/images/emoji/android/
+        *   like: android_101956.png
 *   Then specific modifiers like:
     *   Name=red-haired person
     *   Keywords= ginger | redhead
@@ -54,15 +57,11 @@ Keywords= ginger | redhead
 
 Emoji_Component
 
-Comment=Component for use in <a target='doc' href='http://unicode.org/reports/tr51/proposed.html#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
+Comment=Component for use in <a target='doc' href='https://www.unicode.org/reports/tr51/#def_RGI'>RGI</a> sequences. Isolated images should have dotted borders.
 ```
 
-Open GenerateEmoji.java and look at showCandidateStyle. Fix topHeader (right
-instance) and getDoubleLink("Provisional Candidates") as necessary for new
-status (eg changing Provisional to Draft).
-
-Open tr51/images/proposed/ and copy in any missing images. Follow the
-requirements on
+Copy any new images to images/emoji/android. Note that any charts showing
+skin tones will also need the `_1f3ff` variant. Follow the requirements on
 [selection.html#images](https://www.unicode.org/emoji/selection.html#images).
 
 ## Running the tool
@@ -91,5 +90,9 @@ be updated as well. In particular, they need to be added to
 4.  ...
 
 ## Final Candidates
+
+In many respects Final is not much different from Draft. One notable difference
+is that new code points lose their "X" prefix in emoji-released.html, so if you
+are still seeing those it is a sign that this Stage has not been reached.
 
 Moving from final candidates involves a number of changes.

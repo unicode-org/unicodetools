@@ -15,6 +15,7 @@ Arabic_Math	;	Arabic_Mathematical_Alphabetic_Symbols
 Arabic_PF_A	;	Arabic_Presentation_Forms_A
 Arabic_PF_B	;	Arabic_Presentation_Forms_B
 Arabic_Sup	;	Arabic_Supplement
+Archaic_Cuneiform_Numerals	;	Archaic_Cuneiform_Numerals
 Armenian	;	Armenian
 Arrows	;	Arrows
 Avestan	;	Avestan
@@ -25,6 +26,7 @@ ASCII	;	Basic_Latin
 Bassa_Vah	;	Bassa_Vah
 Batak	;	Batak
 Bengali	;	Bengali
+Bengali_Sup	;	Bengali_Supplement
 Beria_Erfe  ;   Beria_Erfe
 Bhaiksuki	;	Bhaiksuki
 Block_Elements	;	Block_Elements
@@ -43,7 +45,6 @@ Cham	;	Cham
 Cherokee	;	Cherokee
 Cherokee_Sup	;	Cherokee_Supplement
 Chess_Symbols	;	Chess_Symbols
-Chisoi	;	Chisoi
 Chorasmian	;	Chorasmian
 CJK_Compat	;	CJK_Compatibility
 CJK_Compat_Forms	;	CJK_Compatibility_Forms
@@ -147,6 +148,8 @@ Inscriptional_Pahlavi	;	Inscriptional_Pahlavi
 Inscriptional_Parthian	;	Inscriptional_Parthian
 IPA_Ext	;	IPA_Extensions
 Javanese	;	Javanese
+Jurchen	;	Jurchen
+Jurchen_Radicals	;	Jurchen_Radicals
 Kaithi	;	Kaithi
 Kaktovik_Numerals	;	Kaktovik_Numerals
 Kana_Ext_A	;	Kana_Extended_A
@@ -176,6 +179,7 @@ Latin_Ext_D	;	Latin_Extended_D
 Latin_Ext_E	;	Latin_Extended_E
 Latin_Ext_F	;	Latin_Extended_F
 Latin_Ext_G	;	Latin_Extended_G
+Leibnizian_Ambiguous_Signs	;	Leibnizian_Ambiguous_Signs
 Lepcha	;	Lepcha
 Letterlike_Symbols	;	Letterlike_Symbols
 Limbu	;	Limbu
@@ -210,6 +214,7 @@ Misc_Math_Symbols_B	;	Miscellaneous_Mathematical_Symbols_B
 Misc_Symbols	;	Miscellaneous_Symbols
 Misc_Symbols_Sup	;	Miscellaneous_Symbols_Supplement
 Misc_Arrows	;	Miscellaneous_Symbols_And_Arrows
+Misc_Arrows_Ext	;	Miscellaneous_Symbols_And_Arrows_Extended
 Misc_Pictographs	;	Miscellaneous_Symbols_And_Pictographs
 Misc_Technical	;	Miscellaneous_Technical
 Modi	;	Modi
@@ -219,6 +224,7 @@ Mongolian_Sup	;	Mongolian_Supplement
 Mro	;	Mro
 Multani	;	Multani
 Music	;	Musical_Symbols
+Music_Sup	;	Musical_Symbols_Supplement
 Myanmar	;	Myanmar
 Myanmar_Ext_A	;	Myanmar_Extended_A
 Myanmar_Ext_B	;	Myanmar_Extended_B
@@ -261,12 +267,14 @@ Phonetic_Ext	;	Phonetic_Extensions
 Phonetic_Ext_Sup	;	Phonetic_Extensions_Supplement
 Playing_Cards	;	Playing_Cards
 PUA	;	Private_Use_Area
+Proto_Cuneiform	;	Proto_Cuneiform
 Psalter_Pahlavi	;	Psalter_Pahlavi
 Rejang	;	Rejang
 Rumi	;	Rumi_Numeral_Symbols
 Runic	;	Runic
 Samaritan	;	Samaritan
 Saurashtra	;	Saurashtra
+Seal	;	Seal
 Sharada	;	Sharada
 Sharada_Sup	;	Sharada_Supplement
 Shavian	;	Shavian
@@ -280,6 +288,7 @@ Small_Kana_Ext	;	Small_Kana_Extension
 Sogdian	;	Sogdian
 Sora_Sompeng	;	Sora_Sompeng
 Modifier_Letters	;	Spacing_Modifier_Letters
+Sirmauri	;	Sirmauri
 Soyombo	;	Soyombo
 Specials	;	Specials
 Sundanese	;	Sundanese

@@ -51,7 +51,9 @@ public class XMLProperties {
         NORMALIZATION_CORRECTIONS,
         STANDARDIZED_VARIANTS,
         CJK_RADICALS,
-        EMOJI_SOURCES;
+        EMOJI_SOURCES,
+        DO_NOT_EMIT,
+        INSTEAD;
         static final XmlLeaf GREATEST_LEAF = NAME_ALIAS;
         static final XmlLeaf GREATEST_BOTH = CHAR;
 
@@ -310,10 +312,19 @@ public class XMLProperties {
                         setProp(cps, UcdProperty.Emoji_KDDI, attributes.get("kddi"));
                         setProp(cps, UcdProperty.Emoji_SB, attributes.get("softbank"));
                         break;
+                    case INSTEAD:
+                        // ucd/do-not-emit/instead[@of="0905 0946"]
+                        // [@use="0904"][@because="Indic_Vowel_Letter"]
+                        cps = Utility.fromHex(attributes.get("of"));
+                        setProp(cps, UcdProperty.Do_Not_Emit_Preferred, attributes.get("use"));
+                        leavesNotHandled.add("do-not-emit type=");
+                        // setProp(cps, UcdProperty.Do_Not_Emit_Type, attributes.get("because"));
+                        break;
                     case REPERTOIRE:
                     case BLOCKS:
                     case CJK_RADICALS:
                     case EMOJI_SOURCES:
+                    case DO_NOT_EMIT:
                     case NAMED_SEQUENCES:
                     case NORMALIZATION_CORRECTIONS:
                     case STANDARDIZED_VARIANTS:
@@ -350,7 +361,7 @@ public class XMLProperties {
                             break;
                         }
                     case NORMALIZATION_CORRECTION:
-                        // ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
+                    // ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
                     default:
                         leavesNotHandled.add(qName);
                         break;
@@ -497,7 +508,7 @@ public class XMLProperties {
                     }
                     break;
                 }
-                // $FALL-THROUGH$
+            // $FALL-THROUGH$
             case Enumerated:
             case Catalog:
                 if (propertyValue != null) {
@@ -518,8 +529,8 @@ public class XMLProperties {
                             propertyValue =
                                     IndexUnicodeProperties.normalizeValue(property, propertyValue);
                             break;
-                            //                case Name:
-                            //                    break;
+                        //                case Name:
+                        //                    break;
                         default:
                             propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
                     }
