@@ -465,7 +465,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 1138B         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER EE
 1138E         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER AI
 11390..11391  ; Vowel_Independent # Lo   [2] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER AU
-113DA         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER ARCHAIC II
+113DB         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER ARCHAIC II
 11400..1140D  ; Vowel_Independent # Lo  [14] NEWA LETTER A..NEWA LETTER AU
 11481..1148E  ; Vowel_Independent # Lo  [14] TIRHUTA LETTER A..TIRHUTA LETTER AU
 11580..1158D  ; Vowel_Independent # Lo  [14] SIDDHAM LETTER A..SIDDHAM LETTER AU
