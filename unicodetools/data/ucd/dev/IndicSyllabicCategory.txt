@@ -1,5 +1,5 @@
-# IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-07-03, 09:55:51 GMT
+# IndicSyllabicCategory-19.0.0.txt
+# Date: 2026-11-09, 17:06:05 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -82,10 +82,12 @@
 0C00          ; Bindu # Mn       TELUGU SIGN COMBINING CANDRABINDU ABOVE
 0C01..0C02    ; Bindu # Mc   [2] TELUGU SIGN CANDRABINDU..TELUGU SIGN ANUSVARA
 0C04          ; Bindu # Mn       TELUGU SIGN COMBINING ANUSVARA ABOVE
+0C70          ; Bindu # Lo       TELUGU SIGN SPACING CANDRABINDU
 0C80          ; Bindu # Lo       KANNADA SIGN SPACING CANDRABINDU
 0C81          ; Bindu # Mn       KANNADA SIGN CANDRABINDU
 0C82          ; Bindu # Mc       KANNADA SIGN ANUSVARA
 0CF3          ; Bindu # Mc       KANNADA SIGN COMBINING ANUSVARA ABOVE RIGHT
+0CF4          ; Bindu # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01    ; Bindu # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D02          ; Bindu # Mc       MALAYALAM SIGN ANUSVARA
 0D04          ; Bindu # Lo       MALAYALAM LETTER VEDIC ANUSVARA
@@ -121,6 +123,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11302         ; Bindu # Mc       GRANTHA SIGN ANUSVARA
 1135E..1135F  ; Bindu # Lo   [2] GRANTHA LETTER VEDIC ANUSVARA..GRANTHA LETTER VEDIC DOUBLE ANUSVARA
 113CA         ; Bindu # Mc       TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; Bindu # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC         ; Bindu # Mc       TULU-TIGALARI SIGN ANUSVARA
 11443..11444  ; Bindu # Mn   [2] NEWA SIGN CANDRABINDU..NEWA SIGN ANUSVARA
 1145F         ; Bindu # Lo       NEWA LETTER VEDIC ANUSVARA
@@ -129,6 +132,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 1163D         ; Bindu # Mn       MODI SIGN ANUSVARA
 116AB         ; Bindu # Mn       TAKRI SIGN ANUSVARA
 11837         ; Bindu # Mn       DOGRA SIGN ANUSVARA
+1183C         ; Bindu # Mn       DOGRA SIGN CANDRABINDU
 1187E         ; Bindu # Mn       SIRMAURI SIGN ANUSVARA
 1193B..1193C  ; Bindu # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
 119DE         ; Bindu # Mc       NANDINAGARI SIGN ANUSVARA
@@ -142,6 +146,7 @@ A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 11F00..11F01  ; Bindu # Mn   [2] KAWI SIGN CANDRABINDU..KAWI SIGN ANUSVARA
 1612D         ; Bindu # Mn       GURUNG KHEMA SIGN ANUSVARA
 16D40..16D41  ; Bindu # Lm   [2] KIRAT RAI SIGN ANUSVARA..KIRAT RAI SIGN TONPI
+16D98         ; Bindu # Mn       CHISOI SIGN ANUSVARA
 
 # ================================================
 
@@ -216,6 +221,7 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 113B7         ; Avagraha # Lo       TULU-TIGALARI SIGN AVAGRAHA
 11447         ; Avagraha # Lo       NEWA SIGN AVAGRAHA
 114C4         ; Avagraha # Lo       TIRHUTA SIGN AVAGRAHA
+1183D         ; Avagraha # Lo       DOGRA SIGN AVAGRAHA
 119E1         ; Avagraha # Lo       NANDINAGARI SIGN AVAGRAHA
 11A9D         ; Avagraha # Lo       SOYOMBO MARK PLUTA
 11C40         ; Avagraha # Lo       BHAIKSUKI SIGN AVAGRAHA
@@ -331,6 +337,7 @@ A82C          ; Pure_Killer # Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
 A953          ; Pure_Killer # Mc       REJANG VIRAMA
 ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 11070         ; Pure_Killer # Mn       BRAHMI SIGN OLD TAMIL VIRAMA
+1107E         ; Pure_Killer # Mn       BRAHMI MINIMIZING VIRAMA
 11134         ; Pure_Killer # Mn       CHAKMA MAAYYAA
 112EA         ; Pure_Killer # Mn       KHUDAWADI SIGN VIRAMA
 113CE         ; Pure_Killer # Mn       TULU-TIGALARI SIGN VIRAMA
@@ -343,6 +350,7 @@ ABED          ; Pure_Killer # Mn       MEETEI MAYEK APUN IYEK
 11F41         ; Pure_Killer # Mc       KAWI SIGN KILLER
 1612F         ; Pure_Killer # Mn       GURUNG KHEMA SIGN THOLHOMA
 16D6B..16D6C  ; Pure_Killer # Lm   [2] KIRAT RAI SIGN VIRAMA..KIRAT RAI SIGN SAAT
+16D9D         ; Pure_Killer # Mn       CHISOI SIGN SISO
 
 # ================================================
 
@@ -465,6 +473,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 1138B         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER EE
 1138E         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER AI
 11390..11391  ; Vowel_Independent # Lo   [2] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER AU
+113DB         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER ARCHAIC II
 11400..1140D  ; Vowel_Independent # Lo  [14] NEWA LETTER A..NEWA LETTER AU
 11481..1148E  ; Vowel_Independent # Lo  [14] TIRHUTA LETTER A..TIRHUTA LETTER AU
 11580..1158D  ; Vowel_Independent # Lo  [14] SIDDHAM LETTER A..SIDDHAM LETTER AU
@@ -781,6 +790,12 @@ A866          ; Vowel # Lo       PHAGS-PA LETTER EE
 A922..A925    ; Vowel # Lo   [4] KAYAH LI LETTER A..KAYAH LI LETTER OO
 A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 11150..11154  ; Vowel # Lo   [5] MAHAJANI LETTER A..MAHAJANI LETTER O
+16D80         ; Vowel # Lo       CHISOI LETTER A
+16D82..16D83  ; Vowel # Lo   [2] CHISOI LETTER AAI..CHISOI LETTER AA
+16D86         ; Vowel # Lo       CHISOI LETTER E
+16D89         ; Vowel # Lo       CHISOI LETTER I
+16D8F         ; Vowel # Lo       CHISOI LETTER U
+16D92         ; Vowel # Lo       CHISOI LETTER O
 
 # ================================================
 
@@ -995,6 +1010,13 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11F12..11F33  ; Consonant # Lo  [34] KAWI LETTER KA..KAWI LETTER JNYA
 16100..1611D  ; Consonant # Lo  [30] GURUNG KHEMA LETTER A..GURUNG KHEMA LETTER SA
 16D43..16D62  ; Consonant # Lo  [32] KIRAT RAI LETTER A..KIRAT RAI LETTER HA
+16D81         ; Consonant # Lo       CHISOI LETTER BA
+16D84..16D85  ; Consonant # Lo   [2] CHISOI LETTER GA..CHISOI LETTER TA
+16D87..16D88  ; Consonant # Lo   [2] CHISOI LETTER SA..CHISOI LETTER NA
+16D8A..16D8E  ; Consonant # Lo   [5] CHISOI LETTER KA..CHISOI LETTER RRA
+16D90..16D91  ; Consonant # Lo   [2] CHISOI LETTER DA..CHISOI LETTER LA
+16D93..16D97  ; Consonant # Lo   [5] CHISOI LETTER NYA..CHISOI LETTER PA
+16D99..16D9C  ; Consonant # Lo   [4] CHISOI LETTER YA..CHISOI LETTER JARAHA
 
 # ================================================
 
@@ -1025,6 +1047,7 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 11003..11004  ; Consonant_With_Stacker # Lo   [2] BRAHMI SIGN JIHVAMULIYA..BRAHMI SIGN UPADHMANIYA
 11460..11461  ; Consonant_With_Stacker # Lo   [2] NEWA SIGN JIHVAMULIYA..NEWA SIGN UPADHMANIYA
 11A3A         ; Consonant_With_Stacker # Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
+11B0B..11B0C  ; Consonant_With_Stacker # Lo   [2] DEVANAGARI SIGN JIHVAMULIYA..DEVANAGARI SIGN UPADHMANIYA
 
 # ================================================
 
@@ -1416,6 +1439,7 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 11F50..11F59  ; Number # Nd  [10] KAWI DIGIT ZERO..KAWI DIGIT NINE
 16130..16139  ; Number # Nd  [10] GURUNG KHEMA DIGIT ZERO..GURUNG KHEMA DIGIT NINE
 16D70..16D79  ; Number # Nd  [10] KIRAT RAI DIGIT ZERO..KIRAT RAI DIGIT NINE
+16DA0..16DA9  ; Number # Nd  [10] CHISOI DIGIT ZERO..CHISOI DIGIT NINE
 
 # ================================================
 

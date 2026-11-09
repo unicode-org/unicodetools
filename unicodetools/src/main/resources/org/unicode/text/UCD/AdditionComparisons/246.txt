@@ -1,0 +1,43 @@
+# IPA: Old tonetic stress marks (1DFC5..1DFC8)
+# https://github.com/unicode-org/utc-release-management/issues/246
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block Unicode_1_Name:
+
+Propertywise [\x{1DFC5} \N{DOUBLE GRAVE ACCENT}]
+           ⧴ [{\x{0020}\x{030F}} {\N{SPACE}\N{COMBINING DOUBLE GRAVE ACCENT}}]
+CorrespondTo [\x{02DD} ˝ \N{DOUBLE ACUTE ACCENT}]
+           ⧴ [{\x{0020}\x{030B}} {\N{SPACE}\N{COMBINING DOUBLE ACUTE ACCENT}}]
+  UpTo: East_Asian_Width (Neutral vs Ambiguous),
+        Line_Break       (Alphabetic vs Ambiguous)
+
+Ignoring Math_Descriptive_Comments Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex:
+Propertywise [\x{1DFC5} \N{DOUBLE GRAVE ACCENT}]
+           ⧴ [{\x{0020}\x{030F}} {\N{SPACE}\N{COMBINING DOUBLE GRAVE ACCENT}}]
+CorrespondTo [\x{00B4} ´ \N{ACUTE ACCENT}]
+           ⧴ [{\x{0020}\x{0301}} {\N{SPACE}\N{COMBINING ACUTE ACCENT}}]
+  UpTo: East_Asian_Width (Neutral vs Ambiguous),
+        Line_Break       (Alphabetic vs Break_Before)
+
+end Ignoring;
+
+Propertywise [\x{1DFC6}   \N{MODIFIER LETTER MIDDLE ACUTE ACCENT}
+               \x{02F4} ˴ \N{MODIFIER LETTER MIDDLE GRAVE ACCENT}
+              \x{1DFC7}   \N{MODIFIER LETTER SOUTH EAST ARROW}
+              \x{1DFC8}   \N{MODIFIER LETTER LOW NORTH EAST ARROW}
+               \x{02C5} ˅ \N{MODIFIER LETTER DOWN ARROWHEAD}]
+    AreAlike
+
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

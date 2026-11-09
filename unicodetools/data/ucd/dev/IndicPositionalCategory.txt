@@ -1,5 +1,5 @@
-# IndicPositionalCategory-18.0.0.txt
-# Date: 2026-07-02, 12:04:36 GMT
+# IndicPositionalCategory-19.0.0.txt
+# Date: 2026-11-09, 17:06:05 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -443,6 +443,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0CBF          ; Top # Mn       KANNADA VOWEL SIGN I
 0CC6          ; Top # Mn       KANNADA VOWEL SIGN E
 0CCC..0CCD    ; Top # Mn   [2] KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
+0CF4          ; Top # Mn       KANNADA SIGN COMBINING ANUSVARA ABOVE
 0D00..0D01    ; Top # Mn   [2] MALAYALAM SIGN COMBINING ANUSVARA ABOVE..MALAYALAM SIGN CANDRABINDU
 0D3B..0D3C    ; Top # Mn   [2] MALAYALAM SIGN VERTICAL BAR VIRAMA..MALAYALAM SIGN CIRCULAR VIRAMA
 0D4D          ; Top # Mn       MALAYALAM SIGN VIRAMA
@@ -567,6 +568,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11340         ; Top # Mn       GRANTHA VOWEL SIGN II
 11366..1136C  ; Top # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Top # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+113CB         ; Top # Mn       TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CE         ; Top # Mn       TULU-TIGALARI SIGN VIRAMA
 113D1         ; Top # Lo       TULU-TIGALARI REPHA
 113E1         ; Top # Mn       TULU-TIGALARI VEDIC TONE SVARITA
@@ -587,6 +589,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11727         ; Top # Mn       AHOM VOWEL SIGN AW
 11729..1172B  ; Top # Mn   [3] AHOM VOWEL SIGN AI..AHOM SIGN KILLER
 11833..11837  ; Top # Mn   [5] DOGRA VOWEL SIGN E..DOGRA SIGN ANUSVARA
+1183C         ; Top # Mn       DOGRA SIGN CANDRABINDU
 1187A..1187B  ; Top # Mn   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
 1187E         ; Top # Mn       SIRMAURI SIGN ANUSVARA
 1193B..1193C  ; Top # Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
@@ -624,6 +627,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11F5A         ; Top # Mn       KAWI SIGN NUKTA
 1611E..16129  ; Top # Mn  [12] GURUNG KHEMA VOWEL SIGN AA..GURUNG KHEMA VOWEL LENGTH MARK
 1612D         ; Top # Mn       GURUNG KHEMA SIGN ANUSVARA
+16D98         ; Top # Mn       CHISOI SIGN ANUSVARA
 
 # Indic_Positional_Category=Bottom
 
@@ -781,6 +785,7 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 11EF4         ; Bottom # Mn       MAKASAR VOWEL SIGN U
 11F38..11F3A  ; Bottom # Mn   [3] KAWI VOWEL SIGN U..KAWI VOWEL SIGN VOCALIC R
 1612E..1612F  ; Bottom # Mn   [2] GURUNG KHEMA CONSONANT SIGN MEDIAL RA..GURUNG KHEMA SIGN THOLHOMA
+16D9D         ; Bottom # Mn       CHISOI SIGN SISO
 
 # Indic_Positional_Category=Top_And_Bottom
 
