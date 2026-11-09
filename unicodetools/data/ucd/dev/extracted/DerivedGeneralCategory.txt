@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-19.0.0.txt
-# Date: 2026-11-09, 15:26:40 GMT
+# Date: 2026-11-09, 16:27:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -253,8 +253,8 @@
 1FFF          ; Cn #       <reserved-1FFF>
 2065          ; Cn #       <reserved-2065>
 2072..2073    ; Cn #   [2] <reserved-2072>..<reserved-2073>
-20C5..20CF    ; Cn #  [11] <reserved-20C5>..<reserved-20CF>
-20F1..20FF    ; Cn #  [15] <reserved-20F1>..<reserved-20FF>
+20C6..20CF    ; Cn #  [10] <reserved-20C6>..<reserved-20CF>
+20F3..20FF    ; Cn #  [13] <reserved-20F3>..<reserved-20FF>
 218C..218F    ; Cn #   [4] <reserved-218C>..<reserved-218F>
 242A..243F    ; Cn #  [22] <reserved-242A>..<reserved-243F>
 244B..245F    ; Cn #  [21] <reserved-244B>..<reserved-245F>
@@ -312,7 +312,7 @@ AB0F..AB10    ; Cn #   [2] <reserved-AB0F>..<reserved-AB10>
 AB17..AB1F    ; Cn #   [9] <reserved-AB17>..<reserved-AB1F>
 AB27          ; Cn #       <reserved-AB27>
 AB2F          ; Cn #       <reserved-AB2F>
-AB6E..AB6F    ; Cn #   [2] <reserved-AB6E>..<reserved-AB6F>
+AB6F          ; Cn #       <reserved-AB6F>
 ABEE..ABEF    ; Cn #   [2] <reserved-ABEE>..<reserved-ABEF>
 ABFA..ABFF    ; Cn #   [6] <reserved-ABFA>..<reserved-ABFF>
 D7A4..D7AF    ; Cn #  [12] <reserved-D7A4>..<reserved-D7AF>
@@ -429,7 +429,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 10E7F         ; Cn #       <reserved-10E7F>
 10EAA         ; Cn #       <reserved-10EAA>
 10EAE..10EAF  ; Cn #   [2] <reserved-10EAE>..<reserved-10EAF>
-10EB2..10EC1  ; Cn #  [16] <reserved-10EB2>..<reserved-10EC1>
+10EB2..10EBF  ; Cn #  [14] <reserved-10EB2>..<reserved-10EBF>
 10EC8         ; Cn #       <reserved-10EC8>
 10EEF         ; Cn #       <reserved-10EEF>
 10F28..10F2F  ; Cn #   [8] <reserved-10F28>..<reserved-10F2F>
@@ -606,8 +606,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1BCA4..1CBFF  ; Cn # [3932] <reserved-1BCA4>..<reserved-1CBFF>
 1CCFD..1CCFF  ; Cn #   [3] <reserved-1CCFD>..<reserved-1CCFF>
 1CEB4..1CEB9  ; Cn #   [6] <reserved-1CEB4>..<reserved-1CEB9>
-1CED1         ; Cn #       <reserved-1CED1>
-1CED5..1CEDC  ; Cn #   [8] <reserved-1CED5>..<reserved-1CEDC>
+1CED6..1CEDC  ; Cn #   [7] <reserved-1CED6>..<reserved-1CEDC>
 1CEFE..1CEFF  ; Cn #   [2] <reserved-1CEFE>..<reserved-1CEFF>
 1CF2E..1CF2F  ; Cn #   [2] <reserved-1CF2E>..<reserved-1CF2F>
 1CF47..1CF4F  ; Cn #   [9] <reserved-1CF47>..<reserved-1CF4F>
@@ -644,8 +643,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DAB0..1DAFF  ; Cn #  [80] <reserved-1DAB0>..<reserved-1DAFF>
 1DB2C..1DBFF  ; Cn # [212] <reserved-1DB2C>..<reserved-1DBFF>
 1DC36..1DEFF  ; Cn # [714] <reserved-1DC36>..<reserved-1DEFF>
-1DF85..1DF8F  ; Cn #  [11] <reserved-1DF85>..<reserved-1DF8F>
-1DF97..1DFCC  ; Cn #  [54] <reserved-1DF97>..<reserved-1DFCC>
+1DF8B..1DF8F  ; Cn #   [5] <reserved-1DF8B>..<reserved-1DF8F>
+1DF97..1DFC4  ; Cn #  [46] <reserved-1DF97>..<reserved-1DFC4>
 1E007         ; Cn #       <reserved-1E007>
 1E019..1E01A  ; Cn #   [2] <reserved-1E019>..<reserved-1E01A>
 1E022         ; Cn #       <reserved-1E022>
@@ -761,7 +760,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 800202
+# Total code points: 800180
 
 # ================================================
 
@@ -1379,7 +1378,7 @@ A7DA          ; Lu #       LATIN CAPITAL LETTER LAMBDA
 A7DC..A7DD    ; Lu #   [2] LATIN CAPITAL LETTER LAMBDA WITH STROKE..LATIN CAPITAL LETTER CLOSED OMEGA
 A7E2          ; Lu #       LATIN CAPITAL LETTER R WITH LONG LEG
 A7F5          ; Lu #       LATIN CAPITAL LETTER REVERSED HALF H
-AB6C..AB6D    ; Lu #   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER SCRIPT R WITH RING
+AB6C..AB6E    ; Lu #   [3] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER U WITH LEFT HOOK
 FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAPITAL LETTER Z
 10400..10427  ; Lu #  [40] DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER EW
 104B0..104D3  ; Lu #  [36] OSAGE CAPITAL LETTER A..OSAGE CAPITAL LETTER ZHA
@@ -1439,9 +1438,10 @@ FF21..FF3A    ; Lu #  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LATIN CAP
 1DF7A         ; Lu #       LATIN CAPITAL LETTER U WITH HOOK TAIL
 1DF7C         ; Lu #       LATIN CAPITAL LETTER U WITH NOTCH AT BOTTOM
 1DF7E         ; Lu #       LATIN CAPITAL LETTER REVERSED U
+1DF87         ; Lu #       LATIN CAPITAL LETTER X WITH STROKE
 1E900..1E921  ; Lu #  [34] ADLAM CAPITAL LETTER ALIF..ADLAM CAPITAL LETTER SHA
 
-# Total code points: 1906
+# Total code points: 1908
 
 # ================================================
 
@@ -2126,11 +2126,12 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF7B         ; Ll #       LATIN SMALL LETTER U WITH HOOK TAIL
 1DF7D         ; Ll #       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7F         ; Ll #       LATIN SMALL LETTER REVERSED U
-1DF82..1DF84  ; Ll #   [3] LATIN SMALL LETTER W WITH PALATAL HOOK..LATIN SMALL LETTER R WITH DOUBLE MIDDLE TILDE
+1DF82..1DF86  ; Ll #   [5] LATIN SMALL LETTER W WITH PALATAL HOOK..LATIN SMALL LETTER OPEN Q
+1DF88..1DF8A  ; Ll #   [3] LATIN SMALL LETTER X WITH STROKE..LATIN SMALL LETTER SCHWA WITH RIGHT HOOK
 1DF90..1DF96  ; Ll #   [7] LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2371
+# Total code points: 2376
 
 # ================================================
 
@@ -2587,7 +2588,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 10D4F         ; Lo #       GARAY SUKUN
 10E80..10EA9  ; Lo #  [42] YEZIDI LETTER ELIF..YEZIDI LETTER ET
 10EB0..10EB1  ; Lo #   [2] YEZIDI LETTER LAM WITH DOT ABOVE..YEZIDI LETTER YOT WITH CIRCUMFLEX ABOVE
-10EC2..10EC4  ; Lo #   [3] ARABIC LETTER DAL WITH TWO DOTS VERTICALLY BELOW..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
+10EC0..10EC4  ; Lo #   [5] ARABIC LETTER DOTLESS HALF YEH..ARABIC LETTER KAF WITH TWO DOTS VERTICALLY BELOW
 10EC6..10EC7  ; Lo #   [2] ARABIC LETTER THIN NOON..ARABIC LETTER YEH WITH FOUR DOTS BELOW
 10ED9..10EEE  ; Lo #  [22] ARABIC CROWN LETTER BEH..ARABIC CROWN LETTER YEH
 10F00..10F1C  ; Lo #  [29] OLD SOGDIAN LETTER ALEPH..OLD SOGDIAN LETTER FINAL TAW WITH VERTICAL TAIL
@@ -2793,7 +2794,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 154798
+# Total code points: 154800
 
 # ================================================
 
@@ -2967,7 +2968,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 1DC0..1DFF    ; Mn #  [64] COMBINING DOTTED GRAVE ACCENT..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
 20D0..20DC    ; Mn #  [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20E1          ; Mn #       COMBINING LEFT RIGHT ARROW ABOVE
-20E5..20F0    ; Mn #  [12] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING ASTERISK ABOVE
+20E5..20F2    ; Mn #  [14] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2CEF..2CF1    ; Mn #   [3] COPTIC COMBINING NI ABOVE..COPTIC COMBINING SPIRITUS LENIS
 2D7F          ; Mn #       TIFINAGH CONSONANT JOINER
 2DE0..2DFF    ; Mn #  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
@@ -3172,7 +3173,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2097
+# Total code points: 2099
 
 # ================================================
 
@@ -4166,7 +4167,7 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 0BF9          ; Sc #       TAMIL RUPEE SIGN
 0E3F          ; Sc #       THAI CURRENCY SYMBOL BAHT
 17DB          ; Sc #       KHMER CURRENCY SYMBOL RIEL
-20A0..20C4    ; Sc #  [37] EURO-CURRENCY SIGN..OMANI RIAL SIGN
+20A0..20C5    ; Sc #  [38] EURO-CURRENCY SIGN..BELARUSIAN RUBLE SIGN
 A838          ; Sc #       NORTH INDIC RUPEE MARK
 FDFC          ; Sc #       RIAL SIGN
 FE69          ; Sc #       SMALL DOLLAR SIGN
@@ -4177,7 +4178,7 @@ FFE5..FFE6    ; Sc #   [2] FULLWIDTH YEN SIGN..FULLWIDTH WON SIGN
 1E2FF         ; Sc #       WANCHO NGUN SIGN
 1ECB0         ; Sc #       INDIC SIYAQ RUPEE MARK
 
-# Total code points: 67
+# Total code points: 68
 
 # ================================================
 
@@ -4214,9 +4215,10 @@ FF3E          ; Sk #       FULLWIDTH CIRCUMFLEX ACCENT
 FF40          ; Sk #       FULLWIDTH GRAVE ACCENT
 FFE3          ; Sk #       FULLWIDTH MACRON
 10EC9..10ECA  ; Sk #   [2] ARABIC SMALL BASELINE FATHA..ARABIC SMALL BASELINE DOTLESS HEAD OF KHAH
+1DFC5..1DFCC  ; Sk #   [8] DOUBLE GRAVE ACCENT..MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD
 1F3FB..1F3FF  ; Sk #   [5] EMOJI MODIFIER FITZPATRICK TYPE-1-2..EMOJI MODIFIER FITZPATRICK TYPE-6
 
-# Total code points: 127
+# Total code points: 135
 
 # ================================================
 
@@ -4356,8 +4358,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1CC00..1CCEF  ; So # [240] UP-POINTING GO-KART..OUTLINED LATIN CAPITAL LETTER Z
 1CCFA..1CCFC  ; So #   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; So # [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
-1CEBA..1CED0  ; So #  [23] FRAGILE SYMBOL..LEUKOTHEA
-1CED2..1CED4  ; So #   [3] ALCHEMICAL SYMBOL FOR OIL INVERTED..ALCHEMICAL SYMBOL FOR SALT OF TARTAR
+1CEBA..1CED5  ; So #  [28] FRAGILE SYMBOL..ALCHEMICAL SYMBOL FOR RETORT-2
 1CEE0..1CEEF  ; So #  [16] GEOMANTIC FIGURE POPULUS..GEOMANTIC FIGURE VIA
 1CF50..1CFC3  ; So # [116] ZNAMENNY NEUME KRYUK..ZNAMENNY NEUME PAUK
 1D000..1D0F5  ; So # [246] BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
@@ -4417,7 +4418,7 @@ FFFC..FFFD    ; So #   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1FB94..1FBEF  ; So #  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; So #       ALARM BELL SYMBOL
 
-# Total code points: 7561
+# Total code points: 7563
 
 # ================================================
 

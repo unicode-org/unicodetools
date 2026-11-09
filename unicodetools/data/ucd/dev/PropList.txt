@@ -1,5 +1,5 @@
 # PropList-19.0.0.txt
-# Date: 2026-11-02, 13:43:54 GMT
+# Date: 2026-11-09, 16:19:53 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -256,6 +256,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 20E1          ; Other_Math # Mn       COMBINING LEFT RIGHT ARROW ABOVE
 20E5..20E6    ; Other_Math # Mn   [2] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING DOUBLE VERTICAL STROKE OVERLAY
 20EB..20EF    ; Other_Math # Mn   [5] COMBINING LONG DOUBLE SOLIDUS OVERLAY..COMBINING RIGHT ARROW BELOW
+20F1..20F2    ; Other_Math # Mn   [2] COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2102          ; Other_Math # L&       DOUBLE-STRUCK CAPITAL C
 2107          ; Other_Math # L&       EULER CONSTANT
 210A..2113    ; Other_Math # L&  [10] SCRIPT SMALL G..SCRIPT SMALL L
@@ -418,7 +419,7 @@ FF3E          ; Other_Math # Sk       FULLWIDTH CIRCUMFLEX ACCENT
 1F7DB         ; Other_Math # So       BULLET IN DOUBLE CIRCLE
 1F7F1..1F7FF  ; Other_Math # So  [15] CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE..RHOMBUS
 
-# Total code points: 1379
+# Total code points: 1381
 
 # ================================================
 
@@ -1184,6 +1185,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1D1AA..1D1AD  ; Diacritic # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 1D250..1D252  ; Diacritic # Mc   [3] MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING FLAG-8
 1D25B..1D25C  ; Diacritic # Mn   [2] MUSICAL SYMBOL COMBINING TREMOLO-4..MUSICAL SYMBOL COMBINING TREMOLO-5
+1DFC5..1DFCC  ; Diacritic # Sk   [8] DOUBLE GRAVE ACCENT..MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD
 1DFCD..1DFCF  ; Diacritic # Lm   [3] MODIFIER LETTER SMALL TURNED R WITH MID-HEIGHT LEFT HOOK..MODIFIER LETTER SMALL SPLIT U
 1DFD1..1DFFF  ; Diacritic # Lm  [47] MODIFIER LETTER SMALL CAPITAL P..MODIFIER LETTER SMALL T WITH HOOK AND RETROFLEX HOOK
 1E030..1E06D  ; Diacritic # Lm  [62] MODIFIER LETTER CYRILLIC SMALL A..MODIFIER LETTER CYRILLIC SMALL STRAIGHT U WITH STROKE
@@ -1195,7 +1197,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 1336
+# Total code points: 1344
 
 # ================================================
 
