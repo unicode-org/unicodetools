@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ javascript, python ]
+        language: [ javascript, python, java-kotlin ]
 
     steps:
       - name: Checkout
@@ -30,11 +30,13 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
+          build-mode: none
           queries: +security-and-quality
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
-        if: ${{ matrix.language == 'javascript' || matrix.language == 'python' }}
+          config: |
+            query-filters:
+              # We intentionally use ICU APIs that are marked deprecated.
+              - exclude:
+                  id: java/deprecated-call
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
