@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-09, 16:30:36 GMT
+# Date: 2026-11-09, 16:33:30 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -31319,6 +31319,7 @@ FFFD          ; REPLACEMENT CHARACTER
 113C8         ; TULU-TIGALARI VOWEL SIGN AU
 113C9         ; TULU-TIGALARI AU LENGTH MARK
 113CA         ; TULU-TIGALARI SIGN CANDRA ANUNASIKA
+113CB         ; TULU-TIGALARI SIGN COMBINING ANUSVARA ABOVE
 113CC         ; TULU-TIGALARI SIGN ANUSVARA
 113CD         ; TULU-TIGALARI SIGN VISARGA
 113CE         ; TULU-TIGALARI SIGN VIRAMA
@@ -48127,6 +48128,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174353
+# Total code points: 174354
 
 # EOF
