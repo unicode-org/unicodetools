@@ -1,5 +1,5 @@
 # DerivedAge-19.0.0.txt
-# Date: 2026-11-09, 16:38:54 GMT
+# Date: 2026-11-09, 16:57:10 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2182,6 +2182,7 @@ AB6C..AB6D    ; 18.0 #   [2] LATIN CAPITAL LETTER SCRIPT R..LATIN CAPITAL LETTER
 
 # Newly assigned in Unicode 19.0.0 (September, 2027)
 
+0C70          ; 19.0 #       TELUGU SIGN SPACING CANDRABINDU
 1C8B          ; 19.0 #       CYRILLIC SMALL LETTER YERU WITH CONNECTING BAR
 20C5          ; 19.0 #       BELARUSIAN RUBLE SIGN
 20F1..20F2    ; 19.0 #   [2] COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
@@ -2206,6 +2207,6 @@ AB6E          ; 19.0 #       LATIN CAPITAL LETTER U WITH LEFT HOOK
 1DF82..1DF8A  ; 19.0 #   [9] LATIN SMALL LETTER W WITH PALATAL HOOK..LATIN SMALL LETTER SCHWA WITH RIGHT HOOK
 1DFC5..1DFCC  ; 19.0 #   [8] DOUBLE GRAVE ACCENT..MODIFIER LETTER RIGHT ARROWHEAD OVER DOWN ARROWHEAD
 
-# Total code points: 1549
+# Total code points: 1550
 
 # EOF

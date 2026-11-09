@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-09, 16:39:02 GMT
+# Date: 2026-11-09, 16:57:17 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2861,6 +2861,7 @@
 0C6D          ; TELUGU DIGIT SEVEN
 0C6E          ; TELUGU DIGIT EIGHT
 0C6F          ; TELUGU DIGIT NINE
+0C70          ; TELUGU SIGN SPACING CANDRABINDU
 0C77          ; TELUGU SIGN SIDDHAM
 0C78          ; TELUGU FRACTION DIGIT ZERO FOR ODD POWERS OF FOUR
 0C79          ; TELUGU FRACTION DIGIT ONE FOR ODD POWERS OF FOUR
@@ -48131,6 +48132,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174357
+# Total code points: 174358
 
 # EOF
