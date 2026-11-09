@@ -17,9 +17,14 @@ that have a canonical decomposition:**
 Enter a UnicodeSet into the **Input** box, and hit **Show Set**. You can also
 choose certain combinations of options for display, such as abbreviated or not.
 
-The values you use are encapsulated into a URL for reference, such as
+For short inputs, the values you use are encapsulated into a URL for reference,
+such as
 
 <https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=\\p{sc:Greek}>
+
+Long inputs are submitted using POST to avoid URL length limits. Their results
+cannot be bookmarked by copying the address bar. If JavaScript is disabled, all
+form submissions use POST; existing links continue to work.
 
 If you add properties to the **Group By** box, you can sort the results by
 property values. For example, if you set it to `General_Category Numeric_Value`

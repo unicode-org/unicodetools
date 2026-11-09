@@ -1,0 +1,749 @@
+# emoji-test.txt/fully-qualified: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+1F6D5;                                  fully-qualified     # 🛕    hindu temple
+1F6FA;                                  fully-qualified     # 🛺    auto rickshaw
+1F7E0..1F7EB;                           fully-qualified     # 🟠..🟫 orange circle..brown square
+1F90D..1F90F;                           fully-qualified     # 🤍..🤏 white heart..pinching hand
+1F93F;                                  fully-qualified     # 🤿    diving mask
+1F971;                                  fully-qualified     # 🥱    yawning face
+1F97B;                                  fully-qualified     # 🥻    sari
+1F9A5..1F9AA;                           fully-qualified     # 🦥..🦪 sloth..oyster
+1F9AE..1F9AF;                           fully-qualified     # 🦮..🦯 guide dog..probing cane
+1F9BA..1F9BF;                           fully-qualified     # 🦺..🦿 safety vest..mechanical leg
+1F9C3..1F9CA;                           fully-qualified     # 🧃..🧊 beverage box..ice cube
+1F9CD..1F9CF;                           fully-qualified     # 🧍..🧏 person standing..deaf person
+1FA70..1FA73;                           fully-qualified     # 🩰..🩳 ballet shoes..shorts
+1FA78..1FA7A;                           fully-qualified     # 🩸..🩺 drop of blood..stethoscope
+1FA80..1FA82;                           fully-qualified     # 🪀..🪂 yo-yo..parachute
+1FA90..1FA95;                           fully-qualified     # 🪐..🪕 ringed planet..banjo
+1F415 200D 1F9BA;                       fully-qualified     # 🐕‍🦺    service dog
+1F468 200D 1F9AF;                       fully-qualified     # 👨‍🦯    man with probing cane
+1F468 200D 1F9BC;                       fully-qualified     # 👨‍🦼    man in motorized wheelchair
+1F468 200D 1F9BD;                       fully-qualified     # 👨‍🦽    man in manual wheelchair
+1F468 1F3FB 200D 1F9AF;                 fully-qualified     # 👨🏻‍🦯    man with probing cane: light skin tone
+1F468 1F3FB 200D 1F9BC;                 fully-qualified     # 👨🏻‍🦼    man in motorized wheelchair: light skin tone
+1F468 1F3FB 200D 1F9BD;                 fully-qualified     # 👨🏻‍🦽    man in manual wheelchair: light skin tone
+1F468 1F3FC 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👨🏼‍🤝‍👨🏻    men holding hands: medium-light skin tone, light skin tone
+1F468 1F3FC 200D 1F9AF;                 fully-qualified     # 👨🏼‍🦯    man with probing cane: medium-light skin tone
+1F468 1F3FC 200D 1F9BC;                 fully-qualified     # 👨🏼‍🦼    man in motorized wheelchair: medium-light skin tone
+1F468 1F3FC 200D 1F9BD;                 fully-qualified     # 👨🏼‍🦽    man in manual wheelchair: medium-light skin tone
+1F468 1F3FD 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👨🏽‍🤝‍👨🏻    men holding hands: medium skin tone, light skin tone
+1F468 1F3FD 200D 1F91D 200D 1F468 1F3FC; fully-qualified    # 👨🏽‍🤝‍👨🏼    men holding hands: medium skin tone, medium-light skin tone
+1F468 1F3FD 200D 1F9AF;                 fully-qualified     # 👨🏽‍🦯    man with probing cane: medium skin tone
+1F468 1F3FD 200D 1F9BC;                 fully-qualified     # 👨🏽‍🦼    man in motorized wheelchair: medium skin tone
+1F468 1F3FD 200D 1F9BD;                 fully-qualified     # 👨🏽‍🦽    man in manual wheelchair: medium skin tone
+1F468 1F3FE 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👨🏾‍🤝‍👨🏻    men holding hands: medium-dark skin tone, light skin tone
+1F468 1F3FE 200D 1F91D 200D 1F468 1F3FC; fully-qualified    # 👨🏾‍🤝‍👨🏼    men holding hands: medium-dark skin tone, medium-light skin tone
+1F468 1F3FE 200D 1F91D 200D 1F468 1F3FD; fully-qualified    # 👨🏾‍🤝‍👨🏽    men holding hands: medium-dark skin tone, medium skin tone
+1F468 1F3FE 200D 1F9AF;                 fully-qualified     # 👨🏾‍🦯    man with probing cane: medium-dark skin tone
+1F468 1F3FE 200D 1F9BC;                 fully-qualified     # 👨🏾‍🦼    man in motorized wheelchair: medium-dark skin tone
+1F468 1F3FE 200D 1F9BD;                 fully-qualified     # 👨🏾‍🦽    man in manual wheelchair: medium-dark skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👨🏿‍🤝‍👨🏻    men holding hands: dark skin tone, light skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FC; fully-qualified    # 👨🏿‍🤝‍👨🏼    men holding hands: dark skin tone, medium-light skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FD; fully-qualified    # 👨🏿‍🤝‍👨🏽    men holding hands: dark skin tone, medium skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FE; fully-qualified    # 👨🏿‍🤝‍👨🏾    men holding hands: dark skin tone, medium-dark skin tone
+1F468 1F3FF 200D 1F9AF;                 fully-qualified     # 👨🏿‍🦯    man with probing cane: dark skin tone
+1F468 1F3FF 200D 1F9BC;                 fully-qualified     # 👨🏿‍🦼    man in motorized wheelchair: dark skin tone
+1F468 1F3FF 200D 1F9BD;                 fully-qualified     # 👨🏿‍🦽    man in manual wheelchair: dark skin tone
+1F469 200D 1F9AF;                       fully-qualified     # 👩‍🦯    woman with probing cane
+1F469 200D 1F9BC;                       fully-qualified     # 👩‍🦼    woman in motorized wheelchair
+1F469 200D 1F9BD;                       fully-qualified     # 👩‍🦽    woman in manual wheelchair
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FC; fully-qualified    # 👩🏻‍🤝‍👨🏼    woman and man holding hands: light skin tone, medium-light skin tone
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FD; fully-qualified    # 👩🏻‍🤝‍👨🏽    woman and man holding hands: light skin tone, medium skin tone
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FE; fully-qualified    # 👩🏻‍🤝‍👨🏾    woman and man holding hands: light skin tone, medium-dark skin tone
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FF; fully-qualified    # 👩🏻‍🤝‍👨🏿    woman and man holding hands: light skin tone, dark skin tone
+1F469 1F3FB 200D 1F9AF;                 fully-qualified     # 👩🏻‍🦯    woman with probing cane: light skin tone
+1F469 1F3FB 200D 1F9BC;                 fully-qualified     # 👩🏻‍🦼    woman in motorized wheelchair: light skin tone
+1F469 1F3FB 200D 1F9BD;                 fully-qualified     # 👩🏻‍🦽    woman in manual wheelchair: light skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👩🏼‍🤝‍👨🏻    woman and man holding hands: medium-light skin tone, light skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FD; fully-qualified    # 👩🏼‍🤝‍👨🏽    woman and man holding hands: medium-light skin tone, medium skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FE; fully-qualified    # 👩🏼‍🤝‍👨🏾    woman and man holding hands: medium-light skin tone, medium-dark skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FF; fully-qualified    # 👩🏼‍🤝‍👨🏿    woman and man holding hands: medium-light skin tone, dark skin tone
+1F469 1F3FC 200D 1F91D 200D 1F469 1F3FB; fully-qualified    # 👩🏼‍🤝‍👩🏻    women holding hands: medium-light skin tone, light skin tone
+1F469 1F3FC 200D 1F9AF;                 fully-qualified     # 👩🏼‍🦯    woman with probing cane: medium-light skin tone
+1F469 1F3FC 200D 1F9BC;                 fully-qualified     # 👩🏼‍🦼    woman in motorized wheelchair: medium-light skin tone
+1F469 1F3FC 200D 1F9BD;                 fully-qualified     # 👩🏼‍🦽    woman in manual wheelchair: medium-light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👩🏽‍🤝‍👨🏻    woman and man holding hands: medium skin tone, light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FC; fully-qualified    # 👩🏽‍🤝‍👨🏼    woman and man holding hands: medium skin tone, medium-light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FE; fully-qualified    # 👩🏽‍🤝‍👨🏾    woman and man holding hands: medium skin tone, medium-dark skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FF; fully-qualified    # 👩🏽‍🤝‍👨🏿    woman and man holding hands: medium skin tone, dark skin tone
+1F469 1F3FD 200D 1F91D 200D 1F469 1F3FB; fully-qualified    # 👩🏽‍🤝‍👩🏻    women holding hands: medium skin tone, light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F469 1F3FC; fully-qualified    # 👩🏽‍🤝‍👩🏼    women holding hands: medium skin tone, medium-light skin tone
+1F469 1F3FD 200D 1F9AF;                 fully-qualified     # 👩🏽‍🦯    woman with probing cane: medium skin tone
+1F469 1F3FD 200D 1F9BC;                 fully-qualified     # 👩🏽‍🦼    woman in motorized wheelchair: medium skin tone
+1F469 1F3FD 200D 1F9BD;                 fully-qualified     # 👩🏽‍🦽    woman in manual wheelchair: medium skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👩🏾‍🤝‍👨🏻    woman and man holding hands: medium-dark skin tone, light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FC; fully-qualified    # 👩🏾‍🤝‍👨🏼    woman and man holding hands: medium-dark skin tone, medium-light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FD; fully-qualified    # 👩🏾‍🤝‍👨🏽    woman and man holding hands: medium-dark skin tone, medium skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FF; fully-qualified    # 👩🏾‍🤝‍👨🏿    woman and man holding hands: medium-dark skin tone, dark skin tone
+1F469 1F3FE 200D 1F91D 200D 1F469 1F3FB; fully-qualified    # 👩🏾‍🤝‍👩🏻    women holding hands: medium-dark skin tone, light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F469 1F3FC; fully-qualified    # 👩🏾‍🤝‍👩🏼    women holding hands: medium-dark skin tone, medium-light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F469 1F3FD; fully-qualified    # 👩🏾‍🤝‍👩🏽    women holding hands: medium-dark skin tone, medium skin tone
+1F469 1F3FE 200D 1F9AF;                 fully-qualified     # 👩🏾‍🦯    woman with probing cane: medium-dark skin tone
+1F469 1F3FE 200D 1F9BC;                 fully-qualified     # 👩🏾‍🦼    woman in motorized wheelchair: medium-dark skin tone
+1F469 1F3FE 200D 1F9BD;                 fully-qualified     # 👩🏾‍🦽    woman in manual wheelchair: medium-dark skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FB; fully-qualified    # 👩🏿‍🤝‍👨🏻    woman and man holding hands: dark skin tone, light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FC; fully-qualified    # 👩🏿‍🤝‍👨🏼    woman and man holding hands: dark skin tone, medium-light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FD; fully-qualified    # 👩🏿‍🤝‍👨🏽    woman and man holding hands: dark skin tone, medium skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FE; fully-qualified    # 👩🏿‍🤝‍👨🏾    woman and man holding hands: dark skin tone, medium-dark skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FB; fully-qualified    # 👩🏿‍🤝‍👩🏻    women holding hands: dark skin tone, light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FC; fully-qualified    # 👩🏿‍🤝‍👩🏼    women holding hands: dark skin tone, medium-light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FD; fully-qualified    # 👩🏿‍🤝‍👩🏽    women holding hands: dark skin tone, medium skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FE; fully-qualified    # 👩🏿‍🤝‍👩🏾    women holding hands: dark skin tone, medium-dark skin tone
+1F469 1F3FF 200D 1F9AF;                 fully-qualified     # 👩🏿‍🦯    woman with probing cane: dark skin tone
+1F469 1F3FF 200D 1F9BC;                 fully-qualified     # 👩🏿‍🦼    woman in motorized wheelchair: dark skin tone
+1F469 1F3FF 200D 1F9BD;                 fully-qualified     # 👩🏿‍🦽    woman in manual wheelchair: dark skin tone
+1F46B 1F3FB;                            fully-qualified     # 👫🏻    woman and man holding hands: light skin tone
+1F46B 1F3FC;                            fully-qualified     # 👫🏼    woman and man holding hands: medium-light skin tone
+1F46B 1F3FD;                            fully-qualified     # 👫🏽    woman and man holding hands: medium skin tone
+1F46B 1F3FE;                            fully-qualified     # 👫🏾    woman and man holding hands: medium-dark skin tone
+1F46B 1F3FF;                            fully-qualified     # 👫🏿    woman and man holding hands: dark skin tone
+1F46C 1F3FB;                            fully-qualified     # 👬🏻    men holding hands: light skin tone
+1F46C 1F3FC;                            fully-qualified     # 👬🏼    men holding hands: medium-light skin tone
+1F46C 1F3FD;                            fully-qualified     # 👬🏽    men holding hands: medium skin tone
+1F46C 1F3FE;                            fully-qualified     # 👬🏾    men holding hands: medium-dark skin tone
+1F46C 1F3FF;                            fully-qualified     # 👬🏿    men holding hands: dark skin tone
+1F46D 1F3FB;                            fully-qualified     # 👭🏻    women holding hands: light skin tone
+1F46D 1F3FC;                            fully-qualified     # 👭🏼    women holding hands: medium-light skin tone
+1F46D 1F3FD;                            fully-qualified     # 👭🏽    women holding hands: medium skin tone
+1F46D 1F3FE;                            fully-qualified     # 👭🏾    women holding hands: medium-dark skin tone
+1F46D 1F3FF;                            fully-qualified     # 👭🏿    women holding hands: dark skin tone
+1F90F 1F3FB;                            fully-qualified     # 🤏🏻    pinching hand: light skin tone
+1F90F 1F3FC;                            fully-qualified     # 🤏🏼    pinching hand: medium-light skin tone
+1F90F 1F3FD;                            fully-qualified     # 🤏🏽    pinching hand: medium skin tone
+1F90F 1F3FE;                            fully-qualified     # 🤏🏾    pinching hand: medium-dark skin tone
+1F90F 1F3FF;                            fully-qualified     # 🤏🏿    pinching hand: dark skin tone
+1F9BB 1F3FB;                            fully-qualified     # 🦻🏻    ear with hearing aid: light skin tone
+1F9BB 1F3FC;                            fully-qualified     # 🦻🏼    ear with hearing aid: medium-light skin tone
+1F9BB 1F3FD;                            fully-qualified     # 🦻🏽    ear with hearing aid: medium skin tone
+1F9BB 1F3FE;                            fully-qualified     # 🦻🏾    ear with hearing aid: medium-dark skin tone
+1F9BB 1F3FF;                            fully-qualified     # 🦻🏿    ear with hearing aid: dark skin tone
+1F9CD 200D 2640 FE0F;                   fully-qualified     # 🧍‍♀️    woman standing
+1F9CD 200D 2642 FE0F;                   fully-qualified     # 🧍‍♂️    man standing
+1F9CD 1F3FB;                            fully-qualified     # 🧍🏻    person standing: light skin tone
+1F9CD 1F3FB 200D 2640 FE0F;             fully-qualified     # 🧍🏻‍♀️    woman standing: light skin tone
+1F9CD 1F3FB 200D 2642 FE0F;             fully-qualified     # 🧍🏻‍♂️    man standing: light skin tone
+1F9CD 1F3FC;                            fully-qualified     # 🧍🏼    person standing: medium-light skin tone
+1F9CD 1F3FC 200D 2640 FE0F;             fully-qualified     # 🧍🏼‍♀️    woman standing: medium-light skin tone
+1F9CD 1F3FC 200D 2642 FE0F;             fully-qualified     # 🧍🏼‍♂️    man standing: medium-light skin tone
+1F9CD 1F3FD;                            fully-qualified     # 🧍🏽    person standing: medium skin tone
+1F9CD 1F3FD 200D 2640 FE0F;             fully-qualified     # 🧍🏽‍♀️    woman standing: medium skin tone
+1F9CD 1F3FD 200D 2642 FE0F;             fully-qualified     # 🧍🏽‍♂️    man standing: medium skin tone
+1F9CD 1F3FE;                            fully-qualified     # 🧍🏾    person standing: medium-dark skin tone
+1F9CD 1F3FE 200D 2640 FE0F;             fully-qualified     # 🧍🏾‍♀️    woman standing: medium-dark skin tone
+1F9CD 1F3FE 200D 2642 FE0F;             fully-qualified     # 🧍🏾‍♂️    man standing: medium-dark skin tone
+1F9CD 1F3FF;                            fully-qualified     # 🧍🏿    person standing: dark skin tone
+1F9CD 1F3FF 200D 2640 FE0F;             fully-qualified     # 🧍🏿‍♀️    woman standing: dark skin tone
+1F9CD 1F3FF 200D 2642 FE0F;             fully-qualified     # 🧍🏿‍♂️    man standing: dark skin tone
+1F9CE 200D 2640 FE0F;                   fully-qualified     # 🧎‍♀️    woman kneeling
+1F9CE 200D 2642 FE0F;                   fully-qualified     # 🧎‍♂️    man kneeling
+1F9CE 1F3FB;                            fully-qualified     # 🧎🏻    person kneeling: light skin tone
+1F9CE 1F3FB 200D 2640 FE0F;             fully-qualified     # 🧎🏻‍♀️    woman kneeling: light skin tone
+1F9CE 1F3FB 200D 2642 FE0F;             fully-qualified     # 🧎🏻‍♂️    man kneeling: light skin tone
+1F9CE 1F3FC;                            fully-qualified     # 🧎🏼    person kneeling: medium-light skin tone
+1F9CE 1F3FC 200D 2640 FE0F;             fully-qualified     # 🧎🏼‍♀️    woman kneeling: medium-light skin tone
+1F9CE 1F3FC 200D 2642 FE0F;             fully-qualified     # 🧎🏼‍♂️    man kneeling: medium-light skin tone
+1F9CE 1F3FD;                            fully-qualified     # 🧎🏽    person kneeling: medium skin tone
+1F9CE 1F3FD 200D 2640 FE0F;             fully-qualified     # 🧎🏽‍♀️    woman kneeling: medium skin tone
+1F9CE 1F3FD 200D 2642 FE0F;             fully-qualified     # 🧎🏽‍♂️    man kneeling: medium skin tone
+1F9CE 1F3FE;                            fully-qualified     # 🧎🏾    person kneeling: medium-dark skin tone
+1F9CE 1F3FE 200D 2640 FE0F;             fully-qualified     # 🧎🏾‍♀️    woman kneeling: medium-dark skin tone
+1F9CE 1F3FE 200D 2642 FE0F;             fully-qualified     # 🧎🏾‍♂️    man kneeling: medium-dark skin tone
+1F9CE 1F3FF;                            fully-qualified     # 🧎🏿    person kneeling: dark skin tone
+1F9CE 1F3FF 200D 2640 FE0F;             fully-qualified     # 🧎🏿‍♀️    woman kneeling: dark skin tone
+1F9CE 1F3FF 200D 2642 FE0F;             fully-qualified     # 🧎🏿‍♂️    man kneeling: dark skin tone
+1F9CF 200D 2640 FE0F;                   fully-qualified     # 🧏‍♀️    deaf woman
+1F9CF 200D 2642 FE0F;                   fully-qualified     # 🧏‍♂️    deaf man
+1F9CF 1F3FB;                            fully-qualified     # 🧏🏻    deaf person: light skin tone
+1F9CF 1F3FB 200D 2640 FE0F;             fully-qualified     # 🧏🏻‍♀️    deaf woman: light skin tone
+1F9CF 1F3FB 200D 2642 FE0F;             fully-qualified     # 🧏🏻‍♂️    deaf man: light skin tone
+1F9CF 1F3FC;                            fully-qualified     # 🧏🏼    deaf person: medium-light skin tone
+1F9CF 1F3FC 200D 2640 FE0F;             fully-qualified     # 🧏🏼‍♀️    deaf woman: medium-light skin tone
+1F9CF 1F3FC 200D 2642 FE0F;             fully-qualified     # 🧏🏼‍♂️    deaf man: medium-light skin tone
+1F9CF 1F3FD;                            fully-qualified     # 🧏🏽    deaf person: medium skin tone
+1F9CF 1F3FD 200D 2640 FE0F;             fully-qualified     # 🧏🏽‍♀️    deaf woman: medium skin tone
+1F9CF 1F3FD 200D 2642 FE0F;             fully-qualified     # 🧏🏽‍♂️    deaf man: medium skin tone
+1F9CF 1F3FE;                            fully-qualified     # 🧏🏾    deaf person: medium-dark skin tone
+1F9CF 1F3FE 200D 2640 FE0F;             fully-qualified     # 🧏🏾‍♀️    deaf woman: medium-dark skin tone
+1F9CF 1F3FE 200D 2642 FE0F;             fully-qualified     # 🧏🏾‍♂️    deaf man: medium-dark skin tone
+1F9CF 1F3FF;                            fully-qualified     # 🧏🏿    deaf person: dark skin tone
+1F9CF 1F3FF 200D 2640 FE0F;             fully-qualified     # 🧏🏿‍♀️    deaf woman: dark skin tone
+1F9CF 1F3FF 200D 2642 FE0F;             fully-qualified     # 🧏🏿‍♂️    deaf man: dark skin tone
+1F9D1 200D 1F91D 200D 1F9D1;            fully-qualified     # 🧑‍🤝‍🧑    people holding hands
+1F9D1 1F3FB 200D 1F91D 200D 1F9D1 1F3FB; fully-qualified    # 🧑🏻‍🤝‍🧑🏻    people holding hands: light skin tone
+1F9D1 1F3FC 200D 1F91D 200D 1F9D1 1F3FB; fully-qualified    # 🧑🏼‍🤝‍🧑🏻    people holding hands: medium-light skin tone, light skin tone
+1F9D1 1F3FC 200D 1F91D 200D 1F9D1 1F3FC; fully-qualified    # 🧑🏼‍🤝‍🧑🏼    people holding hands: medium-light skin tone
+1F9D1 1F3FD 200D 1F91D 200D 1F9D1 1F3FB; fully-qualified    # 🧑🏽‍🤝‍🧑🏻    people holding hands: medium skin tone, light skin tone
+1F9D1 1F3FD 200D 1F91D 200D 1F9D1 1F3FC; fully-qualified    # 🧑🏽‍🤝‍🧑🏼    people holding hands: medium skin tone, medium-light skin tone
+1F9D1 1F3FD 200D 1F91D 200D 1F9D1 1F3FD; fully-qualified    # 🧑🏽‍🤝‍🧑🏽    people holding hands: medium skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FB; fully-qualified    # 🧑🏾‍🤝‍🧑🏻    people holding hands: medium-dark skin tone, light skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FC; fully-qualified    # 🧑🏾‍🤝‍🧑🏼    people holding hands: medium-dark skin tone, medium-light skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FD; fully-qualified    # 🧑🏾‍🤝‍🧑🏽    people holding hands: medium-dark skin tone, medium skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FE; fully-qualified    # 🧑🏾‍🤝‍🧑🏾    people holding hands: medium-dark skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FB; fully-qualified    # 🧑🏿‍🤝‍🧑🏻    people holding hands: dark skin tone, light skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FC; fully-qualified    # 🧑🏿‍🤝‍🧑🏼    people holding hands: dark skin tone, medium-light skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FD; fully-qualified    # 🧑🏿‍🤝‍🧑🏽    people holding hands: dark skin tone, medium skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FE; fully-qualified    # 🧑🏿‍🤝‍🧑🏾    people holding hands: dark skin tone, medium-dark skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FF; fully-qualified    # 🧑🏿‍🤝‍🧑🏿    people holding hands: dark skin tone
+# emoji-test.txt/non-fully-qualified: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+1F9CD 200D 2640;                        non-fully-qualified # 🧍‍♀    woman standing
+1F9CD 200D 2642;                        non-fully-qualified # 🧍‍♂    man standing
+1F9CD 1F3FB 200D 2640;                  non-fully-qualified # 🧍🏻‍♀    woman standing: light skin tone
+1F9CD 1F3FB 200D 2642;                  non-fully-qualified # 🧍🏻‍♂    man standing: light skin tone
+1F9CD 1F3FC 200D 2640;                  non-fully-qualified # 🧍🏼‍♀    woman standing: medium-light skin tone
+1F9CD 1F3FC 200D 2642;                  non-fully-qualified # 🧍🏼‍♂    man standing: medium-light skin tone
+1F9CD 1F3FD 200D 2640;                  non-fully-qualified # 🧍🏽‍♀    woman standing: medium skin tone
+1F9CD 1F3FD 200D 2642;                  non-fully-qualified # 🧍🏽‍♂    man standing: medium skin tone
+1F9CD 1F3FE 200D 2640;                  non-fully-qualified # 🧍🏾‍♀    woman standing: medium-dark skin tone
+1F9CD 1F3FE 200D 2642;                  non-fully-qualified # 🧍🏾‍♂    man standing: medium-dark skin tone
+1F9CD 1F3FF 200D 2640;                  non-fully-qualified # 🧍🏿‍♀    woman standing: dark skin tone
+1F9CD 1F3FF 200D 2642;                  non-fully-qualified # 🧍🏿‍♂    man standing: dark skin tone
+1F9CE 200D 2640;                        non-fully-qualified # 🧎‍♀    woman kneeling
+1F9CE 200D 2642;                        non-fully-qualified # 🧎‍♂    man kneeling
+1F9CE 1F3FB 200D 2640;                  non-fully-qualified # 🧎🏻‍♀    woman kneeling: light skin tone
+1F9CE 1F3FB 200D 2642;                  non-fully-qualified # 🧎🏻‍♂    man kneeling: light skin tone
+1F9CE 1F3FC 200D 2640;                  non-fully-qualified # 🧎🏼‍♀    woman kneeling: medium-light skin tone
+1F9CE 1F3FC 200D 2642;                  non-fully-qualified # 🧎🏼‍♂    man kneeling: medium-light skin tone
+1F9CE 1F3FD 200D 2640;                  non-fully-qualified # 🧎🏽‍♀    woman kneeling: medium skin tone
+1F9CE 1F3FD 200D 2642;                  non-fully-qualified # 🧎🏽‍♂    man kneeling: medium skin tone
+1F9CE 1F3FE 200D 2640;                  non-fully-qualified # 🧎🏾‍♀    woman kneeling: medium-dark skin tone
+1F9CE 1F3FE 200D 2642;                  non-fully-qualified # 🧎🏾‍♂    man kneeling: medium-dark skin tone
+1F9CE 1F3FF 200D 2640;                  non-fully-qualified # 🧎🏿‍♀    woman kneeling: dark skin tone
+1F9CE 1F3FF 200D 2642;                  non-fully-qualified # 🧎🏿‍♂    man kneeling: dark skin tone
+1F9CF 200D 2640;                        non-fully-qualified # 🧏‍♀    deaf woman
+1F9CF 200D 2642;                        non-fully-qualified # 🧏‍♂    deaf man
+1F9CF 1F3FB 200D 2640;                  non-fully-qualified # 🧏🏻‍♀    deaf woman: light skin tone
+1F9CF 1F3FB 200D 2642;                  non-fully-qualified # 🧏🏻‍♂    deaf man: light skin tone
+1F9CF 1F3FC 200D 2640;                  non-fully-qualified # 🧏🏼‍♀    deaf woman: medium-light skin tone
+1F9CF 1F3FC 200D 2642;                  non-fully-qualified # 🧏🏼‍♂    deaf man: medium-light skin tone
+1F9CF 1F3FD 200D 2640;                  non-fully-qualified # 🧏🏽‍♀    deaf woman: medium skin tone
+1F9CF 1F3FD 200D 2642;                  non-fully-qualified # 🧏🏽‍♂    deaf man: medium skin tone
+1F9CF 1F3FE 200D 2640;                  non-fully-qualified # 🧏🏾‍♀    deaf woman: medium-dark skin tone
+1F9CF 1F3FE 200D 2642;                  non-fully-qualified # 🧏🏾‍♂    deaf man: medium-dark skin tone
+1F9CF 1F3FF 200D 2640;                  non-fully-qualified # 🧏🏿‍♀    deaf woman: dark skin tone
+1F9CF 1F3FF 200D 2642;                  non-fully-qualified # 🧏🏿‍♂    deaf man: dark skin tone
+# emoji-data.txt/Emoji: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+1F6D5;                                  Emoji               # 🛕    hindu temple
+1F6FA;                                  Emoji               # 🛺    auto rickshaw
+1F7E0..1F7EB;                           Emoji               # 🟠..🟫 orange circle..brown square
+1F90D..1F90F;                           Emoji               # 🤍..🤏 white heart..pinching hand
+1F93F;                                  Emoji               # 🤿    diving mask
+1F971;                                  Emoji               # 🥱    yawning face
+1F97B;                                  Emoji               # 🥻    sari
+1F9A5..1F9AA;                           Emoji               # 🦥..🦪 sloth..oyster
+1F9AE..1F9AF;                           Emoji               # 🦮..🦯 guide dog..probing cane
+1F9BA..1F9BF;                           Emoji               # 🦺..🦿 safety vest..mechanical leg
+1F9C3..1F9CA;                           Emoji               # 🧃..🧊 beverage box..ice cube
+1F9CD..1F9CF;                           Emoji               # 🧍..🧏 person standing..deaf person
+1FA70..1FA73;                           Emoji               # 🩰..🩳 ballet shoes..shorts
+1FA78..1FA7A;                           Emoji               # 🩸..🩺 drop of blood..stethoscope
+1FA80..1FA82;                           Emoji               # 🪀..🪂 yo-yo..parachute
+1FA90..1FA95;                           Emoji               # 🪐..🪕 ringed planet..banjo
+# emoji-data.txt/Emoji_Presentation: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+1F6D5;                                  Emoji_Presentation  # 🛕    hindu temple
+1F6FA;                                  Emoji_Presentation  # 🛺    auto rickshaw
+1F7E0..1F7EB;                           Emoji_Presentation  # 🟠..🟫 orange circle..brown square
+1F90D..1F90F;                           Emoji_Presentation  # 🤍..🤏 white heart..pinching hand
+1F93F;                                  Emoji_Presentation  # 🤿    diving mask
+1F971;                                  Emoji_Presentation  # 🥱    yawning face
+1F97B;                                  Emoji_Presentation  # 🥻    sari
+1F9A5..1F9AA;                           Emoji_Presentation  # 🦥..🦪 sloth..oyster
+1F9AE..1F9AF;                           Emoji_Presentation  # 🦮..🦯 guide dog..probing cane
+1F9BA..1F9BF;                           Emoji_Presentation  # 🦺..🦿 safety vest..mechanical leg
+1F9C3..1F9CA;                           Emoji_Presentation  # 🧃..🧊 beverage box..ice cube
+1F9CD..1F9CF;                           Emoji_Presentation  # 🧍..🧏 person standing..deaf person
+1FA70..1FA73;                           Emoji_Presentation  # 🩰..🩳 ballet shoes..shorts
+1FA78..1FA7A;                           Emoji_Presentation  # 🩸..🩺 drop of blood..stethoscope
+1FA80..1FA82;                           Emoji_Presentation  # 🪀..🪂 yo-yo..parachute
+1FA90..1FA95;                           Emoji_Presentation  # 🪐..🪕 ringed planet..banjo
+# emoji-data.txt/Emoji_Modifier: 12.0 = 11.0
+# emoji-data.txt/Emoji_Modifier_Base: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+1F46A..1F46D;                           Emoji_Modifier_Base # 👪..👭 family..women holding hands
+1F46F;                                  Emoji_Modifier_Base # 👯    people with bunny ears
+1F48F;                                  Emoji_Modifier_Base # 💏    kiss
+1F491;                                  Emoji_Modifier_Base # 💑    couple with heart
+1F90F;                                  Emoji_Modifier_Base # 🤏    pinching hand
+1F91D;                                  Emoji_Modifier_Base # 🤝    handshake
+1F93C;                                  Emoji_Modifier_Base # 🤼    people wrestling
+1F9BB;                                  Emoji_Modifier_Base # 🦻    ear with hearing aid
+1F9CD..1F9CF;                           Emoji_Modifier_Base # 🧍..🧏 person standing..deaf person
+# emoji-data.txt/Emoji_Component: 12.0 = 11.0
+# emoji-data.txt/Extended_Pictographic: 12.0 = 11.0
+# emoji-variation-sequences.txt/text style: 12.0 = 11.0
+# emoji-variation-sequences.txt/emoji style: 12.0 = 11.0
+# emoji-zwj-sequences.txt/Emoji_ZWJ_Sequence: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+1F415 200D 1F9BA;                       Emoji_ZWJ_Sequence  # 🐕‍🦺    service dog
+1F468 200D 1F9AF;                       Emoji_ZWJ_Sequence  # 👨‍🦯    man with probing cane
+1F468 200D 1F9BC;                       Emoji_ZWJ_Sequence  # 👨‍🦼    man in motorized wheelchair
+1F468 200D 1F9BD;                       Emoji_ZWJ_Sequence  # 👨‍🦽    man in manual wheelchair
+1F468 1F3FB 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👨🏻‍🦯    man with probing cane: light skin tone
+1F468 1F3FB 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👨🏻‍🦼    man in motorized wheelchair: light skin tone
+1F468 1F3FB 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👨🏻‍🦽    man in manual wheelchair: light skin tone
+1F468 1F3FC 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👨🏼‍🤝‍👨🏻    men holding hands: medium-light skin tone, light skin tone
+1F468 1F3FC 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👨🏼‍🦯    man with probing cane: medium-light skin tone
+1F468 1F3FC 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👨🏼‍🦼    man in motorized wheelchair: medium-light skin tone
+1F468 1F3FC 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👨🏼‍🦽    man in manual wheelchair: medium-light skin tone
+1F468 1F3FD 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👨🏽‍🤝‍👨🏻    men holding hands: medium skin tone, light skin tone
+1F468 1F3FD 200D 1F91D 200D 1F468 1F3FC; Emoji_ZWJ_Sequence # 👨🏽‍🤝‍👨🏼    men holding hands: medium skin tone, medium-light skin tone
+1F468 1F3FD 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👨🏽‍🦯    man with probing cane: medium skin tone
+1F468 1F3FD 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👨🏽‍🦼    man in motorized wheelchair: medium skin tone
+1F468 1F3FD 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👨🏽‍🦽    man in manual wheelchair: medium skin tone
+1F468 1F3FE 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👨🏾‍🤝‍👨🏻    men holding hands: medium-dark skin tone, light skin tone
+1F468 1F3FE 200D 1F91D 200D 1F468 1F3FC; Emoji_ZWJ_Sequence # 👨🏾‍🤝‍👨🏼    men holding hands: medium-dark skin tone, medium-light skin tone
+1F468 1F3FE 200D 1F91D 200D 1F468 1F3FD; Emoji_ZWJ_Sequence # 👨🏾‍🤝‍👨🏽    men holding hands: medium-dark skin tone, medium skin tone
+1F468 1F3FE 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👨🏾‍🦯    man with probing cane: medium-dark skin tone
+1F468 1F3FE 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👨🏾‍🦼    man in motorized wheelchair: medium-dark skin tone
+1F468 1F3FE 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👨🏾‍🦽    man in manual wheelchair: medium-dark skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👨🏿‍🤝‍👨🏻    men holding hands: dark skin tone, light skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FC; Emoji_ZWJ_Sequence # 👨🏿‍🤝‍👨🏼    men holding hands: dark skin tone, medium-light skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FD; Emoji_ZWJ_Sequence # 👨🏿‍🤝‍👨🏽    men holding hands: dark skin tone, medium skin tone
+1F468 1F3FF 200D 1F91D 200D 1F468 1F3FE; Emoji_ZWJ_Sequence # 👨🏿‍🤝‍👨🏾    men holding hands: dark skin tone, medium-dark skin tone
+1F468 1F3FF 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👨🏿‍🦯    man with probing cane: dark skin tone
+1F468 1F3FF 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👨🏿‍🦼    man in motorized wheelchair: dark skin tone
+1F468 1F3FF 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👨🏿‍🦽    man in manual wheelchair: dark skin tone
+1F469 200D 1F9AF;                       Emoji_ZWJ_Sequence  # 👩‍🦯    woman with probing cane
+1F469 200D 1F9BC;                       Emoji_ZWJ_Sequence  # 👩‍🦼    woman in motorized wheelchair
+1F469 200D 1F9BD;                       Emoji_ZWJ_Sequence  # 👩‍🦽    woman in manual wheelchair
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FC; Emoji_ZWJ_Sequence # 👩🏻‍🤝‍👨🏼    woman and man holding hands: light skin tone, medium-light skin tone
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FD; Emoji_ZWJ_Sequence # 👩🏻‍🤝‍👨🏽    woman and man holding hands: light skin tone, medium skin tone
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FE; Emoji_ZWJ_Sequence # 👩🏻‍🤝‍👨🏾    woman and man holding hands: light skin tone, medium-dark skin tone
+1F469 1F3FB 200D 1F91D 200D 1F468 1F3FF; Emoji_ZWJ_Sequence # 👩🏻‍🤝‍👨🏿    woman and man holding hands: light skin tone, dark skin tone
+1F469 1F3FB 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👩🏻‍🦯    woman with probing cane: light skin tone
+1F469 1F3FB 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👩🏻‍🦼    woman in motorized wheelchair: light skin tone
+1F469 1F3FB 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👩🏻‍🦽    woman in manual wheelchair: light skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👩🏼‍🤝‍👨🏻    woman and man holding hands: medium-light skin tone, light skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FD; Emoji_ZWJ_Sequence # 👩🏼‍🤝‍👨🏽    woman and man holding hands: medium-light skin tone, medium skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FE; Emoji_ZWJ_Sequence # 👩🏼‍🤝‍👨🏾    woman and man holding hands: medium-light skin tone, medium-dark skin tone
+1F469 1F3FC 200D 1F91D 200D 1F468 1F3FF; Emoji_ZWJ_Sequence # 👩🏼‍🤝‍👨🏿    woman and man holding hands: medium-light skin tone, dark skin tone
+1F469 1F3FC 200D 1F91D 200D 1F469 1F3FB; Emoji_ZWJ_Sequence # 👩🏼‍🤝‍👩🏻    women holding hands: medium-light skin tone, light skin tone
+1F469 1F3FC 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👩🏼‍🦯    woman with probing cane: medium-light skin tone
+1F469 1F3FC 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👩🏼‍🦼    woman in motorized wheelchair: medium-light skin tone
+1F469 1F3FC 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👩🏼‍🦽    woman in manual wheelchair: medium-light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👩🏽‍🤝‍👨🏻    woman and man holding hands: medium skin tone, light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FC; Emoji_ZWJ_Sequence # 👩🏽‍🤝‍👨🏼    woman and man holding hands: medium skin tone, medium-light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FE; Emoji_ZWJ_Sequence # 👩🏽‍🤝‍👨🏾    woman and man holding hands: medium skin tone, medium-dark skin tone
+1F469 1F3FD 200D 1F91D 200D 1F468 1F3FF; Emoji_ZWJ_Sequence # 👩🏽‍🤝‍👨🏿    woman and man holding hands: medium skin tone, dark skin tone
+1F469 1F3FD 200D 1F91D 200D 1F469 1F3FB; Emoji_ZWJ_Sequence # 👩🏽‍🤝‍👩🏻    women holding hands: medium skin tone, light skin tone
+1F469 1F3FD 200D 1F91D 200D 1F469 1F3FC; Emoji_ZWJ_Sequence # 👩🏽‍🤝‍👩🏼    women holding hands: medium skin tone, medium-light skin tone
+1F469 1F3FD 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👩🏽‍🦯    woman with probing cane: medium skin tone
+1F469 1F3FD 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👩🏽‍🦼    woman in motorized wheelchair: medium skin tone
+1F469 1F3FD 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👩🏽‍🦽    woman in manual wheelchair: medium skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👩🏾‍🤝‍👨🏻    woman and man holding hands: medium-dark skin tone, light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FC; Emoji_ZWJ_Sequence # 👩🏾‍🤝‍👨🏼    woman and man holding hands: medium-dark skin tone, medium-light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FD; Emoji_ZWJ_Sequence # 👩🏾‍🤝‍👨🏽    woman and man holding hands: medium-dark skin tone, medium skin tone
+1F469 1F3FE 200D 1F91D 200D 1F468 1F3FF; Emoji_ZWJ_Sequence # 👩🏾‍🤝‍👨🏿    woman and man holding hands: medium-dark skin tone, dark skin tone
+1F469 1F3FE 200D 1F91D 200D 1F469 1F3FB; Emoji_ZWJ_Sequence # 👩🏾‍🤝‍👩🏻    women holding hands: medium-dark skin tone, light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F469 1F3FC; Emoji_ZWJ_Sequence # 👩🏾‍🤝‍👩🏼    women holding hands: medium-dark skin tone, medium-light skin tone
+1F469 1F3FE 200D 1F91D 200D 1F469 1F3FD; Emoji_ZWJ_Sequence # 👩🏾‍🤝‍👩🏽    women holding hands: medium-dark skin tone, medium skin tone
+1F469 1F3FE 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👩🏾‍🦯    woman with probing cane: medium-dark skin tone
+1F469 1F3FE 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👩🏾‍🦼    woman in motorized wheelchair: medium-dark skin tone
+1F469 1F3FE 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👩🏾‍🦽    woman in manual wheelchair: medium-dark skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FB; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👨🏻    woman and man holding hands: dark skin tone, light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FC; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👨🏼    woman and man holding hands: dark skin tone, medium-light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FD; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👨🏽    woman and man holding hands: dark skin tone, medium skin tone
+1F469 1F3FF 200D 1F91D 200D 1F468 1F3FE; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👨🏾    woman and man holding hands: dark skin tone, medium-dark skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FB; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👩🏻    women holding hands: dark skin tone, light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FC; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👩🏼    women holding hands: dark skin tone, medium-light skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FD; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👩🏽    women holding hands: dark skin tone, medium skin tone
+1F469 1F3FF 200D 1F91D 200D 1F469 1F3FE; Emoji_ZWJ_Sequence # 👩🏿‍🤝‍👩🏾    women holding hands: dark skin tone, medium-dark skin tone
+1F469 1F3FF 200D 1F9AF;                 Emoji_ZWJ_Sequence  # 👩🏿‍🦯    woman with probing cane: dark skin tone
+1F469 1F3FF 200D 1F9BC;                 Emoji_ZWJ_Sequence  # 👩🏿‍🦼    woman in motorized wheelchair: dark skin tone
+1F469 1F3FF 200D 1F9BD;                 Emoji_ZWJ_Sequence  # 👩🏿‍🦽    woman in manual wheelchair: dark skin tone
+1F9CD 200D 2640 FE0F;                   Emoji_ZWJ_Sequence  # 🧍‍♀️    woman standing
+1F9CD 200D 2642 FE0F;                   Emoji_ZWJ_Sequence  # 🧍‍♂️    man standing
+1F9CD 1F3FB 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏻‍♀️    woman standing: light skin tone
+1F9CD 1F3FB 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏻‍♂️    man standing: light skin tone
+1F9CD 1F3FC 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏼‍♀️    woman standing: medium-light skin tone
+1F9CD 1F3FC 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏼‍♂️    man standing: medium-light skin tone
+1F9CD 1F3FD 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏽‍♀️    woman standing: medium skin tone
+1F9CD 1F3FD 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏽‍♂️    man standing: medium skin tone
+1F9CD 1F3FE 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏾‍♀️    woman standing: medium-dark skin tone
+1F9CD 1F3FE 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏾‍♂️    man standing: medium-dark skin tone
+1F9CD 1F3FF 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏿‍♀️    woman standing: dark skin tone
+1F9CD 1F3FF 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧍🏿‍♂️    man standing: dark skin tone
+1F9CE 200D 2640 FE0F;                   Emoji_ZWJ_Sequence  # 🧎‍♀️    woman kneeling
+1F9CE 200D 2642 FE0F;                   Emoji_ZWJ_Sequence  # 🧎‍♂️    man kneeling
+1F9CE 1F3FB 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏻‍♀️    woman kneeling: light skin tone
+1F9CE 1F3FB 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏻‍♂️    man kneeling: light skin tone
+1F9CE 1F3FC 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏼‍♀️    woman kneeling: medium-light skin tone
+1F9CE 1F3FC 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏼‍♂️    man kneeling: medium-light skin tone
+1F9CE 1F3FD 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏽‍♀️    woman kneeling: medium skin tone
+1F9CE 1F3FD 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏽‍♂️    man kneeling: medium skin tone
+1F9CE 1F3FE 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏾‍♀️    woman kneeling: medium-dark skin tone
+1F9CE 1F3FE 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏾‍♂️    man kneeling: medium-dark skin tone
+1F9CE 1F3FF 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏿‍♀️    woman kneeling: dark skin tone
+1F9CE 1F3FF 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧎🏿‍♂️    man kneeling: dark skin tone
+1F9CF 200D 2640 FE0F;                   Emoji_ZWJ_Sequence  # 🧏‍♀️    deaf woman
+1F9CF 200D 2642 FE0F;                   Emoji_ZWJ_Sequence  # 🧏‍♂️    deaf man
+1F9CF 1F3FB 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏻‍♀️    deaf woman: light skin tone
+1F9CF 1F3FB 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏻‍♂️    deaf man: light skin tone
+1F9CF 1F3FC 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏼‍♀️    deaf woman: medium-light skin tone
+1F9CF 1F3FC 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏼‍♂️    deaf man: medium-light skin tone
+1F9CF 1F3FD 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏽‍♀️    deaf woman: medium skin tone
+1F9CF 1F3FD 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏽‍♂️    deaf man: medium skin tone
+1F9CF 1F3FE 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏾‍♀️    deaf woman: medium-dark skin tone
+1F9CF 1F3FE 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏾‍♂️    deaf man: medium-dark skin tone
+1F9CF 1F3FF 200D 2640 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏿‍♀️    deaf woman: dark skin tone
+1F9CF 1F3FF 200D 2642 FE0F;             Emoji_ZWJ_Sequence  # 🧏🏿‍♂️    deaf man: dark skin tone
+1F9D1 200D 1F91D 200D 1F9D1;            Emoji_ZWJ_Sequence  # 🧑‍🤝‍🧑    people holding hands
+1F9D1 1F3FB 200D 1F91D 200D 1F9D1 1F3FB; Emoji_ZWJ_Sequence # 🧑🏻‍🤝‍🧑🏻    people holding hands: light skin tone
+1F9D1 1F3FC 200D 1F91D 200D 1F9D1 1F3FB; Emoji_ZWJ_Sequence # 🧑🏼‍🤝‍🧑🏻    people holding hands: medium-light skin tone, light skin tone
+1F9D1 1F3FC 200D 1F91D 200D 1F9D1 1F3FC; Emoji_ZWJ_Sequence # 🧑🏼‍🤝‍🧑🏼    people holding hands: medium-light skin tone
+1F9D1 1F3FD 200D 1F91D 200D 1F9D1 1F3FB; Emoji_ZWJ_Sequence # 🧑🏽‍🤝‍🧑🏻    people holding hands: medium skin tone, light skin tone
+1F9D1 1F3FD 200D 1F91D 200D 1F9D1 1F3FC; Emoji_ZWJ_Sequence # 🧑🏽‍🤝‍🧑🏼    people holding hands: medium skin tone, medium-light skin tone
+1F9D1 1F3FD 200D 1F91D 200D 1F9D1 1F3FD; Emoji_ZWJ_Sequence # 🧑🏽‍🤝‍🧑🏽    people holding hands: medium skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FB; Emoji_ZWJ_Sequence # 🧑🏾‍🤝‍🧑🏻    people holding hands: medium-dark skin tone, light skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FC; Emoji_ZWJ_Sequence # 🧑🏾‍🤝‍🧑🏼    people holding hands: medium-dark skin tone, medium-light skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FD; Emoji_ZWJ_Sequence # 🧑🏾‍🤝‍🧑🏽    people holding hands: medium-dark skin tone, medium skin tone
+1F9D1 1F3FE 200D 1F91D 200D 1F9D1 1F3FE; Emoji_ZWJ_Sequence # 🧑🏾‍🤝‍🧑🏾    people holding hands: medium-dark skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FB; Emoji_ZWJ_Sequence # 🧑🏿‍🤝‍🧑🏻    people holding hands: dark skin tone, light skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FC; Emoji_ZWJ_Sequence # 🧑🏿‍🤝‍🧑🏼    people holding hands: dark skin tone, medium-light skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FD; Emoji_ZWJ_Sequence # 🧑🏿‍🤝‍🧑🏽    people holding hands: dark skin tone, medium skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FE; Emoji_ZWJ_Sequence # 🧑🏿‍🤝‍🧑🏾    people holding hands: dark skin tone, medium-dark skin tone
+1F9D1 1F3FF 200D 1F91D 200D 1F9D1 1F3FF; Emoji_ZWJ_Sequence # 🧑🏿‍🤝‍🧑🏿    people holding hands: dark skin tone
+# emoji-sequences.txt/Emoji_Keycap_Sequence: 12.0 = 11.0
+# emoji-sequences.txt/Emoji_Flag_Sequence: 12.0 = 11.0
+# emoji-sequences.txt/Emoji_Tag_Sequence: 12.0 = 11.0
+# emoji-sequences.txt/Emoji_Modifier_Sequence: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+1F46B 1F3FB;                            Emoji_Modifier_Sequence# 👫🏻    woman and man holding hands: light skin tone
+1F46B 1F3FC;                            Emoji_Modifier_Sequence# 👫🏼    woman and man holding hands: medium-light skin tone
+1F46B 1F3FD;                            Emoji_Modifier_Sequence# 👫🏽    woman and man holding hands: medium skin tone
+1F46B 1F3FE;                            Emoji_Modifier_Sequence# 👫🏾    woman and man holding hands: medium-dark skin tone
+1F46B 1F3FF;                            Emoji_Modifier_Sequence# 👫🏿    woman and man holding hands: dark skin tone
+1F46C 1F3FB;                            Emoji_Modifier_Sequence# 👬🏻    men holding hands: light skin tone
+1F46C 1F3FC;                            Emoji_Modifier_Sequence# 👬🏼    men holding hands: medium-light skin tone
+1F46C 1F3FD;                            Emoji_Modifier_Sequence# 👬🏽    men holding hands: medium skin tone
+1F46C 1F3FE;                            Emoji_Modifier_Sequence# 👬🏾    men holding hands: medium-dark skin tone
+1F46C 1F3FF;                            Emoji_Modifier_Sequence# 👬🏿    men holding hands: dark skin tone
+1F46D 1F3FB;                            Emoji_Modifier_Sequence# 👭🏻    women holding hands: light skin tone
+1F46D 1F3FC;                            Emoji_Modifier_Sequence# 👭🏼    women holding hands: medium-light skin tone
+1F46D 1F3FD;                            Emoji_Modifier_Sequence# 👭🏽    women holding hands: medium skin tone
+1F46D 1F3FE;                            Emoji_Modifier_Sequence# 👭🏾    women holding hands: medium-dark skin tone
+1F46D 1F3FF;                            Emoji_Modifier_Sequence# 👭🏿    women holding hands: dark skin tone
+1F90F 1F3FB;                            Emoji_Modifier_Sequence# 🤏🏻    pinching hand: light skin tone
+1F90F 1F3FC;                            Emoji_Modifier_Sequence# 🤏🏼    pinching hand: medium-light skin tone
+1F90F 1F3FD;                            Emoji_Modifier_Sequence# 🤏🏽    pinching hand: medium skin tone
+1F90F 1F3FE;                            Emoji_Modifier_Sequence# 🤏🏾    pinching hand: medium-dark skin tone
+1F90F 1F3FF;                            Emoji_Modifier_Sequence# 🤏🏿    pinching hand: dark skin tone
+1F9BB 1F3FB;                            Emoji_Modifier_Sequence# 🦻🏻    ear with hearing aid: light skin tone
+1F9BB 1F3FC;                            Emoji_Modifier_Sequence# 🦻🏼    ear with hearing aid: medium-light skin tone
+1F9BB 1F3FD;                            Emoji_Modifier_Sequence# 🦻🏽    ear with hearing aid: medium skin tone
+1F9BB 1F3FE;                            Emoji_Modifier_Sequence# 🦻🏾    ear with hearing aid: medium-dark skin tone
+1F9BB 1F3FF;                            Emoji_Modifier_Sequence# 🦻🏿    ear with hearing aid: dark skin tone
+1F9CD 1F3FB;                            Emoji_Modifier_Sequence# 🧍🏻    person standing: light skin tone
+1F9CD 1F3FC;                            Emoji_Modifier_Sequence# 🧍🏼    person standing: medium-light skin tone
+1F9CD 1F3FD;                            Emoji_Modifier_Sequence# 🧍🏽    person standing: medium skin tone
+1F9CD 1F3FE;                            Emoji_Modifier_Sequence# 🧍🏾    person standing: medium-dark skin tone
+1F9CD 1F3FF;                            Emoji_Modifier_Sequence# 🧍🏿    person standing: dark skin tone
+1F9CE 1F3FB;                            Emoji_Modifier_Sequence# 🧎🏻    person kneeling: light skin tone
+1F9CE 1F3FC;                            Emoji_Modifier_Sequence# 🧎🏼    person kneeling: medium-light skin tone
+1F9CE 1F3FD;                            Emoji_Modifier_Sequence# 🧎🏽    person kneeling: medium skin tone
+1F9CE 1F3FE;                            Emoji_Modifier_Sequence# 🧎🏾    person kneeling: medium-dark skin tone
+1F9CE 1F3FF;                            Emoji_Modifier_Sequence# 🧎🏿    person kneeling: dark skin tone
+1F9CF 1F3FB;                            Emoji_Modifier_Sequence# 🧏🏻    deaf person: light skin tone
+1F9CF 1F3FC;                            Emoji_Modifier_Sequence# 🧏🏼    deaf person: medium-light skin tone
+1F9CF 1F3FD;                            Emoji_Modifier_Sequence# 🧏🏽    deaf person: medium skin tone
+1F9CF 1F3FE;                            Emoji_Modifier_Sequence# 🧏🏾    deaf person: medium-dark skin tone
+1F9CF 1F3FF;                            Emoji_Modifier_Sequence# 🧏🏿    deaf person: dark skin tone
+# emoji-sequences.txt/Basic_Emoji: 12.0 ⊇ 11.0
+# ONLY IN 11.0 = ∅
+# ONLY IN 12.0 = ↙️
+231A..231B;                             Basic_Emoji         # ⌚..⌛ watch..hourglass done
+23E9..23EC;                             Basic_Emoji         # ⏩..⏬ fast-forward button..fast down button
+23F0;                                   Basic_Emoji         # ⏰    alarm clock
+23F3;                                   Basic_Emoji         # ⏳    hourglass not done
+25FD..25FE;                             Basic_Emoji         # ◽..◾ white medium-small square..black medium-small square
+2614..2615;                             Basic_Emoji         # ☔..☕ umbrella with rain drops..hot beverage
+2648..2653;                             Basic_Emoji         # ♈..♓ Aries..Pisces
+267F;                                   Basic_Emoji         # ♿    wheelchair symbol
+2693;                                   Basic_Emoji         # ⚓    anchor
+26A1;                                   Basic_Emoji         # ⚡    high voltage
+26AA..26AB;                             Basic_Emoji         # ⚪..⚫ white circle..black circle
+26BD..26BE;                             Basic_Emoji         # ⚽..⚾ soccer ball..baseball
+26C4..26C5;                             Basic_Emoji         # ⛄..⛅ snowman without snow..sun behind cloud
+26CE;                                   Basic_Emoji         # ⛎    Ophiuchus
+26D4;                                   Basic_Emoji         # ⛔    no entry
+26EA;                                   Basic_Emoji         # ⛪    church
+26F2..26F3;                             Basic_Emoji         # ⛲..⛳ fountain..flag in hole
+26F5;                                   Basic_Emoji         # ⛵    sailboat
+26FA;                                   Basic_Emoji         # ⛺    tent
+26FD;                                   Basic_Emoji         # ⛽    fuel pump
+2705;                                   Basic_Emoji         # ✅    check mark button
+270A..270B;                             Basic_Emoji         # ✊..✋ raised fist..raised hand
+2728;                                   Basic_Emoji         # ✨    sparkles
+274C;                                   Basic_Emoji         # ❌    cross mark
+274E;                                   Basic_Emoji         # ❎    cross mark button
+2753..2755;                             Basic_Emoji         # ❓..❕ question mark..white exclamation mark
+2757;                                   Basic_Emoji         # ❗    exclamation mark
+2795..2797;                             Basic_Emoji         # ➕..➗ plus sign..division sign
+27B0;                                   Basic_Emoji         # ➰    curly loop
+27BF;                                   Basic_Emoji         # ➿    double curly loop
+2B1B..2B1C;                             Basic_Emoji         # ⬛..⬜ black large square..white large square
+2B50;                                   Basic_Emoji         # ⭐    star
+2B55;                                   Basic_Emoji         # ⭕    hollow red circle
+1F004;                                  Basic_Emoji         # 🀄    mahjong red dragon
+1F0CF;                                  Basic_Emoji         # 🃏    joker
+1F18E;                                  Basic_Emoji         # 🆎    AB button (blood type)
+1F191..1F19A;                           Basic_Emoji         # 🆑..🆚 CL button..VS button
+1F201;                                  Basic_Emoji         # 🈁    Japanese “here” button
+1F21A;                                  Basic_Emoji         # 🈚    Japanese “free of charge” button
+1F22F;                                  Basic_Emoji         # 🈯    Japanese “reserved” button
+1F232..1F236;                           Basic_Emoji         # 🈲..🈶 Japanese “prohibited” button..Japanese “not free of charge” button
+1F238..1F23A;                           Basic_Emoji         # 🈸..🈺 Japanese “application” button..Japanese “open for business” button
+1F250..1F251;                           Basic_Emoji         # 🉐..🉑 Japanese “bargain” button..Japanese “acceptable” button
+1F300..1F320;                           Basic_Emoji         # 🌀..🌠 cyclone..shooting star
+1F32D..1F335;                           Basic_Emoji         # 🌭..🌵 hot dog..cactus
+1F337..1F37C;                           Basic_Emoji         # 🌷..🍼 tulip..baby bottle
+1F37E..1F393;                           Basic_Emoji         # 🍾..🎓 bottle with popping cork..graduation cap
+1F3A0..1F3CA;                           Basic_Emoji         # 🎠..🏊 carousel horse..person swimming
+1F3CF..1F3D3;                           Basic_Emoji         # 🏏..🏓 cricket game..ping pong
+1F3E0..1F3F0;                           Basic_Emoji         # 🏠..🏰 house..castle
+1F3F4;                                  Basic_Emoji         # 🏴    black flag
+1F3F8..1F43E;                           Basic_Emoji         # 🏸..🐾 badminton..paw prints
+1F440;                                  Basic_Emoji         # 👀    eyes
+1F442..1F4FC;                           Basic_Emoji         # 👂..📼 ear..videocassette
+1F4FF..1F53D;                           Basic_Emoji         # 📿..🔽 prayer beads..downwards button
+1F54B..1F54E;                           Basic_Emoji         # 🕋..🕎 kaaba..menorah
+1F550..1F567;                           Basic_Emoji         # 🕐..🕧 one o’clock..twelve-thirty
+1F57A;                                  Basic_Emoji         # 🕺    man dancing
+1F595..1F596;                           Basic_Emoji         # 🖕..🖖 middle finger..vulcan salute
+1F5A4;                                  Basic_Emoji         # 🖤    black heart
+1F5FB..1F64F;                           Basic_Emoji         # 🗻..🙏 mount fuji..folded hands
+1F680..1F6C5;                           Basic_Emoji         # 🚀..🛅 rocket..left luggage
+1F6CC;                                  Basic_Emoji         # 🛌    person in bed
+1F6D0..1F6D2;                           Basic_Emoji         # 🛐..🛒 place of worship..shopping cart
+1F6D5;                                  Basic_Emoji         # 🛕    hindu temple
+1F6EB..1F6EC;                           Basic_Emoji         # 🛫..🛬 airplane departure..airplane arrival
+1F6F4..1F6FA;                           Basic_Emoji         # 🛴..🛺 kick scooter..auto rickshaw
+1F7E0..1F7EB;                           Basic_Emoji         # 🟠..🟫 orange circle..brown square
+1F90D..1F93A;                           Basic_Emoji         # 🤍..🤺 white heart..person fencing
+1F93C..1F945;                           Basic_Emoji         # 🤼..🥅 people wrestling..goal net
+1F947..1F971;                           Basic_Emoji         # 🥇..🥱 1st place medal..yawning face
+1F973..1F976;                           Basic_Emoji         # 🥳..🥶 partying face..cold face
+1F97A..1F9A2;                           Basic_Emoji         # 🥺..🦢 pleading face..swan
+1F9A5..1F9AA;                           Basic_Emoji         # 🦥..🦪 sloth..oyster
+1F9AE..1F9CA;                           Basic_Emoji         # 🦮..🧊 guide dog..ice cube
+1F9CD..1F9FF;                           Basic_Emoji         # 🧍..🧿 person standing..nazar amulet
+1FA70..1FA73;                           Basic_Emoji         # 🩰..🩳 ballet shoes..shorts
+1FA78..1FA7A;                           Basic_Emoji         # 🩸..🩺 drop of blood..stethoscope
+1FA80..1FA82;                           Basic_Emoji         # 🪀..🪂 yo-yo..parachute
+1FA90..1FA95;                           Basic_Emoji         # 🪐..🪕 ringed planet..banjo
+00A9 FE0F;                              Basic_Emoji         # ©️    copyright
+00AE FE0F;                              Basic_Emoji         # ®️    registered
+203C FE0F;                              Basic_Emoji         # ‼️    double exclamation mark
+2049 FE0F;                              Basic_Emoji         # ⁉️    exclamation question mark
+2122 FE0F;                              Basic_Emoji         # ™️    trade mark
+2139 FE0F;                              Basic_Emoji         # ℹ️    information
+2194 FE0F;                              Basic_Emoji         # ↔️    left-right arrow
+2195 FE0F;                              Basic_Emoji         # ↕️    up-down arrow
+2196 FE0F;                              Basic_Emoji         # ↖️    up-left arrow
+2197 FE0F;                              Basic_Emoji         # ↗️    up-right arrow
+2198 FE0F;                              Basic_Emoji         # ↘️    down-right arrow
+2199 FE0F;                              Basic_Emoji         # ↙️    down-left arrow
+21A9 FE0F;                              Basic_Emoji         # ↩️    right arrow curving left
+21AA FE0F;                              Basic_Emoji         # ↪️    left arrow curving right
+2328 FE0F;                              Basic_Emoji         # ⌨️    keyboard
+23CF FE0F;                              Basic_Emoji         # ⏏️    eject button
+23ED FE0F;                              Basic_Emoji         # ⏭️    next track button
+23EE FE0F;                              Basic_Emoji         # ⏮️    last track button
+23EF FE0F;                              Basic_Emoji         # ⏯️    play or pause button
+23F1 FE0F;                              Basic_Emoji         # ⏱️    stopwatch
+23F2 FE0F;                              Basic_Emoji         # ⏲️    timer clock
+23F8 FE0F;                              Basic_Emoji         # ⏸️    pause button
+23F9 FE0F;                              Basic_Emoji         # ⏹️    stop button
+23FA FE0F;                              Basic_Emoji         # ⏺️    record button
+24C2 FE0F;                              Basic_Emoji         # Ⓜ️    circled M
+25AA FE0F;                              Basic_Emoji         # ▪️    black small square
+25AB FE0F;                              Basic_Emoji         # ▫️    white small square
+25B6 FE0F;                              Basic_Emoji         # ▶️    play button
+25C0 FE0F;                              Basic_Emoji         # ◀️    reverse button
+25FB FE0F;                              Basic_Emoji         # ◻️    white medium square
+25FC FE0F;                              Basic_Emoji         # ◼️    black medium square
+2600 FE0F;                              Basic_Emoji         # ☀️    sun
+2601 FE0F;                              Basic_Emoji         # ☁️    cloud
+2602 FE0F;                              Basic_Emoji         # ☂️    umbrella
+2603 FE0F;                              Basic_Emoji         # ☃️    snowman
+2604 FE0F;                              Basic_Emoji         # ☄️    comet
+260E FE0F;                              Basic_Emoji         # ☎️    telephone
+2611 FE0F;                              Basic_Emoji         # ☑️    check box with check
+2618 FE0F;                              Basic_Emoji         # ☘️    shamrock
+261D FE0F;                              Basic_Emoji         # ☝️    index pointing up
+2620 FE0F;                              Basic_Emoji         # ☠️    skull and crossbones
+2622 FE0F;                              Basic_Emoji         # ☢️    radioactive
+2623 FE0F;                              Basic_Emoji         # ☣️    biohazard
+2626 FE0F;                              Basic_Emoji         # ☦️    orthodox cross
+262A FE0F;                              Basic_Emoji         # ☪️    star and crescent
+262E FE0F;                              Basic_Emoji         # ☮️    peace symbol
+262F FE0F;                              Basic_Emoji         # ☯️    yin yang
+2638 FE0F;                              Basic_Emoji         # ☸️    wheel of dharma
+2639 FE0F;                              Basic_Emoji         # ☹️    frowning face
+263A FE0F;                              Basic_Emoji         # ☺️    smiling face
+2640 FE0F;                              Basic_Emoji         # ♀️    female sign
+2642 FE0F;                              Basic_Emoji         # ♂️    male sign
+265F FE0F;                              Basic_Emoji         # ♟️    chess pawn
+2660 FE0F;                              Basic_Emoji         # ♠️    spade suit
+2663 FE0F;                              Basic_Emoji         # ♣️    club suit
+2665 FE0F;                              Basic_Emoji         # ♥️    heart suit
+2666 FE0F;                              Basic_Emoji         # ♦️    diamond suit
+2668 FE0F;                              Basic_Emoji         # ♨️    hot springs
+267B FE0F;                              Basic_Emoji         # ♻️    recycling symbol
+267E FE0F;                              Basic_Emoji         # ♾️    infinity
+2692 FE0F;                              Basic_Emoji         # ⚒️    hammer and pick
+2694 FE0F;                              Basic_Emoji         # ⚔️    crossed swords
+2695 FE0F;                              Basic_Emoji         # ⚕️    medical symbol
+2696 FE0F;                              Basic_Emoji         # ⚖️    balance scale
+2697 FE0F;                              Basic_Emoji         # ⚗️    alembic
+2699 FE0F;                              Basic_Emoji         # ⚙️    gear
+269B FE0F;                              Basic_Emoji         # ⚛️    atom symbol
+269C FE0F;                              Basic_Emoji         # ⚜️    fleur-de-lis
+26A0 FE0F;                              Basic_Emoji         # ⚠️    warning
+26B0 FE0F;                              Basic_Emoji         # ⚰️    coffin
+26B1 FE0F;                              Basic_Emoji         # ⚱️    funeral urn
+26C8 FE0F;                              Basic_Emoji         # ⛈️    cloud with lightning and rain
+26CF FE0F;                              Basic_Emoji         # ⛏️    pick
+26D1 FE0F;                              Basic_Emoji         # ⛑️    rescue worker’s helmet
+26D3 FE0F;                              Basic_Emoji         # ⛓️    chains
+26E9 FE0F;                              Basic_Emoji         # ⛩️    shinto shrine
+26F0 FE0F;                              Basic_Emoji         # ⛰️    mountain
+26F1 FE0F;                              Basic_Emoji         # ⛱️    umbrella on ground
+26F4 FE0F;                              Basic_Emoji         # ⛴️    ferry
+26F7 FE0F;                              Basic_Emoji         # ⛷️    skier
+26F8 FE0F;                              Basic_Emoji         # ⛸️    ice skate
+26F9 FE0F;                              Basic_Emoji         # ⛹️    person bouncing ball
+2702 FE0F;                              Basic_Emoji         # ✂️    scissors
+2708 FE0F;                              Basic_Emoji         # ✈️    airplane
+2709 FE0F;                              Basic_Emoji         # ✉️    envelope
+270C FE0F;                              Basic_Emoji         # ✌️    victory hand
+270D FE0F;                              Basic_Emoji         # ✍️    writing hand
+270F FE0F;                              Basic_Emoji         # ✏️    pencil
+2712 FE0F;                              Basic_Emoji         # ✒️    black nib
+2714 FE0F;                              Basic_Emoji         # ✔️    check mark
+2716 FE0F;                              Basic_Emoji         # ✖️    multiplication sign
+271D FE0F;                              Basic_Emoji         # ✝️    latin cross
+2721 FE0F;                              Basic_Emoji         # ✡️    star of David
+2733 FE0F;                              Basic_Emoji         # ✳️    eight-spoked asterisk
+2734 FE0F;                              Basic_Emoji         # ✴️    eight-pointed star
+2744 FE0F;                              Basic_Emoji         # ❄️    snowflake
+2747 FE0F;                              Basic_Emoji         # ❇️    sparkle
+2763 FE0F;                              Basic_Emoji         # ❣️    heart exclamation
+2764 FE0F;                              Basic_Emoji         # ❤️    red heart
+27A1 FE0F;                              Basic_Emoji         # ➡️    right arrow
+2934 FE0F;                              Basic_Emoji         # ⤴️    right arrow curving up
+2935 FE0F;                              Basic_Emoji         # ⤵️    right arrow curving down
+2B05 FE0F;                              Basic_Emoji         # ⬅️    left arrow
+2B06 FE0F;                              Basic_Emoji         # ⬆️    up arrow
+2B07 FE0F;                              Basic_Emoji         # ⬇️    down arrow
+3030 FE0F;                              Basic_Emoji         # 〰️    wavy dash
+303D FE0F;                              Basic_Emoji         # 〽️    part alternation mark
+3297 FE0F;                              Basic_Emoji         # ㊗️    Japanese “congratulations” button
+3299 FE0F;                              Basic_Emoji         # ㊙️    Japanese “secret” button
+1F170 FE0F;                             Basic_Emoji         # 🅰️    A button (blood type)
+1F171 FE0F;                             Basic_Emoji         # 🅱️    B button (blood type)
+1F17E FE0F;                             Basic_Emoji         # 🅾️    O button (blood type)
+1F17F FE0F;                             Basic_Emoji         # 🅿️    P button
+1F202 FE0F;                             Basic_Emoji         # 🈂️    Japanese “service charge” button
+1F237 FE0F;                             Basic_Emoji         # 🈷️    Japanese “monthly amount” button
+1F321 FE0F;                             Basic_Emoji         # 🌡️    thermometer
+1F324 FE0F;                             Basic_Emoji         # 🌤️    sun behind small cloud
+1F325 FE0F;                             Basic_Emoji         # 🌥️    sun behind large cloud
+1F326 FE0F;                             Basic_Emoji         # 🌦️    sun behind rain cloud
+1F327 FE0F;                             Basic_Emoji         # 🌧️    cloud with rain
+1F328 FE0F;                             Basic_Emoji         # 🌨️    cloud with snow
+1F329 FE0F;                             Basic_Emoji         # 🌩️    cloud with lightning
+1F32A FE0F;                             Basic_Emoji         # 🌪️    tornado
+1F32B FE0F;                             Basic_Emoji         # 🌫️    fog
+1F32C FE0F;                             Basic_Emoji         # 🌬️    wind face
+1F336 FE0F;                             Basic_Emoji         # 🌶️    hot pepper
+1F37D FE0F;                             Basic_Emoji         # 🍽️    fork and knife with plate
+1F396 FE0F;                             Basic_Emoji         # 🎖️    military medal
+1F397 FE0F;                             Basic_Emoji         # 🎗️    reminder ribbon
+1F399 FE0F;                             Basic_Emoji         # 🎙️    studio microphone
+1F39A FE0F;                             Basic_Emoji         # 🎚️    level slider
+1F39B FE0F;                             Basic_Emoji         # 🎛️    control knobs
+1F39E FE0F;                             Basic_Emoji         # 🎞️    film frames
+1F39F FE0F;                             Basic_Emoji         # 🎟️    admission tickets
+1F3CB FE0F;                             Basic_Emoji         # 🏋️    person lifting weights
+1F3CC FE0F;                             Basic_Emoji         # 🏌️    person golfing
+1F3CD FE0F;                             Basic_Emoji         # 🏍️    motorcycle
+1F3CE FE0F;                             Basic_Emoji         # 🏎️    racing car
+1F3D4 FE0F;                             Basic_Emoji         # 🏔️    snow-capped mountain
+1F3D5 FE0F;                             Basic_Emoji         # 🏕️    camping
+1F3D6 FE0F;                             Basic_Emoji         # 🏖️    beach with umbrella
+1F3D7 FE0F;                             Basic_Emoji         # 🏗️    building construction
+1F3D8 FE0F;                             Basic_Emoji         # 🏘️    houses
+1F3D9 FE0F;                             Basic_Emoji         # 🏙️    cityscape
+1F3DA FE0F;                             Basic_Emoji         # 🏚️    derelict house
+1F3DB FE0F;                             Basic_Emoji         # 🏛️    classical building
+1F3DC FE0F;                             Basic_Emoji         # 🏜️    desert
+1F3DD FE0F;                             Basic_Emoji         # 🏝️    desert island
+1F3DE FE0F;                             Basic_Emoji         # 🏞️    national park
+1F3DF FE0F;                             Basic_Emoji         # 🏟️    stadium
+1F3F3 FE0F;                             Basic_Emoji         # 🏳️    white flag
+1F3F5 FE0F;                             Basic_Emoji         # 🏵️    rosette
+1F3F7 FE0F;                             Basic_Emoji         # 🏷️    label
+1F43F FE0F;                             Basic_Emoji         # 🐿️    chipmunk
+1F441 FE0F;                             Basic_Emoji         # 👁️    eye
+1F4FD FE0F;                             Basic_Emoji         # 📽️    film projector
+1F549 FE0F;                             Basic_Emoji         # 🕉️    om
+1F54A FE0F;                             Basic_Emoji         # 🕊️    dove
+1F56F FE0F;                             Basic_Emoji         # 🕯️    candle
+1F570 FE0F;                             Basic_Emoji         # 🕰️    mantelpiece clock
+1F573 FE0F;                             Basic_Emoji         # 🕳️    hole
+1F574 FE0F;                             Basic_Emoji         # 🕴️    man in suit levitating
+1F575 FE0F;                             Basic_Emoji         # 🕵️    detective
+1F576 FE0F;                             Basic_Emoji         # 🕶️    sunglasses
+1F577 FE0F;                             Basic_Emoji         # 🕷️    spider
+1F578 FE0F;                             Basic_Emoji         # 🕸️    spider web
+1F579 FE0F;                             Basic_Emoji         # 🕹️    joystick
+1F587 FE0F;                             Basic_Emoji         # 🖇️    linked paperclips
+1F58A FE0F;                             Basic_Emoji         # 🖊️    pen
+1F58B FE0F;                             Basic_Emoji         # 🖋️    fountain pen
+1F58C FE0F;                             Basic_Emoji         # 🖌️    paintbrush
+1F58D FE0F;                             Basic_Emoji         # 🖍️    crayon
+1F590 FE0F;                             Basic_Emoji         # 🖐️    hand with fingers splayed
+1F5A5 FE0F;                             Basic_Emoji         # 🖥️    desktop computer
+1F5A8 FE0F;                             Basic_Emoji         # 🖨️    printer
+1F5B1 FE0F;                             Basic_Emoji         # 🖱️    computer mouse
+1F5B2 FE0F;                             Basic_Emoji         # 🖲️    trackball
+1F5BC FE0F;                             Basic_Emoji         # 🖼️    framed picture
+1F5C2 FE0F;                             Basic_Emoji         # 🗂️    card index dividers
+1F5C3 FE0F;                             Basic_Emoji         # 🗃️    card file box
+1F5C4 FE0F;                             Basic_Emoji         # 🗄️    file cabinet
+1F5D1 FE0F;                             Basic_Emoji         # 🗑️    wastebasket
+1F5D2 FE0F;                             Basic_Emoji         # 🗒️    spiral notepad
+1F5D3 FE0F;                             Basic_Emoji         # 🗓️    spiral calendar
+1F5DC FE0F;                             Basic_Emoji         # 🗜️    clamp
+1F5DD FE0F;                             Basic_Emoji         # 🗝️    old key
+1F5DE FE0F;                             Basic_Emoji         # 🗞️    rolled-up newspaper
+1F5E1 FE0F;                             Basic_Emoji         # 🗡️    dagger
+1F5E3 FE0F;                             Basic_Emoji         # 🗣️    speaking head
+1F5E8 FE0F;                             Basic_Emoji         # 🗨️    left speech bubble
+1F5EF FE0F;                             Basic_Emoji         # 🗯️    right anger bubble
+1F5F3 FE0F;                             Basic_Emoji         # 🗳️    ballot box with ballot
+1F5FA FE0F;                             Basic_Emoji         # 🗺️    world map
+1F6CB FE0F;                             Basic_Emoji         # 🛋️    couch and lamp
+1F6CD FE0F;                             Basic_Emoji         # 🛍️    shopping bags
+1F6CE FE0F;                             Basic_Emoji         # 🛎️    bellhop bell
+1F6CF FE0F;                             Basic_Emoji         # 🛏️    bed
+1F6E0 FE0F;                             Basic_Emoji         # 🛠️    hammer and wrench
+1F6E1 FE0F;                             Basic_Emoji         # 🛡️    shield
+1F6E2 FE0F;                             Basic_Emoji         # 🛢️    oil drum
+1F6E3 FE0F;                             Basic_Emoji         # 🛣️    motorway
+1F6E4 FE0F;                             Basic_Emoji         # 🛤️    railway track
+1F6E5 FE0F;                             Basic_Emoji         # 🛥️    motor boat
+1F6E9 FE0F;                             Basic_Emoji         # 🛩️    small airplane
+1F6F0 FE0F;                             Basic_Emoji         # 🛰️    satellite
+1F6F3 FE0F;                             Basic_Emoji         # 🛳️    passenger ship

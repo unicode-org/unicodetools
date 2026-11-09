@@ -24,6 +24,9 @@ th           { text-align: left }
         UtfParameters utfParameters = new UtfParameters(queryString);
         String text = utfParameters.getParameter("a", "\u2615", "\u2615");
         String history = utfParameters.getParameter("history", "", "");
+        if (!history.matches("[A-Za-z0-9]*")) {
+          history = "";
+        }
         boolean showDevProperties = utfParameters.getParameter("showDevProperties", "", "").equals("1");
 
 		int[] codePoints = UnicodeJsp.parseCode(text,null,null);
