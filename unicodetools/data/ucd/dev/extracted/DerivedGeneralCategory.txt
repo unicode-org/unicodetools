@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-19.0.0.txt
-# Date: 2026-11-09, 16:33:28 GMT
+# Date: 2026-11-09, 16:36:10 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -480,7 +480,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 113C3..113C4  ; Cn #   [2] <reserved-113C3>..<reserved-113C4>
 113C6         ; Cn #       <reserved-113C6>
 113D6         ; Cn #       <reserved-113D6>
-113D9..113DA  ; Cn #   [2] <reserved-113D9>..<reserved-113DA>
 113DC..113E0  ; Cn #   [5] <reserved-113DC>..<reserved-113E0>
 113E3..113FF  ; Cn #  [29] <reserved-113E3>..<reserved-113FF>
 1145C         ; Cn #       <reserved-1145C>
@@ -759,7 +758,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 800177
+# Total code points: 800175
 
 # ================================================
 
@@ -4037,7 +4036,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 11238..1123D  ; Po #   [6] KHOJKI DANDA..KHOJKI ABBREVIATION SIGN
 112A9         ; Po #       MULTANI SECTION MARK
 113D4..113D5  ; Po #   [2] TULU-TIGALARI DANDA..TULU-TIGALARI DOUBLE DANDA
-113D7..113D8  ; Po #   [2] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA
+113D7..113DA  ; Po #   [4] TULU-TIGALARI SIGN OM PUSHPIKA..TULU-TIGALARI SIGN SHRII PUSHPIKA WITH TAIL
 1144B..1144F  ; Po #   [5] NEWA DANDA..NEWA ABBREVIATION SIGN
 1145A..1145B  ; Po #   [2] NEWA DOUBLE COMMA..NEWA PLACEHOLDER MARK
 1145D         ; Po #       NEWA INSERTION SIGN
@@ -4074,7 +4073,7 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 1E5FF         ; Po #       OL ONAL ABBREVIATION SIGN
 1E95E..1E95F  ; Po #   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 643
+# Total code points: 645
 
 # ================================================
 
