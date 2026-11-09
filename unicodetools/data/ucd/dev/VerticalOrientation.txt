@@ -1,5 +1,5 @@
 # VerticalOrientation-19.0.0.txt
-# Date: 2026-11-09, 16:28:35 GMT
+# Date: 2026-11-09, 16:31:23 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2024,6 +2024,8 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 11838          ; R  # Mc         DOGRA SIGN VISARGA
 11839..1183A   ; R  # Mn     [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 1183B          ; R  # Po         DOGRA ABBREVIATION SIGN
+1183C          ; R  # Mn         DOGRA SIGN CANDRABINDU
+1183D          ; R  # Lo         DOGRA SIGN AVAGRAHA
 11850..11857   ; R  # Lo     [8] SIRMAURI LETTER A..SIRMAURI LETTER GHA
 11859..1185C   ; R  # Lo     [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F   ; R  # Lo    [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA

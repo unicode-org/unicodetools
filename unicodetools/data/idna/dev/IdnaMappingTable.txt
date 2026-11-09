@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-11-09, 16:29:10 GMT
+# Date: 2026-11-09, 16:31:59 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -6518,7 +6518,8 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 11747..117FF  ; disallowed                 # NA   <reserved-11747>..<reserved-117FF>
 11800..1183A  ; valid                      # 11.0 DOGRA LETTER A..DOGRA SIGN NUKTA
 1183B         ; valid      ;      ; NV8    # 11.0 DOGRA ABBREVIATION SIGN
-1183C..1184F  ; disallowed                 # NA   <reserved-1183C>..<reserved-1184F>
+1183C..1183D  ; valid                      # 19.0 DOGRA SIGN CANDRABINDU..DOGRA SIGN AVAGRAHA
+1183E..1184F  ; disallowed                 # NA   <reserved-1183E>..<reserved-1184F>
 11850..11857  ; valid                      # 19.0 SIRMAURI LETTER A..SIRMAURI LETTER GHA
 11858         ; disallowed                 # NA   <reserved-11858>
 11859..1185C  ; valid                      # 19.0 SIRMAURI LETTER CA..SIRMAURI LETTER JHA

@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-09, 16:27:46 GMT
+# Date: 2026-11-09, 16:30:36 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -31910,6 +31910,8 @@ FFFD          ; REPLACEMENT CHARACTER
 11839         ; DOGRA SIGN VIRAMA
 1183A         ; DOGRA SIGN NUKTA
 1183B         ; DOGRA ABBREVIATION SIGN
+1183C         ; DOGRA SIGN CANDRABINDU
+1183D         ; DOGRA SIGN AVAGRAHA
 11850         ; SIRMAURI LETTER A
 11851         ; SIRMAURI LETTER I
 11852         ; SIRMAURI LETTER U
@@ -48125,6 +48127,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174351
+# Total code points: 174353
 
 # EOF

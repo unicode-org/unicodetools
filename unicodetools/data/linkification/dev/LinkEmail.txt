@@ -1,5 +1,5 @@
 # LinkEmail.txt
-# Date: 2026-11-09, 16:29:19 GMT 
+# Date: 2026-11-09, 16:32:10 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1060,6 +1060,7 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 11730..11739   # 8.0  [10] (𑜰..𑜹)  AHOM DIGIT ZERO..AHOM DIGIT NINE
 11740..11746   # 14.0  [7] (𑝀..𑝆)  AHOM LETTER CA..AHOM LETTER LLA
 11800..1183A   # 11.0 [59] (𑠀..𑠺)  DOGRA LETTER A..DOGRA SIGN NUKTA
+1183C..1183D   # 19.0  [2] (𑠼..𑠽)  DOGRA SIGN CANDRABINDU..DOGRA SIGN AVAGRAHA
 11850..11857   # 19.0  [8] (𑡐..𑡗)  SIRMAURI LETTER A..SIRMAURI LETTER GHA
 11859..1185C   # 19.0  [4] (𑡙..𑡜)  SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F   # 19.0 [18] (𑡞..𑡯)  SIRMAURI LETTER TTA..SIRMAURI LETTER LA
@@ -1346,4 +1347,4 @@ FFDA..FFDC     # 1.1   [3] (ￚ..ￜ)  HALFWIDTH HANGUL LETTER EU..HALFWIDTH HAN
 3D000..3FC3F   # 18.0 [11328] (𽀀..𿰿)  SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 E0100..E01EF   # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 163564
+# Total code points: 163566

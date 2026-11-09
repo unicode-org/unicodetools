@@ -1,5 +1,5 @@
 # WordBreakProperty-19.0.0.txt
-# Date: 2026-11-09, 16:28:36 GMT
+# Date: 2026-11-09, 16:31:24 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -520,6 +520,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 1182F..11837  ; Extend # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11838         ; Extend # Mc       DOGRA SIGN VISARGA
 11839..1183A  ; Extend # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+1183C         ; Extend # Mn       DOGRA SIGN CANDRABINDU
 11875         ; Extend # Mc       SIRMAURI VOWEL SIGN AA
 11877         ; Extend # Mc       SIRMAURI VOWEL SIGN II
 11878         ; Extend # Mn       SIRMAURI VOWEL SIGN U
@@ -648,7 +649,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2698
+# Total code points: 2699
 
 # ================================================
 
@@ -1232,6 +1233,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 11680..116AA  ; ALetter # Lo  [43] TAKRI LETTER A..TAKRI LETTER RRA
 116B8         ; ALetter # Lo       TAKRI LETTER ARCHAIC KHA
 11800..1182B  ; ALetter # Lo  [44] DOGRA LETTER A..DOGRA LETTER RRA
+1183D         ; ALetter # Lo       DOGRA SIGN AVAGRAHA
 11850..11857  ; ALetter # Lo   [8] SIRMAURI LETTER A..SIRMAURI LETTER GHA
 11859..1185C  ; ALetter # Lo   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F  ; ALetter # Lo  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
@@ -1415,7 +1417,7 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 1F150..1F169  ; ALetter # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; ALetter # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 35935
+# Total code points: 35936
 
 # ================================================
 

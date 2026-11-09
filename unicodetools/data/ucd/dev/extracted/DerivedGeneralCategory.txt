@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-19.0.0.txt
-# Date: 2026-11-09, 16:27:44 GMT
+# Date: 2026-11-09, 16:30:34 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -499,7 +499,7 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1171B..1171C  ; Cn #   [2] <reserved-1171B>..<reserved-1171C>
 1172C..1172F  ; Cn #   [4] <reserved-1172C>..<reserved-1172F>
 11747..117FF  ; Cn # [185] <reserved-11747>..<reserved-117FF>
-1183C..1184F  ; Cn #  [20] <reserved-1183C>..<reserved-1184F>
+1183E..1184F  ; Cn #  [18] <reserved-1183E>..<reserved-1184F>
 11858         ; Cn #       <reserved-11858>
 1185D         ; Cn #       <reserved-1185D>
 11870..11872  ; Cn #   [3] <reserved-11870>..<reserved-11872>
@@ -760,7 +760,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 800180
+# Total code points: 800178
 
 # ================================================
 
@@ -2652,6 +2652,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 11700..1171A  ; Lo #  [27] AHOM LETTER KA..AHOM LETTER ALTERNATE BA
 11740..11746  ; Lo #   [7] AHOM LETTER CA..AHOM LETTER LLA
 11800..1182B  ; Lo #  [44] DOGRA LETTER A..DOGRA LETTER RRA
+1183D         ; Lo #       DOGRA SIGN AVAGRAHA
 11850..11857  ; Lo #   [8] SIRMAURI LETTER A..SIRMAURI LETTER GHA
 11859..1185C  ; Lo #   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F  ; Lo #  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
@@ -2794,7 +2795,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 154800
+# Total code points: 154801
 
 # ================================================
 
@@ -3086,6 +3087,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 11727..1172B  ; Mn #   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 1182F..11837  ; Mn #   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11839..1183A  ; Mn #   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
+1183C         ; Mn #       DOGRA SIGN CANDRABINDU
 11878         ; Mn #       SIRMAURI VOWEL SIGN U
 1187A..1187B  ; Mn #   [2] SIRMAURI VOWEL SIGN E..SIRMAURI VOWEL SIGN AI
 1187E         ; Mn #       SIRMAURI SIGN ANUSVARA
@@ -3173,7 +3175,7 @@ FE20..FE2F    ; Mn #  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITL
 1E944..1E94A  ; Mn #   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; Mn # [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2099
+# Total code points: 2100
 
 # ================================================
 

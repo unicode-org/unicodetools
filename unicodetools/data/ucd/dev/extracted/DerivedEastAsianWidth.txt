@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-19.0.0.txt
-# Date: 2026-11-09, 16:27:44 GMT
+# Date: 2026-11-09, 16:30:34 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1716,6 +1716,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 11838         ; N # Mc       DOGRA SIGN VISARGA
 11839..1183A  ; N # Mn   [2] DOGRA SIGN VIRAMA..DOGRA SIGN NUKTA
 1183B         ; N # Po       DOGRA ABBREVIATION SIGN
+1183C         ; N # Mn       DOGRA SIGN CANDRABINDU
+1183D         ; N # Lo       DOGRA SIGN AVAGRAHA
 11850..11857  ; N # Lo   [8] SIRMAURI LETTER A..SIRMAURI LETTER GHA
 11859..1185C  ; N # Lo   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F  ; N # Lo  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
@@ -2184,7 +2186,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 757391 code points not listed here.
+# The above property value applies to 757389 code points not listed here.
 # Total code points: 791273
 
 # ================================================

@@ -1,5 +1,5 @@
 # PropList-19.0.0.txt
-# Date: 2026-11-09, 16:19:53 GMT
+# Date: 2026-11-09, 16:31:01 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -798,6 +798,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1182C..1182E  ; Other_Alphabetic # Mc   [3] DOGRA VOWEL SIGN AA..DOGRA VOWEL SIGN II
 1182F..11837  ; Other_Alphabetic # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11838         ; Other_Alphabetic # Mc       DOGRA SIGN VISARGA
+1183C         ; Other_Alphabetic # Mn       DOGRA SIGN CANDRABINDU
 11875         ; Other_Alphabetic # Mc       SIRMAURI VOWEL SIGN AA
 11877         ; Other_Alphabetic # Mc       SIRMAURI VOWEL SIGN II
 11878         ; Other_Alphabetic # Mn       SIRMAURI VOWEL SIGN U
@@ -885,7 +886,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1530
+# Total code points: 1531
 
 # ================================================
 

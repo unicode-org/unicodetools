@@ -1,5 +1,5 @@
 # DerivedCombiningClass-19.0.0.txt
-# Date: 2026-11-09, 16:27:41 GMT
+# Date: 2026-11-09, 16:30:31 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1683,6 +1683,8 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 1182F..11837  ; 0 # Mn   [9] DOGRA VOWEL SIGN U..DOGRA SIGN ANUSVARA
 11838         ; 0 # Mc       DOGRA SIGN VISARGA
 1183B         ; 0 # Po       DOGRA ABBREVIATION SIGN
+1183C         ; 0 # Mn       DOGRA SIGN CANDRABINDU
+1183D         ; 0 # Lo       DOGRA SIGN AVAGRAHA
 11850..11857  ; 0 # Lo   [8] SIRMAURI LETTER A..SIRMAURI LETTER GHA
 11859..1185C  ; 0 # Lo   [4] SIRMAURI LETTER CA..SIRMAURI LETTER JHA
 1185E..1186F  ; 0 # Lo  [18] SIRMAURI LETTER TTA..SIRMAURI LETTER LA
@@ -2131,7 +2133,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 802228 code points not listed here.
+# The above property value applies to 802226 code points not listed here.
 # Total code points: 1113107
 
 # ================================================
