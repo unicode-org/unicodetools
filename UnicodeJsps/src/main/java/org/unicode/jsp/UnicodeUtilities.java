@@ -41,6 +41,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.owasp.encoder.Encode;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
@@ -424,6 +425,15 @@ public class UnicodeUtilities {
             if (specialSet.size() != 0) {
                 items.put(specials, specialSet);
             }
+            // Reuse resolved properties for every code point in this set.
+            UnicodeProperty blockProperty = getFactory().getProperty("Block");
+            UnicodeProperty subheadProperty = getFactory().getProperty("Names_List_Subheader");
+            UnicodeProperty devBlockProperty =
+                    showDevProperties ? getFactory().getProperty("Udev:Block") : null;
+            UnicodeProperty devSubheadProperty =
+                    showDevProperties
+                            ? getFactory().getProperty("Udev:Names_List_Subheader")
+                            : null;
             for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next(); ) {
                 int s = it.codepoint;
                 if (s == UnicodeSetIterator.IS_STRING) {
@@ -433,8 +443,10 @@ public class UnicodeUtilities {
                     set.add(it.string);
                 } else {
                     String devBlock =
-                            getFactory().getProperty("Udev:Block").getValue(s).replace('_', ' ');
-                    String block = getFactory().getProperty("Block").getValue(s).replace('_', ' ');
+                            showDevProperties
+                                    ? devBlockProperty.getValue(s).replace('_', ' ')
+                                    : null;
+                    String block = blockProperty.getValue(s).replace('_', ' ');
                     String newBlock =
                             showDevProperties && !devBlock.equals(block)
                                     ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
@@ -450,9 +462,8 @@ public class UnicodeUtilities {
                                             + "}'>"
                                             + block
                                             + "</a>";
-                    String devSubhead =
-                            getFactory().getProperty("Udev:Names_List_Subheader").getValue(s);
-                    String subhead = getFactory().getProperty("Names_List_Subheader").getValue(s);
+                    String devSubhead = showDevProperties ? devSubheadProperty.getValue(s) : null;
+                    String subhead = subheadProperty.getValue(s);
                     String newSubhead =
                             showDevProperties && devSubhead != null && !devSubhead.equals(subhead)
                                     ? "<a class='changed' href='list-unicodeset.jsp?a=\\p{U"
@@ -1291,7 +1302,12 @@ public class UnicodeUtilities {
                     }
                     break;
             }
-            out.appendCodePoint(cp);
+            // Escape standalone ZWJ, but preserve it within string elements.
+            if (cp == JOINER && status == Status.NORMAL) {
+                out.append("\\u200D");
+            } else {
+                out.appendCodePoint(cp);
+            }
             oldCp = cp;
         }
         return out.toString();
@@ -1355,8 +1371,14 @@ public class UnicodeUtilities {
         // }
         int a_bSize = 0, b_aSize = 0, abSize = 0;
         if (a == null || b == null) {
-            a_b = a == null ? aMessage[0] : "error";
-            b_a = b == null ? bMessage[0] : "error";
+            a_b =
+                    a == null
+                            ? Encode.forHtmlContent(Objects.toString(aMessage[0], "error"))
+                            : "error";
+            b_a =
+                    b == null
+                            ? Encode.forHtmlContent(Objects.toString(bMessage[0], "error"))
+                            : "error";
             ab = "error";
         } else {
             UnicodeSet temp = new UnicodeSet(a).removeAll(b);

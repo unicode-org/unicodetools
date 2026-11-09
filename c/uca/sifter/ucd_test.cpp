@@ -42,6 +42,6 @@ int main(int argc, char** argv) {
             punctuation.size() + letters.size() + symbols.size());
     EXPECT_EQ(unicode::CodePointSet().addAll(alphabetic).addAll(letters).size(),
               138'387);
-    std::cout << "Test " << (testFailures > 0 ? "failed." : "passed.");
+    std::cout << "Test " << (testFailures > 0 ? "failed.\n" : "passed.\n");
     return testFailures;
 }

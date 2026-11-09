@@ -1,0 +1,52 @@
+# Symbols: 6 letterlike symbols (1DB1D..1DB21)
+# https://github.com/unicode-org/sew/issues/691
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block:
+Ignoring Math_Entity_Name Math_Entity_Set Math_Class Math_Class_Ex Math_Descriptive_Comments:
+
+Ignoring Pattern_Syntax:
+Propertywise [\N{1DB1D:ALPHA X SYMBOL}
+              \N{1DB1F:DOUBLE SMALL SIGMA SYMBOL}
+              \N{1DB20:FUNCTIO DIFFERENTIATA SYMBOL}
+              \N{1DB21:DOUBLE X SYMBOL}]
+CorrespondTo [\x{222B} ∫ \N{INTEGRAL}]
+    UpTo: East_Asian_Width (Neutral    vs Ambiguous),
+          Line_Break       (Alphabetic vs Ambiguous),
+          Bidi_Mirrored    (No         vs Yes)
+end Ignoring;
+
+Propertywise [\N{1DB1D:ALPHA X SYMBOL}
+              \N{1DB1F:DOUBLE SMALL SIGMA SYMBOL}
+              \N{1DB20:FUNCTIO DIFFERENTIATA SYMBOL}
+              \N{1DB21:DOUBLE X SYMBOL}
+              \N{2141:⅁:TURNED SANS-SERIF CAPITAL G}]
+AreAlike
+
+Ignoring Simple_Case_Folding Simple_Titlecase_Mapping Simple_Uppercase_Mapping
+         Unicode_1_Name
+         Expands_On_NFKC Expands_On_NFKD:
+Propertywise [\N{1DB1E:GREEK OMICRON UPSILON SYMBOL}]
+            ⧴ [{ου}]
+            ⧴ [{Ου}]
+            ⧴ [{ΟΥ}]
+CorrespondTo [\N{03D6:ϖ:GREEK PI SYMBOL}]
+            ⧴ [{π}]
+            ⧴ [{Π}]
+            ⧴ [{Π}]
+end Ignoring;
+
+end Ignoring;
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
