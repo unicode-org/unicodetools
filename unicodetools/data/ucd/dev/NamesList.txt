@@ -1,19 +1,12 @@
 ; charset=UTF-8
-@@@	The Unicode Standard 18.0.0
-@@@+	NamesList-18.0.0.txt
-@+	Generation Date: 2026-07-14, 09:25:22 GMT
-	Unicode 18.0.0 names list.
-	Adjusted for repertoire changes post UTC188.
+@@@	The Unicode Standard 19.0.0
+@@@+	NamesList-19.0.0.txt
+@+	Generation Date: 2026-09-25, 10:46:42 GMT
+	Unicode 19.0.0 names list.
+	Roll up of post 18.0 release bug fixes and suggestions.
 	Repertoire synched with UnicodeData-18.0.0d10.txt.
-	Beta review fixes.
-	Remove Jain from annotations for 11300 and 11302.
-	Remove Chisoi from repertoire.
-	Added annotation to 05C8.
-	Updated citations for several ISO standards.
-	Add a number of new xrefs for math symbols.
-	Add notice and adjust one annotation for Cossic symbols.
-	Updates to xrefs for CJK strokes.
-	Add notice pointing to Appendix F for CJK stroke examples.
+	Add aliases for 2339, 235D.
+	Update annotation for 024B.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -1992,7 +1985,7 @@
 0249	LATIN SMALL LETTER J WITH STROKE
 024A	LATIN CAPITAL LETTER SMALL Q WITH HOOK TAIL
 024B	LATIN SMALL LETTER Q WITH HOOK TAIL
-	* this is actually a small letter alpha with a hook tail
+@+		This character represents [gb] in Lutheran missionary orthographies for some Papua New Guinea languages. It is also used in the English Phonotypic Alphabet, where it is treated instead as a small letter alpha with a hook tail.
 024C	LATIN CAPITAL LETTER R WITH STROKE
 024D	LATIN SMALL LETTER R WITH STROKE
 	x (latin small letter r with middle tilde - 1D72)
@@ -15184,6 +15177,7 @@
 	x (n-ary white vertical bar - 2AFF)
 2338	APL FUNCTIONAL SYMBOL QUAD EQUAL
 2339	APL FUNCTIONAL SYMBOL QUAD DIVIDE
+	= domino
 233A	APL FUNCTIONAL SYMBOL QUAD DIAMOND
 	x (white diamond in square - 26CB)
 233B	APL FUNCTIONAL SYMBOL QUAD JOT
@@ -15240,6 +15234,7 @@
 235B	APL FUNCTIONAL SYMBOL JOT UNDERBAR
 235C	APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR
 235D	APL FUNCTIONAL SYMBOL UP SHOE JOT
+	= lamp
 	x (intersection with dot - 2A40)
 235E	APL FUNCTIONAL SYMBOL QUOTE QUAD
 235F	APL FUNCTIONAL SYMBOL CIRCLE STAR
@@ -56836,6 +56831,11 @@ FFFF	<not a character>
 1D1D1	MUSICAL SYMBOL GREGORIAN F CLEF
 @		Accidental
 1D1D2	MUSICAL SYMBOL SQUARE B
+	= b quadratum (square b)
+	= b durum (hard b)
+	* use 266D for b rotundum (round b) or b molle (soft b)
+	x (music natural sign - 266E)
+	x (music sharp sign - 266F)
 @		Notes
 1D1D3	MUSICAL SYMBOL VIRGA
 1D1D4	MUSICAL SYMBOL PODATUS

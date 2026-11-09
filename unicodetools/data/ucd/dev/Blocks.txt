@@ -1,11 +1,11 @@
-# Blocks-18.0.0.txt
-# Date: 2026-07-08
+# Blocks-19.0.0.txt
+# Date: 2026-09-23, 23:47:29 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see https://www.unicode.org/reports/tr44/
+#   For documentation, see https://www.unicode.org/reports/tr44/
 #
 # Format:
 # Start Code..End Code; Block Name
@@ -25,12 +25,12 @@
 #  This constraint on block ranges guarantees that allocations
 #  are done in terms of whole columns, and that code chart display
 #  never involves splitting columns in the charts.
-#
+
+# Property: Block
+
 #  All code points not explicitly listed for Block
 #  have the value No_Block.
 
-# Property:	Block
-#
 # @missing: 0000..10FFFF; No_Block
 
 0000..007F; Basic Latin
@@ -272,6 +272,7 @@ FFF0..FFFF; Specials
 116D0..116FF; Myanmar Extended-C
 11700..1174F; Ahom
 11800..1184F; Dogra
+11850..1188F; Sirmauri
 118A0..118FF; Warang Citi
 11900..1195F; Dives Akuru
 119A0..119FF; Nandinagari
@@ -296,6 +297,7 @@ FFF0..FFFF; Specials
 12400..1247F; Cuneiform Numbers and Punctuation
 12480..1254F; Early Dynastic Cuneiform
 12550..1268F; Archaic Cuneiform Numerals
+12690..12BFF; Proto-Cuneiform
 12F90..12FFF; Cypro-Minoan
 13000..1342F; Egyptian Hieroglyphs
 13430..1345F; Egyptian Hieroglyph Format Controls
@@ -340,6 +342,7 @@ FFF0..FFFF; Specials
 1D400..1D7FF; Mathematical Alphanumeric Symbols
 1D800..1DAAF; Sutton SignWriting
 1DB00..1DBFF; Miscellaneous Symbols and Arrows Extended
+1DC00..1DC3F; Leibnizian Ambiguous Signs
 1DF00..1DFFF; Latin Extended-G
 1E000..1E02F; Glagolitic Supplement
 1E030..1E08F; Cyrillic Extended-D

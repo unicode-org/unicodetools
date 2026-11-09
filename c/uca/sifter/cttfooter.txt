@@ -32,7 +32,7 @@
 %      cp >= 0x03400 && cp <= 0x04DBF % Ext. A
 %      cp >= 0x20000 && cp <= 0x2A6DF % Ext. B
 %      cp >= 0x2A700 && cp <= 0x2B73F % Ext. C
-%      cp >= 0x2B740 && cp <= 0x2B81D % Ext. D
+%      cp >= 0x2B740 && cp <= 0x2B81E % Ext. D
 %      cp >= 0x2B820 && cp <= 0x2CEAD % Ext. E
 %      cp >= 0x2CEB0 && cp <= 0x2EBE0 % Ext. F
 %      cp >= 0x2EBF0 && cp <= 0x2EE5D % Ext. I
