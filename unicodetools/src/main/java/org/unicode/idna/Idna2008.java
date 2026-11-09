@@ -1,11 +1,24 @@
 package org.unicode.idna;
 
 import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.text.SimpleFormatter;
 import com.ibm.icu.text.UnicodeSet;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import org.unicode.cldr.util.props.UnicodeLabel;
+import org.unicode.props.BagFormatter;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.DiffingPrintWriter;
+import org.unicode.text.utility.Settings;
 
 public class Idna2008 extends Idna {
 
-    public static final UnicodeSet GRANDFATHERED_VALID = new UnicodeSet().add(0x19DA).freeze();
+    public static final UnicodeSet XV8 = new UnicodeSet().add(0x19DA).freeze();
 
     public enum Idna2008Type {
         UNASSIGNED,
@@ -18,17 +31,23 @@ public class Idna2008 extends Idna {
     static final UnicodeMap<Idna2008Type> IDNA2008Computed;
 
     static {
+        final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
+        UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
         // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
         final UnicodeSet LetterDigits =
-                new UnicodeSet("[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]").freeze();
+                new UnicodeSet(
+                                "[[:Ll:][:Lu:][:Lo:][:Nd:][:Lm:][:Mn:][:Mc:]]",
+                                null,
+                                VersionedSymbolTable.forDevelopment())
+                        .freeze();
 
         // B: toNFKC(toCaseFold(toNFKC(cp))) != cp
         final UnicodeSet Unstable = new UnicodeSet();
         for (int i = 0; i <= 0x10FFFF; ++i) {
             final String s = Character.toString(i);
-            final String nfkc = NFKC.transform(s);
-            final String cased = CASEFOLD.transform(nfkc);
-            final String full = NFKC.transform(cased);
+            final String nfkc = Normalizer.getNfkcInstance().transform(s);
+            final String cased = UCD.makeLatestVersion().getCase(nfkc, UCD.FULL, UCD.FOLD);
+            final String full = Normalizer.getNfkcInstance().transform(cased);
             if (!s.equals(full)) {
                 Unstable.add(i);
             }
@@ -42,7 +61,9 @@ public class Idna2008 extends Idna {
                 new UnicodeSet(
                                 "[[:Default_Ignorable_Code_Point:]"
                                         + "[:White_Space:]"
-                                        + "[:Noncharacter_Code_Point:]]")
+                                        + "[:Noncharacter_Code_Point:]]",
+                                null,
+                                VersionedSymbolTable.forDevelopment())
                         .freeze();
 
         // Block(cp) is in {Combining Diacritical Marks for Symbols,
@@ -51,7 +72,9 @@ public class Idna2008 extends Idna {
                 new UnicodeSet(
                                 "[[:block=Combining Diacritical Marks for Symbols:]"
                                         + "[:block=Musical Symbols:]"
-                                        + "[:block=Ancient Greek Musical Notation:]]")
+                                        + "[:block=Ancient Greek Musical Notation:]]",
+                                null,
+                                VersionedSymbolTable.forDevelopment())
                         .freeze();
 
         // E: cp is in {002D, 0030..0039, 0061..007A}
@@ -85,7 +108,8 @@ public class Idna2008 extends Idna {
 
         // H: Join_Control(cp) = True
 
-        final UnicodeSet JoinControl = new UnicodeSet("[:Join_Control:]");
+        final UnicodeSet JoinControl =
+                new UnicodeSet("[:Join_Control:]", null, VersionedSymbolTable.forDevelopment());
 
         // Hangul_Syllable_Type(cp) is in {L, V, T}
 
@@ -93,12 +117,18 @@ public class Idna2008 extends Idna {
                 new UnicodeSet(
                         "[[:Hangul_Syllable_Type=L:]"
                                 + "[:Hangul_Syllable_Type=V:]"
-                                + "[:Hangul_Syllable_Type=T:]]");
+                                + "[:Hangul_Syllable_Type=T:]]",
+                        null,
+                        VersionedSymbolTable.forDevelopment());
 
         // J: General_Category(cp) is in {Cn} and
         // Noncharacter_Code_Point(cp) = False
 
-        final UnicodeSet Unassigned = new UnicodeSet("[[:Cn:]-[:Noncharacter_Code_Point:]]");
+        final UnicodeSet Unassigned =
+                new UnicodeSet(
+                        "[[:Cn:]-[:Noncharacter_Code_Point:]]",
+                        null,
+                        VersionedSymbolTable.forDevelopment());
 
         // If .cp. .in. Exceptions Then Exceptions(cp);
         // Else If .cp. .in. BackwardCompatible Then BackwardCompatible(cp);
@@ -112,18 +142,11 @@ public class Idna2008 extends Idna {
         // Else If .cp. .in. LetterDigits Then PVALID;
         // Else DISALLOWED;
 
-        final UnicodeMap<Idna2008Type> Incompatible =
-                new UnicodeMap<Idna2008Type>()
-                        .putAll(GRANDFATHERED_VALID, Idna2008Type.PVALID)
-                        .freeze();
-
         IDNA2008Computed = new UnicodeMap<Idna2008Type>();
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Idna2008Type value;
-            if (Incompatible.containsKey(cp)) {
-                value = Incompatible.get(cp);
-            } else if (Exceptions.containsKey(cp)) {
+            if (Exceptions.containsKey(cp)) {
                 value = Exceptions.get(cp);
             } else if (BackwardCompatible.containsKey(cp)) {
                 value = BackwardCompatible.get(cp);
@@ -149,6 +172,99 @@ public class Idna2008 extends Idna {
             IDNA2008Computed.put(cp, value);
         }
         IDNA2008Computed.freeze();
+        UnicodeSet.setDefaultXSymbolTable(oldDefaultXSymbolTable);
+    }
+
+    static final Instant now = Instant.now();
+    static final DateTimeFormatter dt =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss' GMT'")
+                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
+    static final DateTimeFormatter dty =
+            DateTimeFormatter.ofPattern("y")
+                    .withZone(ZoneId.of("UTC")); // Explicitly set to UTC/GMT
+
+    public static final String DATA_DIR_DEV =
+            Settings.UnicodeTools.UNICODETOOLS_REPO_DIR + "/unicodetools/data/idna/dev/";
+
+    static final SimpleFormatter HEADER =
+            SimpleFormatter.compile(
+                    """
+        # Idna2008-{0}.txt
+        # Date: {1}
+        # Copyright {2} Unicode, Inc.
+        # For terms of use and license, see https://www.unicode.org/terms_of_use.html
+        #
+        #
+        # IDNA2008_Category Property
+        #
+        # This file lists the "IDNA Derived Property" as defined in RFC 5892.
+        # It is provided as a convenience for implementers by performing
+        # the calculations defined in RFC 5892 concurrent with the release
+        # of each version of the Unicode Character Database.
+        #
+        # The format is two fields separated by a semicolon.
+        # Field 0: Unicode code point value or range of code point values
+        #            Ranges in this file, unlike in other property files, may cross
+        #            script and block boundaries; their extent is only determined
+        #            by the range of the common IDNA2008_Category value.
+        #            They are indicated in the usual notation using "..".
+        # Field 1: IDNA2008_Category, consisting of one of these values
+        #            "PVALID"     - Protocol valid (generally Letters, Digits and Hyphen)
+        #            "CONTEXTJ"   - Join control
+        #            "CONTEXTO"   - Other code points requiring context
+        #            "DISALLOWED" - The code point is not allowed in IDNA2008
+        #            "UNASSIGNED" - The code point is not assigned in this version
+        # Following Field 1 is a comment field that lists the character name
+        # (or code point label) for the code point, or the first and last character
+        # name for the characters in the code point range.
+        #
+        # The values of the IDNA2008_Category property are derived from
+        # other Unicode properties in the current version of the Unicode
+        # Character Database as follows:
+        #
+        # The precise algorithm for deriving the property is defined in
+        # Section 3 "Calculation of the Derived Property" of RFC 5892.
+        #
+        # Section 2.6 "Exceptions" in RFC 5892 lists code point for which
+        # the derivation is overridden by exceptional values. All the exceptions
+        # known at the time this data file was created have been applied.
+        # However, future updates of the IDNA protocol may add to this list
+        # of exceptions, which then would override the values derived here.
+        #
+        # However, once published, this file will not be updated.
+        #
+        # A value of the property is given for each code point.
+        #
+        # For more information, see RFC 5892, "The Unicode Code Points and
+        # Internationalized Domain Names for Applications (IDNA)",
+        # at https://www.rfc-editor.org/info/rfc5892
+        #
+        # @missing: 0000..10FFFF; UNASSIGNED
+        #""");
+
+    public static void generateIdna2008() {
+        final var map = new UnicodeMap<String>();
+        for (final var v : Idna2008Type.values()) {
+            map.putAll(IDNA2008Computed.keySet(v), v.toString());
+        }
+        try (final var out = new DiffingPrintWriter(DATA_DIR_DEV, "Idna2008.txt")) {
+            out.println(HEADER.format(Settings.latestVersion, dt.format(now), dty.format(now)));
+            final BagFormatter bf =
+                    new BagFormatter(IndexUnicodeProperties.make())
+                            .setLineSeparator("\n")
+                            .setValueSource(new UnicodeMapProperty().set(map))
+                            .setRangeBreakSource(new UnicodeLabel.Constant(""))
+                            .setMinSpacesBeforeSemicolon(-2)
+                            .setLabelSource(null)
+                            .setMinSpacesBeforeComment(2)
+                            .setShowCount(false)
+                            .setAlignNames(false)
+                            .setShowTotal(false);
+            bf.showSetNames(out.tempPrintWriter, UnicodeSet.ALL_CODE_POINTS);
+            out.println();
+            out.println("# EOF");
+            out.flush();
+        }
     }
 
     public static Idna2008 SINGLETON = new Idna2008();

@@ -1,3 +1,19 @@
+# [84-M7] Motion: Give the code point range FDD0..FDEF Not a Character status.
+# Moved by Asmus Freytag, seconded by Michel Suignard
+# 9 for (Apple, Basis, HP, IBM, Microsoft, NCR, Peoplesoft, Sybase, Unisys)
+# 0 against
+# 3 abstain (Compaq, Justsystem, Progress)
+# [84-A21] Action Item for Editorial Committee: Create not a character errata for Unicode 3.0.1 (p. 28 Special Non-character Values, p. 38, and any other appropriate places, but do not add the FDD0..FDEF range until after the September 2000, WG2 meeting.
+# [84-A22] Action Item for Ken Whistler: Update the property files for  the FDD0..FDEF range but delay posting until after V3.0.1.
+Noncharacter_Code_Point ; 3.1 ; [\uFDD0-\uFDEF] ; 84-M20, 84-A21, 84-A22
+
+# [87-M20] Motion: Update the East Asian data files changing the list in L2/01-189, 00AE to 273D to A, and all Jamo to W, post, and include in Unicode 3.1.1.
+# L2/01-189 Updates to EastAsianWidth.
+# First group (to ea=A).  U+00AF not changed.
+East_Asian_Width ; 3.1.1 ; [\u00AE\u014B\u02C4\u02DF\u2022\u2024\u203E\u2116\u2153\u215C\u215D\u21B8\u21B9\u21E7\u273D] ; L2/01-189, 87-M20
+# Second group (to ea=W).  U+00AF, U+FF78 not changed.
+East_Asian_Width ; 3.1.1 ; [[\u2024\u2022\u203E\u02C4\u273D\u02DF\u2116\u21E7\u21B8\u21B9][\u2116][\u2116\u2116][\u014B\u2153\u215C\u215D\u2116\u00AE]] ; L2/01-189, 87-M20
+
 # [106-C17] Consensus: Give unassigned codepoints the script property value "Zzzz". [L2/05-376]
 Script ; 5.0 ; \p{U5.0:Zzzz} ; L2/05-376, 106-C17
 # See discussion in L2/25-183, Section 2.1.
@@ -16,6 +32,17 @@ General_Category ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 Cased            ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 Lowercase        ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
 Sentence_Break   ; 17.0 ; [ʕ] ; L2/23-219, 177-C20
+
+# From L2/18-055:
+# Action: do what is proposed. (It simplifies the
+#  expressions, and the additional degenerate cases that
+# it allows don’t matter much in practice.) That is:
+# 1. Move E_Modifier characters into Extend
+# 2. Mark E_Modifier and E_Base characters as
+# “This value is obsolete and unused.”
+# 3. Remove G10.
+# [154-C30] Consensus: UTC considered feedback on PRI #355 and came to the consensus documented in L2/18-055.
+Grapheme_Cluster_Break ; 11.0 ; [\p{U10:gcb=E_Modifier}\p{U10:gcb=E_Base}] ; PRI-355@Tue Jan 2 08:14:48 CST 2018, L2/18-055, 154-C30
 
 # [179-C26] Consensus: Change the derivation of Indic_Conjunct_Break = Extend to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
 # [179-A99] Action Item for Ken Whistler, PAG: Change the statement of the derivation of Indic_Conjunct_Break = Extend in UAX #44 to exclude only those characters that are Indic_Conjunct_Break=Linker or Indic_Conjunct_Break=Consonant from the set of nonstarters with Grapheme_Cluster_Break=Extend. For Unicode Version 16.0. See document L2/24-064 item 5.3.
@@ -86,3 +113,6 @@ kMandarin ; 18.0 ; [ [㗑㟷么乛乼了亇亪们伬佦侤們兯匙吗吧呀呗�
 kMandarin ; 18.0 ; [耴䎲] ; PRI-483@ID20240402063204, 179-A27, L2/26-084, 187-C26
 kMandarin ; 18.0 ; [𦝠𡿪] ; L2/24-063@ID20240112185925, 179-A38, L2/26-084, 187-C26
 kMandarin ; 18.0 ; [鉄] ; L2/24-008@ID20240107183744, 178-A54, L2/26-084, 187-C26
+
+# [182-C20] Consensus: Unassign the Extended_Pictographic property from the 672 assigned characters that do not have the Emoji property. For Unicode Version 17.0. See L2/25-006 item 5.1.
+Extended_Pictographic ; 17.0 ; [\p{U16:Extended_Pictographic}-\p{U16:Unassigned}-\p{U16:Emoji}] ; PRI-453@Fri Jun 24 10:24:49 CDT 2022, L2/22-124, 172-A68, L2/25-006, 182-C20

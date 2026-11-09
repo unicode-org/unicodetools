@@ -11,6 +11,9 @@ REZS ; RGI_Emoji_Zwj_Sequence ; Emoji_Zwj_Sequence ; NonUCDProperty
 RGI_Emoji ; RGI_Emoji ; NonUCDProperty
 Link_Email ; Link_Email ; NonUCDProperty
 
+Emoji_Variation_Base ; Emoji_Variation_Base ; UCDNonProperty
+Standardized_Variation_Base ; Standardized_Variation_Base ; UCDNonProperty
+
 # ================================================
 # Enumerated Properties
 # ================================================

@@ -1,5 +1,6 @@
 package org.unicode.jsp;
 
+import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
@@ -96,6 +97,19 @@ public class UnicodeSetUtilities {
     private static Pattern UPLUS = Pattern.compile("U\\+(1?[A-Za-z0-9]{3,5})");
     private static Pattern DOTDOT = Pattern.compile("\\.\\.");
 
+    private static VersionedSymbolTable getSymbolTable() {
+        return VersionedSymbolTable.forReview(UcdLoader::getOldestLoadedUcd)
+                .setUnversionedExtensions(XPropertyFactory.make());
+    }
+
+    /**
+     * Returns a new converter using the same property data and version policy as parseUnicodeSet.
+     * Use its transform method; ICU's static fix and compile methods do not use this symbol table.
+     */
+    public static UnicodeRegex getUnicodeRegex() {
+        return new UnicodeRegex().setSymbolTable(getSymbolTable());
+    }
+
     public static UnicodeSet parseUnicodeSet(String input) {
         input = UPLUS.matcher(input).replaceAll("\\\\x{$1}");
         input = DOTDOT.matcher(input).replaceAll("-");
@@ -106,12 +120,7 @@ public class UnicodeSetUtilities {
         input = input.trim() + "]]]]]";
         String parseInput = "[" + input + "]]]]]";
         ParsePosition parsePosition = new ParsePosition(0);
-        UnicodeSet result =
-                new UnicodeSet(
-                        parseInput,
-                        parsePosition,
-                        VersionedSymbolTable.forReview(UcdLoader::getOldestLoadedUcd)
-                                .setUnversionedExtensions(XPropertyFactory.make()));
+        UnicodeSet result = new UnicodeSet(parseInput, parsePosition, getSymbolTable());
         int parseEnd = parsePosition.getIndex();
         if (parseEnd != parseInput.length()
                 && !UnicodeSetUtilities.OK_AT_END.containsAll(parseInput.substring(parseEnd))) {

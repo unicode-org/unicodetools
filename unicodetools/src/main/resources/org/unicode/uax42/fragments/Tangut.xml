@@ -3,8 +3,8 @@
   code-point-attributes &amp;=
     attribute kTGT_MergedSrc { xsd:string { pattern="H2004-[AB]-\d{4}|H2021-\d{6}|L(19(86|97)|20(06|12))-\d{4}|L2008-\d{4}([AB]|-\d{4})?|N1966-\d{3}-\d{2}[0-9A-Z]{1,2}|N5217-\d{2}|N5314-\d{2}|S1968-\d{4}|UTN42-\d{3}" } }?
 
-  <edit flag='changed'>code-point-attributes &amp;=
-    attribute kTGT_Numeric { xsd:string { pattern="NaN|[0-9]+|[0-9]+\.[0-9]+" } }?</edit>
+  code-point-attributes &amp;=
+    attribute kTGT_Numeric { xsd:string { pattern="NaN|[0-9]+|[0-9]+\.[0-9]+" } }?
 
   code-point-attributes &amp;=
     attribute kTGT_RSUnicode { xsd:string { pattern="\d+\.\d+" } }?
