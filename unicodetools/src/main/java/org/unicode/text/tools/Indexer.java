@@ -8,6 +8,7 @@ import com.ibm.icu.segmenter.Segmenter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 import java.io.BufferedReader;
@@ -19,6 +20,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -79,6 +81,7 @@ public class Indexer {
         private final UnicodeProperty CJK_RADICAL;
         private final UnicodeProperty GENERAL_CATEGORY;
         private final UnicodeSet NONCHARACTERS;
+        private final UnicodeSet HTML_NAMES_LIST_SCOPE;
 
         private final Map<String, UnicodeSet> blockSet = new HashMap<>();
         private final Map<String, String> prettifyBlock = new HashMap<>();
@@ -130,6 +133,7 @@ public class Indexer {
             CJK_RADICAL = IUP.getProperty(UcdProperty.CJK_Radical);
             GENERAL_CATEGORY = IUP.getProperty(UcdProperty.General_Category);
             NONCHARACTERS = IUP.getProperty(UcdProperty.Noncharacter_Code_Point).getSet("Yes");
+            HTML_NAMES_LIST_SCOPE = SUBHEADER.getSet(UnicodeProperty.NULL_MATCHER).complement();
             for (String block : BLOCK.getAvailableValues()) {
                 blockSet.put(block, BLOCK.getSet(block));
                 if (Block_Values.forName(block) != Block_Values.No_Block
@@ -626,7 +630,23 @@ public class Indexer {
                             htmlLine.replace(
                                             "<!--VERSION HERE-->",
                                             version.getVersionString(2, 2) + phase)
+                                    .replace(
+                                            "<!--FULL-VERSION-HERE-->",
+                                            version.getVersionString(3, 3) + phase)
                                     .replace("CHARTS-ROOT-HERE", chartsRoot)
+                                    .replace(
+                                            "LANDING-PAGE-HERE",
+                                            phase == ReleasePhase.ALPHA
+                                                    ? "https://www.unicode.org/versions/alpha-"
+                                                            + version.getVersionString(3, 3)
+                                                            + ".html"
+                                                    : phase == ReleasePhase.BETA
+                                                            ? "https://www.unicode.org/versions/beta-"
+                                                                    + version.getVersionString(3, 3)
+                                                                    + ".html"
+                                                            : "https://www.unicode.org/versions/Unicode"
+                                                                    + version.getVersionString(
+                                                                            3, 3))
                                     .replace(
                                             "<!--DRAFT LINK HERE-->",
                                             linkedVersion == null
@@ -722,6 +742,7 @@ public class Indexer {
         private static class IndexSubEntry {
             String block;
             String subheader;
+            String namesListLink;
             String chartLink;
             String ranges;
             String characters;
@@ -743,13 +764,25 @@ public class Indexer {
             public String toHTML(String entryText) {
                 StringBuilder result = new StringBuilder();
                 result.append("<td class=entry-text>");
+                if (namesListLink != null && !entryText.isEmpty()) {
+                    result.append("<a href='" + namesListLink + "'>");
+                }
                 result.append(entryText);
+                if (namesListLink != null && !entryText.isEmpty()) {
+                    result.append("</a>");
+                }
                 result.append("<span class=location>");
+                if (namesListLink != null && entryText.isEmpty()) {
+                    result.append("<a href='" + namesListLink + "'>");
+                }
                 if (subheader != null) {
                     result.append(toHTML.transform(subheader) + ". ");
                 }
                 if (block != null) {
                     result.append("In " + block + ": ");
+                }
+                if (namesListLink != null && entryText.isEmpty()) {
+                    result.append("</a>");
                 }
                 result.append("</span>");
                 result.append("</td><td class='ranges");
@@ -772,6 +805,43 @@ public class Indexer {
             }
         }
 
+        // ICU reuses an EntryRange instance when iterating over ranges.
+        // That does not work when we need to reorder the ranges.
+        private static final class Range {
+            Range(EntryRange r) {
+                codepoint = r.codepoint;
+                codepointEnd = r.codepointEnd;
+            }
+
+            int codepoint;
+            int codepointEnd;
+        }
+
+        // Sorts ranges in code point order, except that ranges that start in CJK blocks are ordered
+        // at the end according to https://www.unicode.org/reports/tr38#SortingAlgorithm:
+        // URO first, then extensions, then components (since 19.0), then compatibility.
+        private Iterable<Range> sortCJKByLeadBlock(Iterable<EntryRange> ranges) {
+            final List<Range> sorted = new ArrayList<>();
+            for (final var range : ranges) {
+                sorted.add(new Range(range));
+            }
+            Collections.sort(
+                    sorted,
+                    Comparator.<Range, Integer>comparing(
+                                    range ->
+                                            K_RS_UNICODE.getValue(range.codepoint) == null
+                                                    ? range.codepoint
+                                                    : Integer.MAX_VALUE)
+                            .thenComparing(
+                                    range ->
+                                            BLOCK.getValue(range.codepoint)
+                                                    .contains("Compatibility"))
+                            .thenComparing(
+                                    range -> BLOCK.getValue(range.codepoint).contains("Components"))
+                            .thenComparing(range -> BLOCK.getValue(range.codepoint)));
+            return sorted;
+        }
+
         private List<IndexSubEntry> subEntries(
                 boolean showBlock, boolean showSubheader, boolean showName, UnicodeSet characters) {
             List<IndexSubEntry> result = new ArrayList<>();
@@ -784,7 +854,7 @@ public class Indexer {
                 result.add(new IndexSubEntry());
             }
             IndexSubEntry previousSubEntryWithLocation = null;
-            for (var range : characters.ranges()) {
+            for (var range : sortCJKByLeadBlock(characters.ranges())) {
                 if (range.codepointEnd == range.codepoint) {
                     if (showBlocks) {
                         result.add(new IndexSubEntry());
@@ -795,6 +865,8 @@ public class Indexer {
                     if (showSubheader) {
                         currentSubEntry.subheader = SUBHEADER.getValue(range.codepoint);
                     }
+                    currentSubEntry.namesListLink =
+                            getNamesListLink(new UnicodeSet(range.codepoint, range.codepoint));
                     currentSubEntry.chartLink =
                             getChartLink(new UnicodeSet(range.codepoint, range.codepoint));
                     currentSubEntry.ranges = Utility.hex(range.codepoint);
@@ -804,7 +876,7 @@ public class Indexer {
                         currentSubEntry.characters = Character.toString(range.codepoint);
                     }
                     if (range.codepoint == BOOP || range.codepoint == DOOD) {
-                        currentSubEntry.chartLink = "https://unicode.org/charts/PDF/UBOOP.pdf";
+                        currentSubEntry.chartLink = "https://www.unicode.org/charts/PDF/UBOOP.pdf";
                         currentSubEntry.ranges = range.codepoint == BOOP ? "BOOP" : "DOOD";
                     }
                     if (previousSubEntryWithLocation != null
@@ -834,6 +906,7 @@ public class Indexer {
                         if (showSubheader) {
                             currentSubEntry.subheader = SUBHEADER.getValue(range.codepoint);
                         }
+                        currentSubEntry.namesListLink = getNamesListLink(subrange);
                         currentSubEntry.chartLink = getChartLink(subrange);
                         currentSubEntry.ranges =
                                 Utility.hex(subrange.getRangeStart(0))
@@ -892,6 +965,48 @@ public class Indexer {
             return result;
         }
 
+        /**
+         * Returns a link to the HTML names list
+         * (https://www.unicode.org/Public/latest/charts/nameslist/) for code points in {@code set}
+         * if they appear in that names list; null otherwise.
+         */
+        private String getNamesListLink(UnicodeSet set) {
+            int chartStart;
+            final UnicodeSet namesListCharacters =
+                    set.cloneAsThawed().retainAll(HTML_NAMES_LIST_SCOPE);
+            if (namesListCharacters.isEmpty()) {
+                return null;
+            }
+            final int cp = namesListCharacters.charAt(0);
+            var blockValue = UcdPropertyValues.Block_Values.forName(BLOCK.getValue(cp));
+            if (NONCHARACTERS.contains(cp)
+                    && (blockValue == Block_Values.No_Block
+                            || blockValue == Block_Values.Supplementary_Private_Use_Area_A
+                            || blockValue == Block_Values.Supplementary_Private_Use_Area_B)) {
+                chartStart = cp & 0xFF_FF80;
+            } else {
+                if (blockValue == Block_Values.High_Private_Use_Surrogates) {
+                    blockValue = Block_Values.High_Surrogates;
+                }
+                final var currentBlock = blockSet.get(blockValue.toString());
+                chartStart = currentBlock.getRangeStart(0);
+            }
+            switch (phase) {
+                // TODO(egg): Check where those live in 19.0α and β.
+                case ALPHA:
+                case BETA:
+                    return "https://www.unicode.org/Public/draft/charts/nameslist/"
+                            + Utility.hex(chartStart).toLowerCase(Locale.ROOT)
+                            + "#"
+                            + Utility.hex(cp).toLowerCase(Locale.ROOT);
+                default:
+                    return "https://www.unicode.org/Public/latest/charts/nameslist/"
+                            + Utility.hex(chartStart).toLowerCase(Locale.ROOT)
+                            + "#"
+                            + Utility.hex(cp).toLowerCase(Locale.ROOT);
+            }
+        }
+
         private String getChartLink(UnicodeSet set) {
             int chartStart;
             var blockValue = UcdPropertyValues.Block_Values.forName(BLOCK.getValue(set.charAt(0)));
@@ -914,6 +1029,7 @@ public class Indexer {
                 blockHasNewCharacters = currentBlock.containsSome(NEW_CHARACTERS);
             }
             switch (phase) {
+                // TODO(egg): Figure out where those live in 19.0α and β.
                 case ALPHA:
                     if (blockHasNewCharacters) {
                         return "https://www.unicode.org/charts/PDF/Unicode-"
@@ -924,7 +1040,7 @@ public class Indexer {
                                 + Utility.hex(chartStart)
                                 + ".pdf";
                     } else {
-                        return "https://unicode.org/charts/PDF/U"
+                        return "https://www.unicode.org/charts/PDF/U"
                                 + Utility.hex(chartStart)
                                 + ".pdf";
                     }
@@ -933,12 +1049,15 @@ public class Indexer {
                             + Utility.hex(chartStart)
                             + ".pdf";
                 default:
-                    return "https://unicode.org/charts/PDF/U" + Utility.hex(chartStart) + ".pdf";
+                    return "https://www.unicode.org/charts/PDF/U"
+                            + Utility.hex(chartStart)
+                            + ".pdf";
             }
         }
     }
 
     public static final void main(String[] args) throws IOException {
+        final var argSet = Set.of(args);
         final var main =
                 new VersionedIndexer(
                         Settings.LAST_VERSION_INFO,
@@ -947,32 +1066,78 @@ public class Indexer {
                         "https://www.unicode.org/charts",
                         "charindex.html",
                         /* language= */ null);
-        final var draft =
-                new VersionedIndexer(
-                        Settings.LATEST_VERSION_INFO,
-                        Settings.latestVersionPhase,
-                        Settings.LAST_VERSION_INFO,
-                        "https://www.unicode.org/Public/draft/charts",
-                        "charindex-draft.html",
-                        /* language= */ null);
-        // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version).
+        final boolean noDraft = argSet.contains("--noDraft");
+        final boolean noFrench = argSet.contains("--noFrench");
+        final String errorInDraft =
+                "Error while constructing the "
+                        + Settings.LATEST_VERSION_INFO
+                        + Settings.latestVersionPhase
+                        + " index; if this version is not yet ready for indexing, e.g., if the"
+                        + " names list is outdated, regenerate the index for "
+                        + Settings.LAST_VERSION_INFO
+                        + " with --noDraft";
+        final String errorInFrench =
+                "Erreur lors de la construction de l’index français pour "
+                        + Settings.LAST_VERSION_INFO
+                        + " ; si cette version n’est pas encore prête à être indexée, par"
+                        + " example, si la liste des noms en français n’est pas encore"
+                        + " disponible, générez seulement l’index anglais avec l’option"
+                        + " --noFrench";
+        final VersionedIndexer draft;
+        try {
+            draft =
+                    noDraft
+                            ? null
+                            : new VersionedIndexer(
+                                    Settings.LATEST_VERSION_INFO,
+                                    Settings.latestVersionPhase,
+                                    Settings.LAST_VERSION_INFO,
+                                    Settings.latestVersionPhase == ReleasePhase.GAMMA
+                                            ? "https://www.unicode.org/charts"
+                                            : "https://www.unicode.org/Public/draft/charts",
+                                    "charindex-draft.html",
+                                    /* language= */ null);
+        } catch (Exception e) {
+            System.err.println(errorInDraft);
+            throw e;
+        }
+        // Link to the draft if it is at least in α (i.e., do not link to a pre-α dev version), but
+        // not if it is γ (i.e., do not link to a file that looks release-final but isn’t).
         main.generateIndex(
                 /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.ALPHA) >= 0
+                                && Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
                         ? draft
                         : null);
-        // Link from the draft to the earlier version unless the draft is release-final (γ).
-        draft.generateIndex(
-                /* linkedVersion= */ Settings.latestVersionPhase.compareTo(ReleasePhase.GAMMA) < 0
-                        ? main
-                        : null);
-        final var fr =
-                new VersionedIndexer(
-                        Settings.LAST_VERSION_INFO,
-                        ReleasePhase.GAMMA,
-                        Settings.LAST2_VERSION_INFO,
-                        "https://www.unicode.org/charts/fr",
-                        "fr/charindex.html",
-                        "fr");
-        fr.generateIndex(/* linkedVersion= */ null);
+        if (draft != null) {
+            try {
+                // Link from the draft to the earlier version unless the draft is release-final (γ).
+                draft.generateIndex(
+                        /* linkedVersion= */ Settings.latestVersionPhase.compareTo(
+                                                ReleasePhase.GAMMA)
+                                        < 0
+                                ? main
+                                : null);
+            } catch (Exception e) {
+                System.err.println(errorInDraft);
+                throw e;
+            }
+        }
+        if (noFrench) {
+            return;
+        }
+        try {
+            final var fr =
+                    new VersionedIndexer(
+                            Settings.LAST_VERSION_INFO,
+                            ReleasePhase.GAMMA,
+                            Settings.LAST2_VERSION_INFO,
+                            "https://www.unicode.org/charts/fr",
+                            "fr/charindex.html",
+                            "fr");
+            fr.generateIndex(/* linkedVersion= */ null);
+        } catch (Exception e) {
+            System.err.println(errorInFrench);
+            throw e;
+        }
     }
 }

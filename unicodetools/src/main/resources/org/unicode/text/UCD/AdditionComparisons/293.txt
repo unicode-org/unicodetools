@@ -113,11 +113,20 @@ CorrespondTo [\x{2ACD} ⫍ \N{SQUARE LEFT OPEN BOX OPERATOR}]
 end Ignoring;
 
 # A bidi mirorring glyph for the long bidi mirrored ∝.
+Ignoring Pattern_Syntax Standardized_Variation_Base:
+Propertywise [\N{1DB10:CARTESIAN EQUALS SIGN}]
+           : [\N{221D:∝:PROPORTIONAL TO}]
+CorrespondTo [\N{29F5:⧵:REVERSE SOLIDUS OPERATOR}]
+           : [\N{2215:∕:DIVISION SLASH}]
+end Ignoring;
+
+# ⧴ because ∝ is not a variation base contrary to the other three, and because
+# it differs in East_Asian_Width and Line_Break (Ambiguous).
 Ignoring Pattern_Syntax:
-Propertywise [\x{1DB10}  \N{CARTESIAN EQUALS SIGN}]
-           : [\x{221D} ∝ \N{PROPORTIONAL TO}]
-CorrespondTo [\x{29F5} ⧵ \N{REVERSE SOLIDUS OPERATOR}]
-           : [\x{2215} ∕ \N{DIVISION SLASH}]
+Propertywise [\N{1DB10:CARTESIAN EQUALS SIGN}]
+           ⧴ [\N{221D:∝:PROPORTIONAL TO}]
+CorrespondTo [\N{228A:⊊:SUBSET OF WITH NOT EQUAL TO}]
+           ⧴ [\N{228B:⊋:SUPERSET OF WITH NOT EQUAL TO}]
 end Ignoring;
 
 end Ignoring;

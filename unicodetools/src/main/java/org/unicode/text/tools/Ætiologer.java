@@ -475,10 +475,12 @@ public class Ætiologer {
         }
         // Find mentions of "general category" for General_Category, "linebreak class" or "line
         // break class" for Line_Break, etc.
+        // Also allow "bidi property" for "bidi class".
         for (final var alias : aliases) {
             if (alias.contains("_")
                     && line.toLowerCase()
                             .replace(" ", "")
+                            .replace("bidiproperty", "bidiclass")
                             .contains(alias.toLowerCase().replace("_", ""))) {
                 candidateProperties.add(UcdProperty.forString(alias));
             }
@@ -502,9 +504,8 @@ public class Ætiologer {
             properties:
             for (final var property : candidateProperties) {
                 // TODO(egg): Horribly load-bearing.  We must read the latest files because we use
-                // the
-                // new @missing lines for files that predate @missing lines, and we do not do that
-                // automatically.  See https://github.com/unicode-org/unicodetools/issues/1438.
+                // the new @missing lines for files that predate @missing lines, and we do not do
+                // that automatically.  See https://github.com/unicode-org/unicodetools/issues/1438.
                 IndexUnicodeProperties.make().load(property);
                 final var newProperty = iup.getProperty(property);
                 final var oldProperty = previousIUP.getProperty(property);
@@ -595,6 +596,10 @@ public class Ætiologer {
             Map<UcdProperty, Map<VersionInfo, UnicodeMap<List<String>>>> reasons) {
         for (final var propertyReasons : reasons.entrySet()) {
             final var property = propertyReasons.getKey();
+            // TODO(egg): Horribly load-bearing.  We must read the latest files because we use the
+            // new @missing lines for files that predate @missing lines, and we do not do that
+            // automatically.  See https://github.com/unicode-org/unicodetools/issues/1438.
+            IndexUnicodeProperties.make().load(property);
             for (final var versionReasons : propertyReasons.getValue().entrySet()) {
                 final var newVersion = versionReasons.getKey();
                 final var newIUP = IndexUnicodeProperties.make(newVersion);

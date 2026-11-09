@@ -399,8 +399,9 @@ public final class UCD_Names implements UCD_Types {
         "Sunuwar",
         "Todhri",
         "Tulu_Tigalari",
-        // Unicode 17
+        // Unicode 17^H^H^H 18^H^H^H 19…
         "Chisoi",
+        // Unicode 17
         "Sidetic",
         "Tai_Yo",
         "Tolong_Siki",
@@ -409,6 +410,11 @@ public final class UCD_Names implements UCD_Types {
         "Jurchen",
         "Proto_Cuneiform",
         "Seal",
+        // A future version of Unicode
+        "Sirmauri",
+        "Leke",
+        "Mwangwego",
+        "Shaaldaa",
     };
 
     public static final Relation<String, String> EXTRA_SCRIPT =
@@ -601,8 +607,9 @@ public final class UCD_Names implements UCD_Types {
         "Sunu",
         "Todr",
         "Tutg",
-        // Unicode 17
+        // Unicode > 18
         "Chis",
+        // Unicode 17
         "Sidt",
         "Tayo",
         "Tols",
@@ -611,12 +618,17 @@ public final class UCD_Names implements UCD_Types {
         "Jurc",
         "Pcun",
         "Seal",
+        // A future version of Unicode
+        "Qaba", // "Sirmauri",
+        "Leke", // "Leke",
+        "Qabc", // "Mwangwego",
+        "Qabd", // "Shaaldaa",
     };
 
     static final String[] SHORT_AGE = {
         "NA", "1.1", "2.0", "2.1", "3.0", "3.1", "3.2", "4.0", "4.1", "5.0", "5.1", "5.2", "6.0",
         "6.1", "6.2", "6.3", "7.0", "8.0", "9.0", "10.0", "11.0", "12.0", "12.1", "13.0", "14.0",
-        "15.0", "15.1", "16.0", "17.0", "18.0",
+        "15.0", "15.1", "16.0", "17.0", "18.0", "19.0",
         // FIX_FOR_NEW_VERSION
     };
 
@@ -651,6 +663,7 @@ public final class UCD_Names implements UCD_Types {
         "V16_0",
         "V17_0",
         "V18_0",
+        "V19_0",
         // FIX_FOR_NEW_VERSION
     };
 

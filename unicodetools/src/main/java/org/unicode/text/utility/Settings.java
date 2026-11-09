@@ -21,8 +21,12 @@ public class Settings {
     // and sometimes Utility.fixFileName() which normalizes paths via java.io.File?
     // Are they equivalent for our purposes?
 
-    /** Used for the default version. */
-    public static final String latestVersion = "18.0.0";
+    // FIX_FOR_NEW_VERSION (4×).
+    // The version of the /dev directories.
+    public static final String latestVersion = "19.0.0";
+    public static final ReleasePhase latestVersionPhase = ReleasePhase.DEV;
+    public static final String lastVersion = "18.0.0"; // last released version
+    public static final VersionInfo LAST2_VERSION_INFO = VersionInfo.UNICODE_17_0;
 
     public enum ReleasePhase {
         DEV("dev"), // Before α.
@@ -44,13 +48,8 @@ public class Settings {
         }
     };
 
-    public static final ReleasePhase latestVersionPhase = ReleasePhase.BETA;
-
-    public static final String lastVersion = "17.0.0"; // last released version
-
     public static final VersionInfo LATEST_VERSION_INFO = VersionInfo.getInstance(latestVersion);
     public static final VersionInfo LAST_VERSION_INFO = VersionInfo.getInstance(lastVersion);
-    public static final VersionInfo LAST2_VERSION_INFO = VersionInfo.getInstance(15, 1);
 
     private static final String TRIMMED_LATEST_VERSION = trimVersion(latestVersion);
 
