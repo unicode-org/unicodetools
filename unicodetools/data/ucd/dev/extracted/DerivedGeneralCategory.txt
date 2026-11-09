@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-19.0.0.txt
-# Date: 2026-11-09, 15:46:11 GMT
+# Date: 2026-11-09, 15:49:01 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -642,7 +642,6 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 1DAB0..1DAFF  ; Cn #  [80] <reserved-1DAB0>..<reserved-1DAFF>
 1DB2C..1DBFF  ; Cn # [212] <reserved-1DB2C>..<reserved-1DBFF>
 1DC36..1DEFF  ; Cn # [714] <reserved-1DC36>..<reserved-1DEFF>
-1DF85         ; Cn #       <reserved-1DF85>
 1DF89..1DF8F  ; Cn #   [7] <reserved-1DF89>..<reserved-1DF8F>
 1DF97..1DFCC  ; Cn #  [54] <reserved-1DF97>..<reserved-1DFCC>
 1E007         ; Cn #       <reserved-1E007>
@@ -760,7 +759,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 800193
+# Total code points: 800192
 
 # ================================================
 
@@ -2126,13 +2125,12 @@ FF41..FF5A    ; Ll #  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN SMALL
 1DF7B         ; Ll #       LATIN SMALL LETTER U WITH HOOK TAIL
 1DF7D         ; Ll #       LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7F         ; Ll #       LATIN SMALL LETTER REVERSED U
-1DF82..1DF84  ; Ll #   [3] LATIN SMALL LETTER W WITH PALATAL HOOK..LATIN SMALL LETTER R WITH DOUBLE MIDDLE TILDE
-1DF86         ; Ll #       LATIN SMALL LETTER OPEN Q
+1DF82..1DF86  ; Ll #   [5] LATIN SMALL LETTER W WITH PALATAL HOOK..LATIN SMALL LETTER OPEN Q
 1DF88         ; Ll #       LATIN SMALL LETTER X WITH STROKE
 1DF90..1DF96  ; Ll #   [7] LATIN SMALL LETTER C WITH LOW SLASH..LATIN SMALL LETTER LONG S WITH TOP LOOP
 1E922..1E943  ; Ll #  [34] ADLAM SMALL LETTER ALIF..ADLAM SMALL LETTER SHA
 
-# Total code points: 2373
+# Total code points: 2374
 
 # ================================================
 

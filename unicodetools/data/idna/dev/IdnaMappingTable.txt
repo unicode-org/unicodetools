@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-11-09, 15:46:21 GMT
+# Date: 2026-11-09, 15:49:11 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -8055,9 +8055,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 1DF7D         ; valid                      # 18.0 LATIN SMALL LETTER U WITH NOTCH AT BOTTOM
 1DF7E         ; mapped     ; 1DF7F         # 18.0 LATIN CAPITAL LETTER REVERSED U
 1DF7F..1DF81  ; valid                      # 18.0 LATIN SMALL LETTER REVERSED U..LATIN CAPITAL LETTER E WITH BENT TOPBAR
-1DF82..1DF84  ; valid                      # 19.0 LATIN SMALL LETTER W WITH PALATAL HOOK..LATIN SMALL LETTER R WITH DOUBLE MIDDLE TILDE
-1DF85         ; disallowed                 # NA   <reserved-1DF85>
-1DF86         ; valid                      # 19.0 LATIN SMALL LETTER OPEN Q
+1DF82..1DF86  ; valid                      # 19.0 LATIN SMALL LETTER W WITH PALATAL HOOK..LATIN SMALL LETTER OPEN Q
 1DF87         ; mapped     ; 1DF88         # 19.0 LATIN CAPITAL LETTER X WITH STROKE
 1DF88         ; valid                      # 19.0 LATIN SMALL LETTER X WITH STROKE
 1DF89..1DF8F  ; disallowed                 # NA   <reserved-1DF89>..<reserved-1DF8F>

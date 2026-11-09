@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-09, 15:46:13 GMT
+# Date: 2026-11-09, 15:49:03 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -44038,6 +44038,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1DF82         ; LATIN SMALL LETTER W WITH PALATAL HOOK
 1DF83         ; LATIN SMALL LETTER N WITH DOUBLE MIDDLE TILDE
 1DF84         ; LATIN SMALL LETTER R WITH DOUBLE MIDDLE TILDE
+1DF85         ; LATIN LETTER SMALL CAPITAL I WITH RETROFLEX HOOK
 1DF86         ; LATIN SMALL LETTER OPEN Q
 1DF87         ; LATIN CAPITAL LETTER X WITH STROKE
 1DF88         ; LATIN SMALL LETTER X WITH STROKE
@@ -48112,6 +48113,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174338
+# Total code points: 174339
 
 # EOF
