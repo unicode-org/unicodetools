@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-09, 16:24:59 GMT
+# Date: 2026-11-09, 16:27:46 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -31331,6 +31331,7 @@ FFFD          ; REPLACEMENT CHARACTER
 113D5         ; TULU-TIGALARI DOUBLE DANDA
 113D7         ; TULU-TIGALARI SIGN OM PUSHPIKA
 113D8         ; TULU-TIGALARI SIGN SHRII PUSHPIKA
+113DB         ; TULU-TIGALARI LETTER ARCHAIC II
 113E1         ; TULU-TIGALARI VEDIC TONE SVARITA
 113E2         ; TULU-TIGALARI VEDIC TONE ANUDATTA
 11400         ; NEWA LETTER A
@@ -48124,6 +48125,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174350
+# Total code points: 174351
 
 # EOF

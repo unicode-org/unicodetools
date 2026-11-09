@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-19.0.0.txt
-# Date: 2026-11-09, 16:24:57 GMT
+# Date: 2026-11-09, 16:27:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -481,7 +481,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 113C6         ; Cn #       <reserved-113C6>
 113CB         ; Cn #       <reserved-113CB>
 113D6         ; Cn #       <reserved-113D6>
-113D9..113E0  ; Cn #   [8] <reserved-113D9>..<reserved-113E0>
+113D9..113DA  ; Cn #   [2] <reserved-113D9>..<reserved-113DA>
+113DC..113E0  ; Cn #   [5] <reserved-113DC>..<reserved-113E0>
 113E3..113FF  ; Cn #  [29] <reserved-113E3>..<reserved-113FF>
 1145C         ; Cn #       <reserved-1145C>
 11462..1147F  ; Cn #  [30] <reserved-11462>..<reserved-1147F>
@@ -759,7 +760,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 800181
+# Total code points: 800180
 
 # ================================================
 
@@ -2635,6 +2636,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 113B7         ; Lo #       TULU-TIGALARI SIGN AVAGRAHA
 113D1         ; Lo #       TULU-TIGALARI REPHA
 113D3         ; Lo #       TULU-TIGALARI SIGN PLUTA
+113DB         ; Lo #       TULU-TIGALARI LETTER ARCHAIC II
 11400..11434  ; Lo #  [53] NEWA LETTER A..NEWA LETTER HA
 11447..1144A  ; Lo #   [4] NEWA SIGN AVAGRAHA..NEWA SIDDHI
 1145F..11461  ; Lo #   [3] NEWA LETTER VEDIC ANUSVARA..NEWA SIGN UPADHMANIYA
@@ -2792,7 +2794,7 @@ FFDA..FFDC    ; Lo #   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER I
 31350..33479  ; Lo # [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; Lo # [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# Total code points: 154799
+# Total code points: 154800
 
 # ================================================
 

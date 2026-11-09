@@ -1,5 +1,5 @@
-# IndicSyllabicCategory-18.0.0.txt
-# Date: 2026-07-03, 09:55:51 GMT
+# IndicSyllabicCategory-19.0.0.txt
+# Date: 2026-11-09, 15:00:46 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -465,6 +465,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 1138B         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER EE
 1138E         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER AI
 11390..11391  ; Vowel_Independent # Lo   [2] TULU-TIGALARI LETTER OO..TULU-TIGALARI LETTER AU
+113DB         ; Vowel_Independent # Lo       TULU-TIGALARI LETTER ARCHAIC II
 11400..1140D  ; Vowel_Independent # Lo  [14] NEWA LETTER A..NEWA LETTER AU
 11481..1148E  ; Vowel_Independent # Lo  [14] TIRHUTA LETTER A..TIRHUTA LETTER AU
 11580..1158D  ; Vowel_Independent # Lo  [14] SIDDHAM LETTER A..SIDDHAM LETTER AU
