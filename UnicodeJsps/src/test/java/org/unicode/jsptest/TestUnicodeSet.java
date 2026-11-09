@@ -67,6 +67,12 @@ public class TestUnicodeSet extends TestFmwk2 {
             {"[\u00A0]", "[\\u00A0]", "abb", "esc"},
             {"[{👨\u200D👨\u200D👦}]", "[{👨‍👨‍👦}]"},
             {"[{👨\u200D❤\uFE0F\u200D👨}]", "[{👨‍❤️‍👨}]"},
+            // https://github.com/unicode-org/unicodetools/issues/500
+            {"[\\u200C\\u200D]", "[\\u200C\\u200D]"},
+            {"[\\u200D]", "[\\u200D]", "abb", ""},
+            {"[{a\\u200Db}]", "[{a\u200Db}]"},
+            {"[\\u200D{a\\u200Db}]", "[\\u200D {a\u200Db}]"},
+            {"[{a\\u200Db}]", "[{a\\u200Db}]", "", "esc"},
         };
         assertFalse("", UnicodeUtilities.WHITESPACE_IGNORABLES_C.contains(UnicodeUtilities.JOINER));
 
