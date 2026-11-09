@@ -1,5 +1,5 @@
 # PropList-19.0.0.txt
-# Date: 2026-11-02, 13:43:54 GMT
+# Date: 2026-11-08, 14:03:57 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -256,6 +256,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 20E1          ; Other_Math # Mn       COMBINING LEFT RIGHT ARROW ABOVE
 20E5..20E6    ; Other_Math # Mn   [2] COMBINING REVERSE SOLIDUS OVERLAY..COMBINING DOUBLE VERTICAL STROKE OVERLAY
 20EB..20EF    ; Other_Math # Mn   [5] COMBINING LONG DOUBLE SOLIDUS OVERLAY..COMBINING RIGHT ARROW BELOW
+20F1..20F2    ; Other_Math # Mn   [2] COMBINING LONG TRIPLE SOLIDUS OVERLAY..COMBINING SALTIRE OVERLAY
 2102          ; Other_Math # L&       DOUBLE-STRUCK CAPITAL C
 2107          ; Other_Math # L&       EULER CONSTANT
 210A..2113    ; Other_Math # L&  [10] SCRIPT SMALL G..SCRIPT SMALL L
@@ -418,7 +419,7 @@ FF3E          ; Other_Math # Sk       FULLWIDTH CIRCUMFLEX ACCENT
 1F7DB         ; Other_Math # So       BULLET IN DOUBLE CIRCLE
 1F7F1..1F7FF  ; Other_Math # So  [15] CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE..RHOMBUS
 
-# Total code points: 1379
+# Total code points: 1381
 
 # ================================================
 
