@@ -1,8 +1,8 @@
 # File: MathClass.txt
-# Revision: 16.0
-# Date: 2025-07-01
+# Revision: 16
+# Date: 2026-09-17
 #
-# © 2025 Unicode®, Inc.
+# © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr25/
@@ -954,7 +954,6 @@
 2606;B
 2609;N
 260C;N
-2612;N
 263D;N
 263E;N
 263F;N
@@ -1704,6 +1703,9 @@ FFE9;X
 FFEA;X
 FFEB;X
 FFEC;X
+10D8E;B
+10D8F;B
+1CEF0;N
 1D400;A
 1D401;A
 1D402;A
@@ -2876,5 +2878,15 @@ FFEC;X
 1F79D;N
 1F79E;N
 1F79F;N
+1F8D0;R
+1F8D1;R
+1F8D2;R
+1F8D3;R
+1F8D4;R
+1F8D5;R
+1F8D6;R
+1F8D7;R
+1F8D8;R
+
 
 # EOF

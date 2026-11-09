@@ -1,0 +1,30 @@
+# GraphemeClusterBreakSymbols-18.0.0.txt
+# Date: 2026-09-30, 01:50:01 GMT
+# © 2026 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
+#
+# Public Review Issue #555, Finite automata for line breaking and segmentation
+#   For documentation, see https://www.unicode.org/L2/L2026/26135-finite-automata.pdf
+#
+# Symbol name ; Symbol definition in UnicodeSet notation ; Optional non-dictionary equivalent symbol
+eot ; [[{eot}]] ; 
+Control ; [\p{Grapheme_Cluster_Break=Control}] ; 
+LF ; [\p{Grapheme_Cluster_Break=LF}] ; 
+CR ; [\p{Grapheme_Cluster_Break=CR}] ; 
+XXmConjunctLinkermLinkingConsonantmExtPict ; [\p{Grapheme_Cluster_Break=Other}-\p{Indic_Conjunct_Break=Linker}-\p{Indic_Conjunct_Break=Consonant}-\p{Extended_Pictographic=True}] ; 
+ExtPict ; [\p{Extended_Pictographic=True}] ; 
+Extend_ConjunctExtender ; [\p{Grapheme_Cluster_Break=Extend}&[\p{Indic_Conjunct_Break=Extend}]] ; 
+Prepend ; [\p{Grapheme_Cluster_Break=Prepend}] ; 
+SpacingMark ; [\p{Grapheme_Cluster_Break=SpacingMark}] ; 
+LinkingConsonant ; [\p{Indic_Conjunct_Break=Consonant}] ; 
+Extend_ConjunctLinker ; [\p{Grapheme_Cluster_Break=Extend}&\p{Indic_Conjunct_Break=Linker}] ; 
+L ; [\p{Grapheme_Cluster_Break=L}] ; 
+V ; [\p{Grapheme_Cluster_Break=V}] ; 
+T ; [\p{Grapheme_Cluster_Break=T}] ; 
+ConjunctLinkermExtend ; [\p{Indic_Conjunct_Break=Linker}-\p{Grapheme_Cluster_Break=Extend}] ; 
+ExtendmConjunctLinkermConjunctExtender ; [\p{Grapheme_Cluster_Break=Extend}-\p{Indic_Conjunct_Break=Linker}-[\p{Indic_Conjunct_Break=Extend}]] ; 
+ZWJ ; [\p{Grapheme_Cluster_Break=ZWJ}] ; 
+LV ; [\p{Grapheme_Cluster_Break=LV}] ; 
+LVT ; [\p{Grapheme_Cluster_Break=LVT}] ; 
+RI ; [\p{Grapheme_Cluster_Break=Regional_Indicator}] ; 

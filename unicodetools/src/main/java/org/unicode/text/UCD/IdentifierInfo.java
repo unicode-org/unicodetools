@@ -176,7 +176,7 @@ public class IdentifierInfo {
                         .addAll(additions.keySet())
                         .retainAll(propNFKCSet);
 
-        GenerateConfusables.getIdentifierSet();
+        GenerateConfusables.makeIdnSets();
         // notInXID = new UnicodeSet(IDNOutputSet).removeAll(xidPlus);
         // removals.putAll(notInXID, PROHIBITED + NOT_IN_XID);
         // UnicodeSet notNfkcXid = new
@@ -732,9 +732,7 @@ public class IdentifierInfo {
 
         final PrintWriter out =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.reformatedInternal,
-                        "review.txt",
-                        "Review List for IDN");
+                        GenerateConfusables.reformatedInternal, "review.txt");
         //                        PrintWriter out = FileUtilities.openUTF8Writer(outdir,
         // "review.txt");
         // reviews.putAll(UNASSIGNED, "");
@@ -795,9 +793,7 @@ public class IdentifierInfo {
 
         final PrintWriter out =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.reformatedInternal,
-                        "idnchars.txt",
-                        "Recommended Identifier Profiles for IDN");
+                        GenerateConfusables.reformatedInternal, "idnchars.txt");
 
         out.println("# Allowed as output characters");
         out.println("");
@@ -860,7 +856,7 @@ public class IdentifierInfo {
         PrintWriter out;
         //        PrintWriter out =
         // GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT,
-        // "xidmodifications.txt", "Security Profile for General Identifiers");
+        // "xidmodifications.txt");
         //        /* PrintWriter out = FileUtilities.openUTF8Writer(outdir, "xidmodifications.txt");
         //
         //                out.println("# Security Profile for General Identifiers");
@@ -922,9 +918,7 @@ public class IdentifierInfo {
 
         out =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.reformatedInternal,
-                        "xidAllowed.txt",
-                        "Security Profile for General Identifiers");
+                        GenerateConfusables.reformatedInternal, "xidAllowed.txt");
         final UnicodeSet allowed = new UnicodeSet(xidPlus).removeAll(removals.keySet());
         final UnicodeSet cfAllowed =
                 new UnicodeSet().addAll(allowed).retainAll(isCaseFolded).retainAll(propNFKCSet);
@@ -989,13 +983,13 @@ public class IdentifierInfo {
         out.println("#");
         out.println("# This file contains a draft list of characters for use in");
         out.println("#     UTR #36: Unicode Security Considerations");
-        out.println("#     http://unicode.org/draft/reports/tr36/tr36.html");
+        out.println("#     https://www.unicode.org/draft/reports/tr36/tr36.html");
         out.println("# According to the recommendations in that document, these characters");
         out.println("# would be restricted in domain names: people would only be able to use them");
         out.println("# by using lenient security settings.");
         out.println("#");
         out.println("# If you have any feedback on this list, please use the submission form at:");
-        out.println("#     http://unicode.org/reporting.html.");
+        out.println("#     https://www.unicode.org/reporting.html.");
         out.println("#");
         out.println("# Notes:");
         out.println("# - Characters are listed along with a reason for their removal.");
@@ -1008,7 +1002,7 @@ public class IdentifierInfo {
         out.println("# - Characters listed as ~Unicode Identifiers are restricted because they");
         out.println("#   do not fit the specification of identifiers given in");
         out.println("#      UAX #31: Identifier and Pattern Syntax");
-        out.println("#      http://unicode.org/reports/tr31/");
+        out.println("#      https://www.unicode.org/reports/tr31/");
         out.println(
                 "# - Characters listed as ~IICore are restricted because they are Ideographic,");
         out.println("#   but not part of the IICore set defined by the IRG as the minimal set");
@@ -1079,9 +1073,7 @@ public class IdentifierInfo {
         final String filename = "IdentifierType.txt";
         try (PrintWriter out2 =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.GEN_SECURITY_DIR,
-                        filename,
-                        "Security Profile for General Identifiers: " + propName)) {
+                        GenerateConfusables.GEN_SECURITY_DIR, filename)) {
             out2.println(
                     "# Format\n"
                             + "#\n"
@@ -1140,9 +1132,7 @@ public class IdentifierInfo {
         final String propName = "Identifier_Status";
         try (PrintWriter out2 =
                 GenerateConfusables.openAndWriteHeader(
-                        GenerateConfusables.GEN_SECURITY_DIR,
-                        "IdentifierStatus.txt",
-                        "Security Profile for General Identifiers: " + propName)) {
+                        GenerateConfusables.GEN_SECURITY_DIR, "IdentifierStatus.txt")) {
             out2.println(
                     "# Format\n"
                             + "#\n"
