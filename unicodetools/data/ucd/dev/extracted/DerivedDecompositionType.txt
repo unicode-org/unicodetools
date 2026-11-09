@@ -1,5 +1,5 @@
-# DerivedDecompositionType-18.0.0.txt
-# Date: 2026-02-03, 23:09:52 GMT
+# DerivedDecompositionType-19.0.0.txt
+# Date: 2026-11-09, 16:59:46 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -265,6 +265,7 @@ FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 114BB..114BC  ; Canonical # Mc   [2] TIRHUTA VOWEL SIGN AI..TIRHUTA VOWEL SIGN O
 114BE         ; Canonical # Mc       TIRHUTA VOWEL SIGN AU
 115BA..115BB  ; Canonical # Mc   [2] SIDDHAM VOWEL SIGN O..SIDDHAM VOWEL SIGN AU
+1187C..1187D  ; Canonical # Mc   [2] SIRMAURI VOWEL SIGN O..SIRMAURI VOWEL SIGN AU
 11938         ; Canonical # Mc       DIVES AKURU VOWEL SIGN O
 16121..16128  ; Canonical # Mn   [8] GURUNG KHEMA VOWEL SIGN U..GURUNG KHEMA VOWEL SIGN AU
 16D68..16D6A  ; Canonical # Lo   [3] KIRAT RAI VOWEL SIGN AI..KIRAT RAI VOWEL SIGN AU
@@ -272,7 +273,7 @@ FB46..FB4E    ; Canonical # Lo   [9] HEBREW LETTER TSADI WITH DAGESH..HEBREW LET
 1D1BB..1D1C0  ; Canonical # So   [6] MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
 2F800..2FA1D  ; Canonical # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 13253
+# Total code points: 13255
 
 # ================================================
 
@@ -352,12 +353,14 @@ FB13..FB17    ; Compat # L&   [5] ARMENIAN SMALL LIGATURE MEN NOW..ARMENIAN SMAL
 FB4F          ; Compat # Lo       HEBREW LIGATURE ALEF LAMED
 FE49..FE4C    ; Compat # Po   [4] DASHED OVERLINE..DOUBLE WAVY OVERLINE
 FE4D..FE4F    ; Compat # Pc   [3] DASHED LOW LINE..WAVY LOW LINE
+1DB1E         ; Compat # L&       GREEK OMICRON UPSILON SYMBOL
 1DF95         ; Compat # L&       LATIN SMALL LIGATURE LONG S WITH DESCENDER S
+1DFC5         ; Compat # Sk       DOUBLE GRAVE ACCENT
 1F100..1F10A  ; Compat # No  [11] DIGIT ZERO FULL STOP..DIGIT NINE COMMA
 1F110..1F12A  ; Compat # So  [27] PARENTHESIZED LATIN CAPITAL LETTER A..TORTOISE SHELL BRACKETED LATIN CAPITAL LETTER S
 1F240..1F248  ; Compat # So   [9] TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
 
-# Total code points: 721
+# Total code points: 723
 
 # ================================================
 
