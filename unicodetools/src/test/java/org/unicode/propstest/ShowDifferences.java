@@ -151,7 +151,7 @@ public class ShowDifferences {
                             + value.second
                             + "\t"
                             + diff.getSet(value)
-                            + "\t=\"https://unicode.org/cldr/utility/list-unicodeset.jsp?a=\"&F"
+                            + "\t=\"https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=\"&F"
                             + (count + 1)
                             + "&\"&i=\"&B"
                             + (count + 1)
