@@ -1012,6 +1012,12 @@ public enum UcdProperty {
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "EBase"),
     Emoji_Presentation(
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "EPres"),
+    Emoji_Variation_Base(
+            PropertyType.Binary,
+            DerivedPropertyStatus.UCDNonProperty,
+            Binary.class,
+            null,
+            "Emoji_Variation_Base"),
     Expands_On_NFC(
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "XO_NFC"),
     Expands_On_NFD(
@@ -1139,6 +1145,12 @@ public enum UcdProperty {
     Sentence_Terminal(
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "STerm"),
     Soft_Dotted(PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "SD"),
+    Standardized_Variation_Base(
+            PropertyType.Binary,
+            DerivedPropertyStatus.UCDNonProperty,
+            Binary.class,
+            null,
+            "Standardized_Variation_Base"),
     Terminal_Punctuation(
             PropertyType.Binary, DerivedPropertyStatus.Approved, Binary.class, null, "Term"),
     Unified_Ideograph(

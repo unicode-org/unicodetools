@@ -899,7 +899,6 @@
    <char cp="2606" mathclass="B" note="star, open"/>
    <char cp="2609" mathclass="N"/>
    <char cp="260C" mathclass="N"/>
-   <char cp="2612" mathclass="N"/>
    <char cp="263D" mathclass="N"/>
    <char cp="263E" mathclass="N"/>
    <char cp="263F" mathclass="N"/>
@@ -1649,6 +1648,9 @@
    <char cp="FFEA" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
    <char cp="FFEB" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
    <char cp="FFEC" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
+   <char cp="10D8E" mathclass="B"/>
+   <char cp="10D8F" mathclass="B"/>
+   <char cp="1CEF0" mathclass="N"/>
    <char cp="1D400" mathclass="A"/>
    <char cp="1D401" mathclass="A"/>
    <char cp="1D402" mathclass="A"/>
@@ -2821,4 +2823,13 @@
    <char cp="1F79D" mathclass="N"/>
    <char cp="1F79E" mathclass="N"/>
    <char cp="1F79F" mathclass="N"/>
+   <char cp="1F8D0" mathclass="R"/>
+   <char cp="1F8D1" mathclass="R"/>
+   <char cp="1F8D2" mathclass="R"/>
+   <char cp="1F8D3" mathclass="R"/>
+   <char cp="1F8D4" mathclass="R"/>
+   <char cp="1F8D5" mathclass="R"/>
+   <char cp="1F8D6" mathclass="R"/>
+   <char cp="1F8D7" mathclass="R"/>
+   <char cp="1F8D8" mathclass="R"/>
 </mathchars>

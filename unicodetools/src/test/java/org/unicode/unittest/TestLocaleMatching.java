@@ -89,8 +89,8 @@ public class TestLocaleMatching extends TestFmwkMinusMinus {
      */
     public static ULocale combine(ULocale supported, ULocale desired) {
         // for examples of extensions, variants, see
-        //  http://unicode.org/repos/cldr/tags/latest/common/bcp47/
-        //  http://unicode.org/repos/cldr/tags/latest/common/validity/variant.xml
+        //  https://github.com/unicode-org/cldr/tree/main/common/bcp47
+        //  https://github.com/unicode-org/cldr/blob/main/common/validity/variant.xml
         if (desired == null) {
             return supported;
         }
