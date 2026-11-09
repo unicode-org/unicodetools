@@ -36,14 +36,14 @@
     <xsl:if test="@deprecated = 'true' or @unassigned = 'true'">#</xsl:if><xsl:value-of
           select="@cp"/><xsl:if test="@unassigned = 'true' and @equivalent">=<xsl:value-of
           select="@equivalent"/></xsl:if>;<xsl:value-of
-          select="@mathclass"/><xsl:text>&#x000D;</xsl:text>
+          select="@mathclass"/><xsl:text>&#x000A;</xsl:text>
   </xsl:template>
 
   <xsl:template name="introduction">
     <xsl:param name="unicode"/>
     <xsl:param name="tr25"/>
     <xsl:text># File: MathClass.txt
-# Revision: </xsl:text><xsl:value-of select="$unicode"/><xsl:text>
+# Revision: </xsl:text><xsl:value-of select="$tr25"/><xsl:text>
 # Date: </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/><xsl:text>
 #
 # © </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]')"/><xsl:text> Unicode®, Inc.

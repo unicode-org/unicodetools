@@ -123,15 +123,14 @@ public class GenerateIdna {
                     throw new IllegalArgumentException("bad mapping:\t" + value);
                 }
             }
-
-            if (status == IdnaType.valid && !IDNA2008Valid.contains(cp) && cp != '.') {
-                endStatus +=
-                        Utility.repeat(" ", MAX_STATUS_LENGTH - endStatus.length())
-                                + " ;      ; NV8";
-            } else if (Idna2008.GRANDFATHERED_VALID.contains(cp)) {
+            if (Idna2008.XV8.contains(cp)) {
                 endStatus +=
                         Utility.repeat(" ", MAX_STATUS_LENGTH - endStatus.length())
                                 + " ;      ; XV8";
+            } else if (status == IdnaType.valid && !IDNA2008Valid.contains(cp) && cp != '.') {
+                endStatus +=
+                        Utility.repeat(" ", MAX_STATUS_LENGTH - endStatus.length())
+                                + " ;      ; NV8";
             }
             stringMappingTable.put(cp, endStatus);
 

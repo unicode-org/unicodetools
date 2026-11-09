@@ -913,6 +913,5 @@ public class GenerateCaseFolding implements UCD_Types {
                 Utility.UTF8,
                 out);
         udf.close();
-        // Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }
 }
