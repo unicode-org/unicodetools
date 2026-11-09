@@ -165,6 +165,5 @@ public final class GenerateNamedSequences implements UCD_Types {
                 replacementList);
 
         outfile.close();
-        // Utility.renameIdentical(mostRecent, Utility.getOutputName(filename), batName[0]);
     }
 }

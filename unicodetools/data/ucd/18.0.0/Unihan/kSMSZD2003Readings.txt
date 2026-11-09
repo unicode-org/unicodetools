@@ -1,0 +1,8098 @@
+3473	zhòu粵zau3
+3493	tà粵taat3
+34E6	bāi粵baak3
+355C	shǐ粵si2
+35D1	bai粵baai6
+361A	hǎn粵haam3
+3625	yóu粵jau4
+3635	bù粵bou3
+3661	zōng粵zung1
+36C3	jié粵git3
+36F9	pián粵pin4
+3798	dū粵duk1
+37D6	lòng粵lung6
+37E4	lù粵luk6
+3823	lì粵lik6
+394F	tiǎn粵tin2
+396E	zhòu粵zau3
+3A73	sǒng粵sung2
+3A97	tǒu粵tau2
+3B24	qī粵jap1
+3BBE	lǎng粵long5
+3D50	jué粵kyut3
+3E6D	yì粵jai6
+3F06	yíng粵jing4
+3F08	luó粵lo4
+3FA6	pēi粵pui1
+3FB5	jì粵gai3
+4007	gǔ粵gu2
+406A	zhǎn粵zaam2
+40CE	zhà粵zaa3
+40DA	zú粵zuk6
+40E0	xuàn粵syun6
+40F0	cā粵caat3
+413B	táo粵tou4
+41FD	zhé粵zai3
+4325	yǐn粵jan2
+4349	zhǎi粵zaai2
+43D3	ruǎn粵jyun5
+43E1	shì粵si6
+43F2	tī粵tai1
+43FF	qǐ粵kai2
+44EB	qí粵kei4
+45AC	jiǎ粵gaap3
+45B3	zhà粵caa3
+45EA	zhè粵ze3
+4661	kuì粵wai3 huì粵kui2
+473A	chǎi,cè粵cik1
+474B	zòng粵zung3
+475F	yà粵aat3
+477C	qíng粵cing4 jìng粵zing6
+493C	xiàn粵sin3
+4955	piě粵pit3
+499B	zhèng粵zang3
+499F	chuài粵ceoi3
+4A7A	wēng粵jung1
+4AA1	jī粵zai1
+4ACF	qī粵hei1
+4C1B	lì粵lik6
+4C3E	bā粵baa1
+4C75	wēng粵jung1
+4C7D	cāng粵cong1
+4D4D	tūn粵tan1
+4D5A	tǎo粵tou2
+4D95	bà粵baa6
+4E00	yī粵jat1
+4E01	dīng粵ding1 zhéng粵zang1
+4E03	qī粵cat1
+4E07	mò粵mak6 wàn粵maan6
+4E08	zhàng粵zoeng6
+4E09	sān粵saam1 sān,sàn粵saam3
+4E0A	shàng粵soeng6 shàng粵soeng5 shǎng,shàng粵soeng5
+4E0B	xià粵haa6 xià粵haa5
+4E0C	jī粵gei1
+4E0D	bù粵bat1
+4E0F	miǎn粵min5
+4E10	gài粵koi3
+4E11	chǒu粵cau2
+4E14	qiě粵ce2 jū粵zeoi1
+4E15	pī粵pei1
+4E16	shì粵sai3
+4E18	qiū粵jau1
+4E19	bǐng粵bing2
+4E1E	chéng粵sing4
+4E1F	diū粵diu1
+4E26	bìng粵bing6
+4E2B	yā粵aa1
+4E2D	zhōng粵zung1
+4E30	fēng粵fung1
+4E31	guàn粵gwaan3
+4E32	chuàn粵cyun3
+4E33	chǎn粵caan2
+4E38	wán粵jyun4,jyun2
+4E39	dān粵daan1
+4E3B	zhǔ粵zyu2
+4E42	yì粵ngaai6
+4E43	nǎi粵naai5 ǎi粵oi2
+4E45	jiǔ粵gau2
+4E4B	zhī粵zi1
+4E4D	zhà粵zaa3
+4E4E	hū粵fu4
+4E4F	fá粵fat6
+4E52	pīng粵bing1,ping1
+4E53	pāng粵bam1,pong1
+4E56	guāi粵gwaai1
+4E58	chéng粵sing4 shèng粵sing6
+4E59	yǐ粵jyut6,jyut3
+4E5C	niè粵ne6 miē粵me1 miē粵mat1
+4E5D	jiǔ粵gau2
+4E5E	qǐ粵hat1
+4E5F	yě粵jaa5
+4E69	jī粵gei1
+4E73	rǔ粵jyu5
+4E78	nǎ粵naa2
+4E7E	qián粵kin4 gān粵gon1
+4E82	luàn粵lyun6
+4E86	liǎo粵liu5 le粵liu5
+4E88	yú粵jyu4 yǔ粵jyu5
+4E8B	shì粵si6
+4E8C	èr粵ji6
+4E8D	chù粵cuk1
+4E8E	yú粵jyu1
+4E91	yún粵wan4
+4E92	hù粵wu6
+4E93	qí粵kei4
+4E94	wǔ粵ng5
+4E95	jǐng粵zing2,zeng2
+4E99	gèn粵gang2
+4E9B	xiē粵se1
+4E9E	yà粵aa3
+4E9F	jí粵gik1 qì粵kei3
+4EA1	wáng粵mong4
+4EA2	kàng粵kong3
+4EA4	jiāo粵gaau1
+4EA5	hài粵hoi6
+4EA6	yì粵jik6
+4EA8	hēng粵hang1
+4EAB	xiǎng粵hoeng2
+4EAC	jīng粵ging1
+4EAD	tíng粵ting4
+4EAE	liàng粵loeng6
+4EB3	bó粵bok3
+4EB6	dǎn粵taan2
+4EB9	mén粵mun4 wěi粵mei5
+4EBA	rén粵jan4
+4EC0	shí粵sap6 shí粵zaap6 shén粵sam6
+4EC1	rén粵jan4
+4EC2	lè粵lak6
+4EC3	dīng粵ding1
+4EC4	zè粵zak1
+4EC6	pū粵fu6,puk1
+4EC7	chóu粵sau4,cau4 qiú粵kau4,cau4
+4EC9	zhǎng粵zoeng2
+4ECA	jīn粵gam1
+4ECB	jiè粵gaai3
+4ECD	réng粵jing4
+4ED4	zǐ粵zi2 zī粵zi2 zài粵zai2
+4ED5	shì粵si6
+4ED6	tā粵taa1
+4ED7	zhàng粵zoeng6 zhàng粵zoeng3
+4ED8	fù粵fu6
+4ED9	xiān粵sin1
+4EDD	tóng粵tung4
+4EDE	rèn粵jan6
+4EDF	qiān粵cin1
+4EE1	gē粵go1 yì,ì粵ngat6
+4EE3	dài粵doi6
+4EE4	lìng粵ling6 lǐng粵lim1 líng粵ling4
+4EE5	yǐ,ǐ粵ji5
+4EE8	sā粵saam1
+4EEB	mù粵muk6
+4EF0	yǎng粵joeng5
+4EF2	zhòng粵zung6
+4EF3	pǐ粵pei2
+4EF5	wǔ粵ng5
+4EF6	jiàn粵gin6
+4EF7	jiè粵gaai3
+4EFB	rèn粵jam6
+4EFD	fèn粵fan6
+4EFF	fǎng粵fong2
+4F01	qǐ粵kei5
+4F09	kàng粵kong3
+4F0A	yī粵ji1
+4F0B	jí粵kap1
+4F0D	wǔ粵ng5
+4F0E	jì粵gei6
+4F0F	fú粵fuk6
+4F10	fá粵fat6
+4F11	xiū粵jau1
+4F15	fū粵fu1
+4F19	huǒ粵fo2
+4F22	yá粵ngaa4
+4F2F	bó粵baak3 bǎi粵baak3
+4F30	gū粵gu2 gù粵gu3
+4F34	bàn粵bun6
+4F36	líng粵ling4
+4F38	shēn粵san1
+4F3A	sì粵zi6 cì粵si6
+4F3B	bēng粵ping1
+4F3C	sì粵ci5 shì粵ci5
+4F3D	qié粵ke4 jiā粵gaa1
+4F3E	pī粵pei1
+4F43	diàn粵din6 tián粵tin4
+4F46	dàn粵daan6
+4F47	zhù粵cyu5
+4F48	bù粵bou3
+4F4D	wèi粵wai6
+4F4E	dī粵dai1
+4F4F	zhù粵zyu6
+4F50	zuǒ,zuò粵zo3
+4F51	yòu粵jau6
+4F54	zhàn粵zim3
+4F55	hé粵ho4
+4F57	tuó粵to4
+4F58	shé粵se4
+4F59	yú粵jyu4
+4F5A	yì粵jat6
+4F5B	fó粵fat6 fú粵fat1
+4F5C	zuò粵zok3 zuō粵zok3
+4F5D	gōu粵gau1
+4F5E	nìng粵ning6
+4F5F	tóng粵tung4
+4F60	nǐ粵nei5
+4F62	qú粵keoi5
+4F63	yòng粵jung2
+4F64	wǎ粵ngaa5
+4F67	kǎ粵kaa1
+4F69	pèi粵pui3
+4F6A	huái粵wui4
+4F6C	lǎo粵lou2
+4F6F	yáng粵joeng4
+4F70	bǎi粵baak3
+4F73	jiā粵gaai1
+4F74	èr粵ji6 nài粵noi6
+4F75	bìng粵bing3,ping3
+4F76	jí粵gat1
+4F7A	quán粵cyun4
+4F7B	tiāo粵tiu1
+4F7C	jiǎo粵gaau2
+4F7D	cì粵ci3
+4F7E	yì粵jat6
+4F7F	shǐ粵si2,sai2 shǐ粵si3
+4F82	tuō粵tok3
+4F83	kǎn粵hon2
+4F86	lái粵loi4
+4F88	chǐ粵ci2
+4F89	kuǎ粵kwaa2 kuā粵kwaa1
+4F8B	lì粵lai6
+4F8D	shì粵si6
+4F8F	zhū粵zyu1
+4F91	yòu粵jau6
+4F94	móu粵mau4
+4F96	lún粵leon4
+4F97	dòng粵dung6 tóng粵tung4 tǒng粵tung2
+4F98	chà粵caa3
+4F9B	gōng粵gung1 gòng粵gung3 gòng粵gung1
+4F9D	yī粵ji1
+4FAE	wǔ粵mou5
+4FAF	hóu粵hau4 hòu粵hau6
+4FB5	qīn粵cam1
+4FB6	lǚ粵leoi5
+4FB9	tǐng粵ting5
+4FBF	biàn粵bin6 pián粵pin4
+4FC1	yǔ粵jyu5
+4FC2	xì粵hai6
+4FC3	cù粵cuk1
+4FC4	é粵ngo4
+4FC5	qiú粵kau4
+4FCA	jùn粵zeon3
+4FCE	zǔ粵zo2
+4FCF	qiào粵ciu3
+4FD0	lì粵lei6
+4FD1	yǒng粵jung2
+4FD7	sú粵zuk6
+4FD8	fú粵fu1
+4FDA	lǐ粵lei5
+4FDB	miǎn粵min5
+4FDC	pīng粵ping1
+4FDD	bǎo粵bou2
+4FDE	yú粵jyu4 shù粵syu3
+4FDF	sì粵zi6 qí粵kei4
+4FE0	xiá粵hap6,haap6
+4FE1	xìn粵seon3
+4FEE	xiū粵sau1
+4FEF	fǔ粵fu2
+4FF1	jù,jū粵keoi1
+4FF3	pái粵paai4 pái粵pui4
+4FF5	biào粵biu2
+4FF6	chù粵cuk1
+4FF8	fèng粵fung6,fung2
+4FFA	ǎn粵aan2
+4FFE	bì粵bei2
+5000	chāng粵coeng1 chéng粵caang4
+5006	liā粵loeng5 liǎng粵loeng5
+5009	cāng粵cong1
+500B	gè粵go3 gě粵go3
+500C	guān粵gun1
+500D	bèi粵pui5
+500F	shū粵suk1
+5011	men粵mun4 mén粵mun4
+5012	dǎo粵dou2 dào粵dou3 dào粵dou2
+5014	jué粵gwat6 juè粵gwat6
+5016	xìng粵hang6
+5018	tǎng粵tong2 cháng粵soeng4
+5019	hòu粵hau6
+501A	yǐ粵ji2
+501C	tì粵tik1
+501F	jiè粵ze3
+5021	chàng粵coeng3,coeng1
+5025	kōng粵hung2
+5026	juàn粵gyun6
+5028	jù粵geoi3
+5029	qiàn粵sin6 qìng粵sin6
+502A	nì粵ngai4
+502B	lún粵leon4
+502C	zhuō粵coek3
+502D	wō粵wo1 wō粵wo2 wēi粵wai1
+5034	bèn粵ban3
+503B	yē粵je4
+503C	zhí粵zik6
+5043	yǎn粵jin2
+5047	jiǎ粵gaa2 jià粵gaa3
+5048	jì粵gai6 jié粵git6
+5049	wěi粵wai5
+504C	ruò粵je6
+504E	wēi粵wui1
+504F	piān粵pin1
+5053	wò粵ak1,aak1
+5055	xié,jiē粵gaai1
+505A	zuò粵zou6
+505C	tíng粵ting4
+5065	jiàn粵gin6
+506C	zǒng粵zung2
+5072	cāi粵coi1 sī粵si1
+5074	cè粵zak1 zè粵zak1
+5075	zhēn,zhēng粵zing1
+5076	ǒu粵ngau5
+5077	tōu粵tau1
+507D	wěi粵ngai6
+5080	kuǐ粵faai3 guī粵gwai1
+5085	fù粵fu6 fū粵fu1
+5088	lì粵leot6
+508D	bàng粵bong6 páng粵pong4
+5091	jié粵git6
+5092	xī粵hai4
+5095	jué粵gok3
+5096	cāng粵cong1 chen粵cam2
+5098	sǎn粵saan3
+5099	bèi粵bei6
+50A2	jiā粵gaa1
+50A3	dǎi粵taai3
+50AC	cuī粵ceoi1
+50AD	yōng粵jung4
+50B2	ào粵ngou6
+50B3	chuán粵cyun4 zhuàn粵zyun6
+50B4	yǔ粵jyu2
+50B5	zhài粵zaai3
+50B7	shāng粵soeng1
+50BA	chì粵cai3
+50BB	shǎ粵so4
+50BE	qīng粵king1
+50C2	lǚ粵leoi5 lóu粵lau4
+50C5	jǐn粵gan2 jìn粵gan6
+50C7	lù粵luk6
+50C9	qiān粵cim1
+50CD	dòng粵dung6
+50CF	xiàng粵zoeng6
+50D1	qiáo粵kiu4
+50D5	pú粵buk6
+50D6	xī粵hei1
+50DA	liáo粵liu4
+50DC	dèng粵dang6
+50DD	chán粵saan4
+50E5	jiǎo粵hiu1 yáo粵jiu4
+50E6	jiù粵zau6
+50E7	sēng粵zang1
+50E8	fèn粵fan5
+50EC	jiāo粵ziu1
+50ED	jiàn粵cim3
+50EE	zhuàng粵zong6 tóng粵tung4
+50F0	bó粵baak6
+50F3	sù粵suk1
+50F5	jiāng粵goeng1
+50F9	jià粵gaa3 jie粵gaa3
+50FB	pì粵pik1
+50FD	zhòu粵zau3,zau6
+50FF	shì粵si3
+5100	yí粵ji4
+5102	nóng粵nung4
+5104	yì粵jik1
+5106	jǐng粵ging2
+5107	xuān粵hyun1
+5108	kuài粵kui2
+5109	jiǎn粵gim6
+510B	dān粵daam1
+510E	zài粵zoi3
+5110	bīn粵ban3
+5112	rú粵jyu4
+5114	chóu粵cau4
+5115	chái粵caai4
+5118	jǐn粵zeon2
+511F	cháng粵soeng4
+5121	lěi粵leoi5
+512A	yōu粵jau1
+5131	lǒng粵lung5
+5132	chǔ,chú粵cyu5
+5137	lì粵lai6
+5138	luo粵lo4
+5139	zǎn粵zyun2
+513A	nuó粵no4
+513B	tǎng粵tong2
+513C	yǎn粵jim5
+513F	rén粵jan4
+5140	wù粵ngat6
+5141	yǔn粵wan5
+5143	yuán粵jyun4
+5144	xiōng粵hing1
+5145	chōng粵cung1
+5146	zhào粵siu6
+5148	xiàn粵sin1
+5149	guāng粵gwong1
+514B	kè粵hak1
+514D	miǎn粵min5
+5151	duì粵deoi3
+5152	ér粵ji4
+5154	tù粵tou3
+5155	sì粵zi6
+5156	yǎn粵jin2
+515A	dāng粵dong2
+515C	dōu粵dau1
+5162	jīng粵ging1
+5165	rù粵jap6
+5167	nèi粵noi6
+5168	quán粵cyun4
+5169	liǎng粵loeng5 liǎng粵loeng2
+516B	bā粵baat3
+516C	gōng粵gung1
+516D	liì粵luk6 lù粵luk6
+516E	xī粵hai4
+5171	gòng粵gung6
+5175	bīng粵bing1
+5176	qí粵kei4 jī粵gei1
+5177	jù粵geoi6
+5178	diǎn粵din2
+5179	zī粵zi1 cí粵ci4
+517C	jiān粵gim1
+5180	jì粵kei3
+5187	mǎo粵mou5
+5189	rǎn粵jim5
+518A	cè粵caak3
+518D	zài粵zoi3
+518F	jiǒng粵gwing2
+5191	zhòu粵zau6
+5192	mào粵mou6 mò粵mak6
+5193	gòu粵gau3 gōu粵gau1
+5195	miǎn粵min5
+5198	yín粵jam4 yóu粵jau4
+519E	mí粵mei4
+51A0	guān粵gun1 guàn粵gun3
+51A2	zhǒng粵cung2
+51A3	jù粵zeoi6 zuì粵zeoi3
+51A4	yuān粵jyun1
+51A5	míng粵ming4
+51AA	mì粵mik6
+51AC	dōng粵dung1
+51B0	bīng粵bing1 níng粵jing4
+51B6	yě粵je5
+51B7	lěng粵laang5
+51BC	xiǎn粵sin2
+51BD	liè粵lit6
+51C6	zhǔn粵zeon2
+51C7	sōng粵sung1
+51CA	jìng粵zing6
+51CB	diāo粵diu1
+51CC	líng粵ling4
+51CD	dòng粵dung3
+51D3	lì粵leot6
+51D4	cāng粵cong1
+51D8	sī粵si1
+51D9	duó粵dok6
+51DC	lǐn粵lam5
+51DD	níng粵jing4
+51E0	jī粵gei1
+51E1	fán粵faan4
+51ED	píng粵pang4
+51F0	huáng粵wong4
+51F1	kǎi粵hoi2
+51F3	dèng粵dang3
+51F6	xiōng粵hung1
+51F8	tū粵dat6
+51F9	āo粵aau3,nap1 wā粵waa1
+51FA	chū粵ceot1
+51FD	hàn粵haam4
+5200	dāo粵dou1
+5201	diāo粵diu1
+5203	rèn粵jan6
+5206	fēn粵fan1 fēn粵fan6 fèn粵fan6
+5207	qiē粵cit3 qiè粵cit3 qiè粵cai3
+5208	yì粵ngaai6
+520A	kān粵hon2,hon1
+520E	wěn粵man5
+5211	xíng粵jing4
+5212	huá粵waa4,waa1
+5213	wán粵jyun4
+5216	yuè粵jyut6
+5217	liè粵lit6
+521D	chū粵co1
+5224	pàn粵pun3
+5225	bié粵bit6 biè粵bit6
+5228	páo粵paau4 bào粵paau4
+5229	lì粵lei6
+522A	shān粵saan1
+522E	guā粵gwaat3
+5230	dào粵dou3
+5232	kuī粵gwai1
+5233	kū粵fu1
+5235	èr粵ji6
+5236	zhì粵zai3
+5237	shuā粵caat3 shuà粵caat3
+5238	quàn,juàn粵hyun3,gyun3 xuàn,quàn粵hyun3,gyun3
+523A	cì粵ci3 cì粵cik3,ci3 cī粵ci3
+523B	kè粵hak1
+5241	duò粵do2,doek3
+5243	tì粵tai3
+5244	jìng粵ging2
+5245	lóu粵lau4 dōu粵dau1
+5247	zé粵zak1
+5249	cuò粵co3
+524A	xiāo粵soek3 xuē粵soek3
+524B	kēi粵hak1
+524C	là粵laat6 lá粵laai1
+524D	qián粵cin4
+524E	chà粵caat3,saat3 shā粵saat3
+5252	cuò粵cok3
+5254	tī粵tik1
+5255	fèi粵fai3
+5256	pōu粵fau2,pau2
+5257	chàn粵caan2
+525A	zì粵zi3
+525B	gāng粵gong1
+525C	wān粵wun1,wun2
+525D	bō粵mok1 bāo粵mok1
+525E	jī粵gei1
+525F	duō粵zyut3
+5261	yǎn粵jim5 shàn粵sim6
+5268	huō粵waak6
+5269	shèng粵sing6
+526A	jiǎn粵zin2
+526E	guǎ粵gwaa2
+526F	fù粵fu3
+5272	gē粵got3
+5274	kǎi粵hoi2
+5275	chuàng粵cong3 chuāng粵cong1
+527A	lí粵lei4
+527D	piāo粵piu3,piu5
+527F	jiǎo粵ziu2 chāo粵caau1
+5281	qiāo粵ciu4
+5282	jué粵kyut3
+5283	huà粵waak6 huá粵waak6 huai粵waak6
+5284	zhá粵zaap3
+5287	jù粵kek6
+5288	pī粵pek3 pǐ粵pek3
+5289	liú粵lau4
+528A	guì粵kui2
+528C	guì粵gwai3
+528D	jiàn粵gim3
+5290	huō粵fok3 huò粵wok6
+5291	jì粵zai1
+5293	yì粵ji6
+5296	chán粵caam4
+5297	jiān粵zin2
+5298	mó粵mo4
+5299	lí粵lei4,lai5
+529B	lì粵lik6
+529F	gōng粵gung1
+52A0	jiā粵gaa1
+52A3	liè粵lyut3,lyut6
+52A9	zhù粵zo6
+52AA	nǔ粵nou5
+52AB	jié粵gip3
+52AC	qú粵keoi4
+52AD	shào粵siu6
+52BB	kuāng粵hong1
+52BC	jié粵kit3
+52BE	hé粵hat6
+52C1	jìn粵ging3 jìng粵ging6
+52C3	bó粵but6
+52C7	yǒng粵jung5
+52C9	miǎn粵min5
+52CD	qíng粵king4
+52D0	měng粵maang5
+52D1	lài粵loi6
+52D2	lè粵lak6,laak6 lēi粵lak6,laak6
+52D4	miǎn粵min5
+52D5	dòng粵dung6
+52D6	xù粵juk1
+52D8	kān粵ham1 kān,kàn粵ham3
+52D9	wù粵mou6
+52DD	shèng粵sing3 shèng,shēng粵sing1
+52DE	láo粵lou4 láo,lào粵lou6
+52DF	mù粵mou6
+52E2	shì粵sai3
+52E4	qín粵kan4
+52E5	qiǎng粵koeng5 jiàng粵koeng6
+52E9	yì粵ji6
+52F0	xié粵hip3
+52F1	mài粵maai6
+52F3	xūn粵fan1
+52F5	lì粵lai6
+52F7	ráng粵joeng4 xiāng粵soeng1
+52F8	quàn粵hyun3
+52FA	sháo粵zoek3,coek3
+52FC	jiū粵gau1
+52FE	gōu粵ngau1 gòu粵ngau1
+52FF	wù粵mat6
+5300	yún粵wan4
+5305	bāo粵baau1
+5306	cōng粵cung1
+5308	xiōng粵hung1
+530B	táo粵tou4
+530D	pú粵pou4
+530F	páo粵paau4
+5310	fú粵fuk6
+5315	bǐ粵bei2,bei3
+5316	huà粵faa3
+5317	běi粵bak1
+5319	chí粵ci4 shi粵si4
+531C	yí粵jyu4
+531D	zā粵zaap3
+5320	jiàng粵zoeng6
+5321	kuāng粵hong1
+5323	xiá粵haap6
+532A	fěi粵fei2
+532D	guǐ粵gwai2
+532F	huì粵wui6
+5330	dān粵daan1
+5331	kuì粵gwai6
+5334	suǎn粵syun3
+5339	pǐ粵pat1
+533B	yì粵ai3
+533C	kē粵hap6
+533D	yǎn粵jin2
+533E	biǎn粵bin2
+533F	nì粵nik1
+5340	qū粵keoi1 ōu粵au1
+5341	shí粵sap6
+5343	qiān粵cin1
+5345	sà粵saa1
+5347	shēng粵sing1
+5348	wǔ粵ng5
+5349	huì粵wai2
+534A	bǎn粵bun3
+5351	bēi粵bei1
+5352	zú粵zeot1
+5353	zhuō粵coek3
+5354	xié粵hip3
+5357	nán粵naam4 nā粵naa4
+535A	bó粵bok3
+535C	bǔ粵buk1
+535E	biàn粵bin6
+535F	bǔ粵buk1
+5360	zhān粵zim1
+5361	qiǎ粵kaa2 kǎ粵kaa1 kǎ粵kaat1
+5363	yǒu粵jau5
+5366	guà粵gwaa3
+5367	wò粵ngo6
+536C	áng粵ngong4 yǎng粵joeng5
+536E	zhī粵zi1
+536F	mǎo粵maau5
+5370	yìn粵jan3
+5371	wēi粵ngai4
+5373	jí粵zik1
+5375	luǎn粵leon2
+5377	juǎn粵gyun2 quán粵kyun1
+5378	xiè粵se3
+537A	jǐn粵gan2
+537B	què粵koek3
+537F	qīng粵hing1
+5382	ān粵am1 àn粵ngon6
+5384	è粵ak1,aak1
+5393	yá,yái粵ngaai4
+5394	zhì粵zat6
+5396	páng粵pong4 máng粵mong4
+5398	lì粵lei4
+5399	shè粵se3
+539A	hòu粵hau5
+539D	cuó粵cou3
+539F	yuán粵jyun4
+53A5	jué粵kyut3
+53AD	yàn粵jim3
+53B2	lì粵lai6
+53B4	yǎn粵jim2
+53B6	sī粵si1 mǒu粵mau5
+53BB	qù粵heoi3
+53BE	dū粵duk1
+53C1	sān粵saam1
+53C3	cān粵caam1 shēn粵sam1 cén粵cam1,caam1
+53C8	yòu粵jau6
+53C9	chā粵caa1 chá粵caa1 chǎ粵caa5
+53CA	jí粵kap6,gap6
+53CB	yǒu粵jau5
+53CD	fǎn粵faan2 fǎn,fān粵faan1
+53D4	shū粵suk1
+53D5	zhuó粵zyut3
+53D6	qǔ粵ceoi2
+53D7	shòu粵sau6
+53DB	pàn粵bun6
+53DF	sǒu粵sau2
+53E2	cóng粵cung4
+53E3	kǒu粵hau2
+53E4	gǔ粵gu2
+53E5	jù粵geoi3 gōu粵ngau1
+53E6	lìng粵ling6
+53E8	tāo粵tou1 dāo粵dou1
+53E9	kòu粵kau3
+53EA	zhǐ粵zi2
+53EB	jiào粵giu3
+53EC	zhào粵ziu6 shào粵siu6
+53ED	bā粵baa1
+53EE	dīng粵ding1,deng1
+53EF	kě粵ho2 kè粵hak1
+53F0	tái粵toi4 tāi粵toi4
+53F1	chì粵cik1
+53F2	shǐ粵si2
+53F3	yòu粵jau6
+53F5	pǒ粵po2
+53F6	xié粵hip3
+53F8	sī粵si1
+53FB	lè粵lak6,laak6 lié粵lek1
+53FC	diāo粵diu1
+5401	xū粵heoi1
+5403	chī粵hek3 chī,jī粵gat1,kek3
+5404	gè粵gok3 gě粵gok3
+5406	yāo粵jiu1
+5408	hé粵hap6 hé粵ho4 gě粵gap3
+5409	jí粵gat1
+540B	cùn,yīngcùn粵cyun3,jing1cyun3
+540C	tóng粵tung4 tòng粵tung4
+540D	míng粵ming4
+540E	hòu粵hau6
+540F	lì粵lei6
+5410	tǔ粵tou3 tù粵tou3
+5411	xiàng粵hoeng3
+5412	zhā粵zaa1
+5416	ā粵aa1
+541B	jūn粵gwan1
+541D	lìn粵leon6
+541E	tūn粵tan1
+541F	yín粵jam4
+5420	fèi粵fai6
+5421	bǐ粵pei2
+5422	qìn粵cam3
+5425	bù粵bat1
+5426	fǒu粵fau2 pǐ粵pei2
+5427	bā粵baa1 ba粵baa6
+5429	fēn粵fan1
+542A	é粵ngo4
+542B	hán粵ham4
+542D	háng粵hong4 kēng粵hang1
+542E	shǔn粵syun5
+5430	hóng粵wang4
+5431	zhī,zī粵zi1
+5432	yǐn粵jan5
+5433	wú粵ng4
+5435	chǎo粵caau2 chāo粵caau2
+5436	nà粵naap6
+5437	xuè粵hyut3
+5438	xī粵kap1
+5439	chuī粵ceoi1 chuī,chuì粵ceoi1,ceoi3
+543B	wěn粵man5
+543C	hǒu粵hau3,haau1
+543D	hōng粵hung1 hǒu粵hau2 óu粵ngau4
+543E	wú粵ng4
+543F	gào粵gou3 jù粵guk1
+5440	yā粵aa1 ya粵aa1
+5442	lǚ粵leoi5
+5443	è粵ak1,aak1
+5446	dāi粵ngoi4 dāi粵daai1
+5448	chéng粵cing4
+544B	fū粵fu1
+544E	chǐ,yīngchǐ粵cek3,jing1cek3
+5454	dāi粵taai1
+5462	né粵nai4,nei4 ne粵ne1
+5463	m̄粵m2 m̀粵m6
+5464	líng粵ling4
+5466	yōu粵jau1
+5468	zhōu粵zau1
+546B	tiè粵tip3 chè粵cip3
+546C	xì粵hei3
+5471	guā粵gwaa1 gū粵gu1 guā粵gwaa1
+5473	wèi粵mei6
+5474	xǔ粵heoi3 hōu粵hau1 hǒu粵hau3
+5475	hē粵ho1
+5476	náo粵naau4
+5477	xiā粵haap3
+5478	pēi粵pei1
+547B	shēn粵san1
+547C	hū粵fu1
+547D	mìng粵ming6,meng6
+547F	qū粵keoi1
+5480	jǔ粵zeoi2 zuǐ粵zeoi2
+5481	gěm粵gam2
+5482	zā粵zaap3
+5484	duō粵deot1,zyut3
+5486	páo粵paau4
+548B	zé粵zaak3 zhà粵zaa3 zǎ粵zaa3 zhā粵zaa1
+548C	hé粵wo4 hè粵wo6 huó粵wo6 hú粵wu2
+548D	hāi粵hoi1
+548E	jiù粵gau3
+5490	fu粵fu3
+5491	dā粵daa1
+5492	zhòu粵zau3
+5494	kǎ粵kaa1
+5495	gū粵gu1
+5496	gā粵gaa3 kā粵gaa3
+549A	dōng粵dung1
+54A4	zhà粵zaa3
+54A5	xì粵hei3 dié粵dit6
+54A6	yí粵ji4
+54A7	liě粵le2 lié粵le4 lie粵le1
+54A8	zī粵zi1
+54A9	miē粵me1
+54AA	mī粵mai1,mei1
+54AB	zhǐ粵zi2
+54AC	yǎo粵ngaau5 jiāo粵gaau1
+54AD	jī粵gat1
+54AE	zhòu粵zau3
+54AF	kǎ粵kaak3 lo粵lo1 gē粵gok1
+54B1	zán粵zaa1
+54B3	ké粵kat1 hāi粵haai1 kài粵koi3
+54B4	huī粵fui1
+54B8	xián粵haam4
+54BB	xiū粵jau1 xǔ粵heoi2
+54BD	yān粵jin1 yè粵jit3
+54BF	yī粵ji1
+54C0	āi粵oi1
+54C1	pǐn粵ban2
+54C2	shěn粵can2
+54C4	hōng粵hung1 hǒng粵hung3
+54C6	duō粵do1 chǐ粵ci2
+54C7	wā粵waa1 wa粵waa1
+54C8	hā粵haa1 hǎ粵haa1 hà粵haa1
+54C9	zāi粵zoi1
+54CC	pài粵paai3
+54CE	āi粵aai1
+54CF	gén粵gan1
+54D0	kuāng粵hong1
+54DA	duǒ粵do2
+54DE	mōu粵mau1
+54E1	yuán粵jyun4 yún粵wan4 yùn粵wan6
+54E2	lòng粵lung6
+54E5	gē粵go1
+54E6	ó粵o4 ò粵o6 é粵ngo4
+54E7	chī粵ci1
+54E8	shào粵saau3
+54E9	li粵le1 lǐ粵lei5 lī粵li1
+54EA	nǎ粵naa5 něi粵naa1 né粵naa4
+54ED	kū粵huk1
+54EE	xiào粵haau1
+54F2	zhé粵zit3
+54F3	zhā粵zaat3
+54FA	bǔ粵bou6
+54FC	hēng粵hang1 hng粵hng6
+54FD	gěng粵gang2
+54FF	gě,kě粵go2
+5501	yàn粵jin6
+5504	bei粵be6 bài粵baai6
+5506	suō粵so1
+5509	āi粵aai1 ài粵aai3
+550F	xī粵hei1
+5510	táng粵tong4
+5511	zuò粵zo6
+5514	wú粵ng4 m̀粵m4
+5517	dōu粵dau1
+5523	zào粵zou6
+5527	jī粵zik1 jī粵zit1
+552A	fěng粵fung2
+552C	hǔ粵fu2
+552E	shòu粵sau6
+552F	wéi粵wai4 wěi粵wai2
+5530	shuā粵caat3
+5531	chàng粵coeng3
+5533	lì粵leoi6
+5535	ǎn粵am2
+5536	jiè粵ze3
+5537	yō粵jo1
+5538	niàn粵nim6
+553C	shà,zā粵saap3,zaap3
+553E	tuò粵to3,toe3
+553F	hū粵fat1
+5541	zhōu粵zau1 zhāo粵zaau1
+5543	kěn粵hang2
+5544	zhuó粵doek3
+5546	shāng粵soeng1
+5548	hēng粵hang1
+5549	lín粵lam4
+554A	ā粵aa1 á粵aa2 ǎ粵aa2 à粵aa3 a粵aa3
+554F	wén粵man6
+5550	cuì粵ceoi3
+5553	qǐ粵kai2
+5555	táo粵tou4
+5556	dàn粵daam6
+555C	chuò粵zyut3 chuài粵zyut3
+555E	yǎ粵aa2 yā粵aa1 yǎ粵ak1
+5561	fēi粵fe1
+5562	liǎng粵loeng2
+5564	pí粵be1
+5565	shà粵saa2
+5566	la粵laa1 lā粵laa1
+556A	pā粵paak1
+5575	bo粵bo3
+5576	dìng粵ding6
+5577	lāng粵long1
+557B	chì粵ci3
+557C	tí粵tai4
+557E	jiū粵zau1
+5580	kā粵kaa1 kè粵kaak3
+5581	yóng粵jung4 yú粵jyu4
+5582	wèi粵wai3
+5583	nán粵naam4
+5584	shàn粵sin6
+5586	zhé粵zit3
+5587	lǎ粵laa3 lǎ粵laa1
+5588	jiē粵gaai1
+5589	hóu粵hau4
+558A	hǎn粵haam3
+558B	dié粵dip6 zhá粵zaap3
+558E	wāi粵waa1
+558F	rě粵je5 nuò粵nok6
+5591	yīn粵jam1 yìn粵jam3
+5594	wō粵ak1,aak1 ō粵o1
+5598	chuǎn粵cyun2
+5599	huì粵fui3
+559A	huàn粵wun6
+559C	xǐ粵hei2
+559D	hē粵hot3 hè粵hot3
+559F	kuì粵wai2
+55A4	huáng粵wong4
+55A7	xuān粵hyun1
+55A8	liàng粵loeng6
+55AA	sāng粵song1 sàng粵song3
+55AC	qiáo粵kiu4
+55AE	dān粵daan1 shàn粵sin6 chán粵sim4
+55B1	lí粵lei1
+55B2	yo粵jo1
+55B3	zhā粵zaa1 chā粵caa1
+55B5	miāo粵miu1
+55B9	kuí粵kwai4
+55BB	yù粵jyu6
+55C4	shà粵saa3 á粵aa2
+55C5	xiù粵cau3
+55C6	qiāng粵coeng1 qiàng粵coeng3
+55C7	sè粵sik1
+55C9	sù粵sou3
+55CA	hǒng粵fung2 gòng粵gung3
+55CC	ài粵aai3 yì粵jik1
+55CD	suō粵sok3
+55CE	ma粵maa1,maa3 má粵maa1 mǎ粵maa1
+55D0	hài粵haai6
+55D1	kè粵haap3 hé粵hap6
+55D2	tà粵taap3 dā粵daat6
+55D3	sǎng粵song2
+55D4	chēn粵can1
+55D6	sōu粵sau1
+55D9	pǎng粵pong5
+55DA	wū粵wu1
+55DB	qiǎn粵him2
+55DC	shì粵si3
+55DD	gé粵gaak3
+55DE	zī粵zi1
+55DF	jiē,juē粵ze1
+55E1	wēng粵jung1
+55E2	wà粵wat1
+55E3	sì粵zi6
+55E4	chī粵ci1
+55E5	háo粵hou4
+55E6	suo粵so1
+55E8	hāi粵haai1
+55E9	suǒ粵so2
+55EA	qín粵ceon4
+55EC	hē粵ho1
+55EF	ń,ńg粵ng2 ň,ňg粵ng2 ǹ,ǹg粵ng6
+55F2	diǎ粵de2
+55F6	bì粵bat1
+55F7	áo粵ngou4
+55FB	zhè粵ze1
+55FD	sòu粵sau3
+55FE	sǒu粵sau2
+5600	dí粵dik6
+5601	qī粵ci1
+5608	cáo粵cou4
+5609	jiā粵gaa1
+560C	piào粵piu1 piāo粵piu1
+560D	lou粵lau1 lóu粵lau4
+560E	gā粵gaat3
+560F	gǔ,jiǎ粵gu2,gaa2
+5613	guō粵gwok3
+5614	ǒu粵au2
+5616	zé粵zaak3
+5617	cháng粵soeng4
+561B	ma粵maa3 ma粵maa4
+561C	mà粵mak1
+561E	lei粵laa3
+561F	dū粵dou1
+5621	tāng粵tong1
+5623	bēng粵bang1
+5626	jiào粵ziu3
+5627	mì粵mat6
+5629	huā粵waa1
+562C	zuō粵zyut3 chuài粵caai3
+562E	lào粵lou4
+562F	xiào粵siu3
+5630	jī粵gei1
+5632	cháo,zhāo粵zaau1
+5634	zuǐ粵zeoi2
+5635	xiāo粵hiu1
+5636	sī粵sai1
+5638	ḿ粵m4 fǔ粵fu2
+5639	liáo粵liu4
+563B	xī粵hei1
+563F	hèi粵hei1
+5640	xùn粵seon3
+5641	ě粵ok3 wù粵wu1
+5646	zǎn粵cam2
+5647	chuáng粵cong4
+564C	cēng粵cang1 chēng粵zang1
+564D	jiào粵ziu6
+564E	yē粵jit3
+5653	xū粵heoi1 shī粵hoe1
+5654	dēng粵dang1
+5657	pū粵pok3
+5659	qín粵kam4
+565A	xún粵cam4
+565D	sī粵si1
+5662	yǔ粵jyu2 ō粵o1
+5664	jìn粵gam3
+5665	nóng粵nung4
+5666	yuě粵jyut6
+5668	qì粵hei3
+5669	è粵ngok6
+566A	zào粵cou3
+566B	yī粵ji1
+566C	shì粵sai6
+566F	ài粵oi2 ǎi粵oi2
+5671	jué粵koek6 xué粵koek1
+5672	kuài粵faai3
+5674	pēn粵pan3 pèn粵pan3
+5676	gá粵gaa1 gé粵got3
+5677	hm粵hm1
+5678	dūn粵deon1
+5679	dāng粵dong1
+567B	sāi粵sak1
+567C	pī粵pik1
+5680	níng粵ning4
+5684	huō粵wok6 ǒ粵o2
+5685	rú粵jyu4
+5686	hāo粵hou1
+5687	xià粵haak3 hè粵haak3
+568E	háo粵hou4
+568F	tì粵tai3
+5693	cā粵caat3 chā粵caat3
+5695	lū粵lou1
+5699	niè粵ngit6
+569A	yín粵ngan4
+569C	me粵maa1
+56A5	yàn粵jin3
+56A6	lì粵lik1
+56A8	lóng粵lung4
+56AD	pǐ粵pei2
+56AE	xiàng粵hoeng3
+56B2	duǒ粵do2
+56B3	kù粵guk1
+56B4	yán粵jim4
+56B6	yǐng粵jing1
+56B7	rǎng粵joeng5,joeng6 rāng粵joeng5,joeng6
+56BC	jiáo粵zoek3 jué粵zoek3 jiào粵ziu6
+56C0	zhuàn粵zyun2
+56C1	niè粵zip3
+56C2	xiāo粵hiu1
+56C5	chǎn粵cin2
+56C8	yì粵ngai6
+56C9	luó粵lo4 luo粵lo3 luō粵lo1 luo粵lo4
+56CA	náng粵nong4 nāng粵nong4
+56CC	sū粵sou1
+56D1	zhǔ粵zuk1
+56D4	nāng粵nong4
+56D7	wéi粵wai4
+56DA	qiú粵cau4
+56DB	sì粵sei3
+56DD	jiǎn粵zai2
+56DE	huí粵wui4
+56DF	xìn粵seon3,seon2
+56E0	yīn粵jan1
+56E1	nān粵naam4
+56E4	dùn粵deon6 tún粵tyun4
+56EB	hú粵fat1
+56EE	yóu粵jau4 é粵ngo4
+56F0	kùn粵kwan3
+56F1	cōng粵cung1 chuāng粵coeng1
+56F7	qūn粵kwan1
+56F9	líng粵ling4
+56FA	gù粵gu3
+56FF	yòu粵jau6
+5703	pǔ粵pou2
+5704	yǔ粵jyu5
+5709	yǔ粵jyu5
+570A	qīng粵cing1
+570B	guó粵gwok3
+570D	wéi粵wai4
+570F	quān粵hyun1 juàn粵gyun6 juān粵hyun1
+5710	kū粵ku1
+5712..5713	yuán粵jyun4
+5716	tú粵tou4
+5718	tuán粵tyun4
+571C	huán粵waan4
+571F	tǔ粵tou2
+5728	zài粵zoi6
+5729	wéi粵wai4 xū粵heoi1
+572A	gē粵ngat6
+572C	wū粵wu1
+572D	guī粵gwai1
+572E	pǐ粵pei2
+572F	yí粵ji4
+5730	dì粵dei6 de粵dei6
+5733	zhèn粵zan3
+573B	qí粵kei4
+573E	jī粵saap3
+5740	zhǐ粵zi2
+5747	jūn粵gwan1
+574A	fāng粵fong1 fáng粵fong1 fáng粵fong4
+574C	bèn粵ban6
+574D	tān粵taan1
+574E	kǎn粵ham2
+5750	zuò粵zo6
+5751	kēng粵haang1
+5761	pō粵po1
+5764	kūn粵kwan1
+5766	tǎn粵taan2
+5768	tuó粵to4
+5769	gān粵ham1
+576A	píng粵ping4
+576B	diàn粵dim3
+576D	ní粵nai4
+576F	pī粵pui1
+5770	jiōng粵gwing1
+5773	ào,āo粵aau3,aau1
+5777	kē粵ho1 kě粵ho2
+577B	dǐ粵dai2 chí粵ci4
+577C	chè粵caak3
+5782	shuí粵seoi4
+5783	lā粵laap6 la粵laai1
+5787	ào粵aau3
+578B	xíng粵jing4
+578C	dòng粵dung6 tóng粵tung4
+578D	jì粵gei6
+5793	gāi粵goi1
+5795	hòu粵hau6
+579A	yáo粵jiu4
+579B	duò粵do2 duò粵do2
+579D	guǐ粵gwai2
+579E	chá粵caa4
+579F	yáng粵joeng4
+57A0	gín粵ngan4
+57A1	fá粵fat6
+57A2	gòu粵gau3
+57A3	yuán粵wun4
+57A4	dié粵dit6
+57A7	shǎng粵hoeng2
+57AE	kuǎ粵kwaa1
+57B8	yuàn粵jyun6
+57C2	gěng粵gang2
+57C3	āi粵oi1
+57C6	què粵kok3
+57CB	mái粵maai4 mán粵maai4
+57CC	làng粵long6
+57CE	chéng粵sing4
+57D3	liè粵lyut3
+57D4	pǔ粵bou3 bù粵bou3 pǔ粵pou2
+57D5	chéng粵cing4
+57DD	niàn粵nim6
+57DF	yù粵wik6
+57E0	bù粵bou6 bù粵fau6
+57E1	yà粵aa3
+57E4	pí粵pei4 pì粵pai6
+57ED	dài粵dai6
+57EF	ǎn粵am2
+57F4	zhí粵zik6
+57F5	duǒ粵do2
+57F7	zhí粵zap1
+57F8	yì粵jik6
+57F9	péi粵pui4
+57FA	jì粵gei1
+57FB	zhǔn粵zeon2
+57FC	qí粵kei4
+57FD	sào粵sou3
+5802	táng粵tong4
+5803	kūn粵kwan1
+5804	nì粵ngai6
+5805	jiān粵gin1
+5806	duī粵deoi1
+5807	jǐn粵gan2 jìn粵gan1
+580A	è粵ok3
+580B	péng粵pang4
+580C	gù粵gu3
+580D	gù粵tou3
+580E	lèng粵ling6
+5816	nǎo粵nou5
+5819	yīn粵jan1
+581D	guō粵wo1
+581E	dié粵dip6
+5820	hòu粵hau6
+5821	bǎo粵bou2 bǔ粵bou2 pù粵pou3
+5824	dī粵tai4
+582A	kān粵ham1
+582F	yáo粵jiu4
+5830	yàn粵jin2
+5831	bào粵bou3
+5834	cháng粵coeng4 chǎng粵coeng4
+5835	dǔ粵dou2
+583D	gāng粵gong1
+5843	huāng粵fong1
+5844	léng粵ling4
+5845	duàn粵dyun6
+584A	kuài粵faai3
+584B	yǐng粵jing4
+584C	tā粵taap3
+584D	chéng粵sing4
+584F	kǎi粵hoi2
+5851	sù粵sou3
+5852	shǐ粵si4
+5854	tǎ粵taap3
+5857	tú粵tou4
+5858	táng粵tong4
+585E	sāi粵sak1 sè粵sak1 sài粵coi3
+5862	wù粵wu2 wù粵ou3
+5868	gōng粵gung1
+586B	tián粵tin4
+586C	yuán粵jyun4
+5871	lǎng粵long5
+5875	chén粵can4
+5879	qiàn粵cim3
+587D	shuǎng粵song2
+587E	shú粵suk6
+587F	lǒu粵lau5
+5880	chí粵ci4
+5881	màn粵maan6
+5883	jìng粵ging2
+5885	shù粵seoi6
+5888	kàn粵ham3
+5889	yōng粵jung4
+588A	diàn粵din3 diàn粵din2 diàn粵din6
+5892	shāng粵soeng1
+5893	mù粵mou6
+589C	zhuì粵zeoi6
+589D	qiāo粵haau1
+589E	zēng粵zang1
+589F	xū粵heoi1
+58A0..58A1	shàn粵sin6
+58A6	fán粵faan4
+58A8	mò粵mak6
+58A9	dūn粵deon1 dūn粵dan2
+58AC	dì粵dei6
+58AE	duò粵do6
+58B1	dèng粵dang3
+58B3	fén粵fan4
+58B6	da粵daat3
+58BA	ào粵ou3
+58BC	jī粵gik1
+58BE	kěn粵han2
+58C1	bì粵bik1
+58C5	yōng,yǒng粵jung1,jung2
+58C6	bó粵bok3
+58C7	tán粵taan4
+58C8	lǎn粵lam5
+58CB	dàng粵dong3
+58CE	xūn粵hyun1
+58D1	hè粵kok3
+58D3	yā粵aat3
+58D4	dǎo粵dou2
+58D5	háo粵hou4
+58D8	lěi粵leoi5 léi粵leoi4 lǜ粵leot6
+58D9	kuàng粵kwong3,kong3
+58DA	lú粵lou4
+58DC	tán粵taam4
+58DD	wéi,wěi粵wai4,wai5
+58DE	huài粵waai6
+58DF	lǒng粵lung5
+58E2	lì粵lik6
+58E4	rǎng粵joeng6
+58E9	bà粵baa3
+58EB	shì粵si6
+58EC	rén粵jam4
+58EF	zhuàng粵zong3
+58F9	yī粵jat1
+58FA	hú粵wu4
+58FC	kǔn粵kwan2
+58FD	shòu粵sau6
+590F	xià粵haa6
+5910	xiòng粵hing3
+5912	náo粵nou4
+5914	kuí粵kwai4
+5915	xī粵zik6
+5916	wài粵ngoi6
+5919	sù粵suk1
+591A	duō粵do1
+591C	yè粵je6
+591D	qíng粵cing4
+5920	gòu粵gau3
+5922	mèng粵mung6
+5924	yín粵jan4
+5925	huǒ粵fo2
+5927	dà粵daai6 dài粵daai6 taì粵taai3
+5929	tiān粵tin1
+592A	tài粵taai3
+592B	fū粵fu1
+592C	guài粵gwaai3
+592D	yāo粵jiu1 yāo,yǎo粵jiu2
+592E	yāng粵joeng1
+592F	hāng粵haang1 bèn粵ban6
+5931	shī粵sat1
+5937	yí粵ji4
+5938	kuā粵kwaa1
+593C	kuǎng粵kwong3
+593E	jiā粵gaap3 jiá粵gaap3 gā粵gaap3
+5940	ēn粵ngan1
+5944	yǎn粵jim2 yān粵jim1
+5945	pào粵paau3
+5947	qí粵kei4 jī粵gei1
+5948	nài粵noi6
+5949	fèng粵fung6
+594E	kui粵fui1,kwai1
+594F	zòu粵zau3
+5950	huàn粵wun6
+5951	qì粵kai3 qiè粵kit3 qì粵kit3
+5953	zhà粵zaa3 zhā粵zaa1
+5954	bēn粵ban1 bèn粵ban1,ban3
+5955	yì粵jik6
+5957	tào粵tou3
+5958	zhuǎng粵zong5 zàng粵zong6
+595A	xī粵hai4
+5960	diàn粵din6
+5961	ào粵ngou6
+5962	shē粵ce1
+5967	ào粵ou3
+5969	lián粵lim4
+596A	duó粵dyut6
+596C	jiǎng粵zoeng2
+596D	shì粵sik1
+596E	fèn粵fan5
+5973	nǚ粵neoi5 nǜ粵neoi6
+5974	nú粵nou4
+5976	nǎi粵naai5
+5978	jiān粵gaan1
+5979	tā粵taa1
+597D	hǎo粵hou2 hào粵hou3
+5981	shuò粵zoek3
+5982	rú粵jyu4
+5983	fēi粵fei1
+5984	wàng粵mong5
+598A	rèn粵jam6
+598D	yán粵jin4
+598E	hài粵hoi6
+5992	dù粵dou3
+5993	jì粵gei6
+5996	yāo粵jiu2,jiu1
+5997	jìn粵kam5
+5998	yún粵wan4
+5999	miào粵miu6
+599D	zhuāng粵zong1
+599E	niū粵nau2
+59A0	nà粵naap6
+59A3	bǐ粵bei2
+59A4	yú粵jyu4
+59A5	tuǒ粵to5
+59A8	fáng粵fong4
+59AE	nī粵nei4
+59AF	zhóu粵zuk6
+59B2	dá粵daat3,taan2
+59B3	nǐ粵nei5
+59B7	yì粵jat6
+59B9	mèi粵mui6
+59BA	mò粵mut6
+59BB	qī粵cai1 qì粵cai3
+59BE	qiè粵cip3
+59C1	xǔ粵heoi2,heoi3
+59C5	bàn粵bun3,pun3
+59C6	mǔ粵mou5
+59CA	zǐ粵zi2
+59CB	shǐ粵ci2
+59CC	rǎn粵jim5
+59CD	shān粵saan1
+59D0	jiě粵ze2
+59D1	gū粵gu1
+59D2	sì粵ci5
+59D3	xìng粵sing3
+59D4	wěi粵wai2 wēi粵wai1
+59D8	pīn粵ping1
+59DA	yáo粵jiu4
+59DC	jiāng粵goeng1
+59DD	shū粵syu1,zyu1
+59E3	jiāo,jiǎo粵gaau2 xiáo粵haau4
+59E4	gòu粵gau3
+59E5	mǔ粵mou5 lǎo粵lou5
+59E6	jiān粵gaan1
+59E8	yí粵ji4 yí粵ji1
+59EA	zhí粵zat6
+59EC	jī粵gei1
+59EE	héng粵hang4
+59F1	kuā粵kwaa1
+59F9	chà粵caa3
+59FA	shēn,xiǎn粵san1,sin2 xiān粵sin1
+59FB	yīn粵jan1
+59FD	guǐ粵gwai2
+59FF	zī粵zi1
+5A01	wēi粵wai1
+5A03	wá粵waa1
+5A09	pīng粵ping1
+5A0C	lǐ粵lei5
+5A11	suō粵so1
+5A13	wěi粵mei5
+5A16	chuò粵cok3
+5A18	niáng粵noeng4
+5A19	xíng粵jing4
+5A1B	yú粵jyu4
+5A1C	nà粵naa4 nuó粵no5
+5A1F	juān粵gyun1
+5A20	shēn粵san1
+5A23	dì粵tai5,dai6
+5A25	é粵ngo4
+5A29	miǎn粵min5 wǎn粵maan5
+5A2D	āi粵oi1 xī粵hei1
+5A35	jū粵zyu1
+5A36	qǔ粵ceoi2
+5A3C	chāng粵coeng1
+5A40	ē粵o2
+5A41	lóu粵lau4
+5A46	pó粵po4
+5A49	wǎn粵jyun2
+5A4A	biǎo粵biu2
+5A55	jié粵zit3
+5A5A	hūn粵fan1
+5A5E	xìng粵hang6
+5A62	bì粵pei5
+5A65	chuò粵coek3
+5A66	fù粵fu5
+5A6A	lán粵laam4
+5A6D	yà粵aa3
+5A77	tíng粵ting4
+5A7A	wù粵mou6
+5A7C	ruò粵joek6 chuò粵coek3
+5A7F	xù粵sai3
+5A92	méi粵mui4
+5A94	mián粵min4 miān粵min5
+5A9A	mèi粵mei6
+5A9B	yuàn粵jyun6 yuán粵jyun1,wun4
+5A9E	tí粵tai4
+5A9F	xiè粵sit3
+5AA5	piān粵pin1
+5AA7	wā粵wo1
+5AAA	ǎo粵ou2
+5AAF	guī粵gwai1
+5AB2	pì粵pei3,bei2
+5AB3	xí粵sik1
+5AB5	yìng粵jing6
+5AB8	chī粵ci1
+5ABD	mā粵maa1
+5ABE	gòu粵gau3,kau3
+5AC1	jià粵gaa3
+5AC2	sǎo粵sou2
+5AC4	yuán粵jyun4
+5AC9	jí粵zat6
+5ACC	xián粵jim4
+5ACF	láng粵long4
+5AD5	yì粵ai3
+5AD6	piáo粵piu4
+5AD7	yù粵jyu3 yǔ粵jyu2
+5AD8	léi粵leoi4
+5ADA	màn粵maan6
+5ADC	zhāng粵zoeng1
+5ADF	nì粵nik1
+5AE0	lí粵lei4
+5AE1	dí粵dik1
+5AE3	yān粵jin1
+5AE6	cháng粵soeng4
+5AE9	nèn粵nyun6
+5AEA	lào粵lou6
+5AEB	mó粵mou4
+5AED	hù粵wu6
+5AF5	wǔ粵mou5
+5AFA	xián粵haan4
+5AFF	huà粵waak6
+5B03	xū粵seoi1
+5B08	ráo粵jiu4 rǎo粵jiu2
+5B09	xī粵hei1
+5B0B	chán粵sim4
+5B0C	jiāo粵giu1
+5B16	bì粵pei3
+5B17	shàn粵sin6
+5B19	qiáng粵coeng4
+5B1B	huán粵waan4 yuān粵hyun1
+5B21	ài粵oi3
+5B24	mā粵maa1
+5B2A	pín粵pan4,ban3
+5B30	yīng粵jing1
+5B32	niǎo粵niu5 nōu粵nau1
+5B34	yíng粵jing4
+5B38	shěn粵sam2
+5B40	shuāng粵soeng1
+5B4C	luán粵lyun2
+5B50	zǐ粵zi2
+5B51	jié粵kit3
+5B53	jué粵kyut3
+5B54	kǒng粵hung2
+5B55	yùn粵jan6
+5B56	zī粵zi1 mā粵maa1
+5B57	zì粵zi6
+5B58	cún粵cyun4
+5B5A	fú粵fu1
+5B5B	bèi,bó粵bui6,but6
+5B5C	zī粵zi1
+5B5D	xiào粵haau3
+5B5F	mèng粵maang6
+5B62	bāo粵baau1
+5B63	jì粵gwai3
+5B64	gū粵gu1
+5B65	nú粵nou4
+5B69	hái粵haai4
+5B6B	sūn粵syun1 xùn粵seon3
+5B6C	nāo粵naau1
+5B70	shú粵suk6
+5B71	chán粵saan4 càn粵caan3
+5B73	zī粵zi1
+5B75	fū粵fu1
+5B78	xué粵hok6
+5B7A	rú粵jyu4,jyu6
+5B7B	lái粵laai1
+5B7D	niè粵jip6,jit6
+5B7F	luán粵lyun4
+5B82	rǒng粵jung2
+5B83	tā粵taa1 tā,tuō粵to1,taa1
+5B84	guǐ粵gwai2
+5B85	zhái粵zaak6
+5B87	yǔ粵jyu5
+5B88	shōu粵sau2 shòu粵sau3
+5B89	ān粵on1
+5B8B	sòng粵sung3
+5B8C	wán粵jyun4
+5B8F	hóng粵wang4
+5B93	mì粵mat6 fú粵fuk6
+5B94	zhǔ粵zyu2
+5B95	dàng粵dong6
+5B97	zōng粵zung1
+5B98	guān粵gun1
+5B99	zhòu粵zau6
+5B9A	dìng粵ding6
+5B9B	wǎn粵jyun2
+5B9C	yí粵ji4
+5BA2	kè粵haak3
+5BA3	xuān粵syun1
+5BA4	shì粵sat1
+5BA5	yòu粵jau6
+5BA6	huàn粵waan6
+5BA7	yí粵ji4
+5BAC	chéng粵sing4
+5BAE	gōng粵gung1
+5BB0	zǎi粵zoi2
+5BB3	hài粵hoi6
+5BB4	yàn粵jin3
+5BB5	xiāo粵siu1
+5BB6	jiā粵gaa1 jie粵gaa3 gū粵gu1
+5BB8	chén粵san4
+5BB9	róng粵jung4
+5BBF	sù粵suk1 xiǔ粵suk1 xiù粵sau3
+5BC2	jì粵zik6
+5BC4	jì粵gei3
+5BC5	yín粵jan4
+5BC6	mì粵mat6
+5BC7	kòu粵kau3
+5BCC	fù粵fu3
+5BD0	mèi粵mei6
+5BD2	hán粵hon4
+5BD3	yù粵jyu6
+5BD4	shí粵sat6
+5BDE	mò粵mok6
+5BDF	chá粵caat3
+5BE1	guǎ粵gwaa2
+5BE2	qǐn粵cam2
+5BE4	wù粵ng6
+5BE5	liáo粵liu4
+5BE6	shí粵sat6
+5BE7	níng粵ning4 nìng粵ning4,ning6
+5BE8	zhái粵zaai6
+5BE9	shěn粵sam2
+5BEB	xiě粵se2
+5BEC	kuān粵fun1
+5BEE	liáo粵liu4
+5BF0	huán粵waan4
+5BF5	chǒng粵cung2
+5BF6	bǎo粵bou2
+5BF8	cùn粵cyun3
+5BFA	sì粵zi6
+5C01	fēng粵fung1
+5C04	shè粵se6 yì粵jik1 yè粵je6
+5C07	jiāng粵zoeng1 jiàng粵zoeng3 qiāng粵coeng1
+5C08	zhuān粵zyun1
+5C09	wèi粵wai3 yù粵wat1
+5C0A	zūn粵zyun1
+5C0B	xún粵cam4 xín粵cam4
+5C0D	duì粵deoi3
+5C0E	dāo粵dou6
+5C0F	xiǎo粵siu2
+5C11	shǎo粵siu2 shào粵siu3
+5C15	gǎ粵gaa2
+5C16	jiān粵zim1
+5C1A	shàng粵soeng6
+5C1C	gá粵gaat3
+5C24	yóu粵jau4
+5C25	liào粵liu6
+5C28	máng粵mong4 méng粵mung4 páng粵pong4
+5C2A	wāng粵wong1
+5C2C	gà粵gaai3
+5C31	jiù粵zau6
+5C37	gān粵gaam1,gaam3
+5C38	shī粵si1
+5C39	yǐn粵wan5
+5C3A	chǐ粵cek3 chě粵ce2
+5C3B	kāo粵haau1
+5C3C	ní粵nei4
+5C3E	wěi粵mei5 yǐ粵mei5
+5C3F	niào粵niu6 suī粵seoi1
+5C40	jú粵guk6
+5C41	pì粵pei3
+5C44	bī粵bei1
+5C45	jū粵geoi1
+5C46	jiè粵gaai3
+5C48	qū粵wat1
+5C4B	wū粵uk1
+5C4C	diǎo粵diu2
+5C4D	shī粵si1
+5C4E	shǐ粵si2
+5C4F	píng粵ping4 bǐng粵bing2
+5C50	jī粵kek6
+5C51	xiè粵sit3
+5C55	zhǎn粵zin2
+5C59	ē粵o1
+5C5C	tì粵tai3
+5C60	tú粵tou4
+5C62	lǚ粵leoi5
+5C63	xǐ粵saai2
+5C64	céng粵cang4
+5C65	lǚ粵lei5
+5C67	xiè粵sit3
+5C68	jù粵geoi3
+5C69	juē粵goek3
+5C6C	shǔ粵suk6 zhǔ粵zuk1
+5C6D	xì粵ai3
+5C6F	tún粵tyun4 zhūn粵zeon1
+5C71	shān粵saan1
+5C79	yì粵ngat6
+5C7A	qǐ粵hei2
+5C88	yá粵ngaa4
+5C8C	jí粵kap1
+5C8D	qiān粵hin1
+5C90	qí粵kei4
+5C91	cén粵sam4
+5C94	chà粵caa3
+5C9C	bā粵baa1
+5C9E	zuò粵zok3
+5CA1	gāng粵gong1
+5CA2	kě粵ho2
+5CA3	gǒu粵gau2
+5CA7	tiáo粵tiu4
+5CA8	jū粵zeoi1
+5CAB	xiù粵zau6
+5CAC	jiǎ粵gaap3
+5CAD	líng粵ling4
+5CB1	dài粵doi6
+5CB3	yuè粵ngok6
+5CB5	hù粵wu6
+5CB7	mín粵man4
+5CB8	àn粵ngon6
+5CB9	tiáo粵tiu4
+5CC1	mǎo粵maau5
+5CC2	tóng粵tung4
+5CCB	xún粵seon1
+5CD2	dòng粵dung6 tóng粵tung4
+5CD9	zhì粵zi6,ci5 shì粵si6
+5CE7	jiāo粵gaau1
+5CE8	é粵ngo4
+5CEA	yù粵juk6
+5CED	qiào粵ciu3
+5CEF	fēng粵fung1
+5CF1	náo粵naau4
+5CF4	xiàn粵jin6
+5CF6	dǎo粵dou2
+5CFB	jùn粵zeon3
+5CFD	xiá粵haap6
+5D00	làng粵long6
+5D01	kàn粵ham3
+5D06	kōng粵hung1
+5D07	chóng粵sung4
+5D0C	jū粵geoi1
+5D0D	lái粵loi4
+5D0E	qí粵kei1
+5D11	kūn粵kwan1
+5D12	zú粵zeot1
+5D14	cuī粵ceoi1
+5D16	yá粵ngaai4
+5D17	gǎng粵gong1
+5D19	lún粵leon4
+5D1A	léng,líng粵ling4
+5D1B	jué粵gwat6
+5D1E	guō粵gwok3
+5D1F	yín粵jam4
+5D22	zhēng粵zang1
+5D24	xiáo粵ngaau4
+5D26	yān粵jim1
+5D29	bēng粵bang1
+5D2C	dōng粵dung1
+5D2E	gù粵gu3
+5D34	wǎi粵waai2 wēi粵wai1
+5D3D	zǎi粵zai2
+5D3F	è粵ngok6
+5D42	lǜ粵leot6
+5D47	jī粵kai1,hai4
+5D4A	shèng粵sing6
+5D4B	méi粵mei4
+5D4C	qiàn粵ham3,ham6
+5D4E	yú粵jyu4
+5D50	lán粵laam4
+5D56	chá粵caa4
+5D5B	yú粵jyu4
+5D69	sōng粵sung1
+5D6B	zī粵zi1
+5D6C	wéi粵ngai4
+5D6F	cuó粵co1
+5D72	niè粵jit6
+5D74	jí粵zek3
+5D7D	dié粵dit6 dì粵dai6
+5D81	lǒu粵lau5
+5D82	zhàng粵zoeng3
+5D84	zhǎn粵zaam2
+5D85	áo粵ngou4
+5D87	qū粵keoi1
+5D8D	xí粵zaap6
+5D92	céng粵cang4
+5D93	bō粵bo1
+5D94	qīn粵jam1
+5D97	láo粵lou4
+5D99	lín粵leon4
+5D9D	dèng粵dang3
+5DA0	jiào粵giu6 qiáo粵kiu4
+5DA2	yáo粵jiu4
+5DA7	yì粵jik6
+5DA8	xué粵hok6
+5DAE	xiǎn粵him2
+5DB4	ào粵ou3
+5DB7	yí粵ji4
+5DB8	róng粵wing4
+5DBA	lǐng粵ling5
+5DBC	yǔ,xù粵zeoi6 yǔ粵jyu4
+5DBD	yuè粵ngok6
+5DC2	xī,guī粵kwai1 xī,suǐ粵seoi5
+5DC7	xī粵hei1
+5DC9	chán粵caam4
+5DCB	kuī粵kwai1
+5DCD	wēi粵ngai4
+5DCE	náo粵naau4
+5DD2	luán粵lyun4
+5DD3	diān粵din1
+5DD6	yán粵ngaam4
+5DD8	yǎn粵jin2
+5DDD	chuān粵cyun1
+5DDE	zhōu粵zau1
+5DE1	xún粵ceon4
+5DE2	cháo粵caau4
+5DE5	gōng粵gung1
+5DE6	zuǒ粵zo2
+5DE7	qiǎo粵haau2
+5DE8	jù粵geoi6
+5DEB	wū粵mou4
+5DEE	chà粵caa1 chā粵caa1 chāi粵caai1 cī粵ci1
+5DF0	qiú粵kau4
+5DF1	jǐ粵gei2
+5DF2	yǐ粵ji5
+5DF3	sì粵zi6
+5DF4	bā粵baa1
+5DF7	xiàng粵hong6,hong2 hàng粵hong6,hong2
+5DFD	xùn粵seon3
+5DFE	jīn粵gan1
+5E02	shì粵si5
+5E03	bù粵bou3
+5E06	fān粵faan4
+5E0A	pà粵paa3
+5E0C	xī粵hei1
+5E11	tǎng粵tong2
+5E14	pèi粵pei3,pei1
+5E15	pà粵paak3
+5E16	tiè粵tip3 tiě粵tip3 tiē粵tip3
+5E18	lián粵lim4
+5E19	zhì粵dit6
+5E1A	zhǒu粵zaau2,zau2
+5E1B	bó粵baak6
+5E1D	dì粵dai3
+5E21	píng粵ping4
+5E25	shuài粵seoi3
+5E28	shuì粵seoi3
+5E2B	shī粵si1
+5E2D	xí粵zik6
+5E33	zhàng粵zoeng3
+5E35	wān粵wun1
+5E36	dài粵daai3
+5E37	wéi粵wai4
+5E38	cháng粵soeng4
+5E3D	mào粵mou6,mou4
+5E40	zhēn,zhèng粵zing3,zing1
+5E43	wéi粵wai4
+5E44	wò粵ak1,aak1
+5E45	fú粵fuk1
+5E4C	huǎng粵fong2
+5E54	màn粵maan6
+5E55	mù粵mok6 mò粵mok6 mò粵mok6
+5E57	guó粵gwok3
+5E58	zé粵zik1
+5E5B	zhàng粵zoeng3
+5E5E	fú粵fuk6
+5E5F	zhì粵ci3
+5E62	chuáng粵cong4 chuáng粵tong4 zhuàng粵tong4 zhuàng粵zong6
+5E63	bì粵bai6
+5E68	chān粵cim1
+5E6A	méng粵mung4
+5E6B	bāng粵bong1
+5E6C	chóu粵cau4 dào粵dou6
+5E72	gān粵gon1
+5E73	píng粵ping4
+5E74	nián粵nin4
+5E76	bīng粵bing1 bìng粵bing3
+5E78	xìng粵hang6
+5E79	gàn粵gon3
+5E7A	yāo粵jiu1
+5E7B	huàn粵waan6
+5E7C	yòu粵jau3
+5E7D	yōu粵jau1
+5E7E	jǐ粵gei2 jī粵gei1
+5E7F	yǎn粵jim5 ān粵am1
+5E80	pǐ粵pei2
+5E87	bì粵bei3
+5E8B	guǐ粵gwai2,gei2
+5E8F	xù粵zeoi6
+5E95	dǐ粵dai2 de粵dai2
+5E96	pǎo粵paau4
+5E97	diàn粵dim3
+5E9A	gēng粵gang1
+5E9C	fǔ粵fu2
+5EA0	xiáng粵coeng4
+5EA5	xiū粵jau1
+5EA6	dù粵dou6 duó粵dok6
+5EA7	zuò粵zo6
+5EAB	kù粵fu3
+5EAD	tíng粵ting4
+5EB3	bēi,bì粵bei1,pei5
+5EB5	ān粵am1
+5EB6	shù粵syu3
+5EB7	kāng粵hong1
+5EB8	yōng粵jung4
+5EB9	tuǒ粵tok3
+5EBE	yǔ粵jyu5
+5EC1	cè粵ci3
+5EC2	xiāng粵soeng1
+5EC8	shà粵haa6 xià粵haa6
+5EC9	lián粵lim4
+5ECA	láng粵long4
+5ECB	sōu粵sau1
+5ECC	zhì粵zi6,zaai6
+5ECE	qǐng粵king2
+5ED0	jiù粵gau3
+5ED1	qín粵kan4 jǐn粵gan2
+5ED2	áo粵ngou4
+5ED3	kuò粵gwok3,kwok3
+5ED6	liào粵liu6
+5ED9	yì粵ji6
+5EDA	chú粵cyu4,ceoi4
+5EDB	chán粵cin4
+5EDD	xī粵si1
+5EDF	miào粵miu6,miu2
+5EE0	chǎng粵cong2
+5EE1	wǔ粵mou5
+5EE2	fèi粵fai3
+5EE3	guǎng粵gwong2
+5EE8	xiè,jiè粵gaai3,haai6
+5EE9	lǐn粵lam5
+5EEC	lú粵lou4
+5EF1	yōng粵jung1
+5EF3	tīng粵ting1,teng1
+5EF6	yán粵jin4
+5EF7	tíng粵ting4
+5EFA	jiàn粵gin3
+5EFF	niàn粵nim6
+5F01	biàn粵bin6
+5F04	nòng,lòng粵lung6 lòng粵lung6
+5F06	gǔ粵geoi2
+5F07	yǎn粵jim2
+5F08	yì粵jik6
+5F0A	bì粵bai6
+5F0B	yì粵jik6
+5F0C	yī粵jat1
+5F0D	èr粵ji6
+5F0E	sān粵saam1
+5F0F	shì粵sik1
+5F12	shì粵si3
+5F13	gōng粵gung1
+5F14	diào粵diu3
+5F15	yǐn粵jan5
+5F17	fú粵fat1
+5F18	hóng粵wang4
+5F1B	chí,shī粵ci4
+5F1F	dì粵dai6
+5F26	xián粵jin4
+5F27	hú粵wu4
+5F28	chāo粵ciu1
+5F29	nǔ粵nou5
+5F2D	mǐ粵mai5,mei5
+5F30	shāo粵saau1
+5F31	ruò粵joek6
+5F35	zhāng粵zoeng1
+5F36	jiàng粵koeng6
+5F37	qiáng粵koeng4 qiǎng粵koeng5 jiàng粵goeng6
+5F3C	bì粵bat6
+5F40	gòu粵gau3
+5F43	bì粵bat1
+5F44	kōu粵kau1
+5F46	biè粵bit3
+5F48	dàn粵daan6,daan2 tán粵taan4 tán粵daan6
+5F4C	mí粵nei4
+5F4D	guō粵kwok3
+5F4E	wān粵waan1
+5F56	tuàn粵teon3
+5F57	huì,suì粵seoi6,wai6
+5F58	zhì粵zi6
+5F59	huì粵wui6,wai6 weì粵wai6
+5F5D	yí粵ji4
+5F60	yuē粵wok6
+5F62	xíng粵jing4
+5F64	tóng粵tung4
+5F65	yàn粵jin6
+5F67	yù粵juk1
+5F69	cǎi粵coi2
+5F6A	biāo粵biu1
+5F6B	diāo粵diu1
+5F6C	bīn粵ban1
+5F6D	péng粵paang4
+5F70	zhāng粵zoeng1
+5F71	yǐng粵jing2
+5F73	chì粵cik1
+5F77	páng粵pong4
+5F78	zhōng粵zung1
+5F79	yì粵jik6
+5F7C	bǐ粵bei2
+5F80	wǎng粵wong5 wàng粵wong5
+5F81	zhēng粵zing1
+5F82	cú粵cou4
+5F85	dài粵doi6 dāi粵doi6
+5F87	xùn粵seon1
+5F88	hěn粵han2
+5F89	yáng粵joeng4
+5F8A	huái粵wui4
+5F8B	lǜ粵leot6
+5F8C	hòu粵hau6
+5F90	xú粵ceoi4
+5F91	jìng粵ging3
+5F92	tú粵tou4
+5F97	dé粵dak1 děi粵dak1 de粵dak1
+5F98	pái粵pui4
+5F99	xǐ粵saai2
+5F9B	jì粵gei6
+5F9C	cháng粵soeng4
+5F9E	cóng粵cung4 cōng粵sung1 zòng,zōng粵zung1
+5FA0	lái粵loi4 lài粵loi6
+5FA1	yù粵jyu6 yà粵ngaa6
+5FA8	huáng粵wong4
+5FA9	fù粵fuk6 fù粵fuk1 fù粵fau6
+5FAA	xún粵ceon4
+5FAD	yáo粵jiu4
+5FAE	wēi粵mei4
+5FAF	xī粵hai4
+5FB5	zhēng粵zing1 zhǐ粵zi2
+5FB7	dé粵dak1
+5FB9	chè粵cit3
+5FBC	jiǎo粵hiu1 jiào粵giu3 jiāo粵giu1 yāo粵jiu1
+5FBD	huī粵fai1
+5FC0	xiāng粵soeng1
+5FC3	xīn粵sam1
+5FC5	bì粵bit1
+5FC9	dāo粵dou1
+5FCC	jì粵gei6
+5FCD	rěn粵jan2
+5FD0	tǎn粵taan2
+5FD1	tè粵tik1
+5FD2	tè粵tik1 tuī粵tik1
+5FD6	cǔn粵cyun2
+5FD7	zhì粵zi3
+5FD8	wàng粵mong4
+5FD9	máng粵mong4
+5FDD	tiǎn粵tim2
+5FE0	zhōng粵zung1
+5FE1	chōng粵cung1
+5FE4	wǔ粵ng5
+5FEA	sōng粵sung1 zhōng粵zung1
+5FEB	kuài粵faai3
+5FED	biàn粵bin6
+5FEE	zhì粵zi3
+5FF1	chén粵sam4
+5FF5	niàn粵nim6
+5FF8	niǔ粵nuk6,nau2
+5FFA	xiān粵him1
+5FFD	hū粵fat1
+5FFF	fèn粵fan5
+600A	chāo粵ciu1
+600D	zuò粵zok6
+600E	zěn粵zam2
+600F	yàng粵joeng2,joeng3
+6012	nù粵nou6
+6014	zhēng粵zing1
+6015	pà粵paa3
+6016	bù粵bou3
+6017	tiē粵tip3
+6019	hù粵wu6
+601B	dá粵daat3,taan3
+601D	sī粵si1 sī,sì粵si3,si1 sāi粵soi1
+6020	dài粵doi6,toi5
+6021	yí粵ji4
+6025	jí粵gap1
+6026	pēng粵ping1
+6027	xìng粵sing3
+6028	yuàn粵jyun3
+6029	ní粵nei4
+602A	guài粵gwaai3
+602B	fú,fèi粵fat6
+602F	qiè粵hip3
+6035	chù粵zeot1
+6039	tān粵taa1
+6041	rèn粵jam6
+6042	xún粵seon1
+6043	shì粵ci5
+6046	héng粵hang4
+6047	kuāng粵hong1
+604D	huǎng粵fong2
+6050	kǒng粵hung2
+6053	xī粵sai1
+6055	shù粵syu3
+6059	yàng粵joeng6
+605A	huì粵wai6
+605D	jiá粵gaat3
+6062	huī粵fui1
+6063	zì粵zi3,ci3
+6064	xù粵seot1
+6065	chǐ粵ci2
+6067	nǜ粵nuk6
+6068	hèn粵han6
+6069	ēn粵jan1
+606A	kè粵kok3
+606B	dòng粵dung6
+606C	tián粵tim4
+606D	gōng粵gung1
+606F	xī粵sik1
+6070	qià粵hap1
+6081	yuān粵jyun1 juàn粵gyun3
+6083	kǔn粵kwan2
+6084	qiǎo粵ciu2 qiāo粵ciu2,ciu1
+6089	xī粵sik1
+608C	tì粵dai6
+608D	hàn粵hon6
+6092	yì粵jap1
+6094	huǐ粵fui3
+6096	bèi粵bui6
+609A	sǒng粵sung2
+609B	quān粵syun1
+609D	kuī粵kwai1
+609F	wù粵ng6
+60A0	yōu粵jau4
+60A3	huàn粵waan6
+60A6	yuè粵jyut6
+60A8	nín粵nei5
+60B0	cóng粵cung4
+60B1	fěi粵fei2
+60B2	bēi粵bei1
+60B4	cuì粵seoi6,seoi5
+60B5	chàng粵coeng3
+60B6	mèn粵mun6 mēn粵mun6
+60B8	jì粵gwai3
+60BB	xìng粵hang6
+60BC	dào粵dou6
+60BD	qī粵cai1
+60C4	nì粵nik6
+60C5	qíng粵cing4
+60C6	chóu粵cau4
+60C7	dūn粵deon1
+60CB	wǎn粵wun2,jyun2
+60CE	jì粵gei6
+60D1	huò粵waak6
+60D3	quán粵kyun4
+60D5	tì粵tik1
+60D8	wǎng粵mong5
+60D9	chuò粵zyut3
+60DA	hū粵fat1
+60DB	hūn粵fan1
+60DC	xī粵sik1
+60DD	tǎng,chǎng粵tong2
+60DF	wéi粵wai4
+60E0	huì粵wai6
+60E1	è粵ok3 wù粵wu3 ě粵ok3 wū粵wu1
+60E6	diàn粵dim3
+60F0	duò粵do6
+60F1	nǎo粵nou5
+60F2	yùn粵wan6
+60F3	xiǎng粵soeng2
+60F4	zhuì粵zeoi3
+60F6	huáng粵wong4
+60F9	rě粵je5
+60FA	xīng粵sing1
+60FB	cè粵cak1
+6100	qiǎo粵ciu2
+6101	chóu粵sau4
+6106	qiān粵hin1
+6108	yù粵jyu6
+6109	yú粵jyu4
+610D	mǐn粵man5
+610E	bì粵bik1
+610F	yì粵ji3
+6114	yīn粵jam1
+6115	è粵ngok6
+611A	yú粵jyu4
+611B	ài粵oi3
+611C	qiè粵hip3
+611F	gǎn粵gam2
+6120	yùn粵wan3
+6127	kuì粵kwai5
+6128	què粵kok3
+612B	sù粵sou3
+6134	chuàng粵cong3
+6137	kǎi粵hoi2
+613E	kài粵koi3
+613F	yuàn粵jyun6
+6142	yǒng粵jung2
+6144	lì粵leot6
+6147	yīn粵jan1
+6148	cí粵ci4
+614A	qiàn粵him3 qiè粵hip3
+614B	tài粵taai3
+614C	huāng粵fong1
+614E	shèn粵san6
+6155	mù粵mou6
+6158	cǎn粵caam2
+615A	cán粵caam4
+615D	tè粵tik1
+615F	tòng粵dung6
+6162	màn粵maan6
+6163	guàn粵gwaan3
+6165	zào粵zou6,cou3
+6167	huì粵wai6
+6168	kǎi粵koi3
+616A	òu粵au3
+616B	sǒng粵sung2
+616E	lǜ粵leoi6
+6170	wèi粵wai3
+6173	qiān粵haan1
+6175	yōng粵jung4
+6176	qìng粵hing3
+6177	kāng粵kong2
+617C	qī粵cik1
+617E	yù粵juk6
+6182	yōu粵jau1
+618A	bèi粵bei6,baai6
+618B	biē粵bit3
+618E	zēng粵zang1
+6190	lián粵lin4
+6191	píng粵pang4
+6192	kuì粵kui2
+6193	huì粵wai6
+6194	qiáo粵ciu4
+6196	yìn粵jan6
+619A	dàn粵daan6
+619D	duì粵deoi6
+61A4	fèn粵fan5
+61A7	chōng粵cung1
+61A8	hān粵ham1
+61A9	qì粵hei3
+61AB	mǐn粵man5
+61AC	jǐng粵ging2
+61AE	wǔ粵mou5
+61B2	xiàn粵hin3
+61B6	yì粵jik1
+61B7	chǔ粵co2 chù粵co3
+61B9	náo粵nou4
+61BE	hàn粵ham6
+61C2	dǒng粵dung2
+61C3	qín粵kan4
+61C7	kěn粵han2
+61C8	xiè粵haai6
+61C9	yīng粵jing1 yìng粵jing3
+61CA	ào粵ou3
+61CB	mào粵mau6
+61CC	yì粵jik6
+61CD	lǐn粵lam5
+61D5	yān粵jim1
+61DF	duì粵deoi6
+61E3	mèn粵mun6
+61E4	chóu粵cau4
+61E6	nuò粵no6
+61F2	chéng粵cing4
+61F5	měng粵mung5,mung2
+61F6	lǎn粵laan5
+61F7	huái粵waai4
+61F8	xuán粵jyun4
+61FA	chàn粵caam3
+61FC	jù粵geoi6
+61FE	shè粵sip3,zip3
+61FF	yì粵ji3
+6200	liàn粵lyun2
+6207	gàng,zhuàng粵zong3,ngong6
+6208	gē粵gwo1
+620A	wù粵mou6
+620C	xū粵seot1
+620D	shù粵syu3
+620E	róng粵jung4
+6210	chéng粵sing4
+6211	wǒ粵ngo5
+6212	jiè粵gaai3
+6214	jiān粵zin1
+6215	qiāng,qiáng粵coeng4
+6216	huò粵waak6
+621A	qī粵cik1
+621B	jiá粵gaat3
+621F	jǐ粵gik1
+6221	kān粵ham1
+6222	jí粵cap1
+6224	gài粵koi3
+6225	děng粵dang2 děng粵dang6
+6227	qiāng粵coeng1 qiàng粵coeng3
+6229	jiǎn粵zin2
+622A	jié粵zit6
+622E	lù粵luk6
+6230	zhàn粵zin3
+6232	xì粵hei3 hū粵fu1
+6233	chuō粵coek3
+6234	dài粵daai3
+6237	hù粵wu6
+623D	hù粵fu3
+623E	lì粵leoi6
+623F	fáng粵fong4
+6240	suǒ粵so2
+6241	biǎn粵bin2 piān粵pin1
+6243	jiōng粵gwing1 jiōng粵gwing2
+6245	yí粵ji4
+6246	yǐ粵ji2
+6247	shàn粵sin3 shān粵sin3
+6248	hù粵wu6
+6249	fēi粵fei1
+624A	yǎn粵jim5
+624B	shǒu粵sau2
+624D	cái粵coi4
+624E	zhā粵zaat3 zhá粵zaat3
+6252	bā粵paa4 pá粵paa4
+6253	dǎ粵daa2 dá粵daa1
+6254	rēng粵wing1
+6258	tuō粵tok3
+625B	káng粵kong1 gāng粵gong1
+625E	hàn粵hon6
+6260	chā粵caa1
+6263	kòu粵kau3
+6266	qiān粵cin1
+626D	niǔ粵nau2
+626E	bàn粵baan6 bàn粵baan3
+626F	chě粵ce2
+6273	bān粵paan1
+6276	fú粵fu4
+6279	pī粵pai1
+627A	zhǐ粵zi2
+627C	è粵ak1,aak1
+627D	dèn粵dan3
+627E	zhǎo粵zaau2
+627F	chéng粵sing4
+6280	jì粵gei6
+6283	biàn粵bin6
+6284	chāo粵caau1
+6286	wěn粵man5,man2
+6289	jué粵kyut3
+628A	bǎ粵baa2 bà粵baa2
+6291	yì粵jik1
+6292	shū粵syu1
+6293	zhuā粵zaa1,zaau2
+6294	póu粵pau4
+6295	tóu粵tau4
+6296	dǒu粵dau2
+6297	kàng粵kong3
+6298	zhé粵zit3 shé粵zit3 zhē粵zit3
+62A8	pēng粵ping1
+62AB	pī粵pei1
+62AC	tái粵toi4
+62B1	bào粵pou5
+62B5	dǐ粵dai2
+62B9	mǒ粵mut3,maat3 mò粵mut3,maat3 mā粵mut3,maat3
+62BB	chēn粵can2
+62BC	yā粵aat3
+62BD	chōu粵cau1
+62BF	mǐn粵man5
+62C2	fú粵fat1
+62C3	zhǎ粵zaa3
+62C4	zhǔ粵zyu2
+62C6	chāi粵caak3 cā粵caak3
+62C7	mǔ粵mou5
+62C8	niān粵nim1
+62C9	lā粵laai1 lá粵laat6 lá粵laa1
+62CA	fǔ粵fu2
+62CB	pāo粵paau1
+62CC	bàn粵bun6
+62CD	pāi粵paak3
+62CE	līn粵ling1
+62D0	guǎi粵gwaai2
+62D2	jù粵keoi5
+62D3	tuò粵tok3
+62D4	bá粵bat6
+62D6	tuō粵to1
+62D7	ǎo粵aau2 ào粵aau3 niù粵aau3
+62D8	jū粵keoi1
+62D9	zhuō粵zyut3,zyut6
+62DA	pàn粵pun3,pun2
+62DB	zhāo粵ziu1
+62DC	bài粵baai3
+62EC	kuò粵kut3 guā粵gwaat3
+62ED	shì粵sik1
+62EE	jié粵git3
+62EF	zhěng粵cing2
+62F1	gǒng粵gung2
+62F3	quán粵kyun4
+62F4	shuān粵saan1
+62F6	zā粵zaat3 zǎn粵zaat3
+62F7	kǎo粵haau2
+62FC	pīn粵ping1,ping3
+62FD	zhuài粵jit6 zhuāi粵jai6
+62FE	shí粵sap6
+62FF	ná粵naa4
+6301	chí粵ci4
+6307	zhǐ粵zi2
+6308	qiè粵kit3
+6309	àn粵on3
+630E	kuà粵kwaa3
+6311	tiāo粵tiu1 tiǎo粵tiu1
+6313	zhā粵zaa1
+6316	wā粵waat3
+6328	āi粵aai1
+632A	nuó粵no4
+632B	cuò粵co3
+632F	zhèn粵zan3
+6332	suō粵so1 sā粵saat3 shā粵saa1
+6339	yì粵jap1
+633A	tǐng粵ting5
+633C	ruó粵no4
+633D	wǎn粵waan5
+633E	xié粵hip3,haap6
+6343	jùn粵kwan2
+6345	tǒng粵tung2
+6346	kǔn粵kwan2
+6349	zhuō粵zuk1
+634B	luō粵lyut3 lǚ粵lyut3
+634C	bā粵baat3
+634D	hàn粵hon6,hon2
+634E	shāo粵saau1
+634F	niē粵nip6
+6350	juān粵gyun1
+6355	bǔ粵bou6
+6367	pěng粵pung2,bung2
+6368	shě粵se2
+6369	liè粵lit6
+636B	mén粵mun4
+636D	bǎi粵baai2
+636E	jū粵geoi1
+636F	dáo粵dou3
+6371	ái粵ngaai4
+6372	juǎn粵gyun2
+6376	chuí粵ceoi4
+6377	jié粵zit6
+637A	nà粵naat6
+637B	niǎn粵nim2 niē粵nip6
+637D	zuó粵zeot1,cyut3
+6380	xiān粵hin1
+6382	diān粵dim1 diàn粵dim6
+6383	sǎo粵sou3 sǎo粵sou2 sào粵sou3
+6384	lūn粵leon4 lún粵leon4
+6387	duō粵zyut3
+6388	shòu粵sau6
+6389	diào粵diu6
+638A	pǒu粵pau2 póu粵pau4
+638C	zhǎng粵zoeng2
+638E	jǐ粵gei1,gei2
+638F	tāo粵tou4
+6390	qiā粵haap3
+6392	pái粵paai4 pǎi粵paai4
+6396	yè粵jik6 yē粵jik6
+6397	yà粵aa3
+6398	jué粵gwat6
+6399	zhèng粵zaang5 zhēng粵zang1,zaang1
+639B	guà粵gwaa3
+639E	shàn粵sim3
+63A0	lüè粵loek6
+63A1	cǎi粵coi2
+63A2	tàn粵taam3 tān粵taam1
+63A3	chè粵zai3 chè粵cit3
+63A5	jiē粵zip3
+63A7	kòng粵hung3
+63A8	tuī粵teoi1
+63A9	yǎn粵jim2
+63AA	cuò粵cou3
+63AC	jū粵guk1
+63AD	tiàn粵tim5,tim3
+63AE	qián粵kin4
+63AF	kèn粵kang3
+63B0	bāi粵baai1,maak3
+63B1	pá粵paa4
+63BE	yuàn粵jyun6
+63C0	jiǎn粵gaan2
+63C4	yú粵jyu4
+63C6	kuí,kuǐ粵kwai4,kwai5
+63C9	róu粵jau4
+63CD	zòu粵zau3
+63CE	xuān粵syun1
+63CF	miáo粵miu4
+63D0	tí粵tai4 dī粵tai4
+63D2	chā粵caap3
+63D6	yī粵jap1
+63DA	yáng粵joeng4
+63DB	huàn粵wun6
+63DE	ǎn粵am2
+63E0	yà粵aat3
+63E1	wò粵ak1,aak1
+63E2	ké粵kaak3
+63E3	chuǎi粵ceoi2,cyun2 chuāi粵caai1 chuài粵ceoi2,cyun2
+63E9	kāi粵haai1
+63EA	jiū粵zau1
+63ED	jiē粵kit3
+63EE	huī粵fai1
+63F3	xiē粵sit3,sip3
+63F4	yuán粵wun4,jyun4
+63F6	yé粵je4
+63F8	zhā粵zaa1
+63FE	wèn粵wan3 wěn粵wan2
+6409	què粵kok3
+640B	chuāi粵caai1
+640C	zhǎn粵zin2
+640D	sǔn粵syun2
+640E	sūn粵syun1
+640F	bó粵bok3
+6410	chù粵cuk1
+6412	bàng粵pong3 péng粵paang4
+6413	cuō粵co1
+6414	sāo粵sou1
+6415	kē粵hap6
+6416	yáo粵jiu4
+6417	dǎo粵dou2
+641B	jiān粵gim1
+641C	sōu粵sau1,sau2 sōu粵sau2
+641E	gǎo粵gaau2
+6420	shuò粵sok3
+6421	sǎng粵song2
+6422	jìn粵zeon3
+6426	nuò粵nik1
+6427	shān粵sin3
+6428	tà粵taap3
+642A	táng粵tong4,tong5
+642C	bān粵bun1
+642D	dā粵daap3
+6433	huá粵waak6
+6434	qiān粵hin1
+6436	qiǎng粵coeng2
+643D	chá粵caa4
+6440	wǔ粵ng6
+6441	èn粵on3
+644B	sà粵saat3
+6451	guāi,guó粵gwaak3
+6452	bìng粵bing3
+6454	shuāi粵seot1
+6458	zhāi粵zaak6
+645C	guàn粵gwaan3
+645E	luò粵lo6
+645F	lǒu粵lau2 lōu粵lau1
+6467	cuī粵ceoi1
+6469	mó粵mo1 mā粵maa1
+646D	zhí粵zek3
+646F	zhì粵zi3
+6473	kōu粵kau1
+6476	tuán粵tyun4
+6478	mō粵mo2
+6479	mó粵mou4
+647A	zhé粵zip3
+647D	biào粵piu5
+6482	liào粵liu1
+6485	juē粵kyut3
+6487	piē粵pit3 piě粵pit3
+6488	lāo粵laau4 lāo粵lou1
+648F	xián,xún粵cim4,cam4
+6491	chēng粵caang1
+6492	sā粵saat3 sǎ粵saat3
+6493	náo粵naau4
+6495	sī粵si1
+6496	hàn粵haam5
+6499	zǔn粵zyun2
+649A	niǎn粵nin2 něn粵nan2
+649D	huī粵fai1
+649E	zhuàng粵zong6
+649F	jiǎo粵giu2
+64A3	dǎn粵daan5 shàn粵sin6
+64A4	chè粵cit3
+64A5	bō粵but6
+64A9	liāo粵liu1 liáo粵liu4
+64AB	fǔ粵fu2
+64AC	qiào粵giu6
+64AD	bō粵bo3
+64AE	cuō粵cyut3 zǒu粵cyut3
+64B0	zhuàn粵zaan6
+64B2	pū粵pok3
+64B3	qìn粵gam6
+64B4	dūn粵deon1
+64BB	tà粵taat3
+64BC	hàn粵ham6
+64BE	zhuā粵zaa1 wō粵wo1
+64BF	jiǎn粵gim2
+64C0	gǎn粵gon2
+64C1	yōng粵jung2
+64C2	léi粵leoi4 lèi粵leoi4
+64C4	lǔ粵lou5
+64C5	shàn粵sin6
+64C7	zé粵zaak6 zhái粵zaak6
+64CA	jī粵gik1
+64CB	dǎng粵dong2 dàng粵dong3
+64CD	cāo粵cou1 cāo,cào粵sou3,cou1
+64CE	qíng粵king4
+64D0	huàn粵gwaan3,gwaan1
+64D2	qín粵kam4
+64D3	kuǎi粵kwaai5
+64D4	dān粵daam1 dàn粵daam3
+64D6	kā粵kaat3
+64D7	pǐ粵pik1
+64D8	bò粵maak3
+64DA	jù粵geoi3
+64E0	jǐ粵zai1
+64E2	zhuó粵zok6
+64E4	xǐng粵sang3
+64E6	cā粵caat3
+64E9	rǔ粵jyu5
+64EA	yè粵jip3
+64EC	nǐ粵ji5
+64EF	bìn粵ban3
+64F0	nǐng粵ning6 níng粵ning6 nìng粵ning6
+64F1	gē粵gok3 gé粵gok3
+64F2	zhì粵zaak6
+64F4	kuò粵kwok3,kong3
+64F7	xié粵kit3,git3
+64FA	bǎi粵baai2
+64FB	sòu粵sau3 sǒu粵sau2
+64FE	rǎo粵jiu2
+64FF	zhì粵zaak6 tì粵tik1
+6500	pān粵paan1
+6504	shū粵su1
+6506	niǎn粵lin5
+6509	huō粵fok3
+650F	lǒng粵lung5
+6514	lán粵laan4
+6516	yǐng粵jing1
+6518	rǎng粵joeng4 rǎng粵joeng6
+6519	chān粵caam1
+651B	cuān粵cyun2,cyun3
+651C	xié粵kwai4
+651D	shè粵sip3
+651E	luǒ粵lo2
+6522	zǎn粵zaan2 cuán粵cyun4
+6523	luán粵lyun4
+6524	tān粵taan1
+6525	zuàn粵zaan6
+6527	diān粵din1
+652A	jiǎo粵gaau2
+652B	jué粵fok3
+652C	lǎn粵laam5
+652E	nǎng粵nong5
+652F	zhī粵zi1
+6532	qī粵kei1
+6536	shōu粵sau1
+6538	yōu粵jau4
+6539	gǎi粵goi2
+653B	gōng粵gung1
+653D	bān,bīn粵baan1,ban1
+653E	fàng粵fong3
+653F	zhèng粵zing3
+6541	diān粵dim1
+6545	gù粵gu3
+6548	xiào粵haau6
+6549	mǐ粵mei5,mai5
+654D	xù粵zeoi6
+654E	jiào粵gaau3 jiāo粵gaau3 jiāo粵gaau1
+654F	mǐn粵man5
+6551	jiù粵gau3
+6554	yǔ粵jyu5
+6555	chì粵cik1
+6556	áo粵ngou4
+6557	bài粵baai6
+655D	bì粵bai6
+655E	chǎng粵cong2
+6560	duō粵zyut3
+6562	gǎn粵gam2
+6563	sàn粵saan3 sǎn粵saan2
+6566	dūn粵deon1 duì粵deoi3 duī粵deoi1
+656B	jiǎo粵joek6 jiào粵giu3
+656C	jìng粵ging3
+6572	qiāo粵haau1
+6574	zhěng粵zing2
+6575	dí粵dik6
+6577	fū粵fu1
+6578	shù粵sou3 shǔ粵sou2 shuò粵sok3
+6581	yì粵jik6 dù粵dou3
+6582	liǎn粵lim5
+6583	bì粵bai6
+6585	xiào粵haau6
+6587	wén粵man4 wén,wèn粵man6
+658C	bīn粵ban1
+6590	fěi粵fei2
+6591	bān粵baan1
+6595	lán粵laan4
+6597	dǒu粵dau2
+6599	liào粵liu6
+659B	hǔ粵huk6
+659C	xié,xiá粵ce4 yé粵je4
+659D	jiǎ粵gaa2
+659F	zhēn粵zam1
+65A0	jiào粵gaau3
+65A1	wò粵waat3
+65A4	jīn粵gan1
+65A5	chì粵cik1
+65A7	fǔ粵fu2
+65A8	qiāng粵coeng1
+65AB	zhuó粵zoek3
+65AC	zhǎn粵zaam2
+65AF	sī粵si1
+65B0	xīn粵san1
+65B2	zhuó粵doek3
+65B6	chù粵cuk1
+65B7	duàn粵dyun6
+65B8	zhú粵zuk1
+65B9	fāng粵fong1
+65BC	yú粵jyu1 yū粵jyu1 wū粵wu1
+65BD	shī粵si1
+65C1	páng粵pong4
+65C2	qí粵kei4
+65C3	zhān粵zin1
+65C4	máo粵mou4
+65C5	lǚ粵leoi5
+65C6	pèi粵pui3
+65CB	xuán粵syun4 xuàn粵syun4
+65CC	jīng粵zing1,sing1
+65CE	nǐ粵nei5
+65CF	zú粵zuk6
+65D0	zhào粵siu6
+65D2	liú粵lau4
+65D3	shāo粵saau1
+65D6	yǐ粵ji2
+65D7	qí粵kei4
+65DB	fān粵faan1
+65DD	kuài粵kui2
+65DF	yú粵jyu4
+65E1..65E2	jì粵gei3
+65E5	rì粵jat6
+65E6	dàn粵daan3 dàn粵daan2
+65E8	zhǐ粵zi2
+65E9	zǎo粵zou2
+65EC	xún粵ceon4
+65ED	xù粵juk1
+65EE	gā粵go1,gok3
+65EF	lá粵lo1,lok1
+65F0	gàn粵gon3 hàn粵hon6
+65F1	hàn粵hon5
+65F4	xū粵heoi1
+65FA	wàng粵wong6
+65FB	mín粵man4
+6600	yún粵wan4
+6602	áng粵ngong4
+6603	zè粵zak1
+6606	kūn粵kwan1
+6607	shēng粵sing1
+6609	fǎng粵fong2
+660A	hào粵hou6
+660C	chāng粵coeng1
+660E	míng粵ming4
+660F	hūn粵fan1
+6612	hū粵fat1,mat6
+6613	yì粵ji6 yì粵jik6
+6614	xī粵sik1
+6615	xīn粵jan1
+661D	zǎn粵zaan2
+661F	xīng粵sing1
+6620	yìng粵jing2
+6625	chūn粵ceon1
+6627	mèi粵mui6
+6628	zuó粵zok3,zok6
+662A	biàn粵bin6
+662B	xù粵heoi3,heoi2
+662D	zhāo粵ciu1
+662F	shì粵si6
+6630	xià粵haa6
+6631	yù粵juk1
+6632	fèi粵fai3
+6633	dié粵dit6 yì粵jat6
+6634	mǎo粵maau5
+6635	nì粵nik1
+6636	chǎng粵cong2
+663A	bǐng粵bing2
+6641	cháo粵ciu4
+6642	shí粵si4
+6643	huǎng粵fong2 huàng粵fong2
+6645	xuān,xuǎn粵hyun1,syun2
+6649	jìn粵zeon3
+664C	shǎng粵hoeng2
+664F	yàn粵aan3
+6657	hán粵ham4
+665A	wǎn粵maan5
+665D	zhòu粵zau3
+665E	xī粵hei1
+665F	shèng,chéng粵sing6,sing4
+6661	bū粵bou1
+6664	wù粵ng6
+6666	huì粵fui3
+6668	chén粵san4
+666C	zuì粵zeoi3
+666E	pǔ粵pou2
+666F	jǐng粵ging2
+6670	xī粵sik1
+6674	qíng粵cing4
+6676	jīng粵zing1
+6677	guǐ粵gwai2
+667A	zhì粵zi3
+667E	liàng粵long6
+6684	xuān粵hyun1
+6687	xiá,xià粵haa6
+6688	yùn粵wan6 yùn粵wan4 yūn粵wan4
+6689	huī粵fai1
+668C	kuí粵kwai4
+668D	yē粵hot3
+6691	shǔ粵syu2
+6696	nuǎn粵nyun5
+6697	àn粵am3
+6698	yáng粵joeng4
+669D	míng,mìng粵ming4,ming6
+66A2	chàng粵coeng3
+66A8	jì粵kei3
+66AB	zàn粵zaam6
+66AE	mù粵mou6
+66B4	bào粵bou6 pù粵buk6
+66B5	hàn粵hon3
+66B9	xiān粵cim3,cim1
+66BE	tūn粵tan1
+66C0	yì粵ai3
+66C6	lì粵lik6
+66C7	tán粵taam4
+66C8	tóng粵tung4
+66C9	xiǎo粵hiu2
+66CC	zhào粵ziu3
+66D6	ài粵oi3 ài粵oi2
+66D9	shǔ粵cyu5
+66DA	méng粵mung4
+66DB	xūn粵fan1
+66DC	yào粵jiu6
+66DD	pù粵buk6 bào粵bou6
+66E0	kuàng粵kwong3,kong3
+66E6	xī粵hei1
+66E8	lóng粵lung4
+66E9	nǎng粵nong5
+66EC	shài粵saai3
+66ED	tǎng粵tong2
+66F0	yuē粵joek6,jyut6
+66F1	zhà粵zaat6
+66F2	qū粵kuk1 qǔ粵kuk1
+66F3	yè粵jai6
+66F4	gēng粵gang1 gèng粵gang3
+66F6	hū粵fat1
+66F7	hé粵hot3
+66F8	shū粵syu1
+66F9	cáo粵cou4
+66FC	màn粵maan6
+66FE	zēng粵zang1 céng粵cang4
+66FF	tì粵tai3
+6700	zuì粵zeoi3
+6703	huì粵wui6 huì粵wui6,wui2 huì粵wui5 kuài粵kui2,wui6
+6705	qiè粵kit3
+6706	fēn粵fang1
+6708	yuè粵jyut6 ròu粵juk6
+6709	yǒu粵jau5 yòu粵jau6
+670B	péng粵pang4
+670D	fú粵fuk6 fù粵fuk6
+6712	nǜ粵nuk6
+6713	tiǎo粵tiu1,tiu5
+6714	shuò粵sok3
+6715	zhèn粵zam6
+6717	lǎng粵long5
+671B	wàng粵mong6
+671D	cháo粵ciu4 zhāo粵ziu1
+671F	qī粵kei4 jī粵gei1
+6723	tóng粵tung4
+6726	méng粵mung4
+6727	lóng粵lung4
+6728	mù粵muk6
+672A	wèi粵mei6
+672B	mò粵mut6
+672C	běn粵bun2
+672D	zhá粵zaat3
+672E	zhú粵seot6
+6731	zhū粵zyu1
+6733	bā粵baat3
+6734	pò粵pok3 pō粵pok3 piáo粵piu4
+6735	duǒ粵do2,doe2
+673A	jī粵gei1
+673D	xiǔ粵nau2
+6746	gān粵gon1
+6748	chā粵caa1 chà粵caa3
+6749	shān粵caam3,saam1 shā粵caam3,saam1
+674C	wù粵ngat6
+674E	lǐ粵lei5
+674F	xìng粵hang6
+6750	cái粵coi4
+6751	cūn粵cyun1
+6753	biāo粵biu1
+6755	dì粵dai6
+6756	zhàng粵zoeng6
+6759	yì粵jik6
+675C	dù粵dou6
+675E	qǐ粵gei2
+675F	shù粵cuk1
+6760	gāng粵gong1
+6767	máng粵mong1
+676A	miǎo粵miu5
+676C	yuán粵jyun4
+676D	háng粵hong4
+676F	bēi粵bui1
+6771	dōng粵dung1
+6772	gǎo粵gou2
+6773	yǎo粵miu5
+6774	xiān粵him1
+6775	chǔ粵cyu5
+6777	pá粵paa4
+677C	zhù粵cyu5
+677E	sōng粵cung4
+677F	bǎn粵baan2
+6787	pí粵pei4
+6789	wǎng粵wong2
+678B	fāng粵fong1
+6790	xī粵sik1
+6791	hù粵wu6
+6792	yā粵aa1
+6793	dǒu粵dau2
+6795	zhěn粵zam2 zhèn,zhěn粵zam3
+6797	lín粵lam4
+6798	ruì粵jeoi6
+679A	méi粵mui4
+679C	guǒ粵gwo2
+679D	zhī粵zi1
+67AF	kū粵fu1
+67B0	píng粵ping4
+67B1	tái粵toi4,toi2
+67B2	xǐ粵sai2,saai2
+67B3	zhǐ粵zi2
+67B5	xiāo粵hiu1
+67B6	jià粵gaa2 jià粵gaa3
+67B7	jiā粵gaa1
+67B8	gōu粵gau2 gǒu粵gau2 jǔ粵geoi2
+67C1	tuó粵to4
+67C4	bǐng,bìng粵beng3,bing3
+67C8	bàn粵bun6 pán粵pun4
+67CF	bǎi粵paak3 bó粵paak3
+67D0	mǒu粵mau5
+67D1	gān粵gam1
+67D2	qī粵cat1
+67D3	rǎn粵jim5
+67D4	róu粵jau4
+67D8	zhè粵ze3
+67D9	xiá粵haap6
+67DA	yóu粵jau4,jau2 yòu粵jau2
+67DC	jǔ粵geoi2
+67DD	tuò粵tok3
+67DE	zuò粵zok6 zhà粵zaa3
+67E2	dǐ粵dai2
+67E5	chá粵caa4 zhā粵zaa1
+67E9	jiù粵gau3
+67EC	jiǎn粵gaan2
+67EE	duò粵dut1
+67EF	kē粵o1
+67F0	nài粵noi6
+67F1	zhù粵cyu5
+67F3	liǔ粵lau5
+67F4	chái粵caai4
+67F5	zhà粵caak3,saan1 shān粵saan1
+67FF	shì粵ci2
+6800	zhī粵zi1
+6812	xún粵ceon4
+6813	shuān粵saan1
+6817	lì粵leot6
+681D	guā粵kut3 kuò粵kut3
+681F	bēn粵ban1 bīng粵bing1
+6821	xiào粵haau6 xiào粵gaau3 jiào粵gaau3
+6829	xǔ粵heoi2
+682A	zhū粵zyu1
+6831	gǒng粵gung2
+6832	kǎo粵haau2
+6833	lǎo粵lou5
+6838	hé粵hat6 hú粵wat6
+6839	gēn粵gan1
+683C	gé粵gaak3
+683D	zāi粵zoi1
+683F	fú粵fuk6
+6840	jié粵git6
+6841	héng粵hang4
+6842	guì粵gwai3
+6843	táo粵tou4
+6844	guàng粵gwong3 guāng粵gwong1,gwong2
+6845	wéi粵wai4
+6846	kuàng粵kwaang1,hong1 kuāng粵kwaang1,hong1
+6848	àn粵on3
+6849	ān粵on1
+684A	juàn粵gyun3
+684C	zhūo粵zoek3,coek3
+684E	zhì粵zat6
+6850	tóng粵tung4
+6851	sāng粵song1
+6853	huán粵wun4
+6854	jié粵gat1 jié粵git3 jú粵gat1
+6855	jiù粵kau3,kau5
+686B	suō粵so1
+686F	tīng粵ting1
+6872	po粵but6
+6874	fú粵fu1
+6876	tǒng粵tung2
+6877	jué粵gok3
+687F	gǎn粵gon2,gon1
+6881	liáng粵loeng4
+6883	tǐng粵ting5 tìng粵ting5
+6885	méi粵mui4
+6886	bāng粵bong1
+688F	gù粵guk1
+6890	bì粵bai6
+6893	zǐ粵zi2
+6897	gěng粵gang2
+6898	jiǎn粵gaan2
+689D	tiáo粵tiu4
+689F	xiāo粵hiu1
+68A2	shāo粵saau1
+68A7	wú粵ng4
+68A8	lí粵lei4
+68AB	qǐn粵cam2
+68AD	suō粵so1
+68AF	tī粵tai1
+68B0	xiè粵haai6
+68B3	shū粵so1
+68B5	fàn粵faan4,faan6
+68BD	zhì粵zi3
+68C1	zhuō粵zyut3
+68C4	qì粵hei3
+68C9	mián粵min4
+68CB	qí粵kei4
+68CD	gùn粵gwan3
+68D0	fěi粵fei2
+68D1	pái粵paai4
+68D2	bàng粵paang5
+68D6	chéng粵caang4
+68D7	zǎo粵zou2
+68D8	jí粵gik1
+68DA	péng粵paang4
+68DF	dòng粵dung6
+68E0	táng粵tong4
+68E1	gāng粵gong1
+68E3	dì粵dai6
+68E7	zhàn粵zaan6,zaan2
+68E8	qǐ粵kai2
+68EB	yù粵wik6
+68EE	sēn粵sam1
+68F0	chuí粵ceoi4
+68F1	léng粵ling4 líng粵ling4
+68F2	qī粵cai1 xī粵cai1,sai1
+68F5	kē粵po1,fo1
+68F9	zhào粵zaau6
+68FA	guān粵gun1
+68FB	fēn粵fan1
+68FC	fén粵fan4
+6901	guǒ粵gwok3
+6905	yǐ粵ji2 yī粵ji1
+6907	jǔ粵geoi2
+690B	liáng粵loeng4
+690D	zhí粵zik6
+690E	zhuī粵zeoi1 chuí粵ceoi4
+6911	bēi粵bei1 pí粵pei4
+6912	jiāo粵ziu1
+6913	zhuó粵doek3
+6925	zhī粵zi1
+692A	pèng粵pung3
+6930	yē粵je4
+6934	duàn粵dyun6
+6936	zōng粵zung1
+6938	yí粵ji4
+693D	chuán粵cyun4
+693F	chūn粵ceon1
+6942	zhā粵zaa1 chá粵caa4
+694A	yáng粵joeng4
+6953	fēng粵fung1
+6954	xiē粵sit3
+6957	jiàn粵gin2
+695A	chǔ粵co2
+695D	liàn粵lin6
+695E	lèng粵ling6
+6960	nán粵naam4
+6963	méi粵mei4
+6965	yuán粵jyun4
+6966	xuàn粵hyun3
+6968	zhēn,zhēng粵zing1
+696B	jí粵zip3
+696D	yè粵jip6
+696E	chǔ粵cyu5
+696F	shǔn粵seon5,ceon4
+6975	jí粵gik6
+6977	kǎi粵kaai2 jiē粵gaai1
+6978	qiū粵cau1
+6979	yíng粵jing4
+6980	pǐn粵ban2
+6982	gài粵koi3
+6983	tán粵tam4
+6985	wēn粵wat1
+6986	yú粵jyu4
+6995	róng粵jung4
+6996	gǔ粵guk1
+699B	zhēn粵zeon1
+699C	bǎng粵bong2
+69A7	fěi粵fei2
+69A8	zhà粵zaa3
+69AB	sǔn粵seon2
+69AD	xiè粵ze6
+69AE	róng粵wing4
+69B1	cuī粵ceoi1
+69B4	liú粵lau4
+69B7	què粵kok3
+69BB	tà粵taap3
+69BC	kē粵hap6
+69BE	gǔ粵gwat1
+69BF	qī粵kei1
+69C1	gǎo粵gou2
+69CA	shuò粵sok3
+69CB	gòu粵gau3,kau3
+69CC	chuí粵ceoi4
+69CD	qiāng粵coeng1
+69CE	chá粵caa4
+69D0	huái粵waai4
+69D3	gàng粵gong3 gàng粵gung3 lǒng粵lung5
+69D4	gāo粵gou1
+69E5	huì粵wai6,seoi6
+69E7	qiàn粵cim3
+69ED	qì粵cik1
+69F2	hú粵huk6
+69F3	jiǎng粵zoeng2
+69FA	kāng粵hong1
+69FD	cáo粵cou4
+69FF	jǐn粵gan2
+6A01	zhuāng粵zong1
+6A02	lè粵lok6 yuè粵ngok6 yào粵ngaau4,ngaau6
+6A05	cōng粵cung1 zōng粵zung1
+6A0A	fán粵faan4
+6A0B	tōng粵tung1
+6A13	lóu粵lau4
+6A17	chū粵syu1
+6A18	táng粵tong4
+6A19	biāo粵biu1
+6A1E	shū粵syu1
+6A1F	zhāng粵zoeng1
+6A21	mó粵mou4 mú粵mou4
+6A23	yàng粵joeng6
+6A28	xī粵sai1
+6A35	qiáo粵ciu4
+6A38	pǔ粵pok3
+6A39	shù粵syu6
+6A3A	huà粵waa6,waa4
+6A3D	zūn粵zeon1
+6A3E	yuè粵jyut6
+6A44	gǎn粵gam3,gaam3
+6A47	qiāo粵hiu1,ceoi3
+6A48	ráo粵jiu4 ráo粵naau4
+6A4B	qiáo粵kiu4
+6A50	tuó粵tok3
+6A58	jú粵gwat1
+6A59	chéng粵caang4,caang2
+6A5B	jué粵kyut3,gyut6
+6A5F	jī粵gei1
+6A61	xiàng粵zoeng6
+6A62	tuǒ粵to5
+6A6B	héng粵waang4 hèng粵waang6
+6A80	tán粵taan4
+6A81	lǐn粵lam5
+6A84	xí粵hat6
+6A87	zuì粵zeoi3
+6A89	chēng粵cing1
+6A8E	qín粵kam4
+6A90	yán粵jim4,sim4
+6A91	léi粵leoi4
+6A94	dàng粵dong3
+6A97	bò粵baak3,paak3
+6A9C	guì粵kui2 huì粵kui2
+6A9E	jiě粵gaai2
+6A9F	jiǎ粵gaa2
+6AA0	qíng粵king4
+6AA2	jiǎn粵gim2
+6AA3	qiáng粵coeng4
+6AAC	méng粵mung1
+6AAE	táo粵tou4
+6AB3	bīn粵ban1 bīng粵ban1
+6AB5	jì粵gai3
+6AB8	níng粵ning4
+6ABB	jiàn粵laam6 kǎn粵haam5
+6AC3	guì粵gwai6
+6AD3	lǔ粵lou5
+6ADA	lǘ粵leoi4
+6ADB	zhì粵zit3
+6ADC	gāo粵gou1
+6ADD	dú粵duk6
+6ADE	yuán粵jyun4
+6ADF	lì粵lik1 yuè粵joek6
+6AE5	chú粵cyu4
+6AE7	zhū粵zyu1
+6AE8	lú粵lou4
+6AEA	lì粵lik1
+6AEB	zhū粵zyu1
+6AEC	chèn粵can3
+6AF3	lóng粵lung4
+6AF6	xiǎn粵hin2
+6AF8	jǔ粵geoi2
+6AFA	líng粵ling4
+6AFB	yīng粵jing1
+6AFC	jiān粵zim1
+6B04	lán粵laan4
+6B0A	quán粵kyun4
+6B0F	luó粵lo4
+6B12	luán粵lyun4
+6B16	lǎn粵laam5,laam2
+6B20	qiàn粵him3
+6B21	cì粵ci3
+6B23	xīn粵jan1
+6B28	xū粵heoi1,heoi2
+6B32	yù粵juk6
+6B37	xī粵hei1
+6B38	āi粵oi1 ê̄粵ei1 ế,éi粵ei4 ê̌,ěi粵ei2 ề,èi粵ei6 ǎi,ǎo粵oi2,ou2
+6B3A	qī粵hei1
+6B3B	chuā粵caa1 xū粵fat1
+6B3D	qīn粵jam1
+6B3E	kuǎn粵fun2
+6B3F	kǎn粵ham2
+6B43	shà粵saap3
+6B46	xīn粵jam1
+6B47	xiē粵hit3
+6B48	yú粵jyu4
+6B49	qiàn粵hip3 qiàn粵him3
+6B4C	gē粵go1
+6B4E	tàn粵taan3
+6B50	ōu粵au1
+6B54	xū粵heoi1
+6B59	xī粵kap1 shè粵sip3
+6B5F	yú粵jyu4
+6B60	chuò粵zyut3
+6B61	huān粵fun1
+6B62	zhǐ粵zi2
+6B63	zhèng粵zing3 zhēng粵zing1
+6B64	cǐ粵ci2
+6B65	bù粵bou6
+6B66	wǔ粵mou5
+6B67	qí粵kei4
+6B6A	wāi粵waai1
+6B72	suì粵seoi3
+6B77	lì粵lik6
+6B78	guī粵gwai1
+6B79	dǎi粵daai2
+6B7B	sǐ粵sei2
+6B7F	mò粵mut6
+6B82	cú粵cou4
+6B83	yāng粵joeng1
+6B84	tiǎn粵tin5,tim5
+6B86	dài粵doi6,toi5
+6B89	xùn粵seon1
+6B8A	shū粵syu4
+6B8D	piǎo粵piu5,fu4
+6B96	zhí粵zik6 shi粵zik6
+6B98	cán粵caan4
+6B9B	jí粵gik1
+6B9E	yǔn粵wan5
+6BA2	tì粵tai3
+6BA3	jìn粵gan2
+6BA4	shāng粵soeng1
+6BA5	yín粵jan4
+6BA8	huì粵kui2
+6BAA	yì粵ji3
+6BAB	dān粵daan1
+6BAE	liàn粵lim5
+6BAF	bìn粵ban3
+6BB2	jiān粵cim1
+6BB3	shū粵syu4
+6BB5	duàn粵dyun6
+6BB7	yīn粵jan1 yān粵jin1 yǐn粵jan2
+6BBA	shā粵saat3
+6BBC	qiào粵hok3 ké粵hok3
+6BBF	diàn粵din6
+6BC0	huǐ粵wai2
+6BC5	yì粵ngai6
+6BC6	ōu粵au2,au1
+6BCB	wú粵mou4
+6BCD	mǔ粵mou5
+6BCF	měi粵mui5
+6BD0	ǎi粵oi2
+6BD1	jiě粵ze2
+6BD2	dú粵duk6 dú粵duk1
+6BD3	yù粵juk1
+6BD4	bǐ粵bei2 bǐ,bì粵bei6,bei2
+6BD6	bì粵bei3
+6BD7	pí粵pei4
+6BDA	chán粵caam4
+6BDB	máo粵mou4
+6BE1	zhān粵zin1
+6BEA	mú粵mou4
+6BEB	háo粵hou4
+6BEC	qiú粵kau4
+6BEF	tǎn粵taam2
+6BF3	cùi粵ceoi3
+6BF9	shū,yú粵syu1,jyu4
+6BFD	jiàn粵jin2,gin3
+6BFF	sān粵saam1
+6C02	máo粵mou4
+6C04	rǒng粵jung2
+6C05	chǎng粵cong2
+6C06	pǔ粵pou2
+6C08	zhān粵zin1
+6C0C	lu粵lou5
+6C0D	qú粵keoi4
+6C0E	dié粵dip6
+6C0F	shì粵si6 zhī粵zi1
+6C10	dǐ粵dai2 dī粵dai1
+6C11	mín粵man4
+6C13	méng粵maang4,mang4 máng粵mong4,man4
+6C15	piē粵pit3
+6C16	nǎi粵naai5
+6C18	dāo粵dou1
+6C19	xiān粵sin1,saan3
+6C1A	chuān粵cyun1
+6C1B	fēn粵fan1
+6C1F	fú粵fat1
+6C21	dōng粵dung1
+6C23	qì粵hei3
+6C24	yīn粵jan1
+6C25	xī粵sai1
+6C26	hài粵hoi6
+6C27	yǎng粵joeng5
+6C28	ān粵on1
+6C2A	kè粵hak1
+6C2B	qīng粵hing1
+6C2C	yà粵aa3
+6C2E	dàn粵daam6
+6C2F	lǜ粵luk6
+6C30	qíng粵cing1
+6C32	yūn粵wan1
+6C34	shuǐ粵seoi2
+6C38	yǒng粵wing5
+6C39	dàng粵tam5
+6C3D	tǔn粵tan2
+6C3F	guǐ粵gwai2
+6C40	tīng粵ting1,ding1
+6C41	zhī粵zap1
+6C42	qiú粵kau4
+6C46	cuān粵cyun1
+6C48	diāo粵diu1
+6C4A	chà粵caa3
+6C4D	wán粵jyun4
+6C50	xī粵zik6
+6C54	qì粵ngat6
+6C55	shàn粵saan3
+6C57	hàn粵hon6 hán粵hon4
+6C5B	xùn粵seon3
+6C5C	sì粵ci5
+6C5D	rǔ粵jyu5
+6C5E	gǒng粵hung3
+6C5F	jiāng粵gong1
+6C60	chí粵ci4
+6C61	wū粵wu1
+6C67	qiān粵hin1
+6C68	mì粵mik6
+6C69	gǔ粵gwat1
+6C6A	wāng粵wong1
+6C6D	ruì粵jeoi6
+6C70	tài粵taai3
+6C72	jí粵kap1
+6C74	biàn粵bin6
+6C76	wèn粵man6
+6C7A	jué粵kyut3
+6C7D	qì粵hei3
+6C7E	fén粵fan4
+6C81	qìn粵sam3
+6C82	yí粵ji4
+6C83	wò粵juk1
+6C85	yuán粵jyun4
+6C86	hàng粵hong4
+6C88	shěn粵sam2
+6C89	chén粵cam4
+6C8C	dùn粵deon6
+6C8D	hù粵wu6
+6C8F	qī粵cai3
+6C90	mù粵muk6
+6C92	méi粵mut6 mò粵mut6
+6C93	tà粵daap6 dá粵daap6
+6C94	miǎn粵min5
+6C96	chōng粵cung1
+6C98	bǐ粵bei2
+6C99	shā粵saa1 shà粵saa1
+6C9A	zhǐ粵zi2
+6C9B	pèi粵pui3
+6CAB	mò粵mut6
+6CAD	shù粵seot6
+6CAE	jǔ粵zeoi2 jù粵zeoi3
+6CB1	tuó粵to4
+6CB2	duò粵to5
+6CB3	hé粵ho4
+6CB8	fèi粵fai3
+6CB9	yóu粵jau4
+6CBB	zhì粵zi6 zhì,chí粵ci4
+6CBC	zhǎo粵ziu2
+6CBD	gū粵gu1 gǔ粵gu2
+6CBE	zhān粵zim1
+6CBF	yán粵jyun4 yàn粵jyun4
+6CC1	kuàng粵fong3
+6CC2	jiǒng粵gwing2
+6CC3	jū粵keoi1
+6CC4	xiè粵sit3
+6CC5	qiú粵cau4
+6CC6	yì粵jat6
+6CC9	quán粵cyun4
+6CCA	bó粵bok6 pō粵bok6
+6CCC	mì粵bei3 bì粵bei3
+6CD0	lè粵lak6,laak6
+6CD3	hóng粵wang4
+6CD4	gān粵gam1
+6CD5	fǎ粵faat3
+6CD6	mǎo粵maau5
+6CD7	sì粵si3
+6CDA	cǐ粵ci2
+6CDB	fàn粵faan3,faan6
+6CE0	líng粵ling4
+6CE1	pào粵pou5 pào粵paau1 pào粵paau3 pāo粵paau1
+6CE2	bō粵bo1
+6CE3	qì粵jap1
+6CE5	ní粵nai4 nì粵nei6
+6CE8	zhù粵zyu3
+6CEB	xuàn粵jyun5
+6CEE	pàn粵pun3
+6CEF	mǐn粵man5
+6CF0	tài粵taai3
+6CF1	yāng粵joeng1
+6CF3	yǒng粵wing6
+6CF5	bèng粵bam1
+6D04	huí粵wui4
+6D07	yīn粵jan1
+6D0B	yáng粵joeng4
+6D0C	liè粵lit6
+6D0E	jì粵gei3,gei6
+6D11	fú粵fuk6 fù粵fuk6
+6D17	xǐ粵sai2
+6D19	zhū粵zyu1
+6D1B	luò粵lok3,lok6
+6D1E	dòng粵dung6
+6D25	jīn粵zeon1
+6D27	wěi粵fui2
+6D28	xiáo粵ngaau4
+6D2A	hóng粵hung4
+6D2B	xù粵gwik1
+6D2D	kuāng粵hong1
+6D2E	táo粵tou4
+6D31	ěr粵ji5
+6D32	zhōu粵zau1
+6D33	rù粵jyu6
+6D34	píng粵ping4
+6D35	xún粵seon1
+6D36	xiōng粵hung1
+6D38	guāng粵gwong1
+6D39	huán粵wun4,jyun4
+6D3A	míng粵ming4
+6D3B	huó粵wut6
+6D3D	qià粵hap1
+6D3E	pài粵paai3
+6D41	liú粵lau4
+6D59	zhè粵zit3
+6D5A	xùn粵seon3
+6D5B	hán粵ham4
+6D5C	bāng粵bong1
+6D5E	zhuó粵zuk1
+6D60	xī粵hei1
+6D63	huàn粵wun5,wun2
+6D65	yì粵jap1
+6D66	pǔ粵pou2
+6D69	hào粵hou6
+6D6A	làng粵long6
+6D6C	lǐ,hǎilǐ粵lei5,hoi2lei5
+6D6E	fú粵fau4
+6D6F	wú粵ng4
+6D74	yù粵juk6
+6D77	hǎi粵hoi2
+6D78	jìn粵zam3
+6D79	jiā粵zip3
+6D7C	měi粵mui5
+6D85	niè粵nip6
+6D87	jīng粵ging1
+6D88	xiāo粵siu1
+6D89	shè粵sip3
+6D8C	chōng粵cung1
+6D8E	xián粵jin4
+6D91	sù粵cuk1
+6D93	juān粵gyun1
+6D94	cén粵sam4
+6D95	tì粵tai3
+6D98	sì粵zi6
+6DAA	fú粵fau4
+6DAE	shuàn粵saan3
+6DAF	yá粵ngaai4
+6DB2	yè粵jik6
+6DB4	wò粵wo3
+6DB5	hán粵haam4
+6DB8	hé粵kok3
+6DBC	liáng粵loeng4 liàng粵loeng6
+6DBF	zhuō粵doek3
+6DC0	diàn粵din6
+6DC4	zī粵zi1
+6DC5	xī粵sik1
+6DC6	xiáo粵ngaau4
+6DC7	qí粵kei4
+6DCB	lín粵lam4 lìn粵lam4 lìn粵lam6
+6DCC	tǎng粵tong2
+6DD1	shū粵suk6
+6DD2	qī粵cai1
+6DD6	nào粵naau6
+6DD8	táo粵tou4
+6DD9	cóng粵cung4
+6DDA	lèi粵leoi6
+6DDD	féi粵fei4
+6DDE	sōng粵sung1
+6DE0	pì粵pei3
+6DE1	dàn粵daam6
+6DE4	yū粵jyu1
+6DE5	lù粵luk6
+6DE6	gàn粵gam3
+6DE8	jìng粵zing6
+6DEA	lún粵leon4
+6DEB	yín粵jam4
+6DEC	cuì粵ceoi3,seoi6
+6DEE	huái粵waai4
+6DEF	yù粵juk6
+6DF1	shēn粵sam1
+6DF3	chún粵seon4
+6DF4	hū粵fat1
+6DF5	yuān粵jyun1
+6DF6	lái粵loi4
+6DF7	hùn粵wan6
+6DF9	yān粵jim1
+6DFA	qiǎn粵cin2
+6DFB	tiān粵tim1
+6DFC	miǎo粵miu5
+6E05	qīng粵cing1
+6E19	huàn粵wun6
+6E1A	zhǔ粵zyu2
+6E1B	jiǎn粵gaam2
+6E1D	yú粵jyu4
+6E1F	tíng粵ting4
+6E20	qú粵keoi4
+6E21	dù粵dou6
+6E22	fēng,féng粵fung1,fung4
+6E23	zhā粵zaa1
+6E24	bó粵but6
+6E25	wò粵ak1,aak1
+6E26	wō粵wo1 guō粵gwo1
+6E29	wēn粵wan1
+6E2B	xiè粵sit3 dié粵dip6
+6E2C	cè粵cak1
+6E2D	wèi粵wai6
+6E2F	gǎng粵gong2
+6E30	yǎn粵jim2
+6E32	xuàn粵syun3,hyun1
+6E34	kě粵hot3
+6E38	yóu粵jau4
+6E3A	miǎo粵miu5
+6E3E	hún粵wan4 hùn粵wan6
+6E43	pài粵paai3,baai3
+6E44	méi粵mei4
+6E49	tián粵tim4
+6E4A	còu粵cau3
+6E4D	tuān粵teon1,zyun1
+6E4E	miǎn粵min5
+6E51	xǔ,xū粵seoi2,seoi1 xū粵seoi1
+6E53	pén粵pun4
+6E54	jiān粵zin1
+6E56	hú粵wu4
+6E58	xiāng粵soeng1
+6E5B	zhàn粵zaam3
+6E5C	shí粵zik6
+6E5E	zhēn,zhēng粵zing1
+6E5F	huáng粵wong4
+6E63	mǐn粵man5
+6E67	yǒng粵jung2
+6E68	jú粵gwik1
+6E6B	qiū粵zau1,cau1 jiǎo粵ziu2
+6E6E	yēn粵jin1 yīn粵jan1
+6E6F	tāng粵tong1 shāng粵soeng1
+6E72	yuán粵jyun4,wun4
+6E88	wéi粵wai4,gwai1
+6E89	gài粵koi3
+6E8F	táng粵tong4
+6E90	yuán粵jyun4
+6E96	zhǔn粵zeon2
+6E98	kè粵hap6
+6E9A	tǎ粵taap3
+6E9C	liū粵liu1 liū粵lau6 liù粵liu1
+6E9D	gōu粵gau1,kau1
+6E9F	míng粵ming4
+6EA0	zhà粵zaa3
+6EA2	yì粵jat6
+6EA5	pǔ粵pou2
+6EA6	wēi粵mei4
+6EA7	lì粵leot6
+6EAA	xī,qī粵kai1
+6EAE	shī粵si1
+6EAF	sù粵sou3
+6EB1	zhēn粵zeon1 qín粵ceon4
+6EB2	sōu粵sau1
+6EB3	yún粵wan4
+6EB4	xiù粵cau3
+6EB5	yīn粵jan1
+6EB6	róng粵jung4
+6EB7	hùn粵wan6
+6EBA	nì粵nik1,nik6 niào粵niu6
+6EBB	tā粵taap3
+6EBD	rù粵juk6
+6EC0	chù粵cuk1
+6EC1	chú粵ceoi4
+6EC2	pāng粵pong4
+6EC3	wěng粵jung2 wēng粵jung1
+6EC4	cāng粵cong1
+6EC5	miè粵mit6
+6EC6	gé粵gaak3
+6EC7	diān粵tin4,din1
+6EC8	hào粵hou6
+6EC9	huàng粵fong2
+6ECB	zī粵zi1
+6ECC	dí粵dik6
+6ECD	zhì粵zi6
+6ECE	xíng粵jing4 yíng粵jing4
+6ECF	fǔ粵fu2
+6ED1	huá粵waat6
+6ED3	zǐ粵zi2
+6ED4	tāo粵tou1
+6ED5	téng粵tang4
+6ED8	jiào粵gaau3
+6EDA	gǔn粵gwan2
+6EEB	xiǔ粵sau2
+6EEC	hù粵wu6
+6EEF	zhì粵zai6
+6EF2	shèn粵sam3
+6EF4	dī粵dik6
+6EF7	lǔ粵lou5
+6EF8	hǔ粵wu2 xǔ粵heoi2
+6EF9	hū粵fu1
+6EFB	chǎn粵caan2
+6EFF	mǎn粵mun5
+6F01	yú粵jyu4
+6F02	piāo粵piu1 piǎo粵piu3 piào粵piu3
+6F06	qī粵cat1
+6F09	lù粵luk6
+6F0A	lóu粵lau4
+6F0D	guó粵gwok3
+6F0F	lòu粵lau6
+6F13	lí粵lei4
+6F14	yǎn粵jin2
+6F15	cáo粵cou4
+6F16	jiào粵gaau3
+6F1A	òu粵au3 ōu粵au1
+6F20	mò粵mok6
+6F22	hàn粵hon3
+6F23	lián粵lin4
+6F26	chí,lí粵lei4
+6F29	xuán粵syun4
+6F2A	yī粵ji1
+6F2B	màn粵maan6
+6F2C	zì粵zi3,zik1
+6F2D	mǎng粵mong5
+6F2F	luò粵leoi6 tà粵taap3
+6F31	shù粵sau3
+6F32	zhǎng粵zoeng2,zoeng3 zhàng粵zoeng3
+6F33	zhāng粵zoeng1
+6F35	xù粵zeoi6
+6F36	huàn粵waan6
+6F37	huǒ粵kwok3
+6F38	jiàn粵zim6 jiān粵zim1
+6F3E	yàng粵joeng6
+6F3F	jiāng粵zoeng1
+6F41	yǐng粵wing6
+6F48	cóng,zhōng粵cung4,zung1
+6F4F	yù粵wat6
+6F51	pō粵put3
+6F54	jié粵git3
+6F55	wǔ粵mou5
+6F56	pá粵paa4
+6F58	pān粵pun1
+6F5B	qián粵cim4
+6F5D	xì粵jap1
+6F5E	lù粵lou6
+6F5F	xì粵sik1
+6F62	huáng粵wong4
+6F64	rùn粵jeon6
+6F66	lǎo粵lou5 lào粵lou6 liǎo粵liu5,liu2 liáo粵liu4
+6F6D	tán粵taam4
+6F6E	cháo粵ciu4
+6F6F	xún粵cam4
+6F70	kuì粵kui2
+6F72	shào粵saau3
+6F75	sǎ粵saat3
+6F77	bì粵bei3
+6F78	shān粵saan1
+6F7A	chán粵saan4
+6F7C	tóng粵tung4
+6F7F	wéi粵wai4
+6F80	sè粵sap1,sik1
+6F84	chéng粵cing4 dèng粵dang6
+6F86	jiāo粵hiu1
+6F87	lào粵lou6 láo粵lou4
+6F88	chè粵cit3
+6F89	gǎn粵gam2
+6F8C	sī粵si1
+6F8D	shù粵syu6
+6F8E	pēng粵paang1,paang4 péng粵paang4
+6F92	hòng粵hung6
+6F97	jiàn粵gaan3
+6FA0	miǎn粵man5 shéng粵sing4
+6FA1	zǎo粵zou2,cou3
+6FA4	zé粵zaak6
+6FA5	xiè粵haai5
+6FA6	yù粵jyu6
+6FA7	lǐ粵lai5
+6FAE	kuài粵kui2
+6FB1	diàn粵din6
+6FB3	ào粵ou3
+6FB4	huán粵waan4
+6FB6	chán粵sin4
+6FB9	dàn粵daam6 tán粵taam4
+6FBC	pì粵pik1
+6FBD	jù粵geoi3,geoi6
+6FBE	tà粵taat3
+6FC0	jī粵gik1
+6FC1	zhuó粵zuk6
+6FC2	lián粵lim4
+6FC3	nóng粵nung4
+6FC6	fén粵fan4
+6FC9	suī粵seoi1
+6FD5	shī粵sap1
+6FD8	nìng粵ning6
+6FDA	yíng粵jing4
+6FDB	méng粵mung4
+6FDC	jìn粵zeon6
+6FDE	bì粵pai3 pì粵pei3
+6FDF	jì粵zai3 jǐ粵zai2
+6FE0	háo粵hou4
+6FE1	rú粵jyu4
+6FE4	tāo粵tou4
+6FEB	làn粵laam6
+6FEC	jùn粵zeon3 xùn粵seon3
+6FEE	pú粵buk6
+6FEF	zhuó粵zok6
+6FF0	wéi粵wai4
+6FF1	bīn粵ban1
+6FFA	jiàn粵zin3 jiān粵zin1
+6FFC	luò粵lok6
+6FFE	lǜ粵leoi6
+7001	yǎng粵joeng6
+7005	yíng粵jing4
+7006	dú粵duk6
+7009	xiè粵se3
+700B	shěn粵sam2
+700D	chán粵cin4
+700F	liú粵lau4
+7011	pù粵buk6 bào粵bou6
+7014	gǔ粵guk1
+7015	bīn粵ban1,pan4
+7018	lú粵lou4
+701A	hàn粵hon6
+701B	yíng粵jing4
+701D	lì粵lik1,lik6
+701F	xiāo粵siu1
+7020	yíng粵jing4
+7023	xiè粵haai6
+7026	zhū粵zyu1
+7027	lóng粵lung4 shuāng粵soeng1
+7028	lài粵laai6
+7030	mǐ,mí粵mei4,nei4
+7032	liàn粵lim6
+7039	yuè粵joek6
+703D	jiǎn粵gin2,zin2
+703E	lán粵laan4
+7043	fēng粵fung1
+7044	shè粵sip3
+7049	yōng粵jung1
+704C	guàn粵gun3
+7051	sǎ粵saa2
+7055	lí粵lei4
+7058	tān粵taan1
+705D	hào粵hou6
+705E	bà粵baa3
+7060	lǎn粵laam5
+7063	wān粵waan1
+7064	luán粵lyun4
+7069	yàn粵jim6
+706B	huǒ粵fo2
+7070	huī粵fui1
+7076	zào粵zou3
+7078	jiǔ粵gau3
+707A	xiè粵ce5
+707C	zhuó粵zoek3,coek3
+707D	zāi粵zoi1
+7081	qì粵hei3
+7085	jiǒng粵gwing2 guì粵gwai3
+7086	wén粵man1
+708A	chuī粵ceoi1
+708E	yán粵jim4
+7092	chǎo粵caau2
+7094	quē粵kyut3
+7095	kàng粵kong3 kàng粵hong3
+7099	zhì粵zik3,zek3
+70AB	xuàn粵jyun6,jyun4
+70AC	jù粵geoi6
+70AD	tàn粵taan3
+70AE	páo粵paau4 bāo粵baau3 pào粵paau3
+70AF	jiǒng粵gwing2
+70B1	tái粵toi4
+70B3	bǐng粵bing2
+70B7	zhù粵zyu3
+70B8	zhà粵zaa3 zhá粵zaa3
+70BA	wéi粵wai4 wèi粵wai6
+70C0	hū粵fu1
+70C8	liè粵lit6
+70CA	yáng粵joeng4 yàng粵joeng2
+70CF	wū粵wu1
+70D4	tóng粵tung4
+70D8	hōng粵hung3,hung1
+70D9	lào粵lok3 luò,gé粵lok3
+70DC	xuǎn,xuān粵hyun1,hyun2
+70DD	zhēng粵zing1
+70E4	kǎo粵haau1,haau2
+70EF	xī粵hei1
+70F4	tīng粵ting1
+70F7	wán粵jyun4
+70F9	pēng粵paang1
+70FA	lǎng粵long5
+70FD	fēng粵fung1
+7109	yān粵jin4 yān粵jin1
+710A	hàn粵hon6
+710C	qū粵ceot1 jùn粵zeon3
+7110	wù粵ng6
+7113	hán粵ham4
+7119	bèi粵bui6
+711A	fén粵fan4
+711C	kūn,hùn粵kwan1,wan6
+7120	cuì粵ceoi3,seoi6
+7121	wú粵mou4 mó粵mo4
+7126	jiāo粵ziu1
+712E	xīn,xìn粵jan1,jan3
+712F	zhuō粵zoek3,coek3 chāo粵coek3
+7131	yàn粵jim6
+7136	rán粵jin4
+7145	duàn粵dyun3
+7147	yùn粵wan6
+7149	liàn粵lin6
+714A	xuān粵hyun1
+714C	huáng粵wong4
+714E	jiān粵zin1 jiān粵zin3
+7152	wěi粵wai5
+7156	xuān粵hyun1
+7159	yān粵jin1
+715A	jiǒng粵gwing2
+715C	yù粵juk1
+715E	shà粵saat3 shā粵saat3
+7162	qióng粵king4
+7163	rǒu粵jau5
+7164	méi粵mui4
+7165	huàn粵wun6
+7166	xù,xǔ粵heoi2,heoi3
+7167	zhào粵ziu3
+7168	wēi粵wui1
+7169	fán粵faan4
+716C	yáng粵joeng4 yàng粵joeng6
+716E	zhǔ粵zyu2
+7172	bāo粵bou1
+7173	hú粵wu4
+7178	biān粵bin1
+717A	tuì粵teoi3
+717D	shān,shàn粵sin3
+7184	xī粵sik1
+7187	hè粵huk6,kok3
+718A	xióng粵hung4
+718F	xūn粵fan1 xùn粵fan1
+7192	yíng粵jing4
+7194	róng粵jung4
+7197	qiàng粵coeng3
+7198	liū粵liu1
+7199	xī粵hei1
+719F	shú,shóu粵suk6
+71A0	yì粵jap1
+71A5	tēng粵tung1
+71A8	yùn粵wan6,tong3 yù粵wat1 wèi粵wai3
+71AC	áo粵ngou4,ngaau4 āo粵ngou4,ngaau4
+71B1	rè粵jit6
+71B3	màn粵maan6
+71B5	shāng粵soeng1
+71B9	xī粵hei1
+71BE	chì粵ci3
+71C1	yè粵jip6
+71C3	rán粵jin4
+71C4	yàn粵jim6
+71C8	dēng粵dang1
+71C9	dùn粵dan6
+71CA	shēn粵san1
+71CE	liǎo,liáo粵liu4 liǎo粵liu5 liáo粵liu4 liào粵liu6
+71CF	yù粵wat6
+71D2	shāo粵siu1
+71D4	fán粵faan4
+71D5	yàn粵jin3 yān粵jin1
+71D9	tàng粵tong3
+71DA	yì粵jik6
+71DC	mèn粵mun6
+71DF	yíng粵jing4
+71E0	yù,ào粵juk1
+71E5	zào粵cou3
+71E6	càn粵caan3
+71E7	suì粵seoi6
+71EC	huǐ粵wai2
+71ED	zhú粵zuk1
+71EE	xiè粵sit3
+71F4	huì粵wui6
+71F9	xiǎn粵sin2
+71FC	jìn粵zeon6
+71FE	dào,tāo粵dou6,tou4
+7206	bào粵baau3
+7207	ruò粵jyut3
+720A	āo粵ou1
+720D	shuò粵soek3
+7210	lú粵lou4
+721A	yuè粵joek6
+721B	làn粵laan6
+721D	jué,jiào粵zoek3,ziu3
+7228	cuàn粵cyun3
+722A	zhǎo粵zaau2 zhuǎ粵zaau2
+722C	pá粵paa4
+722D	zhēng粵zang1,zaang1
+7230	yuán粵jyun4,wun4
+7235	jué粵zoek3
+7236	fù粵fu6 fǔ粵fu2
+7238	bà粵baa1
+7239	diē粵de1
+723A	yé粵je4
+723B	yáo粵ngaau4
+723D	shuǎng粵song2
+723E	ěr粵ji5
+723F	pán粵baan6 qiáng粵coeng4
+7240	chuáng粵cong4
+7241	gē粵go1
+7242	zāng粵zong1
+7246	qiáng粵coeng4
+7247	piàn粵pin3 piān粵pin2
+7248	bǎn粵baan2
+7249	pàn粵pun3
+724C	pái粵paai4
+7250	zhá粵zaap6
+7252	dié粵dip6
+7256	yǒu粵jau5
+7258	dú粵duk6
+7259	yá粵ngaa4
+725B	niú粵ngau4
+725D	pìn粵pan5
+725F	móu粵mau4 mù粵muk6
+7261	mǔ粵maau5
+7262	láo粵lou4
+7263	rèn粵jan6
+7264	māng粵mong1
+7266	móu粵mou4
+7267	mù粵muk6
+7269	wù粵mat6
+726E	jiàn粵zin3
+7277	quán粵cyun4
+7278	zì粵zi6
+7279	tè粵dak6
+727B	máng粵mong4
+727D	qiān粵hin1
+727E	wǔ粵ng5
+7280	xī粵sai1
+7282	lí粵lai4
+7284	jī粵gei1
+728B	jù粵geoi6
+728D	jiān粵gin1 qián粵kin4
+728E	fēng粵fung1
+728F	piān粵pin1
+7292	kào粵hou3
+7296	luò粵lok3
+7297	jiè粵gaai3
+729B	máo,lí粵mou4,lei4
+729F	jiàng粵goeng6
+72A2	dú粵duk6
+72A7	xī粵hei1
+72AC	quǎn粵hyun2
+72AF	fàn粵faan6 fàn粵faan2
+72B0	qiú粵kau4
+72B4	hān粵hon6 àn粵ngon6
+72C0	zhuàng粵zong6
+72C1	yǔn粵wan5
+72C2	kuáng粵kwong4,kong4
+72C3	niǔ粵nau2
+72C4	dí粵dik6
+72C9	pī粵pei1
+72CC	shēng粵sang1,saang1
+72CE	xiá粵haap6
+72D0	hú粵wu4
+72D2	fèi粵fai3
+72D6	yòu粵jau6
+72D7	gǒu粵gau2
+72D9	jū粵zeoi1
+72DC	gǔ粵gu2
+72E0	hěn粵han2
+72E1	jiǎo粵gaau2
+72E8	róng粵jung4
+72E9	shòu粵sau3
+72F3	yú粵jyu4
+72F4	bì粵bai6
+72F7	juàn粵gyun3
+72F9	xiá粵haap6,haap3
+72FA	yín粵ngan4
+72FB	xuān粵syun1
+72FC	láng粵long4
+72FD	bèi粵bui3
+7301	lì粵lei6
+7304	jīng粵geng1
+7307	xiāo粵haau1
+730A	ní粵ngai4
+730B	biāo粵biu1
+7316	chāng粵coeng1
+7317	yī粵ji1
+7318	zhì粵zai3
+7319	zhēng粵zang1,zaang1
+731B	měng粵maang5
+731C	cāi粵caai1
+731D	cù粵cyut3
+731E	shē粵se3
+7322	hú粵wu4
+7325	wěi粵wai2
+7329	xīng粵sing1
+7331	náo粵nou4
+7334	hóu粵hau4
+7336..7337	yóu粵jau4
+7338	méi粵mei4
+7339	chá粵zaa1
+733B	sūn粵syun1
+733E	huá粵waat6
+733F	yuán粵jyun4
+7341	mǎ粵maa5
+7344	yù粵juk6
+7345	shī粵si1
+7349	zhēn粵zeon1
+734D	jìng粵ging3
+7352	áo粵ngou4
+7357	júe粵kyut3
+7360	liáo粵liu4
+7368	dú粵duk6
+736A	kuài粵kui2
+736C	xiè粵haai5
+736E	xiǎn粵sin2
+736F	xūn粵fan1
+7370	níng粵ning4
+7372	huò粵wok6
+7374	méng,měng粵mung4
+7375	liè粵lip6
+7377	guǎng粵gwong2
+7378	shòu粵sau3
+737A	tǎ粵caat3
+737B	xiàn粵hin3
+737C	mí粵mei4,nei4
+7380	luó粵lo4
+7381	xiǎn粵him2
+7384	xuán粵jyun4
+7387	shuài粵seot1 lǜ粵leot6
+7389	yù粵juk6
+738B	wáng粵wong4 wàng粵wong6
+738D	gǎ粵gaa2
+738E	dīng粵ding1
+7395	gān粵gon1
+7396	jiǔ粵gau2
+7398	qǐ粵hei2
+739F	mín粵man4
+73A0	jiè粵gaai3
+73A1	yá粵je4
+73A2	bīn粵ban1 fēn粵fan1
+73A5	yuè粵jyut6
+73A6	jué粵kyut3
+73A9	wán粵waan2 wán,wàn粵wun6 wán粵waan4
+73AB	méi粵mui4
+73AD	pín粵pan4,pin4
+73B2	líng粵ling4
+73B3	dài粵doi6
+73B7	diàn粵dim3
+73BB	bō粵bo1
+73C0	pò粵paak3
+73C2	kē粵o1
+73C5	shēn粵san1
+73C8	jiā粵gaa1
+73C9	mín粵man4
+73CA	shān粵saan1
+73CD	zhēn粵zan1
+73CF	jué粵gok3
+73D0	fà粵faat3
+73D3	jiào粵gaau3
+73D9	gǒng粵gung2
+73DE	luò粵lok3
+73E0	zhū粵zyu1
+73E3	xún粵seon1
+73E5	ěr粵ji5
+73E7	yáo粵jiu4
+73E9	héng粵hang4
+73ED	bān粵baan1
+73EE	pèi粵pui3
+73FA	jùn粵gwan6
+73FD	tǐng粵ting2
+73FE	xiàn粵jin6
+7403	qiú粵kau4
+7405	láng粵long4
+7406	lǐ粵lei5
+7407	xiù粵sau3
+7409	liú粵lau4
+741A	jū粵geoi1
+741B	chēn粵sam1
+7422	zhuó粵doek3
+7424	chēng粵zang1
+7425	hǔ粵fu2
+7426	qí粵kei4
+7428	kūn粵kwan1
+742A	qí粵kei4
+742B	běng粵bung2
+742C	wǎn粵jyun2
+742E	cóng粵cung4
+742F	guǎn粵gun2
+7430	yǎn粵jim5
+7432	bèi粵pui3
+7433	lín粵lam4
+7434	qín粵kam4
+7435	pí粵pei4
+7436	pá粵paa4
+743F	hún粵wan4 huī粵wan4,fai1
+7440	yǔ粵jyu5
+7441	mào粵mou6
+7444	xuān粵syun1
+744A	jiān粵zam1,gaam1
+744B	wěi粵wai5
+7452	yáng粵joeng4 chàng粵coeng3
+7455	xiá粵haa4
+7457	yuàn粵jyun6
+7459	nǎo粵nou5
+745A	hú粵wu4
+745B	yīng粵jing1
+745C	yú粵jyu4
+745E	ruì粵seoi6
+745F	sè粵sat1
+7463	suǒ粵so2
+7464	yáo粵jiu4
+7469	yíng粵jing4
+746A	mǎ粵maa5
+746D	táng粵tong4
+746F	láng粵long4
+7470	guī粵gwai1 guī粵gwai3
+7471	tiàn粵tin3 zhèn粵zan3
+7472	qiāng粵coeng1
+747E	jǐn粵gan2
+7480	cuǐ粵ceoi1,ceoi2
+7483	li粵lei1 li粵lei4
+7486	qiú粵kau4
+7487	xuán粵syun4
+7489	liǎn粵lin5
+748B	zhāng粵zoeng1
+7490	lù粵lou6
+7497	dàng粵dong6
+7498	lín粵leon4
+749C	huáng粵wong4
+749E	pú粵pok3
+749F	jǐng粵ging2
+74A0	fán粵faan4
+74A1	jīn粵zeon1,zeon3
+74A3	jī粵gei1
+74A6	ài粵oi3
+74A7	bì粵bik1
+74A8	càn粵caan3
+74A9	qú粵keoi4
+74AA	zǎo粵zou2
+74AB	dāng粵dong1
+74B0	huán粵waan4
+74B5	yú粵jyu4
+74BA	wèn粵man6
+74BD	xǐ粵saai2
+74CA	qióng粵king4
+74CC	guī粵gwai1
+74CF	lóng粵lung4
+74D4	yīng粵jing1
+74D8	guàn粵gun3
+74DA	zàn粵zaan3
+74DC	guā粵gwaa1
+74DE	dié粵dit6
+74E0	hù粵wu6,wu4
+74E2	piáo粵piu4
+74E3	bàn粵faan6
+74E4	ráng粵nong4
+74E6	wǎ粵ngaa5 wà粵ngaa6
+74E9	qiānwǎ粵cin1ngaa5
+74F4	líng粵ling4
+74F6	píng粵ping4
+74F7	cí粵ci4
+74FB	chī粵ci1
+74FF	bù,pǒu粵pau2
+7503	zhòu粵zau3
+7504	zhēn粵jan1
+750C	ōu粵au1
+750D	méng粵mang4
+750F	bèng粵paang6
+7511	zèng粵zang6
+7512	wǔ粵mou5
+7513	pì粵pik1
+7515	wèng粵ung3
+7517	yǎn粵jin2
+7518	gān粵gam1
+7519	dài粵doi6
+751A	shèn粵sam6 shén粵sam6
+751C	tián粵tim4
+751F	shēng粵sang1,saang1
+7522	chǎn粵caan2
+7525	shēng粵sang1
+7528	yòng粵jung6
+7529	shuǎi粵lat1
+752A	lù粵luk6
+752B	fǔ粵fu2 pǔ粵pou2 pù粵pou3
+752C	yǒng粵jung2
+752D	béng粵bung3
+752E	fèng粵mung6
+7530	tián粵tin4
+7531	yóu粵jau4
+7532	jiǎ粵gaap3
+7533	shēn粵san1
+7534	gé粵gaat6
+7537	nán粵naam4
+7538	diàn粵din6
+753A	tǐng粵ting5 dīng粵ding1
+753E	zāi粵zoi1
+753F	méng粵mang4,mong4
+7540	bì粵bei2
+7547	yún粵wan4
+7548	fàn粵faan3
+754B	tián粵tin4
+754C	jiè粵gaai3
+754E	quǎn粵hyun2
+754F	wèi粵wai3
+7551	tián粵tin4
+7554	pàn粵bun6
+7559	liú粵lau4
+755A	běn粵bun2
+755B	zhěn粵can2
+755C	xù粵cuk1 chù粵cuk1
+755D	mǔ粵mau5
+7562	bì粵bat1
+7564	zhì粵zi6
+7565	lüè粵loek6
+7566	qí,xí粵kwai4
+756A	fān粵faan1 pān粵pun1
+756B	huà粵waa2 huà粵waak6
+756C	yú粵jyu4 shē粵se1 shē粵se4
+756F	jùn粵zeon3
+7570	yì粵ji6
+7572	shē粵se4
+7576	dāng粵dong1 dàng粵dong3
+7578	jī粵gei1,kei1
+7579	wǎn,yuǎn粵jyun2
+757F	jī粵gei1
+7583	tuǎn粵teon2
+7586	jiāng粵goeng1
+7587	chóu粵cau4
+758A	dié粵dip6
+758B	pǐ粵pat1 shū粵so1
+758D	dàn粵daan6
+758F	shū粵so1 shū,shù粵so3
+7590	zhì粵zi3
+7591	yí粵ji4
+7594	dīng粵ding1
+7599	gē粵ngat6,gat1
+759A	jiù粵gau3
+759D	shàn粵saan3
+75A2	chèn粵can3
+75A3	yóu粵jau4
+75A4	bā粵baa1
+75A5	jiè粵gaai3
+75AB	yì粵jik6
+75B0	zhù粵zyu3
+75B1	pào粵paau3
+75B2	pí粵pei4
+75B3	gān粵gam1
+75B4	kē,ē粵o1
+75B5	cī粵ci1
+75B8	dǎn粵taan2
+75B9	zhěn粵can2
+75BB	zhǐ粵zi2
+75BC	téng粵tang4
+75BD	jū粵zeoi1
+75BE	jí粵zat6
+75C1	shān粵zim1
+75C2	jiā粵gaa1
+75C3	xuán粵jin4
+75C4	zhà粵zaa3
+75C5	bìng粵beng6,bing6
+75C7	zhèng粵zing3
+75CA	quán粵cyun4
+75CC	tōng粵tung1
+75CD	yí粵ji4
+75CE	jiē粵gaai1
+75CF	wěi粵fui2
+75D1	tuó,duò粵to4,do3
+75D4	zhì粵zi6
+75D5	hén粵han4
+75D8	dòu粵dau6
+75D9	jìng粵ging6
+75DB	tòng粵tung3
+75DE	pǐ粵pei2
+75E0	suān粵syun1
+75E2	lì粵lei6
+75E3	zhì粵zi3
+75E4	cuó粵co4
+75E6	wù粵ng6
+75E7	shā粵saa1
+75E9	shòu粵sau3
+75F0	tán粵taam4
+75F1	fèi粵fai2
+75F2	má粵maa4
+75F9	bì粵bei3
+75FC	gù粵gu3
+75FF	wěi粵wai2
+7600	yū粵jyu2
+7601	cuì粵seoi6
+7603	zhú粵zuk1
+7608	zhì粵zai3
+7609	yù粵jyu6
+760A	hóu粵hau4
+760B	fēng粵fung1
+760C	là粵laat3
+760D	yáng粵joeng4
+7610	yǔ粵jyu5
+7613	huàn粵wun6
+7615	jiǎ粵gaa2
+7619	sào粵sou3
+761B	chì粵cit3,kai3
+761D	guān粵gwaan1
+761E	yì粵ji3
+761F	wēn粵wan1
+7620	jí粵zik3,zek3
+7621	chuāng粵cong1
+7622	bān粵baan1
+7624	liú粵lau4
+7625	chài粵caai3 cuó粵co4
+7627	nüè粵joek6 yào粵joek6
+7629	dá粵daap3 da粵daap3
+762D	biāo粵biu1
+762E	shèn粵sam3,sam2
+7630	luǒ粵lo2
+7632	zòng粵zung3
+7633	chōu粵cau1
+7634	zhàng粵zoeng3
+7635	zhài粵zaai3
+7638	qué粵ke4
+763B	lòu粵lau6
+763C	mò粵mok6
+7640	huáng粵wong4
+7642	liáo粵liu4
+7643	lóng粵lung4
+7646	láo粵lou4
+7647	xián粵haan4
+7649	dàn,dǎn粵daan3 dān粵daan1
+764C	ái,yán粵ngaam4
+764D	bān粵baan1
+7652	yù粵jyu6
+7654	yì粵ji3
+7656	pǐ粵pik1
+7658	lì粵lai6
+765C	diàn粵din6
+765F	biě粵bit6 biē粵bit6
+7661	chī粵ci1
+7662	yǎng粵jeoi5
+7664	jiē粵zit3
+7665	zhēng粵zing1
+7667	lì粵lik6,lek6
+7669	lài粵laai3
+766C	xuǎn粵sin2
+766D	yǐng粵jing2
+766E	yǐn粵jan5
+766F	qú粵keoi4
+7670	yōng粵jung1
+7671	tān粵taan1,taan2
+7672	diān粵din1
+7678	guǐ粵gwai3
+767B	dēng粵dang1
+767C	fā粵faat3
+767D	bái粵baak6
+767E	bǎi,bó粵baak3
+7682	zào粵zou6
+7684	dì粵dik1 dí粵dik1 de粵dik1
+7686	jiē粵gaai1
+7687	huáng粵wong4
+7688	guī粵gwai1
+768B	gāo粵gou1
+768E	jiǎo粵gaau2
+7693	hào粵hou6
+7695	bì粵bik1
+7696	wǎn粵wun5,wun2
+7699	xī粵sik1
+769A	ái粵ngoi4,ji4
+769D	huàng粵fong2
+769E	hào粵hou6
+76A4	pó粵po4
+76AE	pí粵pei4
+76B4	cūn粵seon1
+76B8	jūn粵gwan1
+76BA	zhòu粵zau3
+76BF	mǐn,mǐng粵ming5
+76C2	yú粵jyu4
+76C5	zhōng粵zung1
+76C6	pén粵pun4
+76C8	yíng粵jing4
+76C9	hé粵wo4
+76CA	yì粵jik1
+76CD	hé粵hap6
+76CE	àng粵ong3,ong2
+76D2	hé粵hap6
+76D4	kuī粵kwai1
+76DB	shèng粵sing6 chéng粵sing4
+76DC	dào粵dou6
+76DD	lù粵luk6
+76DE	zhǎn粵zaan2
+76DF	méng粵mang4 míng粵mang4
+76E1	jìn粵zeon6
+76E3	jiān粵gaam1 jiàn粵gaam3
+76E4	pán粵pun4
+76E5	guàn粵gun3
+76E6	ān粵am1
+76E7	lú粵lou4
+76E9	zhōu粵zau1
+76EA	dàng粵dong6
+76EE	mù粵muk6
+76EF	dīng粵ding1,deng1
+76F1	xū粵heoi1
+76F2	máng粵maang4
+76F4	zhí粵zik6
+76F8	xiāng粵soeng1 xiāng,xiàng粵soeng3 xiàng粵soeng3
+76F9	dǔn粵deon6
+76FB	xì粵hai6
+76FC	pàn粵paan3
+76FE	dùn粵teon5
+7701	shěng粵saang2 xǐng粵sing2
+7704	miàn粵min5
+7707	miǎo粵miu5
+7708	dān粵daam1
+7709	méi粵mei4
+770A	mào粵mou6
+770B	kàn粵hon3 kàn粵hon1 kān粵hon1
+7719	yí粵ji4 chì粵ci3
+771A	shěng粵saang2
+771F	zhēn粵zan1
+7720	mián粵min4
+7722	yuān粵jyun1
+7725	zì粵zi6 zhài粵zaai6
+7728	zhǎ粵zaap3
+7729	xuàn粵jyun4
+772D	suī粵seoi1
+772F	mǐ粵mai5 mī粵mai4,mei1
+7735	chī粵ci1
+7736	kuàng粵hong1,kwaang1
+7737	juàn粵gyun3
+7738	móu粵mau4
+773A	tiào粵tiu3
+773C	yǎn粵ngaan5
+773E	zhòng粵zung3
+7740	zháo粵zoek6 zhāo粵zoek6 zhe粵zoek6
+7743	suō,jùn粵zeon3,so1
+7746	huǎn粵wun2
+7747	dì粵dai6 tǐ粵tai2
+774F	kùn粵kwan3
+7752	shǎn粵sim2
+7756	lèng粵ling6
+775A	yá粵ngaai4
+775B	jīng粵zing1
+775C	zhēng粵zang1,zaang1
+775E	lài粵loi6
+7761	shuì粵seoi6
+7762	suī粵seoi1
+7763	dū粵duk1
+7765	bì,pì粵pai6,pei5
+7766	mù粵muk6
+7768	nì粵ngai6
+776B	jié粵zit6
+776C	cǎi粵coi2
+7779	dǔ粵dou2
+777D	kuí粵kwai4
+777E	gāo粵gou1
+777F	ruì粵jeoi6
+7780	mào粵mau6
+7784	miáo粵miu4
+7785	chǒu粵cau2
+7787	mī粵mai4,mei1 mǐ粵mai5
+778B	chēn粵can1
+778C	kē粵hap6
+778D	sǒu粵sau2
+778E	xiā粵hat6
+7791	míng,mǐng粵ming4,ming5
+7798	kōu粵kau1
+779C	lōu粵lau1
+779E	mán粵mun4
+779F	piǎo粵piu5
+77A0	chēng粵caang1
+77A2	méng粵mung4
+77A4	shùn粵jeon4,seon3
+77A5	piē粵pit3
+77A7	qiáo粵ciu4
+77AA	dèng粵dang6,dang1
+77AC	shùn粵seon3
+77AD	liào粵liu4 liǎo粵liu5 liǎo粵liu4
+77B0	kàn粵ham3
+77B3	tóng粵tung4
+77B5	lín粵leon4
+77BB	zhān粵zim1
+77BC	jiǎn粵gim2
+77BD	gǔ粵gu2
+77BF	qú粵keoi4
+77C7	mēng粵mung4 méng粵mung4
+77CD	jué粵fok3
+77D3	lóng粵lung4
+77D7	chù粵cuk1
+77DA	zhǔ粵zuk1
+77DB	máo粵maau4
+77DC	jīn粵ging1 guān粵gwaan1 qín粵kan4
+77DE	yù粵wat6
+77DF	shuò粵sok3
+77E2	shǐ粵ci2
+77E3	yǐ粵ji5
+77E5	zhī粵zi1 zhì粵zi3
+77E7	shěn粵can2
+77E9	jǔ粵geoi2
+77EC	cuó粵co4
+77ED	duǎn粵dyun2
+77EE	ǎi粵ai2
+77EF	jiǎo粵giu2
+77F0	zēng粵zang1
+77F1	yuē粵wok6
+77F3	shí粵sek6 dàn,shí粵sek6
+77F8	gān粵gon1
+77FB	kū粵ngat6
+77FD	xī粵zik6
+7802	shā粵saa1
+7809	xū,huā粵waak6
+780C	qì粵cai3
+780D	kǎn粵ham2
+7811	yà粵ngaa6
+7812	pī粵pei1
+7814	yán粵jin4
+7818	dùn粵deon6
+781D	fǎ粵faat3
+781F	zhǎ粵zaa3
+7822	kē粵o1 luǒ粵lo2
+7823	tuó粵to4
+7825	dǐ,zhǐ粵dai2
+7827	zhēn粵zam1
+782B	zhù粵cyu5
+782C	lá粵laap6
+782D	biān粵bin1
+7830	pēng粵ping1
+7834	pò粵po3
+7837	shēn粵san1
+7838	zá粵zaap3
+7839	ài粵ngaai6
+783C	tóng粵tung4
+7843	zhū粵zyu1
+7845	guī粵gwai1
+7847	náo粵naau4
+784A	guì粵gwai3
+784C	luò粵lok3 gè粵kaak3
+784E	xíng粵jing4
+7850	dòng粵dung6
+7852	xī粵sai1
+785C	kēng粵hang1
+785D	xiāo粵siu1
+7864	xiá粵haap6
+7868	chē粵ce1
+786A	wò粵wo6 é粵ngo4
+786B	liú粵lau4
+786C	yìng粵ngaang6
+786D	máng粵mong4
+786E	què粵kok3
+786F	yàn粵jin6
+787C	péng粵paang4
+7887	dìng粵ding3
+7889	diāo粵diu1
+788C	lù粵luk1 liù粵luk6
+788E	suì粵seoi3
+7891	bēi粵bei1
+7893	duì粵deoi3
+7895	qí粵kei4
+7897	wǎn粵wun2
+7898	diǎn粵din2 diǎn粵din1
+789A	bèi粵bui3
+789F	dié粵dip6
+78A1	zhou,dú粵duk6
+78A3	jié粵kit3
+78A5	biǎn粵bin2
+78A7	bì粵bik1
+78A8	wèi粵wai3 wěi粵wui2
+78A9	shuò,shí粵sek6
+78AD	dàng粵dong6
+78B0	pèng粵pung3
+78B2	dì粵dai3
+78B3	tàn粵taan3
+78B4	chá粵caa4
+78B8	fēng粵fung1
+78BA	què粵kok3
+78BC	mǎ粵maa5
+78BE	niǎn粵nin5,zin2
+78C1	cí粵ci4
+78C5	bàng粵bong6 páng粵pong4
+78C8	kuǐ粵faai3
+78C9	sǎng粵song2
+78CA	lěi粵leoi5
+78CB	cuō粵co1
+78D0	pán粵pun4
+78D1	wèi粵wai3
+78D4	zhé粵zaak6
+78D5	kē粵hap6
+78D9	gǔn粵gwan2
+78DA	zhuān粵zyun1
+78E0	lǔ粵lou5
+78E1	kàn粵ham3
+78E3	chěn粵cam2
+78E7	qì粵zik1
+78E8	mó粵mo4 mò粵mo4,mo6
+78EC	qìng粵hing3
+78EF	jī粵gei1
+78F2	qú粵keoi4
+78F4	dèng粵dang3
+78F7	lín粵leon4
+78FA	huáng粵wong4
+78FB	pán粵pun4
+78FD	qiāo粵haau1
+78FE	dī粵dai1
+7901	jiāo粵ziu1
+7903	zhǎng粵zoeng2
+7904	qiáo粵kiu4
+7905	dūn粵deon1
+790C	léi,lèi粵leoi6
+790E	chǔ粵co2
+7913	jiāng粵goeng1
+7919	ài粵ngoi6
+791E	méng粵mung4
+7924	cǎ粵caat3
+7926	kuàng,gǒng粵kwong3,kong3
+7927	lèi,léi粵leoi6
+792A	lì粵lai6
+792B	lì粵lik1
+792C	fán粵faan4
+7931	lóng粵lung4
+7933	mò粵mo6
+7934	bó粵bok6
+7935	shuāng粵soeng1
+793A	shì粵si6
+793D	réng粵jing4
+793E	shè粵se5
+7940	sì粵zi6
+7941	qí粵kei4
+7946	xiān粵hin1
+7947	qí粵kei4 zhǐ粵zi2
+7948	qí粵kei4
+7949	zhǐ粵zi2
+794A	bēng粵bang1
+794F	shí粵sek6
+7950	yòu粵jau6
+7953	fú粵fat1
+7955	mì粵bei3 bì粵bei3
+7956	zǔ粵zou2
+7957	zhī粵zi1
+795A	zuò粵zou6
+795B	qū粵keoi1
+795C	hù粵wu6
+795D	zhù粵zuk1
+795E	shén粵san4 shēn粵san1
+795F	suì粵seoi6
+7960	cí粵ci4
+7965	xiáng粵coeng4
+7967	tiāo粵tiu1
+7968	piào粵piu3
+796D	jì粵zai3
+7972	jìn,jīn粵zam3,zam1
+797A	qí粵kei4
+797F	lù粵luk6
+7981	jìn粵gam3 jīn粵gam1
+798A	xì粵hai6
+798B	yīn粵jan1
+798D	huò粵wo6
+798E	zhēn,zhēng粵zing1
+798F	fú粵fuk1
+7995	yī粵ji1
+7998	dì粵dai3
+799A	zhuó粵zoek3
+79A1	mà粵maa6 yá粵ngaa4
+79A4	xuān粵hyun1
+79A6	yù粵jyu6
+79A7	xǐ,xī粵hei1
+79AA	chán粵sim4 shàn粵sin6
+79AE	lǐ粵lai5
+79B0	mí,nǐ粵nei4 nǐ粵nei5
+79B1	dǎo粵tou2
+79B3	ráng粵joeng4
+79B9	yǔ粵jyu5
+79BA	yú粵jyu4
+79BC	xiè粵sit3
+79BD	qín粵kam4
+79BE	hé粵wo4
+79C0	xiù粵sau3
+79C1	sī粵si1
+79C3	tū粵tuk1
+79C8	xiān粵sin1
+79C9	bǐng粵bing2
+79CB	qiū粵cau1
+79CD	chóng粵cung4
+79D1	kē粵fo1
+79D2	miǎo粵miu5
+79D5	bǐ粵bei2
+79DF	zū粵zou1
+79E3	mò粵mut3
+79E4	chèng粵cing3
+79E6	qín粵ceon4
+79E7	yāng粵joeng1
+79E9	zhì粵dit6
+79EB	shú粵seot6
+79EC	jù粵geoi6
+79ED	zǐ粵zi2
+79FB	yí粵ji4
+7A00	xī粵hei1
+7A02	láng粵long4
+7A03	fū粵fu1
+7A08	gǎn粵gon2
+7A0A	tí粵tai4
+7A0B	chéng粵cing4
+7A0D	shāo粵saau2 shào粵saau2
+7A0E	shuì粵seoi3
+7A14	rěn粵nam5 niān粵nim1
+7A16	bàng粵bong6
+7A17	bài粵baai6
+7A19	zhī粵zik6
+7A1A	zhì粵zi6
+7A1E	kē粵fo1
+7A1F	bǐng粵ban2
+7A20	chóu粵cau4
+7A2D	jiē粵gaai1
+7A2E	zhǒng粵zung2 zhòng粵zung3
+7A31	chēng粵cing1 chèn粵cing3,can3 chēng粵cing3
+7A37	jì粵zik1
+7A3B	dào粵dou6
+7A3C	jià粵gaa3
+7A3D	jī粵kai1 qǐ粵kai2
+7A3F	gǎo粵gou2
+7A40	gǔ粵guk1
+7A44	jì粵zai3
+7A46	mù粵muk6
+7A47	cǎn粵saam1
+7A4C	sū粵sou1
+7A4D	jī粵zik1
+7A4E	yǐng粵wing6
+7A57	suì粵seoi6
+7A60	nóng粵nung4
+7A61	sè粵sik1
+7A62	huì粵wai3
+7A69	wěn粵wan2
+7A6B	huò粵wok6
+7A6D	lǚ粵leoi5
+7A70	ráng粵jeoi4 rǎng粵joeng6
+7A74	xué粵jyut6
+7A76	jiū,jiù粵gau3
+7A78	xī粵zik6
+7A79	qióng粵kung4
+7A7A	kōng粵hung1 kòng粵hung1
+7A7F	chuān粵cyun1
+7A80	zhūn粵zeon1
+7A81	tū粵dat6
+7A84	zhǎi粵zaak3
+7A85	yǎo粵jiu2
+7A86	biǎn粵bin2
+7A88	yǎo粵miu5,jiu2
+7A8C	liáo粵laau4 jiào粵gaau3
+7A92	zhì粵zat6
+7A95	tiǎo粵tiu5
+7A96	jiào粵gaau3
+7A97	chuāng粵coeng1
+7A98	jiǒng粵kwan3
+7A9F	kū粵fat1,gwat6
+7AA0	kē粵wo1,fo1
+7AA3	sū粵seot1
+7AA8	yìn粵jam3 xūn粵fan1
+7AA9	wō粵wo1
+7AAA	wā粵waa1
+7AAC	yú粵jyu4
+7AAE	qióng粵kung4
+7AAF	yáo粵jiu4
+7AB3	yǔ粵jyu5
+7AB5	diào粵diu3
+7AB6	jù粵geoi6 lóu粵lau4
+7AB8	xī粵sik1
+7ABA	kuī粵kwai1
+7ABE	kuǎn粵fun2
+7ABF	lóng粵lung4 lóng粵lung1
+7AC4	cuàn粵cyun2,cyun3
+7AC5	qiào粵hiu3,kiu3
+7AC7	dòu粵dau6
+7AC8	zào粵zou3
+7ACA	qiè粵sit3
+7ACB	lì粵laap6,lap6
+7AD1	hóng粵wang4
+7AD9	zhàn粵zaam6
+7ADF	jìng粵ging2
+7AE0	zhāng粵zoeng1
+7AE3	jùn粵zeon3
+7AE5	tóng粵tung4
+7AE6	sǒng粵sung2
+7AED	jié粵kit3
+7AEF	duān粵dyun1
+7AF6	jìng粵ging6,ging3
+7AF9..7AFA	zhú粵zuk1
+7AFB	lè粵lak6
+7AFD	yú粵jyu1,jyu4
+7AFF	gān粵gon1
+7B04	jī粵gai1
+7B06	bā粵baa1
+7B08	jí粵kap1
+7B0A	zhào粵zaau3
+7B0F	hù粵fat1
+7B11	xiào粵siu3
+7B19	shēng粵sang1
+7B1B	dí粵dek6
+7B1E	chī粵ci1
+7B20	lì粵lap1
+7B24	tiáo粵tiu4
+7B25	sì粵zi6
+7B26	fú粵fu4
+7B28	bèn粵ban6
+7B2A	dá粵daat3
+7B2B	zǐ粵zi2
+7B2C	dì粵dai6
+7B2D	líng粵ling4
+7B2E	zuó粵zok6 zé粵zaak3
+7B31	gǒu粵gau2
+7B33	jiā粵gaa1
+7B38	pǒ粵po2
+7B46	bǐ粵bat1
+7B47	qióng粵kung4
+7B49	děng粵dang2
+7B4A	jiǎo粵gau2
+7B4B	jīn粵gan1
+7B4C	quán粵cyun4
+7B4D	sǔn粵seon2
+7B4F	fá粵fat6
+7B50	kuāng粵hong1,kwaang1
+7B51	zhú粵zuk1
+7B52	tǒng,tóng粵tung2,tung4
+7B54	dá粵daap3 dā粵daap3
+7B56	cè粵caak3
+7B58	kòu粵kau3
+7B60	yún粵wan4 jūn粵gwan1
+7B62	pá粵paa4
+7B65	jǔ粵geoi2
+7B67	jiǎn粵gaan2
+7B6D	suàn粵syun3
+7B6E	shì粵sai6
+7B70	zuó粵zok6
+7B71	xiǎo粵siu2
+7B72	shāo粵saau1
+7B74	jiā粵gaap3
+7B75	yán粵jin4
+7B77	kuài粵faai3
+7B7B	gàng粵gaang3
+7B85	bì粵bai3
+7B87	gè粵go3
+7B8B	jiān粵zin1
+7B8D	gū粵ku1
+7B8F	zhēng粵zang1
+7B90	qìng粵cin3 jīng粵zing1
+7B91	shà粵saap3,zit6
+7B94	bó粵bok6
+7B95	jī粵gei1
+7B97	suàn粵syun3
+7B99	fú粵fuk6
+7B9C	kōng粵hung1
+7B9D	qián粵kim4
+7BA0	chuí粵ceoi4
+7BA1	guàn粵gun2
+7BAC	ruò粵joek6
+7BAD	jiàn粵zin3
+7BB1	xiāng粵soeng1
+7BB2	xiǎn粵sin2
+7BB4	zhēn粵zam1
+7BB5	xīng,xǐng粵sing2
+7BB8	zhù粵zyu6,zyu3
+7BC0	jié粵zit3 jiē粵zit3
+7BC1	huáng粵wong4
+7BC4	fàn粵faan6
+7BC5	chuán粵syun4
+7BC6	zhuàn粵syun6
+7BC7	piān粵pin1
+7BC9	zhù粵zuk1
+7BCB	qiè粵haap6
+7BCC	hóu粵hau4
+7BD9	gāo粵gou1
+7BDA	fěi粵fei2
+7BDD	gōu粵gau1,kau1
+7BE0	xiǎo粵siu2
+7BE1	cuàn粵saan3
+7BE4	dǔ粵duk1
+7BE5	lì粵leot6
+7BE6	bì粵bei6
+7BE8	chú粵cyu4,ceoi4
+7BE9	shāi粵sai1
+7BEA	chí粵ci4
+7BF0	bù粵pau2,bou6
+7BF3	bì粵bat1
+7BF7	péng粵pung4
+7BF8	cǎn粵caam2
+7BFC	dōu粵dau1
+7BFE	miè粵mit6
+7C00	zé粵zaak3
+7C03	yí粵jyu4
+7C06	kòu粵kau3
+7C07	cù粵cuk1
+7C09	zào,chòu粵zou6,cau3
+7C0B	guǐ粵gwai2
+7C0C	sù粵cuk1
+7C0D	lǒu粵lau5
+7C0F	lù粵luk1
+7C15	lè粵lak6
+7C1E	dān粵daan1
+7C1F	diàn粵tim5
+7C20	fǔ粵fu2
+7C21	jiǎn粵gaan2
+7C23	kuì粵gwai6
+7C26	dēng粵dang1
+7C27	huáng粵wong4
+7C2A	zān粵zaam1
+7C2B	xiāo粵siu1
+7C38	bǒ粵bo3,bo2 bò粵bo3
+7C3D	qiān粵cim1
+7C3E	lián粵lim4
+7C3F	bù粵bou6
+7C40	zhòu粵zau6
+7C43	lán粵laam4
+7C4C	chóu粵cau4
+7C4D	jí粵zik6
+7C51	zhuàn粵zaan6
+7C59	lù粵luk6
+7C5C	tuò粵tok3
+7C5F	lài粵laai6
+7C60	lóng粵lung4 lǒng粵lung4 lǒng粵lung5
+7C64	qiān粵cim1
+7C65	yuè粵joek6
+7C67	qú粵keoi4
+7C69	biān粵bin1
+7C6A	duàn粵dyun6
+7C6C	lí粵lei4 li粵lei1
+7C6E	luó粵lo4
+7C6F	yíng粵jing4
+7C70	yuè粵wok6
+7C72	yù粵jyu6
+7C73	mǐ粵mai5
+7C78	shēn粵san1
+7C7C	xiān粵sin1
+7C7D	zǐ粵zi2
+7C89	fěn粵fan2
+7C91	bā粵baa1
+7C92	lì粵nap1
+7C95	pò粵pok3,paak3
+7C97	cū粵cou1
+7C9E	xī粵sai1
+7C9F	sù粵suk1
+7CA2	zī粵zi1
+7CA5	zhōu粵zuk1
+7CB1	liáng粵loeng4
+7CB2	càn粵caan3
+7CB3	jīng粵gang1
+7CB5	yuè粵jyut6
+7CB9	cuì粵seoi6,seoi5
+7CBC	lín粵leon4
+7CBE	jīng粵zing1
+7CC5	róu粵jau2,nau6
+7CC8	xǔ粵seoi2
+7CC9	zòng粵zung3,zung2
+7CCA	hú粵wu4 hù粵wu4 hū粵wu4
+7CCC	zān粵zaa1
+7CCD	cí粵ci4
+7CD2	bèi粵bei6
+7CD5	gāo粵gou1
+7CD6	táng粵tong4,tong2
+7CD7	qiǔ粵jau2,cau3
+7CD9	cāo粵cou3
+7CDC	mí粵mei4 méi粵mei4
+7CDD	sǎn粵saam2
+7CDE	fèn粵fan3
+7CDF	zāo粵zou1
+7CE0	kāng粵hong1
+7CE8	jiàng粵goeng6
+7CEF	nuò粵no6
+7CF0	tuán粵tyun4
+7CF2	lì粵lai6
+7CF4	dí粵dek6
+7CF5	niè粵jit6,jip6
+7CF6	tiào粵tiu3
+7CFB	xì粵hai6
+7CFE	jiū粵gau2,dau2
+7D00	jì粵gei2 jǐ粵gei2
+7D02	zhòu粵zau6
+7D03	xún粵ceon4
+7D04	yuē粵joek3 yāo粵joek3
+7D05	hóng粵hung4 gōng粵gung1
+7D06	yū粵jyu1
+7D07	hé粵hat6 gē粵gat1
+7D08	wán粵jyun4
+7D09	rèn粵jan6
+7D0A	wěn,wèn粵man6
+7D0B	wén粵man4
+7D0D	nà粵naap6
+7D10	niǔ粵nau2
+7D13	shū粵syu1
+7D14	chún粵seon4
+7D15	pī粵pei1 pí粵pei4
+7D16	zhèn粵zan5
+7D17	shā粵saa1
+7D18	hóng粵wang4
+7D19	zhǐ粵zi2
+7D1A	jí粵kap1
+7D1B	fēn粵fan1
+7D1C	yún粵wan4
+7D1D	rèn粵jam6
+7D20	sù粵sou3
+7D21	fǎng粵fong2
+7D22	suǒ粵sok3 suǒ粵saak3,sok3
+7D2B	zǐ粵zi2
+7D2C	chōu粵cau1
+7D2E	zhā粵zaat3 zā粵zaat3
+7D2F	lěi粵leoi5 lèi粵leoi6 léi粵leoi6 léi粵leoi4
+7D30	xì粵sai3
+7D31	fú粵fat1
+7D32	xiè粵sit3
+7D33	shēn粵san1
+7D35	zhù粵cyu5
+7D39	shào粵siu6
+7D3A	gàn粵gam3
+7D3C	fú粵fat1
+7D3F	dài粵doi6,toi5
+7D40	chù粵zyut3
+7D41	shī粵si1
+7D42	zhōng粵zung1
+7D44	zǔ粵zou2
+7D45	jiǒng粵gwing2
+7D46	bàn粵bun6
+7D4E	háng粵hong4
+7D50	jié粵git3 jiē粵git3
+7D55	jué粵zyut6
+7D5C	xié粵kit3
+7D5E	jiǎo粵gaau2
+7D61	luò粵lok3 lào粵lok3
+7D62	xuàn粵hyun3
+7D66	gěi粵kap1 jǐ粵kap1
+7D68	róng粵jung4,jung2
+7D6E	xù粵seoi5,seoi6
+7D70	dié粵dit6
+7D71	tǒng粵tung2
+7D72	sī粵si1
+7D73	jiàng粵gong3
+7D79	juàn粵gyun3
+7D7A	chī粵ci1
+7D81	bǎng粵bong2
+7D83	xiāo粵siu1
+7D86	gěng粵gang2
+7D88	tí粵tai4 tì粵tai3
+7D8C	xì粵gwik1
+7D8F	suí,suī粵seoi1
+7D93	jīng粵ging1
+7D9C	zōng粵zung1,zung3 zèng粵zung3
+7D9E	duǒ粵do2
+7DA0	lǜ粵luk6 lù粵luk6
+7DA2	chóu粵cau4
+7DA3	quǎn粵hyun3
+7DA6	qí粵kei4
+7DAB	xiàn粵sin3
+7DAC	shòu粵sau6
+7DAD	wéi粵wai4
+7DAE	qìng粵hing3 qǐ粵kai2
+7DB0	wǎn粵waan2
+7DB1	gāng粵gong1
+7DB2	wǎng粵mong5
+7DB4	zhuì粵zeoi6,zeoi3 chuò粵zyut3
+7DB5	cǎi粵coi2
+7DB8	lún粵leon4 guān粵gwaan1
+7DB9	liǔ粵lau5
+7DBA	qǐ粵ji2
+7DBB	zhàn粵zaan6
+7DBD	chuò粵coek3 chāo粵caau1
+7DBE	líng粵ling4
+7DBF	mián粵min4
+7DC4	gǔn粵gwan2
+7DC5	zōu粵zau1
+7DC7	zī粵zi1
+7DC9	liǎng粵loeng5
+7DCA	jǐn粵gan2
+7DCB	fēi粵fei1
+7DD2	xù粵seoi5
+7DD7	xiāng粵soeng1
+7DD8	jiān粵gaam1
+7DD9	kè粵kaak1
+7DDD	jī,qì粵cap1 qī粵cap1
+7DDE	duān粵dyun6
+7DE0	dì粵dai3,tai3
+7DE1	mín粵man4
+7DE3	yuán粵jyun4
+7DE6	sī粵si1
+7DE8	biān粵pin1
+7DE9	huǎn粵wun6
+7DEC	miǎn粵min5
+7DEF	wěi粵wai5
+7DF1	gōu粵gau1
+7DF2	miǎo粵miu5
+7DF4	liàn粵lin6
+7DF6	biàn粵pin4
+7DF9	tí粵tai4
+7DFA	guā粵gwaa1,gwo1
+7DFB	zhì粵zi3
+7DFC	yùn粵wan3
+7E08	yíng粵jing4
+7E09	jìn粵zeon3
+7E0A	yì粵ai3
+7E0B	zhuì粵zeoi6
+7E10	zhòu粵zau3
+7E11	jiān粵gim1
+7E17	cuī粵ceoi1
+7E1B	fù粵bok3,fok3
+7E1D	zhěn粵can2,zan2
+7E1E	gǎo粵gou2
+7E1F	rù粵juk6
+7E20	hú粵huk6
+7E22	téng粵tang4
+7E23	xiàn粵jyun6
+7E27	tāo粵tou1
+7E2B	féng粵fung4 fèng粵fung4,fung6
+7E2D	lí粵lei4
+7E2E	suō粵suk1 sù粵suk1
+7E2F	yǎn粵jin2 yǐn粵jan5
+7E31	zòng粵zung3 zòng,zōng粵zung1
+7E32	léi粵leoi4
+7E34	qiān粵hin1 qiàn粵hin3
+7E35	màn粵maan6
+7E36	zhí粵zap1
+7E37	lǚ粵leoi5,lau5
+7E39	piǎo粵piu5 piāo粵piu1
+7E3B	mí粵mei4
+7E3D	zǒng粵zung2
+7E3E	jì粵zik1
+7E40	suì粵seoi3
+7E41	fán粵faan4 pó粵po4
+7E43	bēng粵bang1 běng粵maang1
+7E44	yī粵ji1
+7E45	sāo粵sou1
+7E46	miào粵miu6 móu粵mau4 miù粵maau6 mù粵muk6
+7E47	yóu粵jau4
+7E50	suì粵seoi6
+7E52	zēng粵zang1 zèng粵zang6
+7E54	zhī粵zik1
+7E55	shàn粵sin6
+7E5A	liáo粵liu4
+7E5E	rào粵jiu2,jiu5
+7E61	xiù粵sau3
+7E62	huì粵kui2
+7E68	da粵daat6
+7E69	shéng粵sing4
+7E6A	huì粵kui2
+7E6B	xì粵hai6 jì粵hai6
+7E6D	jiǎn粵gaan2
+7E6E	jiāng粵goeng1
+7E6F	huán粵waan4
+7E70	qiāo粵ciu1 zǎo粵zou2
+7E73	jiǎo粵giu2 zhuó粵zoek3
+7E79	yì粵jik6
+7E7B	xū,rú粵seoi1
+7E7C	jì粵gai3
+7E7D	bīn粵ban1
+7E7E	qiǎn粵hin2
+7E82	zuǎn粵zyun2
+7E87	lèi粵leoi6
+7E88	xié粵kit3
+7E8A	kuàng粵kwong3,kong3
+7E8C	xù粵zuk6
+7E8D	léi粵leoi4 lěi粵leoi5
+7E8F	chán粵cin4
+7E93	yīng粵jing1
+7E94	cái粵coi4
+7E96	xiān粵cim1
+7E98	zuǎn粵zyun2
+7E9B	dào,dú粵duk6
+7E9C	lǎn粵laam6
+7F36	fǒu粵fau2
+7F38	gāng粵gong1
+7F3A	quē粵kyut3
+7F44	qìng粵hing3
+7F45	xià粵laa3
+7F4C	yīng粵aang1 yīng粵ang1
+7F4D	léi粵leoi4
+7F4E	tán粵taam4
+7F4F	lú粵lou4
+7F50	guàn粵gun3
+7F54	wǎng粵mong5
+7F55	hǎn粵hon2
+7F58	fú粵fau4
+7F5F	gǔ粵gu2
+7F61	gāng粵gong1
+7F65	juàn粵gyun3
+7F66	fú粵fau4
+7F68	yǎn粵jim2
+7F69	zhào粵zaau3
+7F6A	zuì粵zeoi6
+7F6E	zhì粵zi3
+7F70	fá粵fat6
+7F71	lǎn,nǎn粵laam5
+7F72	shǔ粵cyu5
+7F73	sī粵si1
+7F75	mà粵maa6
+7F77	bà粵baa6
+7F79	lí粵lei4
+7F7D	jì粵gai3
+7F7E	zēng粵zang1
+7F85	luó粵lo4 luó粵lo1
+7F86	pí粵bei1
+7F88	jī粵gei1
+7F8A	yáng粵joeng4
+7F8C	qiāng粵goeng1
+7F8E	měi粵mei5
+7F91	yǒu粵jau5
+7F92	fén粵fan4
+7F93	bā粵baa1
+7F94	gāo粵gou1
+7F95	yàng粵joeng6
+7F96	gǔ粵gu2
+7F9A	líng粵ling4
+7F9D	dī粵dai1
+7F9E	xiū粵sau1
+7FA3	qún粵kwan4
+7FA5	qiǎng粵koeng5
+7FA7	suō粵so1
+7FA8	xiàn粵sin6
+7FA9	yì粵ji6
+7FAF	jié粵kit3
+7FB0	tāng粵tong1
+7FB1	yuán粵jyun4
+7FB2	xī粵hei1
+7FB6	shān粵zin1
+7FB8	léi粵leoi4
+7FB9	gēng粵gang1
+7FBC	chàn粵caan3
+7FBD	yǔ粵jyu5
+7FBF	yì粵ngai6
+7FC0	chōng粵cung1
+7FC1	wēng粵jung1
+7FC5	chì粵ci3
+7FCA	yì粵jik6
+7FCC	yì粵jik6
+7FCE	líng粵ling4
+7FD2	xí粵zaap6
+7FD4	xiáng粵coeng4
+7FD5	xī粵jap1
+7FDB	xiāo粵siu1
+7FDF	dí粵dik6 zhái粵zaak6
+7FE0	cuì粵ceoi3
+7FE1	fěi粵fei2
+7FE5	zhù粵zyu3
+7FE6	jiǎn粵zin2
+7FE9	piān粵pin1
+7FEC	huī粵fai1
+7FEE	hé粵hat6
+7FEF	hè粵hok6
+7FF0	hàn粵hon6
+7FF1	áo粵ngou4
+7FF3	yì粵ai3
+7FF9	qiáo粵kiu4 qiào粵kiu3,hiu3
+7FFB	fān粵faan1
+7FFC	yì粵jik6
+7FFD	huì粵wai3
+7FFE	xuān粵hyun1
+8000	yào粵jiu6
+8001	lǎo粵lou5
+8003	kǎo粵haau2
+8004	mào粵mou6
+8005	zhě粵ze2
+8006	qí粵kei4
+8007	gǒu粵gau2
+800B	dié粵dit6
+800C	ér粵ji4
+800D	shuǎ粵saa2
+8010	nài粵noi6
+8012	lěi粵loi6,leoi6
+8014	zǐ粵zi2
+8015	gēng粵gaang1
+8016	chào粵caau3
+8017	hào粵hou3
+8018	yún粵wan4
+8019	bà粵paa4 pá粵paa4
+801C	sì粵zi6
+801E	jiā粵gaa1
+8020	huō粵hap6
+8025	tǎng粵tong2
+8026	ǒu粵ngau5
+8028	nòu粵nau6
+8029	jiǎng粵gong2
+802A	pǎng粵pong5
+802C	lóu粵lau4
+802E	lào粵lou6
+8030	yōu粵jau1
+8031	mò粵mo6
+8032	huái粵waai4
+8033	ěr粵ji5
+8035	dīng,dǐng粵ding1,ding2
+8036	yé粵je4 yē粵je4
+8037	dā粵daap3
+803D	dān粵daam1
+803F	gěng粵gang2
+8043	dān粵daam1
+8046	líng粵ling4
+804A	liáo粵liu4
+8052	guō粵kut3
+8056	shèng粵sing3
+8058	pìn,pìng粵ping3
+805A	jù粵zeoi6
+805E	wén粵man4
+806F	lián粵lyun4
+8070	cōng粵cung1
+8071	áo粵ngou4
+8072	shēng粵sing1,seng1
+8073	sǒng粵sung2
+8075	kuì粵kui2
+8076	niè粵nip6
+8077	zhí粵zik1
+8079	níng粵ning4
+807D	tīng粵ting1,teng1 tīng,tìng粵ting3 tīng粵ting3
+807E	lóng粵lung4
+807F	yù粵wat6,leot6
+8084	yì粵ji6
+8085	sù粵suk1
+8086	sì粵si3 sì粵sei3
+8087	zhào粵siu6
+8089	ròu粵juk6
+808B	lèi粵lak6 lē粵lak6
+808C	jī粵gei1
+8093	huāng粵fong1
+8096	xiào粵ciu3
+8098	zhǒu粵zaau2
+809A	dù粵tou5 dǔ粵tou5
+809B	gāng粵gong1
+809D	gān粵gon1
+80A1	gǔ粵gu2
+80A2	zhī粵zi1
+80A5	féi粵fei4
+80A8	pāng粵pong3
+80A9	jiān粵gin1
+80AA	fáng粵fong1
+80AB	zhūn粵zeon1 chún粵seon4
+80AD	nà粵neot6
+80AF	kěn粵hang2
+80B1	gōng粵gwang1
+80B2	yù粵juk6
+80B4	yáo粵ngaau4
+80B8	xī粵jat6
+80BA	fèi粵fai3
+80BC	jǐng粵zeng2
+80BD	tài粵taai3
+80C2	shēn粵san1 shèn粵san6
+80C3	wèi粵wai6
+80C4	zhòu粵zau6
+80C8	bá粵bat6
+80CA	qú粵keoi4
+80CC	bèi粵bui3 bèi粵bui6 bēi粵bui3
+80CD	guā粵gwaa1
+80CE	tāi粵toi1
+80D4	zì粵zi3
+80D6	pàng粵bun6 pán粵pun4
+80D7	zhēn粵zan1
+80D9	zuò粵zou6
+80DA	pēi粵pui1,pei1
+80DB	jiǎ粵gaap3
+80DC	shēng粵sing1
+80DD	zhī粵zi1
+80DE	bāo粵baau1
+80E0	qū粵keoi1
+80E1	hú粵wu4
+80E4	yìn粵jan6
+80E5	xū粵seoi1
+80E9	kǎ粵kaa1
+80EC	nǔ粵nou5
+80ED	yān粵jin1
+80EE	pāng粵pong1
+80EF	kuà粵kwaa3
+80F0	yí粵ji4
+80F1	guāng粵gwong1
+80F2	hǎi粵hoi2
+80F3	gē粵gok3 gē粵gaak3
+80F4	dòng粵dung6
+80F8	xiōng粵hung1
+80FA	àn粵on1
+80FC	pián粵pin4
+80FD	néng粵nang4
+80FE	zì粵zi3
+8102	zhī粵zi1
+8105	xié粵hip3
+8106	cuì粵ceoi3
+8108	mài粵mak6 mò粵mak6
+810A	jǐ粵zik3,zek3 jí粵zik3,zek3
+810E	sà粵saat3
+8112	mǐ粵mai5
+8116	bó粵but6
+8118	wǎn粵gun2,wun2
+811B	jìng粵hing5,ging3
+811D	hēng粵hang1
+811E	cuǒ粵co2
+8122	méi粵mui4
+8123	chún粵seon4
+8126	de粵tik1
+8127	juān粵zyun1 zuī粵zeoi1
+8129	xiū粵sau1
+812C	pāo粵paau1
+812F	fǔ粵pou2,fu2 pú粵pou4
+8130	dòu粵dau6
+8131	tuō粵tyut3
+8132	niào粵niu6
+8139	zhàng粵zoeng3
+813E	pí粵pei4
+8146	tiǎn粵tin2
+8148	jīng粵zing1
+814A	xī粵sik1
+814B	yè粵jik6
+814C	ā粵jim1
+814E	shèn粵san6,san5
+8150	fǔ粵fu6
+8151	fǔ粵fu2
+8152	jū粵geoi1
+8153	féi粵fei4
+8154	qiāng粵hong1
+8155	wàn粵wun2
+8156	dòng粵dung3
+8159	zōng粵zung1
+815A	dìng粵ding6
+8160	còu粵cau3
+8161	luó粵lo4
+8165	xīng粵sing1,seng1
+8166	nǎo粵nou5
+8167	shù粵syu3
+8169	nǎn粵naam5
+816B	zhǒng粵zung2
+816D	è粵ngok6
+816E	sāi粵soi1
+816F	tú粵dat1
+8170	yāo粵jiu1
+8171	jiàn粵gin3
+8173	jiǎo粵goek3 jué粵goek3
+8174	yú粵jyu4
+8178	cháng粵coeng4
+8179	fù粵fuk1
+817A	xiàn粵sin3
+817C	miǎn粵min5
+817D	wà粵wat1
+817F	tuǐ粵teoi2
+8180	bǎng粵bong2 páng粵pong4 pāng粵pong1
+8181	qiǎn粵him2
+8182	lǚ粵leoi5
+8187	zhuì粵zeoi6
+8188	gé粵gaak3
+818A	bó粵bok3
+818F	gāo粵gou1 gào粵gou3
+8195	guó粵gwok3
+8197	chuái粵saai4,ceoi4
+8198	biāo粵biu1
+8199	jiǎng粵koeng5
+819A	fū粵fu1
+819B	táng粵tong4
+819C	mó粵mok6 mó粵mou4
+819D	xī粵sat1
+819E	zhuān粵zyun1
+81A0	jiāo粵gaau1
+81A3	zhì粵zat6
+81A6	lìn粵leon6
+81A8	péng粵paang4
+81A9	nì粵nei6
+81AA	chuài粵zaa6
+81B0	fán粵faan4
+81B3	shàn粵sin6
+81B5	cuì粵seoi6
+81BA	yīng粵jing1
+81BB	shān粵zin1 dàn粵taan2
+81BD	dǎn粵daam2
+81BE	kuài粵kui2
+81BF	nóng粵nung4
+81C0	tún粵tyun4
+81C1	lián粵lim4
+81C2	bì粵bei3 bei粵bei3
+81C3	yōng粵jung2
+81C6	yì粵jik1
+81C9	liǎn粵lim5
+81CA	sāo粵sou1 sào粵sou3
+81CC	gǔ粵gu2
+81CD	qí粵ci4
+81D1	nào粵nou6 rú粵jyu4
+81D8	là粵laap6
+81DA	lú粵lou4
+81DE	qú粵keoi4
+81DF	zàng粵zong6
+81E0	luán粵lyun2,lyun4
+81E2	za粵zim1
+81E3	chén粵san4
+81E7	zāng粵zong1
+81E8	lín粵lam4
+81EA	zì粵zi6
+81EC	niè粵jit6,nip6
+81ED	chòu粵cau3 xiù粵cau3
+81F3..81F4	zhì粵zi3
+81FA	tái粵toi4
+81FB	zhēn粵zeon1
+81FC	jiù粵kau5,kau3
+81FE	yú粵jyu4
+8200	yǎo粵jiu5
+8201	yú粵jyu4
+8202	chōng粵zung1
+8203	xì粵sik1
+8205	jiù粵kau5,kau3
+8207	yǔ粵jyu5 yù粵jyu6 yú粵jyu4
+8208	xīng粵hing1 xìng粵hing3
+8209	jǔ粵geoi2
+820A	jiù粵gau6
+820C	shé粵sit3
+820D	shè粵se3
+8210	shì粵saai5,saai2
+8212	shū粵syu1
+8214	tiǎn粵tim2
+821B	chuǎn粵cyun2
+821C	shùn粵seon3
+821E	wǔ粵mou5
+821F	zhōu粵zau1
+8220	dāo粵dou1
+8222	shān粵saan1
+8228	bǎn粵baan2
+822A	háng粵hong4
+822B	fǎng粵fong2
+822C	bān粵bun1 bān粵baan1 bō粵bo1
+8233	zhú粵zuk6
+8234	zé粵zaak3
+8235	duò粵to4
+8236	bó粵bok6,paak6
+8237	xián粵jin4
+8238	gě粵go2
+8239	chuán粵syun4
+823E	xī粵sai1
+8244	shāo粵saau1
+8245	yú粵jyu4
+8247	tǐng粵ting5,teng5
+824B	měng粵maang5
+824E	huáng粵wong4
+824F	shǒu粵sau2
+8257	yì粵jik6
+8258	sōu粵sau2,sau1
+8259	cāng粵cong1
+825A	cáo粵cou4
+825F	chōng粵cung1
+8264	yǐ粵ngai5
+8266	jiàn粵laam6
+8268	méng粵mung4
+826B	lú粵lou4
+826E	gèn粵gan3 gěn粵gan3
+826F	liáng粵loeng4
+8271	jiān粵gaan1
+8272	sè粵sik1 shǎi粵sik1
+8274	bó粵but6 fú粵fat1
+827D	jiāo粵gaau1 qiú粵kau4
+827E	ài粵ngaai6 yì粵ngaai6
+827F	nǎi粵naai5
+8283	péng粵pung4
+8284	wán粵jyun4
+828A	qiān粵cin1
+828B	yù粵wu6
+828D	sháo粵coek3
+828E	xiōng粵gung1
+828F	dù粵dou6
+8291	qǐ粵hei2
+8292	máng粵mong4 máng粵mong1
+8299	fú粵fu4
+829D	zhī粵zi1
+829F	shān粵saam1
+82A1	qiàn粵him3
+82A3	fú粵fau4
+82A4	kōu粵kau1
+82A5	jiè粵gaai3 gài粵gaai3
+82A8	jī粵kap6,gap1
+82A9	qín粵kam4,sam4
+82AA	qí粵kei4
+82AB	yuán粵jyun4 yán粵jyun4
+82AC	fēn粵fan1
+82AD	bā粵baa1
+82AE	ruì粵jeoi6
+82AF	xīn粵sam1 xì粵seon3
+82B0	jì粵gei6
+82B1	huā粵faa1
+82B3	fāng粵fong1
+82B6	gǒu粵gau2
+82B7	zhǐ粵zi2
+82B8	yún粵wan4
+82B9	qín粵kan4
+82BB	chú粵co1
+82BD	yá粵ngaa4
+82BE	fèi粵fai3 fú粵fat1
+82C4	biàn粵bin6
+82C9	pǐ粵pat1
+82CA	è粵aak1
+82D1	yuàn粵jyun2
+82D2	rǎn粵jim5
+82D3	líng粵ling4
+82D4	tái粵toi4 tāi粵toi1
+82D5	tiáo粵tiu4 sháo粵siu4
+82D7	miáo粵miu4
+82D8	qǐng粵king2
+82DB	kē粵ho1
+82DC	mù粵muk6
+82DE	bāo粵baau1
+82DF	gǒu粵gau2
+82E0	mín粵man4
+82E1..82E2	yǐ粵ji5
+82E3	jù粵geoi6 qǔ粵geoi6
+82E4	piě粵pei2
+82E5	ruò粵joek6 rě粵je5
+82E6	kǔ粵fu2
+82E7	zhù粵cyu5
+82EB	shān粵sim1 shàn粵sim3
+82EF	běn粵bun2
+82F1	yīng粵jing1
+82F2	zhǎ粵zaa2
+82F4	jū粵zeoi1
+82F6	nié粵nip6
+82F7	gān粵gam1
+82FB	fú粵fu4
+82FE	bì粵bat6,bit6
+8300	fú粵fat1
+8301	zhuó粵zyut3
+8302	mào粵mau6
+8303	fàn粵faan6
+8304	qié粵ke2 jiā粵gaa1
+8305	máo粵maau4
+8307	bá粵bat6
+8308	cí粵ci4 zǐ粵zi2
+8309	mò粵mut6
+830C	chí粵ci4
+8313	xué粵cyut3
+8317	míng粵ming5,ming4
+8318	lì粵lai6
+831A	yìn粵jan3
+831B	gèn粵gan3
+831C	qiàn粵sin6 xī粵sai1
+831D	chǎi粵coi2 zhǐ粵zi2
+8328	cí粵ci4
+8329	gòu粵gau2
+832B	máng粵mong4
+832C	chá粵caa4
+832D	jiāo粵gaau1
+832F	fú粵fuk6
+8331	zhū粵zyu1
+8333	jiāng粵gong1
+8334	huí粵wui4
+8335	yīn粵jan1
+8336	chá粵caa4
+8338	róng粵jung4 rǒng粵jung2
+8339	rú粵jyu4
+833A	chōng粵cung1
+833C	tóng粵tung4
+8340	xún粵seon1
+8343	quán粵cyun4
+8344	gāi粵goi1
+8347	xìng粵hang6
+8349	cǎo粵cou2
+834A	jīng粵ging1
+834D	qiáo粵kiu4
+834F	rěn粵jam5,jam6
+8351	yí粵ji4 tí粵tai4
+8352	huāng粵fong1
+8356	lǎo粵lou5
+8377	hé粵ho4 hè粵ho6
+8378	bí粵but6
+837B	dí粵dik6
+837C	tú粵tou4 shū粵syu1 chá粵caa4
+837D	suī粵seoi1
+8386	pú粵pou4
+8389	lì粵lei6
+838A	zhuāng粵zong1
+838E	suō粵so1 shā粵saa1
+8392	jǔ粵geoi2
+8393	méi粵mui4
+8396	jīng粵hang1,ging3
+8398	shēn粵san1 xīn粵san1
+8399	jūn粵gwan1
+839B	tíng,tǐng粵ting4
+839C	yóu粵jau4
+839D	cuò粵co3
+839E	guǎn粵gun2 wǎn粵wun2 guān粵gun1
+83A0	yǒu粵jau5
+83A2	jiá粵gaap3
+83A7	xiàn粵jin6
+83A8	láng粵long4 làng粵long6 liáng粵loeng4
+83A9	fú粵fu1
+83AA	é粵ngo4
+83AB	mò粵mok6
+83B0	kǎn粵ham2
+83BD	mǎng粵mong5
+83C0	wǎn粵jyun2
+83C1	jīng粵zing1
+83C2	dì粵dik1
+83C5	jiān粵gaan1
+83CA	jú粵guk1
+83CC	jùn粵kwan2 jūn粵kwan2
+83CF	hé,gē粵go1,ho1
+83D1	zī粵zi1
+83D4	fú粵fuk6
+83D6	chāng粵coeng1
+83D8	sōng粵sung1
+83DC	cài粵coi3
+83DD	bá粵bat6
+83DF	tù粵tou3 tú粵tou4
+83E0	bō粵bo1
+83E1	hàn粵haam5
+83E2	bào粵bou6
+83E5	xī粵sik1
+83E9	pú粵pou4
+83EA	dàng粵dong6
+83EF	huá粵waa4 huà粵waa6
+83F0	gū粵gu1
+83F1	líng粵ling4
+83F2	fēi粵fei1 fěi粵fei2
+83F8	yān粵jin1
+83F9	zū粵zeoi1
+83FC	tǎn粵taam2
+83FD	shū粵suk6
+83FE	tián粵tim4
+8401	qí粵kei4 jī粵gei1
+8403	cuì粵seoi6
+8404	táo粵tou4
+8406	bēi粵bei1
+8407	cháng粵coeng4
+840A	lái粵loi4
+840B	qī粵cai1
+840C	méng粵mang4
+840D	píng粵ping4
+840E	wěi粵wai2 wēi粵wai1
+840F	dàn粵daam6
+8411	huán粵wun4
+8418	nài粵noi6
+841C	tiē粵tip3
+8429	qiū粵cau1
+842C	wàn粵maan6
+8431	xuān粵hyun1
+8435	wō粵wo1
+8438	yú粵jyu4
+8439	biān粵pin1
+843C	è粵ngok6
+843D	luò粵lok6 lào粵lok6 là粵laai6
+8446	bǎo粵bou2
+8448	xǐ粵saai2,sai2
+8449	yè粵jip6
+844E	lǜ粵leot6
+8451	fēng粵fung1 fèng粵fung3
+8452..8453	hóng粵hung4
+8456	tū粵dat6
+8457	zhù粵zyu3 zhuó粵zoek6 zhuó粵zoek3 zhù,zhuó粵zoek6,zyu3
+8459	xiāng粵soeng1
+845A	shèn粵sam6 rèn粵sam6
+845B	gé粵got3 gě粵got3
+845C	qiā粵kit3
+8461	pú粵pou4
+8463	dǒng粵dung2
+8464	zhòu粵zau6
+8466	wěi粵wai5
+8469	pā粵baa1
+846B	hú粵wu4
+846C	zàng粵zong3
+846D	jiā粵gaa1
+8471	cōng粵cung1
+8473	wēi粵wai1
+8475	kuí粵kwai4
+8476	tíng粵ting4
+8477	hūn粵fan1
+8478	xǐ粵saai2
+847A	qì粵cap1
+8482	dì粵dai3
+8488	kǎi粵kaai2
+848E	pài粵paai3
+8490	sōu粵sau1,sau2
+8494	shí粵si4 shì粵si6
+8497	làng粵long6
+8499	méng粵mung4 měng粵mung4
+849C	suàn粵syun3
+849E	lì粵lei6
+849F	jǔ粵geoi2
+84A1	bàng粵bong2
+84AF	kuǎi粵gwaai2
+84B2	pú粵pou4
+84B4	shuò粵sok3
+84B8	zhēng粵zing1
+84B9	jiān粵gim1
+84BA	jí粵zat6
+84BB	ruò粵joek6
+84BC	cāng粵cong1
+84BD	ēn粵jan1
+84BF	hāo粵hou1
+84C0	sūn粵syun1
+84C1	zhēn粵zeon1
+84C2	míng粵ming4
+84C4	xù粵cuk1
+84C6	xí粵zik6,zek6
+84C7	gū粵gwat1
+84C9	róng粵jung4
+84CA	wěng粵jung2
+84CB	gài粵goi3 gài粵koi3 gě粵gap3 hé粵hap6
+84CD	shī粵si1
+84CF	luǒ粵lo2
+84D0	rù粵juk6
+84D1	suō粵so1
+84D3	bèi粵pui5,pui4
+84D6	bì粵bei1
+84E7	diào粵diu6
+84E8	tiāo粵tiu1 tiáo粵tiu4
+84EC	péng粵pung4,fung4
+84EE	lián粵lin4
+84EF	cōng粵cung1
+84F0	xǐ粵saai2
+84FA	yì粵ngai6
+84FC	liǎo粵liu5 lù粵luk6
+84FF	xu,sù粵suk1
+850C	sù粵cuk1
+8511	miè粵mit6
+8513	wàn粵maan6 màn粵maan6 mán粵maan4
+8514	bo粵baak6
+8517	zhè粵ze3
+851A	wèi粵wai3 yù粵wat1
+851E	lóu粵lau4,lau1
+851F	cù粵cuk1
+8521	cài粵coi3
+8523	jiǎng粵zoeng2
+8526	niǎo粵niu5
+8527	huì,suì粵seoi6
+852B	niān粵jin1
+852C	shū粵so1
+852D	yìn粵jam3 yīn粵jam1
+8538	dōu粵dau1
+853B	kòu粵kau3
+853D	bì粵bai3
+8541	qián粵cam4 xún粵cam4
+8543	fán粵faan4 fān粵faan1
+8546	chǎn粵cin2
+8548	xùn粵cam5,seon3
+8549	jiāo粵ziu1
+854A	ruǐ粵jeoi5
+854E	qiáo粵kiu4
+8552	mai粵maai5
+8553	yún粵wan4
+8555	yóu粵jau4
+8556	qú粵keoi4
+8557	lù粵lou6
+8558	ráo粵jiu4
+8559	huì粵wai6
+855E	zuì粵zeoi3
+8562	kuì粵gwai6
+8564	ruí粵jeoi4
+8568	jué粵kyut3
+8569	dàng粵dong6
+856A	wú粵mou4
+856D	xiāo粵siu1
+8577	yù粵jyu6
+8579	wèng粵ung3
+857A	jí粵cap1
+857B	hòng粵hung6 hóng粵hung4
+857E	lěi粵leoi5,leoi4 lěi粵leoi4
+8584	báo粵bok6 bó粵bok6 bò粵bok6
+8585	hāo粵hou1
+8587	wēi粵mei4
+8588	huì粵wai3,wui6
+858A	jì粵gai3
+858C	xiāng粵hoeng1
+858F	yì粵ji3
+8591	jiāng粵goeng1
+8594	qiáng粵coeng4
+8598	dá粵daat6
+8599	tì粵tai3
+859B	xuē粵sit3
+859C	bì粵bai6
+859F	xiān粵him1,cim1
+85A2	xiè粵haai6,gaai2
+85A4	xiè粵haai6
+85A6	jiàn粵zin3
+85A8	hōng粵gwang1
+85A9	sà粵saat3
+85AA	xīn粵san1
+85AF	shǔ粵syu4
+85B0	xūn粵fan1
+85B4	níng粵ning4
+85B7	rú粵jyu4
+85B8	piāo,piáo粵piu1,piu4
+85B9	tái粵toi4
+85BA	jì粵cai5 qi粵cai4
+85C1	gǎo粵gou2
+85C9	jiè粵zik6,ze3 jí粵zik6
+85CA	biǎn粵bin2
+85CD	lán粵laam4
+85CE	jìn粵zeon2
+85CF	cáng粵cong4 zàng粵zong6
+85D0	miǎo粵miu5
+85D5	ǒu粵ngau5
+85DC	lí粵lai4
+85DD	yì粵ngai6
+85E0	jiào粵kiu2,kiu5
+85E4	téng粵tang4
+85E5	yào粵joek6
+85E8	biāo粵biu1
+85E9	fān粵faan4
+85EA	sǒu粵sau2
+85ED	qióng粵kung4
+85F4	yùn粵wan5,wan3
+85F6	lì,l̀粵lik6
+85F9	ǎi粵oi2
+85FA	lìn粵leon6
+85FB	zǎo粵zou2
+85FF	huò粵fok3
+8600	tuò粵tok3
+8604	qí粵kei4
+8605	héng粵hang4
+8606	lú粵lou4
+8607	sū粵sou1
+860B	pín粵pan4 píng粵ping4
+8611	mó粵mo4
+8616	niè粵jit6,jip6
+8618	ráng粵joeng4
+861A	xiǎn粵sin2
+861E	liǎn粵lim5
+8622	lóng粵lung4
+8627	qú粵keoi4
+862D	lán粵laan4
+8638	zhàn粵zaam3
+863C	mí粵mei4
+863F	luó粵lo4
+864E	hǔ粵fu2
+8650	nüè粵joek6
+8652	sī粵si1
+8653	xiāo粵haau1
+8654	qián粵kin4
+8655	chù粵cyu3 chǔ粵cyu5
+865B	xū粵heoi1
+865C	lǔ粵lou5
+865E	yú粵jyu4
+865F	hào粵hou6 háo粵hou4
+8662	guó粵gwik1
+8667	kuī粵kwai1
+866B	huǐ粵wai2
+866C	qiú粵kau4
+8679	hóng粵hung4 jiàng粵hung4
+867A	huǐ粵wai2
+867B	méng粵mong4
+867C	gè粵gat1
+868A	wén粵man1
+868B	ruì粵jeoi6
+868C	bàng粵pong5 bèng粵pong5
+868D	pí粵pei4
+8693	yǐn粵jan5
+869C	yá粵ngaa4
+869D	cì粵ci3
+86A3	gōng粵gung1
+86A4	zǎo粵zou2
+86A7	jiè粵gaai3 jiè粵gaai2,gwaai2
+86A8	fú粵fu4
+86A9	chī粵ci1
+86AA	dǒu粵dau2
+86AF	qiū粵jau1
+86B0	yóu粵jau4
+86B1	zhà粵zaa3,zaak3
+86B4	yòu粵jau3
+86B6	hān粵ham1
+86BA	rán粵jim4
+86BF	xián粵jin4
+86C0	zhù粵zyu3
+86C1	diāo粵diu1
+86C4	gū粵gu1
+86C6	qū粵zeoi1,ceoi1
+86C7	shé粵se4 yí粵ji4
+86C9	líng粵ling4
+86CB	dàn粵daan6,daan2
+86D0	qū粵kuk1
+86D1	móu粵mau4
+86D4	huí粵wui4
+86D8	yáng粵joeng4
+86D9	wā粵waa1
+86DB	zhū粵zyu1
+86DE	kuò粵kut3
+86DF	jiāo粵gaau1
+86E4	gé粵gap3 há粵haa1,haa4
+86E9	qióng粵kung4
+86ED	zhì粵zat6
+86F8	xiāo粵siu1 shāo粵saau1
+86F9	yǒng粵jung2
+86FA	jiá粵gaap3
+86FE	é粵ngo4
+8700	shǔ粵suk6
+8702	fēng粵fung1
+8703	shèn粵san6,san5
+8705	fǔ粵fu2
+8706	xiǎn粵hin2
+8707	zhé粵zit3 zhē粵zit3
+8708	wú粵ng4
+8709	fú粵fau4
+870A	lí粵lei4
+870D	chú粵ceoi4
+870E	yuān粵jyun1
+8711	dàn粵daan6
+8712	yán粵jin4
+8713	tíng粵ting4
+8715	tuì粵teoi3
+8718	zhī粵zi1
+871A	fēi粵fei1 fěi粵fei2
+871C	mì粵mat6
+871E	qí粵kei4
+8721	zhà粵zaa3
+8722	měng粵maang5
+8723	qiāng粵goeng1
+8725	xī粵sik1
+8729	tiáo粵tiu4
+872E	yù粵wik6
+8730	féi粵fei4
+8731	pí粵pei4
+8734	yì粵jik6
+8737	quán粵kyun4
+873B	qīng粵cing1
+873E	guǒ粵gwo2
+873F	wān粵jyun1 wǎn粵jyun2
+8740	dōng,dòng粵dung1,dung3
+8743	dì粵dai3
+874C	kē粵fo1
+874E	hé粵hot3
+8753	yú粵jyu4
+8755	shí粵sik6 shí粵sit6
+8757	huáng粵wong4
+8758	yǎn粵jin2
+8759	biān粵pin1,bin1
+875F	wèi粵wai6
+8760	fú粵fuk1
+8763	yóu粵jau4
+8764	qiú粵cau4 jiū粵zau1 yóu粵jau4
+8765	máo粵maau4
+8766	xiā粵haa1 há粵haa1,haa4
+8768	shī粵sat1
+876E	fù粵fuk1
+8770	kuí粵kwai1
+8774	hú粵wu4
+8776	dié粵dip6
+8778	wō粵wo1
+877B	nǎn粵naam4
+8782	láng粵long4
+8783	páng粵pong4
+8784	sī粵si1
+8785	xī粵sik1
+8786	zī粵zi1
+8788	yuán粵jyun4
+878B	sōu粵sau1
+878D	róng粵jung4
+8793	qín粵ceon4
+8797	táng粵tong4
+879E	mǎ粵maa5 mā粵maa1 mà粵maa6
+879F	míng粵ming4
+87A2	yíng粵jing4
+87A3	téng粵tang4
+87AB	shì粵sik1 zhē粵sik1
+87AC	cáo粵cou4
+87AD	chī粵ci1
+87AE	dì粵dai3
+87AF	áo粵ngou4
+87B3	táng粵tong4
+87B5	piāo粵piu1
+87BA	luó粵lo4,lo2
+87BB	lóu粵lau4
+87BD	zhōng粵zung1
+87C0	shuài粵seot1
+87C4	zhé粵zik6,zat6
+87C6	má粵maa4,mou1
+87C8	guō粵gwok3
+87CA	máo粵maau4
+87CB	xī粵sik1
+87CE	mǎn粵mun5
+87D1	zhāng粵zoeng1
+87D2	mǎng粵mong5
+87D3	xiàng粵zoeng6
+87DB	péng粵paang4
+87DF	liáo粵liu4
+87E0	pán粵pun4
+87E2	xǐ粵hei2
+87E3	jǐ粵gei2
+87E5	huáng粵wong4
+87EA	huì粵wai6
+87EB	yín粵jam4,taam4
+87EC	chán粵sim4
+87EE	shàn粵sin6
+87EF	náo粵jiu4
+87F2	chóng粵cung4
+87F6	chēng粵cing1
+87F9	xiè粵haai5
+87FA	shàn粵sin6
+87FB	yǐ粵ngai5
+87FE	chán粵sim4
+8801	xiǎng粵hoeng2
+8803	luǒ粵lo2
+8805	yíng粵jing4
+8806	chài粵caai3
+880A	lián粵lim4
+880B	zhú粵zuk1
+880D	xiē粵hit3,kit3
+8810	qí粵cai4
+8811	róng粵wing4
+8813	měng粵mung5
+8814	háo粵hou4
+8815	rú粵jyu4
+8816	huò粵wok6
+881A	hē粵kok3
+881B	miè粵mit6
+881F	là粵laap6
+8821	lǐ粵lai5 lí粵lai4,lai5
+8822	chǔn粵ceon2
+8823	lì粵lai6
+8828	xiāo粵siu1
+8831	gǔ粵gu2
+8832	juān粵gyun1
+8836	cán粵caam4
+8838	quán粵kyun4
+8839	dù粵dou3
+883B	mán粵maan4
+883C	qú粵keoi4
+8840	xuè粵hyut3 xiě粵hyut3
+8843	pēi粵pui1
+8844	nǜ粵nuk6
+884A	miè粵mit6
+884C	xíng粵hang4 xíng,xìng粵hang6 háng粵hong4 háng粵hang4
+884D	yǎn粵jin2,hin2
+884E	kàn粵hon3
+8853	shù粵seot6
+8855	tòng粵tung4
+8857	jiē粵gaai1
+8859	yá粵ngaa4
+885A	hú粵wu4
+885D	chōng粵cung1 chòng粵cung3,cung1
+885E	wèi粵wai6
+8860	zhūn粵zeon1
+8861	héng粵hang4 héng粵waang4
+8862	qú粵keoi4
+8863	yì粵ji1 yì粵ji3
+8868	biǎo粵biu2
+8869	chà粵caa3 chǎ粵caa3
+886B	shān粵saam1
+886D	fū粵fu1 kù粵fu3
+886E	gǔn粵gwan2
+8870	shuāi粵seoi1 cuī粵ceoi1
+8872	nà粵naap6
+8875	nì粵nik1
+8877	zhōng粵zung1,cung1
+887D	rèn粵jam6
+887E	qīn粵kam1
+887F	jīn粵kam1
+8881	yuán粵jyun4
+8882	mèi粵mai6
+8888	jiā粵gaa1
+888B	dài粵doi6
+888D	páo粵pou4
+8892	tǎn粵taan2
+8896	xiù粵zau6
+8897	zhěn粵can2,zan2
+88A2	fán粵faan4 pàn粵paan3
+88A4	mào粵mau6
+88AA	qū粵keoi1
+88AB	bèi粵pei5 bèi粵bei6
+88B1	fú粵fuk6
+88B7	jiǎ粵gaap3 jié粵gip3 qiā粵hap1
+88BA	jié粵git3
+88BC	gē粵gok3
+88C0	yīn粵jan1
+88C1	cái粵coi4
+88C2	liè粵lit6 liě粵lit6
+88C9	kèn粵kang3
+88CA	niǎo粵niu5
+88CB	shù粵syu6
+88CE	chéng粵cing4
+88CF	lǐ粵lei5 lǐ粵leoi5
+88D2	póu粵pau4
+88D4	yì粵jeoi6
+88D5	yù粵jyu6
+88D8	qiú粵kau4
+88D9	qún粵kwan4
+88DB	yì粵jap1
+88DF	shā粵saa1
+88E8	bì粵bei1 pí粵pei4
+88F0	duō粵zyut3
+88F1	biǎo粵biu2
+88F3	cháng粵soeng4 shang粵soeng4
+88F4	péi粵pui4
+88F8	luǒ粵lo2
+88F9	guǒ粵gwo2
+88FC	xī粵sik1 tì粵tik1
+88FD	zhì粵zai3
+88FE	jū粵geoi1
+8902	guà粵gwaa3,kwaa2
+8907	fù粵fuk1
+890A	biǎn粵bin2
+890C	kūn粵gwan1
+8910	hè粵hot3
+8912	bāo粵bou1
+8913	bào粵bou2
+8918	huī粵fai1
+8919	bèi粵bui3
+891A	chǔ粵cyu5
+891F	tā粵taap3
+8921	dā粵daap3
+8925	rù粵juk6
+8926	nài粵naai6,le5
+8927	jiǒng粵gwing2
+892A	tùn粵tan3 tùn,tuì粵tan3,teoi3
+892B	chǐ粵ci2
+892F	jiè粵zik6
+8930	qiān粵hin1
+8932	kù粵fu3
+8933	lian粵lin4
+8936	zhě粵zip3 xí粵zaap6
+8938	lǚ粵leoi5,lau5 lōu粵lau1
+893B	xiè粵sit3
+8941	qiǎng粵goeng5
+8944	xiāng粵soeng1
+8947	jiǎn粵gaan2,gaan3
+894F	bó粵but6
+8956	ǎo粵ou3,ou2
+895A	suì粵seoi6
+895C	chān粵cim1
+895D	liǎn粵lim5
+895E	bì粵bik1
+895F	jīn粵kam1
+8960	dāng粵dong1
+8964	lán粵laam4
+8966	rú粵jyu4
+896A	wà粵mat6
+896B	shì粵sik1
+896C	bǎi粵baai2 bēi粵bei1
+896F	chèn粵can3
+8972	xí粵zaap6
+8974	lán粵laan4
+8976	dài粵daai3,de2
+897B	pàn粵paan3
+897F	xī粵sai1
+8981	yào粵jiu3 yāo粵jiu1
+8983	tán粵taam4 qín粵cam4
+8986	fù粵fuk1
+8988	hé粵hat6
+898B	jiàn粵gin3
+898E	yàn粵jim3
+898F	guī粵kwai1
+8993	mì粵mik6
+8996	shì粵si6
+8997	sì粵zi6
+8998	chān粵zim1
+89A1	xí粵hat6
+89A5	tiǎn粵tin2
+89A6	yú粵jyu4
+89AA	qīn粵can1 qìng粵can3
+89AC	jì粵gei3
+89AF	gòu粵gau3
+89B2	jìn粵gan3,gan2
+89B6	luó粵lo4
+89B7	qù粵ceoi3
+89BA	jué粵gok3 jiào粵gaau3
+89BC	luó粵lo4
+89BD	lǎn粵laam5
+89BF	dí粵dik6
+89C0	guān粵gun1 guàn粵gun3
+89D2	jiǎo粵gok3 jué粵gok3
+89D6	jué粵kyut3
+89DA	gū粵gu1
+89DC	zī粵zi1
+89E3	jiě粵gaai2 jiè粵gaai3
+89E5	gōng粵gwang1
+89EB	sù粵cuk1
+89F1	bì粵bit1
+89F3	hú粵huk6
+89F4	shāng粵soeng1
+89F6	zhì粵zi3
+89F8	chù粵zuk1,cuk1
+89FF	xī粵kwai4
+8A00	yán粵jin4
+8A02	dìng粵ding3,ding6
+8A03	fù粵fu6
+8A04	qiú粵kau4
+8A07	hōng粵gwang1
+8A08	jì粵gai3
+8A0A	xùn粵seon3
+8A0C	hòng粵hung4,hung3
+8A0E	tǎo粵tou2
+8A10	jié粵kit3
+8A13	xùn粵fan3
+8A15	shàn粵saan3
+8A16	qì粵gat1 qì粵ngat6
+8A17	tuō粵tok3
+8A18	jì粵gei3
+8A1B	é粵ngo4
+8A1D	yà粵ngaa6
+8A1F	sòng粵zung6
+8A23	jué粵kyut3
+8A25	nè粵neot6,naap6
+8A29	xiōng粵hung1
+8A2A	fǎng粵fong2
+8A2D	shè粵cit3
+8A31	xǔ粵heoi2 hǔ粵fu2
+8A34	sù粵sou3
+8A36	hē粵ho1
+8A3A	zhěn粵can2
+8A3B	zhù粵zyu3
+8A3E	zǐ粵zi2 zī粵zi1
+8A41	gǔ粵gu2
+8A46	dǐ粵dai2
+8A48	lì粵lei6
+8A4E	jù粵geoi6
+8A50	zhà粵zaa3
+8A52	yí粵ji4
+8A54	zhào粵ziu3
+8A55	píng粵ping4
+8A56	bì粵bei3,bei1
+8A57	xiòng粵hing3
+8A58	qū粵wat1
+8A5B	zǔ粵zo3
+8A5E	cí粵ci4
+8A60	yǒng粵wing6
+8A61	xǔ粵heoi2
+8A62	xún粵seon1
+8A63	yì粵ngai6
+8A66	shì粵si3
+8A69	shī粵si1
+8A6B	chà粵caa3
+8A6C	gòu粵gau3
+8A6D	gǔi粵gwai2
+8A6E	quán粵cyun4
+8A70	jié粵kit3
+8A71	huà粵waa6
+8A72	gāi粵goi1
+8A73	xiáng粵coeng4
+8A79	zhān粵zim1
+8A7C	huī粵fui1
+8A7F	guà粵gwaa3
+8A84	lěi粵loi6
+8A85	zhū粵zyu1
+8A86	kuāng粵hong1
+8A87	kuā粵kwaa1
+8A8C	zhì粵zi3
+8A8D	rèn粵jing6
+8A91	kuáng粵gwong2,kwong4
+8A93	shì粵sai6
+8A95	dàn粵daan3
+8A98	yòu粵jau5
+8A9A	qiào粵ciu3
+8A9E	yǔ粵jyu5 yù粵jyu6
+8AA0	chéng粵sing4
+8AA1	jiè粵gaai3
+8AA3	wū粵mou4
+8AA4	wù粵ng6
+8AA5	gào粵gou6
+8AA6	sòng粵zung6
+8AA8	huì粵fui3
+8AAC	shuō粵syut3 shuì粵seoi3 yuè粵jyut6
+8AB0	shuí,shéi粵seoi4
+8AB2	kè粵fo3
+8AB6	suì粵seoi6
+8AB9	fěi粵fei2
+8ABC	yì粵ji4 yì粵ji6
+8ABE	yín粵ngan4
+8ABF	tiáo粵tiu4 diào粵diu6
+8AC2	chǎn粵cim2
+8AC4	zhūn粵zeon1
+8AC7	tán粵taam4
+8AC9	wěi粵wai2
+8ACB	qǐng粵cing2
+8ACD	zhèng粵zang3 zhēng粵zang1,zaang1
+8ACF	zōu粵zau1
+8AD1	zhuó粵doek3
+8AD2	liàng粵loeng6
+8AD6	lùn粵leon6 lún粵leon4
+8AD7	shěn粵sam2
+8ADB	yú粵jyu4
+8ADC	dié粵dip6
+8ADD	xū,xǔ粵seoi1,seoi2
+8ADE	piǎn粵pin5
+8AE2	hùn粵wan6
+8AE4	è粵ngok6
+8AE6	dì粵dai3
+8AE7	xié粵haai4
+8AEB	jiàn粵gaan3
+8AED	yù粵jyu6
+8AEE	zī粵zi1
+8AF1	huì粵wai5
+8AF3	ān粵am1
+8AF6	chén粵sam4
+8AF7	fěng,fèng粵fung3
+8AF8	zhū粵zyu1
+8AFA	yàn粵jin6
+8AFC	xuān粵hyun1
+8AFE	nuò粵nok6
+8B00	móu粵mau4
+8B01	yè粵jit3
+8B02	wèi粵wai6
+8B04	téng粵tang4
+8B05	zhōu粵zau1
+8B07	jiǎn粵gin2
+8B0A	huǎng粵fong1
+8B0B	huò粵waak6
+8B0E	mí粵mai4
+8B10	mì粵mat6
+8B14	xuè粵joek6
+8B16	sù粵suk1
+8B17	bàng粵pong3
+8B19	qiān粵him1
+8B1A	shì粵si3
+8B1B	jiǎng粵gong2
+8B1D	xiè粵ze6
+8B20	yáo粵jiu4
+8B26	qǐng粵hing3
+8B28	mó粵mou4
+8B2B	zhé粵zaak6
+8B2C	miù粵mau6
+8B33	ōu粵au1
+8B37	áo粵ngou4
+8B39	jǐn粵gan2
+8B3E	màn粵maan6 mán粵maan4
+8B41	huá粵waa1
+8B49	zhèng粵zing3
+8B4E	jué粵kyut3
+8B4F	jī粵gei1
+8B56	zèn粵zam3
+8B58	shí粵sik1 zhì粵zi3
+8B59	qiáo粵ciu4
+8B5A	tán粵taam4
+8B5C	pǔ粵pou2
+8B66	jǐng粵ging2
+8B6B	zhān粵zim1
+8B6C	pì粵pei3
+8B6D	huǐ粵wai2
+8B6F	yì粵jik6
+8B70	yì粵ji5
+8B74	qiǎn粵hin2
+8B77	hù粵wu6
+8B7D	yù粵jyu6
+8B7E	jiǎn粵zin2
+8B80	dú粵duk6 dòu粵dau6
+8B85	shěn粵sam2
+8B8A	biàn粵bin3
+8B8B	zhé粵zip3
+8B8E	chóu粵cau4
+8B92	chán粵caam4
+8B93	ràng粵joeng6
+8B95	lán粵laan4
+8B96	chèn粵cam3,caam3
+8B9A	zǹ粵zaan3
+8B9C	dǎng粵dong2
+8B9E	yàn粵jin6
+8B9F	dú粵duk6
+8C37	gǔ粵guk1 yù粵juk6
+8C41	huō粵kut3 huò粵kut3
+8C46	dòu粵dau6,dau2
+8C47	jiāng粵gong1
+8C48	qǐ粵hei2
+8C49	chǐ粵si6
+8C4C	wān粵wun2,wun1
+8C4E	shù粵syu6
+8C4F	xiàn粵haam5
+8C50	fēng粵fung1
+8C54	yàn粵jim6
+8C55	shǐ粵ci2
+8C57	huī粵fui1
+8C5A	tún粵tyun4
+8C5D	bā粵baa1
+8C61	xiàng粵zoeng6
+8C62	huàn粵waan6
+8C68	xī粵hei1
+8C6A	háo粵hou4
+8C6B	yù粵jyu6
+8C6C	zhū粵zyu1
+8C6D	jiā粵gaa1
+8C73	bīn粵ban1
+8C76	fén粵fan4
+8C78	zhì粵zi6,zaai6
+8C79	bào粵paau3
+8C7A	chái粵caai4
+8C82	diāo粵diu1
+8C85	xiū粵jau1
+8C86	huán,xuān粵wun4,hyun1
+8C89	hé粵hok6 háo粵hok6
+8C8A	mò粵mak6
+8C8C	mào粵maau6
+8C8D	lí粵lei4
+8C90	yǔ粵jyu5
+8C93	māo粵maau1 máo粵maau1
+8C94	pí粵pei4
+8C98	mò粵mak6
+8C9B	huān粵fun1
+8C9D	bèi粵bui3
+8C9E	zhēn粵zing1
+8CA0	fù粵fu6
+8CA1	cái粵coi4
+8CA2	gòng粵gung3
+8CA3	tè粵tik1
+8CA7	pín粵pan4
+8CA8	huò粵fo3
+8CA9	fàn粵faan3,faan2
+8CAA	tān粵taam1
+8CAB	guàn粵gun3
+8CAC	zé粵zaak3
+8CAF	zhù粵cyu5
+8CB0	shì粵sai3
+8CB2	zī粵zi1
+8CB3	èr粵ji6
+8CB4	guì粵gwai3
+8CB6	biǎn粵bin2
+8CB7	mǎi粵maai5
+8CB8	dài粵taai3 tè粵tik1
+8CBA	kuàng粵fong3
+8CBB	fèi粵fai3 bì粵bei3
+8CBC	tiē粵tip3
+8CBD	yí粵ji4
+8CBF	mào粵mau6
+8CC0	hè粵ho6
+8CC1	bì粵bei3 bēn粵ban1 fén粵fan4
+8CC2	lù粵lou6
+8CC3	lìn粵jam6
+8CC4	huì粵kui2
+8CC5	gāi粵goi1
+8CC7	zī粵zi1
+8CC8	jiǎ粵gaa2 gǔ粵gu2
+8CCA	zéi粵caak3,caak6
+8CD1	zhèn粵zan3
+8CD2	shē粵se1
+8CD3	bīn粵ban1
+8CD5	qiú粵kau4
+8CD9	zhōu粵zau1
+8CDA	lài粵loi6
+8CDC	cì粵ci3
+8CDE	shǎng粵soeng2
+8CE0	péi粵pui4
+8CE1	gēng粵gang1
+8CE2	xián粵jin4
+8CE3	mài粵maai6
+8CE4	jiàn粵zin6
+8CE6	fù粵fu3
+8CE7	dǎn粵daam6
+8CE8	cóng粵cung4
+8CEA	zhì粵zat1 zhì粵zi3
+8CEB	jī粵zai1
+8CEC	zhàng粵zoeng3
+8CED	dǔ粵dou2
+8CF4	lài粵laai6
+8CF5	fèng粵fung3
+8CFA	zhuàn粵zaan6 zuàn粵zaan6
+8CFB	fù粵fu6
+8CFC	gòu粵kau3,gau3
+8CFD	sài粵coi3
+8CFE	zé粵zaak3
+8D04	zhì粵zi3
+8D05	zhuì粵zeoi6
+8D07	yūn粵wan1
+8D08	zèng粵zang6
+8D0A	zàn粵zaan3
+8D0B	yàn粵ngaan6
+8D0D	shàn粵sin6,sim6
+8D0F	yíng粵jing4
+8D10	jìn粵zeon2
+8D13	zāng粵zong1
+8D64	chì粵cek3,cik3
+8D66	shè粵se3
+8D67	nǎn粵naan5
+8D6B	hè粵haak1
+8D6C	chēng粵cing1
+8D6D	zhě粵ze2
+8D6F	táng粵tong4
+8D70	zǒu粵zau2
+8D73	jiū粵gau2,dau2
+8D74	fù粵fu6
+8D77	qǐ粵hei2
+8D81	chèn粵can3
+8D84	qiè粵ce3 jū粵zeoi1
+8D85	chāo粵ciu1
+8D8A	yuè粵jyut6
+8D91	zī粵zi1
+8D94	liè粵lit6
+8D95	gǎn粵gon2
+8D96	suō粵so1
+8D99	zhào粵ziu6
+8D9F	tàng粵tong3 tāng粵tong3
+8DA3	qù粵ceoi3
+8DA8	qū粵ceoi1
+8DAF	tì粵tik1
+8DB2	zǎn粵zaan2
+8DB3	zú粵zuk1 jù粵zeoi3
+8DB4	pā粵paa1
+8DB5	bào粵paau3
+8DBA	fū粵fu1
+8DBC	jiǎn粵gaan2
+8DBE	zhǐ粵zi2
+8DBF	tā粵taat3
+8DC0	yuè粵jyut6
+8DC2	qí粵kei4 qì粵kei5
+8DC5	tuò粵tok3
+8DC6	tái粵toi4
+8DCB	bá粵bat6
+8DCC	diē粵dit3
+8DCE	tuó粵to4
+8DCF	jiā粵gaa1
+8DD0	cǐ粵ci2 cī粵ci1
+8DD1	pǎo粵paau2 páo粵paau4
+8DD5	tiē粵tip3 dié粵dip3
+8DD7	fū粵fu1
+8DDA	shān粵saan1
+8DDB	bǒ粵bo2,bai1
+8DDD	jù粵keoi5
+8DDF	gēn粵gan1
+8DE3	xiǎn粵sin2
+8DE4	jiāo粵gaau1
+8DE8	kuà粵kwaa1,kwaa3
+8DE9	zhuǎi粵jai6
+8DEA	guì粵gwai6
+8DEB	qióng粵kung4
+8DEC	kuǐ粵kwai2
+8DEF	lù粵lou6
+8DF3	tiào粵tiu3
+8DFA	duò粵do2
+8DFC	jú粵guk6
+8DFD	jì粵gei6
+8E05	xué粵cyut3
+8E09	liáng粵loeng4 liàng粵loeng6
+8E0A	yǒng粵jung2
+8E0F	tà粵daap6 tā粵daap6
+8E10	jiàn粵cin5,zin6
+8E12	wō粵wo1
+8E14	chuō粵coek3
+8E16	jí粵zik1
+8E1D	huái粵waa5
+8E1E	jù粵geoi3
+8E1F	chí粵ci4
+8E21	quán粵kyun4
+8E22	tī粵tek3
+8E23	bó粵baak6
+8E26	yǐ粵ji2
+8E27	cù粵cuk1 dí粵dik6
+8E29	cǎi粵caai2
+8E2D	zhēng粵zaang1
+8E2E	diǎn粵dim3
+8E30	yú粵jyu4
+8E31	duó粵dok6
+8E33	chǔn粵ceon2
+8E34	yǒng粵jung2
+8E35	zhǒng粵dung2
+8E39	shuàn粵cyun2 chuài粵caai2
+8E3D	jǔ粵geoi2
+8E40	dié粵dip6
+8E41	pián粵pin4
+8E42	róu粵jau4
+8E44	tí粵tai4
+8E45	chǎ粵caa5
+8E47	jiǎn粵gin2,zin2
+8E48	dǎo粵dou6
+8E49	cuō粵co1
+8E4A	xī粵hai4 qī粵kei1,kai1
+8E4B	tà粵daap6
+8E4C	qiāng粵coeng1 qiàng粵coeng3
+8E4D	zhǎn,niǎn粵nin5,zin2
+8E50	jí粵zik3
+8E53	liù粵lau6
+8E55	bì粵bat1
+8E59	cù粵cuk1
+8E5A	tāng粵tong3
+8E60	zhí粵zik3,zek3
+8E62	dí粵dik1
+8E63	pán粵pun4,mun4
+8E64	zōng粵zung1
+8E66	bèng粵bang1
+8E69	bié粵bit6
+8E6C	dèng粵dang6 dēng粵dang1
+8E6D	cèng粵sang3
+8E6F	fán粵faan4
+8E72	dūn粵deon1 cún粵cyun4
+8E74	cù粵cuk1
+8E76	jué粵kyut3 juě粵kyut3
+8E7A	qiāo粵kiu5 qiāo粵kiu2 qiāo粵hiu1,kiu1
+8E7B	jiǎo粵giu2 jué粵goek3
+8E7C	pǔ粵buk6,puk3
+8E7D	liāo粵liu1
+8E7E	dūn粵deon1
+8E81	zào粵cou3
+8E82	da粵taat3
+8E83	bì粵bik1
+8E85	zhú粵zuk6 zhuó粵zuk6
+8E87	chú粵cyu4
+8E89	dǔn粵dan2
+8E8A	chóu粵cau4
+8E8B	jī粵zai1
+8E8D	yuè粵joek3,joek6
+8E90	liè粵lip6
+8E91	zhí粵zaak6
+8E92	lì粵lik1 luò粵lok6
+8E93	zhì粵zi3
+8E94	chán粵cin4
+8E95	chú粵cyu4
+8E9A	xiān粵sin1
+8E9E	xiè粵sip3,sit3
+8EA1	niè粵nip6
+8EA5	cuān粵cyun1
+8EA6	zuān粵zyun1
+8EA9	jué粵fok3
+8EAA	lìn粵leon6
+8EAB	shēn粵san1 juān粵gyun1
+8EAC	gōng粵gung1
+8EB2	duǒ粵do2
+8EBA	tǎng粵tong2
+8EC0	qū粵keoi1
+8EC3	duǒ粵do2
+8ECA	chē粵ce1 jū粵geoi1
+8ECB	yà粵aat3 zhá粵zaat3 gá粵gaat3
+8ECC	guǐ粵gwai2
+8ECD	jūn粵gwan1
+8ED1	dài粵dai6,daai6
+8ED2	xuān粵hin1
+8ED4	rèn粵jan6
+8EDB	è粵aak1
+8EDF	ruǎn粵jyun5
+8EE4	hū粵fu1
+8EEB	zhěn粵zan2
+8EF1..8EF2	gū粵gu1
+8EF8	zhóu粵zuk6 zhòu粵zuk6
+8EF9	zhǐ粵zi2
+8EFA	yáo粵jiu4
+8EFB	kē粵o1
+8EFC	yì粵jat6 dié粵dit6
+8EFE	shì粵sik1
+8F03	jiào粵gaau3
+8F05	lù粵lou6
+8F07	quán粵cyun4
+8F08	zhōu粵zau1
+8F09	zài粵zoi3 zǎi粵zoi2 zǎi粵zoi3
+8F0A	zhì粵zi3
+8F0B	shē粵ce4
+8F12	zhé粵zip3
+8F13	wǎn粵waan5
+8F14	fǔ粵fu6
+8F15	qīng粵hing1,heng1
+8F1B	liàng粵loeng6,loeng2
+8F1C	zī粵zi1
+8F1D	huī粵fai1
+8F1E	wǎng粵mong5
+8F1F	chuò粵zyut3
+8F25	gǔn粵gwan2
+8F26	niǎn粵lin5
+8F29	bèi粵bui3
+8F2A	lún粵leon4
+8F2E	róu粵jau4
+8F2F	jí粵cap1
+8F33	còu粵cau3
+8F34	chūn粵ceon1
+8F36	yóu粵jau4
+8F38	shū粵syu1
+8F3B	fú粵fuk1
+8F3E	zhǎn粵zin2
+8F3F	yú粵jyu4
+8F42	gǔ粵guk1
+8F44	xiá粵hat6
+8F45	yuán粵jyun4
+8F46	lù粵luk1
+8F49	zhuǎn粵zyun2 zhuàn粵zyun3
+8F4D	zhé粵cit3
+8F4E	jiào粵giu2
+8F54	lín粵leon4
+8F58	huán粵waan4 huàn粵waan6
+8F5F	hōng粵gwang1
+8F61	pèi粵bei3
+8F62	lì粵lik1
+8F64	lú粵lou4
+8F9B	xīn粵san1
+8F9C	gū粵gu1
+8F9F	bì粵pik1 pì粵pik1
+8FA3	là粵laat6
+8FA6	bàn粵baan6
+8FA8	biàn粵bin6
+8FAD	cí粵ci4
+8FAE	biàn粵bin1
+8FAF	biàn粵bin6
+8FB0	chén粵san4
+8FB1	rǔ粵juk6
+8FB2	nóng粵nung4
+8FB5	chuò粵coek3
+8FC2	yū粵jyu1
+8FC4	qì粵ngat6
+8FC5	xùn粵seon3
+8FCD	zhūn粵zeon1
+8FCE	yíng粵jing4
+8FD1	jìn粵gan6
+8FD2	háng粵hong4
+8FD3	yá粵ngaa6
+8FD4	fǎn粵faan2
+8FD5	wǔ粵ng5 wǔ粵ng6
+8FE2	tiáo粵tiu4
+8FE4	yǐ粵ji5 yí粵jyu4
+8FE5	jiǒng粵gwing2
+8FE6	jiā粵gaa1
+8FE8	dài粵doi6,toi5
+8FEA	dí粵dik6
+8FEB	pò粵baak1,bik1 pǎi粵bik1
+8FED	dié粵dit6
+8FEE	zé粵zaak3
+8FF0	shù粵seot6
+8FF4	huí粵wui4
+8FF7	mí粵mai4
+8FF8	bèng粵bing3
+8FF9	jī粵zik1
+8FFB	yí粵ji4
+8FFD	zhuī粵zeoi1
+9000	tuì粵teoi3
+9001	sòng粵sung3
+9002	kuò粵kut3
+9003	táo粵tou4
+9004	páng粵pong4
+9005	hòu粵hau6
+9006	nì粵jik6,ngaak6
+900B	bū粵bou1
+900D	xiāo粵siu1
+900F	tòu粵tau3
+9010	zhú粵zuk6
+9011	qiú粵kau4
+9014	tú粵tou4
+9016	tì粵tik1
+9017	dòu粵dau6
+9019	zhè粵ze5,ze3 zhèi粵ze5,ze3
+901A	tōng粵tung1 tòng粵tung1
+901B	guàng粵kwaang3
+901D	shì粵sai6
+901E	chěng粵cing2
+901F	sù粵cuk1
+9020	zào粵zou6 zào,cào粵cou3
+9021	qūn粵seon1
+9022	féng粵fung4
+9023	lián粵lin4
+902D	huàn粵wun6
+902E	dài粵dai6,doi6 dǎi粵dai6
+902F	lù粵luk6
+9031	zhōu粵zau1
+9032	jìn粵zeon3
+9034	chuō粵coek3
+9035	kuí粵kwai4
+9036	wēi粵wai1
+9038	yì粵jat6
+903C	bī粵bik1
+903E	yú粵jyu4
+9041	dùn粵deon6
+9042	suì粵seoi6 suí粵seoi6
+9044	chuán粵cyun4
+9047	yù粵jyu6
+904A	yóu粵jau4
+904B	yùn粵wan6
+904D	biàn粵pin3
+904E	guò粵gwo3 guō粵gwo1
+904F	è粵aat3
+9050	xiá粵haa4
+9051	huáng粵wong4
+9052	qiú粵cau4
+9053	dào粵dou6
+9054	dá粵daat6
+9055	wéi粵wai4
+9058	gòu粵gau3
+9059	yáo粵jiu4
+905B	liù粵lau6 liú粵lau4
+905C	xùn粵seon3
+905D	tà粵daap6
+905E	dì粵dai6
+9060	yuǎn粵jyun5 yuàn粵jyun6,jyun5
+9062	ta粵taap3,taat3
+9063	qiǎn粵hin2
+9068	áo粵ngou4,ngou6
+9069	shì粵sik1
+906D	zāo粵zou1
+906E	zhē粵ze1
+9072	chí粵ci4
+9074	lín粵leon4
+9075	zūn粵zeon1,zyun1
+9077	qiān粵cin1
+9078	xuǎn粵syun2
+9079	yù粵wat6
+907A	yí粵wai4 wèi粵wai6
+907C	liáo粵liu4
+907D	jù粵geoi6
+907F	bì粵bei6
+9080	yāo粵jiu1
+9081	mài粵maai6
+9082	xiè粵haai6,haai5
+9083	suì粵seoi6
+9084	huán粵waan4 hái粵waan4
+9085	zhān粵zin1
+9087	ěr粵ji5
+9088	miǎo粵miu5
+908A	biān粵bin1
+908B	lā粵laap6,laat6
+908F	luó粵lo4
+9090	lǐ粵lei5
+9091	yì粵jap1
+9095	yōng粵jung1
+9097	hán粵hon4
+9099	máng粵mong4
+909B	qióng粵kung4
+90A0	bīn粵ban1
+90A1	fāng粵fong1
+90A2	xíng粵jing4
+90A3	nà粵naa5 nèi粵naa5 nā粵naa1
+90A6	bāng粵bong1
+90AA	xié粵ce4 yé粵je4
+90AF	hán粵hon4
+90B0	tái粵toi4
+90B1	qiū粵jau1
+90B2	bì粵bat6
+90B3	pī粵pei4
+90B4	bǐng粵bing2
+90B5	shào粵siu6
+90B6	bèi粵bui3
+90B8	dǐ粵dai2
+90BD	guī粵gwai1
+90BE	zhū粵zyu1
+90BF	shī粵si1
+90C1	yù粵juk1
+90C3	hé粵hap6
+90C4	qiè粵gwik1
+90C5	zhì粵zat6
+90C7	xún粵seon1 huán粵waan4
+90C8	hòu粵hau6
+90CA	jiāo粵gaau1
+90D7	xī,chī粵ci1,hei1
+90DA	wú粵ng4
+90DB	fú粵fu1
+90DC	gào粵gou3
+90DD	hǎo粵kok3
+90DE	láng粵long4
+90DF	jiá粵gaap3
+90E1	jùn粵gwan6
+90E2	yǐng粵jing5
+90E4	xì粵gwik1
+90E8	bù粵bou6
+90EA	qī粵cai1
+90EB	pí粵pei4
+90ED	guō粵gwok3
+90EF	tán粵taam4
+90F0	zōu粵zau1
+90F4	chēn粵sam1
+90FD	dū粵dou1 dōu粵dou1
+90FE	yǎn粵jin2
+90FF	méi粵mei4
+9102	è粵ngok6
+9104	juàn粵gyun3
+9106	yùn粵wan6
+9109	xiāng粵hoeng1
+910B	sōu粵sau1
+910C	táng粵tong4
+9112	zōu粵zau1
+9114	wū粵wu1
+9116	yún粵wan4
+9117	hào粵hou6
+9118	yōng粵jung4
+9119	bǐ粵pei2
+911A	mào,mò粵mok6
+911C	fū粵fu1
+911E	yín粵ngan4
+9120	hù粵wu6
+9122	yān粵jin1
+9127	dèng粵dang6
+912D	zhèng粵zeng6,zing6
+912F	shàn粵sin6
+9130	lín粵leon4
+9131	pó粵po4,bo3
+9132	dān粵daan1
+9134	yè粵jip6
+9136	kuài粵kui2
+9139	zōu粵zau1
+913A	kuàng粵kwong3,kong3
+9143	líng粵ling4
+9146	fēng粵fung1
+9147	cuó粵co4 zàn粵zaan3
+9148	lì粵lik6
+9149	yǒu粵jau5
+914A	dīng粵ding1 dǐng粵ding2
+914B	qiú粵jau4
+914C	zhuó粵zoek3
+914D	pèi粵pui3
+914E	zhòu粵zau6
+9150	gān粵gon1
+9152	jiǔ粵zau2
+9155	máo粵mou4
+9156	dān粵daam1
+9157	xù粵jyu3,heoi2,heoi3
+915A	fēn粵fan1
+915E	tài粵taai3
+9161	tuó粵to4
+9162	zuò粵zok6 cù粵cou3
+9163	hān粵ham4
+9164	gū粵gu1
+9165	sū粵sou1
+9169	mǐng粵ming5
+916A	lào,luò粵lok3 lào粵lou6
+916C	chóu粵cau4
+916E	tóng粵tung4
+916F	zhǐ粵zi2
+9170	xiān粵sin1
+9172	chéng粵cing4
+9174	tú粵tou4
+9175	jiào粵gaau3,haau1
+9176	méi粵mui4
+9177	kù粵huk6
+9178	suān粵syun1
+9179	lèi粵lyut3,laai6
+917A	pú粵pou4
+9181	lù粵luk6
+9183	yān粵jim1,jip3
+9184	táo粵tou4
+9185	pēi粵pui1
+9187	chún粵seon4
+9189	zuì粵zeoi3
+918A	zhuì粵zeoi3,zyut3
+918B	cù粵cou3
+918C	kūn粵kwan1
+918D	tí粵tai4 tǐ粵tai2
+9190	hú粵hu4
+9191	xǔ粵seoi2
+9192	xǐng粵sing2,seng2
+9196	yùn粵wan5,wan3
+919A	mí粵mai4
+919B	quán粵cyun4
+919C	chǒu粵cau2
+91A2	hǎi粵hoi2
+91A3	táng粵tong4
+91A8	lí粵lei4
+91AA	láo粵lou4
+91AB	yī粵ji1
+91AC	jiàng粵zoeng3
+91AD	bú,pú粵buk6,pok3
+91AE	jiào粵ziu3
+91AF	xī粵hei1
+91B1	pō粵put3
+91B4	lǐ粵lai5
+91B5	jù粵geoi6
+91BA	xūn粵fan1
+91BD	líng粵ling4
+91BE	mí粵mei4
+91C0	niàng粵joeng6
+91C1	xìn粵jan6
+91C2	jiào粵ziu3
+91C3	shī,shāi粵si1
+91C5	yàn粵jim6
+91C6	biàn粵bin6
+91C7	cǎi粵coi2 cài粵coi3
+91C9	yòu粵jau6
+91CB	shì粵sik1
+91CC	lǐ粵lei5
+91CD	zhòng粵cung5 zhòng粵zung6 chóng粵cung4
+91CE	yě粵je5
+91CF	liáng粵loeng4 liàng粵loeng6
+91D0	lí粵lei4 xī粵hei1
+91D1	jīn粵gam1
+91D3	gá粵gaa1
+91D5	liǎo粵liu5 liào粵liu6
+91D7	zhāo粵ciu1
+91D8	dīng粵ding1,deng1 dìng粵ding1
+91D9	pō粵pok3
+91DC	fǔ粵fu2
+91DD	zhēn粵zam1
+91E3	diào粵diu3
+91E4	shān粵saam1 shàn粵saam3
+91E6	kòu粵kau3
+91E7	chuàn粵cyun3
+91E9	fán粵faan4
+91F5	chāi粵caai1
+91F7	tǔ粵tou2
+91F9	nǚ粵neoi5
+91FA	qiān粵cin1
+91FE	yá粵ngaa4
+9200	bǎ粵baa2 pá粵paa4
+9201	fāng粵fong1
+9203	xíng粵jing4 jiān粵gin1
+9204	dǒu粵tau2
+9207	fū粵fu1
+9208	bù粵bat1
+9209	nà粵naap6
+920D	dùn粵deon6
+920E	gōu粵ngau1
+9210	qián粵kim4
+9211	bǎn粵baan2
+9214	chāo粵caau1
+9215	niǔ粵nau2
+921A	pī粵pai1
+921E	jūn粵gwan1
+9223	gài粵koi3
+9225	huǒ粵fo2
+9226	tài粵taai3
+9227	kàng粵kong3
+922A	è粵aak3
+922E	ní粵nei4
+9230	shì粵si5
+9233	kē粵ko1
+9234	líng粵ling4
+9237	gǔ粵gu2
+9238	bó粵bat6
+9239	pí粵pei4
+923A	yù粵juk6
+923E	yóu粵jau4
+923F	tián,diàn粵tin4,din6 tián粵tin4
+9240	jiǎ粵gaap3
+9245	jù粵geoi6
+9248	tā粵taa1 tuó粵to4
+9249	xuàn粵jyun5
+924B	bào粵paau4
+924D	bì粵bei3
+9251	bó粵bok6
+9255	pǒ粵po2
+9257	qián粵kim4
+925A	mǎo粵maau5
+925B	qiān粵jyun4 yán粵jyun4
+925E	yuè粵jyut6
+9262	bō粵but3
+9265	shù粵seot6
+9266	zhēng粵zing1 zhèng粵zing3
+926C	mù粵muk6
+926D	tǎn粵taan2
+9276	xíng粵jing4
+9278	jiǎo粵gaau2 jiǎo粵gaau3
+927A	ěr粵ji5
+927B	gè粵lok3
+927F	hā粵haa1
+9280	yín粵ngan4
+9283	chòng粵cung3
+9285	tóng粵tung4
+928D	zhì粵zat6
+9291	xiǎn粵sin2 xǐ粵sin2
+9293	quán粵cyun4
+9296	zhū粵zyu1
+9298	míng粵ming4,ming5
+929A	diào粵diu6 yáo粵jiu4
+929B	xiān粵cim1
+929C	xián粵haam4
+92A0	lǎo粵lou5
+92A3	rú粵jyu4
+92A5	yī粵ji1
+92A6	yīn粵jan1
+92A8	ǎn粵on1
+92A9	diū粵diu1
+92AA	yǒu粵jau5
+92AB	sè粵sik1
+92AC	kào粵kaau3
+92B1	diào粵diu3
+92B7	xiāo粵siu1
+92BB	tī粵tai1
+92BC	cuò粵co3
+92C1	lǚ粵leoi5
+92C3	láng粵long4
+92C5	xīn粵san1
+92C6	yún粵wan4 jūn粵gwan1
+92C7	bèi粵bui3
+92C8	wù粵juk1
+92CB	chán,yán粵sin4
+92CC	tǐng粵ting5
+92CF	jiá粵gaap3
+92D2	fēng粵fung1
+92D9	wú粵ng4
+92DC	zhuó粵zok6
+92DF	qǐn,qiān粵cim1
+92E3	yé粵je4
+92E4	chú粵co4
+92E5	zèng粵caang6
+92E6	jú粵guk6 jū粵guk1
+92E8	é粵ngo4
+92E9	máng粵mong4
+92EA	pū粵pou1 pù粵pou3 pù粵pou1
+92EC	pàn粵paan3
+92ED	ruì粵jeoi6
+92EE	chéng粵sing4
+92EF	gào粵gou3
+92F0	lǐ粵lei5
+92F1	tè粵tik1
+92F6	liǔ粵lau5
+92F8	jù粵geoi3,goe3
+92FC	gāng粵gong3 gàng粵gong3
+9301	kè粵gwo2
+9304	lù粵luk6
+9306	qiāng粵coeng1
+9307	péi粵pui4
+9310	zhuī粵zeoi1
+9312	ā粵aa1
+9315	kūn粵kwan1
+9318	chuí粵ceoi4
+9319	zī粵zi1
+931A	zhēng粵zang1
+931B	bēn粵ban1
+931F	tán粵taam4
+9320	dìng粵ding3,ding6
+9321	qí粵kei4
+9322	qián粵cin4 jiǎn粵zin2
+9326	jǐn粵gam2
+9328	máo粵naau4
+932B	xī粵sek3
+932E	gù粵gu3
+932F	cuò粵co3 cuò粵cok3
+9333	měng粵maang5
+9336	biǎo粵biu1
+9338	lái粵loi4
+9340	dé粵dak1
+9341	xiān粵him1
+9346	mén粵mun4
+9347	kǎi,jiē粵kaai2,gaai1
+934B	guō粵wo1
+934D	dù粵dou6
+9354	è粵ngok6
+9358	zhá粵zaat3
+935A	yáng粵joeng4
+935B	duàn粵dyun3
+9360	huáng粵wong4
+9364	chā粵caap3
+9365	qiè粵kit3
+9369	nuò粵nok6
+936A	móu粵mau4
+936C	qiāo粵ciu1
+936E	tōu粵tau1
+9370	huán粵waan4
+9375	jiàn粵gin6
+9376	sī粵si1
+937A	zhě粵ze2
+937E	zhōng粵zung1
+9382	měi粵mei5
+9384	āi粵oi1
+9387	méi粵mei4
+938A	bàng粵bong6,bong2
+938F	liú粵lau4
+9394	róng粵jung4
+9396	suǒ粵so2
+9397	qiāng粵coeng3 qiàng粵coeng1
+9398	gé粵gaak3
+939B	bó粵bok3
+939D	dā粵daap3
+93A1	zī粵zi1
+93A2	wū粵wu1
+93A3	yíng粵jing4
+93A6	liú粵lau4 liù粵lau6
+93A7	kǎi粵hoi2
+93A9	shā粵saat3
+93AA	sōu粵sau1
+93AC	gǎo粵gou2 hào粵hou6
+93AE	zhèn粵zan3
+93AF	láng粵long4
+93B0	yì粵jat6
+93B3	niè粵nip1
+93B5	jiā粵gaa1
+93BF	ná粵naa4
+93C3	zú粵zuk6
+93C7	xuàn粵syun6,syun4
+93C8	liàn粵lin6,lin2
+93CA	ào粵ngou6
+93CC	mò粵mok6
+93D0	liú粵lau4
+93D1	dī粵dik1 dí粵dik1
+93D6	áo粵ou1,ngou4
+93D7	kēng粵hang1
+93D8	qiāng粵coeng1
+93DC	tāng粵tong1 táng粵tong4
+93DD	màn粵maan6
+93DE	yōng粵jung4
+93DF	chǎn粵caan2
+93E1	jìng粵geng3
+93E2	biāo粵biu1
+93E4	lòu粵lau6
+93E8	zàn粵zaam6
+93F0	bèng粵bang1
+93F5	huá粵waa4
+93F7	pú粵pok3
+93F9	qiǎng粵koeng5 qiāng粵koeng5
+93FA	pō粵put3
+93FD	xiù粵sau3
+9403	náo粵naau4
+9404	huáng粵waang4
+940B	tāng粵tong1
+940D	jué粵kyut3
+9410	liào,liáo粵liu4
+9412	láo粵lou4
+9413	duī粵deoi1 duì粵deoi6
+9418	zhōng粵zung1
+9419	dèng粵dang3
+941D	jué粵kyut3
+9420	pǔ粵pou2
+9426	kāi粵hoi1
+9427	jiàn粵gaan3 jiǎn粵gaan2
+9428	fèi粵fai3
+942B	juān粵zyun1,zeon3
+942E	lián粵lim4
+942F	zhuō粵zoek3
+9432	zhuó粵zuk6
+9433	léi粵leoi4
+9435	tiě粵tit3
+9436	huán粵waan4
+9438	duó粵dok6
+943A	dāng粵dong1 chēng粵caang1
+943E	bèi,bì粵bik1
+943F	yì粵ji3
+9444	zhù粵zyu3
+944A	huò粵wok6
+944C	bīn粵ban1
+9452	jiàn粵gaam3
+9454	chǎ粵caa2
+9455	zhì粵zat1
+945E	là粵laap6
+9460	shuò粵soek3
+9463	biāo粵biu1
+9465	lǔ粵lou5
+946B	xīn粵jam1
+946D	lán粵laan4
+9470	yuè粵joek6 yào粵joek6
+9471	chán粵caam4
+9472	xiāng粵soeng1
+9477	niè粵nip6
+9479	cuān粵cyun1
+947C	luó粵lo4
+947D	zuān粵zyun3 zuàn粵zyun3
+947E	luán粵lyun4
+947F	záo,zuò粵zok6
+9481	jué粵fok3
+9482	tǎng粵tong2
+9487	yǐ粵jyut6
+9577	cháng粵coeng4 zhàng粵zoeng6
+9580	mén粵mun4
+9582	shuān粵saan1
+9583	shǎn粵sim2
+9588	hàn粵hon6
+9589	bì粵bai3
+958B	kāi粵hoi1
+958E	hóng粵wang4
+958F	rùn粵jeon6
+9591..9592	xián粵haan4
+9593	jiān粵gaan1 jiàn粵gaan3
+9594	mǐn粵man5
+9598	zhá粵zaap6
+959F	bì粵bei3
+95A1	hé粵hat6
+95A3	gé粵gok3
+95A4	hé粵hap6 gé粵gok3
+95A5	fá粵fat6
+95A8	guī粵gwai1
+95A9	mǐn粵man5
+95AB	kǔn粵kwan2
+95AC	làng粵long6 làng,láng粵long6,long4
+95AD	lǘ粵leoi4
+95B2	yuè粵jyut6
+95B6	chāng粵coeng1
+95B9	yān粵jim1
+95BB	yán粵jim4
+95BC	yān粵jin1 è粵aat3
+95BD	hūn粵fan1
+95BE	yù粵wik6
+95BF	wén粵man4
+95C3	qù粵gwik1
+95C6	bǎn粵baan2
+95C8	wéi粵wai4
+95C9	yīn粵jan1
+95CA	kuò粵fut3
+95CB	què粵kyut3
+95CC	lán粵laan4
+95CD	dū粵dou1 shé粵se4
+95D0	tián粵tin4
+95D2	tà粵taap3
+95D3	kǎi粵hoi2
+95D4	hé粵hap6
+95D5	què粵kyut3 quē粵kyut3
+95D6	chuǎng粵cong2
+95DC	guān粵gwaan1
+95DE	kàn粵ham3 hǎn粵haam3
+95E0	huì粵kui2
+95E1	chǎn粵zin2,cin2
+95E2	pì粵pik1
+95E4	huán粵waan4
+95E5	tà粵taat3
+961C	fù粵fau6
+9621	qiān粵cin1
+9628	è粵ak1
+962A	bǎn粵baan2
+962E	ruǎn粵jyun2
+9631	jǐng粵zing6,zeng6
+9632	fáng粵fong4
+963B	zǔ粵zo2
+963C	zuò粵zou6
+963D	diàn,yán粵dim3,jim4
+963F	ā粵aa3 ē粵o1
+9640	tuó粵to4
+9642	bēi粵bei1 pí粵pei4 pō粵po1
+9644	fù粵fu6
+964B	lòu粵lau6
+964C	mò粵mak6
+964D	jiàng粵gong3 xiáng粵hong4
+9650	xiàn粵haan6
+9654	gāi粵goi1
+9658	xíng粵jing4
+965B	bì粵bai6
+965D	shǎn粵sim2
+965E	shēng粵sing1
+965F	zhì粵zik1
+9661	dǒu粵dau2
+9662	yuàn粵jyun2
+9663	zhèn粵zan6
+9664	chú粵ceoi4
+9667	niè粵nip6
+966A	péi粵pui4
+966C	zōu粵zau1
+9670	yīn粵jam1
+9672	chúi粵seoi4
+9673	chén粵can4 zhèn粵zan6
+9674	pí粵pei4
+9675	líng粵ling4
+9676	táo粵tou4 yáo粵jiu4
+9677	xiàn粵haam6
+9678	lù粵luk6 liù粵luk6
+967D	yáng粵joeng4
+9683	yú粵jyu4
+9685	yú粵jyu4
+9686	lóng粵lung4
+9688	wēi粵wui1
+968A	duì粵deoi6
+968B	suí粵ceoi4
+968D	huáng粵wong4
+968E	jiē粵gaai1
+9694	gé粵gaak3
+9695	yǔn粵wan5
+9697	wěi粵ngai5 kuí粵kwai4
+9698	ài粵aai3
+9699	xì粵gwik1,kwik1
+969B	jì粵zai3
+969C	zhàng粵zoeng3
+96A7	suì粵seoi6
+96A8	suí粵ceoi4
+96AA	xiǎn粵him2
+96B0	xí粵zaap6
+96B1	yǐn粵jan2
+96B3	huī粵fai1
+96B4	lǒng粵lung5
+96B8	lì粵dai6
+96B9	zhuī粵zeoi1
+96BB	zhī粵zek3
+96BC	sǔn粵zeon2
+96C0	què粵zoek3 qiāo粵zoek3 qiǎo粵zoek3
+96C1	yàn粵ngaan6
+96C4	xióng粵hung4
+96C5	yǎ粵ngaa5
+96C6	jí粵zaap6
+96C7	gù粵gu3
+96C9	zhì粵zi6
+96CB	juàn粵syun5 jùn粵zeon3
+96CC	cí,cī粵ci1
+96CD	yōng粵jung1
+96CE	jū粵zeoi1
+96D2	luò粵lok3
+96D5	diāo粵diu1
+96D6	suī粵seoi1
+96D8	huò粵wok3
+96D9	shuāng粵soeng1
+96DB	chú粵co1
+96DC	zá粵zaap6
+96DE	jī粵gai1
+96E2	lí粵lei4
+96E3	nán粵naan4 nàn粵naan6
+96E8	yǔ粵jyu5 yù粵jyu6
+96E9	yú粵jyu4
+96EA	xuě粵syut3
+96EF	wén粵man4
+96F0	fēn粵fan1
+96F1	páng粵pong4
+96F2	yún粵wan4
+96F6	líng粵ling4
+96F7	léi粵leoi4
+96F9	báo粵bok6
+96FB	diàn粵din6
+9700	xū粵seoi1
+9702	mù粵muk6
+9704	xiāo粵siu1
+9705	zhà粵zip3
+9706	tíng粵ting4
+9707	zhèn粵zan3
+9708	pèi粵pui3
+9709	méi粵mui4
+970D	huò粵fok3
+970E	shà粵saap3
+970F	fēi粵fei1
+9711	zhān粵zim1
+9713	ní粵ngai4
+9716	lín粵lam4
+971C	shuāng粵soeng1
+971E	xiá粵haa4
+9722	mài粵mak6
+9724	liù粵lau6
+9727	wù粵mou6
+972A	yín粵jam4
+9730	xiàn粵sin3
+9732	lù粵lou6 lòu粵lou6
+9738	bà粵baa3
+9739	pī粵pik1
+973D	jì粵zai3
+973E	mái粵maai4,mai4
+9742	lì粵lik1
+9744	ǎi粵oi2
+9746	dài粵doi6
+9748	líng粵ling4
+9749	ài粵oi2
+9752	qīng粵cing1,ceng1
+9756	jìng粵zing6
+975A	jìng粵zing6 liàng粵leng3
+975B	diàn粵din6
+975C	jìng粵zing6
+975E	fēi粵fei1
+9760	kào粵kaau3
+9761	mí粵mei4 mǐ粵mei5
+9762	miàn粵min6
+9766	tiǎn粵tin2 miǎn粵min5
+9767	huì粵fui3
+9768	yè粵jip3
+9769	gé粵gaak3 jí粵gik1
+976A	dīng粵ding1
+9770	wù粵wu1
+9773	jìn粵gan3
+9774	xuē粵hoe1
+9776	bǎ粵baa2
+9778	sǎ粵saap3 tā粵taat3
+977A	mò粵mut6
+977C	dá粵daat3
+977D	bàn粵bun6
+977F	yào粵aau3
+9781	bèi粵bei6
+9785	yāng,yǎng粵joeng2,joeng1 yàng粵joeng2
+978B	xié粵haai4
+978D	ān粵on1
+978F	gǒng粵gung2
+9793	tīng粵ting1
+9798	qiào粵ciu3 shāo粵saau1
+979A	kòng粵hung3
+979D	shàng粵soeng6
+979E	bǐ,bǐng粵bei2,bing2
+97A0	jū粵guk1
+97A1	la粵laai1
+97A3	róu粵jau4
+97A5	ēng粵ang1
+97A6..97A7	qiū粵cau1
+97A8	hé粵hot3
+97AB	jū粵guk1
+97AC	jiān粵gin1
+97AD	biān粵bin1
+97AE	dī粵dai1
+97B2	gōu粵gau1
+97B4	bèi粵bei6
+97BD	qiáo粵kiu4
+97C2	chàn粵cim3
+97C3	dá粵taat3
+97C6	qiān粵cin1
+97C9	jiān粵zin1
+97CB	wéi粵wai4,wai5 wéi粵wai5
+97CC	rèn粵jan6,ngan6
+97CD	fú粵fat1
+97D3	hán粵hon4
+97D4	chàng粵coeng3
+97D9	wěi粵wai5
+97DB	bài粵baai6
+97DC	tāo粵tou1
+97DD	gōu粵gau1
+97DE	yùn粵wan3
+97E1	wěi粵wai5
+97ED	jiǔ粵gau2
+97F3	yīn粵jam1
+97F6	sháo粵siu4
+97FB	yùn粵wan6,wan5
+97FF	xiǎng粵hoeng2
+9801	yè粵jip6
+9802	dǐng粵ding2
+9803	qǐng粵king2 qīng粵king1
+9805	xiàng粵hong6
+9806	shùn粵seon6
+9807	hān粵hon1
+9808	xū粵seoi1
+980A	xū粵juk1
+980C	sòng粵zung6
+980E	qí粵kei4
+980F	háng粵hong4
+9810	yù粵jyu6
+9811	wán粵waan4
+9812	bān粵baan1
+9813	dùn粵deon6 dú粵duk6
+9817	pō粵po1 pō,pǒ粵po2
+9818	lǐng粵ling5,leng5
+981C	gé粵gaap3 hé粵hap6
+981E	è粵aat3
+9820	wěi粵ngai5
+9821	jié粵kit3 xié粵kit3
+9824	yí粵ji4
+9826	kē粵hoi4
+982D	tóu粵tau4 tou粵tau4
+9830	jiá粵gaap3
+9832	tǐng粵ting5
+9837	hàn粵ham5
+9838	jǐng粵geng2 gěng粵geng2
+9839	tuí粵teoi4
+983B	pín粵pan4
+9846	kē粵fo2
+984C	tí粵tai4
+984D	é粵ngaak6
+984E	è粵ngok6
+984F	yán粵ngaan4
+9851	kǎn,hàn粵ham2
+9852	yóng粵jung4
+9853	zhuān粵zyun1
+9856	xìn粵seon3,seon2
+9858	yuàn粵jyun6
+9859	sǎng粵song2
+985B	diān粵din1
+985E	lèi粵leoi6
+9862	mān粵mun4
+9865	hào粵hou6
+9867	gù粵gu3
+986B	chàn粵zin3 zhàn粵zin3
+986C	rú粵jyu4
+986F	xiǎn粵hin2
+9870	pín粵pan4
+9871	lú粵lou4
+9873	niè粵nip6
+9874	quán粵kyun4
+98A8	fēng粵fung1 fèng粵fung3
+98AD	zhǎn粵zim2
+98AF	sà粵saap3
+98B1	tái粵toi4
+98B3	guā粵gwaat3
+98B6	jù粵geoi6
+98B8	sī粵si1
+98BA	yáng粵joeng4
+98BB	yáo粵jiu4
+98BC	sou粵sau1
+98C0	liú粵lau4
+98C2	liù,liú粵lau6,lau4 liáo粵liu4
+98C4	piāo粵piu1
+98C6	biāo粵biu1
+98CC	fēng粵fung1
+98DB	fēi粵fei1
+98DC	fān粵faan1
+98DF	shí粵sik6 sì粵zi6 yì粵ji6
+98E2	jī粵gei1
+98E3	dìng粵ding3
+98E5	tuō粵tok3
+98E7	sūn粵syun1
+98E9	tún粵tan1
+98EA	rèn粵jam6
+98EB	yù粵jyu3
+98ED	chì粵cik1
+98EE	yǐn粵jam2 yìn粵jam3
+98EF	fàn粵faan6
+98F4	yí粵ji4
+98FC	sì粵zi6
+98FD	bǎo粵baau2
+98FE	shì粵sik1
+98FF	duò粵deot1
+9903	jiǎo粵gaau2
+9904	hé粵gaap3
+9905	bǐng粵bin2,beng2
+9909	xiǎng粵hoeng2
+990A	yǎng粵joeng5 yǎng,yàng粵joeng6
+990C	ěr粵nei6
+990E	le粵lok3
+9910	cǎn粵caan1
+9911	bō粵but6
+9912	něi粵neoi5
+9913	è粵ngo6
+9915	jùn粵zeon3
+9916	dòu粵dau6
+9918	yú粵jyu4
+991B	hún粵wan4
+991C	guǒ粵gwo2
+991E	jiàn粵zin3
+9921	xiàn粵haam2
+9928	guǎn粵gun2
+992C	hú粵wu4
+992E	tiè粵tit3
+9931	hóu粵hau4
+9932	ài粵aat3 hé粵hot3
+9933	xíng粵cing4
+9935	wèi粵wai3
+9936	gǔ粵gwat1
+9937	chā粵caa1
+993A	bó粵bok3
+993C	xì粵hei3
+993E	liù粵lau6 liú粵lau6
+993F	sōu粵sau1,suk1
+9943	mó粵mo4
+9945	mán粵maan6
+9948	xiū粵sau1
+9949	jǐn粵gan2
+994A	sǎn粵saan2
+994B	kuì粵gwai6
+994C	zhuàn粵zaan6
+9950	yì粵ji3,jik1
+9951	jī粵gei1
+9952	ráo粵jiu4
+9954	yōng粵jung1
+9955	tāo粵tou1
+9957	xiǎng粵hoeng2
+9958	zhān粵zin1
+995C	yàn粵jim3
+995E	chán粵caam4
+9962	nǎng粵nong5 náng粵nong4
+9980	yú粵jyu4
+9996	shǒu粵sau2
+9997	kuí粵kwai4
+9998	guó粵gwok3 xù粵gwik1
+9999	xiāng粵hoeng1
+99A5	fù粵fuk1
+99A8	xīn粵hing1
+99AC	mǎ粵maa5
+99AD	yù粵jyu6
+99AE	féng粵fung4
+99B1	tuó粵to4 duò粵do6
+99B3	chí粵ci4
+99B4	xùn粵seon4
+99C1	bó粵bok3
+99C3	jué粵kyut3
+99D0	zhù粵zyu3
+99D1	nú粵nou4
+99D2	jū粵keoi1
+99D4	zǎng粵zong2 zù粵zou2
+99D5	jià粵gaa3
+99D8	tái粵toi4
+99D9	fù粵fu6
+99DB	shǐ粵sai2
+99DD	tuó粵to4
+99DF	sì粵si3
+99E2	pián粵pin4
+99ED	hài粵haai5
+99F0	yīn粵jan1
+99F1	luò粵lok3,lok6
+99F8	qīn粵cam1
+99F9	máng粵mong4
+99FF	jùn粵zeon3
+9A01	chěng粵cing2
+9A02	xīng粵sing1
+9A03	ái粵ngoi4
+9A05	zhuī粵zeoi1
+9A0D	kè粵fo3
+9A0E	qí粵ke4 qí,jì粵kei3
+9A0F	qí粵kei4
+9A11	fēi粵fei1
+9A16	wù粵mou6
+9A19	piàn粵pin3
+9A1E	huō粵waak6
+9A20	tí粵tai4
+9A24	kuí粵kwai4
+9A27	guā粵waa1
+9A2B	qiān粵hin1
+9A2D	zhì粵zat1
+9A2E	liú粵lau4
+9A30	téng粵tang4
+9A32	cǎo粵cou2
+9A36	zōu粵zau1
+9A37	sāo粵sou1
+9A38	shàn粵sin3
+9A3E	luó粵leoi4
+9A40	mò粵mak6
+9A41	ào,áo粵ngou4
+9A42	cān粵caam1
+9A43	piào粵piu3 biāo粵biu1
+9A44	cōng粵cung1
+9A45	qū粵keoi1
+9A4A	huá粵waa4
+9A4C	sù粵suk1
+9A4D	xiāo粵hiu1
+9A4F	zhǎn粵zaan2
+9A55	jiāo粵giu1
+9A57	yàn粵jim6
+9A5A	jīng粵ging1,geng1
+9A5B	yì粵jik6
+9A5F	zhòu粵zaau6
+9A62	lǘ粵lou4,leoi4
+9A64	xiāng粵soeng1
+9A65	jì粵kei3
+9A66	shuāng粵soeng1
+9A6A	lí粵lei4
+9AA8	gǔ粵gwat1 gú粵gwat1 gū粵gwat1
+9AAB	wěi粵wai2
+9AAD	gàn粵gon3
+9AAF	āng粵ong1,ong3
+9AB0	tóu粵tau4,sik1
+9AB6	dǐ粵dai2
+9AB7	kū粵fu1
+9AB8	hái粵haai4
+9ABA	hóu粵hau4
+9ABC	gé粵gaak3
+9AC0	bì粵bei2
+9AC1	kē粵fo1
+9AC2	qià粵kaa3
+9AC3	yú粵jyu4
+9ACE	liáo粵liu4
+9ACF	lóu粵lau4
+9AD1	dú粵duk6
+9AD2	zāng粵zong1,zong3
+9AD3	suǐ粵seoi5
+9AD4	tǐ粵tai2 tī粵tai2
+9AD5	bìn粵ban3
+9AD6	kuān粵fun1
+9AD8	gāo粵gou1
+9AE1	kūn粵kwan1
+9AE2	dí,dì粵tai3
+9AE3	fǎng粵fong2
+9AE6	máo粵mou4
+9AEB	tiáo粵tiu4
+9AED	zī粵zi1
+9AEE	fà粵faat3
+9AEF	rán粵jim4
+9AF4	fú粵fat1
+9AF9	xiū粵jau1
+9AFB	jì粵gai3
+9AFD	zhuā粵zaa1
+9B01	lì粵lei1
+9B03	zōng粵zung1
+9B05	péng粵pang4
+9B06	sōng粵sung1
+9B08	quán粵kyun4
+9B0D	hú粵wu4
+9B0E	là粵laat3
+9B0F	jiū粵zau1
+9B10	qí粵kei4
+9B12	zhěn粵can2,zan2
+9B18	mán粵maan4
+9B1A	xū粵sou1
+9B1F	huán粵waan4
+9B22	bìn粵ban3
+9B23	liè粵lip6
+9B25	dòu粵dau3
+9B27	nào粵naau6
+9B28	hòng粵hung3,hung6
+9B29	xì粵jik1
+9B2E	jiū粵gau1
+9B2F	chàng粵coeng3
+9B31	yù粵wat1
+9B32	lì粵lik6 gé粵gaak3
+9B3B	yù粵juk6 zhōu粵zuk1
+9B3C	guǐ粵gwai2
+9B41	kuí粵fui1
+9B42	hún粵wan4
+9B43	bá粵bat6
+9B44	pò粵paak3 tuò粵tok3 bó粵bok6
+9B45	mèi粵mei6
+9B46	xū粵fat1
+9B48	xiāo粵siu1
+9B4B	tuí粵teoi4
+9B4D	wǎng粵mong5
+9B4E	liǎng粵loeng5
+9B4F	wèi粵ngai6
+9B51	chī粵ci1
+9B54	mó粵mo1
+9B58	yǎn粵jim2
+9B5A	yú粵jyu4
+9B5B	dāo粵dou1
+9B68	tún粵tyun4
+9B6F	lǔ粵lou5
+9B74	fáng粵fong4
+9B77	yóu粵jau4
+9B81	bà粵bat6
+9B83	píng粵ping4
+9B8A	bó粵baak6
+9B8D	pí粵pei4
+9B8E	nián粵nim4
+9B90	tái粵toi4
+9B91	bào粵baau1 bào粵baau6
+9B92	fù粵fu6
+9B93	zhǎ粵zaa2 zhà粵zaa3
+9B9A	jié粵git3
+9B9F	ān粵on1
+9BA3	yìn粵jan3
+9BA6	tóng粵tung4
+9BAA	wěi粵fui2
+9BAB	jiāo粵gaau1
+9BAD	guī粵gwai1
+9BAE	xiān粵sin1 xiǎn粵sin2
+9BB8	miǎn粵min5
+9BBA	zhǎ粵zaa2
+9BC0	gǔn粵gwan2
+9BC1	gěng粵gang2,kang2
+9BC7	huàn粵waan5
+9BC8	tiáo,yóu粵tiu4,jau4 chóu粵cau4
+9BC9	lǐ粵lei5
+9BCA	shā粵saa1
+9BD4	zī粵zi1
+9BD6	qīng粵cing1
+9BD7	xiǎng粵soeng2
+9BDB	diāo粵diu1
+9BE1	fēi粵fei1
+9BE2	ní粵ngai4
+9BE4	kūn粵kwan1
+9BE7	chāng粵coeng1
+9BE8	jīng粵king4
+9BEA	líng粵ling4,leng4
+9BEB	zōu粵zau1
+9BF7	tí粵tai4
+9BFD	jì粵zik1
+9BFF	biān粵bin1
+9C01	quán粵cyun4
+9C02	zéi粵caak6 zé粵zak1
+9C06	chūn粵ceon1
+9C08	dié粵dip6
+9C09	huáng粵wong4
+9C0D	qiū粵cau1
+9C12	fù粵fuk1
+9C13	sāi粵soi1
+9C1B	wēn粵wan1
+9C1C	jiān粵gim1
+9C1F	páng粵pong4
+9C23	shí粵si4
+9C25	guān粵gwaan1
+9C27	téng粵tang4
+9C28	tǎ粵taap3
+9C29	yáo粵jiu4
+9C2D	qí粵kei4
+9C31	lián粵lin4
+9C33	lè粵lak6
+9C35	mǐn粵man5
+9C37	tiáo粵tiu4
+9C39	jiān粵gin1
+9C3B	mán粵maan6,maan4
+9C3C	xí粵zaap6
+9C3E	biào粵piu5
+9C45	yōng粵jung4
+9C47	kāng粵hong1
+9C48	xuě粵syut3
+9C52	zūn,zùn粵zyun1,zyun3
+9C54	shàn粵sin5
+9C56	guì粵gwai3
+9C57	lín粵leon4
+9C58	xún粵cam4
+9C5F	hòu粵hau6
+9C60	kuài粵kui2
+9C63	zhān粵zin1
+9C67	lǐ粵lai5
+9C68	cháng粵soeng4
+9C6D	jì粵cai5
+9C77	è粵ngok6
+9C78	lú粵lou4
+9C7A	lí粵lei4
+9CE5	niǎo粵niu5 diǎo粵diu2
+9CE7	fú粵fu4
+9CE9	jiū粵gau1,kau1
+9CF2	shī粵si1
+9CF3	fèng粵fung6
+9CF4	míng粵ming4
+9CF6	yuān粵jyun1
+9CFE	shī粵si1
+9D02	jué粵kyut3
+9D03	jué粵kyut3 jú粵gwik1
+9D06	zhèn粵zam6
+9D07	bǎo粵bou2
+9D09	yā粵aa1
+9D12	líng粵ling4
+9D15	tuó粵to4
+9D1B	yuān粵jyun1
+9D1D	qú粵keoi4
+9D1E	xiāo粵hiu1
+9D1F	chī粵ci1
+9D23	gū粵gu1
+9D26	yāng粵joeng1
+9D28	yā粵aap3
+9D2F	ér粵ji4
+9D30	guā粵kut3,gwaat3
+9D34	héng粵hang4
+9D37	liè粵lit6
+9D3B	hóng粵hung4
+9D3F	gē粵gap3,gaap3
+9D40	rén粵jam4,jam6
+9D41	jiāo粵gaau1
+9D42	xiū粵jau1
+9D43	zhōu粵zau1
+9D51	juān粵gyun1
+9D52	yù粵juk6
+9D53	bó粵but6
+9D5C	tí粵tai4
+9D5D	é粵ngo4
+9D60	gǔ粵guk1 hú粵huk6
+9D61	wǔ粵mou5
+9D6A	ān粵am1
+9D6C	péng粵paang4
+9D6E	qiān粵zaam1,haam1
+9D70	diāo粵diu1
+9D72	què粵zoek3
+9D77	yuān粵jyun1
+9D7E	kūn粵kwan1
+9D84	jīng粵zing1 qīng粵cing1
+9D87	dōng粵dung1
+9D89	chún粵seon4,ceon1
+9D8A	gēng粵gang1
+9D92	chì粵cik1
+9D93	miáo粵miu4
+9D96	qiū粵cau1
+9D98	hú粵wu4
+9D9A	è粵ngok6
+9DA1	hé粵hot3
+9DA5	méi粵mei4
+9DA9	wù粵mou6
+9DAA	jú粵gwik1
+9DAC	cāng粵cong1
+9DAF	yīng粵ang1
+9DB2	wēng粵jung1
+9DB4	hè粵hok6
+9DB5	chú粵co1
+9DBA	jí粵zik3,zek3
+9DBB	hú粵wat6 gǔ粵gwat1
+9DBC	jiān粵gim1
+9DC0	cí粵ci4
+9DC1	yì粵jik6
+9DC2	yào粵jiu6 yáo粵jiu4
+9DC3	yàn粵aan3
+9DC7	kòu粵kau3,gau3
+9DC9	tī粵tai1
+9DD3	zhè粵ze3
+9DD6	yī粵ji1
+9DD7	ōu粵au1
+9DD9	zhì粵zi3
+9DDA	liù粵lau6
+9DDF	zhuó粵zok6
+9DE5	sī粵si1
+9DE6	jiāo粵ziu1
+9DEB	sù粵suk1
+9DEF	liáo粵liu4
+9DF2	jiù粵zau6
+9DF3	xián粵haan4
+9DF8	yù粵wat6,leot6
+9DF9	yīng粵jing1
+9DFA	lù粵lou6
+9DFD	xué粵hok6
+9E02	xī粵kai1
+9E07	zhān粵zin1
+9E0A	pì粵pik1
+9E11	yuè粵ngok6
+9E15	lú粵lou4
+9E18	shuāng粵soeng1
+9E1A	yīng粵jing1
+9E1B	guàn粵gun3
+9E1D	lí粵lei4
+9E1E	luán粵lyun4
+9E75	lǔ粵lou5
+9E79	xián粵haam4
+9E7A	cuó粵co4
+9E7C	jiǎn粵gaan2
+9E7D	yán粵jim4
+9E7F	lù粵luk6
+9E80	yōu粵jau1
+9E82	jǐ粵gei2
+9E85	páo粵paau4
+9E87	jūn粵gwan1 qún粵kwan4
+9E88	zhǔ粵zyu2
+9E8B	mí粵mei4
+9E91	ní粵ngai4
+9E92	qí粵kei4
+9E93	lù粵luk1
+9E97	lì粵lai6 lí粵lei4,lai6
+9E9D	shè粵se6
+9E9E	zhāng粵zoeng1
+9E9F	lín粵leon4
+9EA5	mài粵mak6
+9EA9	fū粵fu1
+9EAA	miàn粵min6
+9EB0	móu粵mau4
+9EB4	qū粵kuk1
+9EBB	má粵maa4
+9EBC	me粵mo1 mó粵mo1
+9EBE	huī粵fai1
+9EC3	huáng粵wong4
+9EC7	tiān粵tim1
+9EC8	tǒu粵tau2
+9ECC	hóng粵hung4
+9ECD	shǔ粵syu2
+9ECE	lí粵lai4
+9ECF	zhān,niān粵nim1,zim1 zhān粵nim4 nián粵nim1 zhān粵zim1
+9ED0	chī,lí粵ci1
+9ED1	hēi粵hak1
+9ED4	qián粵kim4
+9ED8	mò粵mak6
+9EDB	dài粵doi6
+9EDC	chù粵zeot1,ceot1
+9EDD	yǒu粵jau2
+9EDE	diǎn粵dim2
+9EDF	yī粵ji1
+9EE0	xiá粵kit3
+9EE2	qū粵zeot1
+9EE5	qíng粵king4
+9EE7	lí粵lai4
+9EE8	dǎng粵dong2
+9EEE	dǎn粵dam2
+9EEF	àn粵am2
+9EF0	zhěn粵can2,zan2
+9EF4	méi粵mei4
+9EF5	zhǎn粵zaam2 dǎn粵daam2
+9EF6	yǎn粵jim2
+9EF7	dú粵duk6
+9EF9	zhǐ粵zi2
+9EFB	fú粵fat1
+9EFC	fǔ粵fu2
+9EFD	mǐn粵man5 měng粵maang5
+9EFF	yuán粵jyun4
+9F07	áo粵ngou4
+9F08	biē粵bit3
+9F09	tuó粵to4
+9F0E	dǐng粵ding2
+9F0F	mì粵mik6
+9F10	nài粵naai5
+9F12	zī粵zi1
+9F13	gǔ粵gu2
+9F15	dōng粵dung1
+9F17	táo粵tou4
+9F19	pí粵pei4
+9F1F	tēng粵tang1
+9F20	shǔ粵syu2
+9F22	fén粵fan4
+9F25	bá粵bat6
+9F27	tuó粵to4
+9F29	qú粵keoi4
+9F2B	shí粵sek6
+9F2C	yòu粵jau6
+9F2F	wú粵ng4
+9F34	yǎn粵jin2
+9F37	xī粵hai4
+9F3B	bí粵bei6
+9F3E	hān粵hon4
+9F41	hōu粵hau1
+9F46	wèng粵ung3
+9F47	zhā粵zaa1
+9F49	nàng粵nong6
+9F4A	qí粵cai4 zhāi粵zaai1 zī粵zi1
+9F4B	zhāi粵zaai1
+9F4E..9F4F	jī粵zai1
+9F52	chǐ粵ci2
+9F54	chèn粵can3
+9F55	hé粵hat6
+9F57	yín粵ngan4
+9F59	bāo粵baau6
+9F5C	zī粵zi1
+9F5F	jǔ粵zeoi2
+9F60	tiáo粵tiu4
+9F61	líng粵ling4
+9F63	chū粵ceot1
+9F66	yín粵ngan4
+9F67	niè粵ngit6
+9F6A	chuò粵cuk1
+9F6C	yǔ粵jyu5
+9F72	qǔ粵geoi2
+9F77	wò粵ak1,aak1
+9F8D	lóng粵lung4
+9F90	páng粵pong4
+9F91	yǎn粵jim5
+9F94	gōng粵gung1
+9F95	kān粵ham1
+9F9C	guī粵gwai1 jūn粵gwan1 qiū粵gau1
+9FA0	yuè粵joek6
+9FC3	shǎn粵sim2
+233B4	dǔn粵dan2
+2476C	dǐ粵dai2
+25562	cáo粵cou4
+25C7C	pái粵paai4
+2634B	miē粵me1 mǐ粵mai5
+277C4	ráng粵joeng4
+27883	lǚ粵leoi5
+27C35	dū粵duk1
+280BF	wǎi粵waai2
+280DF	pán粵pun4
+28263	hā粵haa1
