@@ -624,6 +624,10 @@ public class GeneratePropertyValues {
                                 + NEWLINE
                                 + "                   \"NUSHU CHARACTER-#\" |"
                                 + NEWLINE
+                                + "                   \"SMALL SEAL CHARACTER-#\" |"
+                                + NEWLINE
+                                + "                   \"JURCHEN CHARACTER-#\" |"
+                                + NEWLINE
                                 + "                   xsd:string { pattern=\""
                                 + cleanRegex(propInfo.getRegex().toString())
                                 + "\" }"
@@ -1820,7 +1824,7 @@ public class GeneratePropertyValues {
                 // process these as
                 // exceptions for now
                 case "/ (see description)": // kEH_Func
-                case "/ or | (see description)": // kEH_FVal
+                case "| (see description)": // kEH_FVal
                     break;
                 case "space":
                     isList = true;
