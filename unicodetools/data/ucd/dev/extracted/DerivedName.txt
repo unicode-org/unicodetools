@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-09, 15:49:03 GMT
+# Date: 2026-11-09, 15:51:55 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -44042,6 +44042,7 @@ FFFD          ; REPLACEMENT CHARACTER
 1DF86         ; LATIN SMALL LETTER OPEN Q
 1DF87         ; LATIN CAPITAL LETTER X WITH STROKE
 1DF88         ; LATIN SMALL LETTER X WITH STROKE
+1DF89         ; LATIN SMALL LETTER WAVY Y
 1DF90         ; LATIN SMALL LETTER C WITH LOW SLASH
 1DF91         ; LATIN SMALL LETTER C WITH LOOPED CEDILLA
 1DF92         ; LATIN SMALL LETTER C WITH RIGHT LOOP
@@ -48113,6 +48114,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174339
+# Total code points: 174340
 
 # EOF
