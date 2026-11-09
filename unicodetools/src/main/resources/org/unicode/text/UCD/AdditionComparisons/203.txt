@@ -8,15 +8,15 @@ Ignoring Name Age:
 # Ignore the security and IDNA properties, as these are not yet included for provisionally assigned characters.
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008:
 
-Propertywise [\x{113DA} \N{TULU-TIGALARI LETTER ARCHAIC II}]
-CorrespondTo [\x{11008} 𑀈 \N{BRAHMI LETTER II}]
+Propertywise [\N{113DB:TULU-TIGALARI LETTER ARCHAIC II}]
+CorrespondTo [\N{11008:𑀈:BRAHMI LETTER II}]
 UpTo: Block                (Tulu_Tigalari vs Brahmi),
       Script               (Tulu_Tigalari vs Brahmi),
       Script_Extensions    (Tulu_Tigalari vs Brahmi),
       Indic_Conjunct_Break (Consonant vs None)
 
-Propertywise [\x{113DA} \N{TULU-TIGALARI LETTER ARCHAIC II}]
-CorrespondTo [\x{0D5F} ൟ \N{MALAYALAM LETTER ARCHAIC II}]
+Propertywise [\N{113DB:TULU-TIGALARI LETTER ARCHAIC II}]
+CorrespondTo [\N{0D5F:ൟ:MALAYALAM LETTER ARCHAIC II}]
 UpTo: Block                (Tulu_Tigalari vs Malayalam),
       Script               (Tulu_Tigalari vs Malayalam),
       Script_Extensions    (Tulu_Tigalari vs Malayalam),
