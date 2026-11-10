@@ -571,7 +571,7 @@ public class GenerateEmojiData {
                                     + getVariationComment(s)
                                     + "\n");
                 }
-                out.write("\n#Total sequences: " + withVariants.size() + "\n");
+                out.write("\n#Total sequences: " + withVariants.size() * 2 + "\n");
                 out.write("\n#EOF\n");
             }
         }
