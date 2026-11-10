@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-11-10, 22:17:53 GMT 
+# Date: 2026-11-10, 22:40:06 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1841,7 +1841,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 1D1EB..1D1FF  ; Include # 18.0 [21] (𝇫..𝇿)  MUSICAL SYMBOL HALF SHARP..MUSICAL SYMBOL LONGA REST
 1D200..1D245  ; Include # 4.1  [70] (𝈀..𝉅)  GREEK VOCAL NOTATION SYMBOL-1..GREEK MUSICAL LEIMMA
 1D250..1D281  ; Include # 18.0 [50] (𝉐..𝊁)  MUSICAL SYMBOL COMBINING FLAG-6..MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
-1D282         ; Include # NA        (𝊂)  MUSICAL SYMBOL DOWN ARROWHEAD BREATH MARK
+1D282         ; Include # 19.0      (𝊂)  MUSICAL SYMBOL DOWN ARROWHEAD BREATH MARK
 1D2C0..1D2D3  ; Include # 15.0 [20] (𝋀..𝋓)  KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3  ; Include # 11.0 [20] (𝋠..𝋳)  MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D300..1D356  ; Include # 4.0  [87] (𝌀..𝍖)  MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
