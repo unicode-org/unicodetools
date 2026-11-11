@@ -991,19 +991,25 @@ public class Indexer {
                 final var currentBlock = blockSet.get(blockValue.toString());
                 chartStart = currentBlock.getRangeStart(0);
             }
+            // When linking to a range that starts with the first code point (which may be the whole
+            // block or the first subheading), do not include a fragment for the first code point,
+            // so that the headers are visible.
+            // Unfortunately we have no anchors for subheadings.
+            final String fragment =
+                    cp != chartStart || set.size() == 1
+                            ? "#" + Utility.hex(cp).toLowerCase(Locale.ROOT)
+                            : "";
             switch (phase) {
                 // TODO(egg): Check where those live in 19.0α and β.
                 case ALPHA:
                 case BETA:
                     return "https://www.unicode.org/Public/draft/charts/nameslist/"
                             + Utility.hex(chartStart).toLowerCase(Locale.ROOT)
-                            + "#"
-                            + Utility.hex(cp).toLowerCase(Locale.ROOT);
+                            + fragment;
                 default:
                     return "https://www.unicode.org/Public/latest/charts/nameslist/"
                             + Utility.hex(chartStart).toLowerCase(Locale.ROOT)
-                            + "#"
-                            + Utility.hex(cp).toLowerCase(Locale.ROOT);
+                            + fragment;
             }
         }
 
