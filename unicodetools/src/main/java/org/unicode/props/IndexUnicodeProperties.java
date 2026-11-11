@@ -38,6 +38,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import org.unicode.draft.CldrUtility.VariableReplacer;
@@ -381,18 +382,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         if (result != null) {
             return result;
         }
-        result = new UnicodeMap<>();
         if (prop2.getCardinality() != ValueCardinality.Unordered) {
             throw new UnicodePropertyException(
                     "Mismatch in class data,  expected " + prop2.getCardinality());
         }
-        UnicodeMap<String> m = load(prop2);
-        // TODO cache
-        for (String value : m.values()) {
-            Set<String> convertedValue = new LinkedHashSet<>(SET_SPLITTER.splitToList(value));
-            UnicodeSet uset = m.getSet(value);
-            result.putAll(uset, Collections.unmodifiableSet(convertedValue));
-        }
+        result =
+                mapValues(
+                        load(prop2),
+                        value ->
+                                Collections.unmodifiableSet(
+                                        new LinkedHashSet<>(SET_SPLITTER.splitToList(value))));
         SPECIAL_CACHE.put(prop2, result.freeze());
         return result;
     }
@@ -402,7 +401,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         if (result != null) {
             return result;
         }
-        result = new UnicodeMap<>();
         if (prop2.getCardinality() != ValueCardinality.Ordered) {
             throw new UnicodePropertyException(
                     "Mismatch in class data,  expected "
@@ -410,13 +408,25 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             + " for "
                             + prop2);
         }
-        UnicodeMap<String> m = load(prop2);
-        // TODO cache
-        for (String value : m.values()) {
-            UnicodeSet uset = m.getSet(value);
-            result.putAll(uset, Collections.unmodifiableList(SET_SPLITTER.splitToList(value)));
-        }
+        result =
+                mapValues(
+                        load(prop2),
+                        value -> Collections.unmodifiableList(SET_SPLITTER.splitToList(value)));
         SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
+    }
+
+    static <T> UnicodeMap<T> mapValues(UnicodeMap<String> source, Function<String, T> converter) {
+        UnicodeMap<T> result = new UnicodeMap<>();
+        Map<String, T> convertedValues = new HashMap<>();
+        for (UnicodeMap.EntryRange<String> entry : source.entryRanges()) {
+            T value = convertedValues.computeIfAbsent(entry.value, converter);
+            if (entry.string != null) {
+                result.put(entry.string, value);
+            } else {
+                result.putAll(entry.codepoint, entry.codepointEnd, value);
+            }
+        }
         return result;
     }
 
