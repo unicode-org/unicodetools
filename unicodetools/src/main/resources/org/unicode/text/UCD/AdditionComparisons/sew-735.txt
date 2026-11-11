@@ -1,6 +1,5 @@
-# [Template for property comparison tests of character encoding proposals]
-# [RMG ISSUE TITLE]
-# https://github.com/unicode-org/utc-release-management/issues/[RMG ISSUE NUMBER]
+# Symbol: MUSICAL SYMBOL DOWN ARROWHEAD BREATH MARK (1D282)
+# https://github.com/unicode-org/sew/issues/735
 
 # Names always differ.
 # Age always differs since these tests are comparing additions to pre-existing characters.
