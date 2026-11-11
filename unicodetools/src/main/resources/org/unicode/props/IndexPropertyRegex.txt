@@ -32,16 +32,19 @@ $positiveDecimal    =   $digits\.$digits
 $rational   =   -?$digits(/$digits)?
 #$optionalDecimal    =   -?$digits(\.$digits)?
 
-# Character name syntax (https://www.unicode.org/versions/latest/core-spec/#G135165).
-# R1: Only uppercase ASCII letters, digits, space, and hyphen. Names are nonempty.
-$nameCharacters = [A-Z0-9 -]+
-# R2: No digit initially or immediately after a space.
-$nameDigitCheck = (?![0-9]|.*[ ][0-9])
-# R3: No initial/final hyphen, consecutive hyphens, or a hyphen between two spaces.
-$nameHyphenCheck = (?!-|.*(?:-$|--|[ ]-[ ]))
-# R4: No initial/final space or consecutive spaces.
-$nameSpaceCheck = (?![ ]|.*(?:[ ]$|[ ]{2}))
-$name = $nameDigitCheck$nameHyphenCheck$nameSpaceCheck$nameCharacters
+# Character name syntax (https://www.unicode.org/versions/latest/core-spec/#G135165):
+# A hyphen followed by one or more letters or digits
+$hyphenContinue = (?:-[A-Z0-9]+)
+# A single-word name starts with a letter and cannot end with a hyphen.
+$nameSingleWord = [A-Z][A-Z0-9]*$hyphenContinue*
+# The last word may start with a hyphen but cannot end with one.
+$nameLastWord = (?:$nameSingleWord|$hyphenContinue+)
+# Words followed by another word may end with a hyphen.
+$nameFirstWord = $nameSingleWord-?
+$nameMiddleWord = $nameLastWord-?
+# A multiword name has a first word, zero or more middle words, and a last word.
+$nameMultiWord = $nameFirstWord[ ](?:$nameMiddleWord[ ])*$nameLastWord
+$name = (?:$nameSingleWord|$nameMultiWord)
 
 $name2  =   $label([-_ ]$label)*
 $annotatedName  =   $name2( \(.*\))?
