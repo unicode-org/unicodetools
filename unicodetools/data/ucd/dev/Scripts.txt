@@ -1,3 +1,5 @@
+2FA20  ; Han 
+2FAA0  ; Han 
 # Scripts-19.0.0.txt
 # Date: 2026-11-11, 13:58:43 GMT
 # © 2026 Unicode®, Inc.
