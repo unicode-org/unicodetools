@@ -155,6 +155,9 @@ bpt; o                                ; Open
 
 # Block (blk)
 
+blk; CJK_Components_A; CJK_Unified_Ideographs_Components_A
+blk; CJK_Components_B; CJK_Unified_Ideographs_Components_B
+
 blk; Adlam                            ; Adlam
 blk; Aegean_Numbers                   ; Aegean_Numbers
 blk; Ahom                             ; Ahom
