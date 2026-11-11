@@ -515,6 +515,7 @@ public enum UcdProperty {
     kIRG_KPSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_KPSource"),
     kIRG_KSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_KSource"),
     kIRG_MSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_MSource"),
+    kIRG_SGSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_SGSource"),
     kIRG_SSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_SSource"),
     kIRG_TSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_TSource"),
     kIRG_UKSource(PropertyType.Miscellaneous, DerivedPropertyStatus.Approved, "cjkIRG_UKSource"),

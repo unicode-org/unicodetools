@@ -1743,6 +1743,7 @@ public class UcdPropertyValues {
     // kIRG_KPSource
     // kIRG_KSource
     // kIRG_MSource
+    // kIRG_SGSource
     // kIRG_SSource
     // kIRG_TSource
     // kIRG_UKSource
