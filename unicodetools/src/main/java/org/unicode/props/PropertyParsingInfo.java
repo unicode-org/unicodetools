@@ -554,8 +554,13 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
 
     public void checkRegex(VersionInfo versionInfo, String part) {
         if (!getRegex().matcher(part).matches()) {
-            final String part2 = NFD.normalize(part);
-            if (!getRegex().matcher(part2).matches()) {
+            // Name syntax must hold before normalization: NFD maps U+212A KELVIN SIGN to K.
+            final boolean isName =
+                    switch (property) {
+                        case Name, Name_Alias, Named_Sequences, Named_Sequences_Prov -> true;
+                        default -> false;
+                    };
+            if (isName || !getRegex().matcher(NFD.normalize(part)).matches()) {
                 IndexUnicodeProperties.getDataLoadingErrors(versionInfo)
                         .put(
                                 property,
