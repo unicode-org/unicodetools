@@ -100,7 +100,17 @@ public interface UCD_Types {
             // 323B0;<CJK Ideograph Extension J, First>;Lo;0;L;;;;;N;;;;;
             // 33479;<CJK Ideograph Extension J, Last>;Lo;0;L;;;;;N;;;;;
             CJK_J_BASE = 0x323B0,
-            CJK_J_LIMIT = 0x33479 + 1
+            CJK_J_LIMIT = 0x33479 + 1,
+
+            // 2FA20;<CJK Ideograph Components A, First>;Lo;0;L;;;;;N;;;;;
+            // 2FA96;<CJK Ideograph Components A, Last>;Lo;0;L;;;;;N;;;;;
+            CJK_COMPONENTS_A_BASE = 0x2FA20,
+            CJK_COMPONENTS_A_LIMIT = 0x2FA96 + 1,
+
+            // 2FAA0;<CJK Ideograph Components B, First>;Lo;0;L;;;;;N;;;;;
+            // 2FC16;<CJK Ideograph Components B, Last>;Lo;0;L;;;;;N;;;;;
+            CJK_COMPONENTS_B_BASE = 0x2FAA0,
+            CJK_COMPONENTS_B_LIMIT = 0x2FC16 + 1
 
     // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT
     // to check for code that needs changing.

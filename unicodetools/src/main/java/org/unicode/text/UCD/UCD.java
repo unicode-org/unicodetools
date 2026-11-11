@@ -1094,6 +1094,21 @@ public final class UCD implements UCD_Types {
                     return SEAL_BASE;
                 }
             }
+            
+            if (rCompositeVersion >= 0x130000) {
+                if (ch <= CJK_COMPONENTS_A_BASE) {
+                    return ch;
+                }
+                if (ch < CJK_COMPONENTS_A_LIMIT) {
+                    return CJK_COMPONENTS_A_BASE;
+                }
+                if (ch <= CJK_COMPONENTS_B_BASE) {
+                    return ch;
+                }
+                if (ch < CJK_COMPONENTS_B_LIMIT) {
+                    return CJK_COMPONENTS_B_BASE;
+                }
+            }
 
             if (ch < 0xF0000) {
                 return ch;
@@ -1348,6 +1363,8 @@ public final class UCD implements UCD_Types {
             case CJK_G_BASE: // Extension G
             case CJK_H_BASE:
             case CJK_J_BASE:
+            case CJK_COMPONENTS_A_BASE:
+            case CJK_COMPONENTS_B_BASE:
                 if (fixStrings) {
                     constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
                 }
