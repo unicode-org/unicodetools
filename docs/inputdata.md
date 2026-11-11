@@ -24,9 +24,7 @@ Also, it's still useful to delete the BIN files/folders after changing data file
 
 ### Unihan
 
-You may need to manually change the "Unihan-8.0.0d2 Folder" to "Unihan".
-
-Unzip the Unihan.zip file into a "Unihan" subfolder.
+Unzip the Unihan.zip file from https://github.com/unicode-org/unihan-tools/releases into a "Unihan" subfolder.
 
 Starting with Unicode 13, we split the Unihan data into single-property files
 and parse those.
