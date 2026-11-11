@@ -30,6 +30,7 @@ import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 public class TestCodeInvariants {
@@ -103,7 +104,7 @@ public class TestCodeInvariants {
         UnicodeProperty oldUppercase = previous.getProperty(uppercaseProperty);
         UnicodeProperty lowercase = IUP.getProperty(lowercaseProperty);
         UnicodeProperty uppercase = IUP.getProperty(uppercaseProperty);
-        for (String source : oldAssigned) {
+        for (int source : oldAssigned.codePoints()) {
             // Comparing the other member of the case pair (or null) catches lost, gained, and
             // changed pairs.
             assertEquals(
@@ -119,19 +120,21 @@ public class TestCodeInvariants {
     }
 
     private static String casePairTarget(
-            String source,
+            int source,
             UnicodeProperty lowercase,
             UnicodeProperty uppercase,
             UnicodeSet oldAssigned) {
-        String target = lowercase.getValue(source.codePointAt(0));
+        String target = lowercase.getValue(source);
         // Both members of the case pair must be distinct, single characters assigned in the old
         // version.
         // Pairs involving newly encoded characters are allowed.
-        if (target == null
-                || source.equals(target)
-                || target.codePointCount(0, target.length()) != 1
-                || !oldAssigned.contains(target)
-                || !source.equals(uppercase.getValue(target.codePointAt(0)))) {
+        if (target == null || !UTF16Plus.isSingleCodePoint(target)) {
+            return null;
+        }
+        int targetCodePoint = target.codePointAt(0);
+        if (source == targetCodePoint
+                || !oldAssigned.contains(targetCodePoint)
+                || !Character.toString(source).equals(uppercase.getValue(targetCodePoint))) {
             return null;
         }
         return target;
