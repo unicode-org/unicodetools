@@ -1,5 +1,5 @@
 # VerticalOrientation-19.0.0.txt
-# Date: 2026-11-09, 17:03:49 GMT
+# Date: 2026-11-10, 22:18:06 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2336,6 +2336,7 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 1D25F          ; U  # Mc         MUSICAL SYMBOL COMBINING BUZZ ROLL STEM
 1D260..1D27F   ; U  # So    [32] MUSICAL SYMBOL TRIPLE FLAT..MUSICAL SYMBOL ARPEGGIATO UP WITH ARROW
 1D280..1D281   ; U  # Mc     [2] MUSICAL SYMBOL COMBINING STEM BOW BEHIND BRIDGE..MUSICAL SYMBOL COMBINING STEM BOW ON TOP OF BRIDGE
+1D282          ; U  # So         MUSICAL SYMBOL DOWN ARROWHEAD BREATH MARK
 1D2C0..1D2D3   ; R  # No    [20] KAKTOVIK NUMERAL ZERO..KAKTOVIK NUMERAL NINETEEN
 1D2E0..1D2F3   ; U  # No    [20] MAYAN NUMERAL ZERO..MAYAN NUMERAL NINETEEN
 1D2F4..1D2FF   ; U  # Cn    [12] <reserved-1D2F4>..<reserved-1D2FF>
