@@ -1,5 +1,5 @@
 # DerivedCombiningClass-19.0.0.txt
-# Date: 2026-11-11, 13:57:59 GMT
+# Date: 2026-11-11, 15:21:49 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2126,6 +2126,8 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 2CEB0..2EBE0  ; 0 # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; 0 # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; 0 # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
+2FA20..2FA96  ; 0 # Lo [119] CJK UNIFIED IDEOGRAPH-2FA20..CJK UNIFIED IDEOGRAPH-2FA96
+2FAA0..2FC16  ; 0 # Lo [375] CJK UNIFIED IDEOGRAPH-2FAA0..CJK UNIFIED IDEOGRAPH-2FC16
 30000..3134A  ; 0 # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; 0 # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; 0 # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
@@ -2135,7 +2137,7 @@ E0100..E01EF  ; 0 # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 F0000..FFFFD  ; 0 # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; 0 # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 802217 code points not listed here.
+# The above property value applies to 801723 code points not listed here.
 # Total code points: 1113106
 
 # ================================================

@@ -1,5 +1,3 @@
-2FA20;<CJK Ideograph Component A, First>;Lo;0;L;;;;;N;;;;;
-2FAA0;<CJK Ideograph Component B, First>;Lo;0;L;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
@@ -42545,6 +42543,10 @@ FFFD;REPLACEMENT CHARACTER;So;0;ON;;;;;N;;;;;
 2FA1B;CJK COMPATIBILITY IDEOGRAPH-2FA1B;Lo;0;L;9F16;;;;N;;;;;
 2FA1C;CJK COMPATIBILITY IDEOGRAPH-2FA1C;Lo;0;L;9F3B;;;;N;;;;;
 2FA1D;CJK COMPATIBILITY IDEOGRAPH-2FA1D;Lo;0;L;2A600;;;;N;;;;;
+2FA20;<CJK Ideograph Component A, First>;Lo;0;L;;;;;N;;;;;
+2FA96;<CJK Ideograph Component A, Last>;Lo;0;L;;;;;N;;;;;
+2FAA0;<CJK Ideograph Component B, First>;Lo;0;L;;;;;N;;;;;
+2FC16;<CJK Ideograph Component B, Last>;Lo;0;L;;;;;N;;;;;
 30000;<CJK Ideograph Extension G, First>;Lo;0;L;;;;;N;;;;;
 3134A;<CJK Ideograph Extension G, Last>;Lo;0;L;;;;;N;;;;;
 31350;<CJK Ideograph Extension H, First>;Lo;0;L;;;;;N;;;;;

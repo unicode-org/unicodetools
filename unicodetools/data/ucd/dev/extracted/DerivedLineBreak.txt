@@ -1,5 +1,5 @@
 # DerivedLineBreak-19.0.0.txt
-# Date: 2026-11-11, 13:58:04 GMT
+# Date: 2026-11-11, 15:21:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -55,6 +55,8 @@
 # 2CEB0..2EBEF CJK_Unified_Ideographs_Extension_F
 # 2EBF0..2EE5F CJK_Unified_Ideographs_Extension_I
 # 2F800..2FA1F CJK_Compatibility_Ideographs_Supplement
+# 2FA20..2FA9F CJK_Unified_Ideographs_Components_A
+# 2FAA0..2FC1F CJK_Unified_Ideographs_Components_B
 # @missing: 20000..2FFFD; Ideographic
 
 # 30000..3134F CJK_Unified_Ideographs_Extension_G
@@ -1911,11 +1913,13 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 2CEB0..2EBE0  ; ID # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; ID # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; ID # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
+2FA20..2FA96  ; ID # Lo [119] CJK UNIFIED IDEOGRAPH-2FA20..CJK UNIFIED IDEOGRAPH-2FA96
+2FAA0..2FC16  ; ID # Lo [375] CJK UNIFIED IDEOGRAPH-2FAA0..CJK UNIFIED IDEOGRAPH-2FC16
 30000..3134A  ; ID # Lo [4939] CJK UNIFIED IDEOGRAPH-30000..CJK UNIFIED IDEOGRAPH-3134A
 31350..33479  ; ID # Lo [8490] CJK UNIFIED IDEOGRAPH-31350..CJK UNIFIED IDEOGRAPH-33479
 3D000..3FC3F  ; ID # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
-# The above property value applies to 46177 code points not listed here.
+# The above property value applies to 45683 code points not listed here.
 # Total code points: 173517
 
 # ================================================
