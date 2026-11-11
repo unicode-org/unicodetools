@@ -1,6 +1,7 @@
 package org.unicode.tools;
 
 import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.ImmutableList;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
@@ -40,6 +41,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 
@@ -75,34 +77,33 @@ public class Ids {
                     .addAll(CJK_Radicals_Supplement_BLOCK)
                     .addAll(CJK_STROKES_BLOCK);
 
-    private static final UnicodeMap<List<String>> radicalStroke =
-            iup.loadList(UcdProperty.kRSUnicode);
+    private static final UnicodeProperty radicalStroke = iup.getProperty(UcdProperty.kRSUnicode);
     static final UnicodeMap<List<Integer>> kTotalStrokes =
             iup.loadIntList(UcdProperty.kTotalStrokes);
-    private static final UnicodeMap<Set<String>> adobeRadicalStroke =
-            iup.loadSet(UcdProperty.kRSAdobe_Japan1_6);
+    private static final UnicodeProperty adobeRadicalStroke =
+            iup.getProperty(UcdProperty.kRSAdobe_Japan1_6);
     private static final UnicodeMap<Integer> numericRadicalStroke;
     static final M3<Integer, Boolean, UnicodeSet> USTROKE =
             ChainedMap.of(new TreeMap(), new TreeMap(), UnicodeSet.class);
 
     static {
         numericRadicalStroke = new UnicodeMap<>();
-        for (Entry<String, List<String>> entry : radicalStroke.entrySet()) {
-            List<String> items = entry.getValue();
-            List<String> parts = Common.DOT_SPLITTER.splitToList(items.get(0));
+        for (int cp :
+                radicalStroke.getSet(UnicodeProperty.NULL_MATCHER).complement().codePoints()) {
+            String first = radicalStroke.getValues(cp).iterator().next();
+            List<String> parts = Common.DOT_SPLITTER.splitToList(first);
             String rad = parts.get(0);
             int radInt;
             boolean alt = rad.endsWith("'");
             radInt = Integer.parseInt(alt ? rad.substring(0, rad.length() - 1) : rad);
             final int remStrokes = Integer.parseInt(parts.get(1));
-            numericRadicalStroke.put(
-                    entry.getKey(), radInt * 10000 + (alt ? 1000 : 0) + remStrokes);
+            numericRadicalStroke.put(cp, radInt * 10000 + (alt ? 1000 : 0) + remStrokes);
             if (remStrokes == 0) {
                 UnicodeSet uset = USTROKE.get(radInt, alt);
                 if (uset == null) {
                     USTROKE.put(radInt, alt, uset = new UnicodeSet());
                 }
-                uset.add(entry.getKey());
+                uset.add(cp);
             }
         }
         numericRadicalStroke.freeze();
@@ -205,9 +206,9 @@ public class Ids {
 
     static {
         Matcher m = Common.ADOBE_RS_MATCHER.matcher("");
-        for (Entry<String, Set<String>> entry : adobeRadicalStroke.entrySet()) {
-            String source = entry.getKey();
-            for (String s : entry.getValue()) {
+        for (int cp :
+                adobeRadicalStroke.getSet(UnicodeProperty.NULL_MATCHER).complement().codePoints()) {
+            for (String s : adobeRadicalStroke.getValues(cp)) {
                 if (!m.reset(s).matches()) {
                     throw new IllegalArgumentException();
                 }
@@ -221,7 +222,7 @@ public class Ids {
                     ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.put(
                             radical, rstrokes, remaining, map = new UnicodeSet());
                 }
-                map.add(source);
+                map.add(cp);
             }
         }
         for (Entry<Integer, Map<Integer, Map<Integer, UnicodeSet>>> entry :
@@ -241,11 +242,14 @@ public class Ids {
     static {
         // Note: CJKRadicals.txt cannot be completely represented via a UnicodeMap.
         // See the comments in RadicalStroke.getCJKRadicals().
-        UnicodeMap<List<String>> unicodeToRadicalRaw = iup.loadList(UcdProperty.CJK_Radical);
+        UnicodeProperty cjkRadical = iup.getProperty(UcdProperty.CJK_Radical);
 
         rawRadToUnicode = Relation.of(new TreeMap(), TreeSet.class);
-        for (Entry<String, List<String>> entry : unicodeToRadicalRaw.entrySet()) {
-            rawRadToUnicode.putAll(entry.getValue(), entry.getKey());
+        for (int cp : cjkRadical.getSet(UnicodeProperty.NULL_MATCHER).complement().codePoints()) {
+            String source = Character.toString(cp);
+            for (String radical : cjkRadical.getValues(cp)) {
+                rawRadToUnicode.put(radical, source);
+            }
         }
         rawRadToUnicode.freeze();
 
@@ -269,7 +273,7 @@ public class Ids {
             }
         }
 
-        fillRadical(unicodeToRadicalRaw);
+        fillRadical(cjkRadical);
 
         radToUnicode = Relation.of(new TreeMap(), TreeSet.class);
         for (Entry<String, String> entry : unicodeToRadical.entrySet()) {
@@ -282,32 +286,18 @@ public class Ids {
         radToUnicode.freeze();
     }
 
-    private static void fillRadical(UnicodeMap<List<String>> cjkRadicalRaw) {
-        Relation<String, Integer> unicodeToRsRadicals;
-        for (EntryRange<List<String>> entry : radicalStroke.entryRanges()) {
-            for (int cp = entry.codepoint; cp <= entry.codepointEnd; ++cp) {
-                for (String rs : entry.value) {
-                    if (rs.endsWith(".0")) {
-                        List<String> rad = cjkRadicalRaw.get(cp);
-                        if (rad == null) {
-                            rad = new ArrayList<String>();
-                            for (String vb : Common.VBAR_SPLITTER.split(rs)) {
-                                List<String> ds = Common.DOT_SPLITTER.splitToList(vb);
-                                if ("0".equals(ds.get(1))) {
-                                    rad.add(ds.get(0));
-                                }
-                            }
-                            unicodeToRadical.put(cp, rad.iterator().next());
-                        }
-                    }
+    private static void fillRadical(UnicodeProperty cjkRadical) {
+        for (int cp :
+                radicalStroke.getSet(UnicodeProperty.NULL_MATCHER).complement().codePoints()) {
+            for (String rs : radicalStroke.getValues(cp)) {
+                if (rs.endsWith(".0") && cjkRadical.getValue(cp) == null) {
+                    unicodeToRadical.put(cp, Common.DOT_SPLITTER.splitToList(rs).get(0));
                 }
             }
         }
-        for (Entry<String, List<String>> entry : cjkRadicalRaw.entrySet()) {
-            if (!unicodeToRadical.containsKey(entry.getKey())) {
-                unicodeToRadical.put(entry.getKey(), entry.getValue().iterator().next());
-                // System.out.println("Missing:\t" + entry.getKey() + "\t" + entry.getValue() + "\t"
-                // + UCharacter.getName(entry.getKey(),"+"));
+        for (int cp : cjkRadical.getSet(UnicodeProperty.NULL_MATCHER).complement().codePoints()) {
+            if (!unicodeToRadical.containsKey(cp)) {
+                unicodeToRadical.put(cp, cjkRadical.getValues(cp).iterator().next());
             }
         }
         unicodeToRadical.freeze();
@@ -988,12 +978,11 @@ public class Ids {
             for (Entry<String, CharacterIds> entry : IDS_RECURSIVE.entrySet()) {
                 //            invert.put(entry.getValue().parts, entry.getKey());
                 final String source = entry.getKey();
-                final List<String> rs2 = radicalStroke.get(source);
-                if (rs2 == null) {
+                String rs = radicalStroke.getValues(source).iterator().next();
+                if (rs == null) {
                     System.out.println("showRadicalMissing Skipping " + source);
                     continue;
                 }
-                String rs = rs2.get(0);
                 String idsSource = entry.getValue().idsSource;
                 Set<String> rads = radToUnicode.get(Common.DOT_SPLITTER.splitToList(rs).get(0));
                 for (String rad : rads) {
@@ -1113,16 +1102,16 @@ public class Ids {
     }
 
     private static List<String> getRS(final String key, Output<Set<String>> radicalChar) {
-        final List<String> rs = radicalStroke.get(key);
-        if (rs == null) {
+        Iterable<String> values = radicalStroke.getValues(key);
+        String rs1 = values.iterator().next();
+        if (rs1 == null) {
             radicalChar.value = Collections.EMPTY_SET;
             return Collections.EMPTY_LIST;
         }
-        String rs1 = rs.iterator().next();
         List<String> parts = Common.DOT_SPLITTER.splitToList(rs1);
         Set<String> rad = radToUnicode.get(parts.get(0));
         radicalChar.value = rad;
-        return rs;
+        return ImmutableList.copyOf(values);
     }
 
     private static void showRadicalCompare() throws IOException {

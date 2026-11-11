@@ -38,7 +38,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import org.unicode.draft.CldrUtility.VariableReplacer;
@@ -374,59 +373,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             result.putAll(uset, Collections.unmodifiableSet(convertedValue));
         }
         SPECIAL_CACHE.put(prop2, result.freeze());
-        return result;
-    }
-
-    public UnicodeMap<Set<String>> loadSet(UcdProperty prop2) {
-        UnicodeMap<Set<String>> result = SPECIAL_CACHE.get(prop2);
-        if (result != null) {
-            return result;
-        }
-        if (prop2.getCardinality() != ValueCardinality.Unordered) {
-            throw new UnicodePropertyException(
-                    "Mismatch in class data,  expected " + prop2.getCardinality());
-        }
-        result =
-                mapValues(
-                        load(prop2),
-                        value ->
-                                Collections.unmodifiableSet(
-                                        new LinkedHashSet<>(SET_SPLITTER.splitToList(value))));
-        SPECIAL_CACHE.put(prop2, result.freeze());
-        return result;
-    }
-
-    public UnicodeMap<List<String>> loadList(UcdProperty prop2) {
-        UnicodeMap<List<String>> result = SPECIAL_CACHE.get(prop2);
-        if (result != null) {
-            return result;
-        }
-        if (prop2.getCardinality() != ValueCardinality.Ordered) {
-            throw new UnicodePropertyException(
-                    "Mismatch in class data,  expected "
-                            + prop2.getCardinality()
-                            + " for "
-                            + prop2);
-        }
-        result =
-                mapValues(
-                        load(prop2),
-                        value -> Collections.unmodifiableList(SET_SPLITTER.splitToList(value)));
-        SPECIAL_CACHE.put(prop2, result.freeze());
-        return result;
-    }
-
-    static <T> UnicodeMap<T> mapValues(UnicodeMap<String> source, Function<String, T> converter) {
-        UnicodeMap<T> result = new UnicodeMap<>();
-        Map<String, T> convertedValues = new HashMap<>();
-        for (UnicodeMap.EntryRange<String> entry : source.entryRanges()) {
-            T value = convertedValues.computeIfAbsent(entry.value, converter);
-            if (entry.string != null) {
-                result.put(entry.string, value);
-            } else {
-                result.putAll(entry.codepoint, entry.codepointEnd, value);
-            }
-        }
         return result;
     }
 
