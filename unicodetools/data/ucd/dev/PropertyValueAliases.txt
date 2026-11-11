@@ -1,5 +1,5 @@
 # PropertyValueAliases-19.0.0.txt
-# Date: 2026-11-05, 15:56:55 GMT
+# Date: 2026-11-11, 13:49:37 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1683,6 +1683,10 @@ XIDS; Y                               ; Yes                              ; T    
 # cjkIRG_MSource (cjkIRG_MSource)
 
 # @missing: 0000..10FFFF; cjkIRG_MSource; <none>
+
+# cjkIRG_SGSource (cjkIRG_SGSource)
+
+# @missing: 0000..10FFFF; cjkIRG_SGSource; <none>
 
 # cjkIRG_SSource (cjkIRG_SSource)
 
