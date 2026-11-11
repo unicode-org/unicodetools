@@ -1094,7 +1094,7 @@ public final class UCD implements UCD_Types {
                     return SEAL_BASE;
                 }
             }
-            
+
             if (rCompositeVersion >= 0x130000) {
                 if (ch <= CJK_COMPONENTS_A_BASE) {
                     return ch;

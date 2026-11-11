@@ -180,6 +180,8 @@ public class UcdPropertyValues {
     }
 
     public enum Block_Values implements Named {
+        CJK_Unified_Ideographs_Components_A("CJK_Components_A"),
+        CJK_Unified_Ideographs_Components_B("CJK_Components_B"),
         Adlam("Adlam"),
         Aegean_Numbers("Aegean_Numbers"),
         Ahom("Ahom"),
