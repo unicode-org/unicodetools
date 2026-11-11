@@ -1058,6 +1058,20 @@ public final class UCD implements UCD_Types {
                     return CJK_I_BASE;
                 }
             }
+            if (rCompositeVersion >= 0x130000) {
+                if (ch <= CJK_COMPONENTS_A_BASE) {
+                    return ch;
+                }
+                if (ch < CJK_COMPONENTS_A_LIMIT) {
+                    return CJK_COMPONENTS_A_BASE;
+                }
+                if (ch <= CJK_COMPONENTS_B_BASE) {
+                    return ch;
+                }
+                if (ch < CJK_COMPONENTS_B_LIMIT) {
+                    return CJK_COMPONENTS_B_BASE;
+                }
+            }
             // 30000..3134F; CJK Unified Ideographs Extension G
             if (rCompositeVersion >= 0xd0000) {
                 if (ch <= CJK_G_BASE) {
@@ -1092,21 +1106,6 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch < SEAL_LIMIT) {
                     return SEAL_BASE;
-                }
-            }
-
-            if (rCompositeVersion >= 0x130000) {
-                if (ch <= CJK_COMPONENTS_A_BASE) {
-                    return ch;
-                }
-                if (ch < CJK_COMPONENTS_A_LIMIT) {
-                    return CJK_COMPONENTS_A_BASE;
-                }
-                if (ch <= CJK_COMPONENTS_B_BASE) {
-                    return ch;
-                }
-                if (ch < CJK_COMPONENTS_B_LIMIT) {
-                    return CJK_COMPONENTS_B_BASE;
                 }
             }
 
