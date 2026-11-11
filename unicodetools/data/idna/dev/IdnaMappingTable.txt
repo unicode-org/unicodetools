@@ -1,5 +1,5 @@
 # IdnaMappingTable.txt
-# Date: 2026-11-09, 17:04:27 GMT
+# Date: 2026-11-11, 13:59:34 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -8883,7 +8883,7 @@ FFFE..FFFF    ; disallowed                 # 1.1  <noncharacter-FFFE>..<nonchara
 2B73A..2B73F  ; valid                      # 17.0 CJK UNIFIED IDEOGRAPH-2B73A..CJK UNIFIED IDEOGRAPH-2B73F
 2B740..2B81D  ; valid                      # 6.0  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B81E         ; valid                      # 18.0 CJK UNIFIED IDEOGRAPH-2B81E
-2B81F         ; disallowed                 # NA   <reserved-2B81F>
+2B81F         ; valid                      # 19.0 CJK UNIFIED IDEOGRAPH-2B81F
 2B820..2CEA1  ; valid                      # 8.0  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2CEA2..2CEAD  ; valid                      # 17.0 CJK UNIFIED IDEOGRAPH-2CEA2..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEAE..2CEAF  ; disallowed                 # NA   <reserved-2CEAE>..<reserved-2CEAF>

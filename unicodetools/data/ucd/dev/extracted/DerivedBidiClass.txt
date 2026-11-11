@@ -1,5 +1,5 @@
 # DerivedBidiClass-19.0.0.txt
-# Date: 2026-11-09, 17:02:53 GMT
+# Date: 2026-11-11, 13:57:58 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1260,8 +1260,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 1F250..1F251  ; L # So   [2] CIRCLED IDEOGRAPH ADVANTAGE..CIRCLED IDEOGRAPH ACCEPT
 1F7DA         ; L # So       BLACK CIRCLE WITH WHITE VERTICAL BAR
 20000..2A6DF  ; L # Lo [42720] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6DF
-2A700..2B81E  ; L # Lo [4383] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B81E
-2B820..2CEAD  ; L # Lo [5774] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEAD
+2A700..2CEAD  ; L # Lo [10158] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2CEAD
 2CEB0..2EBE0  ; L # Lo [7473] CJK UNIFIED IDEOGRAPH-2CEB0..CJK UNIFIED IDEOGRAPH-2EBE0
 2EBF0..2EE5D  ; L # Lo [622] CJK UNIFIED IDEOGRAPH-2EBF0..CJK UNIFIED IDEOGRAPH-2EE5D
 2F800..2FA1D  ; L # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
@@ -1271,7 +1270,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 796102 code points not listed here.
+# The above property value applies to 796101 code points not listed here.
 # Total code points: 1095229
 
 # ================================================
