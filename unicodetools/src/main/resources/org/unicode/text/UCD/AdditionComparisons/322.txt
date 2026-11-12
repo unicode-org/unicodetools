@@ -14,7 +14,9 @@ Ignoring Unicode_1_Name Block Script_Extensions:
 Propertywise [\N{16FE6:DOUBLE IDEOGRAPHIC FULL STOP}]
 CorrespondTo [\N{3002:。:IDEOGRAPHIC FULL STOP}]
 UpTo: Vertical_Orientation (Transformed_Rotated vs Transformed_Upright),
-      Pattern_Syntax (No vs Yes)
+      Pattern_Syntax       (No                  vs Yes),
+      Script               (Han                 vs Common),
+      Script_Extensions    (Han                 vs Bopomofo|⁠Hangul|⁠Han|⁠Hiragana|⁠Katakana|⁠Mongolian|⁠Phags_Pa|⁠Yi)
 end Ignoring;
 
 end Ignoring;
