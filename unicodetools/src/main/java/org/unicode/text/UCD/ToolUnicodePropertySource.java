@@ -323,6 +323,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 "cjkIRG_VSource",
                 "cjkIRG_VSource",
                 "kIRG_VSource");
+        addFakeProperty(
+                version,
+                UnicodeProperty.MISC,
+                "<none>",
+                "cjkIRG_SGSource",
+                "cjkIRG_SGSource",
+                "kIRG_SGSource");
         add(iup.getProperty("kMandarin"));
         add(iup.getProperty("kTotalStrokes"));
         add(iup.getProperty("kUnihanCore2020"));

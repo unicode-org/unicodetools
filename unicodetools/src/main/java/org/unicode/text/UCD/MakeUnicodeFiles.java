@@ -2208,6 +2208,9 @@ public class MakeUnicodeFiles {
         for (char ext = 'B'; ext <= 'J'; ++ext) {
             ignoreBlocksInCJKVPlanes.put("CJK_Ext_" + ext, "NB");
         }
+        for (char comps = 'A'; comps <= 'B'; ++comps) {
+            ignoreBlocksInCJKVPlanes.put("CJK_Components_" + comps, "NB");
+        }
         UnicodeProperty blockOrIdeographicPlane =
                 new UnicodeProperty.FilteredProperty(
                         block, new UnicodeProperty.MapFilter(ignoreBlocksInCJKVPlanes));
@@ -2508,6 +2511,10 @@ public class MakeUnicodeFiles {
             for (char c = 'A'; c <= 'Z'; ++c) {
                 rangeBlocks.put(
                         "CJK_Unified_Ideographs_Extension_" + c, "CJK Ideograph Extension " + c);
+            }
+            for (char c = 'A'; c <= 'Z'; ++c) {
+                rangeBlocks.put(
+                        "CJK_Unified_Ideographs_Components_" + c, "CJK Ideograph Component " + c);
             }
             rangeBlocks.put("CJK_Unified_Ideographs", "CJK Ideograph");
             rangeBlocks.put("Hangul_Syllables", "Hangul Syllable");

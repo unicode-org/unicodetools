@@ -1418,6 +1418,7 @@ $unihanScope = [
     \P{kIRG_KPSource=@none@}
     \P{kIRG_KSource=@none@}
     \P{kIRG_MSource=@none@}
+    \P{kIRG_SGSource=@none@}
     \P{kIRG_SSource=@none@}
     \P{kIRG_TSource=@none@}
     \P{kIRG_UKSource=@none@}
