@@ -1,5 +1,5 @@
 # DerivedName-19.0.0.txt
-# Date: 2026-11-11, 15:21:54 GMT
+# Date: 2026-11-12, 19:20:51 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -39027,6 +39027,7 @@ FFFD          ; REPLACEMENT CHARACTER
 16FE2         ; OLD CHINESE HOOK MARK
 16FE3         ; OLD CHINESE ITERATION MARK
 16FE4         ; KHITAN SMALL SCRIPT FILLER
+16FE6         ; DOUBLE IDEOGRAPHIC FULL STOP
 16FF0         ; VIETNAMESE ALTERNATE READING MARK CA
 16FF1         ; VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2         ; CHINESE SMALL SIMPLIFIED ER
@@ -48136,6 +48137,6 @@ E01ED         ; VARIATION SELECTOR-254
 E01EE         ; VARIATION SELECTOR-255
 E01EF         ; VARIATION SELECTOR-256
 
-# Total code points: 174856
+# Total code points: 174857
 
 # EOF

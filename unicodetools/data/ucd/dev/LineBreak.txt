@@ -1,6 +1,5 @@
-16FE6;CL
 # LineBreak-19.0.0.txt
-# Date: 2026-11-11, 15:22:03 GMT
+# Date: 2026-11-12, 19:19:38 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -3324,6 +3323,7 @@ FFFD           ; AI # So         REPLACEMENT CHARACTER
 16FE2          ; NS # Po         OLD CHINESE HOOK MARK
 16FE3          ; NS # Lm         OLD CHINESE ITERATION MARK
 16FE4          ; GL # Mn         KHITAN SMALL SCRIPT FILLER
+16FE6          ; CL # Po         DOUBLE IDEOGRAPHIC FULL STOP
 16FF0..16FF1   ; CM # Mc     [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF3   ; NS # Lm     [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FF6   ; ID # Nl     [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS

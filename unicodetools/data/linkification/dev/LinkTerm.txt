@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-11-11, 15:24:18 GMT 
+# Date: 2026-11-12, 19:22:29 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1781,6 +1781,7 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 16FE1         ; Include # 10.0      (𖿡)  NUSHU ITERATION MARK
 16FE2..16FE3  ; Include # 12.0  [2] (𖿢..𖿣)  OLD CHINESE HOOK MARK..OLD CHINESE ITERATION MARK
 16FE4         ; Include # 13.0      (𖿤)  KHITAN SMALL SCRIPT FILLER
+16FE6         ; Include # 19.0      (𖿦)  DOUBLE IDEOGRAPHIC FULL STOP
 16FF0..16FF1  ; Include # 13.0  [2] (𖿰..𖿱)  VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF6  ; Include # 17.0  [5] (𖿲..𖿶)  CHINESE SMALL SIMPLIFIED ER..YANGQIN SIGN SLOW TWO BEATS
 17000..187EC  ; Include # 9.0 [6125] (𗀀..𘟬)  TANGUT IDEOGRAPH-17000..TANGUT IDEOGRAPH-187EC
@@ -2234,5 +2235,5 @@ FFFD          ; Include # 1.1       (�)  REPLACEMENT CHARACTER
 E0020..E007F  ; Include # 3.1  [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Include # 4.0 [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 174360
+# Total code points: 174361
 

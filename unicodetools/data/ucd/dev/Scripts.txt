@@ -1,6 +1,5 @@
-16FE6;Common
 # Scripts-19.0.0.txt
-# Date: 2026-11-11, 15:28:29 GMT
+# Date: 2026-11-12, 19:21:37 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -525,6 +524,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 10190..1019C  ; Common # So  [13] ROMAN SEXTANS SIGN..ASCIA SYMBOL
 101D0..101FC  ; Common # So  [45] PHAISTOS DISC SIGN PEDESTRIAN..PHAISTOS DISC SIGN WAVY BAND
 102E1..102FB  ; Common # No  [27] COPTIC EPACT DIGIT ONE..COPTIC EPACT NUMBER NINE HUNDRED
+16FE6         ; Common # Po       DOUBLE IDEOGRAPHIC FULL STOP
 1BCA0..1BCA3  ; Common # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1CC00..1CCEF  ; Common # So [240] UP-POINTING GO-KART..OUTLINED LATIN CAPITAL LETTER Z
 1CCF0..1CCF9  ; Common # Nd  [10] OUTLINED DIGIT ZERO..OUTLINED DIGIT NINE
@@ -652,7 +652,7 @@ FFFC..FFFD    ; Common # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHAR
 E0001         ; Common # Cf       LANGUAGE TAG
 E0020..E007F  ; Common # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 9355
+# Total code points: 9356
 
 # ================================================
 

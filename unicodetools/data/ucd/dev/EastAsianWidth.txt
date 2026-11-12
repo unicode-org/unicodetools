@@ -1,5 +1,5 @@
 # EastAsianWidth-19.0.0.txt
-# Date: 2026-11-11, 15:21:57 GMT
+# Date: 2026-11-12, 19:20:54 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2410,6 +2410,7 @@ FFFD           ; A  # So         REPLACEMENT CHARACTER
 16FE2          ; W  # Po         OLD CHINESE HOOK MARK
 16FE3          ; W  # Lm         OLD CHINESE ITERATION MARK
 16FE4          ; W  # Mn         KHITAN SMALL SCRIPT FILLER
+16FE6          ; N  # Po         DOUBLE IDEOGRAPHIC FULL STOP
 16FF0..16FF1   ; W  # Mc     [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF3   ; W  # Lm     [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FF6   ; W  # Nl     [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS

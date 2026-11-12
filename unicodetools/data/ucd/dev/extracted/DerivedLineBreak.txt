@@ -1,5 +1,5 @@
 # DerivedLineBreak-19.0.0.txt
-# Date: 2026-11-11, 15:21:54 GMT
+# Date: 2026-11-12, 19:20:51 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -73,8 +73,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 753982 code points not listed here.
-# Total code points: 891450
+# The above property value applies to 753981 code points not listed here.
+# Total code points: 891449
 
 # ================================================
 
@@ -267,8 +267,9 @@ FF64          ; CL # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1343D         ; CL # Cf       EGYPTIAN HIEROGLYPH END ENCLOSURE
 1343F         ; CL # Cf       EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
 145CF         ; CL # Lo       ANATOLIAN HIEROGLYPH A410A END LOGOGRAM MARK
+16FE6         ; CL # Po       DOUBLE IDEOGRAPHIC FULL STOP
 
-# Total code points: 96
+# Total code points: 97
 
 # ================================================
 
