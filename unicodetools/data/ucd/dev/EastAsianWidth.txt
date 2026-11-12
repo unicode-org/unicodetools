@@ -1,3 +1,4 @@
+16FE6;W
 # EastAsianWidth-19.0.0.txt
 # Date: 2026-11-12, 19:20:54 GMT
 # © 2026 Unicode®, Inc.
