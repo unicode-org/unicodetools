@@ -1,3 +1,4 @@
+16FE6;DOUBLE IDEOGRAPHIC FULL STOP;Po;0;ON;;;;;N;;;;;
 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
