@@ -1,6 +1,7 @@
 # File: MathClassEx.txt
-# Revision: 17.0.0
-# Equivalent Unicode version: 17.0
+# Unicode Technical Report #25 version: 17
+# Data file version: 17.0.0
+# Equivalent Unicode version: 17.0.0
 # Date: 2026-11-13
 #
 # © 2026 Unicode®, Inc.
@@ -82,7 +83,7 @@
 # This is indicated in 24 special purpose comments.
 #
 # The character repertoire of this revision is the repertoire of Unicode
-# Version 17.0. For more information see Revision 17 or later of UTR #25.
+# Version 17.0.0. For more information see Revision 17 or later of UTR #25.
 # ------------------------------------------------
 
 #code point;class;entity;set;note/description # comment/Unicode name
