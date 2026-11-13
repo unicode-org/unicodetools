@@ -1,5 +1,5 @@
 # File: MathClassEx.txt
-# Unicode Technical Report #25 version: 17
+# Unicode Technical Report #25 revision: 17
 # Data file version: 17.0.0
 # Equivalent Unicode version: 17.0.0
 # Date: 2026-11-13

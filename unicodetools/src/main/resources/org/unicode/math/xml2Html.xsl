@@ -203,7 +203,7 @@
     <xsl:param name="tr25"/>
     <xsl:param name="unicode"/>
     <p>File: <b>MathClassEx</b></p>
-    <p>Unicode Technical Report #25 version: <b><xsl:value-of select="$tr25"/></b></p>
+    <p>Unicode Technical Report #25 revision: <b><xsl:value-of select="$tr25"/></b></p>
     <p>Data file version: <b><xsl:value-of select="$data"/></b></p>
     <p>Equivalent Unicode version: <b><xsl:value-of select="$unicode"/></b></p>
     <p>Date: <b><xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/></b></p>
