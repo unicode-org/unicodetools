@@ -1,5 +1,5 @@
 # DerivedBidiClass-19.0.0.txt
-# Date: 2026-11-11, 15:21:48 GMT
+# Date: 2026-11-12, 19:20:44 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -1272,8 +1272,8 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 795607 code points not listed here.
-# Total code points: 1095229
+# The above property value applies to 795606 code points not listed here.
+# Total code points: 1095228
 
 # ================================================
 
@@ -2007,6 +2007,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 11FD5..11FDC  ; ON # So   [8] TAMIL SIGN NEL..TAMIL SIGN MUKKURUNI
 11FE1..11FF1  ; ON # So  [17] TAMIL SIGN PAARAM..TAMIL SIGN VAKAIYARAA
 16FE2         ; ON # Po       OLD CHINESE HOOK MARK
+16FE6         ; ON # Po       DOUBLE IDEOGRAPHIC FULL STOP
 1CC00..1CCD5  ; ON # So [214] UP-POINTING GO-KART..LOWER RIGHT QUADRANT STANDING KNIGHT
 1CCFA..1CCFC  ; ON # So   [3] SNAKE SYMBOL..NOSE SYMBOL
 1CD00..1CEB3  ; ON # So [436] BLOCK OCTANT-3..BLACK RIGHT TRIANGLE CARET
@@ -2073,7 +2074,7 @@ FFFC..FFFD    ; ON # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTE
 1FB94..1FBEF  ; ON # So  [92] LEFT HALF INVERSE MEDIUM SHADE AND RIGHT HALF BLOCK..TOP LEFT JUSTIFIED LOWER RIGHT QUARTER BLACK CIRCLE
 1FBFA         ; ON # So       ALARM BELL SYMBOL
 
-# Total code points: 7010
+# Total code points: 7011
 
 # ================================================
 

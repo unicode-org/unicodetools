@@ -1,5 +1,5 @@
 # PropList-19.0.0.txt
-# Date: 2026-11-11, 15:43:44 GMT
+# Date: 2026-11-12, 19:33:36 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -232,10 +232,11 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 16B44         ; Terminal_Punctuation # Po       PAHAWH HMONG SIGN XAUS
 16D6E..16D6F  ; Terminal_Punctuation # Po   [2] KIRAT RAI DANDA..KIRAT RAI DOUBLE DANDA
 16E97..16E98  ; Terminal_Punctuation # Po   [2] MEDEFAIDRIN COMMA..MEDEFAIDRIN FULL STOP
+16FE6         ; Terminal_Punctuation # Po       DOUBLE IDEOGRAPHIC FULL STOP
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 293
+# Total code points: 294
 
 # ================================================
 
@@ -1671,10 +1672,11 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 16B44         ; Sentence_Terminal # Po       PAHAWH HMONG SIGN XAUS
 16D6E..16D6F  ; Sentence_Terminal # Po   [2] KIRAT RAI DANDA..KIRAT RAI DOUBLE DANDA
 16E98         ; Sentence_Terminal # Po       MEDEFAIDRIN FULL STOP
+16FE6         ; Sentence_Terminal # Po       DOUBLE IDEOGRAPHIC FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
 
-# Total code points: 172
+# Total code points: 173
 
 # ================================================
 

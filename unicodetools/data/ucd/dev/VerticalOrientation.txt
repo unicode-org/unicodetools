@@ -1,5 +1,5 @@
 # VerticalOrientation-19.0.0.txt
-# Date: 2026-11-11, 15:22:39 GMT
+# Date: 2026-11-12, 19:47:22 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2246,7 +2246,9 @@ FFFC..FFFD     ; U  # So     [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARA
 16FE2          ; U  # Po         OLD CHINESE HOOK MARK
 16FE3          ; U  # Lm         OLD CHINESE ITERATION MARK
 16FE4          ; U  # Mn         KHITAN SMALL SCRIPT FILLER
-16FE5..16FEF   ; U  # Cn    [11] <reserved-16FE5>..<reserved-16FEF>
+16FE5          ; U  # Cn         <reserved-16FE5>
+16FE6          ; Tr # Po         DOUBLE IDEOGRAPHIC FULL STOP
+16FE7..16FEF   ; U  # Cn     [9] <reserved-16FE7>..<reserved-16FEF>
 16FF0..16FF1   ; U  # Mc     [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF3   ; U  # Lm     [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FF6   ; U  # Nl     [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS

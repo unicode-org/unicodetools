@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-19.0.0.txt
-# Date: 2026-11-11, 15:21:52 GMT
+# Date: 2026-11-12, 19:20:49 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -581,7 +581,8 @@ FFFE..FFFF    ; Cn #   [2] <noncharacter-FFFE>..<noncharacter-FFFF>
 16F4B..16F4E  ; Cn #   [4] <reserved-16F4B>..<reserved-16F4E>
 16F88..16F8E  ; Cn #   [7] <reserved-16F88>..<reserved-16F8E>
 16FA0..16FDF  ; Cn #  [64] <reserved-16FA0>..<reserved-16FDF>
-16FE5..16FEF  ; Cn #  [11] <reserved-16FE5>..<reserved-16FEF>
+16FE5         ; Cn #       <reserved-16FE5>
+16FE7..16FEF  ; Cn #   [9] <reserved-16FE7>..<reserved-16FEF>
 16FF7..16FFF  ; Cn #   [9] <reserved-16FF7>..<reserved-16FFF>
 18CDB..18CFE  ; Cn #  [36] <reserved-18CDB>..<reserved-18CFE>
 18D21..18D7F  ; Cn #  [95] <reserved-18D21>..<reserved-18D7F>
@@ -759,7 +760,7 @@ E01F0..EFFFF  ; Cn # [65040] <reserved-E01F0>..<noncharacter-EFFFF>
 FFFFE..FFFFF  ; Cn #   [2] <noncharacter-FFFFE>..<noncharacter-FFFFF>
 10FFFE..10FFFF; Cn #   [2] <noncharacter-10FFFE>..<noncharacter-10FFFF>
 
-# Total code points: 799675
+# Total code points: 799674
 
 # ================================================
 
@@ -4072,12 +4073,13 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 16D6D..16D6F  ; Po #   [3] KIRAT RAI SIGN YUPI..KIRAT RAI DOUBLE DANDA
 16E97..16E9A  ; Po #   [4] MEDEFAIDRIN COMMA..MEDEFAIDRIN EXCLAMATION OH
 16FE2         ; Po #       OLD CHINESE HOOK MARK
+16FE6         ; Po #       DOUBLE IDEOGRAPHIC FULL STOP
 1BC9F         ; Po #       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8B  ; Po #   [5] SIGNWRITING COMMA..SIGNWRITING PARENTHESIS
 1E5FF         ; Po #       OL ONAL ABBREVIATION SIGN
 1E95E..1E95F  ; Po #   [2] ADLAM INITIAL EXCLAMATION MARK..ADLAM INITIAL QUESTION MARK
 
-# Total code points: 645
+# Total code points: 646
 
 # ================================================
 

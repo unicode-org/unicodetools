@@ -1,5 +1,5 @@
 # LinkTerm.txt
-# Date: 2026-11-11, 15:24:18 GMT 
+# Date: 2026-11-12, 19:33:30 GMT 
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -164,11 +164,12 @@ FF64          ; Soft    # 1.1       (､)  HALFWIDTH IDEOGRAPHIC COMMA
 16B44         ; Soft    # 7.0       (𖭄)  PAHAWH HMONG SIGN XAUS
 16D6E..16D6F  ; Soft    # 16.0  [2] (𖵮..𖵯)  KIRAT RAI DANDA..KIRAT RAI DOUBLE DANDA
 16E97..16E98  ; Soft    # 11.0  [2] (𖺗..𖺘)  MEDEFAIDRIN COMMA..MEDEFAIDRIN FULL STOP
+16FE6         ; Soft    # 19.0      (𖿦)  DOUBLE IDEOGRAPHIC FULL STOP
 1BC9F         ; Soft    # 7.0       (𛲟)  DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Soft    # 8.0   [4] (𝪇..𝪊)  SIGNWRITING COMMA..SIGNWRITING COLON
 1F676..1F678  ; Soft    # 7.0   [3] (🙶..🙸)  SANS-SERIF HEAVY DOUBLE TURNED COMMA QUOTATION MARK ORNAMENT..SANS-SERIF HEAVY LOW DOUBLE COMMA QUOTATION MARK ORNAMENT
 
-# Total code points: 332
+# Total code points: 333
 
 0029          ; Close   # 1.1       ())  RIGHT PARENTHESIS
 003E          ; Close   # 1.1       (>)  GREATER-THAN SIGN

@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-19.0.0.txt
-# Date: 2026-11-11, 15:21:52 GMT
+# Date: 2026-11-12, 19:40:11 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -2191,8 +2191,8 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 E0001         ; N # Cf       LANGUAGE TAG
 E0020..E007F  ; N # Cf  [96] TAG SPACE..CANCEL TAG
 
-# The above property value applies to 757381 code points not listed here.
-# Total code points: 791273
+# The above property value applies to 757380 code points not listed here.
+# Total code points: 791272
 
 # ================================================
 
@@ -2595,6 +2595,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 16FE2         ; W # Po       OLD CHINESE HOOK MARK
 16FE3         ; W # Lm       OLD CHINESE ITERATION MARK
 16FE4         ; W # Mn       KHITAN SMALL SCRIPT FILLER
+16FE6         ; W # Po       DOUBLE IDEOGRAPHIC FULL STOP
 16FF0..16FF1  ; W # Mc   [2] VIETNAMESE ALTERNATE READING MARK CA..VIETNAMESE ALTERNATE READING MARK NHAY
 16FF2..16FF3  ; W # Lm   [2] CHINESE SMALL SIMPLIFIED ER..CHINESE SMALL TRADITIONAL ER
 16FF4..16FF6  ; W # Nl   [3] YANGQIN SIGN SLOW ONE BEAT..YANGQIN SIGN SLOW TWO BEATS
@@ -2675,7 +2676,7 @@ FE6A..FE6B    ; W # Po   [2] SMALL PERCENT SIGN..SMALL COMMERCIAL AT
 3D000..3FC3F  ; W # Lo [11328] SMALL SEAL CHARACTER-3D000..SMALL SEAL CHARACTER-3FC3F
 
 # The above property value applies to 44342 code points not listed here.
-# Total code points: 183762
+# Total code points: 183763
 
 # ================================================
 
