@@ -498,8 +498,6 @@ public abstract class Ids2 implements Comparable<Ids2> {
             sortedByRadicalStroke.add(s);
         }
 
-        // System.out.println(Ids.parse("⿱一⿰⿵冂丶⿵冂丶"));
-        // System.out.println(Ids.parse("⿹&CDP-8BBF;一"));
         String dirString = CLDRPaths.DATA_DIRECTORY + "ids/";
         File dir = new File(dirString);
         UnicodeMap<Ids2> data = new UnicodeMap<Ids2>();
