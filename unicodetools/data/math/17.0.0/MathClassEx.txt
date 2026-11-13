@@ -1,6 +1,7 @@
 # File: MathClassEx.txt
-# Revision: 16
-# Date: 2026-09-17
+# Revision: 17.0.0
+# Equivalent Unicode version: 17.0
+# Date: 2026-11-13
 #
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
