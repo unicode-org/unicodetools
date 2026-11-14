@@ -26,3 +26,27 @@ Let $Strongly_Restricted := [\p{Identifier_Type=Not_Character}\p{Identifier_Type
 \p{Identifier_Type=Exclusion} ∥ \p{Identifier_Type=Limited_Use}
 
 \p{Identifier_Status=Allowed} = [\p{Identifier_Type=Inclusion}\p{Identifier_Type=Recommended}]
+
+# Uppercase and titlecase characters should have the same Identifier_Type values
+# as their lowercase equivalents (L2/25-034R4, additional recommendations).
+# Use simple lowercase mappings to compare individual code points, including
+# characters whose full lowercase mapping is a sequence, such as U+0130.
+# Strong restrictions take precedence, e.g. U+212A KELVIN SIGN is Not_NFKC
+# while its lowercase mapping U+006B LATIN SMALL LETTER K is Recommended.
+# https://github.com/unicode-org/unicodetools/issues/1060
+
+# Existing mismatches in Unicode 18.0, pending review of their Identifier_Type
+# assignments. Keep this list explicit so new mismatches cannot pass unnoticed.
+Let $Identifier_Type_Case_Exceptions := [
+    \u0193\u019C\u019F\u01A6\u01A9\u01AE\u01B1\u01B8\u01F6
+    \u023A\u023E\u0243\u0245\u037F
+    \u10C7\u10CD\u1CB1-\u1CBA\u1CBD-\u1CBF
+    \u1FB8\u1FB9\u1FBC\u1FEC\u2183
+    \u2C67\u2C6D-\u2C70\u2C7E\u2C7F
+    \uA77D\uA78D\uA7AA-\uA7AD\uA7B0-\uA7B3\uA7CB\uA7E2\uAB6C\uAB6D
+]
+
+# Remove an exception when its case pair becomes consistent.
+$Identifier_Type_Case_Exceptions ⊆ [\p{Cased}-$Strongly_Restricted]
+In $Identifier_Type_Case_Exceptions, Identifier_Type ≠ Identifier_Type * Simple_Lowercase_Mapping
+In [\p{Cased}-$Strongly_Restricted-$Identifier_Type_Case_Exceptions], Identifier_Type = Identifier_Type * Simple_Lowercase_Mapping
