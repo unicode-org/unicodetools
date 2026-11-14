@@ -44,6 +44,9 @@ public class GenerateCaseFolding implements UCD_Types {
     static PrintWriter log;
 
     public static void makeCaseFold(boolean normalized) throws java.io.IOException {
+        // Derive the mappings from casing. The UCD class's folding mappings come from
+        // the current contents of CaseFolding.txt, so they must not be used to constrain
+        // the output being regenerated.
         PICK_SHORT = NF_CLOSURE = normalized;
 
         String suffix = FileInfix.getDefault().getFileSuffix(".txt");
@@ -94,76 +97,47 @@ public class GenerateCaseFolding implements UCD_Types {
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             Utility.dot(ch);
 
-            var normativeSCF = new StringBuilder();
-            var normativeCF = new StringBuilder();
+            if (!charsUsed.get(ch)) {
+                continue;
+            }
 
-            try {
-                if (!charsUsed.get(ch)) {
-                    continue;
-                }
+            final String rFull = fullData.get(Character.toString(ch));
+            final String rSimple = simpleData.get(Character.toString(ch));
+            final String rFullTurkish = fullDataTurkish.get(Character.toString(ch));
+            final String rSimpleTurkish = simpleDataTurkish.get(Character.toString(ch));
+            if (rFull == null
+                    && rSimple == null
+                    && rFullTurkish == null
+                    && rSimpleTurkish == null) {
+                continue;
+            }
 
-                final String rFull = fullData.get(Character.toString(ch));
-                final String rSimple = simpleData.get(Character.toString(ch));
-                final String rFullTurkish = fullDataTurkish.get(Character.toString(ch));
-                final String rSimpleTurkish = simpleDataTurkish.get(Character.toString(ch));
-                if (rFull == null
-                        && rSimple == null
-                        && rFullTurkish == null
-                        && rSimpleTurkish == null) {
-                    continue;
+            // Hardcode variants of letter i.
+            if (ch == 0x49) {
+                drawLine(out, ch, "C", "i");
+                drawLine(out, ch, "T", "\u0131");
+            } else if (ch == 0x130) {
+                drawLine(out, ch, "F", "i\u0307");
+                drawLine(out, ch, "T", "i");
+            } else if (ch == 0x131) {
+                // do nothing
+                // drawLine(out, ch, "I", "i");
+            } else if (rFull != null && rFull.equals(rSimple)
+                    || (PICK_SHORT && UTF16Plus.isSingleCodePoint(rFull))) {
+                drawLine(out, ch, "C", rFull);
+            } else {
+                if (rFull != null) {
+                    drawLine(out, ch, "F", rFull);
                 }
-
-                // Hardcode variants of letter i.
-                if (ch == 0x49) {
-                    drawLine(out, ch, "C", "i", normativeSCF, normativeCF);
-                    drawLine(out, ch, "T", "\u0131", normativeSCF, normativeCF);
-                } else if (ch == 0x130) {
-                    drawLine(out, ch, "F", "i\u0307", normativeSCF, normativeCF);
-                    drawLine(out, ch, "T", "i", normativeSCF, normativeCF);
-                } else if (ch == 0x131) {
-                    // do nothing
-                    // drawLine(out, ch, "I", "i");
-                } else if (rFull != null && rFull.equals(rSimple)
-                        || (PICK_SHORT && UTF16Plus.isSingleCodePoint(rFull))) {
-                    drawLine(out, ch, "C", rFull, normativeSCF, normativeCF);
-                } else {
-                    if (rFull != null) {
-                        drawLine(out, ch, "F", rFull, normativeSCF, normativeCF);
-                    }
-                    if (rSimple != null) {
-                        drawLine(out, ch, "S", rSimple, normativeSCF, normativeCF);
-                    }
+                if (rSimple != null) {
+                    drawLine(out, ch, "S", rSimple);
                 }
-                if (rFullTurkish != null && !rFullTurkish.equals(rFull)) {
-                    drawLine(out, ch, "T", rFullTurkish, normativeSCF, normativeCF);
-                }
-                if (rSimpleTurkish != null && !rSimpleTurkish.equals(rSimple)) {
-                    drawLine(out, ch, "t", rSimpleTurkish, normativeSCF, normativeCF);
-                }
-            } finally {
-                // We have two independent definitions of the case foldings.
-                // Check that they are consistent. Eventually we should get rid of one of them, see
-                // https://github.com/unicode-org/unicodetools/issues/426.
-                if (normativeSCF.length() == 0) {
-                    normativeSCF.append(Character.toString(ch));
-                }
-                if (normativeCF.length() == 0) {
-                    normativeCF.append(Character.toString(ch));
-                }
-                final String ucdSCF = Default.ucd().getCase(ch, UCD.SIMPLE, UCD.FOLD);
-                final String ucdCF = Default.ucd().getCase(ch, UCD.FULL, UCD.FOLD);
-                if (!ucdSCF.equals(normativeSCF.toString())) {
-                    throw new AssertionError(
-                            String.format(
-                                    "UCD.getCase(\"\\u%04X\", UCD.SIMPLE, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
-                                    ch, ucdSCF, normativeSCF));
-                }
-                if (!ucdCF.equals(normativeCF.toString())) {
-                    throw new AssertionError(
-                            String.format(
-                                    "UCD.getCase(\"\\u%04X\", UCD.FULL, UCD.FOLD)=\"%s\", should be \"%s\" per CaseFolding.txt",
-                                    ch, ucdCF, normativeCF));
-                }
+            }
+            if (rFullTurkish != null && !rFullTurkish.equals(rFull)) {
+                drawLine(out, ch, "T", rFullTurkish);
+            }
+            if (rSimpleTurkish != null && !rSimpleTurkish.equals(rSimple)) {
+                drawLine(out, ch, "t", rSimpleTurkish);
             }
         }
         out.println("#");
@@ -181,13 +155,7 @@ public class GenerateCaseFolding implements UCD_Types {
     0130; T; 0069; # LATIN CAPITAL LETTER I WITH DOT ABOVE
          */
 
-    static void drawLine(
-            PrintWriter out,
-            int ch,
-            String type,
-            String result,
-            StringBuilder normativeSCF,
-            StringBuilder normativeCF) {
+    static void drawLine(PrintWriter out, int ch, String type, String result) {
         String comment = "";
         if (COMMENT_DIFFS) {
             final String lower = Default.ucd().getCase(Character.toString(ch), FULL, LOWER);
@@ -208,21 +176,6 @@ public class GenerateCaseFolding implements UCD_Types {
             }
         }
 
-        if (type == "C" || type == "S") {
-            if (normativeSCF.length() != 0) {
-                throw new AssertionError(
-                        String.format("Conflicting SCF assignments for U+%04X", ch));
-            }
-            normativeSCF.append(result);
-        }
-        if (type == "C" || type == "F") {
-            if (normativeCF.length() != 0) {
-                throw new AssertionError(
-                        String.format("Conflicting CF assignments for U+%04X", ch));
-            }
-            normativeCF.append(result);
-        }
-
         out.println(
                 Utility.hex(ch)
                         + "; "
@@ -236,11 +189,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
     static int probeCh = 0x01f0;
     static String shower = Character.toString(probeCh);
-    // Public only for unicode.text.UCD.UData.
-    // We have two independent definitions of the case foldings.
-    // Eventually we should get rid of one of them, see
-    // https://github.com/unicode-org/unicodetools/issues/426.
-    public static final int[] simpleAdditions = {
+    private static final int[] simpleAdditions = {
         // [175-A66] add Simple_Case_Folding mappings for U+1FD3, U+1FE3, and U+FB05, see L2/23-062;
         // for Unicode Version 15.1.
         // ΐ → ΐ

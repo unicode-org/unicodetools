@@ -224,49 +224,13 @@ class UData implements UCD_Types {
             fullTitlecase = simpleTitlecase;
         }
 
-        // case folding
-
-        if (codePoint == 0x0130) {
+        // ConvertUCD loads the mappings from CaseFolding.txt. Missing mappings are identity,
+        // independently of the lowercase mappings and of other Unicode versions.
+        if (simpleCaseFolding == null) {
             simpleCaseFolding = codeValue;
         }
-
-        // Additions that don't naturally fall out of the closure.
-        for (int i = 0; i < GenerateCaseFolding.simpleAdditions.length; i += 2) {
-            int c1 = GenerateCaseFolding.simpleAdditions[i];
-            if (c1 != codePoint) {
-                continue;
-            }
-            int c2 = GenerateCaseFolding.simpleAdditions[i + 1];
-            String s2 = Character.toString(c2);
-            if (simpleCaseFolding != null) {
-                if (simpleCaseFolding.equals(s2)) {
-                    break;
-                }
-                String s1 = Character.toString(c1);
-                throw new IllegalArgumentException(
-                        String.format(
-                                "UData: Trying to add scf(U+%04X)→U+%04X (%s→%s) "
-                                        + "but the source character already has a mapping to %s",
-                                c1, c2, s1, s2, simpleCaseFolding));
-            }
-            simpleCaseFolding = s2;
-            break;
-        }
-
-        if (codePoint >= 0x13A0 && codePoint <= 0x13F5) { // HACK for Cherokee Uppercase
-            if (simpleCaseFolding == null) {
-                simpleCaseFolding = codeValue;
-            }
-            if (fullCaseFolding == null) {
-                fullCaseFolding = codeValue;
-            }
-        } else { // Non-Cherokee Uppercase
-            if (simpleCaseFolding == null) {
-                simpleCaseFolding = simpleLowercase;
-            }
-            if (fullCaseFolding == null) {
-                fullCaseFolding = fullLowercase;
-            }
+        if (fullCaseFolding == null) {
+            fullCaseFolding = codeValue;
         }
     }
 
@@ -276,10 +240,10 @@ class UData implements UCD_Types {
 
         // first case folding
 
-        if (fullCaseFolding.equals(fullLowercase) && codePoint >= 0x13A0 && codePoint <= 0x13F5) {
+        if (fullCaseFolding.equals(codeValue)) {
             fullCaseFolding = null;
         }
-        if (simpleCaseFolding.equals(simpleLowercase)) {
+        if (simpleCaseFolding.equals(codeValue)) {
             simpleCaseFolding = null;
         }
 
