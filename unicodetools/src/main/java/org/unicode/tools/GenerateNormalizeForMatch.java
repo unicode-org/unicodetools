@@ -1,6 +1,5 @@
 package org.unicode.tools;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
@@ -20,12 +19,12 @@ import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyValueSets;
@@ -260,7 +259,7 @@ public class GenerateNormalizeForMatch {
         for (String s : sources) {
             String t1 = curated.getSourceToTarget().get(s);
             String t2 = newCurated.getSourceToTarget().get(s);
-            if (!Objects.equal(t1, t2)) {
+            if (!Objects.equals(t1, t2)) {
                 System.out.println("Diff: " + t1 + ", " + t2);
                 diffCount++;
             }
@@ -283,9 +282,9 @@ public class GenerateNormalizeForMatch {
                 if (other != null) {
                     int otherFirst = other.getRangeStart(0);
                     final String otherCp = Character.toString(otherFirst);
-                    final String cpNkfccf = CldrUtility.ifNull(cpToNFKCCF.get(cp), cp);
+                    final String cpNkfccf = Objects.requireNonNullElse(cpToNFKCCF.get(cp), cp);
                     final String otherCpNfkccf =
-                            CldrUtility.ifNull(cpToNFKCCF.get(otherCp), otherCp);
+                            Objects.requireNonNullElse(cpToNFKCCF.get(otherCp), otherCp);
                     System.out.println(
                             (cpNkfccf.equals(otherCpNfkccf) ? "=" : "≠")
                                     + "\t"
@@ -341,9 +340,9 @@ public class GenerateNormalizeForMatch {
                     colEquiv = s;
                 }
                 final boolean trial_n4m_nfkccfEqual =
-                        Objects.equal(trial, n4m) && Objects.equal(trial, nfkccf);
+                        Objects.equals(trial, n4m) && Objects.equals(trial, nfkccf);
                 if (trial_n4m_nfkccfEqual
-                        && Objects.equal(trial, colEquiv)) { // all equal, we don't care
+                        && Objects.equals(trial, colEquiv)) { // all equal, we don't care
                     continue;
                 }
                 if (ucaOnly != trial_n4m_nfkccfEqual) {
@@ -373,11 +372,11 @@ public class GenerateNormalizeForMatch {
                                 + "\t'"
                                 + showEmpty(colEquiv)
                                 + "\t"
-                                + (Objects.equal(n4m, trial) ? "" : "Tr≠N4M")
+                                + (Objects.equals(n4m, trial) ? "" : "Tr≠N4M")
                                 + "\t"
-                                + (Objects.equal(trial, nfkccf) ? "" : "Tr≠NF")
+                                + (Objects.equals(trial, nfkccf) ? "" : "Tr≠NF")
                                 + "\t"
-                                + (Objects.equal(trial, colEquiv) ? "" : "Tr≠UCA")
+                                + (Objects.equals(trial, colEquiv) ? "" : "Tr≠UCA")
                                 + "\t'"
                                 + Utility.hex(n4m, 4, " ")
                                 + "\t'"
@@ -392,9 +391,9 @@ public class GenerateNormalizeForMatch {
                         Row.of(
                                 100 - GC.get(cp).ordinal(),
                                 DT.get(cp),
-                                (Objects.equal(n4m, trial) ? "a" : "b")
-                                        + (Objects.equal(trial, nfkccf) ? "a" : "b")
-                                        + (Objects.equal(trial, colEquiv) ? "a" : "b"),
+                                (Objects.equals(n4m, trial) ? "a" : "b")
+                                        + (Objects.equals(trial, nfkccf) ? "a" : "b")
+                                        + (Objects.equals(trial, colEquiv) ? "a" : "b"),
                                 line);
                 sorted.add(row);
             }
@@ -917,7 +916,7 @@ public class GenerateNormalizeForMatch {
     //
     //            String n4mValue = N4M.get(source);
     //            String trialValue = TRIAL.get(source);
-    //            if (Objects.equal(n4mValue, trialValue)) {
+    //            if (Objects.equals(n4mValue, trialValue)) {
     //                continue;
     //            }
     //
@@ -946,7 +945,7 @@ public class GenerateNormalizeForMatch {
     //                    + SEP + hex(source)
     //                    + SEP + hex(n4mValue)
     //                    + SEP + hex(trialValue)
-    //                    + SEP + (Objects.equal(nfkccfValue,trialValue) ? "≣" : hex(nfkccfValue))
+    //                    + SEP + (Objects.equals(nfkccfValue,trialValue) ? "≣" : hex(nfkccfValue))
     //                    + SEP + (reason == null ? "" : reason)
     //                    + SEP + iup.getName(Character.toString(sourceCodePoint), " + ")
     //                    );

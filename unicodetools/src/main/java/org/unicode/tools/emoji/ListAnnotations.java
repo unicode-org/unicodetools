@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.Annotations.AnnotationSet;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Utility;
 
@@ -37,7 +36,7 @@ public class ListAnnotations {
                             + eng.getShortName(emoji)
                             + "\t"
                             + "\t"
-                            + CldrUtility.join(eng.getKeywords(emoji), " | ")
+                            + String.join(" | ", eng.getKeywords(emoji))
                             + "\t"
                             + "\t"
                             + Utility.hex(emoji, " + ")
