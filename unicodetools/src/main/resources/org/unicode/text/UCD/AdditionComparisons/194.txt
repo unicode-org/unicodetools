@@ -11,8 +11,10 @@ Ignoring Name Age:
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
 Ignoring Block:
-Propertywise [\x{1B168}   \N{KATAKANA LETTER SMALL ARCHAIC YE}
-              \x{30E3} ャ \N{KATAKANA LETTER SMALL YA}] AreAlike
+Propertywise [\N{1B168:KATAKANA LETTER SMALL ARCHAIC YE}]
+           : [\N{1B121:𛄡:KATAKANA LETTER ARCHAIC YE}]
+CorrespondTo [\N{30E3:ャ:KATAKANA LETTER SMALL YA}]
+           : [\N{30E4:ヤ:KATAKANA LETTER YA}]
 end Ignoring;
 
 end Ignoring;
