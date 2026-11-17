@@ -10,6 +10,7 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.VersionInfo;
@@ -830,8 +831,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         @Override
         protected String _getValue(String string) {
             if (!string.isEmpty()) {
-                final int cp = string.codePointAt(0);
-                if (Character.charCount(cp) == string.length()) {
+                final int cp = UTF16.getSingleCodePoint(string);
+                if (cp >= 0) {
                     return _getValue(cp);
                 }
             }
