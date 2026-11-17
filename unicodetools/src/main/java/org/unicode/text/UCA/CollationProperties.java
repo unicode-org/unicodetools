@@ -62,7 +62,9 @@ public class CollationProperties {
 
         @Override
         public boolean equals(Object other) {
-            return (other instanceof FoldingType otherType) && otherType.level == level && otherType.alternate == alternate;
+            return (other instanceof FoldingType otherType)
+                    && otherType.level == level
+                    && otherType.alternate == alternate;
         }
 
         @Override
@@ -100,10 +102,8 @@ public class CollationProperties {
         final int katakanaWeight = 0x11;
         final int hiraganaWeight = 0x0E;
         return tertiary == 0
-                                                ? 0
-                                                : tertiary == katakanaWeight
-                                                        ? 2
-                                                        : tertiary == hiraganaWeight ? 3 : tertiary + 2;
+                ? 0
+                : tertiary == katakanaWeight ? 2 : tertiary == hiraganaWeight ? 3 : tertiary + 2;
     }
 
     static Comparator<String> markedness(final UCA uca, Alternate alternate) {
@@ -115,8 +115,7 @@ public class CollationProperties {
                         final int elements = collationElements.at(i);
                         final int tertiary = CEList.getTertiary(elements);
                         transformed[i] =
-                                elements & ~CEList.TERTIARY_MAX
-                                        | tertiaryMarkedness(tertiary);
+                                elements & ~CEList.TERTIARY_MAX | tertiaryMarkedness(tertiary);
                     }
                     return uca.getSortKey(
                             new CEList(transformed), "", alternate, true, AppendToCe.tieBreaker);
@@ -149,7 +148,8 @@ public class CollationProperties {
                                             collationElements.at(i),
                                             i == 0 ? null : collationElements.at(i - 1));
                 }
-                long[] levelElements = Arrays.stream(maskedElements).filter(ce -> ce != 0).toArray();
+                long[] levelElements =
+                        Arrays.stream(maskedElements).filter(ce -> ce != 0).toArray();
                 stringToElementsByType
                         .computeIfAbsent(type, k -> new UnicodeMap<>())
                         .put(s, levelElements);
@@ -167,8 +167,7 @@ public class CollationProperties {
             for (final var entry : elementsToStringsByType.get(type).entrySet()) {
                 final long[] elements = entry.getKey();
                 final UnicodeSet strings = entry.getValue();
-                representatives.put(
-                        elements, strings.stream().min(markedness).get());
+                representatives.put(elements, strings.stream().min(markedness).get());
             }
             final UnicodeMap<String> collationFolding =
                     collationFoldings.computeIfAbsent(type, k -> new UnicodeMap<>());
