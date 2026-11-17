@@ -62,9 +62,7 @@ public class CollationProperties {
 
         @Override
         public boolean equals(Object other) {
-            return other instanceof FoldingType
-                    && ((FoldingType) other).level == level
-                    && ((FoldingType) other).alternate == alternate;
+            return (other instanceof FoldingType otherType) && otherType.level == level && otherType.alternate == alternate;
         }
 
         @Override
