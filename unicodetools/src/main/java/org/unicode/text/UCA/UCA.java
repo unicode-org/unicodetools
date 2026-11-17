@@ -274,9 +274,7 @@ public final class UCA implements Comparator<String> {
         fileVersion = sourceFiles == null ? null : sourceFiles[0];
 
         // load the normalizer
-        if (toD == null) {
-            toD = Normalizer.getOrMakeNfdInstance(versionString);
-        }
+        toD = Normalizer.getOrMakeNfdInstance(versionString);
 
         ucd = UCD.make(versionString);
         ucdVersion = ucd.getVersion();
@@ -1751,6 +1749,9 @@ public final class UCA implements Comparator<String> {
         return getStatistics().homelessSecondaries;
     }
 
+    // TODO(egg): This implementation does not currently track changes to special weight values and
+    // algorithm edge cases, and may not be a completely accurate implementation of older versions
+    // of the UCA.
     public static UCA buildDucetCollator(VersionInfo version) {
         return buildCollator(version, -1, -1);
     }

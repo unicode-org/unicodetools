@@ -12,6 +12,10 @@ public class TestCollationProperties extends TestFmwkMinusMinus {
     public void TestCollationFolding() {
         final var iup = IndexUnicodeProperties.make();
         assertEquals(
+                "Kana collation folding",
+                "ア",
+                iup.getProperty(UcdProperty.UCA_Fold_1_Shifted).getValue("あ"));
+        assertEquals(
                 "Primary equivalence of 가 and ㉮",
                 iup.getProperty(UcdProperty.UCA_Fold_1_Shifted).getValue("㉮"),
                 iup.getProperty(UcdProperty.UCA_Fold_1_Shifted).getValue("가"));
@@ -29,7 +33,7 @@ public class TestCollationProperties extends TestFmwkMinusMinus {
                 iup.getProperty(UcdProperty.UCA_Fold_2_Shifted).getValue("℅"));
         assertEquals(
                 "Shifted tertiary collation folding of CARE OF",
-                "\u0368\u0366",
+                "⒞⒪",
                 iup.getProperty(UcdProperty.UCA_Fold_3_Shifted).getValue("℅"));
         assertEquals(
                 "Shifted quaternary collation folding of CARE OF",

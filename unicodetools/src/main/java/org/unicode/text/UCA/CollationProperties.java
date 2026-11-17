@@ -90,10 +90,23 @@ public class CollationProperties {
                 new FoldingType(3, Alternate.NON_IGNORABLE),
             };
 
-    static Comparator<String> markedness(final UCA uca, Alternate alternate) {
+    static int tertiaryMarkedness(int tertiary) {
         // Treat normal kana as unmarked, https://www.unicode.org/reports/tr10/#Asymmetric_Search.
-        // We treat katakana as the least marked for folding, see the comments on kanaMap in
-        // unisift.c.
+        // We treat Katakana as the least marked for folding as they are a superset of the Hiragana,
+        // so that folding a string to the least marked equivalent results in Katakana rather than
+        // a mix, see the comments on kanaMap in unisift.c.
+
+        // See https://www.unicode.org/reports/tr10/#Tertiary_Weight_Table.
+        final int katakanaWeight = 0x11;
+        final int hiraganaWeight = 0x0E;
+        return tertiary == 0
+                                                ? 0
+                                                : tertiary == katakanaWeight
+                                                        ? 2
+                                                        : tertiary == hiraganaWeight ? 3 : tertiary + 2;
+    }
+
+    static Comparator<String> markedness(final UCA uca, Alternate alternate) {
         return Comparator.<String, String>comparing(
                 s -> {
                     final var collationElements = uca.getCEList(s, true);
@@ -102,12 +115,8 @@ public class CollationProperties {
                         final int elements = collationElements.at(i);
                         final int tertiary = CEList.getTertiary(elements);
                         transformed[i] =
-                                tertiary & ~CEList.TERTIARY_MAX
-                                        | (tertiary == 0
-                                                ? 0
-                                                : tertiary == 0x11
-                                                        ? 2
-                                                        : tertiary == 0x0E ? 3 : tertiary + 2);
+                                elements & ~CEList.TERTIARY_MAX
+                                        | tertiaryMarkedness(tertiary);
                     }
                     return uca.getSortKey(
                             new CEList(transformed), "", alternate, true, AppendToCe.tieBreaker);
@@ -140,7 +149,7 @@ public class CollationProperties {
                                             collationElements.at(i),
                                             i == 0 ? null : collationElements.at(i - 1));
                 }
-                long[] levelElements = Arrays.stream(maskedElements).filter(i -> i != 0).toArray();
+                long[] levelElements = Arrays.stream(maskedElements).filter(ce -> ce != 0).toArray();
                 stringToElementsByType
                         .computeIfAbsent(type, k -> new UnicodeMap<>())
                         .put(s, levelElements);
@@ -154,11 +163,12 @@ public class CollationProperties {
         final Map<FoldingType, UnicodeMap<String>> collationFoldings = new HashMap<>();
         for (final var type : FOLDING_TYPES) {
             final Map<long[], String> representatives = new TreeMap<>(Arrays::compare);
+            final var markedness = markedness(uca, type.alternate);
             for (final var entry : elementsToStringsByType.get(type).entrySet()) {
                 final long[] elements = entry.getKey();
                 final UnicodeSet strings = entry.getValue();
                 representatives.put(
-                        elements, strings.stream().min(markedness(uca, type.alternate)).get());
+                        elements, strings.stream().min(markedness).get());
             }
             final UnicodeMap<String> collationFolding =
                     collationFoldings.computeIfAbsent(type, k -> new UnicodeMap<>());
