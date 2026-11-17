@@ -206,7 +206,7 @@ public class Implicit {
                             + Utility.hex(lead)
                             + ", "
                             + Utility.hex(trail)
-                            + ") is not a primary pair (did you pass entire collation elements instead or primary weights?)");
+                            + ") is not a primary pair (did you pass entire collation elements instead of primary weights?)");
         }
         if (lead < START || trail <= 0x7FFF) {
             // not implicit
