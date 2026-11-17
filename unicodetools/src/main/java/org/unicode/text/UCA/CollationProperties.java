@@ -128,7 +128,12 @@ public class CollationProperties {
         }
         final UCA uca = UCA.buildDucetCollator(version);
         final UCAContents ucaContents = uca.getContents(null);
-        final Map<FoldingType, UnicodeMap<long[]>> stringToElementsByType = new HashMap<>();
+
+        // First we compute the equivalence classes of all strings explicitly listed in the DUCET for
+        // all folding types.
+        // Note that this does not yet give us the equivalence classes of all code points: we will
+        // see circled ideographs, but not their primary equivalent ideographs, which have implicit
+        // weights.
         final Map<FoldingType, TreeMap<long[], UnicodeSet>> elementsToStringsByType =
                 new HashMap<>();
         final long[] masks = {
@@ -150,9 +155,6 @@ public class CollationProperties {
                 }
                 long[] levelElements =
                         Arrays.stream(maskedElements).filter(ce -> ce != 0).toArray();
-                stringToElementsByType
-                        .computeIfAbsent(type, k -> new UnicodeMap<>())
-                        .put(s, levelElements);
                 elementsToStringsByType
                         .computeIfAbsent(type, k -> new TreeMap<>(Arrays::compare))
                         .computeIfAbsent(levelElements, k -> new UnicodeSet())
@@ -162,6 +164,11 @@ public class CollationProperties {
 
         final Map<FoldingType, UnicodeMap<String>> collationFoldings = new HashMap<>();
         for (final var type : FOLDING_TYPES) {
+            // For each equivalence class in elementsToStringsByType.get(type), pick the least
+            // marked element as a representative.
+            // This is not the folding: besides the fact that these equivalence classes do not
+            // include code points with implicit weights, the primary equivalence class {æ, Æ} does
+            // not contain the folding "ae".
             final Map<long[], String> representatives = new TreeMap<>(Arrays::compare);
             final var markedness = markedness(uca, type.alternate);
             for (final var entry : elementsToStringsByType.get(type).entrySet()) {
@@ -169,8 +176,20 @@ public class CollationProperties {
                 final UnicodeSet strings = entry.getValue();
                 representatives.put(elements, strings.stream().min(markedness).get());
             }
+
             final UnicodeMap<String> collationFolding =
                     collationFoldings.computeIfAbsent(type, k -> new UnicodeMap<>());
+
+            // Now handle expansions: if an equivalence class has more than one collation element at
+            // some level, see if those elements are all equivalent to some code point; if they are,
+            // the folding is the concatenation of the representatives of each element.
+            // For that purpose, an implicit weight pair is treated atomically, and its
+            // representative is deduced from the weight pair: it is not in the map
+            // `representatives`.  This relies on the following properties:
+            //   1. two distinct code points with implicit weights are primary different;
+            //   2. a code point with an implicit weight is the least marked element of its
+            //      equivalence class (that is, any expansion that contains implicit weights has
+            //      tertiary weights greater than 2).
             foldExpansions:
             for (final var entry : elementsToStringsByType.get(type).entrySet()) {
                 final long[] elements = entry.getKey();
@@ -232,7 +251,7 @@ public class CollationProperties {
                     IndexUnicodeProperties.make(version)
                             .getProperty(UcdProperty.Decomposition_Type);
             // We compute the foldings before decomposing so that we handle contractions properly
-            // without having to actually do the special handling of contraction required of a an:
+            // without having to actually do the special handling of contraction required of an:
             // implementation of collation folding of strings: a canonical composite that is not a
             // singleton is a contraction (like й) if it primary folds to itself.
             // As far as equivalences of code points are concerned, folding to the decomposition
