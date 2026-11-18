@@ -315,13 +315,14 @@ public class CollationProperties {
             return Map.of();
         }
         final UCA uca = UCA.buildDucetCollator(version);
-        final Map<Alternate, UnicodeMap<String>> next =
+        final Map<Alternate, UnicodeMap<String>> nextByAlternate =
                 Map.of(
                         Alternate.SHIFTED,
                         new UnicodeMap<>(),
                         Alternate.NON_IGNORABLE,
                         new UnicodeMap<>());
         for (final var alternate : Alternate.values()) {
+            final var next = nextByAlternate.get(alternate);
             final TreeMap<String, Integer> totalOrder = new TreeMap<>();
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                 totalOrder.put(
@@ -332,16 +333,15 @@ public class CollationProperties {
             Integer preceding = null;
             for (final int cp : totalOrder.values()) {
                 if (preceding != null && cp != preceding + 1) {
-                    next.get(alternate).put(preceding, Character.toString(cp));
+                    next.put(preceding, Character.toString(cp));
                 }
                 preceding = cp;
             }
-            next.get(alternate)
-                    .put(
-                            totalOrder.lastEntry().getValue(),
-                            Character.toString(totalOrder.lastEntry().getValue()));
+            next.put(
+                    totalOrder.lastEntry().getValue(),
+                    Character.toString(totalOrder.lastEntry().getValue()));
         }
-        return next;
+        return nextByAlternate;
     }
 
     public static UnicodeMap<String> getLeadTertiaryWeights(VersionInfo version) {
