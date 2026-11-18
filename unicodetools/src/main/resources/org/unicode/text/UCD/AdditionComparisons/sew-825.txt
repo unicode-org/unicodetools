@@ -1,0 +1,23 @@
+# Symbols: 2 combining marks (20F1..20F2)
+# https://github.com/unicode-org/sew/issues/825
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Math_Class Math_Class_Ex:
+Propertywise [
+  \x{20EB} \N{COMBINING LONG DOUBLE SOLIDUS OVERLAY}
+  \x{20F1} \N{COMBINING LONG TRIPLE SOLIDUS OVERLAY}
+  \x{20F2} \N{COMBINING SALTIRE OVERLAY}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

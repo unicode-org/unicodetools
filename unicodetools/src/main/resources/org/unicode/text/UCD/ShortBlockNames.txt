@@ -50,6 +50,8 @@ CJK_Compat	;	CJK_Compatibility
 CJK_Compat_Forms	;	CJK_Compatibility_Forms
 CJK_Compat_Ideographs	;	CJK_Compatibility_Ideographs
 CJK_Compat_Ideographs_Sup	;	CJK_Compatibility_Ideographs_Supplement
+CJK_Components_A ; CJK_Unified_Ideographs_Components_A
+CJK_Components_B ; CJK_Unified_Ideographs_Components_B
 CJK_Radicals_Sup	;	CJK_Radicals_Supplement
 CJK_Strokes	;	CJK_Strokes
 CJK_Symbols	;	CJK_Symbols_And_Punctuation

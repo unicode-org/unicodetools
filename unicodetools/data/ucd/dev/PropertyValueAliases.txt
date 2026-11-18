@@ -1,5 +1,5 @@
 # PropertyValueAliases-19.0.0.txt
-# Date: 2026-11-05, 15:56:55 GMT
+# Date: 2026-11-11, 15:22:20 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -208,6 +208,8 @@ blk; CJK_Compat                       ; CJK_Compatibility
 blk; CJK_Compat_Forms                 ; CJK_Compatibility_Forms
 blk; CJK_Compat_Ideographs            ; CJK_Compatibility_Ideographs
 blk; CJK_Compat_Ideographs_Sup        ; CJK_Compatibility_Ideographs_Supplement
+blk; CJK_Components_A                 ; CJK_Unified_Ideographs_Components_A
+blk; CJK_Components_B                 ; CJK_Unified_Ideographs_Components_B
 blk; CJK_Ext_A                        ; CJK_Unified_Ideographs_Extension_A
 blk; CJK_Ext_B                        ; CJK_Unified_Ideographs_Extension_B
 blk; CJK_Ext_C                        ; CJK_Unified_Ideographs_Extension_C
@@ -1683,6 +1685,10 @@ XIDS; Y                               ; Yes                              ; T    
 # cjkIRG_MSource (cjkIRG_MSource)
 
 # @missing: 0000..10FFFF; cjkIRG_MSource; <none>
+
+# cjkIRG_SGSource (cjkIRG_SGSource)
+
+# @missing: 0000..10FFFF; cjkIRG_SGSource; <none>
 
 # cjkIRG_SSource (cjkIRG_SSource)
 

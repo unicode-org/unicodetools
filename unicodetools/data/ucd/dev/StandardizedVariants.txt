@@ -192,6 +192,8 @@ FF1B FE00; corner-justified form; # FULLWIDTH SEMICOLON
 FF1B FE01; centered form; # FULLWIDTH SEMICOLON
 FF1F FE00; corner-justified form; # FULLWIDTH QUESTION MARK
 FF1F FE01; centered form; # FULLWIDTH QUESTION MARK
+16FE6 FE00; corner-justified form; # DOUBLE IDEOGRAPHIC FULL STOP
+16FE6 FE01; centered form; # DOUBLE IDEOGRAPHIC FULL STOP
 
 # CJK strokes
 

@@ -1,5 +1,5 @@
-# PropertyAliases-18.0.0.txt
-# Date: 2026-02-03, 23:10:11 GMT
+# PropertyAliases-19.0.0.txt
+# Date: 2026-11-11, 13:49:37 GMT
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use and license, see https://www.unicode.org/terms_of_use.html
@@ -94,6 +94,7 @@ cjkIRG_JSource           ; kIRG_JSource
 cjkIRG_KPSource          ; kIRG_KPSource
 cjkIRG_KSource           ; kIRG_KSource
 cjkIRG_MSource           ; kIRG_MSource
+cjkIRG_SGSource          ; kIRG_SGSource
 cjkIRG_SSource           ; kIRG_SSource
 cjkIRG_TSource           ; kIRG_TSource
 cjkIRG_UKSource          ; kIRG_UKSource
@@ -233,6 +234,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    152
+# Total:    153
 
 # EOF

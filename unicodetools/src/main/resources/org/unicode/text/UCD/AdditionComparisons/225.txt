@@ -1,0 +1,23 @@
+# Arabic: Two historical persian letters for ezafe (10EC0..10EC1)
+# https://github.com/unicode-org/utc-release-management/issues/225
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Arabic_Shaping_Schematic_Name Unicode_1_Name Block:
+Propertywise [
+  \x{10EC0}   \N{ARABIC LETTER DOTLESS HALF YEH}
+  \x{10EC1}   \N{ARABIC LETTER HALF YEH}
+   \x{0621} ء \N{ARABIC LETTER HAMZA}
+] AreAlike
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;

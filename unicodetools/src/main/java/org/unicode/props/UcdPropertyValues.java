@@ -233,6 +233,8 @@ public class UcdPropertyValues {
         CJK_Compatibility_Forms("CJK_Compat_Forms"),
         CJK_Compatibility_Ideographs("CJK_Compat_Ideographs"),
         CJK_Compatibility_Ideographs_Supplement("CJK_Compat_Ideographs_Sup"),
+        CJK_Unified_Ideographs_Components_A("CJK_Components_A"),
+        CJK_Unified_Ideographs_Components_B("CJK_Components_B"),
         CJK_Unified_Ideographs_Extension_A("CJK_Ext_A"),
         CJK_Unified_Ideographs_Extension_B("CJK_Ext_B"),
         CJK_Unified_Ideographs_Extension_C("CJK_Ext_C"),
@@ -1743,6 +1745,7 @@ public class UcdPropertyValues {
     // kIRG_KPSource
     // kIRG_KSource
     // kIRG_MSource
+    // kIRG_SGSource
     // kIRG_SSource
     // kIRG_TSource
     // kIRG_UKSource

@@ -8,9 +8,6 @@
 <style type="text/css">
 /*CSS HERE*/
 </style>
-<script>
-/*JS HERE*/
-</script>
 </head>
 
 <body>
@@ -43,7 +40,7 @@
     placeholder='Search terms, e.g., [arrow], [click], [cyrillic o], [letter with ring], [queen card], [sanskrit], [30.9]…'
     oninput='updateResults(event)'
     onkeydown='updateQuery(event)'>
-<p id='info'></p>
+<p id='info'>Loading index…</p>
 <table class='search-results'><tbody id='results'></tbody></table>
 
 <div class="body-width">
@@ -57,6 +54,8 @@
         </div>
 </div>
 
+<script>
+/*JS HERE*/
+</script>
 </body>
-
 </html>

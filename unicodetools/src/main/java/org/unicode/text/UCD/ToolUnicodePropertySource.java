@@ -323,6 +323,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 "cjkIRG_VSource",
                 "cjkIRG_VSource",
                 "kIRG_VSource");
+        addFakeProperty(
+                version,
+                UnicodeProperty.MISC,
+                "<none>",
+                "cjkIRG_SGSource",
+                "cjkIRG_SGSource",
+                "kIRG_SGSource");
         add(iup.getProperty("kMandarin"));
         add(iup.getProperty("kTotalStrokes"));
         add(iup.getProperty("kUnihanCore2020"));
@@ -1356,7 +1363,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             // 175-C24.
                             .add(0x070F)
                             // https://github.com/unicode-org/properties/issues/400.
-                            .add(0x00B8),
+                            .add(0x00B8)
+                            .add(new UnicodeSet("[\\x{1DFC6}-\\x{1DFC8}]"))
+                            .add(new UnicodeSet("[\\x{1DFC9}-\\x{1DFCC}]")),
                     "ALetter");
             unicodeMap.putAll(
                     new UnicodeSet("[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A]"),

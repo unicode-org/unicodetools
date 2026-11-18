@@ -1,0 +1,22 @@
+# Tulu-Tigalari: Additional Pushpika signs (113D9, 113DA)
+# https://github.com/unicode-org/sew/issues/854
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Propertywise [
+    \x{113D9}   \N{TULU-TIGALARI SIGN OM PUSHPIKA WITH TAIL}
+    \x{113D7} 𑏗 \N{TULU-TIGALARI SIGN OM PUSHPIKA}
+    \x{113DA}   \N{TULU-TIGALARI SIGN SHRII PUSHPIKA WITH TAIL}
+    \x{113D8} 𑏘 \N{TULU-TIGALARI SIGN SHRII PUSHPIKA}
+] AreAlike
+
+end Ignoring;
+
+end Ignoring;
