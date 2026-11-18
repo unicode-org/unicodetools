@@ -194,10 +194,8 @@ public class CollationProperties {
                     final var folding = getFoldingExpansion(elements, uca, type, representatives);
                     if (folding != null) {
                         collationFolding.putAll(
-                                strings.cloneAsThawed()
-                                        .remove(folding.toString())
-                                        .removeAllStrings(),
-                                folding.toString());
+                                strings.cloneAsThawed().remove(folding).removeAllStrings(),
+                                folding);
                         continue;
                     }
                 }
