@@ -308,7 +308,7 @@ public class CollationProperties {
     /**
      * Returns the total order of code points defined by the UCA at the given version, using either
      * option for variable weighting, expressed as a map from each code point to its successor in
-     * the total order.
+     * the total order. The last code point is mapped to itself.
      */
     public static Map<Alternate, UnicodeMap<String>> getNext(VersionInfo version) {
         if (version.compareTo(VersionInfo.UNICODE_2_1_9) < 0) {
@@ -337,9 +337,8 @@ public class CollationProperties {
                 }
                 preceding = cp;
             }
-            next.put(
-                    totalOrder.lastEntry().getValue(),
-                    Character.toString(totalOrder.lastEntry().getValue()));
+            final int lastCodePoint = totalOrder.lastEntry().getValue();
+            next.put(lastCodePoint, Character.toString(lastCodePoint));
         }
         return nextByAlternate;
     }
