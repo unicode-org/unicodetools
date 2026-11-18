@@ -122,6 +122,10 @@ public class CollationProperties {
                 });
     }
 
+    private static final long[] MASKS = {
+        0, 0xFFFF_0000_0000L, 0xFFFF_FF80_0000L, 0xFFFF_FFFF_0000L, 0xFFFF_FFFF_FFFFL
+    };
+
     public static Map<FoldingType, UnicodeMap<String>> getFoldings(VersionInfo version) {
         if (version.compareTo(VersionInfo.UNICODE_2_1_9) < 0) {
             return Map.of();
@@ -129,16 +133,14 @@ public class CollationProperties {
         final UCA uca = UCA.buildDucetCollator(version);
         final UCAContents ucaContents = uca.getContents(null);
 
-        // First we compute the equivalence classes of all strings explicitly listed in the DUCET for
+        // First we compute the equivalence classes of all strings explicitly listed in the DUCET
+        // for
         // all folding types.
         // Note that this does not yet give us the equivalence classes of all code points: we will
         // see circled ideographs, but not their primary equivalent ideographs, which have implicit
         // weights.
         final Map<FoldingType, TreeMap<long[], UnicodeSet>> elementsToStringsByType =
                 new HashMap<>();
-        final long[] masks = {
-            0, 0xFFFF_0000_0000L, 0xFFFF_FF80_0000L, 0xFFFF_FFFF_0000L, 0xFFFF_FFFF_FFFFL
-        };
         final long start = System.currentTimeMillis();
         for (String s = ucaContents.next(); s != null; s = ucaContents.next()) {
             CEList collationElements = ucaContents.getCEs();
@@ -146,7 +148,7 @@ public class CollationProperties {
                 long[] maskedElements = new long[collationElements.length()];
                 for (int i = 0; i < collationElements.length(); ++i) {
                     maskedElements[i] =
-                            masks[type.level]
+                            MASKS[type.level]
                                     & addQuaternary(
                                             uca,
                                             type.alternate,
@@ -180,72 +182,30 @@ public class CollationProperties {
             final UnicodeMap<String> collationFolding =
                     collationFoldings.computeIfAbsent(type, k -> new UnicodeMap<>());
 
-            // Now handle expansions: if an equivalence class has more than one collation element at
-            // some level, see if those elements are all equivalent to some code point; if they are,
-            // the folding is the concatenation of the representatives of each element.
-            // For that purpose, an implicit weight pair is treated atomically, and its
-            // representative is deduced from the weight pair: it is not in the map
-            // `representatives`.  This relies on the following properties:
-            //   1. two distinct code points with implicit weights are primary different;
-            //   2. a code point with an implicit weight is the least marked element of its
-            //      equivalence class (that is, any expansion that contains implicit weights has
-            //      tertiary weights greater than 2).
-            foldExpansions:
+            // If a string that has been considered so far maps to a sequence of collation elements
+            // at the current level, it might fold to an equivalent sequence of representatives,
+            // computed by `getFoldingExpansion`; this handles equivalences involving implicit
+            // weights, which result in sequences of collation elements.
+            // If that is not the case, it folds to its representative given by `representatives`.
             for (final var entry : elementsToStringsByType.get(type).entrySet()) {
                 final long[] elements = entry.getKey();
                 final UnicodeSet strings = entry.getValue();
                 if (elements.length > 1) {
-                    final var folding = new StringBuilder();
-                    for (int i = 0; i < elements.length; ++i) {
-                        if (UCA.isImplicitLeadCE(removeQuaternary(elements[i]))) {
-                            final int cp =
-                                    uca.implicit.codePointForPrimaryPair(
-                                            CEList.getPrimary(removeQuaternary(elements[i])),
-                                            CEList.getPrimary(removeQuaternary(elements[i + 1])));
-                            final CEList cpElements = uca.getCEListForImplicit(cp);
-                            long[] maskedElements = new long[cpElements.length()];
-                            for (int j = 0; j < cpElements.length(); ++j) {
-                                maskedElements[j] =
-                                        masks[type.level]
-                                                & addQuaternary(
-                                                        uca,
-                                                        type.alternate,
-                                                        cpElements.at(j),
-                                                        /* preceding= */ null);
-                            }
-                            if (maskedElements[0] != elements[i]
-                                    || maskedElements[1] != elements[i + 1]) {
-                                collationFolding.putAll(
-                                        strings.cloneAsThawed()
-                                                .remove(representatives.get(elements)),
-                                        representatives.get(elements));
-                                continue foldExpansions;
-                            }
-                            ++i;
-                            folding.append(Character.toString(cp));
-                        } else {
-                            String representative = representatives.get(new long[] {elements[i]});
-                            if (representative == null) {
-                                collationFolding.putAll(
-                                        strings.cloneAsThawed()
-                                                .remove(representatives.get(elements)),
-                                        representatives.get(elements));
-                                continue foldExpansions;
-                            }
-                            folding.append(representative);
-                        }
+                    final var folding = getFoldingExpansion(elements, uca, type, representatives);
+                    if (folding != null) {
+                        collationFolding.putAll(
+                                strings.cloneAsThawed()
+                                        .remove(folding.toString())
+                                        .removeAllStrings(),
+                                folding.toString());
+                        continue;
                     }
-                    collationFolding.putAll(
-                            strings.cloneAsThawed().remove(folding.toString()), folding.toString());
-                } else {
-                    collationFolding.putAll(
-                            strings.cloneAsThawed().remove(representatives.get(elements)),
-                            representatives.get(elements));
                 }
-                if (collationFolding.stringKeys() != null) {
-                    collationFolding.removeAll(
-                            new UnicodeSet().addAll(collationFolding.stringKeys()));
-                }
+                collationFolding.putAll(
+                        strings.cloneAsThawed()
+                                .remove(representatives.get(elements))
+                                .removeAllStrings(),
+                        representatives.get(elements));
             }
             final var dt =
                     IndexUnicodeProperties.make(version)
@@ -290,6 +250,66 @@ public class CollationProperties {
         return collationFoldings;
     }
 
+    /**
+     * If every element in {@code elements} is equivalent to some code point, returns the
+     * concatenation of the representatives of each element. For that purpose, an implicit weight
+     * pair is treated atomically, and its representative is deduced from the weight pair. Other
+     * representatives are taken from {@code representatives}. This relies on the following
+     * properties:
+     *
+     * <ol>
+     *   <li>two distinct code points with implicit weights are primary different;
+     *   <li>a code point with an implicit weight is the least marked element of its equivalence
+     *       class (that is, any expansion that contains implicit weights has tertiary weights
+     *       greater than 2).
+     * </ol>
+     *
+     * {@code elements} and {@code representatives} must be consistent with {@code type}.
+     */
+    private static String getFoldingExpansion(
+            final long[] elements,
+            final UCA uca,
+            final FoldingType type,
+            final Map<long[], String> representatives) {
+        final var folding = new StringBuilder();
+        for (int i = 0; i < elements.length; ++i) {
+            if (UCA.isImplicitLeadCE(removeQuaternary(elements[i]))) {
+                final int cp =
+                        uca.implicit.codePointForPrimaryPair(
+                                CEList.getPrimary(removeQuaternary(elements[i])),
+                                CEList.getPrimary(removeQuaternary(elements[i + 1])));
+                final CEList cpElements = uca.getCEListForImplicit(cp);
+                long[] maskedElements = new long[cpElements.length()];
+                for (int j = 0; j < cpElements.length(); ++j) {
+                    maskedElements[j] =
+                            MASKS[type.level]
+                                    & addQuaternary(
+                                            uca,
+                                            type.alternate,
+                                            cpElements.at(j),
+                                            /* preceding= */ null);
+                }
+                if (maskedElements[0] != elements[i] || maskedElements[1] != elements[i + 1]) {
+                    return null;
+                }
+                ++i;
+                folding.append(Character.toString(cp));
+            } else {
+                String representative = representatives.get(new long[] {elements[i]});
+                if (representative == null) {
+                    return null;
+                }
+                folding.append(representative);
+            }
+        }
+        return folding.toString();
+    }
+
+    /**
+     * Returns the total order of code points defined by the UCA at the given version, using either
+     * option for variable weighting, expressed as a map from each code point to its successor in
+     * the total order.
+     */
     public static Map<Alternate, UnicodeMap<String>> getNext(VersionInfo version) {
         if (version.compareTo(VersionInfo.UNICODE_2_1_9) < 0) {
             return Map.of();
