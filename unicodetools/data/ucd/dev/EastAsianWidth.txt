@@ -39,6 +39,7 @@
 # at https://www.unicode.org/reports/tr11/
 #
 # @missing: 0000..10FFFF; N
+16FE5; W
 0000..001F     ; N  # Cc    [32] <control-0000>..<control-001F>
 0020           ; Na # Zs         SPACE
 0021..0023     ; Na # Po     [3] EXCLAMATION MARK..NUMBER SIGN
