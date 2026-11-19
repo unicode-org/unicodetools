@@ -1,8 +1,12 @@
 Ignoring Name Age:
 
 # Garay is a right-to-left cased script:
-Propertywise [\N{GARAY SMALL LETTER A} - \N{GARAY SMALL LETTER OLD NA}]
-           : [\N{GARAY CAPITAL LETTER A} - \N{GARAY CAPITAL LETTER OLD NA}]
+Propertywise [[\N{GARAY SMALL LETTER A} - \N{GARAY SMALL LETTER OLD NA}]
+              - [\N{GARAY SMALL LETTER OLD KA}
+                 \N{GARAY SMALL LETTER OLD NA}]]
+           : [[\N{GARAY CAPITAL LETTER A} - \N{GARAY CAPITAL LETTER OLD NA}]
+              - [\N{GARAY CAPITAL LETTER OLD KA}
+                 \N{GARAY CAPITAL LETTER OLD NA}]]
 CorrespondTo [\N{OLD HUNGARIAN SMALL LETTER A}]
            : [\N{OLD HUNGARIAN CAPITAL LETTER A}]
     UpTo: Block             (Garay vs Old_Hungarian),
