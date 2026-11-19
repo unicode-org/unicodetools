@@ -25,6 +25,7 @@
 # have as their value the corresponding Script property value.
 #
 # @missing: 0000..10FFFF; <script>
+16FE5 ; Han Hiragana Katakana
 00B7          ; Avst Cari Copt Dupl Elba Geor Glag Gong Goth Grek Hani Latn Lydi Mahj Perm Shaw #Po MIDDLE DOT
 02BC          ; Beng Cyrl Deva Latn Lisu Thai Toto #Lm   MODIFIER LETTER APOSTROPHE
 02C7          ; Bopo Latn                      # Lm      CARON
