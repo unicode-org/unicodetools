@@ -1,3 +1,4 @@
+16FE5; Common
 # Scripts-19.0.0.txt
 # Date: 2026-11-12, 20:06:21 GMT
 # © 2026 Unicode®, Inc.
