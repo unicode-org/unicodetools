@@ -1,0 +1,22 @@
+# CJK Punctuation: WHITE IDEOGRAPHIC COMMA (16FE5)
+# https://github.com/unicode-org/utc-release-management/issues/323
+
+# Names always differ.
+# Age always differs since these tests are comparing additions to pre-existing characters.
+Ignoring Name Age:
+
+# Ignore the security and IDNA properties. These are not part of the UCD, and
+# are typically prepared just before β, after these tests are written (which is
+# normally anywhere between proposal submission and the start of α).
+Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
+
+Ignoring Block Pattern_Syntax:
+Propertywise [\N{16FE5:WHITE IDEOGRAPHIC COMMA}]
+CorrespondTo [\N{3001:、:IDEOGRAPHIC COMMA}]
+    UpTo: Script_Extensions (Han|Hiragana|Katakana vs Bopomofo|Hangul|Han|Hiragana|Katakana|Mongolian|Yi),
+          Standardized_Variation_Base (No vs Yes)
+end Ignoring;
+
+end Ignoring;
+
+end Ignoring;
