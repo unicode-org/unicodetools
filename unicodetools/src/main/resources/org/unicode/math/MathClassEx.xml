@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mathchars SYSTEM "MathClassEx.dtd">
-<mathchars unicode="17.0" tr25="16">
+<!DOCTYPE mathchars
+  SYSTEM "MathClassEx.dtd">
+<mathchars unicode="18.0" tr25="17">
    <char cp="0020" mathclass="S"/>
    <char cp="0021" mathclass="C" note="Factorial spacing"/>
    <char cp="0023" mathclass="N"/>
@@ -1650,7 +1651,23 @@
    <char cp="FFEC" mathclass="X" note="(&#34;wide&#34; compatibility variants of arrows)"/>
    <char cp="10D8E" mathclass="B"/>
    <char cp="10D8F" mathclass="B"/>
+   <char cp="1CEDD" mathclass="U"/><!--So Sm SQUARE ROOT OF SQUARE ROOT-->
+   <char cp="1CEDE" mathclass="U"/><!--So Sm SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT-->
+   <char cp="1CEDF" mathclass="U"/><!--So Sm SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT OF SQUARE ROOT-->
    <char cp="1CEF0" mathclass="N"/>
+   <char cp="1CEF1" mathclass="B"/><!--So Sm LEIBNIZIAN DIVISION SIGN-->
+   <char cp="1CEF2" mathclass="B"/><!--So Sm LEIBNIZIAN MULTIPLICATION SIGN-->
+   <char cp="1CEF3" mathclass="B"/><!--So Sm LEIBNIZIAN MULTIPLICATION-DIVISION SIGN-->
+   <char cp="1CEF4" mathclass="B"/><!--So Sm LEIBNIZIAN FRACTION REDUCTION SIGN-1-->
+   <char cp="1CEF5" mathclass="B"/><!--So Sm LEIBNIZIAN FRACTION REDUCTION SIGN-2-->
+   <char cp="1CEF6" mathclass="N"/><!--So Sm SECTOR WITH CHORD-->
+   <char cp="1CEF7" mathclass="N"/><!--So Sm SECTOR WITH DOUBLE ARC-->
+   <char cp="1CEF8" mathclass="N"/><!--So Sm SECTOR WITH CHORD AND DOTTED ARC-->
+   <char cp="1CEF9" mathclass="N"/><!--So Sm MEASURED ANGLE WITH DOUBLE ARC-->
+   <char cp="1CEFA" mathclass="N"/><!--So Sm MEASURED ANGLE WITH CONCAVE ARC-->
+   <char cp="1CEFB" mathclass="N"/><!--So Sm MEASURED ANGLE WITH DOUBLE CONCAVE ARC-->
+   <char cp="1CEFC" mathclass="N"/><!--So Sm ANGLE OPENING UP-->
+   <char cp="1CEFD" mathclass="N"/><!--So Sm HYPERBOLA-->
    <char cp="1D400" mathclass="A"/>
    <char cp="1D401" mathclass="A"/>
    <char cp="1D402" mathclass="A"/>
@@ -2329,6 +2346,7 @@
    <char cp="1D6A3" mathclass="A"/>
    <char cp="1D6A4" mathclass="A"/>
    <char cp="1D6A5" mathclass="A"/>
+   <char cp="1D6A6" mathclass="N"/><!--Ll MATHEMATICAL ITALIC SMALL LIGATURE LONG S WITH DESCENDER S-->
    <char cp="1D6A8" mathclass="A"/>
    <char cp="1D6A9" mathclass="A"/>
    <char cp="1D6AA" mathclass="A"/>
@@ -2671,6 +2689,35 @@
    <char cp="1D7FD" mathclass="N"/>
    <char cp="1D7FE" mathclass="N"/>
    <char cp="1D7FF" mathclass="N"/>
+   <char cp="1DB00" mathclass="R"/><!--Sm LEIBNIZIAN EQUALS SIGN-->
+   <char cp="1DB01" mathclass="R"/><!--Sm LEIBNIZIAN EQUALS SIGN WITH DOUBLE VERTICALS-->
+   <char cp="1DB02" mathclass="R"/><!--Sm LEIBNIZIAN EQUALS SIGN WITH SMALL S-->
+   <char cp="1DB03" mathclass="R"/><!--Sm LEIBNIZIAN GREATER-THAN-->
+   <char cp="1DB04" mathclass="R"/><!--Sm LEIBNIZIAN LESS-THAN-->
+   <char cp="1DB05" mathclass="R"/><!--Sm LEIBNIZIAN GREATER-THAN WITH SMALL P-->
+   <char cp="1DB06" mathclass="R"/><!--Sm LEIBNIZIAN LESS-THAN WITH SMALL P-->
+   <char cp="1DB07" mathclass="R"/><!--Sm LEIBNIZIAN GREATER-THAN OR LESS-THAN-->
+   <char cp="1DB08" mathclass="R"/><!--Sm INVERTED SQUARE LEFT OPEN BOX OPERATOR-->
+   <char cp="1DB09" mathclass="R"/><!--Sm INVERTED SQUARE RIGHT OPEN BOX OPERATOR-->
+   <char cp="1DB0A" mathclass="R"/><!--Sm TWO-LINE GREATER-THAN-->
+   <char cp="1DB0B" mathclass="R"/><!--Sm TWO-LINE LESS-THAN-->
+   <char cp="1DB0C" mathclass="R"/><!--Sm COMMENSURABILITY-->
+   <char cp="1DB0D" mathclass="R"/><!--Sm INCOMMENSURABILITY-->
+   <char cp="1DB0E" mathclass="R"/><!--Sm COMMENSURABILITY IN SQUARE-->
+   <char cp="1DB0F" mathclass="R"/><!--Sm INCOMMENSURABILITY IN SQUARE-->
+   <char cp="1DB10" mathclass="R"/><!--Sm CARTESIAN EQUALS SIGN-->
+   <char cp="1DB11" mathclass="R"/><!--Sm LEIBNIZIAN CONGRUENCE-->
+   <char cp="1DB12" mathclass="R"/><!--Sm LEIBNIZIAN CONGRUENCE WITH VERTICAL BAR-->
+   <char cp="1DB13" mathclass="R"/><!--Sm LEIBNIZIAN CONGRUENCE-2-->
+   <char cp="1DB14" mathclass="R"/><!--Sm LEIBNIZIAN CONGRUENCE-2 INVERTED-->
+   <char cp="1DB15" mathclass="R"/><!--Sm LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL BAR-->
+   <char cp="1DB16" mathclass="R"/><!--Sm LEIBNIZIAN CONGRUENCE-2 WITH HORIZONTAL AND VERTICAL BAR-->
+   <char cp="1DB17" mathclass="R"/><!--Sm LEIBNIZIAN COINCIDENCE-->
+   <char cp="1DB18" mathclass="R"/><!--Sm INVERTED LAZY S OVER LAZY S-->
+   <char cp="1DB19" mathclass="R"/><!--Sm LEIBNIZIAN SIMILARITY-->
+   <char cp="1DB1A" mathclass="R"/><!--Sm LEIBNIZIAN SIMILARITY-2-->
+   <char cp="1DB1B" mathclass="R"/><!--Sm LEIBNIZIAN DISSIMILARITY-->
+   <char cp="1DB1C" mathclass="N"/><!--Sm FACIT SYMBOL-->
    <char cp="1EE00" mathclass="A"/>
    <char cp="1EE01" mathclass="A"/>
    <char cp="1EE02" mathclass="A"/>
@@ -2823,6 +2870,22 @@
    <char cp="1F79D" mathclass="N"/>
    <char cp="1F79E" mathclass="N"/>
    <char cp="1F79F" mathclass="N"/>
+   <char cp="1F7DB" mathclass="N"/><!--So BULLET IN DOUBLE CIRCLE-->
+   <char cp="1F7F1" mathclass="N"/><!--So CIRCLE WITH DOUBLE VERTICAL AND HORIZONTAL LINE-->
+   <char cp="1F7F2" mathclass="N"/><!--So DOUBLE CIRCLE WITH DOUBLE HORIZONTAL LINE-->
+   <char cp="1F7F3" mathclass="N"/><!--So CIRCLED BOTTOM RIGHT OBLIQUE HALF BLACK CIRCLE-->
+   <char cp="1F7F4" mathclass="N"/><!--So LEFT HALF WHITE CIRCLE-->
+   <char cp="1F7F5" mathclass="N"/><!--So RIGHT HALF WHITE CIRCLE-->
+   <char cp="1F7F6" mathclass="N"/><!--So TRANSPARENT CUBE-->
+   <char cp="1F7F7" mathclass="N"/><!--So WHITE CUBE-->
+   <char cp="1F7F8" mathclass="N"/><!--So HORIZONTAL DOUBLE WHITE SMALL SQUARE-->
+   <char cp="1F7F9" mathclass="N"/><!--So VERTICAL DOUBLE WHITE SMALL SQUARE-->
+   <char cp="1F7FA" mathclass="N"/><!--So WHITE SQUARE WITH BOTTOM HALF BISECTED-->
+   <char cp="1F7FB" mathclass="N"/><!--So WHITE SQUARE WITH TOP HALF BISECTED-->
+   <char cp="1F7FC" mathclass="N"/><!--So WHITE SQUARE WITH HORIZONTAL AND VERTICAL BISECTING LINES-->
+   <char cp="1F7FD" mathclass="N"/><!--So LOWER LEFT FLATTENED RIGHT TRIANGLE-->
+   <char cp="1F7FE" mathclass="N"/><!--So LOWER RIGHT FLATTENED RIGHT TRIANGLE-->
+   <char cp="1F7FF" mathclass="N"/><!--So RHOMBUS-->
    <char cp="1F8D0" mathclass="R"/>
    <char cp="1F8D1" mathclass="R"/>
    <char cp="1F8D2" mathclass="R"/>
