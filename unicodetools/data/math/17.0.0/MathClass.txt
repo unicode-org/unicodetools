@@ -1,6 +1,8 @@
 # File: MathClass.txt
-# Revision: 16
-# Date: 2026-09-17
+# Unicode Technical Report #25 revision: 17
+# Data file version: 17.0.0
+# Equivalent Unicode version: 17.0.0
+# Date: 2026-11-13
 #
 # © 2026 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
@@ -52,7 +54,7 @@
 # This is indicated in 24 special purpose comments.
 #
 # The character repertoire of this revision is the repertoire of Unicode
-# Version 17.0. For more information see Revision 16 or later of UTR #25.
+# Version 17.0.0. For more information see Revision 17 or later of UTR #25.
 # ------------------------------------------------
 
 #code point;class

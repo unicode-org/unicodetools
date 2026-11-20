@@ -87,8 +87,9 @@
 
   <xsl:template name="generate-body">
     <xsl:call-template name="introduction">
-      <xsl:with-param name="unicode" select="@unicode"/>
+      <xsl:with-param name="data" select="@data"/>
       <xsl:with-param name="tr25" select="@tr25"/>
+      <xsl:with-param name="unicode" select="@unicode"/>
     </xsl:call-template>
     <table id="MathClass">
       <thead>
@@ -198,11 +199,14 @@
   </xsl:template>
 
   <xsl:template name="introduction">
-    <xsl:param name="unicode"/>
+    <xsl:param name="data"/>
     <xsl:param name="tr25"/>
+    <xsl:param name="unicode"/>
     <p>File: <b>MathClassEx</b></p>
-    <p>Revision: <b><xsl:value-of select="$tr25"/></b></p>
-    <p>Date: <xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/></p>
+    <p>Unicode Technical Report #25 revision: <b><xsl:value-of select="$tr25"/></b></p>
+    <p>Data file version: <b><xsl:value-of select="$data"/></b></p>
+    <p>Equivalent Unicode version: <b><xsl:value-of select="$unicode"/></b></p>
+    <p>Date: <b><xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/></b></p>
     <p>This file provides a more readable version of <a href="MathClassEx.txt">MathClassEx.txt</a>.</p>
     <p>This file is a classification of characters based on their usage in mathematical notation and providing a
       mapping to standard entity sets commonly used for SGML and MathML documents.</p>
