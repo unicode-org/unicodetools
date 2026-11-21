@@ -376,50 +376,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return result;
     }
 
-    public UnicodeMap<Set<String>> loadSet(UcdProperty prop2) {
-        UnicodeMap<Set<String>> result = SPECIAL_CACHE.get(prop2);
-        if (result != null) {
-            return result;
-        }
-        result = new UnicodeMap<>();
-        if (prop2.getCardinality() != ValueCardinality.Unordered) {
-            throw new UnicodePropertyException(
-                    "Mismatch in class data,  expected " + prop2.getCardinality());
-        }
-        UnicodeMap<String> m = load(prop2);
-        // TODO cache
-        for (String value : m.values()) {
-            Set<String> convertedValue = new LinkedHashSet<>(SET_SPLITTER.splitToList(value));
-            UnicodeSet uset = m.getSet(value);
-            result.putAll(uset, Collections.unmodifiableSet(convertedValue));
-        }
-        SPECIAL_CACHE.put(prop2, result.freeze());
-        return result;
-    }
-
-    public UnicodeMap<List<String>> loadList(UcdProperty prop2) {
-        UnicodeMap<List<String>> result = SPECIAL_CACHE.get(prop2);
-        if (result != null) {
-            return result;
-        }
-        result = new UnicodeMap<>();
-        if (prop2.getCardinality() != ValueCardinality.Ordered) {
-            throw new UnicodePropertyException(
-                    "Mismatch in class data,  expected "
-                            + prop2.getCardinality()
-                            + " for "
-                            + prop2);
-        }
-        UnicodeMap<String> m = load(prop2);
-        // TODO cache
-        for (String value : m.values()) {
-            UnicodeSet uset = m.getSet(value);
-            result.putAll(uset, Collections.unmodifiableList(SET_SPLITTER.splitToList(value)));
-        }
-        SPECIAL_CACHE.put(prop2, result.freeze());
-        return result;
-    }
-
     public UnicodeMap<List<Integer>> loadIntList(UcdProperty prop2) {
         UnicodeMap<List<Integer>> result = SPECIAL_CACHE.get(prop2);
         if (result != null) {

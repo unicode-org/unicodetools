@@ -1,12 +1,14 @@
 package org.unicode.propstest;
 
 import com.ibm.icu.impl.UnicodeMap;
+import com.ibm.icu.impl.Utility;
 import java.util.Collection;
 import org.junit.jupiter.api.Test;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyType;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.props.UnicodePropertyException;
 import org.unicode.props.ValueCardinality;
 import org.unicode.unittest.TestFmwkMinusMinus;
@@ -18,8 +20,9 @@ public class TestPropertyAccess extends TestFmwkMinusMinus {
 
     @Test
     public void TestEmoji() {
-        UnicodeMap<String> map = iup.load(UcdProperty.Emoji_Component);
-        System.out.println(map);
+        UnicodeProperty property = iup.getProperty(UcdProperty.Emoji_Component);
+        assertEquals("Skin tone modifier", "Yes", property.getValue(0x1F3FB));
+        assertEquals("Latin letter", "No", property.getValue('A'));
     }
 
     @Test
@@ -43,6 +46,7 @@ public class TestPropertyAccess extends TestFmwkMinusMinus {
                             continue;
                         }
                         System.out.println(prop);
+                        checkPropertyValues(prop);
                         switch (propertyType) {
                             case Numeric:
                                 {
@@ -75,32 +79,28 @@ public class TestPropertyAccess extends TestFmwkMinusMinus {
                                         }
                                 }
                                 break;
-                            case Miscellaneous:
-                            case String:
-                                {
-                                    switch (cardinality) {
-                                        case Singleton:
-                                            {
-                                                logShow(prop, iup.load(prop));
-                                                break;
-                                            }
-                                        case Unordered:
-                                            {
-                                                logShow(prop, iup.loadSet(prop));
-                                                break;
-                                            }
-                                        case Ordered:
-                                            {
-                                                logShow(prop, iup.loadList(prop));
-                                                break;
-                                            }
-                                    }
-                                    break;
-                                }
+                            default:
+                                break;
                         }
                     } catch (UnicodePropertyException e) {
                         errln("Failed to load: " + prop + ", " + e.getMessage());
                     }
+                }
+            }
+        }
+    }
+
+    private void checkPropertyValues(UcdProperty prop) {
+        UnicodeProperty property = iup.getProperty(prop);
+        // Read values even when logging is disabled: getProperty alone does not load the data.
+        for (int cp :
+                new int[] {
+                    0, 'A', 0x0300, 0x2F00, 0x4E00, 0x908A, 0xAC00, 0xFE00, 0x1F3FB, 0x20000,
+                    0x10FFFF
+                }) {
+            for (String value : property.getValues(cp)) {
+                if (isVerbose()) {
+                    logln(prop + "[" + Utility.hex(cp) + "]\t" + value);
                 }
             }
         }
