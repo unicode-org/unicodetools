@@ -1,14 +1,15 @@
 package org.unicode.idna;
 
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 import org.unicode.text.utility.UnicodeTransform;
 
 public class FilteredUnicodeTransform extends UnicodeTransform {
     final UnicodeSet transformOnly;
-    final UnicodeTransform baseTransform;
+    final Transform<String, String> baseTransform;
 
-    public FilteredUnicodeTransform(UnicodeTransform transform, UnicodeSet unicodeSet) {
+    public FilteredUnicodeTransform(Transform<String, String> transform, UnicodeSet unicodeSet) {
         baseTransform = transform;
         transformOnly = unicodeSet;
     }

@@ -14,9 +14,20 @@ import java.util.regex.Pattern;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.props.UnicodeProperty;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.UnicodeTransform;
 
 public class StringPrepData {
     private static final boolean DEBUG = getDebugFlag(StringPrepData.class);
+
+    private static final class Nfkc32 {
+        static final UnicodeTransform INSTANCE =
+                new FilteredUnicodeTransform(
+                        Normalizer.getNfkcInstance(),
+                        new UnicodeSet("[:age=3.2:]", null, VersionedSymbolTable.forDevelopment())
+                                .freeze());
+    }
 
     /**
      * 3. Mapping This profile specifies mapping using the following tables from [STRINGPREP]: Table
@@ -277,24 +288,24 @@ public class StringPrepData {
             // fix up mappings
 
             // add normalization maps for all unmapped characters
+            final UnicodeTransform nfkc32 = Nfkc32.INSTANCE;
             final UnicodeSet addedMappings = new UnicodeSet();
             for (final UnicodeSetIterator it = new UnicodeSetIterator(IdnaTypes.U32); it.next(); ) {
                 final int i = it.codepoint;
                 final String mapValue = mappings.get(i);
                 if (mapValue == null) {
-                    if (Idna.NFKC_3_2.isTransformed(i)) {
+                    if (nfkc32.isTransformed(i)) {
                         continue;
                     }
                     addedMappings.add(i);
                     mappings.put(
-                            i,
-                            Idna.NFKC_3_2.transform(i)); // Normalizer.normalize(i, Normalizer.NFKC,
+                            i, nfkc32.transform(i)); // Normalizer.normalize(i, Normalizer.NFKC,
                     // Normalizer.UNICODE_3_2));
-                } else if (!Idna.NFKC_3_2.isTransformed(
+                } else if (!nfkc32.isTransformed(
                         mapValue)) { // (!Normalizer.isNormalized(mapValue, Normalizer.NFKC,
                     // Normalizer.UNICODE_3_2)) {
                     final String newValue =
-                            Idna.NFKC_3_2.transform(
+                            nfkc32.transform(
                                     mapValue); // Normalizer.normalize(mapValue, Normalizer.NFKC,
                     // Normalizer.UNICODE_3_2);
                     if (DEBUG) {
