@@ -5,6 +5,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -48,8 +49,16 @@ public class CollationProperties {
         return (int) (collationElement >> 16);
     }
 
-    public static class FoldingType {
-        FoldingType(int level, Alternate alternate) {
+    public static enum FoldingType {
+        FOLD_1_SHIFTED(1, Alternate.SHIFTED),
+        FOLD_2_SHIFTED(2, Alternate.SHIFTED),
+        FOLD_3_SHIFTED(3, Alternate.SHIFTED),
+        FOLD_4_SHIFTED(4, Alternate.SHIFTED),
+        FOLD_1_NON_IGNORABLE(1, Alternate.NON_IGNORABLE),
+        FOLD_2_NON_IGNORABLE(2, Alternate.NON_IGNORABLE),
+        FOLD_3_NON_IGNORABLE(3, Alternate.NON_IGNORABLE);
+
+        private FoldingType(int level, Alternate alternate) {
             if (level < 1 || level > 4) {
                 throw new IllegalArgumentException("Bad level " + level);
             }
@@ -60,37 +69,9 @@ public class CollationProperties {
             this.alternate = alternate;
         }
 
-        @Override
-        public boolean equals(Object other) {
-            return (other instanceof FoldingType otherType)
-                    && otherType.level == level
-                    && otherType.alternate == alternate;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(level, alternate);
-        }
-
-        @Override
-        public String toString() {
-            return Integer.toString(level) + "_" + alternate;
-        }
-
-        int level;
-        Alternate alternate;
+        private int level;
+        private Alternate alternate;
     }
-
-    static final FoldingType[] FOLDING_TYPES =
-            new FoldingType[] {
-                new FoldingType(1, Alternate.SHIFTED),
-                new FoldingType(2, Alternate.SHIFTED),
-                new FoldingType(3, Alternate.SHIFTED),
-                new FoldingType(4, Alternate.SHIFTED),
-                new FoldingType(1, Alternate.NON_IGNORABLE),
-                new FoldingType(2, Alternate.NON_IGNORABLE),
-                new FoldingType(3, Alternate.NON_IGNORABLE),
-            };
 
     static int tertiaryMarkedness(int tertiary) {
         // Treat normal kana as unmarked, https://www.unicode.org/reports/tr10/#Asymmetric_Search.
@@ -138,12 +119,12 @@ public class CollationProperties {
         // Note that this does not yet give us the equivalence classes of all code points: we will
         // see circled ideographs, but not their primary equivalent ideographs, which have implicit
         // weights.
-        final Map<FoldingType, TreeMap<long[], UnicodeSet>> elementsToStringsByType =
-                new HashMap<>();
+        final var elementsToStringsByType =
+                new EnumMap<FoldingType, TreeMap<long[], UnicodeSet>>(FoldingType.class);
         final long start = System.currentTimeMillis();
         for (String s = ucaContents.next(); s != null; s = ucaContents.next()) {
             CEList collationElements = ucaContents.getCEs();
-            for (final var type : FOLDING_TYPES) {
+            for (final var type : FoldingType.values()) {
                 long[] maskedElements = new long[collationElements.length()];
                 for (int i = 0; i < collationElements.length(); ++i) {
                     maskedElements[i] =
@@ -164,7 +145,7 @@ public class CollationProperties {
         }
 
         final Map<FoldingType, UnicodeMap<String>> collationFoldings = new HashMap<>();
-        for (final var type : FOLDING_TYPES) {
+        for (final var type : FoldingType.values()) {
             // For each equivalence class in elementsToStringsByType.get(type), pick the least
             // marked element as a representative.
             // This is not the folding: besides the fact that these equivalence classes do not

@@ -1095,7 +1095,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
         for (final var entry :
                 CollationProperties.getFoldings(indexUnicodeProperties.ucdVersion).entrySet()) {
             putPropertyFromMap(
-                    UcdProperty.forString("UCA_Fold_" + entry.getKey()),
+                    UcdProperty.forString("UCA_" + entry.getKey()),
                     entry.getValue(),
                     indexUnicodeProperties,
                     nextProperties,
