@@ -24,6 +24,7 @@ import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.VersionedSymbolTable;
+import org.unicode.text.utility.Settings;
 
 public class CollatorEquivalencesNew {
     private static final IndexUnicodeProperties iup =
@@ -69,7 +70,8 @@ public class CollatorEquivalencesNew {
      * This collator is modified (set to secondary strength), so do not use UCA.getDucetCollator()
      * which wants to be a singleton.
      */
-    private static final org.unicode.text.UCA.UCA uca_level2Only = UCA.buildDucetCollator();
+    private static final org.unicode.text.UCA.UCA uca_level2Only =
+            UCA.buildDucetCollator(Settings.LATEST_VERSION_INFO);
 
     static {
         uca_level2Only.setStrength(2);

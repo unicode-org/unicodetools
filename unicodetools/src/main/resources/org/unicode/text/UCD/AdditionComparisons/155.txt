@@ -10,6 +10,8 @@ Ignoring Name Age:
 # normally anywhere between proposal submission and the start of α).
 Ignoring Confusable_MA Identifier_Status Identifier_Type Idn_Status Idn_Mapping Idn_2008 IDNA2008_Category:
 
+Ignoring /UCA_Fold_.*/:  # TODO(egg): Refine these comparisons.
+
 Propertywise [\x{1DF40}   \N{LATIN CAPITAL LETTER BARRED A}
               \x{1DF48}   \N{LATIN CAPITAL LETTER BARRED K}
               \x{1DF4A}   \N{LATIN CAPITAL LETTER BARRED M}
@@ -81,6 +83,8 @@ CorrespondTo [\x{02B4} ʴ \N{MODIFIER LETTER SMALL TURNED R}]
            : [\x{0279} ɹ \N{LATIN SMALL LETTER TURNED R}]
 end Ignoring;
 
+
+end Ignoring;
 
 end Ignoring;
 
