@@ -185,9 +185,7 @@ public class CollationProperties {
                                 .removeAllStrings(),
                         representatives.get(elements));
             }
-            final var dt =
-                    IndexUnicodeProperties.make(version)
-                            .getProperty(UcdProperty.Decomposition_Type);
+
             // We compute the foldings before decomposing so that we handle contractions properly
             // without having to actually do the special handling of contraction required of an
             // implementation of collation folding of strings: a canonical composite that is not a
@@ -202,6 +200,9 @@ public class CollationProperties {
 
             // Now add the canonical composites that are not listed in allkeys.txt (the Hangul
             // syllables).
+            final var dt =
+                    IndexUnicodeProperties.make(version)
+                            .getProperty(UcdProperty.Decomposition_Type);
             for (final String cp :
                     dt.getSet(UcdPropertyValues.Decomposition_Type_Values.Canonical)) {
                 if (!collationFolding.containsKey(cp)) {
