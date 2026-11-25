@@ -208,7 +208,7 @@ public class CollationProperties {
                     IndexUnicodeProperties.make(version)
                             .getProperty(UcdProperty.Decomposition_Type);
             // We compute the foldings before decomposing so that we handle contractions properly
-            // without having to actually do the special handling of contraction required of an:
+            // without having to actually do the special handling of contraction required of an
             // implementation of collation folding of strings: a canonical composite that is not a
             // singleton is a contraction (like й) if it primary folds to itself.
             // As far as equivalences of code points are concerned, folding to the decomposition
