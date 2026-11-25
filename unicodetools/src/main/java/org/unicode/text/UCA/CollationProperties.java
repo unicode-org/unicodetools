@@ -134,8 +134,7 @@ public class CollationProperties {
         final UCAContents ucaContents = uca.getContents(null);
 
         // First we compute the equivalence classes of all strings explicitly listed in the DUCET
-        // for
-        // all folding types.
+        // for all folding types.
         // Note that this does not yet give us the equivalence classes of all code points: we will
         // see circled ideographs, but not their primary equivalent ideographs, which have implicit
         // weights.
