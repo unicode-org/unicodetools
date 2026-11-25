@@ -33,7 +33,7 @@ public class Idna2008 extends Idna {
     static {
         // Ensure anything that is needed to get the symbol table we want is initialized before we
         // remove the default symbol table.
-        VersionedSymbolTable.forDevelopment();
+        IndexUnicodeProperties.make();
         final var oldDefaultXSymbolTable = UnicodeSet.getDefaultXSymbolTable();
         UnicodeSet.setDefaultXSymbolTable(VersionedSymbolTable.NO_PROPS);
         // A: General_Category(cp) is in {Ll, Lu, Lo, Nd, Lm, Mn, Mc}
