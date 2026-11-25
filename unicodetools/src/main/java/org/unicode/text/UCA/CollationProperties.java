@@ -264,10 +264,10 @@ public class CollationProperties {
      * {@code elements} and {@code representatives} must be consistent with {@code type}.
      */
     private static String getFoldingExpansion(
-            final long[] elements,
             final UCA uca,
             final FoldingType type,
-            final Map<long[], String> representatives) {
+            final Map<long[], String> representatives,
+            final long[] elements) {
         final var folding = new StringBuilder();
         for (int i = 0; i < elements.length; ++i) {
             if (UCA.isImplicitLeadCE(removeQuaternary(elements[i]))) {
