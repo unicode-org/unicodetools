@@ -190,7 +190,7 @@ public class CollationProperties {
                 final long[] elements = entry.getKey();
                 final UnicodeSet strings = entry.getValue();
                 if (elements.length > 1) {
-                    final var folding = getFoldingExpansion(elements, uca, type, representatives);
+                    final var folding = getFoldingExpansion(uca, type, representatives, elements);
                     if (folding != null) {
                         collationFolding.putAll(
                                 strings.cloneAsThawed().remove(folding).removeAllStrings(),
@@ -249,10 +249,10 @@ public class CollationProperties {
 
     /**
      * If every element in {@code elements} is equivalent to some code point, returns the
-     * concatenation of the representatives of each element. For that purpose, an implicit weight
-     * pair is treated atomically, and its representative is deduced from the weight pair. Other
-     * representatives are taken from {@code representatives}. This relies on the following
-     * properties:
+     * concatenation of the representatives of each element. Returns null otherwise. For that
+     * purpose, an implicit weight pair is treated atomically, and its representative is deduced
+     * from the weight pair. Other representatives are taken from {@code representatives}. This
+     * relies on the following properties:
      *
      * <ol>
      *   <li>two distinct code points with implicit weights are primary different;
@@ -305,9 +305,8 @@ public class CollationProperties {
     /**
      * Returns the total order of code points defined by the UCA at the given version, using either
      * option for variable weighting, expressed as a map from each code point to its successor in
-     * the total order.
-     * Omits mappings to the very next code point.
-     * The last code point is mapped to itself.
+     * the total order. Omits mappings to the very next code point. The last code point is mapped to
+     * itself.
      */
     public static Map<Alternate, UnicodeMap<String>> getNext(VersionInfo version) {
         if (version.compareTo(VersionInfo.UNICODE_2_1_9) < 0) {
