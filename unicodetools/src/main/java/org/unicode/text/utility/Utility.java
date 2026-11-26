@@ -1512,7 +1512,7 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                         // The file name has a -n suffix.
                         parts[2] = parts[2] + "-" + revision;
                     }
-                    if (version.compareTo(LAST_PUBLISHED_UTR25_BASE_VERSION) > 0) {
+                    if (LAST_PUBLISHED_UTR25_BASE_VERSION.compareTo(version) < 0) {
                         element = LAST_PUBLISHED_UTR25_BASE_VERSION.getVersionString(3, 3);
                     }
                 }
