@@ -25,8 +25,9 @@
   <!--  Templates  -->
   <xsl:template match="mathchars">
     <xsl:call-template name="introduction">
-      <xsl:with-param name="unicode" select="@unicode"/>
+      <xsl:with-param name="data" select="@data"/>
       <xsl:with-param name="tr25" select="@tr25"/>
+      <xsl:with-param name="unicode" select="@unicode"/>
     </xsl:call-template>
     <xsl:apply-templates/>
     <xsl:call-template name="footer"/>
@@ -40,10 +41,13 @@
   </xsl:template>
 
   <xsl:template name="introduction">
-    <xsl:param name="unicode"/>
+    <xsl:param name="data"/>
     <xsl:param name="tr25"/>
+    <xsl:param name="unicode"/>
     <xsl:text># File: MathClass.txt
-# Revision: </xsl:text><xsl:value-of select="$tr25"/><xsl:text>
+# Unicode Technical Report #25 revision: </xsl:text><xsl:value-of select="$tr25"/><xsl:text>
+# Data file version: </xsl:text><xsl:value-of select="$data"/><xsl:text>
+# Equivalent Unicode version: </xsl:text><xsl:value-of select="$unicode"/><xsl:text>
 # Date: </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]-[M01]-[D01]')"/><xsl:text>
 #
 # © </xsl:text><xsl:value-of select="format-date(current-date(), '[Y0001]')"/><xsl:text> Unicode®, Inc.
