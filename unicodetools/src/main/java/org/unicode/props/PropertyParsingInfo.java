@@ -1835,12 +1835,12 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo> {
                 if ((propInfo.property == UcdProperty.Math_Entity_Name
                                 || propInfo.property == UcdProperty.Math_Entity_Set
                                 || propInfo.property == UcdProperty.Math_Class_Ex)
-                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_17_0)
                                 < 0) {
                     merger = new PropertyUtilities.RedundancyIgnoringMultivaluedJoiner();
                 }
                 if (propInfo.property == UcdProperty.Math_Descriptive_Comments
-                        && indexUnicodeProperties.ucdVersion.compareTo(Utility.UTR25_REVISION_16)
+                        && indexUnicodeProperties.ucdVersion.compareTo(VersionInfo.UNICODE_17_0)
                                 < 0) {
                     merger = new PropertyUtilities.NullIgnorer();
                 }

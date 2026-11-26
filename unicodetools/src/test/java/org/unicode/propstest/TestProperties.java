@@ -46,6 +46,7 @@ import org.unicode.props.UnicodeProperty;
 import org.unicode.props.ValueCardinality;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.unittest.TestFmwkMinusMinus;
@@ -64,6 +65,63 @@ public class TestProperties extends TestFmwkMinusMinus {
     private static final UnicodeSet newChars =
             iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
     private static final UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
+
+    @Test
+    public void TestMathClass() {
+        // This test checks that we find the data files across versioning transitions.
+        assertEquals(
+                "Math_Class of ! in the latest revision",
+                "Closing",
+                IndexUnicodeProperties.make(Settings.latestVersion)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('!'));
+        // Revision 17 corresponds to Unicode Version 17.0; its data files are numbered 17.0.0.
+        assertEquals(
+                "Math_Class of ! in the revision for 17.0",
+                "Closing",
+                IndexUnicodeProperties.make(VersionInfo.UNICODE_17_0)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('!'));
+        // The revision before revision 17 for 17.0 was revision 15 for 9.0.
+        assertEquals(
+                "Math_Class of ! in the revision for 16.0",
+                "Normal",
+                IndexUnicodeProperties.make(VersionInfo.UNICODE_16_0)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('!'));
+        assertEquals(
+                "Math_Class of ! in the revision for 9.0",
+                "Normal",
+                IndexUnicodeProperties.make(VersionInfo.UNICODE_9_0)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('!'));
+        // There were no data file changes between revisions 14 (7.0) and 15 (9.0).
+        // Revision 13 was for 6.1, and added some Math_Class assignments.
+        assertEquals(
+                "Math_Class of ⭅ in the revision for 9.0",
+                "Relation",
+                IndexUnicodeProperties.make(VersionInfo.UNICODE_9_0)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('⭅'));
+        assertEquals(
+                "Math_Class of ⭅ in the revision for 7.0",
+                "Relation",
+                IndexUnicodeProperties.make(VersionInfo.UNICODE_7_0)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('⭅'));
+        assertEquals(
+                "Math_Class of ⭅ in the revision for 6.2",
+                "None",
+                IndexUnicodeProperties.make(VersionInfo.UNICODE_6_2)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('⭅'));
+        assertEquals(
+                "Math_Class of ⭅ in the revision for 6.1",
+                "None",
+                IndexUnicodeProperties.make(VersionInfo.UNICODE_6_1)
+                        .getProperty(UcdProperty.Math_Class)
+                        .getValue('⭅'));
+    }
 
     @Test
     public void TestPropertyValuesSetCoverage() {

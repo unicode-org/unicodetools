@@ -1502,13 +1502,18 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
                     }
                 }
                 if (base.equals("math")) {
-                    final String revision = getMathRevision(currentVersion);
+                    final String revision = getMathDataFileRevision(currentVersion);
                     if (element == null) {
                         return null;
                     }
-                    element = "revision-" + revision;
-                    if (currentVersion.compareTo(UTR25_REVISION_16) < 0) {
+                    if (revision != null) {
+                        // The path is math/revision-n.
+                        element = "revision-" + revision;
+                        // The file name has a -n suffix.
                         parts[2] = parts[2] + "-" + revision;
+                    }
+                    if (version.compareTo(LAST_PUBLISHED_UTR25_BASE_VERSION) > 0) {
+                        element = LAST_PUBLISHED_UTR25_BASE_VERSION.getVersionString(3, 3);
                     }
                 }
                 if (parts[2].equals("Idna2008")
@@ -1586,14 +1591,19 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
         return null;
     }
 
-    // This will may turn out to be 17, but for now set it to Latest (currently 18) so that it
-    // doesn’t show up as published in the online tools.
-    public static final VersionInfo UTR25_REVISION_16 = Settings.LATEST_VERSION_INFO;
+    public static final VersionInfo LAST_PUBLISHED_UTR25_BASE_VERSION = VersionInfo.UNICODE_17_0;
 
     // UTR #25 is not synchronized, but its releases correspond to the preceding
     // version of Unicode (or, in the case of revision 12, to the following
     // day’s version of Unicode).
-    private static String getMathRevision(VersionInfo versionInfo) {
+    // Starting with Revision 17 of UTR #25 (confusingly corresponding to
+    // Unicode Version 17.0), the data files are versioned according to that
+    // version of Unicode instead of according to the revision; for versions
+    // starting with 17.0, this function accordingly returns null.
+    private static String getMathDataFileRevision(VersionInfo versionInfo) {
+        if (VersionInfo.UNICODE_17_0.compareTo(versionInfo) <= 0) {
+            return null;
+        }
         VersionInfo[] mathToSubsequentUnicodeVersion = {
             /*  0 ∄ */ null,
             /*  1 (Proposed Draft) */ null,
@@ -1611,7 +1621,6 @@ public final class Utility implements UCD_Types { // COMMON UTILITIES
             /* 13, 2012-04-02 */ VersionInfo.UNICODE_6_1, // 2012 January 31
             /* 14, 2015-07-31 */ VersionInfo.UNICODE_7_0, // 2014 June 16
             /* 15, 2017-05-30 */ VersionInfo.UNICODE_9_0, // 2016 June 21
-            /* 16, WIP        */ UTR25_REVISION_16,
         };
         String result = null;
         for (int i = 0; i < mathToSubsequentUnicodeVersion.length; ++i) {
