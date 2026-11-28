@@ -1,5 +1,6 @@
 package org.unicode.idna;
 
+import com.ibm.icu.impl.Punycode;
 import com.ibm.icu.impl.UnicodeMap;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
@@ -91,10 +92,7 @@ public class Idna implements StringTransform {
             return label;
         }
         try {
-            final StringBuffer temp = new StringBuffer();
-            temp.append(label.substring(4));
-            final StringBuffer depuny = Punycode.decode(temp, null);
-            return depuny.toString();
+            return Punycode.decode(label.substring(4), null).toString();
         } catch (final StringPrepParseException e) {
             error[0] = true;
             return label;
@@ -112,9 +110,7 @@ public class Idna implements StringTransform {
                 result.append(label);
             } else {
                 try {
-                    final StringBuffer temp = new StringBuffer();
-                    temp.append(label);
-                    final StringBuffer depuny = Punycode.encode(temp, null);
+                    final StringBuilder depuny = Punycode.encode(label, null);
                     result.append("xn--").append(depuny);
                 } catch (final StringPrepParseException e) {
                     error[0] = true;
