@@ -11,9 +11,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -97,7 +97,7 @@ public class ShowCharacters {
     }
 
     private static String getName(String s) {
-        return CldrUtility.ifNull(CD.getName(s), names.get(s));
+        return Objects.toString(CD.getName(s), names.get(s));
     }
 
     public void test(String[] args) {

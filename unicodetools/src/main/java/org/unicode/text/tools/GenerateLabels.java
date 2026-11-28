@@ -21,9 +21,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter2;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
@@ -254,7 +254,8 @@ public class GenerateLabels {
                             + "\t"
                             + symbolToInfo.get(key));
             for (String s :
-                    CldrUtility.ifNull(codepointToNfkcs.get(key), Collections.<String>emptySet())) {
+                    Objects.requireNonNullElse(
+                            codepointToNfkcs.get(key), Collections.<String>emptySet())) {
                 System.out.println(s + "\t" + UCharacter.getName(s, "+"));
                 missing.remove(s);
             }
@@ -262,7 +263,8 @@ public class GenerateLabels {
         for (String key : missing) {
             System.out.println(key + "\t" + UCharacter.getName(key, "+"));
             for (String s :
-                    CldrUtility.ifNull(codepointToNfkcs.get(key), Collections.<String>emptySet())) {
+                    Objects.requireNonNullElse(
+                            codepointToNfkcs.get(key), Collections.<String>emptySet())) {
                 System.out.println(s + "\t" + UCharacter.getName(s, "+"));
             }
         }
