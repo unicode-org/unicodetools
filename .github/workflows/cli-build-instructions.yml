@@ -300,11 +300,20 @@ jobs:
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
+          fetch-depth: 2
+      - name: Find base of test merge
+        id: base-of-merge
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          # The event's base SHA can be stale. Use the test merge's first parent
+          # to exclude unrelated changes on the base branch.
+          base_sha=$(git -C unicodetools/mine/src rev-parse HEAD^1)
+          echo "sha=$base_sha" >> "$GITHUB_OUTPUT"
       - name: Checkout base UnicodeData.txt
         if: ${{ github.event_name == 'pull_request'}}
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ steps.base-of-merge.outputs.sha }}
           path: base
           sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
       - name: Compare repertoire
@@ -381,11 +390,20 @@ jobs:
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
+          fetch-depth: 2
+      - name: Find base of test merge
+        id: base-of-merge
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          # The event's base SHA can be stale. Use the test merge's first parent
+          # to exclude unrelated changes on the base branch.
+          base_sha=$(git -C unicodetools/mine/src rev-parse HEAD^1)
+          echo "sha=$base_sha" >> "$GITHUB_OUTPUT"
       - name: Checkout base UnicodeData.txt
         if: ${{ github.event_name == 'pull_request'}}
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ steps.base-of-merge.outputs.sha }}
           path: base
           sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
       - name: Compare repertoire
@@ -463,11 +481,20 @@ jobs:
         with:
           repository: unicode-org/unicodetools
           path: unicodetools/mine/src
+          fetch-depth: 2
+      - name: Find base of test merge
+        id: base-of-merge
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          # The event's base SHA can be stale. Use the test merge's first parent
+          # to exclude unrelated changes on the base branch.
+          base_sha=$(git -C unicodetools/mine/src rev-parse HEAD^1)
+          echo "sha=$base_sha" >> "$GITHUB_OUTPUT"
       - name: Checkout base UnicodeData.txt
         if: ${{ github.event_name == 'pull_request'}}
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ steps.base-of-merge.outputs.sha }}
           path: base
           sparse-checkout: unicodetools/data/ucd/dev/UnicodeData.txt
       - name: Compare repertoire
