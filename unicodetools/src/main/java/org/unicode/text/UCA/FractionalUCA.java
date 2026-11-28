@@ -3,9 +3,11 @@ package org.unicode.text.UCA;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.VersionInfo;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +18,9 @@ import java.util.TreeMap;
 import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 import org.unicode.cldr.util.Counter;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UnicodeProperty;
 import org.unicode.text.UCA.MappingsForFractionalUCA.MappingWithSortKey;
 import org.unicode.text.UCA.PrimariesToFractional.PrimaryToFractional;
 import org.unicode.text.UCD.Default;
@@ -268,6 +273,7 @@ public class FractionalUCA {
                 }
             }
             return option == WeightStyle.DEFAULT
+                            || (!blanked.equals("pp") && val == Fractional.COMMON_SEC)
                     ? Fractional.hexBytes(val)
                     : Fractional.blankedHexBytes(val, blanked, null).toString();
         }
@@ -471,9 +477,17 @@ public class FractionalUCA {
                 blanked.append('[');
                 Fractional.blankedHexBytes(np, "pp", blanked);
                 blanked.append(", ");
-                Fractional.blankedHexBytes(ns, "ss", blanked);
+                if (ns == 5 || ns == 0x500) {
+                    blanked.append("05");
+                } else {
+                    Fractional.blankedHexBytes(ns, "ss", blanked);
+                }
                 blanked.append(", ");
-                Fractional.blankedHexBytes(nt, "tt", blanked);
+                if (nt == 5) {
+                    blanked.append("05");
+                } else {
+                    Fractional.blankedHexBytes(nt, "tt", blanked);
+                }
                 blanked.append(']');
 
                 if (comment != null) {
@@ -557,6 +571,7 @@ public class FractionalUCA {
         final PrintWriter fracBlanked;
         final PrintWriter summary;
         final PrintWriter log;
+        final UnicodeProperty ageProp = IndexUnicodeProperties.make().getProperty(UcdProperty.Age);
 
         Output() {
             directory = UCA.getOutputDir() + "CollationAuxiliary" + File.separator;
@@ -612,6 +627,10 @@ public class FractionalUCA {
             fracPrintln();
         }
 
+        String getShortAge(int c) {
+            return ageProp.getValue(c, /* getShortest= */ true);
+        }
+
         void fracPrintComment(String s, CEList ces) {
             int first = s.codePointAt(0);
             String name = Default.ucd().getName(first);
@@ -619,26 +638,25 @@ public class FractionalUCA {
                 name = name + " ...";
             }
 
+            VersionInfo maxAge =
+                    s.codePoints()
+                            .mapToObj(this::getShortAge)
+                            .map(VersionInfo::getInstance)
+                            .max(Comparator.naturalOrder())
+                            .get();
+            String ageString = maxAge.getVersionString(2, 2);
+            if (ageString.length() == 3) {
+                // Make "5.2" as wide as "18.0".
+                ageString = " " + ageString;
+            }
+
             String scriptInfo = mapCodePoints(s, "/", FractionalUCA::cpToScript);
             String gcInfo = mapCodePoints(s, "/", FractionalUCA::cpToGeneralCategory);
-            frac.print(
-                    "\t# "
-                            + scriptInfo
-                            + " "
-                            + gcInfo
-                            + "\t"
-                            + ces.toString(CEList.WeightStyle.NO_SPACES)
-                            + "\t* "
-                            + name);
-            fracBlanked.print(
-                    "\t# "
-                            + scriptInfo
-                            + " "
-                            + gcInfo
-                            + "\t"
-                            + ces.toString(CEList.WeightStyle.BLANKED)
-                            + "\t* "
-                            + name);
+
+            String comment =
+                    "\t# " + ageString + " " + scriptInfo + " " + gcInfo + "\t{CEs}\t* " + name;
+            frac.print(comment.replace("{CEs}", ces.toString(CEList.WeightStyle.NO_SPACES)));
+            fracBlanked.print(comment.replace("{CEs}", ces.toString(CEList.WeightStyle.BLANKED)));
         }
 
         void fracPrintSampleComment(String s, CEList ces) {
