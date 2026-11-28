@@ -273,6 +273,7 @@ public class FractionalUCA {
                 }
             }
             return option == WeightStyle.DEFAULT
+                            || (!blanked.equals("pp") && val == Fractional.COMMON_SEC)
                     ? Fractional.hexBytes(val)
                     : Fractional.blankedHexBytes(val, blanked, null).toString();
         }
@@ -476,9 +477,17 @@ public class FractionalUCA {
                 blanked.append('[');
                 Fractional.blankedHexBytes(np, "pp", blanked);
                 blanked.append(", ");
-                Fractional.blankedHexBytes(ns, "ss", blanked);
+                if (ns == 5 || ns == 0x500) {
+                    blanked.append("05");
+                } else {
+                    Fractional.blankedHexBytes(ns, "ss", blanked);
+                }
                 blanked.append(", ");
-                Fractional.blankedHexBytes(nt, "tt", blanked);
+                if (nt == 5) {
+                    blanked.append("05");
+                } else {
+                    Fractional.blankedHexBytes(nt, "tt", blanked);
+                }
                 blanked.append(']');
 
                 if (comment != null) {

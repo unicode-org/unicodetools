@@ -377,7 +377,7 @@ public final class CEList implements java.lang.Comparable<CEList> {
         return "["
                 + (p == 0 ? "0000" : "pppp")
                 + "."
-                + (s == 0 ? "0000" : "ssss")
+                + (s == 0 ? "0000" : s == 0x20 ? "0020" : "ssss")
                 + "."
                 + Utility.hex(getTertiary(ce))
                 + "]";
